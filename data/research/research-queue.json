@@ -1,5 +1,25 @@
 {
   "schema_version": 1,
-  "updated_at": null,
-  "items": []
+  "updated_at": "2026-09-28T11:12:00Z",
+  "items": [
+    {
+      "id": "B-20260928-PRIMARY-PROVENANCE",
+      "created_by": "AI-B",
+      "status": "OPEN",
+      "priority": "critical",
+      "evidence_state": "CONFIRMED",
+      "title": "Connect primary-source provenance before hypothesis promotion",
+      "reason": "Current A candidates contain only secondary-source observed facts and primary_source_status is NOT_CONNECTED.",
+      "required": [
+        "KRX market/index/breadth/market-cap/flow data",
+        "official FX source",
+        "official U.S. Treasury yield source"
+      ],
+      "acceptance_criteria": [
+        "candidate facts retain source and as-of metadata",
+        "CONFIRMED promotion requires primary evidence",
+        "C does not consume unverified candidates as confirmed inputs"
+      ]
+    }
+  ]
 }
