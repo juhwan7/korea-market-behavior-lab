@@ -41,5 +41,54 @@
       ]
     }
   },
-  "items": []
+  "items": [
+    {
+      "review_id": "REVIEW-20260929-FIVE-AI-MESH-001",
+      "event_type": "workflow_change",
+      "title": "Five-AI automatic verification and recovery mesh",
+      "owner": "AI-D",
+      "recovery_owner": "AI-D",
+      "status": "REVIEWING",
+      "affected_dependencies": [
+        "shared-memory",
+        "automation-prompts",
+        "review-mesh",
+        "canonical-writer"
+      ],
+      "created_at": "2026-09-29T00:51:00+09:00",
+      "reviews": {
+        "AI-A": {
+          "result": "PENDING",
+          "finding": null,
+          "reviewed_at": null
+        },
+        "AI-B": {
+          "result": "PENDING",
+          "finding": null,
+          "reviewed_at": null
+        },
+        "AI-C": {
+          "result": "PENDING",
+          "finding": null,
+          "reviewed_at": null
+        },
+        "AI-D": {
+          "result": "PASS_WITH_NOTES",
+          "finding": "Review mesh files, tests and agent prompts were installed; external Actions and remaining peer reviews must be checked before closure.",
+          "reviewed_at": "2026-09-29T00:51:00+09:00"
+        },
+        "AI-E": {
+          "result": "PENDING",
+          "finding": null,
+          "reviewed_at": null
+        }
+      },
+      "evidence": {
+        "commit_sha": "558e21e108a98c58cddf0c9524b92e6dd33d8a52",
+        "actions_result": null,
+        "expected_state_verified": false
+      },
+      "next_action": "Each scheduled AI reviews this item from its specialty; resolve findings, then verify latest Actions and expected repository state before RESOLVED."
+    }
+  ]
 }
