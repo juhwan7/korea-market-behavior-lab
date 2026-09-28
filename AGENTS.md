@@ -115,3 +115,21 @@ material event를 완료 처리하려면:
 5. Actions success 확인
 6. 기대 파일/상태 실제 확인
 이 모두 필요하다.
+
+
+## ALWAYS-ON five-agent survival preflight
+This rule has higher operational priority than each agent's specialty work.
+
+At the start of every AI-A/B/C/D/E cycle, first verify all five scheduled AI automations, not merely the repository status strings. The desired state is AI-A ACTIVE, AI-B ACTIVE, AI-C ACTIVE, AI-D ACTIVE, AI-E ACTIVE.
+
+Required order: five-agent survival check -> detect disabled/stopped/stale/missing agent -> inspect recovery lease -> restore the missing agent immediately when safe -> verify recovery -> inspect missed data/work -> remove pipeline bottleneck -> process review-board -> perform specialty work.
+
+Every agent watches A/B/C/D/E including itself. If one agent is disabled, paused, stopped, suspended, failed, cancelled, stale, missing, timed out, crashed, skipped or inactive, the remaining agents must detect it. All observers may investigate, but only one recovery owner may mutate the same canonical target. Acquire/observe recovery lease; other agents support reproduction, evidence checks, tests and alternatives. A stale recovery lease may be taken over after expiry.
+
+Repository agent JSON saying ACTIVE is insufficient. Cross-check, when available, the actual automation enabled state, last run, expected schedule, heartbeat, recent Actions, output freshness, agent-state progress, queue and expected artifacts. If repository state disagrees with runtime evidence, runtime evidence wins and the mismatch itself is an incident/material event.
+
+Never disable another automation merely because a LOCAL blocker, write failure, review delay or one dependency failed. Isolate that dependency and keep independent collectors, discovery, research, Pages and other agents running. Only a true damage-propagation risk may justify a global stop under the existing GLOBAL_STOP policy.
+
+Recovery is not complete after toggling enabled=true. Verify as far as the available evidence allows: latest main SHA -> last good run -> failure point -> cause -> minimal fix/re-enable -> tests -> Actions/run evidence -> heartbeat/progress advance -> expected output -> downstream stage. If a missed interval can be safely backfilled from authoritative data, backfill it; otherwise mark it MISSING/UNKNOWN rather than fabricating current data.
+
+If an agent is found disabled, restoring it takes priority over normal market research, model work, UI work or experiments. After restoration, record the incident/root cause/prevention in recovery queue and long-term memory and create/link a five-AI review item for the material event. Repeated disablement must trigger root-cause analysis and a regression/prevention improvement rather than endless manual re-enabling.
