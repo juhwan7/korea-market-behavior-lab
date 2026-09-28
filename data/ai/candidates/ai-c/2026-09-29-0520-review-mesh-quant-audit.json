@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "candidate_id": "C-20260929-0520-REVIEW-MESH-QUANT-AUDIT",
+  "agent": "AI-C",
+  "created_at": "2026-09-29T05:20:54+09:00",
+  "status": "FIX_REQUIRED",
+  "review_id": "REVIEW-20260929-FIVE-AI-MESH-001",
+  "review_result": {
+    "result": "FIX_REQUIRED",
+    "finding": "Production review_mesh.py now correctly requires a 40-character lowercase hex commit SHA and actions_result success:<positive_run_id>, but tests/test_review_mesh.py still uses commit_sha=abc and actions_result=success in its positive fixture while expecting can_close() == true. This is a deterministic regression in the current main. AI-D already owns recovery, so AI-C does not duplicate the canonical test-file change."
+  },
+  "quant_assessment": {
+    "sample_count": 0,
+    "probability": "UNKNOWN",
+    "mfe_mae": "NOT_COMPUTED",
+    "fees_slippage": "NOT_COMPUTED",
+    "regime_validation": "NOT_RUN",
+    "walk_forward": "NOT_RUN",
+    "production_eligible": false,
+    "rule": "No probability is produced without actual samples."
+  },
+  "required_regression_tests": [
+    "positive fixture uses a valid 40-character lowercase hexadecimal SHA",
+    "positive fixture uses success:<positive numeric run id>",
+    "reject malformed or uppercase SHA",
+    "reject failed/failure/cancelled/timed_out Actions results",
+    "reject bare success, success:0, and non-numeric run id"
+  ],
+  "concurrency": {
+    "recovery_owner": "AI-D",
+    "writer_lease_observed": "FREE",
+    "canonical_target_not_modified_by_ai_c": true
+  },
+  "evidence": {
+    "main_head": "de2454e58c131b88bfc36d4a61bc825b5de6ddb2",
+    "review_mesh_blob": "69d685493022b3a7d81d751dc9385d730d1e2bc0",
+    "test_review_mesh_blob": "a7bd12816895167b885babf68119c539de113c01",
+    "existing_recovery_candidate": "data/ai/candidates/ai-d/D-20260929-REVIEW-MESH-TEST-FIX.json"
+  },
+  "next_action": "AI-D applies its READY recovery candidate to tests/test_review_mesh.py, runs targeted and full unit tests, obtains a new system-check success on the resulting main commit, verifies expected state, then A/B/C/E backfill review."
+}
