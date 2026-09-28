@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "mode": "FIVE_AI_REVIEW_MESH",
-  "updated_at": "2026-09-29T00:51:00+09:00",
+  "updated_at": "2026-09-29T00:55:27+09:00",
   "policy": {
     "reviewers": [
       "AI-A",
@@ -74,8 +74,8 @@
         },
         "AI-D": {
           "result": "PASS_WITH_NOTES",
-          "finding": "Review mesh files, tests and agent prompts were installed; external Actions and remaining peer reviews must be checked before closure.",
-          "reviewed_at": "2026-09-29T00:51:00+09:00"
+          "finding": "Review mesh files, tests, automation prompts and enabled states verified; system-check run 36447230276 succeeded. Awaiting independent A/B/C/E reviews before closure.",
+          "reviewed_at": "2026-09-29T00:55:27+09:00"
         },
         "AI-E": {
           "result": "PENDING",
@@ -84,11 +84,11 @@
         }
       },
       "evidence": {
-        "commit_sha": "558e21e108a98c58cddf0c9524b92e6dd33d8a52",
-        "actions_result": null,
-        "expected_state_verified": false
+        "commit_sha": "dc1e2b7c2aacd5f0118345f9eed90cedf73e459c",
+        "actions_result": "success:36447230276",
+        "expected_state_verified": true
       },
-      "next_action": "Each scheduled AI reviews this item from its specialty; resolve findings, then verify latest Actions and expected repository state before RESOLVED."
+      "next_action": "AI-A/B/C/E perform independent specialty reviews. Any FIX_REQUIRED becomes recovery work; close only after all five reviews pass."
     }
   ]
 }
