@@ -5,8 +5,10 @@ on:
     - cron: "*/10 * * * *"
   push:
     branches: [main]
+    paths-ignore:
+      - "data/system/health-snapshot.json"
 permissions:
-  contents: write
+  contents: read
 jobs:
   check:
     runs-on: ubuntu-latest
@@ -17,6 +19,8 @@ jobs:
           python-version: "3.12"
       - name: Compile runtime
         run: python -m compileall src
+      - name: Run unit tests
+        run: PYTHONPATH=src python -m unittest discover -s tests -v
       - name: Generate health snapshot
         run: PYTHONPATH=src python -m kmb_lab.supervisor
       - name: Validate JSON
@@ -27,15 +31,9 @@ jobs:
               json.loads(p.read_text(encoding="utf-8"))
               print("ok", p)
           PY
-      - name: Commit generated health snapshot
-        run: |
-          if git diff --quiet -- data/system/health-snapshot.json && git status --porcelain data/system/health-snapshot.json | grep -q '^??' ; then
-            :
-          fi
-          if ! git diff --quiet -- data/system/health-snapshot.json || [ -n "$(git status --porcelain data/system/health-snapshot.json)" ]; then
-            git config user.name "kmb-lab-bot"
-            git config user.email "actions@users.noreply.github.com"
-            git add data/system/health-snapshot.json
-            git commit -m "chore: refresh system health snapshot"
-            git push
-          fi
+      - name: Upload health snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: system-health
+          path: data/system/health-snapshot.json
+          retention-days: 7
