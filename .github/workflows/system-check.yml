@@ -21,14 +21,21 @@ jobs:
         run: python -m compileall src
       - name: Run unit tests
         run: PYTHONPATH=src python -m unittest discover -s tests -v
+      - name: Validate shared AI memory
+        run: PYTHONPATH=src python -m kmb_lab.memory --strict
       - name: Generate health snapshot
         run: PYTHONPATH=src python -m kmb_lab.supervisor --strict
-      - name: Validate JSON
+      - name: Validate JSON and JSONL
         run: |
           python - <<'PY'
           import json, pathlib
           for p in pathlib.Path("data").rglob("*.json"):
               json.loads(p.read_text(encoding="utf-8"))
+              print("ok", p)
+          for p in pathlib.Path("data").rglob("*.jsonl"):
+              for lineno, line in enumerate(p.read_text(encoding="utf-8").splitlines(), 1):
+                  if line.strip():
+                      json.loads(line)
               print("ok", p)
           PY
       - name: Upload health snapshot
