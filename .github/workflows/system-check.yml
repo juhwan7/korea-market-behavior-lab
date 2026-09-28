@@ -1,0 +1,41 @@
+name: system-check
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/10 * * * *"
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile runtime
+        run: python -m compileall src
+      - name: Generate health snapshot
+        run: PYTHONPATH=src python -m kmb_lab.supervisor
+      - name: Validate JSON
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          for p in pathlib.Path("data").rglob("*.json"):
+              json.loads(p.read_text(encoding="utf-8"))
+              print("ok", p)
+          PY
+      - name: Commit generated health snapshot
+        run: |
+          if git diff --quiet -- data/system/health-snapshot.json && git status --porcelain data/system/health-snapshot.json | grep -q '^??' ; then
+            :
+          fi
+          if ! git diff --quiet -- data/system/health-snapshot.json || [ -n "$(git status --porcelain data/system/health-snapshot.json)" ]; then
+            git config user.name "kmb-lab-bot"
+            git config user.email "actions@users.noreply.github.com"
+            git add data/system/health-snapshot.json
+            git commit -m "chore: refresh system health snapshot"
+            git push
+          fi
