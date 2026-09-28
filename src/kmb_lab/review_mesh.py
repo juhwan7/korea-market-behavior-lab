@@ -1,9 +1,12 @@
 from __future__ import annotations
 
+import re
 from typing import Any
 
 AGENTS = ("AI-A", "AI-B", "AI-C", "AI-D", "AI-E")
 OPEN_RESULTS = {"PENDING", "PASS", "PASS_WITH_NOTES", "FIX_REQUIRED", "REJECT", "UNKNOWN"}
+COMMIT_SHA_RE = re.compile(r"^[0-9a-f]{40}$")
+ACTIONS_SUCCESS_RE = re.compile(r"^success:[1-9][0-9]*$")
 
 
 def validate_review_item(item: dict[str, Any]) -> list[str]:
@@ -49,6 +52,19 @@ def coverage(item: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def valid_external_evidence(evidence: dict[str, Any]) -> bool:
+    commit_sha = evidence.get("commit_sha")
+    actions_result = evidence.get("actions_result")
+    expected_state_verified = evidence.get("expected_state_verified")
+    return bool(
+        isinstance(commit_sha, str)
+        and COMMIT_SHA_RE.fullmatch(commit_sha)
+        and isinstance(actions_result, str)
+        and ACTIONS_SUCCESS_RE.fullmatch(actions_result)
+        and expected_state_verified is True
+    )
+
+
 def can_close(item: dict[str, Any]) -> bool:
     if validate_review_item(item):
         return False
@@ -57,5 +73,4 @@ def can_close(item: dict[str, Any]) -> bool:
         return False
     if not coverage(item)["all_roles_covered"]:
         return False
-    evidence = item.get("evidence", {})
-    return bool(evidence.get("commit_sha") and evidence.get("actions_result") and evidence.get("expected_state_verified"))
+    return valid_external_evidence(item.get("evidence", {}))
