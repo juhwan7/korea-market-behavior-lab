@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "generated_at": null,
+  "services": [
+    {
+      "id": "news-fast-lane",
+      "owner": "A",
+      "secondary": "D",
+      "emergency_fallback": "E",
+      "status": "UNKNOWN",
+      "freshness_target_minutes": 10,
+      "last_success_at": null,
+      "last_attempt_at": null,
+      "recovery_owner": null,
+      "lease_until": null
+    },
+    {
+      "id": "market-data",
+      "owner": "A",
+      "secondary": "D",
+      "emergency_fallback": "C",
+      "status": "UNKNOWN",
+      "freshness_target_minutes": 10,
+      "last_success_at": null,
+      "last_attempt_at": null,
+      "recovery_owner": null,
+      "lease_until": null
+    },
+    {
+      "id": "canonical-guard",
+      "owner": "D",
+      "secondary": "E",
+      "emergency_fallback": "B",
+      "status": "UNKNOWN",
+      "freshness_target_minutes": 10,
+      "last_success_at": null,
+      "last_attempt_at": null,
+      "recovery_owner": null,
+      "lease_until": null
+    },
+    {
+      "id": "github-pages",
+      "owner": "D",
+      "secondary": "E",
+      "emergency_fallback": "A",
+      "status": "UNKNOWN",
+      "freshness_target_minutes": 10,
+      "last_success_at": null,
+      "last_attempt_at": null,
+      "recovery_owner": null,
+      "lease_until": null
+    },
+    {
+      "id": "ai-heartbeat",
+      "owner": "D",
+      "secondary": "E",
+      "emergency_fallback": "B",
+      "status": "UNKNOWN",
+      "freshness_target_minutes": 10,
+      "last_success_at": null,
+      "last_attempt_at": null,
+      "recovery_owner": null,
+      "lease_until": null
+    }
+  ]
+}
