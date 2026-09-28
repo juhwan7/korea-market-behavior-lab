@@ -1,0 +1,98 @@
+name: canonical-writer
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "data/ai/patches/*.json"
+  workflow_dispatch:
+    inputs:
+      manifest_path:
+        description: "READY patch manifest under data/ai/patches/"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: canonical-writer
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Refresh latest main
+        run: git pull --ff-only origin main
+
+      - name: Resolve manifests
+        id: manifests
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            MANIFEST="${{ inputs.manifest_path }}"
+            case "$MANIFEST" in
+              data/ai/patches/*.json) ;;
+              *) echo "invalid manifest path"; exit 2 ;;
+            esac
+            printf '%s\n' "$MANIFEST" > /tmp/manifests.txt
+          else
+            git diff --name-only "${{ github.event.before }}" "${{ github.event.after }}" -- 'data/ai/patches/*.json'               | grep -E '^data/ai/patches/[^/]+\.json$'               | sort -u > /tmp/manifests.txt || true
+          fi
+          test -s /tmp/manifests.txt || { echo "no patch manifests"; exit 0; }
+          cat /tmp/manifests.txt
+
+      - name: Apply READY manifests
+        run: |
+          set -euo pipefail
+          while IFS= read -r manifest; do
+            PYTHONPATH=src python -m kmb_lab.writer "$manifest"
+          done < /tmp/manifests.txt
+
+      - name: Run full unit suite
+        run: PYTHONPATH=src python -m unittest discover -s tests -v
+
+      - name: Validate JSON and JSONL
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          for p in pathlib.Path("data").rglob("*.json"):
+              json.loads(p.read_text(encoding="utf-8"))
+          for p in pathlib.Path("data").rglob("*.jsonl"):
+              for lineno, line in enumerate(p.read_text(encoding="utf-8").splitlines(), 1):
+                  if line.strip():
+                      json.loads(line)
+          PY
+
+      - name: Commit canonical changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --check
+          if git diff --quiet; then
+            echo "No canonical changes to commit."
+            exit 0
+          fi
+          git config user.name "kmb-canonical-writer"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          git commit -m "Canonical writer: apply validated patch manifest"
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "push failed on attempt $attempt; refreshing main"
+            git pull --rebase origin main
+          done
+          echo "push failed after retries"
+          exit 1
