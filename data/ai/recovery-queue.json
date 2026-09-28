@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-28T22:56:00+09:00",
+  "updated_at": "2026-09-28T23:57:00+09:00",
   "policy": {
     "one_blocked_task_does_not_stop_all_agents": true,
     "local_incident_isolation": true,
@@ -31,6 +31,31 @@
         "do not disable A/B/C/D/E for local incidents"
       ],
       "resolved_at": "2026-09-28T22:56:00+09:00"
+    },
+    {
+      "incident_id": "INC-20260928-WRITER-SMOKE",
+      "scope": "LOCAL",
+      "affected_dependencies": [
+        "canonical-writer",
+        "patch-apply-verification"
+      ],
+      "recovery_owner": "AI-D",
+      "status": "RESOLVED",
+      "root_cause": "The first canonical-writer smoke used git diff --quiet after creating a new untracked target, so Actions concluded success while no canonical commit was produced.",
+      "attempts": [
+        "candidate_plus_manifest_smoke",
+        "inspect_workflow_logs",
+        "replace_git_diff_check_with_git_status_porcelain",
+        "retry_with_new_manifest"
+      ],
+      "resolution_commit": "1241460c4ce0b7772d9e5838ef4cb12078d53b10",
+      "prevention": [
+        "verify expected canonical file exists",
+        "verify writer commit exists",
+        "treat no worktree change after READY manifest as failure",
+        "use git status --porcelain for untracked output"
+      ],
+      "resolved_at": "2026-09-28T23:57:00+09:00"
     }
   ]
 }
