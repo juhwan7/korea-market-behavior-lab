@@ -22,7 +22,7 @@ jobs:
       - name: Run unit tests
         run: PYTHONPATH=src python -m unittest discover -s tests -v
       - name: Generate health snapshot
-        run: PYTHONPATH=src python -m kmb_lab.supervisor
+        run: PYTHONPATH=src python -m kmb_lab.supervisor --strict
       - name: Validate JSON
         run: |
           python - <<'PY'
