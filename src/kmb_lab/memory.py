@@ -29,18 +29,27 @@ def _load_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def validate_jsonl(path: Path) -> list[str]:
+def _display_path(path: Path, root: Path) -> str:
+    try:
+        return str(path.relative_to(root))
+    except ValueError:
+        return str(path)
+
+
+def validate_jsonl(path: Path, *, root: Path | None = None) -> list[str]:
+    base = root or ROOT
     errors: list[str] = []
+    label = _display_path(path, base)
     for lineno, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
         if not line.strip():
             continue
         try:
             value = json.loads(line)
         except json.JSONDecodeError as exc:
-            errors.append(f"{path.relative_to(ROOT)}:{lineno}: {exc.msg}")
+            errors.append(f"{label}:{lineno}: {exc.msg}")
             continue
         if not isinstance(value, dict):
-            errors.append(f"{path.relative_to(ROOT)}:{lineno}: JSONL entry must be an object")
+            errors.append(f"{label}:{lineno}: JSONL entry must be an object")
     return errors
 
 
@@ -77,7 +86,7 @@ def validate_shared_memory(root: Path | None = None) -> list[str]:
         if rel.endswith(".jsonl"):
             path = base / rel
             if path.is_file():
-                errors.extend(validate_jsonl(path))
+                errors.extend(validate_jsonl(path, root=base))
 
     return errors
 
