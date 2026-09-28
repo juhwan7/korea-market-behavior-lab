@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-09-28T11:52:00Z",
+  "policy": "A source is not CONNECTED until an adapter and validation test exist.",
+  "sources": [
+    {"id":"krx-market","authority":"KRX","purpose":["index","breadth","market_cap","investor_flow","price_volume"],"source_url":"https://data.krx.co.kr/","kind":"primary","status":"PLANNED","adapter":null,"validation":null},
+    {"id":"dart-disclosure","authority":"Financial Supervisory Service DART","purpose":["corporate_disclosure"],"source_url":"https://opendart.fss.or.kr/","kind":"primary","status":"PLANNED","adapter":null,"validation":null},
+    {"id":"bok-ecos","authority":"Bank of Korea ECOS","purpose":["fx","macro"],"source_url":"https://ecos.bok.or.kr/","kind":"primary","status":"PLANNED","adapter":null,"validation":null},
+    {"id":"us-treasury","authority":"U.S. Department of the Treasury","purpose":["treasury_yield"],"source_url":"https://home.treasury.gov/resource-center/data-chart-center/interest-rates","kind":"primary","status":"PLANNED","adapter":null,"validation":null}
+  ]
+}
