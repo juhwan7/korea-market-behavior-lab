@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "mode": "CONTINUOUS_COLLABORATION",
+  "canonical_writer": {
+    "primary": "AI-D",
+    "secondary": "AI-E",
+    "emergency": "AI-B"
+  },
+  "local_blocker_policy": "ISOLATE_AND_CONTINUE",
+  "global_stop_allowed_only_for": [
+    "canonical_corruption_propagation",
+    "credential_exposure",
+    "destructive_history_risk"
+  ],
+  "current_focus": [
+    "shared-memory",
+    "writer-lease",
+    "service-telemetry"
+  ],
+  "updated_at": "2026-09-28T23:03:00+09:00"
+}
