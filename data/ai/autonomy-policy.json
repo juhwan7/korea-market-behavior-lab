@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "repository": "juhwan7/korea-market-behavior-lab",
   "autonomous_repository_writes": true,
   "approved_scope": [
@@ -23,7 +23,7 @@
   "retry_policy": {
     "stale_sha": "refetch_latest_sha_then_retry",
     "concurrent_edit": "rebase_or_refetch_then_apply_non_conflicting_change",
-    "generic_write_guard": "do_not_stop_unless_external_permission_or_safety_constraint_is_real"
+    "generic_write_guard": "record_incident_try_safe_alternate_path_and_keep_independent_work_running"
   },
   "blocking_states": [
     "blocked",
@@ -38,20 +38,36 @@
     "verification_pending",
     "human_required"
   ],
-  "progression_rule": "resolve_and_verify_before_handoff_or_next_stage",
+  "progression_rule": {
+    "same_dependency_chain": "resolve_and_verify_before_promotion",
+    "independent_work": "continue",
+    "automation_state": "do_not_disable_for_local_blockers",
+    "global_stop_only_for": [
+      "canonical_corruption_propagation",
+      "credential_exposure",
+      "destructive_history_risk"
+    ]
+  },
   "recovery_sequence": [
     "inspect_real_error",
+    "claim_recovery_lease",
     "refetch_latest_sha",
     "split_change",
     "use_non_conflicting_safe_path",
     "apply_tests_or_minimal_fix",
     "rerun",
     "verify_main_commit_and_actions",
-    "resume_only_after_verified_recovery"
+    "resolve_incident",
+    "resume_dependent_chain"
   ],
   "success_evidence": [
     "commit_sha",
     "actions_result",
     "expected_file_state"
-  ]
+  ],
+  "failure_isolation": {
+    "queue_path": "data/ai/recovery-queue.json",
+    "preserve_service_liveness": true,
+    "one_blocked_task_does_not_stop_all_agents": true
+  }
 }
