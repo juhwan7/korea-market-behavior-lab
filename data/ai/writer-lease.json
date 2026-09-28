@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "writer": null,
+  "role_order": [
+    "AI-D",
+    "AI-E",
+    "AI-B"
+  ],
+  "target": null,
+  "task_id": null,
+  "acquired_at": null,
+  "lease_until": null,
+  "status": "FREE",
+  "rule": "Only the active writer lease holder may mutate the same canonical target; candidate and append-only writes remain independent."
+}
