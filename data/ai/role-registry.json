@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "updated_at": null,
+  "roles": [
+    {
+      "id": "AI-A",
+      "name": "Market Discovery & Behavior Researcher",
+      "owner": "A",
+      "secondary": "E",
+      "emergency_fallback": "B",
+      "priority": "high",
+      "status": "PERMANENT",
+      "purpose": "Discover market behavior, catalysts and candidate hypotheses",
+      "dependencies": [
+        "news",
+        "market-data"
+      ],
+      "retirement_condition": null
+    },
+    {
+      "id": "AI-B",
+      "name": "Red Team & Evidence Auditor",
+      "owner": "B",
+      "secondary": "E",
+      "emergency_fallback": "C",
+      "priority": "high",
+      "status": "PERMANENT",
+      "purpose": "Audit evidence and reject overclaiming",
+      "dependencies": [
+        "candidate-results"
+      ],
+      "retirement_condition": null
+    },
+    {
+      "id": "AI-C",
+      "name": "Position & Probability Lab",
+      "owner": "C",
+      "secondary": "B",
+      "emergency_fallback": "E",
+      "priority": "high",
+      "status": "PERMANENT",
+      "purpose": "Estimate virtual positions and validate probabilities",
+      "dependencies": [
+        "market-data",
+        "historical-data"
+      ],
+      "retirement_condition": null
+    },
+    {
+      "id": "AI-D",
+      "name": "SRE, Recovery & Data Platform Guardian",
+      "owner": "D",
+      "secondary": "E",
+      "emergency_fallback": "A",
+      "priority": "critical",
+      "status": "PERMANENT",
+      "purpose": "Keep services alive and data fresh",
+      "dependencies": [
+        "github-actions",
+        "pages",
+        "state"
+      ],
+      "retirement_condition": null
+    },
+    {
+      "id": "AI-E",
+      "name": "Chief Evolution Architect",
+      "owner": "E",
+      "secondary": "D",
+      "emergency_fallback": "B",
+      "priority": "high",
+      "status": "PERMANENT",
+      "purpose": "Evolve team, models, workflows and UI",
+      "dependencies": [
+        "all"
+      ],
+      "retirement_condition": null
+    }
+  ]
+}
