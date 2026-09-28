@@ -1,0 +1,129 @@
+# Korea Market Behavior Lab
+
+한국 주식시장의 가격·거래량·거래대금·호가·체결·수급·프로그램매매·공시·뉴스·시장환경·상대강도·과거 유사사례를 지속적으로 연구하는 장기 자율 연구 프로젝트입니다.
+
+> 이 프로젝트는 단순 종목 추천기나 뉴스 수집기가 아닙니다. 관찰 가능한 시장 데이터를 바탕으로 시장 참여자의 행동 가설을 만들고, 가상 포지션·매집/분배 구조를 범위와 신뢰도로 추정하며, 반대가설·과거 사례·사후검증으로 틀린 모델을 제거하는 것을 목표로 합니다.
+
+## Core loop
+
+```text
+Data / News
+  ↓
+AI-A Discovery
+  ↓
+AI-B Red Team
+  ↓
+AI-C Position & Probability Lab
+  ↓
+AI-D Reliability / Recovery
+  ↓
+AI-E Evolution
+  ↓
+Post-validation → Model / Workflow / UI evolution
+  ↺
+```
+
+실시간 경로는 장기 연구와 분리합니다.
+
+```text
+News source → dedupe → time ordering → tagging → LIVE NEWS / Pages
+                  ↘ research queue → A/B/C validation
+```
+
+## Five AI team
+
+| AI | Primary role | Critical responsibility |
+|---|---|---|
+| A | Market Discovery & Behavior Researcher | 시장 이상행동·뉴스·테마·상대강도·신규 가설 탐색 |
+| B | Red Team & Evidence Auditor | 데이터·시간순서·인과·표본편향·과장 검증 |
+| C | Position & Probability Lab | 가상 포지션·평단 범위·분배·잔존물량·조건부 확률·백테스트 |
+| D | SRE, Recovery & Data Platform Guardian | heartbeat·freshness·workflow·Pages·canonical·자동복구 |
+| E | Chief Evolution Architect | 우선순위·역할 재배치·실험·기능·UI/UX·기술부채 관리 |
+
+AI 인스턴스 수와 역할 수는 분리합니다. 필요하면 기존 5개 AI가 Temporary Specialist 역할을 추가로 맡고, 효과가 검증되지 않으면 통합 또는 폐기합니다.
+
+## Evidence states
+
+모든 핵심 분석은 다음 상태 중 하나를 사용합니다.
+
+- `CONFIRMED`: 공시·거래소·공식자료·실제 데이터로 확인된 사실
+- `ESTIMATED`: 관측 데이터에서 계산된 추정값
+- `HYPOTHESIS`: 현상을 설명하기 위한 가설
+- `UNKNOWN`: 현재 자료로 판단 불가
+- `REJECTED`: 사후검증에서 폐기된 가설
+
+실제 특정 계좌의 정확한 보유량·평단·주문 의도·목표가격을 알 수 있다고 전제하지 않습니다.
+
+## Virtual Position Estimator
+
+목표는 “특정 세력의 실제 계좌”를 맞히는 것이 아니라, 관찰 가능한 데이터를 이용해 가능한 대규모 자금의 평균적인 포지션 구조를 가상 추정하는 것입니다.
+
+기본 후보 모델:
+
+1. Price Absorption Model
+2. Turnover Retention Model
+3. Relative Strength Accumulation Model
+4. Breakout Cost Model
+5. Volume Profile Model
+6. Distribution Estimator
+
+모델이 충돌하면 억지로 하나의 숫자로 합치지 않고 보수적 / 기준 / 공격적 시나리오와 모델 합의도를 함께 보존합니다.
+
+## Non-negotiable rules
+
+- 거래량을 그대로 매집량으로 계산하지 않습니다.
+- 가격 하락을 자동으로 “개미털기”라고 부르지 않습니다.
+- 상승을 자동으로 매집이라고 부르지 않습니다.
+- 고점 대량거래를 자동으로 분배라고 부르지 않습니다.
+- 승률·재상승 확률은 실제 표본 없이 생성하지 않습니다.
+- 모든 핵심 가설에 무효화 조건을 둡니다.
+- 오래된 데이터가 최신 canonical 데이터를 덮어쓰지 못하게 합니다.
+- 새 모델은 `idea → hypothesis → experiment → validation → shadow → production` 단계를 거칩니다.
+- 한 AI나 한 연구가 실패해도 뉴스·데이터·Pages·다른 연구는 가능한 범위에서 계속 진행합니다.
+
+## Reliability priority
+
+```text
+서비스 생존
+→ 데이터 무결성
+→ 장애복구
+→ 최신뉴스
+→ 시장데이터
+→ 기존 검증모델
+→ 연구
+→ 신규기능
+→ 디자인
+```
+
+## Repository map
+
+```text
+.github/workflows/       automation / validation / pages
+src/kmb_lab/             runtime core
+web/                     GitHub Pages
+data/ai/                 role registry / heartbeat / handoff
+data/system/             service state / recovery state
+data/experiments/        experiments / shadow mode
+data/research/           autonomous research queue
+data/positions/          virtual position outputs
+data/distributions/      distribution outputs
+data/patterns/           pattern library
+data/backtests/          validation results
+docs/                    architecture / research / recovery / UI rules
+```
+
+## Initial milestone
+
+Phase 0는 “정확한 척하는 AI”가 아니라 “틀릴 수 있음을 구조적으로 관리하는 연구 운영체제”를 먼저 만드는 단계입니다.
+
+현재 초기 골격의 목표:
+
+- 5-AI role registry와 Primary / Secondary / Emergency fallback
+- heartbeat·freshness·stale·recovery owner/lease
+- candidate / canonical 상태 분리
+- atomic write와 시간 역행 방지
+- autonomous research queue
+- experiment / shadow / champion-challenger 상태
+- SYSTEM Pages에서 현재 상태 가시화
+- 이후 실제 시장 데이터 소스를 단계적으로 연결
+
