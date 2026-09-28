@@ -58,6 +58,7 @@ def inspect_handoffs() -> list[dict[str, Any]]:
                 "file": str(path.relative_to(ROOT)),
                 "status": "INVALID_HANDOFF_JSON",
                 "reason": str(exc),
+                "scope": "LOCAL",
             })
             continue
 
@@ -67,8 +68,20 @@ def inspect_handoffs() -> list[dict[str, Any]]:
                 "agent": payload.get("agent"),
                 "status": payload.get("status"),
                 "applied": payload.get("applied"),
+                "scope": payload.get("scope", "LOCAL"),
             })
     return blockers
+
+
+def progression_policy(blockers: list[dict[str, Any]]) -> dict[str, Any]:
+    global_blockers = [b for b in blockers if str(b.get("scope", "LOCAL")).upper() == "GLOBAL_STOP"]
+    return {
+        "recovery_required": bool(blockers),
+        "dependent_progression_allowed": not blockers,
+        "independent_work_allowed": True,
+        "global_stop_required": bool(global_blockers),
+        "global_blockers": global_blockers,
+    }
 
 
 def inspect() -> dict:
@@ -83,12 +96,14 @@ def inspect() -> dict:
             "secondary": service["secondary"],
             "emergency_fallback": service["emergency_fallback"],
         })
+
     blockers = inspect_handoffs()
+    policy = progression_policy(blockers)
     return {
         "checked_at": utc_now(),
         "services": results,
         "blocking_handoffs": blockers,
-        "progression_allowed": not blockers,
+        **policy,
     }
 
 
@@ -103,13 +118,13 @@ def main() -> int:
     parser.add_argument(
         "--strict",
         action="store_true",
-        help="exit non-zero when unresolved blocking handoffs exist",
+        help="exit non-zero only when a GLOBAL_STOP blocker exists",
     )
     args = parser.parse_args()
 
     result = write_snapshot()
     print(json.dumps(result, ensure_ascii=False, indent=2))
-    if args.strict and result["blocking_handoffs"]:
+    if args.strict and result["global_stop_required"]:
         return 2
     return 0
 
