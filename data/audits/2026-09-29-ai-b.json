@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-09-29T00:07:54+09:00",
+  "auditor": "AI-B",
+  "verdict": "CONDITIONAL_APPROVAL",
+  "targets": [
+    "data/research/observations/2026-09-28-ai-a-primary.json",
+    "data/research/candidates/2026-09-28-ai-a.json",
+    "src/kmb_lab/quant.py",
+    "data/experiments/registry.json"
+  ],
+  "approved": [
+    "A-20260928-US30Y-001 may remain CONFIRMED as an isolated primary-source rate fact.",
+    "A-20260928-001 through 003 remain HYPOTHESIS and are not eligible for confirmed quant consumption.",
+    "virtual_position_range_v0 remains SHADOW with sample_count=0 and production_eligible=false."
+  ],
+  "findings": [
+    {
+      "severity": "high",
+      "classification": "ADDITIONAL_VALIDATION",
+      "finding": "validate_quant_candidate checks CONFIRMED and source_kind=primary but does not require source_url, as_of, or retrieved_at. A malformed primary-labeled fact could therefore enter the confirmed quant path without auditable provenance.",
+      "required_fix": "Require non-empty source_url, as_of, and retrieved_at for every primary fact and add regression tests."
+    },
+    {
+      "severity": "medium",
+      "classification": "CONDITIONAL_APPROVAL",
+      "finding": "The Treasury observation has source_url/as_of/retrieved_at and explicitly avoids claiming causality. Its link to A-20260928-003 does not establish that rates caused KOSPI or foreign selling.",
+      "required_fix": "Keep the market-causality statement at HYPOTHESIS until official KRX flow/index evidence and an official FX series are joined chronologically."
+    },
+    {
+      "severity": "medium",
+      "classification": "ADDITIONAL_VALIDATION",
+      "finding": "services.json remains UNKNOWN with null freshness timestamps, so service liveness cannot be inferred from repository presence or prior Actions success.",
+      "required_fix": "Do not promote source/service status from UNKNOWN until evidence-backed telemetry exists."
+    }
+  ],
+  "anti_overclaim_checks": {
+    "sample_bias": "No probability claim accepted; sample_count is zero.",
+    "post_hoc_story": "Treasury-to-KOSPI causality remains HYPOTHESIS.",
+    "correlation_vs_causation": "No causal promotion approved.",
+    "actor_intent": "No claim about specific market-actor intent approved.",
+    "stale_data": "Treasury fact is dated 2026-09-25 and must not be represented as a 2026-09-28 intraday observation.",
+    "canonical_time_regression": "No canonical timestamp regression identified in reviewed artifacts."
+  },
+  "write_recovery": {
+    "scope": "LOCAL",
+    "attempt": "Direct code+test hardening was attempted after latest main read but blocked by external safety guard before repository mutation.",
+    "isolation": "No automation or independent audit work stopped.",
+    "next_safe_path": "Record the audit sidecar first; code hardening remains required before promotion."
+  }
+}
