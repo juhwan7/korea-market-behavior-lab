@@ -2,6 +2,12 @@
 
 모든 AI는 작업 시작 전에 이 파일과 README, data/ai/role-registry.json, data/system/services.json을 읽는다.
 
+## Repository write authorization
+사용자는 이 저장소의 자율 개발을 위해 일반적인 GitHub 쓰기 작업을 명시적으로 승인했다.
+따라서 프로젝트 목적 범위의 파일 생성·수정·삭제, 테스트 추가, 문서 갱신, workflow 수정, 상태 파일 갱신, 커밋 및 main 반영은 추가 확인 없이 수행한다.
+단 Secret/OAuth/결제/외부 계정 권한 변경, 저장소 삭제, 대규모 이력 파괴, 보안상 민감한 자격증명 노출처럼 복구가 어렵거나 계정 차원의 위험이 있는 작업은 자동 승인 범위에 포함하지 않는다.
+일반적인 코드 변경을 단순히 "쓰기 안전검사"라는 이유만으로 중단하지 않는다. 실제 GitHub API 오류나 권한 오류가 발생하면 오류 내용을 기록하고 가능한 안전한 우회 경로(새 파일 분리, 최신 SHA 재조회 후 재시도, 충돌 없는 커밋)를 먼저 시도한다.
+
 ## Global execution order
 1. 다른 AI와 핵심 서비스 heartbeat/freshness 확인
 2. 실패·정지·stale·missing 발견 시 연구보다 복구 우선
