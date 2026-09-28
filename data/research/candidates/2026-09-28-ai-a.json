@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-09-28T11:00:00Z",
+  "market_date": "2026-09-28",
+  "status": "candidate_only",
+  "primary_source_status": "NOT_CONNECTED",
+  "candidates": [
+    {
+      "candidate_id": "A-20260928-001",
+      "title": "KOSPI 급락과 상승종목 우세의 시장폭 괴리",
+      "evidence_state": "HYPOTHESIS",
+      "market_scope": "market-wide",
+      "needs_cross_market_validation": true,
+      "observed_facts": [
+        {
+          "metric": "KOSPI close/change",
+          "value": "6889.74 / -2.70%",
+          "as_of": "2026-09-28 close",
+          "source_kind": "secondary",
+          "source_url": "https://www.yna.co.kr/amp/view/AKR20260928124200008"
+        },
+        {
+          "metric": "KOSPI breadth",
+          "value": "상승 611 / 하락 249",
+          "as_of": "2026-09-28 close",
+          "source_kind": "secondary",
+          "source_url": "https://www.yna.co.kr/amp/view/AKR20260928124200008"
+        },
+        {
+          "metric": "KOSDAQ close/change",
+          "value": "846.58 / +0.25%",
+          "as_of": "2026-09-28 close",
+          "source_kind": "secondary",
+          "source_url": "https://www.yna.co.kr/amp/view/AKR20260928124200008"
+        }
+      ],
+      "hypothesis": "지수 급락이 시장 전반의 동시 약세라기보다 일부 초대형주·전기전자에 집중된 하락이었을 가능성.",
+      "counter_hypotheses": [
+        "상승 종목 수는 많아도 거래대금 가중 기준으로는 위험회피가 광범위했을 수 있음",
+        "휴장 후 가격발견 과정에서 일시적 지수 왜곡이 발생했을 수 있음"
+      ],
+      "invalidation_conditions": [
+        "KRX 공식 시장폭이 보도 수치와 불일치",
+        "동일가중·중소형 지수도 대형주와 유사한 급락을 확인"
+      ],
+      "required_primary_sources": [
+        "KRX 지수/종목별 종가",
+        "KRX 상승·하락 종목수",
+        "KRX 시가총액/거래대금"
+      ]
+    },
+    {
+      "candidate_id": "A-20260928-002",
+      "title": "반도체 초대형주 집중 매도와 지수 하방 기여도",
+      "evidence_state": "HYPOTHESIS",
+      "market_scope": "sector",
+      "needs_cross_market_validation": true,
+      "observed_facts": [
+        {
+          "metric": "Samsung Electronics",
+          "value": "270000 / -5.43%",
+          "as_of": "2026-09-28 close",
+          "source_kind": "secondary",
+          "source_url": "https://www.yna.co.kr/amp/view/AKR20260928034551008"
+        },
+        {
+          "metric": "SK hynix",
+          "value": "1768000 / -5.05%",
+          "as_of": "2026-09-28 close",
+          "source_kind": "secondary",
+          "source_url": "https://www.yna.co.kr/amp/view/AKR20260928034551008"
+        }
+      ],
+      "hypothesis": "코스피 하락에서 반도체 초대형주의 시가총액 기여도가 비정상적으로 컸을 가능성.",
+      "counter_hypotheses": [
+        "반도체 외 대형 업종의 동반 하락 기여가 비슷했을 수 있음",
+        "지수 하락은 종목 집중이 아니라 외국인 위험축소의 결과일 수 있음"
+      ],
+      "invalidation_conditions": [
+        "공식 지수 기여도 계산에서 삼성전자·SK하이닉스 비중이 낮음",
+        "전기전자 제외 KOSPI도 유사한 하락률"
+      ],
+      "required_primary_sources": [
+        "KRX 종목별 시가총액/등락률",
+        "KRX 업종지수",
+        "KRX 투자자별 거래실적"
+      ]
+    },
+    {
+      "candidate_id": "A-20260928-003",
+      "title": "금리·환율 충격과 외국인 대형주 매도의 동시성",
+      "evidence_state": "HYPOTHESIS",
+      "market_scope": "market-wide",
+      "needs_cross_market_validation": true,
+      "observed_facts": [
+        {
+          "metric": "USD/KRW",
+          "value": "1365.1 / +7.6",
+          "as_of": "2026-09-28 15:30 KST",
+          "source_kind": "secondary",
+          "source_url": "https://www.yna.co.kr/amp/view/AKR20260928124200008"
+        },
+        {
+          "metric": "KOSPI foreign net flow",
+          "value": "-3.238 trillion KRW",
+          "as_of": "2026-09-28 close",
+          "source_kind": "secondary",
+          "source_url": "https://www.yna.co.kr/amp/view/AKR20260928124200008"
+        }
+      ],
+      "hypothesis": "연휴 중 글로벌 금리 상승과 원화 약세가 외국인 대형주 위험축소와 동시에 나타났을 가능성.",
+      "counter_hypotheses": [
+        "외국인 매도는 금리보다 개별 반도체/AI 뉴스에 더 민감했을 수 있음",
+        "환율 상승은 원인이 아니라 같은 글로벌 위험요인의 결과일 수 있음"
+      ],
+      "invalidation_conditions": [
+        "공식 외국인 수급이 보도와 불일치",
+        "금리·환율 민감도가 낮은 대형주에서도 동일한 매도 패턴이 확인되지 않음"
+      ],
+      "required_primary_sources": [
+        "KRX 투자자별 거래실적",
+        "서울외환시장/공식 환율 자료",
+        "미국 재무부 국채금리",
+        "KRX 업종별 외국인 수급"
+      ]
+    }
+  ]
+}
