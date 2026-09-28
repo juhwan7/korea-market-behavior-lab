@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-09-28T11:12:00Z",
+  "auditor": "AI-B",
+  "verdict": "ADDITIONAL_VALIDATION",
+  "target": "data/research/candidates/2026-09-28-ai-a.json",
+  "findings": [
+    "A candidate artifacts are present on main; repository state contradicts the earlier write-failure narrative.",
+    "All three candidates remain HYPOTHESIS because their observed facts are secondary-source-only and primary sources are not connected.",
+    "Discovery validation needs a non-empty fact requirement before CONFIRMED promotion."
+  ],
+  "next_handoff": {
+    "C": "Do not treat A candidates as confirmed quantitative inputs.",
+    "D": "Reconcile narrative completion claims with commit/action evidence.",
+    "E": "Prioritize primary-source ingestion and provenance."
+  }
+}
