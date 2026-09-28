@@ -1,0 +1,18 @@
+{
+  "patch_id": "PATCH-20260928-WRITER-SMOKE-001",
+  "agent": "AI-D",
+  "target": "docs/CANONICAL_WRITER_SMOKE.md",
+  "candidate_path": "data/ai/candidates/ai-d/canonical-writer-smoke.md",
+  "change_type": "create",
+  "reason": "End-to-end verification of candidate -> patch manifest -> GitHub Actions canonical writer",
+  "dependencies": [
+    "shared-memory",
+    "canonical-writer"
+  ],
+  "tests": [
+    "full unit suite",
+    "JSON/JSONL validation"
+  ],
+  "rollback": "Delete docs/CANONICAL_WRITER_SMOKE.md if smoke verification is reverted",
+  "status": "READY"
+}
