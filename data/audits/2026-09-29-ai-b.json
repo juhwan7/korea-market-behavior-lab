@@ -4,12 +4,14 @@
   "auditor": "AI-B",
   "verdict": "CONDITIONAL_APPROVAL",
   "targets": [
+    "data/research/queue-items/A-20260928-BREADTH-WEIGHT-DIVERGENCE.json",
     "data/research/observations/2026-09-28-ai-a-primary.json",
     "data/research/candidates/2026-09-28-ai-a.json",
     "src/kmb_lab/quant.py",
     "data/experiments/registry.json"
   ],
   "approved": [
+    "A-20260928-BREADTH-WEIGHT-DIVERGENCE is CONDITIONALLY APPROVED as a HYPOTHESIS-only research design: it explicitly requires KRX primary rows, at least 20 comparable sessions before rarity claims, and separate raw/turnover/cap-weight metrics.",
     "A-20260928-US30Y-001 may remain CONFIRMED as an isolated primary-source rate fact.",
     "A-20260928-001 through 003 remain HYPOTHESIS and are not eligible for confirmed quant consumption.",
     "virtual_position_range_v0 remains SHADOW with sample_count=0 and production_eligible=false."
