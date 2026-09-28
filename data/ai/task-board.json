@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-09-28T23:03:00+09:00",
+  "tasks": [
+    {
+      "task_id": "TASK-SHARED-MEMORY-001",
+      "title": "Initialize five-agent shared memory",
+      "owner": "AI-D",
+      "secondary": "AI-E",
+      "status": "IN_PROGRESS",
+      "priority": "CRITICAL",
+      "dependencies": [],
+      "blocked_by": [],
+      "started_at": "2026-09-28T23:03:00+09:00",
+      "lease_until": null,
+      "last_progress_at": "2026-09-28T23:03:00+09:00",
+      "next_action": "Create memory, agent-state, writer lease and validation contracts"
+    },
+    {
+      "task_id": "TASK-TELEMETRY-001",
+      "title": "Replace UNKNOWN service telemetry with evidence-backed freshness",
+      "owner": "AI-D",
+      "secondary": "AI-E",
+      "status": "READY",
+      "priority": "HIGH",
+      "dependencies": [
+        "shared-memory"
+      ],
+      "blocked_by": [],
+      "started_at": null,
+      "lease_until": null,
+      "last_progress_at": null,
+      "next_action": "Derive service state from Actions and produced data rather than static UNKNOWN values"
+    }
+  ]
+}
