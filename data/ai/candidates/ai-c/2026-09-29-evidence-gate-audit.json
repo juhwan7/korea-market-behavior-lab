@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "candidate_id": "C-20260929-EVIDENCE-GATE-001",
+  "agent": "AI-C",
+  "created_at": "2026-09-29T01:24:27+09:00",
+  "status": "FIX_REQUIRED",
+  "findings": [
+    {
+      "severity": "HIGH",
+      "component": "review mesh closure evidence",
+      "fact": "Current closure logic accepts non-empty evidence strings rather than validating commit identity and successful workflow conclusion.",
+      "required_tests": [
+        "reject malformed commit identity",
+        "reject failed/cancelled/timed-out workflow evidence",
+        "accept valid commit identity plus explicit success"
+      ]
+    },
+    {
+      "severity": "HIGH",
+      "component": "quant provenance gate",
+      "fact": "Confirmed quant input currently requires CONFIRMED, observed facts, and primary source kind, but does not require verifiable source URL and observation/retrieval chronology.",
+      "required_tests": [
+        "reject missing source URL",
+        "reject missing observation/retrieval timestamps",
+        "reject observation timestamp after retrieval timestamp"
+      ]
+    }
+  ],
+  "model_state": {
+    "experiment": "virtual_position_range_v0",
+    "status": "SHADOW",
+    "sample_count": 0,
+    "probability": "UNKNOWN",
+    "production_eligible": false
+  },
+  "concurrency": "AI-D already owns review-mesh recovery; AI-C does not duplicate canonical runtime changes."
+}
