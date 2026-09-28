@@ -4,24 +4,23 @@
 
 > 이 프로젝트는 단순 종목 추천기나 뉴스 수집기가 아닙니다. 관찰 가능한 시장 데이터를 바탕으로 시장 참여자의 행동 가설을 만들고, 가상 포지션·매집/분배 구조를 범위와 신뢰도로 추정하며, 반대가설·과거 사례·사후검증으로 틀린 모델을 제거하는 것을 목표로 합니다.
 
-## Core loop
+## Shared intelligence loop
 
 ```text
-Data / News
-  ↓
-AI-A Discovery
-  ↓
-AI-B Red Team
-  ↓
-AI-C Position & Probability Lab
-  ↓
-AI-D Reliability / Recovery
-  ↓
-AI-E Evolution
-  ↓
-Post-validation → Model / Workflow / UI evolution
-  ↺
+AI-A Discovery ─┐
+AI-B Audit ─────┤
+AI-C Quant ─────┼→ GitHub shared memory / task board / candidate queue
+AI-E Evolution ─┘                    ↓
+                              AI-D Canonical Writer
+                                      ↓
+                           tests / schema / Actions
+                                      ↓
+                                    main
+                                      ↓
+                             all agents read again
 ```
+
+GitHub가 대화 세션보다 오래 살아 있는 공용 기억입니다. 각 AI는 작업 시작 전에 CURRENT_BRIEFING, task board, recovery queue, 실패/성공 패턴과 자기 agent state를 읽고 이어서 작업합니다.
 
 실시간 경로는 장기 연구와 분리합니다.
 
@@ -37,10 +36,46 @@ News source → dedupe → time ordering → tagging → LIVE NEWS / Pages
 | A | Market Discovery & Behavior Researcher | 시장 이상행동·뉴스·테마·상대강도·신규 가설 탐색 |
 | B | Red Team & Evidence Auditor | 데이터·시간순서·인과·표본편향·과장 검증 |
 | C | Position & Probability Lab | 가상 포지션·평단 범위·분배·잔존물량·조건부 확률·백테스트 |
-| D | SRE, Recovery & Data Platform Guardian | heartbeat·freshness·workflow·Pages·canonical·자동복구 |
+| D | SRE, Recovery & Data Platform Guardian | heartbeat·freshness·workflow·Pages·canonical writer·자동복구 |
 | E | Chief Evolution Architect | 우선순위·역할 재배치·실험·기능·UI/UX·기술부채 관리 |
 
 AI 인스턴스 수와 역할 수는 분리합니다. 필요하면 기존 5개 AI가 Temporary Specialist 역할을 추가로 맡고, 효과가 검증되지 않으면 통합 또는 폐기합니다.
+
+## GitHub shared memory
+
+현재 상태와 과거 기록을 분리합니다.
+
+- `data/ai/CURRENT_BRIEFING.md`: 현재 상황만 빠르게 읽는 살아 있는 상황판
+- `data/ai/shared-state.json`: 전체 협업 모드와 canonical writer 상태
+- `data/ai/task-board.json`: owner/secondary/dependency/next action이 있는 공용 작업판
+- `data/ai/recovery-queue.json`: LOCAL/GLOBAL incident와 복구 이력
+- `data/ai/agents/`: AI별 현재 task/state
+- `data/ai/events.jsonl`: 사건 기록
+- `data/ai/decisions.jsonl`: 설계 결정
+- `data/ai/lessons-learned.jsonl`: 재발 방지 교훈
+- `data/ai/failed-attempts.jsonl`: 실패 경로와 do-not-repeat
+- `data/ai/successful-patterns.jsonl`: 검증된 성공 패턴
+- `data/ai/candidates/`: AI별 충돌 없는 candidate 결과
+- `data/ai/patches/`: Canonical Writer용 READY patch manifest
+- `data/ai/writer-lease.json`: D → E → B writer lease
+
+현재 briefing은 교체할 수 있지만 역사적 기억과 RESOLVED incident는 삭제하지 않습니다.
+
+## Canonical write path
+
+A/B/C/E는 가능한 한 같은 production canonical 파일을 직접 수정하지 않습니다.
+
+```text
+candidate file
+→ READY patch manifest
+→ serialized GitHub Actions canonical-writer
+→ target/base SHA allowlist validation
+→ full unit test
+→ JSON/JSONL validation
+→ commit to main
+```
+
+Primary Writer는 AI-D, Secondary는 AI-E, Emergency Writer는 AI-B입니다. LOCAL write 실패는 전체 AI 중단 사유가 아닙니다.
 
 ## Evidence states
 
@@ -80,6 +115,8 @@ AI 인스턴스 수와 역할 수는 분리합니다. 필요하면 기존 5개 A
 - 오래된 데이터가 최신 canonical 데이터를 덮어쓰지 못하게 합니다.
 - 새 모델은 `idea → hypothesis → experiment → validation → shadow → production` 단계를 거칩니다.
 - 한 AI나 한 연구가 실패해도 뉴스·데이터·Pages·다른 연구는 가능한 범위에서 계속 진행합니다.
+- LOCAL blocker 때문에 AI-A/B/C/D/E automation을 끄지 않습니다.
+- 같은 실패 방법을 무한 반복하지 않고 성공/실패 패턴을 GitHub 장기기억에 남깁니다.
 
 ## Reliability priority
 
@@ -98,10 +135,10 @@ AI 인스턴스 수와 역할 수는 분리합니다. 필요하면 기존 5개 A
 ## Repository map
 
 ```text
-.github/workflows/       automation / validation / pages
-src/kmb_lab/             runtime core
+.github/workflows/       validation / canonical writer / pages
+src/kmb_lab/             runtime core / supervisor / memory / writer
 web/                     GitHub Pages
-data/ai/                 role registry / heartbeat / handoff
+data/ai/                 shared memory / task board / candidates / patches / recovery
 data/system/             service state / recovery state
 data/experiments/        experiments / shadow mode
 data/research/           autonomous research queue
@@ -118,12 +155,11 @@ Phase 0는 “정확한 척하는 AI”가 아니라 “틀릴 수 있음을 구
 
 현재 초기 골격의 목표:
 
-- 5-AI role registry와 Primary / Secondary / Emergency fallback
+- 5-AI shared memory와 Primary / Secondary / Emergency fallback
 - heartbeat·freshness·stale·recovery owner/lease
 - candidate / canonical 상태 분리
-- atomic write와 시간 역행 방지
+- serialized Canonical Writer와 stale SHA guard
 - autonomous research queue
 - experiment / shadow / champion-challenger 상태
 - SYSTEM Pages에서 현재 상태 가시화
 - 이후 실제 시장 데이터 소스를 단계적으로 연결
-
