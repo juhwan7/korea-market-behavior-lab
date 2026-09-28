@@ -22,7 +22,10 @@ def validate_candidate(candidate: dict) -> list[str]:
     if candidate.get("evidence_state") not in VALID_EVIDENCE:
         errors.append("invalid evidence_state")
     if candidate.get("evidence_state") == "CONFIRMED":
-        if any(f.get("source_kind") != "primary" for f in candidate.get("observed_facts", [])):
+        facts = candidate.get("observed_facts", [])
+        if not facts:
+            errors.append("CONFIRMED requires non-empty observed_facts")
+        elif any(f.get("source_kind") != "primary" for f in facts):
             errors.append("CONFIRMED requires primary-source facts")
     for idx, fact in enumerate(candidate.get("observed_facts", [])):
         missing = REQUIRED_FACT_FIELDS - set(fact)
