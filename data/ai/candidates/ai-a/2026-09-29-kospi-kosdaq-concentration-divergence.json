@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "id": "A-20260929-KOSPI-KOSDAQ-CONCENTRATION-DIVERGENCE",
+  "created_by": "AI-A",
+  "created_at": "2026-09-29T02:00:00+09:00",
+  "evidence_state": "HYPOTHESIS",
+  "status": "OPEN",
+  "parent_research": "A-20260928-BREADTH-WEIGHT-DIVERGENCE",
+  "confirmed_secondary_observations": [
+    "2026-09-28 KOSPI closed 6,889.74, down 191.18 points (-2.70%).",
+    "Samsung Electronics closed -5.43% and SK hynix -5.05%.",
+    "KOSDAQ closed 846.58, up 2.10 points (+0.25%)."
+  ],
+  "unknown_or_conflicting": [
+    "Exact KOSPI investor net-flow totals are inconsistent across secondary closing reports.",
+    "Primary KRX issue-level advancing/declining, turnover and investor-flow rows have not yet been ingested into this research item.",
+    "The observations do not establish that semiconductor selling caused the entire index decline or that capital rotated into smaller stocks."
+  ],
+  "hypothesis": "The 2026-09-28 headline KOSPI drawdown may contain a large cap-weight concentration component rather than representing uniform market-wide weakness.",
+  "counter_hypotheses": [
+    "Turnover-weighted breadth may still indicate broad risk-off even if KOSDAQ was positive.",
+    "Post-holiday price discovery may have concentrated delayed repricing in KOSPI mega-caps.",
+    "KOSDAQ resilience may be driven by a small number of idiosyncratic winners rather than broad rotation."
+  ],
+  "required_validation": [
+    "KRX primary issue-level close/change/market-cap/turnover for 2026-09-28",
+    "KRX official investor-type flows by market and issue",
+    "advancer/decliner counts and equal-weight return",
+    "top-2 semiconductor contribution to KOSPI return",
+    "at least 20 comparable sessions before rarity/probability claims"
+  ],
+  "secondary_sources": [
+    "https://www.yna.co.kr/amp/view/AKR20260928124200008",
+    "https://www.newspim.com/news/view/20260928000878"
+  ]
+}
