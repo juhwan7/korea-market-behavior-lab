@@ -47,9 +47,11 @@ jobs:
             esac
             printf '%s\n' "$MANIFEST" > /tmp/manifests.txt
           else
-            git diff --name-only "${{ github.event.before }}" "${{ github.event.after }}" -- 'data/ai/patches/*.json'               | grep -E '^data/ai/patches/[^/]+\.json$'               | sort -u > /tmp/manifests.txt || true
+            git diff --name-only "${{ github.event.before }}" "${{ github.event.after }}" -- 'data/ai/patches/*.json' \
+              | grep -E '^data/ai/patches/[^/]+\.json$' \
+              | sort -u > /tmp/manifests.txt || true
           fi
-          test -s /tmp/manifests.txt || { echo "no patch manifests"; exit 0; }
+          test -s /tmp/manifests.txt || { echo "no patch manifests"; exit 2; }
           cat /tmp/manifests.txt
 
       - name: Apply READY manifests
@@ -79,9 +81,9 @@ jobs:
         run: |
           set -euo pipefail
           git diff --check
-          if git diff --quiet; then
-            echo "No canonical changes to commit."
-            exit 0
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "Manifest applied but produced no worktree change."
+            exit 3
           fi
           git config user.name "kmb-canonical-writer"
           git config user.email "actions@users.noreply.github.com"
