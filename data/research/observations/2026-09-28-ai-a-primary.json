@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-09-28T12:08:00Z",
+  "evidence_state": "CONFIRMED",
+  "observations": [
+    {
+      "observation_id": "A-20260928-US30Y-001",
+      "metric": "U.S. Treasury 30-year par yield",
+      "value": 5.49,
+      "unit": "percent",
+      "as_of": "2026-09-25",
+      "retrieved_at": "2026-09-28T12:08:00Z",
+      "source_id": "us-treasury",
+      "source_kind": "primary",
+      "source_url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?field_tdr_date_value=2026&type=daily_treasury_yield_curve",
+      "interpretation": "CONFIRMED fact only: the official end-of-day 30-year par yield was 5.49%. This does not by itself establish causality for KOSPI moves."
+    }
+  ],
+  "links_to_candidates": [
+    "A-20260928-003"
+  ]
+}
