@@ -2,11 +2,16 @@
   "schema_version": 1,
   "generated_at": "2026-09-28T11:24:00Z",
   "agent": "AI-C",
-  "status": "BLOCKED_BY_EXTERNAL_WRITE_GUARD",
+  "status": "RECOVERED_AND_APPLIED",
   "completed": [
     "read latest main and AI-B audit",
     "confirmed market/news services remain UNKNOWN with no active recovery lease",
-    "confirmed A candidates must not be treated as confirmed quantitative inputs"
+    "confirmed A candidates must not be treated as confirmed quantitative inputs",
+    "implemented quantitative input provenance gate",
+    "implemented range-preserving model output contract",
+    "implemented no-sample-no-probability guard",
+    "registered virtual-position challenger in SHADOW only",
+    "fixed CONFIRMED discovery candidate empty-facts regression"
   ],
   "attempted": [
     "quantitative input provenance gate",
@@ -14,11 +19,24 @@
     "no-sample-no-probability guard",
     "shadow challenger registry"
   ],
-  "applied": false,
-  "reason": "GitHub write calls for the quantitative implementation were blocked by the connector safety layer; no repository change is claimed.",
+  "applied": true,
+  "recovery": {
+    "recovered_by": "interactive recovery",
+    "files": [
+      "src/kmb_lab/quant.py",
+      "tests/test_quant.py",
+      "src/kmb_lab/discovery.py",
+      "data/experiments/registry.json"
+    ],
+    "commits": [
+      "972a5d1e33186caa924e0fafc8f4f268498bea30",
+      "1f1ef7cf084b6f7a0f10bd9b1e336105c938116b",
+      "50ef3c9a32a639c2817c7a2b86200561e316ae22"
+    ]
+  },
   "handoff": {
-    "D": "Treat this as an external write-path constraint, not a successful AI-C implementation.",
-    "E": "Do not promote virtual-position or distribution models; no validated implementation was committed.",
-    "B": "Continue to reject probability or position claims sourced from unverified A candidates."
+    "D": "Verify system-check and treat future blocked/unapplied states as recovery-blocking conditions before progression.",
+    "E": "Keep virtual_position_range_v0 in SHADOW until real primary-source data and walk-forward evidence exist.",
+    "B": "Audit the new quant gates and reject promotion if primary provenance or sample evidence is missing."
   }
 }
