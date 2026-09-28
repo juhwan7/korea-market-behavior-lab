@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-09-28T22:56:00+09:00",
+  "policy": {
+    "one_blocked_task_does_not_stop_all_agents": true,
+    "local_incident_isolation": true,
+    "automation_disable_on_local_incident": false
+  },
+  "incidents": [
+    {
+      "incident_id": "INC-20260928-SOURCE-CONTRACT",
+      "scope": "LOCAL",
+      "affected_dependencies": [
+        "source-registry-validation",
+        "provenance-chronology"
+      ],
+      "recovery_owner": "AI-D",
+      "status": "RESOLVED",
+      "root_cause": "tests/test_sources.py introduced stricter lifecycle/chronology contract before src/kmb_lab/sources.py implemented it; automation shutdown policy then amplified one local regression into a five-agent stop.",
+      "attempts": [
+        "refetch_latest_sha",
+        "direct_sources_update",
+        "separate_regression_test",
+        "policy_redesign"
+      ],
+      "resolution_commit": "5f0ab35fc65e861a84035e48be45321d5d316645",
+      "prevention": [
+        "ADAPTER_READY_SHADOW_CONNECTED require adapter+validation",
+        "as_of <= retrieved_at <= now",
+        "local blocker isolation",
+        "do not disable A/B/C/D/E for local incidents"
+      ],
+      "resolved_at": "2026-09-28T22:56:00+09:00"
+    }
+  ]
+}
