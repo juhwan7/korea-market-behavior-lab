@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "source_id": "us-treasury",
+  "lifecycle": "ADAPTER_READY",
+  "implementation": "src/kmb_lab/adapters/treasury.py",
+  "validation": "tests/test_treasury_adapter.py",
+  "live_ingestion": false,
+  "production_connected": false,
+  "updated_at": "2026-09-28T12:06:00Z"
+}
