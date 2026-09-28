@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "repository": "juhwan7/korea-market-behavior-lab",
+  "autonomous_repository_writes": true,
+  "approved_scope": [
+    "create_files",
+    "update_files",
+    "delete_project_files_when_safe",
+    "update_workflows",
+    "add_tests",
+    "update_docs",
+    "update_machine_state",
+    "commit_to_main"
+  ],
+  "require_human_for": [
+    "secrets_or_oauth_changes",
+    "billing_or_payment",
+    "account_permissions",
+    "repository_deletion",
+    "history_destructive_force_operations",
+    "credential_exposure"
+  ],
+  "retry_policy": {
+    "stale_sha": "refetch_latest_sha_then_retry",
+    "concurrent_edit": "rebase_or_refetch_then_apply_non_conflicting_change",
+    "generic_write_guard": "do_not_stop_unless_external_permission_or_safety_constraint_is_real"
+  }
+}
