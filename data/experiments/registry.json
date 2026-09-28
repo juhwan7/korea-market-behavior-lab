@@ -1,7 +1,39 @@
 {
   "schema_version": 1,
-  "updated_at": null,
+  "updated_at": "2026-09-28T11:37:00Z",
   "champions": {},
-  "challengers": {},
-  "experiments": []
+  "challengers": {
+    "virtual_position_range_v0": {
+      "owner": "AI-C",
+      "status": "SHADOW",
+      "production_eligible": false,
+      "implementation": "src/kmb_lab/quant.py",
+      "purpose": "Preserve independent virtual-position model ranges without inventing a single estimate.",
+      "safety_contracts": [
+        "confirmed quantitative input requires non-empty primary-source observed facts",
+        "conflicting model ranges retain consensus_range=null",
+        "zero validated samples produce UNKNOWN probability"
+      ],
+      "required_before_promotion": [
+        "validated primary-source market data",
+        "historical sample dataset",
+        "walk-forward evaluation",
+        "fees and slippage evaluation",
+        "regime-segmented performance",
+        "AI-B evidence audit"
+      ]
+    }
+  },
+  "experiments": [
+    {
+      "id": "EXP-C-001",
+      "name": "Virtual Position Range Contract v0",
+      "owner": "AI-C",
+      "status": "SHADOW",
+      "sample_count": 0,
+      "performance": null,
+      "production_eligible": false,
+      "failure_condition": "fabricated probability, unverified-input consumption, or forced merge of conflicting model ranges"
+    }
+  ]
 }
