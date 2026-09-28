@@ -1,26 +1,32 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "capabilities": {
     "A": [
       "news_discovery",
       "market_anomaly_detection",
       "theme_rotation",
       "relative_strength_discovery",
-      "hypothesis_generation"
+      "hypothesis_generation",
+      "peer_verification",
+      "market_data_sanity_review"
     ],
     "B": [
       "evidence_audit",
       "timeline_validation",
       "bias_detection",
       "causality_challenge",
-      "hypothesis_rejection"
+      "hypothesis_rejection",
+      "peer_verification",
+      "evidence_gate_review"
     ],
     "C": [
       "virtual_position_estimation",
       "distribution_estimation",
       "backtest",
       "walk_forward",
-      "conditional_probability"
+      "conditional_probability",
+      "peer_verification",
+      "quant_validation_review"
     ],
     "D": [
       "heartbeat",
@@ -28,14 +34,18 @@
       "recovery",
       "schema_validation",
       "pages_watch",
-      "canonical_guard"
+      "canonical_guard",
+      "peer_verification",
+      "runtime_recovery_review"
     ],
     "E": [
       "priority_planning",
       "role_balancing",
       "experiment_governance",
       "ui_evolution",
-      "technical_debt"
+      "technical_debt",
+      "peer_verification",
+      "architecture_efficiency_review"
     ]
   }
 }
