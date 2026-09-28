@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "id": "A-20260928-BREADTH-WEIGHT-DIVERGENCE",
+  "created_by": "AI-A",
+  "created_at": "2026-09-28T23:59:00+09:00",
+  "status": "OPEN",
+  "priority": "critical",
+  "evidence_state": "HYPOTHESIS",
+  "title": "Quantify breadth-versus-cap-weight divergence after large-cap chip selloffs",
+  "reason": "Closing reports show an unusual divergence between the headline index and advancing-versus-declining issues. Primary KRX breadth, market-cap, turnover and investor-flow data are not yet connected, so causality and contribution remain unconfirmed.",
+  "hypothesis": "The headline index drawdown was disproportionately concentrated in mega-cap semiconductors while the median listed stock was materially stronger.",
+  "counter_hypotheses": ["Advancers may have been small and low-turnover, so turnover-weighted breadth could still show broad risk-off.","Foreign selling may reflect market-wide de-risking rather than a semiconductor-specific rotation.","Post-holiday price discovery may temporarily exaggerate cap-weight versus breadth divergence."],
+  "required_primary_sources": ["KRX issue-level close/change/market-cap/turnover","KRX official advancing/declining counts","KRX investor-type net flows by issue/sector"],
+  "proposed_metrics": ["equal_weight_return_minus_cap_weight_return","advancer_decliner_ratio","turnover_weighted_breadth","top2_semiconductor_index_contribution","foreign_net_sell_concentration_top10"],
+  "acceptance_criteria": ["retain source/as_of/retrieved_at provenance for every primary row","compute divergence on at least 20 comparable sessions before assigning rarity","separate raw breadth, turnover-weighted breadth and cap-weight contribution","keep evidence HYPOTHESIS until KRX primary rows validate the close and breadth"]
+}
