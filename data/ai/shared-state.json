@@ -1,6 +1,6 @@
 {
-  "schema_version": 1,
-  "mode": "CONTINUOUS_COLLABORATION",
+  "schema_version": 2,
+  "mode": "FIVE_AI_CONTINUOUS_COLLABORATION",
   "canonical_writer": {
     "primary": "AI-D",
     "secondary": "AI-E",
@@ -17,5 +17,20 @@
     "writer-lease",
     "service-telemetry"
   ],
-  "updated_at": "2026-09-28T23:03:00+09:00"
+  "updated_at": "2026-09-29T00:51:00+09:00",
+  "verification_mesh": {
+    "enabled": true,
+    "board": "data/ai/review-board.json",
+    "reviewers": [
+      "AI-A",
+      "AI-B",
+      "AI-C",
+      "AI-D",
+      "AI-E"
+    ],
+    "all_material_events_require_review": true,
+    "canonical_mutation": "WRITER_LEASE_ONLY",
+    "completion_rule": "ALL_FIVE_PASS_AND_EXTERNAL_EVIDENCE",
+    "local_findings": "ISOLATE_FIX_REVIEW_CONTINUE_INDEPENDENT_WORK"
+  }
 }
