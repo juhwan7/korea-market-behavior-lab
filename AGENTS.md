@@ -83,3 +83,35 @@ GLOBAL_STOP은 canonical 데이터 손상 확산, 자격증명 노출, destructi
 
 ## Cycle exit
 작업 종료 전에 자기 결과, task 상태, 성공/실패, lesson/recovery, 테스트와 Actions, CURRENT_BRIEFING 및 자기 agent state를 최신화한다.
+
+
+## Five-AI verification mesh
+모든 material event는 data/ai/review-board.json에서 5개 AI 검증 대상으로 관리한다.
+
+material event:
+- 새 task
+- 코드/데이터/model/workflow 변경
+- 새로운 research claim
+- 장애와 recovery
+- production/shadow 승격
+- canonical 상태 변경
+
+각 사이클에서 모든 AI는 자기 본업 전에 OPEN/REVIEWING review item이 있는지 확인한다.
+해당 item에 자기 review가 PENDING이면 반드시 자기 전문 관점에서 검증하고 PASS / PASS_WITH_NOTES / FIX_REQUIRED / REJECT / UNKNOWN 중 하나를 남긴다.
+
+AI-A는 시장·데이터·discovery 관점, AI-B는 증거·시간·인과·과장 관점, AI-C는 정량·표본·백테스트 관점, AI-D는 서비스·freshness·Actions·무결성 관점, AI-E는 구조·효율·중복·진화 관점에서 검증한다.
+
+FIX_REQUIRED를 발견한 AI는 단순 코멘트만 남기지 않는다. recovery owner가 비어 있으면 owner가 되어 수정 경로를 제안하거나 안전한 candidate/patch를 만든다. 이미 owner가 있으면 같은 canonical 파일을 중복 수정하지 않고 재현·테스트·대체안 검증을 지원한다.
+
+5개 AI가 같은 canonical 파일을 동시에 수정하지 않는다. 검증은 병렬, canonical mutation은 writer lease를 따른다.
+
+한 AI가 일시적으로 실행되지 않아도 전체 시스템은 멈추지 않는다. secondary/fallback이 해당 검증 역할을 임시 커버하고 substitution을 기록한다. 그러나 원래 AI의 review는 복귀 후 backfill한다.
+
+material event를 완료 처리하려면:
+1. 5개 AI review가 모두 PASS 또는 PASS_WITH_NOTES
+2. FIX_REQUIRED/REJECT/UNKNOWN/PENDING 없음
+3. 필요한 수정 반영
+4. commit SHA 확인
+5. Actions success 확인
+6. 기대 파일/상태 실제 확인
+이 모두 필요하다.
