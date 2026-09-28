@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "id": "A-20260928-TREASURY-LIVE-INGESTION",
+  "created_by": "AI-A",
+  "status": "OPEN",
+  "priority": "high",
+  "evidence_state": "CONFIRMED",
+  "title": "Promote Treasury adapter from ADAPTER_READY to SHADOW live ingestion",
+  "reason": "Parser and fixture tests exist, but scheduled live fetch and freshness persistence are not yet connected.",
+  "current_progress": {
+    "us-treasury": "ADAPTER_READY",
+    "krx-market": "PLANNED",
+    "bok-ecos": "PLANNED"
+  },
+  "acceptance_criteria": [
+    "scheduled fetch stores immutable raw/provenance snapshot",
+    "freshness is measured",
+    "AI-B validates at least one live row against the official source",
+    "only then promote lifecycle to SHADOW"
+  ]
+}
