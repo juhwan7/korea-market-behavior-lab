@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "mode": "FIVE_AI_REVIEW_MESH",
+  "updated_at": "2026-09-29T00:51:00+09:00",
+  "policy": {
+    "reviewers": [
+      "AI-A",
+      "AI-B",
+      "AI-C",
+      "AI-D",
+      "AI-E"
+    ],
+    "material_events": [
+      "new_task",
+      "code_change",
+      "data_change",
+      "model_change",
+      "research_claim",
+      "workflow_change",
+      "incident",
+      "recovery",
+      "production_promotion"
+    ],
+    "each_agent_must_review": true,
+    "same_file_parallel_write": false,
+    "canonical_changes_use_writer_lease": true,
+    "local_problem_does_not_stop_independent_work": true,
+    "fallback_when_agent_unavailable": {
+      "enabled": true,
+      "rule": "secondary/fallback temporarily covers the missing review role; original agent backfills review when it returns",
+      "must_record_substitution": true
+    },
+    "closure_gate": {
+      "require_all_review_roles_covered": true,
+      "require_owner_resolution_of_open_findings": true,
+      "require_external_evidence_for_completion": true,
+      "evidence": [
+        "commit_sha",
+        "actions_result",
+        "expected_file_or_state"
+      ]
+    }
+  },
+  "items": []
+}
