@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "candidate_id": "D-20260929-REVIEW-MESH-TEST-FIX",
+  "owner": "AI-D",
+  "status": "READY",
+  "scope": "LOCAL",
+  "target": "tests/test_review_mesh.py",
+  "base_blob_sha": "a7bd12816895167b885babf68119c539de113c01",
+  "problem": "review_mesh.py now requires a 40-char lowercase hex SHA and actions_result success:<positive_run_id>, while the positive test fixture still uses abc/success.",
+  "required_changes": [
+    "replace positive fixture commit_sha with a valid 40-character lowercase hexadecimal SHA",
+    "replace positive fixture actions_result with success:<positive numeric run id>",
+    "add negative tests for malformed SHA",
+    "add negative tests for failed, failure, cancelled, timed_out, success without run id, success:0 and non-numeric run id"
+  ],
+  "verification": [
+    "python -m unittest tests.test_review_mesh",
+    "full unit suite",
+    "system-check Actions success",
+    "verify resulting main commit and expected test content"
+  ],
+  "created_at": "2026-09-29T02:35:16+09:00"
+}
