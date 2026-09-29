@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "mode": "FIVE_AI_REVIEW_MESH",
-  "updated_at": "2026-09-29T16:10:00+09:00",
+  "updated_at": "2026-09-29T16:35:00+09:00",
   "policy": {
     "reviewers": [
       "AI-A",
@@ -230,24 +230,32 @@
           "38a453db1de55dcb63b4481f65ef19bf348b0c63",
           "358340b96785d71d80cea2c314687d7dd0ed7625",
           "e947d1c666c0894d056ebef44ed899aadb55e9d2",
-          "f27068e6a74e4fcc45060cac5e08d730f5f06702"
+          "f27068e6a74e4fcc45060cac5e08d730f5f06702",
+          "23707cb3854554fdbf29479069bf4d5e35ae66d8",
+          "f6ce3c1b91345a691c2e50945d12e48a9fc1ae46",
+          "82002e71eb365ddd401459e701539c5dbf16d626",
+          "91ce3b491e51ea9c7a9bcfe3e065091872cd6599"
         ],
         "system_check": [
           "success:36533434544",
-          "success:36534297464"
+          "success:36534297464",
+          "success:36537384583"
         ],
         "pages": [
           "success:36533434525",
-          "success:36534297574"
+          "success:36534297574",
+          "success:36537384498"
         ],
         "self_heal": [
           "success:36533370869",
           "success:36533363056",
           "success:36534327151"
         ],
-        "ai_d_runtime_recovered": true
+        "ai_d_runtime_recovered": true,
+        "latest_remediation_snapshot": "total_issues=0;known_unresolved_auto_fixable=0",
+        "latest_health_snapshot": "pages=HEALTHY;ai-heartbeat=HEALTHY;blocking_handoffs=0"
       },
-      "next_action": "Each original AI performs an independent specialty review. This fresh post-review does not block safe L0-L2 recovery already verified by tests and runtime evidence."
+      "next_action": "A/B/C/D/E perform independent post-review and backfill. Verified L0-L2 repair paths remain live and non-blocking while review completes."
     }
   ]
 }

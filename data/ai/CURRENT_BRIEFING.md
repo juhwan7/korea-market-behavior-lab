@@ -1,6 +1,6 @@
 # CURRENT BRIEFING
 
-Updated: 2026-09-29 16:10 KST
+Updated: 2026-09-29 16:35 KST
 
 ## 지금 가장 중요한 목표
 - Self-Healing을 감지 전용이 아니라 오류 지문 → Known Fix → 안전한 즉시 복구 → 회귀검증 → 장기기억의 폐쇄 루프로 유지한다.
@@ -33,12 +33,18 @@ Updated: 2026-09-29 16:10 KST
 - system-check 36534297464 SUCCESS, self-heal 36534327151 SUCCESS, Pages 36534297574 public verification SUCCESS.
 - commit f27068e6: service monitoring mode와 AI hourly cadence를 실제 운영 방식에 맞게 분리.
 - 최신 health snapshot은 news/market NOT_CONNECTED, canonical-guard READY, github-pages HEALTHY, ai-heartbeat HEALTHY로 분류했다.
-- remediation issue 수는 초기 14개에서 3개까지 감소했다. 남은 오래된 review 2개는 fallback substitution으로 non-blocking 처리했고 원래 AI backfill을 요구한다.
+- 최신 system-check remediation snapshot은 total_issues=0, known_unresolved_auto_fixable=0이다. 오래된 review는 fallback substitution으로 non-blocking 처리했고 원래 AI backfill을 요구한다.
+
+- commit 23707cb3/f6ce3c1b: registry 기반 오류 분류, 실패 job/step 증거, lease 만료 탐지와 회귀테스트를 추가하고 fixture 회귀 실패까지 수정했다.
+- commit 82002e71: 실제 scheduler last_run과 repository heartbeat 불일치를 복구하고 매 실행 heartbeat 저장 규칙을 강제했다.
+- commit 91ce3b49: Pages를 EVENT_DRIVEN, AI heartbeat를 DERIVED 상태로 분리해 정적 timestamp 오탐을 제거했다.
+- system-check 36537384583 SUCCESS. health snapshot은 news/market NOT_CONNECTED, canonical-guard READY, github-pages HEALTHY, ai-heartbeat HEALTHY이며 stale/missing agent는 0개다.
+- Pages 36537384498 build/deploy/public source·timestamp·fingerprint·core-section verifier SUCCESS.
 
 ## 다음 우선순위
-1. Self-Healing 신규 review를 A/B/C/D/E가 각 전문 관점에서 독립 검증한다.
+1. Self-Healing 신규 review를 A/B/C/D/E가 각 전문 관점에서 독립 검증하고 원래 역할 backfill을 완료한다.
 2. news-fast-lane과 authoritative market-data의 실제 evidence source를 연결한다.
-3. AI agent가 각 실행 종료 때 heartbeat/output evidence를 자동 갱신하도록 계속 강화한다.
+3. 다음 A/B/C/D/E 예약 사이클에서 mandatory heartbeat persistence가 실제 GitHub agent state를 전진시키는지 확인한다.
 4. 공식 시장 데이터가 연결될 때까지 시장 값을 임의 생성하지 않는다.
 
 ## 절대 다시 하지 말 것
