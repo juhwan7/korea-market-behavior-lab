@@ -15,7 +15,7 @@ KST = timezone(timedelta(hours=9))
 
 L3_TERMS = ("secret", "oauth", "billing", "payment", "credential", "force push",
             "destructive history", "권한 상승", "결제", "자격증명")
-PATTERNS = (
+FALLBACK_PATTERNS = (
     (r"stale[_ -]?sha|base sha.*mismatch", "STALE_SHA"),
     (r"merge conflict", "MERGE_CONFLICT"),
     (r"json.*(decode|parse)|invalid json", "JSON_FAILURE"),
@@ -46,6 +46,11 @@ def load_json(path: Path, default: Any) -> Any:
     except (OSError, json.JSONDecodeError):
         return default
 
+def signature_rows(root: Path = ROOT) -> list[dict[str, Any]]:
+    payload = load_json(root / "data/ai/remediation/error-signatures.json", {})
+    rows = payload.get("signatures", []) if isinstance(payload, dict) else []
+    return [row for row in rows if isinstance(row, dict)]
+
 def normalize_message(message: str) -> str:
     value = message.lower().strip()
     value = re.sub(r"\b[0-9a-f]{7,64}\b", "<sha>", value)
@@ -56,11 +61,26 @@ def incident_fingerprint(component: str, family: str, message: str) -> str:
     raw = "|".join((component.lower(), family.upper(), normalize_message(message)))
     return hashlib.sha256(raw.encode()).hexdigest()[:24]
 
-def classify_error(message: str, component: str = "") -> str:
+def classify_error(message: str, component: str = "", root: Path = ROOT) -> str:
     text = (component + " " + message).lower()
     if any(term in text for term in L3_TERMS):
         return "EXTERNAL_PERMISSION_REQUIRED"
-    for pattern, family in PATTERNS:
+
+    # The registry is an executable contract, not documentation. New signatures can
+    # be added without changing Python code. Invalid regex entries are ignored and
+    # caught by registry validation instead of crashing the recovery scanner.
+    for row in signature_rows(root):
+        family = str(row.get("family", "")).upper()
+        for pattern in row.get("patterns", []) if isinstance(row.get("patterns"), list) else []:
+            try:
+                if re.search(str(pattern), text, re.I):
+                    return family or "UNKNOWN_FAILURE"
+            except re.error:
+                continue
+
+    # Keep a minimal built-in fallback so recovery can still classify common
+    # failures even if the registry itself is temporarily damaged.
+    for pattern, family in FALLBACK_PATTERNS:
         if re.search(pattern, text, re.I):
             return family
     return "UNKNOWN_FAILURE"
@@ -167,6 +187,47 @@ def scan_reviews(root: Path, now: datetime, minutes: int = 120) -> list[dict[str
                              {"pending": pending, "recovery_owner": row.get("recovery_owner")}))
     return out
 
+def scan_leases(root: Path, now: datetime) -> list[dict[str, Any]]:
+    """Detect abandoned recovery/writer leases so another agent can take over."""
+    out: list[dict[str, Any]] = []
+
+    services = load_json(root / "data/system/services.json", {})
+    for row in services.get("services", []) if isinstance(services, dict) else []:
+        owner = row.get("recovery_owner")
+        lease = parse_time(row.get("lease_until"))
+        if owner and lease and lease < now:
+            out.append(issue(
+                f"service:{row.get('id')}", "LEASE_EXPIRED",
+                "recovery lease expired while owner is still assigned", root,
+                {"recovery_owner": owner, "lease_until": row.get("lease_until")},
+            ))
+
+    recovery = load_json(root / "data/ai/recovery-queue.json", {})
+    for row in recovery.get("incidents", []) if isinstance(recovery, dict) else []:
+        if str(row.get("status", "")).upper() in {"RESOLVED", "RECOVERED", "CLOSED"}:
+            continue
+        owner = row.get("recovery_owner")
+        lease = parse_time(row.get("lease_until"))
+        if owner and lease and lease < now:
+            out.append(issue(
+                f"incident:{row.get('incident_id')}", "LEASE_EXPIRED",
+                "incident recovery lease expired before resolution", root,
+                {"recovery_owner": owner, "lease_until": row.get("lease_until")},
+            ))
+
+    writer = load_json(root / "data/ai/writer-lease.json", {})
+    if isinstance(writer, dict) and str(writer.get("status", "FREE")).upper() != "FREE":
+        lease = parse_time(writer.get("lease_until"))
+        if writer.get("writer") and lease and lease < now:
+            out.append(issue(
+                "writer-lease", "LEASE_EXPIRED",
+                "canonical writer lease expired while still held", root,
+                {"writer": writer.get("writer"), "target": writer.get("target"),
+                 "lease_until": writer.get("lease_until")},
+            ))
+    return out
+
+
 def github_json(repository: str, endpoint: str, token: str | None) -> Any:
     headers = {"Accept": "application/vnd.github+json", "User-Agent": "kmb-self-heal",
                "X-GitHub-Api-Version": "2022-11-28"}
@@ -176,6 +237,33 @@ def github_json(repository: str, endpoint: str, token: str | None) -> Any:
         f"https://api.github.com/repos/{repository}/{endpoint.lstrip('/')}", headers=headers)
     with urllib.request.urlopen(request, timeout=15) as response:
         return json.loads(response.read().decode())
+
+def summarize_failed_jobs(payload: Any) -> list[dict[str, Any]]:
+    """Keep compact job/step evidence for failed workflow diagnosis."""
+    if not isinstance(payload, dict):
+        return []
+    rows: list[dict[str, Any]] = []
+    for job in payload.get("jobs", []) if isinstance(payload.get("jobs"), list) else []:
+        conclusion = str(job.get("conclusion") or "").lower()
+        failed_steps = [
+            {
+                "number": step.get("number"),
+                "name": step.get("name"),
+                "conclusion": step.get("conclusion"),
+            }
+            for step in job.get("steps", []) if isinstance(job.get("steps"), list)
+            if str(step.get("conclusion") or "").lower() in
+            {"failure", "cancelled", "canceled", "timed_out"}
+        ]
+        if conclusion in {"failure", "cancelled", "canceled", "timed_out"} or failed_steps:
+            rows.append({
+                "job_id": job.get("id"),
+                "job": job.get("name"),
+                "conclusion": job.get("conclusion"),
+                "failed_steps": failed_steps,
+            })
+    return rows
+
 
 def scan_actions(root: Path, repository: str | None, token: str | None, now: datetime):
     if not repository:
@@ -201,6 +289,13 @@ def scan_actions(root: Path, repository: str | None, token: str | None, now: dat
         elif conclusion in {"failure", "timed_out", "cancelled", "canceled"}:
             fam = {"timed_out": "ACTION_TIMEOUT", "cancelled": "ACTION_CANCELLED",
                    "canceled": "ACTION_CANCELLED"}.get(conclusion, "ACTION_FAILURE")
+            try:
+                jobs = github_json(repository, f"actions/runs/{run.get('id')}/jobs?per_page=100", token)
+                failure_details = summarize_failed_jobs(jobs)
+                if failure_details:
+                    evidence[name]["failure_details"] = failure_details
+            except Exception as exc:
+                evidence[name]["failure_detail_error"] = str(exc)
             out.append(issue(f"workflow:{name}", fam, "latest conclusion=" + conclusion,
                              root, evidence[name]))
     return out, {"status": "OK", "latest": evidence}
@@ -214,6 +309,7 @@ def scan_repository(root: Path = ROOT, repository: str | None = None,
     issues += scan_agents(root, current)
     issues += scan_tasks(root, current)
     issues += scan_reviews(root, current)
+    issues += scan_leases(root, current)
     action_issues, action_evidence = scan_actions(root, repository, token, current)
     issues += action_issues
     return {
@@ -228,6 +324,8 @@ def scan_repository(root: Path = ROOT, repository: str | None = None,
             "ai_auto_approved": sum(
                 1 for i in issues if i["auto_approved"] and i["execution_mode"] != "DETERMINISTIC"),
             "human_required": sum(1 for i in issues if i["approval_level"] == "L3"),
+            "known_unresolved_auto_fixable": sum(
+                1 for i in issues if i["auto_approved"] and i["approval_level"] != "L3"),
         },
         "issues": issues,
         "workflow_evidence": action_evidence,
@@ -252,6 +350,23 @@ def validate_registries(root: Path = ROOT) -> list[str]:
             continue
         if not isinstance(value, dict):
             errors.append(rel + ": root must be object")
+            continue
+        if rel.endswith("error-signatures.json"):
+            for idx, row in enumerate(value.get("signatures", [])):
+                if not isinstance(row, dict) or not row.get("family") or not isinstance(row.get("patterns"), list) or not row.get("patterns"):
+                    errors.append(f"{rel}: signatures[{idx}] requires family and non-empty patterns")
+                    continue
+                for pattern in row["patterns"]:
+                    try:
+                        re.compile(str(pattern), re.I)
+                    except re.error as exc:
+                        errors.append(f"{rel}: invalid regex {pattern!r}: {exc}")
+        if rel.endswith("known-fixes.json"):
+            for idx, row in enumerate(value.get("fixes", [])):
+                required = ("fix_id", "incident_family", "execution_mode", "risk_level", "auto_approve")
+                missing = [key for key in required if key not in row]
+                if missing:
+                    errors.append(f"{rel}: fixes[{idx}] missing " + ",".join(missing))
     return errors
 
 def main() -> int:

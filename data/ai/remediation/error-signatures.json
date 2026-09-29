@@ -59,6 +59,31 @@
         "heartbeat missing",
         "output missing"
       ]
+    },
+    {
+      "signature_id": "SIG-LEASE-EXPIRED",
+      "family": "LEASE_EXPIRED",
+      "patterns": [
+        "lease expired",
+        "lease_until.*expired",
+        "recovery lease expired"
+      ]
+    },
+    {
+      "signature_id": "SIG-QUEUE-STALL",
+      "family": "QUEUE_STALL",
+      "patterns": [
+        "queue stalled",
+        "no progress for more than"
+      ]
+    },
+    {
+      "signature_id": "SIG-SERVICE-EVIDENCE",
+      "family": "SERVICE_TELEMETRY_UNINITIALIZED",
+      "patterns": [
+        "runtime state lacks evidence-backed last_success_at",
+        "telemetry uninitialized"
+      ]
     }
   ]
 }

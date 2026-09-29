@@ -202,6 +202,37 @@
       "last_success_at": null,
       "confidence": "MEDIUM",
       "auto_approve": true
+    },
+    {
+      "fix_id": "FIX-LEASE-EXPIRED-001",
+      "incident_family": "LEASE_EXPIRED",
+      "enabled": true,
+      "execution_mode": "AI_REQUIRED",
+      "risk_level": "L1",
+      "root_cause": "recovery or writer owner stopped progressing before lease expiry",
+      "fix_strategy": [
+        "confirm lease is expired against current UTC time",
+        "verify no fresh owner progress exists",
+        "release or take over the stale lease",
+        "resume recovery from latest authoritative state",
+        "verify downstream progress"
+      ],
+      "required_tests": [
+        "expired lease remediation regression"
+      ],
+      "verification": [
+        "new owner or FREE state is recorded",
+        "downstream progress advances"
+      ],
+      "rollback": "restore previous owner only if fresh progress evidence proves the takeover was incorrect",
+      "times_used": 0,
+      "success_count": 0,
+      "failure_count": 0,
+      "sample_count": 0,
+      "success_rate": 0,
+      "last_success_at": null,
+      "confidence": "MEDIUM",
+      "auto_approve": true
     }
   ]
 }

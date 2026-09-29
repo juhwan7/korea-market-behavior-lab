@@ -35,6 +35,27 @@
       "rule": "동일 실패 run은 자동 재실행을 1회만 수행하고 재실패하면 원인분석으로 승격한다.",
       "monitor": "workflow_run.run_attempt",
       "regression_guard": "self-heal workflow condition"
+    },
+    {
+      "prevention_id": "PREVENT-LEASE-TAKEOVER",
+      "incident_family": "LEASE_EXPIRED",
+      "rule": "만료된 recovery/writer lease는 정상 소유 상태로 남기지 않고 takeover 대상으로 즉시 탐지한다.",
+      "monitor": "services/recovery-queue/writer-lease lease_until",
+      "regression_guard": "tests/test_remediation.py::test_expired_recovery_lease_is_detected"
+    },
+    {
+      "prevention_id": "PREVENT-ACTION-STEP-EVIDENCE",
+      "incident_family": "ACTION_FAILURE",
+      "rule": "Actions 실패는 workflow 이름만 기록하지 않고 실패 job과 step을 snapshot evidence에 포함한다.",
+      "monitor": "actions run jobs endpoint",
+      "regression_guard": "tests/test_remediation.py::test_failed_job_summary_records_exact_step"
+    },
+    {
+      "prevention_id": "PREVENT-REGISTRY-EXECUTABLE",
+      "incident_family": "UNKNOWN_FAILURE",
+      "rule": "error-signatures registry를 분류기의 실제 입력으로 사용하고 잘못된 regex/schema는 system-check에서 차단한다.",
+      "monitor": "remediation registry validation",
+      "regression_guard": "tests/test_remediation.py registry signature tests"
     }
   ]
 }

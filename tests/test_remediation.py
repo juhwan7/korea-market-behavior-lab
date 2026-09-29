@@ -4,15 +4,23 @@ import unittest
 from datetime import datetime, timezone
 from pathlib import Path
 
-from kmb_lab.remediation import approval_level, classify_error, incident_fingerprint, scan_repository, validate_registries
+from kmb_lab.remediation import (
+    approval_level,
+    classify_error,
+    incident_fingerprint,
+    scan_repository,
+    summarize_failed_jobs,
+    validate_registries,
+)
 
 
 class RemediationTests(unittest.TestCase):
     def seed(self, root: Path):
         reg = root / "data/ai/remediation"
         reg.mkdir(parents=True)
-        for name in ("policy.json", "error-signatures.json", "prevention-registry.json"):
-            (reg / name).write_text("{}", encoding="utf-8")
+        (reg / "policy.json").write_text("{}", encoding="utf-8")
+        (reg / "error-signatures.json").write_text('{"signatures":[]}', encoding="utf-8")
+        (reg / "prevention-registry.json").write_text("{}", encoding="utf-8")
         (reg / "known-fixes.json").write_text(json.dumps({"fixes": [
             {"fix_id": "f1", "incident_family": "ACTION_FAILURE", "enabled": True,
              "execution_mode": "DETERMINISTIC", "success_rate": 1, "sample_count": 2}
@@ -56,6 +64,81 @@ class RemediationTests(unittest.TestCase):
             root = Path(tmp)
             self.seed(root)
             self.assertEqual(validate_registries(root), [])
+
+    def test_registry_signature_is_used_by_classifier(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.seed(root)
+            registry = root / "data/ai/remediation/error-signatures.json"
+            registry.write_text(json.dumps({"signatures": [{
+                "signature_id": "custom",
+                "family": "DATA_STALE",
+                "patterns": ["banana clock drift"]
+            }]}), encoding="utf-8")
+            self.assertEqual(
+                classify_error("BANANA CLOCK DRIFT detected", root=root),
+                "DATA_STALE",
+            )
+
+    def test_expired_recovery_lease_is_detected(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.seed(root)
+            services = root / "data/system/services.json"
+            services.write_text(json.dumps({"services": [{
+                "id": "github-pages",
+                "status": "HEALTHY",
+                "last_success_at": "2026-09-29T05:59:00Z",
+                "owner": "D",
+                "recovery_owner": "AI-D",
+                "lease_until": "2026-09-29T05:30:00Z"
+            }]}), encoding="utf-8")
+            (root / "data/ai/writer-lease.json").write_text(
+                '{"status":"FREE","writer":null,"lease_until":null}', encoding="utf-8")
+            result = scan_repository(root, now=datetime(2026, 9, 29, 6, tzinfo=timezone.utc))
+            self.assertIn("LEASE_EXPIRED", {x["family"] for x in result["issues"]})
+
+    def test_planned_not_connected_service_is_not_fake_failure(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.seed(root)
+            services = root / "data/system/services.json"
+            services.write_text(json.dumps({"services": [{
+                "id": "market-data",
+                "status": "PLANNED",
+                "monitoring_mode": "NOT_CONNECTED",
+                "last_success_at": None,
+                "owner": "A"
+            }]}), encoding="utf-8")
+            result = scan_repository(root, now=datetime(2026, 9, 29, 6, tzinfo=timezone.utc))
+            self.assertNotIn(
+                "SERVICE_TELEMETRY_UNINITIALIZED",
+                {x["family"] for x in result["issues"]},
+            )
+
+    def test_failed_job_summary_records_exact_step(self):
+        rows = summarize_failed_jobs({"jobs": [{
+            "id": 99,
+            "name": "build",
+            "conclusion": "failure",
+            "steps": [
+                {"number": 1, "name": "checkout", "conclusion": "success"},
+                {"number": 2, "name": "Run tests", "conclusion": "failure"},
+            ],
+        }]})
+        self.assertEqual(rows[0]["job"], "build")
+        self.assertEqual(rows[0]["failed_steps"][0]["name"], "Run tests")
+
+    def test_registry_validation_rejects_invalid_signature_regex(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.seed(root)
+            path = root / "data/ai/remediation/error-signatures.json"
+            path.write_text(json.dumps({"signatures": [{
+                "family": "BROKEN",
+                "patterns": ["("]
+            }]}), encoding="utf-8")
+            self.assertTrue(any("invalid regex" in x for x in validate_registries(root)))
 
 
 if __name__ == "__main__":
