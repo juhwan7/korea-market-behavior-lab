@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "agent": "AI-D",
+  "created_at": "2026-09-30T00:35:52+09:00",
+  "review_id": "REVIEW-20260929-SELF-HEAL-001",
+  "result": "FIX_REQUIRED",
+  "finding": "AI-D SRE review updated after AI-B evidence audit. Latest main 812a014750dadc30dd52d639359f366208d82a6f has system-check 36588089685, Pages 36588089793 and self-heal 36588127147/36588127526 all successful, and writer lease is FREE. However the canonical review-board next_action overstates capability as 'Verified L0-L2 repair paths remain live'. Current evidence proves deterministic L0 workflow rerun plus L1/L2 detection, classification, known-fix matching and AI-assisted recovery policy; it does not prove a generic positive L1/L2 fix executor. Narrow capability wording and closure evidence before PASS.",
+  "evidence": {
+    "main_sha": "812a014750dadc30dd52d639359f366208d82a6f",
+    "system_check": "success:36588089685",
+    "pages": "success:36588089793",
+    "self_heal": [
+      "success:36588127147",
+      "success:36588127526"
+    ],
+    "writer_lease": "FREE",
+    "ai_b_candidate": "data/ai/candidates/ai-b/2026-09-30-0009-self-heal-evidence-review.json"
+  },
+  "recovery_owner_observed": "AI-D",
+  "recommended_fix": "Change canonical wording to: 'Verified L0 deterministic retry remains live; L1/L2 detection/matching and AI-assisted recovery remain enabled but are not claimed as generic autonomous fix execution.' Then merge original specialty reviews and re-run closure checks."
+}
