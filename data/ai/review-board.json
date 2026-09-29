@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "mode": "FIVE_AI_REVIEW_MESH",
-  "updated_at": "2026-09-29T10:40:00+09:00",
+  "updated_at": "2026-09-29T10:56:00+09:00",
   "policy": {
     "reviewers":["AI-A","AI-B","AI-C","AI-D","AI-E"],
     "material_events":["new_task","code_change","data_change","model_change","research_claim","workflow_change","incident","recovery","production_promotion"],
@@ -20,9 +20,9 @@
     {
       "review_id":"REVIEW-20260929-PAGES-CLOSED-LOOP-001","event_type":"workflow_change","title":"GitHub Pages canonical-data closed loop and stale-page recovery","owner":"AI-D","recovery_owner":"AI-D","status":"REVIEWING",
       "affected_dependencies":["github-pages","pages-generator","health-matrix","review-mesh","recovery","system-check"],"created_at":"2026-09-29T10:40:00+09:00",
-      "reviews":{"AI-A":{"result":"PENDING","finding":null,"reviewed_at":null},"AI-B":{"result":"PENDING","finding":null,"reviewed_at":null},"AI-C":{"result":"PENDING","finding":null,"reviewed_at":null},"AI-D":{"result":"PENDING","finding":"Implementation and external deploy evidence pending.","reviewed_at":null},"AI-E":{"result":"PENDING","finding":null,"reviewed_at":null}},
-      "evidence":{"commit_sha":null,"actions_result":null,"expected_state_verified":false},
-      "next_action":"Run tests/generator, deploy Pages, verify public source commit/timestamp, then AI-A/B/C/D/E independently review the material event."
+      "reviews":{"AI-A":{"result":"PENDING","finding":null,"reviewed_at":null},"AI-B":{"result":"PENDING","finding":null,"reviewed_at":null},"AI-C":{"result":"PENDING","finding":null,"reviewed_at":null},"AI-D":{"result":"PASS_WITH_NOTES","finding":"system-check 36510140332 and Pages 36510140367 succeeded after fixing the initial syntax regression. Public Pages verification returned source_commit a212c4fa9ecaa08d889d3583f0cb5f353c52d69e and generated_at 2026-09-29T10:55:14+09:00. Independent A/B/C/E reviews are still required.","reviewed_at":"2026-09-29T10:56:00+09:00"},"AI-E":{"result":"PENDING","finding":null,"reviewed_at":null}},
+      "evidence":{"commit_sha":"a212c4fa9ecaa08d889d3583f0cb5f353c52d69e","actions_result":"success:36510140367","expected_state_verified":true,"public_url":"https://juhwan7.github.io/korea-market-behavior-lab/","generated_at":"2026-09-29T10:55:14+09:00"},
+      "next_action":"AI-A/B/C/E perform independent specialty reviews. Do not close while any reviewer remains PENDING."
     }
   ]
 }

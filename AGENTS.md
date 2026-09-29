@@ -133,3 +133,26 @@ Never disable another automation merely because a LOCAL blocker, write failure, 
 Recovery is not complete after toggling enabled=true. Verify as far as the available evidence allows: latest main SHA -> last good run -> failure point -> cause -> minimal fix/re-enable -> tests -> Actions/run evidence -> heartbeat/progress advance -> expected output -> downstream stage. If a missed interval can be safely backfilled from authoritative data, backfill it; otherwise mark it MISSING/UNKNOWN rather than fabricating current data.
 
 If an agent is found disabled, restoring it takes priority over normal market research, model work, UI work or experiments. After restoration, record the incident/root cause/prevention in recovery queue and long-term memory and create/link a five-AI review item for the material event. Repeated disablement must trigger root-cause analysis and a regression/prevention improvement rather than endless manual re-enabling.
+
+## Pages closed-loop preflight
+GitHub Pages는 단순 소개 페이지가 아니라 사용자 표시 계층의 운영 상태판이다. 모든 AI-A/B/C/D/E는 본업 전에 아래 순서를 따른다.
+
+1. 5-AI 실제 생존/실행 증거 확인
+2. 죽거나 stale/missing인 AI 복구
+3. 데이터 pipeline freshness 확인
+4. Pages freshness 확인
+5. Pages 최근 deploy conclusion과 public source_commit/generated_at 확인
+6. queue 병목 확인
+7. review-board 처리
+8. 자기 전문업무 수행
+
+Pages 상태는 repository의 문자열만 믿지 않는다. 최신 material state, live status.json의 material_fingerprint, Pages workflow, 실제 공개 index.html의 source commit과 generated timestamp를 교차검증한다.
+
+main이 전진했더라도 사용자 표시 material fingerprint가 같으면 불필요한 재배포를 요구하지 않는다. 반대로 material fingerprint가 다르거나 public status.json을 확인할 수 없으면 PAGES_STALE/PAGES_UNKNOWN으로 취급하고 Pages Incident를 연다.
+
+Pages 장애는 LOCAL display-layer incident로 격리한다. Pages failure/stale 때문에 Market Collector, Discovery, research, scheduler 또는 AI-A/B/C/D/E를 중단하거나 비활성화하지 않는다. 기본 recovery owner는 AI-D이며 기존 lease 규칙에 따라 AI-E/AI-A 등이 인계할 수 있다.
+
+복구 순서는 `trigger → generator → artifact → deploy → public URL → source_commit/generated_at → RECOVERED → regression prevention`이다. commit 성공이나 Actions success만으로 사용자 표시 계층 완료를 선언하지 않는다.
+
+상세 규칙은 `docs/PAGES_OPERATIONS.md`를 따른다.
+
