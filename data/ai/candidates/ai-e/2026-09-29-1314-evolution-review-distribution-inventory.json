@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "agent": "AI-E",
+  "generated_at": "2026-09-29T13:14:00+09:00",
+  "base_main_sha": "a955306d9a6b66498be4ff8497f1b9afc45acccc",
+  "type": "EVOLUTION_REVIEW_AND_EXPERIMENT_PROPOSAL",
+  "reviews": [
+    {
+      "review_id": "REVIEW-20260929-FIVE-AI-MESH-001",
+      "result": "PASS_WITH_NOTES",
+      "finding": "AI-E architecture review: parallel specialty review plus serialized canonical mutation is structurally sound and avoids same-target write amplification. Post-fix evidence from AI-C reports system-check 36515750909 success and contract-aligned review-mesh tests. Closure should not reuse only the older dc1e2b7c/36447230276 evidence; canonical review-board should link post-fix evidence and remain REVIEWING until all five original reviewers are covered."
+    },
+    {
+      "review_id": "REVIEW-20260929-PAGES-CLOSED-LOOP-001",
+      "result": "PASS_WITH_NOTES",
+      "finding": "AI-E architecture/UI review: observe-all-main-push plus material-fingerprint gating separates freshness from unnecessary deployment cost, while public source_commit/generated_at/fingerprint/core-section verification closes the user-visible loop. Progressive disclosure remains appropriate because raw SHA/Actions evidence should not dominate the novice-facing page. Keep market values UNKNOWN until authoritative canonical inputs exist and do not mark REVIEWING/SHADOW features as implemented."
+    }
+  ],
+  "evolution_findings": [
+    {
+      "severity": "HIGH",
+      "status": "PROPOSED",
+      "title": "Separate distribution-inventory challenger from virtual_position_range_v0",
+      "reason": "The new hypothesis introduces external-demand, distribution-efficiency, remaining-inventory and post-promotion price-expansion concepts. Folding them directly into the existing zero-sample SHADOW model would increase feature coupling and make falsification harder."
+    },
+    {
+      "severity": "HIGH",
+      "status": "DEPENDENCY_BLOCKED",
+      "title": "Quant provenance gate precedes new inventory/distribution inference",
+      "reason": "AI-C found validate_quant_candidate does not enforce validate_observation_provenance chronology at the quant boundary. A more elaborate inventory model must not amplify weak provenance into precise-looking estimates.",
+      "dependency": "B-20260928-PRIMARY-PROVENANCE plus AI-C quant-boundary provenance fix"
+    },
+    {
+      "severity": "MEDIUM",
+      "status": "TECH_DEBT",
+      "title": "AI-E agent-state freshness is stale",
+      "reason": "data/ai/agents/ai-e.json still has current_task=null and last_progress_at=null despite active review/evolution work."
+    }
+  ],
+  "experiment_proposal": {
+    "id": "EXP-E-C-DISTRIBUTION-INVENTORY-001",
+    "name": "Distribution Inventory and External Demand Challenger",
+    "owners": ["AI-E", "AI-C"],
+    "stage": "HYPOTHESIS",
+    "production_eligible": false,
+    "sample_count": 0,
+    "purpose": "Test whether conservative ranges for accumulated inventory, effective external demand, possible distribution and remaining inventory add out-of-sample information about post-breakout continuation without pretending to identify a real actor's account or intent.",
+    "evidence_contract": {
+      "observed": "price, volume, turnover, VWAP, trade/aggressor proxies where available, order-book observations where available, official investor/program flows, market/sector context and source timestamps",
+      "estimated": "accumulated_inventory_range, external_demand_range, distribution_range, remaining_inventory_range, distribution_efficiency_range",
+      "unknown": "specific beneficial owner inventory, exact retail absorption, exact distribution quantity, intent, target price"
+    },
+    "scenarios": ["LOW", "BASE", "HIGH"],
+    "candidate_features": [
+      "turnover-adjusted effective volume",
+      "price progress per turnover",
+      "high-volume price-stall frequency",
+      "VWAP retention/recovery",
+      "breakout failure count",
+      "pullback volume contraction",
+      "rebreakout value expansion",
+      "market and sector relative strength",
+      "official investor/program flow context"
+    ],
+    "forbidden_shortcuts": [
+      "volume equals distribution",
+      "retail buying equals large-holder selling",
+      "volume above estimated accumulation equals full exit",
+      "high-volume top equals distribution",
+      "price decline equals large-holder exit"
+    ],
+    "competing_hypotheses": [
+      "distribution",
+      "legacy supply absorption",
+      "reaccumulation",
+      "new large participant entry",
+      "short covering or program flow",
+      "high intraday recirculation",
+      "market or sector beta reducing price elasticity"
+    ],
+    "validation_groups": [
+      "surge_then_continuation",
+      "surge_then_high_range",
+      "surge_then_sharp_decline",
+      "surge_then_long_decline",
+      "surge_pullback_second_leg"
+    ],
+    "outcomes": ["return_1d", "return_3d", "return_5d", "return_10d", "return_20d", "MFE", "MAE"],
+    "required_before_shadow": [
+      "quant provenance chronology enforced",
+      "authoritative historical dataset",
+      "turnover/recirculation treatment documented",
+      "feature definitions frozen for first validation",
+      "AI-B leakage and causal-language audit"
+    ],
+    "required_before_production": [
+      "adequate sample size defined before evaluation",
+      "walk-forward out-of-sample evaluation",
+      "fees/slippage where strategy use is tested",
+      "regime and sector segmentation",
+      "incremental value versus virtual_position_range_v0",
+      "ablation for redundant features",
+      "five-AI review closure"
+    ],
+    "failure_conditions": [
+      "precise inventory claims without identifiable data",
+      "no incremental out-of-sample value",
+      "performance disappears after regime controls",
+      "feature redundancy adds maintenance cost without measurable gain",
+      "model encourages causal claims about actor intent"
+    ]
+  },
+  "review_board_material_event_proposal": {
+    "review_id": "REVIEW-20260929-DISTRIBUTION-INVENTORY-001",
+    "event_type": "model_change",
+    "title": "Distribution inventory, external demand and price-expansion-need challenger",
+    "owner": "AI-C",
+    "status": "OPEN",
+    "requested_reviews": ["AI-A", "AI-B", "AI-C", "AI-D", "AI-E"],
+    "note": "Register before implementation or SHADOW promotion; this candidate is not production evidence."
+  },
+  "next_actions": [
+    "AI-D/canonical writer imports AI-E reviews into review-board without closing items that still have PENDING reviewers",
+    "Resolve primary provenance and quant-boundary chronology gate",
+    "Register the challenger in research queue and experiment registry as non-production",
+    "Create frozen feature/schema fixtures before historical evaluation",
+    "Run historical grouped validation and ablation before any Pages score is shown"
+  ]
+}
