@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-29T15:45:00+09:00",
+  "updated_at": "2026-09-29T16:00:00+09:00",
   "policy": {
     "one_blocked_task_does_not_stop_all_agents": true,
     "local_incident_isolation": true,
@@ -98,6 +98,36 @@
         "Pages failure isolation"
       ],
       "resolved_at": "2026-09-29T10:55:36+09:00"
+    },
+    {
+      "incident_id": "INC-20260929-AI-D-AUTOMATION-DISABLED",
+      "scope": "LOCAL",
+      "affected_dependencies": [
+        "ai-d-automation",
+        "recovery-owner",
+        "canonical-writer-primary"
+      ],
+      "recovery_owner": "AI-D",
+      "status": "RESOLVED",
+      "started_at": "2026-09-29T15:54:00+09:00",
+      "root_cause": "Actual scheduled AI-D automation was observed disabled while repository agent state still declared ACTIVE. Available runtime evidence does not establish why it became disabled.",
+      "attempts": [
+        "read_actual_automation_runtime_state",
+        "reenable_ai_d_automation",
+        "verify_all_five_automations_enabled"
+      ],
+      "evidence": [
+        "runtime-observation:AI-D-disabled",
+        "runtime-action:AI-D-reenabled",
+        "runtime-verification:A/B/C/D/E-enabled"
+      ],
+      "prevention": [
+        "actual automation runtime state overrides repository ACTIVE declarations",
+        "five-agent survival preflight checks enabled state and last run",
+        "repository agent state stores runtime evidence separately from declared state",
+        "repeat disablement becomes structural incident instead of repeated manual toggle"
+      ],
+      "resolved_at": "2026-09-29T15:54:38+09:00"
     }
   ]
 }

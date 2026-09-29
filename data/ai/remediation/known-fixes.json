@@ -26,7 +26,7 @@
       "success_count": 1,
       "failure_count": 0,
       "sample_count": 1,
-      "success_rate": 1.0,
+      "success_rate": 1,
       "last_success_at": "2026-09-28T23:03:00+09:00",
       "confidence": "HIGH",
       "auto_approve": true
@@ -55,7 +55,7 @@
       "success_count": 1,
       "failure_count": 0,
       "sample_count": 1,
-      "success_rate": 1.0,
+      "success_rate": 1,
       "last_success_at": "2026-09-28T23:56:33+09:00",
       "confidence": "HIGH",
       "auto_approve": true
@@ -80,7 +80,7 @@
       "success_count": 0,
       "failure_count": 0,
       "sample_count": 0,
-      "success_rate": 0.0,
+      "success_rate": 0,
       "last_success_at": null,
       "confidence": "MEDIUM",
       "auto_approve": true
@@ -110,7 +110,7 @@
       "success_count": 1,
       "failure_count": 0,
       "sample_count": 1,
-      "success_rate": 1.0,
+      "success_rate": 1,
       "last_success_at": "2026-09-29T12:05:17+09:00",
       "confidence": "HIGH",
       "auto_approve": true
@@ -119,26 +119,29 @@
       "fix_id": "FIX-TELEMETRY-EVIDENCE-001",
       "incident_family": "SERVICE_TELEMETRY_UNINITIALIZED",
       "enabled": true,
-      "execution_mode": "DETERMINISTIC",
-      "risk_level": "L0",
-      "root_cause": "services.json lacks live runtime evidence",
+      "execution_mode": "AI_REQUIRED",
+      "risk_level": "L1",
+      "root_cause": "runtime observability is not wired to an authoritative evidence source; detection cannot safely invent a successful service timestamp",
       "fix_strategy": [
-        "derive remediation snapshot from Actions/output evidence",
-        "do not fabricate success timestamps",
-        "route unresolved services to owner/fallback"
+        "identify an authoritative runtime/output source for the service",
+        "map that source to service freshness",
+        "do not fabricate last_success_at",
+        "verify evidence advances after a real run"
       ],
       "required_tests": [
         "remediation scan tests"
       ],
       "verification": [
-        "evidence snapshot generated"
+        "authoritative evidence source is recorded",
+        "freshness advances after a real run",
+        "no synthetic success timestamp is used"
       ],
       "rollback": "delete generated artifact",
       "times_used": 0,
       "success_count": 0,
       "failure_count": 0,
       "sample_count": 0,
-      "success_rate": 0.0,
+      "success_rate": 0,
       "last_success_at": null,
       "confidence": "HIGH",
       "auto_approve": true
@@ -167,7 +170,7 @@
       "success_count": 0,
       "failure_count": 0,
       "sample_count": 0,
-      "success_rate": 0.0,
+      "success_rate": 0,
       "last_success_at": null,
       "confidence": "MEDIUM",
       "auto_approve": true
@@ -195,7 +198,7 @@
       "success_count": 0,
       "failure_count": 0,
       "sample_count": 0,
-      "success_rate": 0.0,
+      "success_rate": 0,
       "last_success_at": null,
       "confidence": "MEDIUM",
       "auto_approve": true

@@ -69,11 +69,12 @@ def approval_level(family: str) -> str:
     if family == "EXTERNAL_PERMISSION_REQUIRED":
         return "L3"
     if family in {"ACTION_FAILURE", "ACTION_TIMEOUT", "ACTION_CANCELLED", "ACTION_STUCK",
-                  "PAGE_STALE", "SERVICE_TELEMETRY_UNINITIALIZED"}:
+                  "PAGE_STALE"}:
         return "L0"
     if family in {"WRITE_FAILURE", "STALE_SHA", "MERGE_CONFLICT", "JSON_FAILURE",
                   "SCHEMA_FAILURE", "IMPORT_FAILURE", "TEST_REGRESSION", "AGENT_STALE",
-                  "HEARTBEAT_MISSING", "QUEUE_STALL", "REVIEW_STALE", "LEASE_EXPIRED"}:
+                  "HEARTBEAT_MISSING", "QUEUE_STALL", "REVIEW_STALE", "LEASE_EXPIRED",
+                  "SERVICE_TELEMETRY_UNINITIALIZED"}:
         return "L1"
     return "L2"
 
