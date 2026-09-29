@@ -1,37 +1,23 @@
 {
-  "schema_version": 1,
-  "mode": "FIVE_AI_REVIEW_MESH",
-  "updated_at": "2026-09-29T16:35:00+09:00",
+  "schema_version": 2,
+  "mode": "RISK_BASED_DYNAMIC_REVIEW",
+  "updated_at": "2026-09-30T01:39:00+09:00",
   "policy": {
-    "reviewers": [
-      "AI-A",
-      "AI-B",
-      "AI-C",
-      "AI-D",
-      "AI-E"
-    ],
-    "material_events": [
-      "new_task",
-      "code_change",
-      "data_change",
-      "model_change",
-      "research_claim",
-      "workflow_change",
-      "incident",
-      "recovery",
-      "production_promotion"
-    ],
-    "each_agent_must_review": true,
+    "risk_based": true,
+    "risk_requirements": {
+      "LOW": 1,
+      "MEDIUM": 2,
+      "HIGH": 3,
+      "CRITICAL": 5
+    },
+    "optional_reviewers_must_not_block": true,
     "same_file_parallel_write": false,
     "canonical_changes_use_writer_lease": true,
     "local_problem_does_not_stop_independent_work": true,
-    "fallback_when_agent_unavailable": {
-      "enabled": true,
-      "rule": "secondary/fallback temporarily covers the missing review role; original agent backfills review when it returns",
-      "must_record_substitution": true
-    },
+    "evidence_packet_required": true,
+    "anti_review_storm": true,
     "closure_gate": {
-      "require_all_review_roles_covered": true,
+      "require_required_reviewers_pass": true,
       "require_owner_resolution_of_open_findings": true,
       "require_external_evidence_for_completion": true,
       "evidence": [
@@ -104,7 +90,16 @@
         "AI-C",
         "AI-E"
       ],
-      "substitution_reason": "Original specialty reviews exceeded the stale-review threshold; fallback role coverage restored non-blocking progression. Original agents must backfill on a later cycle."
+      "substitution_reason": "Original specialty reviews exceeded the stale-review threshold; fallback role coverage restored non-blocking progression. Original agents must backfill on a later cycle.",
+      "risk_level": "CRITICAL",
+      "required_reviewers": [
+        "AI-A",
+        "AI-B",
+        "AI-C",
+        "AI-D",
+        "AI-E"
+      ],
+      "optional_reviewers": []
     },
     {
       "review_id": "REVIEW-20260929-PAGES-CLOSED-LOOP-001",
@@ -179,7 +174,16 @@
         "AI-C",
         "AI-E"
       ],
-      "substitution_reason": "Original specialty reviews exceeded the stale-review threshold; fallback role coverage restored non-blocking progression. Original agents must backfill on a later cycle."
+      "substitution_reason": "Original specialty reviews exceeded the stale-review threshold; fallback role coverage restored non-blocking progression. Original agents must backfill on a later cycle.",
+      "risk_level": "CRITICAL",
+      "required_reviewers": [
+        "AI-A",
+        "AI-B",
+        "AI-C",
+        "AI-D",
+        "AI-E"
+      ],
+      "optional_reviewers": []
     },
     {
       "review_id": "REVIEW-20260929-SELF-HEAL-001",
@@ -200,8 +204,8 @@
       "created_at": "2026-09-29T16:10:00+09:00",
       "reviews": {
         "AI-A": {
-          "result": "PENDING",
-          "finding": null,
+          "result": "NOT_REQUIRED",
+          "finding": "Not required under Ultra-Parallel V2 risk-based review policy; specialty production continues asynchronously.",
           "reviewed_at": null
         },
         "AI-B": {
@@ -210,8 +214,8 @@
           "reviewed_at": null
         },
         "AI-C": {
-          "result": "PENDING",
-          "finding": null,
+          "result": "NOT_REQUIRED",
+          "finding": "Not required under Ultra-Parallel V2 risk-based review policy; specialty production continues asynchronously.",
           "reviewed_at": null
         },
         "AI-D": {
@@ -255,7 +259,80 @@
         "latest_remediation_snapshot": "total_issues=0;known_unresolved_auto_fixable=0",
         "latest_health_snapshot": "pages=HEALTHY;ai-heartbeat=HEALTHY;blocking_handoffs=0"
       },
-      "next_action": "A/B/C/D/E perform independent post-review and backfill. Verified L0-L2 repair paths remain live and non-blocking while review completes."
+      "next_action": "A/B/C/D/E perform independent post-review and backfill. Verified L0-L2 repair paths remain live and non-blocking while review completes.",
+      "risk_level": "HIGH",
+      "required_reviewers": [
+        "AI-D",
+        "AI-B",
+        "AI-E"
+      ],
+      "optional_reviewers": [
+        "AI-A",
+        "AI-C"
+      ]
+    },
+    {
+      "review_id": "REVIEW-20260930-ULTRA-PARALLEL-V2-001",
+      "event_type": "orchestration_change",
+      "title": "Ultra-Parallel Evolution Operating System V2 migration",
+      "owner": "AI-D",
+      "recovery_owner": "AI-D",
+      "status": "REVIEWING",
+      "risk_level": "CRITICAL",
+      "required_reviewers": [
+        "AI-A",
+        "AI-B",
+        "AI-C",
+        "AI-D",
+        "AI-E"
+      ],
+      "optional_reviewers": [],
+      "affected_dependencies": [
+        "review-mesh",
+        "task-board",
+        "agent-production-lines",
+        "writer-lease",
+        "pages-ai-activity"
+      ],
+      "created_at": "2026-09-30T01:39:00+09:00",
+      "reviews": {
+        "AI-A": {
+          "result": "PENDING",
+          "finding": null,
+          "reviewed_at": null
+        },
+        "AI-B": {
+          "result": "PENDING",
+          "finding": null,
+          "reviewed_at": null
+        },
+        "AI-C": {
+          "result": "PENDING",
+          "finding": null,
+          "reviewed_at": null
+        },
+        "AI-D": {
+          "result": "PENDING",
+          "finding": null,
+          "reviewed_at": null
+        },
+        "AI-E": {
+          "result": "PENDING",
+          "finding": null,
+          "reviewed_at": null
+        }
+      },
+      "evidence": {
+        "implementation_commits": [
+          "756614a888271ab369e375c12945a17ffeea2e90",
+          "d27a23ea5fe6504bcf4e38e57c7e951bc4f812a7",
+          "b578e595ba77c6bfadaab908ab777a397ab54f82",
+          "910e4fbe408c16e431223964ac19497ae351c13b"
+        ],
+        "actions_result": null,
+        "expected_state_verified": false
+      },
+      "next_action": "A/B/C/D/E perform one-time CRITICAL migration review. After migration closes, use risk-based dynamic reviewers for subsequent work."
     }
   ]
 }
