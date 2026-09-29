@@ -1,0 +1,20 @@
+{
+  "patch_id": "PATCH-20260929-AI-C-QUANT-PROVENANCE-CODE",
+  "agent": "AI-C",
+  "target": "src/kmb_lab/quant.py",
+  "candidate_path": "data/ai/candidates/ai-c/quant-provenance-gate/quant.py",
+  "base_sha": "8b61180fbc936e39ef514a8d7a43f316952e0386",
+  "change_type": "replace",
+  "reason": "FIX_REQUIRED: confirmed quant input must enforce existing primary-source provenance chronology validator",
+  "dependencies": [
+    "quant-input-gate",
+    "source-provenance"
+  ],
+  "tests": [
+    "tests/test_quant.py",
+    "full unit suite",
+    "JSON/JSONL validation"
+  ],
+  "rollback": "Restore previous src/kmb_lab/quant.py blob if regression is detected",
+  "status": "READY"
+}
