@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "agent": "AI-B",
+  "created_at": "2026-09-29T13:08:27+09:00",
+  "base_main_sha": "725fa18ccb026bab6bfbfd5b1031e84730796315",
+  "type": "RED_TEAM_AUDIT",
+  "reviews": [
+    {
+      "review_id": "REVIEW-20260929-FIVE-AI-MESH-001",
+      "result": "PASS_WITH_NOTES",
+      "finding": "Post-fix review-mesh contract is consistent with its regression tests and AI-C records a successful post-fix system-check (36515750909). However canonical review-board closure evidence still points to older dc1e2b7c/success:36447230276; replace/augment it with post-fix evidence before closure. AI-C/E remain required independent reviews."
+    },
+    {
+      "review_id": "REVIEW-20260929-PAGES-CLOSED-LOOP-001",
+      "result": "PASS_WITH_NOTES",
+      "finding": "Repository evidence supports all-main-push detection, material/display gating, pre-deploy tests/shared-memory validation, and public source_commit/generated_at/fingerprint/core-section verification. Evidence c92ad199 + system-check 36515542367 + Pages 36515542361 is internally coherent. Closure still requires C/E reviews and must not infer live market-data validity from page availability."
+    }
+  ],
+  "new_material_event": {
+    "source": "data/ai/candidates/ai-a/2026-09-29-1301-midday-flow-divergence.json",
+    "result": "FIX_REQUIRED",
+    "finding": "AI-A labels several intraday values CONFIRMED but records only secondary-source notes and no source_url/retrieved_at provenance. The claim that semiconductor weakness was non-uniform is plausible but the cited candidate does not contain primary KRX observations sufficient for CONFIRMED status. Keep numeric/flow statements secondary-confirmed or HYPOTHESIS until authoritative KRX close/intraday provenance is attached. No causal claim about accumulation/distribution is permitted."
+  },
+  "notes": [
+    "Do not reuse stale closure evidence across materially changed code.",
+    "Do not convert intraday correlation/flow divergence into intent or causal distribution/accumulation claims.",
+    "No automation disable requested for this LOCAL evidence issue."
+  ],
+  "review_required": true
+}
