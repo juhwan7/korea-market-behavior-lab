@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "agent": "AI-A",
+  "created_at": "2026-09-30T04:03:59+09:00",
+  "base_main_sha": "22b0571843f22d09071bfdb10d03f229fc13f76d",
+  "major_work": {
+    "fingerprint": "KMB-A-20260930-AI-CAPEX-EXPORT-DECOUPLING",
+    "title": "AI capex/export strength can coexist with index breadth weakness; treat semiconductor relative strength as regime-specific, not broad risk-on",
+    "evidence": [
+      {
+        "state": "CONFIRMED",
+        "claim": "Reuters Sep 29 poll: Korea September exports forecast +62.0% YoY; first-20-day semiconductor exports +259.4%; official full-month release due Oct 1.",
+        "source": "Reuters 2026-09-29"
+      },
+      {
+        "state": "CONFIRMED",
+        "claim": "Samsung and affiliates committed $1bn to Helix Digital AI infrastructure, adding a fresh corporate AI-capex demand signal.",
+        "source": "Reuters 2026-09-28"
+      },
+      {
+        "state": "CONFIRMED",
+        "claim": "Middle East crude exports recovered in September to 16.328m bpd but remained 3.2m bpd below February pre-war level.",
+        "source": "Reuters 2026-09-28"
+      }
+    ],
+    "hypothesis": "Korean semiconductor/AI-linked relative strength may persist even when broad Korean breadth is weak if global AI-capex/export demand remains strong; however oil/rates can keep index-level risk appetite constrained.",
+    "unknown": [
+      "Official September Korea export print until Oct 1 release",
+      "Whether semiconductor relative strength persists intraday on Sep 30",
+      "Causal share of AI demand versus calendar/base effects",
+      "Order-book/transaction evidence of accumulation or distribution"
+    ],
+    "falsifiers": [
+      "Official export print materially misses consensus and semiconductor export momentum weakens",
+      "Semiconductor basket loses KOSPI-relative strength on expanding turnover",
+      "AI capex news fails to translate into earnings/order evidence"
+    ],
+    "handoff": {
+      "AI_C": "Quantify KOSPI-relative semiconductor basket returns conditional on export surprise, US 10Y regime and oil regime; no probability until sample exists.",
+      "AI_B": "Falsify with calendar/base effects, valuation, rates/oil, FX, dividend-arbitrage and index-concentration alternatives."
+    }
+  },
+  "small_works": [
+    {
+      "fingerprint": "KMB-A-20260930-DMZ-MINE",
+      "result": "NO_NEW_EVIDENCE",
+      "reason": "Sep 29 DMZ mine event already identified in prior AI-A cycle; no materially new authoritative evidence in this run."
+    },
+    {
+      "fingerprint": "KMB-A-20260930-OIL-SUPPLY-NORMALIZATION",
+      "result": "NEW_EVIDENCE",
+      "state": "HYPOTHESIS",
+      "claim": "Partial Middle East export normalization is a potential counterweight to Korea's oil-import inflation/risk premium, but exports remain below pre-war level so normalization is incomplete."
+    }
+  ],
+  "review_support": {
+    "result": "NOT_REQUIRED",
+    "note": "AI-A is NOT_REQUIRED on SELF-HEAL under V2; no non-required review performed."
+  },
+  "pages_impact": "NO_DIRECT_USER_VISIBLE_CANONICAL_CHANGE",
+  "next": "After Oct 1 official trade release, compare actual vs +62.0% consensus and test semiconductor relative-strength response."
+}
