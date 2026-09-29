@@ -169,3 +169,19 @@ NO이면 실제 Pages deploy는 생략할 수 있다. Pages workflow는 모든 m
 Pages 장애는 LOCAL DISPLAY INCIDENT다. Pages 문제만으로 collectors, discovery, research, scheduler, canonical writer 또는 AI-A/B/C/D/E를 비활성화하지 않는다.
 
 상세 규칙은 `docs/PAGES_OPERATIONS.md`를 따른다.
+
+
+## Self-Healing and automatic safe-fix policy
+이 규칙은 일반 전문업무보다 높은 운영 우선순위를 가진다.
+
+오류는 Detect → Classify → Incident Fingerprint → Known Fix/Past Failure Search → Risk Level → Recovery Lease → Repair → Regression Test → Runtime/Downstream Verify → Five-AI Post Review → Prevention Registry → Long-term Memory 순서로 처리한다.
+
+AUTO_APPROVE_SAFE_FIX=true다. L0/L1/L2의 프로젝트 내부 안전하고 복구 가능한 수정은 사용자 추가 승인을 기다리지 않고 즉시 수행한다. L3인 Secret/OAuth/결제/외부 계정 권한 상승/자격증명/저장소 삭제/대규모 force-push·파괴적 history 변경만 HUMAN_REQUIRED로 남긴다. 자동 승인은 안전정책 우회를 뜻하지 않는다.
+
+복구 속도와 최종 검증을 분리한다. 검증된 low-risk known fix가 있으면 Repair First, Review Immediately After를 적용한다. 서비스 복구를 5개 AI review 완료까지 불필요하게 지연시키지 않지만 material event 최종 closure에는 기존 Five-AI 검증과 외부 증거 규칙을 유지한다. review를 자동 PASS 처리하지 않는다.
+
+같은 오류를 두 번 처음부터 조사하지 않는다. data/ai/remediation/known-fixes.json, error-signatures.json, prevention-registry.json과 failed-attempts/successful-patterns/lessons-learned를 먼저 검색한다. 같은 fix가 3회 연속 실패하면 반복을 중단하고 confidence를 낮춘 뒤 다른 전략 또는 구조적 수정으로 승격한다.
+
+한 버그를 고치면 같은 패턴이 다른 workflow/code/path에도 있는지 sibling sweep를 수행한다. 의미 있는 버그 수정은 regression test, validation rule, monitor, schema guard, retry/concurrency guard 중 최소 하나를 남긴다. 재발방지 장치 없이 RESOLVED 처리하지 않는다.
+
+system-check는 감지, self-heal은 deterministic L0 복구와 진단, canonical-writer는 직렬 공식 반영, Pages는 사용자 표시를 담당한다. self-heal의 workflow 자동 재실행은 첫 실패에 한해 1회만 허용하며 재실패하면 AI recovery owner의 원인분석 대상으로 승격한다.

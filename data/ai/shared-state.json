@@ -1,5 +1,5 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "mode": "FIVE_AI_CONTINUOUS_COLLABORATION",
   "canonical_writer": {
     "primary": "AI-D",
@@ -15,9 +15,12 @@
   "current_focus": [
     "shared-memory",
     "writer-lease",
-    "service-telemetry"
+    "service-telemetry",
+    "self-healing",
+    "incident-fingerprint",
+    "known-fix-registry"
   ],
-  "updated_at": "2026-09-29T00:51:00+09:00",
+  "updated_at": "2026-09-29T15:45:00+09:00",
   "verification_mesh": {
     "enabled": true,
     "board": "data/ai/review-board.json",
@@ -32,5 +35,21 @@
     "canonical_mutation": "WRITER_LEASE_ONLY",
     "completion_rule": "ALL_FIVE_PASS_AND_EXTERNAL_EVIDENCE",
     "local_findings": "ISOLATE_FIX_REVIEW_CONTINUE_INDEPENDENT_WORK"
+  },
+  "self_healing": {
+    "enabled": true,
+    "auto_approve_safe_fix": true,
+    "human_required_level": "L3",
+    "repair_first_review_immediately_after": true,
+    "detector": "src/kmb_lab/remediation.py",
+    "workflow": ".github/workflows/self-heal.yml",
+    "deterministic_retry_limit": 1,
+    "repeated_fix_failure_limit": 3,
+    "registries": [
+      "data/ai/remediation/policy.json",
+      "data/ai/remediation/known-fixes.json",
+      "data/ai/remediation/error-signatures.json",
+      "data/ai/remediation/prevention-registry.json"
+    ]
   }
 }

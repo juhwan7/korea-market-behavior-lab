@@ -63,7 +63,7 @@ jobs:
               CHANGED="$(git show --pretty="" --name-only "$GITHUB_SHA")"
             fi
             printf '%s\n' "$CHANGED"
-            if printf '%s\n' "$CHANGED" | grep -Eq '^(web/|src/kmb_lab/pages\.py$|tests/test_pages\.py$|\.github/workflows/pages\.yml$)'; then
+            if printf '%s\n' "$CHANGED" | grep -Eq '^(web/|src/kmb_lab/pages(_korean)?\.py$|tests/test_pages.*\.py$|\.github/workflows/pages\.yml$)'; then
               SHOULD_DEPLOY=true
             fi
           fi

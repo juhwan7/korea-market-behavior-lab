@@ -9,6 +9,7 @@ on:
       - "data/system/health-snapshot.json"
 permissions:
   contents: read
+  actions: read
 jobs:
   check:
     runs-on: ubuntu-latest
@@ -25,6 +26,12 @@ jobs:
         run: PYTHONPATH=src python -m kmb_lab.memory --strict
       - name: Generate health snapshot
         run: PYTHONPATH=src python -m kmb_lab.supervisor --strict
+      - name: Validate remediation registries
+        run: PYTHONPATH=src python -m kmb_lab.remediation validate
+      - name: Generate remediation snapshot
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: PYTHONPATH=src python -m kmb_lab.remediation scan --output data/system/remediation-snapshot.json --repository "$GITHUB_REPOSITORY"
       - name: Pages generator smoke
         run: |
           PYTHONPATH=src python -m kmb_lab.pages generate --output-dir web --source-commit "$GITHUB_SHA" --repository "$GITHUB_REPOSITORY" --offline
@@ -50,5 +57,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: system-health
-          path: data/system/health-snapshot.json
+          path: |
+            data/system/health-snapshot.json
+            data/system/remediation-snapshot.json
           retention-days: 7
