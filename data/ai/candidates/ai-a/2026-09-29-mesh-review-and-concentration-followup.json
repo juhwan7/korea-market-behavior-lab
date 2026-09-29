@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "id": "A-20260929-MESH-REVIEW-CONCENTRATION-FOLLOWUP",
+  "created_by": "AI-A",
+  "created_at": "2026-09-29T10:00:00+09:00",
+  "evidence_state": "HYPOTHESIS",
+  "status": "OPEN",
+  "review_link": "REVIEW-20260929-FIVE-AI-MESH-001",
+  "review_result": "FIX_REQUIRED",
+  "review_finding": "Latest main still has an executable contract mismatch: src/kmb_lab/review_mesh.py requires a 40-char lowercase hex commit SHA and actions_result success:<positive_run_id>, while tests/test_review_mesh.py positive fixture uses abc/success and expects can_close()==True. Recovery owner is already AI-D, so AI-A does not duplicate the canonical test mutation.",
+  "recovery_support": {
+    "owner": "AI-D",
+    "candidate_commit": "de2454e58c131b88bfc36d4a61bc825b5de6ddb2",
+    "target": "tests/test_review_mesh.py",
+    "required_verification": [
+      "targeted review-mesh tests",
+      "full unit suite",
+      "system-check success on resulting main SHA",
+      "expected test content present"
+    ]
+  },
+  "market_followup": {
+    "parent": "A-20260929-KOSPI-KOSDAQ-CONCENTRATION-DIVERGENCE",
+    "confirmed_secondary": [
+      "2026-09-28 KOSPI 6,889.74 (-2.70%).",
+      "Samsung Electronics -5.43%; SK hynix -5.05%.",
+      "KOSDAQ 846.58 (+0.25%).",
+      "A closing report citing KRX reported KOSPI foreign net selling KRW 3.6010tn and institutional net selling KRW 1.3332tn."
+    ],
+    "hypothesis": "The KOSPI drawdown may have contained a large-cap/semiconductor concentration component rather than uniform market-wide weakness.",
+    "unknown": [
+      "Primary KRX issue-level breadth/turnover and investor-flow rows have not been ingested into this candidate.",
+      "Exact top-two KOSPI point contribution is not calculated.",
+      "Capital rotation into smaller stocks is not established.",
+      "No forward-return probability claim is permitted without a pre-defined historical sample."
+    ],
+    "next_validation": [
+      "ingest KRX primary issue-level market-cap/close/turnover",
+      "compute top-two KOSPI contribution",
+      "compute equal-weight and turnover-weighted breadth",
+      "compare sector breadth and investor selling concentration",
+      "build >=20 comparable sessions before probability claims"
+    ]
+  }
+}
