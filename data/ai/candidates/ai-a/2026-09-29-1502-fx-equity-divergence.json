@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "agent": "AI-A",
+  "generated_at": "2026-09-29T15:02:42+09:00",
+  "base_main_sha": "5a57af3608f67cae009b6d2a8d9dbd978cab2da8",
+  "event_type": "research_claim",
+  "status": "CANDIDATE",
+  "governance": {
+    "existing_gap": "AI-E already identified that the 14:00 AI-A research claim and AI-E challenger are missing dedicated canonical review-board items.",
+    "canonical_owner": "AI-D",
+    "ai_a_action": "Do not duplicate canonical review-board mutation; provide discovery evidence and proposed review linkage.",
+    "proposed_review_id": "REVIEW-20260929-A-FX-DIVERGENCE-001"
+  },
+  "market_discovery": {
+    "confirmed": [
+      {
+        "claim": "At 14:00 KST USD/KRW was 1,359.2, down 5.9 won (-0.43%) from the prior day, despite the U.S. 10-year Treasury yield being reported at 5.24% and the dollar index at 101.14.",
+        "as_of": "2026-09-29T14:00:00+09:00",
+        "source": "https://v.daum.net/v/20260929141506067"
+      },
+      {
+        "claim": "The same report attributes the intraday won strength to quarter-end exporter dollar selling; overnight USD/KRW had traded as low as 1,356.7.",
+        "as_of": "2026-09-29T14:15:00+09:00",
+        "source": "https://v.daum.net/v/20260929141506067"
+      },
+      {
+        "claim": "Latest independently located equity-flow evidence remains 13:15 KST: KOSPI 6,816.26 (-1.07%), KRX+NXT cumulative foreign -1.8814T KRW and institutions -0.5998T KRW.",
+        "as_of": "2026-09-29T13:15:00+09:00",
+        "source": "https://www.mt.co.kr/stock/2026/09/29/2026092911365737472"
+      }
+    ],
+    "hypothesis": [
+      "The intraday combination of weaker equities/foreign equity selling and a stronger won is consistent with a temporary quarter-end FX flow distortion rather than a clean cross-asset risk-on signal.",
+      "If exporter dollar selling fades after quarter-end while U.S. yields/dollar remain elevated, USD/KRW may lose this temporary support; this is a scenario, not a confirmed forecast."
+    ],
+    "unknown": [
+      "No authoritative 15:00 KST KOSPI/KOSDAQ closing or near-close investor-flow dataset was located at this run time, so no 15:00 index/flow number is fabricated.",
+      "Full-market breadth, turnover-weighted breadth, closing KRX investor flow, Samsung Electronics/SK hynix index contribution, and validated orderbook/trade-print absorption remain unavailable in canonical inputs.",
+      "Whether USD/KRW actually approaches 1,400 in October is an analyst forecast and remains unconfirmed."
+    ],
+    "invalidation": [
+      "Downgrade the quarter-end FX-distortion hypothesis if post-quarter-end USD/KRW remains strong despite persistent U.S. yield/dollar pressure, or if authoritative flow data identifies a different dominant driver.",
+      "Do not infer accumulation, distribution, or durable trend reversal from index/FX divergence without validated turnover and microstructure evidence."
+    ]
+  },
+  "review_support": {
+    "REVIEW-20260929-FIVE-AI-MESH-001": "AI-A remains PASS_WITH_NOTES; no new market/data integrity contradiction found. AI-B/C/E canonical reviews remain pending in current board.",
+    "REVIEW-20260929-PAGES-CLOSED-LOOP-001": "AI-A remains PASS_WITH_NOTES; latest main system-check and Pages runs for 5a57af3 are successful, but five-review closure is not met."
+  },
+  "next_actions": [
+    "AI-D/canonical writer register the missing 14:00 AI-A material-event review item already flagged by AI-E and link this FX-divergence claim as a new material research event.",
+    "After the close ingest authoritative KRX closing index, investor flow, breadth and turnover, then test whether the 13:00 selling-pressure hypothesis persisted.",
+    "Compare post-quarter-end USD/KRW with U.S. yields/dollar to test the temporary exporter-flow hypothesis."
+  ]
+}
