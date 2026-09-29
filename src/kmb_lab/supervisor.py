@@ -35,8 +35,12 @@ def classify(service: dict, now: datetime) -> str:
         return "RECOVERY_REQUIRED"
     if mode == "NOT_CONNECTED":
         return "NOT_CONNECTED"
-    if mode == "ON_DEMAND":
+    if mode in {"ON_DEMAND", "EVENT_DRIVEN"}:
+        if status == "healthy":
+            return "HEALTHY"
         return "READY"
+    if mode == "DERIVED":
+        return "EVIDENCE_PENDING"
     last = parse_time(service.get("last_success_at"))
     target = int(service.get("freshness_target_minutes", 10))
     if last is None:
@@ -44,6 +48,43 @@ def classify(service: dict, now: datetime) -> str:
     if now - last > timedelta(minutes=target):
         return "STALE"
     return "HEALTHY"
+
+
+def derive_ai_heartbeat(root: Path, now: datetime, target_minutes: int) -> dict[str, Any]:
+    """Derive five-agent health from agent heartbeat evidence, not a static service timestamp."""
+    rows: list[dict[str, Any]] = []
+    for agent in ("AI-A", "AI-B", "AI-C", "AI-D", "AI-E"):
+        path = root / f"data/ai/agents/{agent.lower()}.json"
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            rows.append({"agent": agent, "heartbeat_at": None, "state": "MISSING"})
+            continue
+        heartbeat = parse_time(payload.get("heartbeat_at"))
+        if heartbeat is None:
+            rows.append({"agent": agent, "heartbeat_at": None, "state": "MISSING"})
+        elif now - heartbeat > timedelta(minutes=target_minutes):
+            rows.append({"agent": agent, "heartbeat_at": heartbeat.isoformat(), "state": "STALE"})
+        else:
+            rows.append({"agent": agent, "heartbeat_at": heartbeat.isoformat(), "state": "FRESH"})
+
+    missing = [row["agent"] for row in rows if row["state"] == "MISSING"]
+    stale = [row["agent"] for row in rows if row["state"] == "STALE"]
+    if missing:
+        classification = "EVIDENCE_PENDING"
+    elif stale:
+        classification = "STALE"
+    else:
+        classification = "HEALTHY"
+    times = [parse_time(row["heartbeat_at"]) for row in rows if row["heartbeat_at"]]
+    times = [value for value in times if value]
+    return {
+        "classification": classification,
+        "evidence_source": "data/ai/agents/* heartbeat_at",
+        "oldest_heartbeat_at": min(times).isoformat() if times else None,
+        "missing_agents": missing,
+        "stale_agents": stale,
+    }
 
 
 def is_blocking_handoff(payload: dict[str, Any]) -> bool:
@@ -94,13 +135,20 @@ def inspect() -> dict:
     now = datetime.now(timezone.utc)
     results = []
     for service in state["services"]:
-        results.append({
+        row = {
             "id": service["id"],
             "classification": classify(service, now),
             "owner": service["owner"],
             "secondary": service["secondary"],
             "emergency_fallback": service["emergency_fallback"],
-        })
+        }
+        if str(service.get("monitoring_mode", "")).upper() == "DERIVED" and service.get("id") == "ai-heartbeat":
+            row.update(derive_ai_heartbeat(
+                ROOT,
+                now,
+                int(service.get("freshness_target_minutes", 75)),
+            ))
+        results.append(row)
 
     blockers = inspect_handoffs()
     policy = progression_policy(blockers)

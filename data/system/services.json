@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "generated_at": "2026-09-29T16:04:00+09:00",
+  "generated_at": "2026-09-29T16:31:00+09:00",
   "services": [
     {
       "id": "news-fast-lane",
@@ -53,7 +53,7 @@
       "secondary": "E",
       "emergency_fallback": "A",
       "status": "HEALTHY",
-      "monitoring_mode": "CONTINUOUS",
+      "monitoring_mode": "EVENT_DRIVEN",
       "freshness_target_minutes": 15,
       "last_success_at": "2026-09-29T16:03:00+09:00",
       "last_attempt_at": "2026-09-29T16:03:00+09:00",
@@ -63,7 +63,7 @@
         "pages:36534297574",
         "public-verifier:success"
       ],
-      "note": "Public source/fingerprint/core-section verification succeeded."
+      "note": "Pages freshness is event-driven and verified by material fingerprint/public verifier; an old deploy timestamp alone is not staleness."
     },
     {
       "id": "ai-heartbeat",
@@ -71,7 +71,7 @@
       "secondary": "E",
       "emergency_fallback": "B",
       "status": "HEALTHY",
-      "monitoring_mode": "CONTINUOUS",
+      "monitoring_mode": "DERIVED",
       "freshness_target_minutes": 75,
       "last_success_at": "2026-09-29T15:04:07+09:00",
       "last_attempt_at": "2026-09-29T15:54:38+09:00",
@@ -81,7 +81,7 @@
         "runtime:A/B/C/D/E-enabled",
         "oldest-last-run:AI-A-15:04:07-KST"
       ],
-      "note": "Five scheduled AI automations are hourly/staggered; freshness target follows actual cadence, not 10 minutes."
+      "note": "Health is derived from A/B/C/D/E agent heartbeat_at values; static service last_success_at is advisory only."
     }
   ]
 }

@@ -56,6 +56,13 @@
       "rule": "error-signatures registry를 분류기의 실제 입력으로 사용하고 잘못된 regex/schema는 system-check에서 차단한다.",
       "monitor": "remediation registry validation",
       "regression_guard": "tests/test_remediation.py registry signature tests"
+    },
+    {
+      "prevention_id": "PREVENT-SERVICE-MONITORING-MODE",
+      "incident_family": "SERVICE_TELEMETRY_UNINITIALIZED",
+      "rule": "EVENT_DRIVEN 서비스는 배포시각만으로 stale 처리하지 않고, DERIVED 서비스는 실제 하위 heartbeat 증거에서 상태를 계산한다.",
+      "monitor": "supervisor monitoring_mode semantics",
+      "regression_guard": "tests/test_supervisor.py event-driven and derived-heartbeat tests"
     }
   ]
 }
