@@ -1,6 +1,6 @@
 {
-  "schema_version": 1,
-  "updated_at": "2026-09-29T16:35:00+09:00",
+  "schema_version": 2,
+  "updated_at": "2026-09-30T01:39:00+09:00",
   "tasks": [
     {
       "task_id": "TASK-SHARED-MEMORY-001",
@@ -82,6 +82,62 @@
         "system-check:36533434544",
         "pages:36533434525"
       ]
+    },
+    {
+      "task_id": "TASK-ULTRA-PARALLEL-V2-001",
+      "type": "ORCHESTRATION",
+      "title": "Migrate KMB to five independent production lines",
+      "priority": "P0",
+      "owner": "AI-D",
+      "suggested_agent": "AI-D",
+      "source_agent": "USER",
+      "created_at": "2026-09-30T01:39:00+09:00",
+      "status": "REVIEW",
+      "dependency": [],
+      "dependencies": [],
+      "blocked_by": [],
+      "evidence": [
+        "commit:756614a888271ab369e375c12945a17ffeea2e90",
+        "commit:d27a23ea5fe6504bcf4e38e57c7e951bc4f812a7",
+        "commit:b578e595ba77c6bfadaab908ab777a397ab54f82",
+        "commit:910e4fbe408c16e431223964ac19497ae351c13b",
+        "commit:c25503cf302b0dd2f4977ccf356c81f7bd2fd640"
+      ],
+      "expected_output": "Risk-based dynamic review, async task handoff, anti-storm guards, per-agent specialty production and Pages productivity visibility",
+      "next_action": "Run system-check/Pages, complete one-time CRITICAL A/B/C/D/E migration review, then continue with specialty production."
     }
-  ]
+  ],
+  "queue_policy": {
+    "statuses": [
+      "NEW",
+      "CLAIMED",
+      "WORKING",
+      "REVIEW",
+      "DONE",
+      "BLOCKED_EXTERNAL"
+    ],
+    "priorities": [
+      "P0",
+      "P1",
+      "P2",
+      "P3",
+      "P4"
+    ],
+    "async_handoff": true,
+    "dedupe_by_root_cause": true,
+    "anti_queue_storm": true,
+    "fields": [
+      "task_id",
+      "type",
+      "priority",
+      "owner",
+      "suggested_agent",
+      "source_agent",
+      "created_at",
+      "status",
+      "dependency",
+      "evidence",
+      "expected_output"
+    ]
+  }
 }
