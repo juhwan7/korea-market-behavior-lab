@@ -85,36 +85,33 @@ GLOBAL_STOP은 canonical 데이터 손상 확산, 자격증명 노출, destructi
 작업 종료 전에 자기 결과, task 상태, 성공/실패, lesson/recovery, 테스트와 Actions, CURRENT_BRIEFING 및 자기 agent state를 최신화한다.
 
 
-## Five-AI verification mesh
-모든 material event는 data/ai/review-board.json에서 5개 AI 검증 대상으로 관리한다.
+## Ultra-Parallel Evolution V2 review policy
+AI-A/B/C/D/E는 5명의 상시 심사위원이 아니라 5개의 독립 생산라인이다. 각 실행은 본업 70~85%, review/지원/작은 버그 15~30%를 목표로 하며 P0/P1이 아닌 문제 때문에 본업을 장기간 멈추지 않는다.
 
-material event:
-- 새 task
-- 코드/데이터/model/workflow 변경
-- 새로운 research claim
-- 장애와 recovery
-- production/shadow 승격
-- canonical 상태 변경
+기본 생산라인:
+- AI-A: Discovery / Market Intelligence / Hypothesis Generator
+- AI-B: Adversarial Audit / Falsification / Quality Control
+- AI-C: Quant / Experiment / Statistical Validation
+- AI-D: SRE / Recovery / Data Platform Guardian
+- AI-E: Evolution / Challenger / New Architecture
 
-각 사이클에서 모든 AI는 자기 본업 전에 OPEN/REVIEWING review item이 있는지 확인한다.
-해당 item에 자기 review가 PENDING이면 반드시 자기 전문 관점에서 검증하고 PASS / PASS_WITH_NOTES / FIX_REQUIRED / REJECT / UNKNOWN 중 하나를 남긴다.
+review-board는 risk_level, owner, required_reviewers, optional_reviewers를 사용한다.
+- LOW: owner + automated tests. 5-AI review 금지.
+- MEDIUM: owner + 관련 전문 reviewer 1명.
+- HIGH: owner + 관련 전문 reviewer 2명.
+- CRITICAL: A/B/C/D/E 전체 review.
 
-AI-A는 시장·데이터·discovery 관점, AI-B는 증거·시간·인과·과장 관점, AI-C는 정량·표본·백테스트 관점, AI-D는 서비스·freshness·Actions·무결성 관점, AI-E는 구조·효율·중복·진화 관점에서 검증한다.
+required reviewer가 아닌 AI는 PENDING으로 남지 않고 NOT_REQUIRED 또는 optional 상태가 된다. 동일 evidence를 처음부터 반복 조사하지 말고 최초 조사자의 evidence packet(source commit, diff/files, Actions, tests, provenance, expected/actual state, uncertainty)을 우선 재사용한다.
 
-FIX_REQUIRED를 발견한 AI는 단순 코멘트만 남기지 않는다. recovery owner가 비어 있으면 owner가 되어 수정 경로를 제안하거나 안전한 candidate/patch를 만든다. 이미 owner가 있으면 같은 canonical 파일을 중복 수정하지 않고 재현·테스트·대체안 검증을 지원한다.
+전문영역 밖 문제는 task-board에 비동기 handoff하고 원래 본업을 계속한다. P0/P1을 제외한 버그 하나 때문에 전체 생산라인을 멈추지 않는다. Recovery 기본 escalation은 AI-D Primary → AI-E Secondary → AI-B Emergency다.
 
-5개 AI가 같은 canonical 파일을 동시에 수정하지 않는다. 검증은 병렬, canonical mutation은 writer lease를 따른다.
+동일 fingerprint + commit + Actions + evidence + schema/version에 새 증거가 없으면 NO_NEW_EVIDENCE로 종료하고 본업으로 복귀한다. 반복 중복 review는 REVIEW_STORM, 같은 root cause의 중복 task는 QUEUE_STORM, review/recovery 때문에 본업 비율이 지속적으로 낮아지면 ROLE_STARVATION으로 기록한다.
 
-한 AI가 일시적으로 실행되지 않아도 전체 시스템은 멈추지 않는다. secondary/fallback이 해당 검증 역할을 임시 커버하고 substitution을 기록한다. 그러나 원래 AI의 review는 복귀 후 backfill한다.
+한 실행은 하나의 결과로 제한하지 않는다. 가능한 실행 여력 안에서 1 MAJOR WORK + N SMALL WORKS를 목표로 하며, 작업이 끝났는데 가치 있는 queue/research/experiment가 남아 있으면 계속한다. 실제 진전이 없으면 NO_WORK_REASON을 기록한다.
 
-material event를 완료 처리하려면:
-1. 5개 AI review가 모두 PASS 또는 PASS_WITH_NOTES
-2. FIX_REQUIRED/REJECT/UNKNOWN/PENDING 없음
-3. 필요한 수정 반영
-4. commit SHA 확인
-5. Actions success 확인
-6. 기대 파일/상태 실제 확인
-이 모두 필요하다.
+canonical mutation은 기존 writer lease를 유지한다. Primary AI-D, Secondary AI-E, Emergency AI-B다. write 대기나 LOCAL blocker 때문에 RUN/automation/독립 생산라인을 중단하지 않는다.
+
+운영체제 자체의 대규모 변경, 전체 중단/데이터 오염/복구불능 위험, 핵심 model production 승격 같은 CRITICAL 변경만 5-AI 검증을 요구한다. 일반 material event는 위험도 기반 reviewer만 필요하다.
 
 
 ## ALWAYS-ON five-agent survival preflight
