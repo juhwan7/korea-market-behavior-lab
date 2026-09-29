@@ -48,6 +48,7 @@ STATUS_LABELS = {
     "CONFIRMED": "공식 자료로 확인",
     "ESTIMATED": "데이터 기반 추정",
     "HYPOTHESIS": "검증 중인 가설",
+    "VERIFIED_WITH_SUBSTITUTIONS": "대체 검토로 우선 검증 완료",
 }
 
 AGENT_INFO = {
@@ -115,7 +116,7 @@ def status_class(value: Any) -> str:
     upper = str(value).upper()
     if upper in {"ACTIVE","FRESH","OK","SUCCESS","LIVE","RECOVERED","RESOLVED","PASS","COMPLETED","CONFIRMED"}:
         return "ok"
-    if upper in {"IN_PROGRESS","PENDING","DEGRADED","RECOVERING","STALE","STATE MISMATCH","PASS_WITH_NOTES","REVIEWING","OPEN","SHADOW","ESTIMATED","HYPOTHESIS","OBSERVED","OBSERVED_NO_FRESH_OUTPUT"}:
+    if upper in {"IN_PROGRESS","PENDING","DEGRADED","RECOVERING","STALE","STATE MISMATCH","PASS_WITH_NOTES","REVIEWING","OPEN","SHADOW","ESTIMATED","HYPOTHESIS","OBSERVED","OBSERVED_NO_FRESH_OUTPUT","VERIFIED_WITH_SUBSTITUTIONS"}:
         return "warn"
     if upper in {"BLOCKED","FAILED","FAILURE","FIX_REQUIRED","REJECT","REJECTED"}:
         return "bad"

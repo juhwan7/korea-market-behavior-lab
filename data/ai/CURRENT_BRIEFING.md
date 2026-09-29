@@ -1,77 +1,50 @@
 # CURRENT BRIEFING
 
-Updated: 2026-09-29 12:06 KST
+Updated: 2026-09-29 16:10 KST
 
 ## 지금 가장 중요한 목표
-- GitHub canonical/data의 material change가 사용자 GitHub Pages까지 자동 반영되는 폐쇄 루프를 유지한다.
-- 5-AI 실제 heartbeat/output/workflow 증거를 연결해 정적 ACTIVE 문자열보다 실제 실행 상태를 우선한다.
-- service telemetry의 UNKNOWN을 실제 Actions/데이터 timestamp 기반 상태로 단계적으로 교체한다.
-
-## 지금 가장 중요한 시장 변화
-- AI-A candidate는 2026-09-29 09:15 KST KOSPI 6,876.43(-0.19%)를 보조 출처 기반 CONFIRMED candidate로 기록했지만, 현재 Pages용 공식 시장 canonical summary에는 아직 승격되지 않았다.
-- 최신 시장 카드에 권위 있는 canonical 입력이 없는 항목은 계속 UNKNOWN / NOT COLLECTED로 표시한다.
+- Self-Healing을 감지 전용이 아니라 오류 지문 → Known Fix → 안전한 즉시 복구 → 회귀검증 → 장기기억의 폐쇄 루프로 유지한다.
+- 정적 ACTIVE/UNKNOWN 문자열보다 실제 scheduler, Actions, output, public Pages 증거를 우선한다.
+- 아직 연결되지 않은 뉴스 Fast Lane·공식 시장 데이터는 정상으로 가장하지 않고 NOT_CONNECTED로 명확히 표시한다.
 
 ## 정상 작동
-- Pages canonical-data generator가 data/briefing/review/recovery/research/experiment 상태를 읽어 web/index.html과 web/status.json을 생성한다.
-- 첫 검증: system-check 36510140332 SUCCESS, Pages 36510140367 SUCCESS, public source a212c4fa / 2026-09-29T10:55:14+09:00.
-- 다음 material 변경 검증: commit 7b895534가 push만으로 system-check 36510692318과 Pages 36510692300을 자동 실행했고 모두 SUCCESS였다.
-- 두 번째 공개 검증은 source_commit 7b8955349f0aed51f7dcfda40416ade5f942bec0, generated_at 2026-09-29T11:02:18+09:00를 반환했다.
-- AI-A 독립 Pages review candidate 2f55d85c가 PASS_WITH_NOTES를 기록했고 canonical review-board에 병합됐다.
-- Pages workflow가 이제 main의 모든 push를 즉시 감지하고 material fingerprint/display-layer 변경으로 실제 deploy 필요 여부를 판정한다.
-- 강화된 공개 검증은 source_commit/generated_at뿐 아니라 material_fingerprint와 핵심 섹션 marker까지 확인한다.
-
-## 현재 진행 중
-- AI-A: Pages review 완료, 시장 discovery 계속
-- AI-B: evidence/provenance/과장 감사 및 Pages 독립 review 대기
-- AI-C: SHADOW 정량모델 및 Pages 독립 review 대기
-- AI-D: Pages closed-loop 운영, service telemetry/freshness, recovery
-- AI-E: 구조·UI/UX·병목 관점 Pages 독립 review 대기
+- system-check는 compile, 전체 unit test, shared-memory, supervisor, remediation registry/snapshot, Pages smoke, JSON/JSONL 검증을 수행한다.
+- self-heal workflow는 system-check/pages/canonical-writer 실패를 감지하고 첫 실패에 한해 L0 재실행 1회를 허용한다. 반복 실패는 무한 재시도하지 않고 원인분석으로 승격한다.
+- Pages는 모든 main push를 관찰하며 material/display-layer 변경을 판정하고 실제 공개 source commit/generated_at/fingerprint/core section을 검증한다.
+- canonical-guard는 ON_DEMAND READY로 분리돼 패치가 없다는 이유로 stale 처리하지 않는다.
+- AI-A/B/C/D/E 실제 예약 자동화는 2026-09-29 15:54 KST 점검 기준 모두 enabled 상태다.
+- AI-D가 실제 runtime에서 disabled였던 불일치는 즉시 재활성화했고 INCIDENT로 기록했다.
 
 ## 현재 문제
-- data/system/services.json은 여전히 UNKNOWN / last_success_at=null 중심이라 실제 service freshness를 완전히 표현하지 못한다.
-- AI agent JSON의 ACTIVE 상태와 실제 heartbeat/output/workflow 증거가 충분히 연결되지 않은 항목은 Pages에서 DEGRADED / STATE MISMATCH / UNMAPPED로 보일 수 있으며 이는 의도된 보수적 표시다.
-- REVIEW-20260929-PAGES-CLOSED-LOOP-001은 AI-A와 AI-D 검증만 완료됐고 AI-B/C/E는 아직 PENDING이다.
+- news-fast-lane과 authoritative market-data runtime은 아직 연결 전이다. 이는 고장난 정상 서비스로 표시하지 않고 NOT_CONNECTED로 유지한다.
+- 공식 시장 canonical summary가 충분히 연결되지 않아 일부 시장 카드가 아직 확인 불가/수집 전이다.
+- 신규 Self-Healing 변경은 REVIEW-20260929-SELF-HEAL-001에서 5개 원래 AI의 사후 독립 검증을 기다린다. 이는 이미 검증된 안전 복구를 막지 않는다.
 
 ## 현재 recovery
-- INC-20260928-SOURCE-CONTRACT: RESOLVED
-- INC-20260928-WRITER-SMOKE: RESOLVED
-- INC-20260929-PAGES-STALE-TRIGGER: RESOLVED
-- Pages 장애는 display layer에 격리하고 데이터/AI 파이프라인은 계속 실행한다.
+- INC-20260929-AI-D-AUTOMATION-DISABLED: RESOLVED. 실제 scheduler 상태가 repository ACTIVE보다 우선한다.
+- 과거 source-contract / canonical-writer / Pages stale-trigger incident도 RESOLVED 상태다.
+- 동일 fix 3회 연속 실패 시 반복을 중단하고 다른 전략 또는 구조 개선으로 승격한다.
 
 ## 최근 성공
-- commit a212c4fa: initial Pages generator syntax regression repair
-- Pages run 36510140367: first live deployment verification SUCCESS
-- commit 7b895534: material-state update automatically triggered deployment
-- system-check 36510692318: SUCCESS
-- Pages run 36510692300: SUCCESS
-- commit c92ad199: all-push impact gate + fingerprint/core-section public verifier 적용
-- system-check 36515542367: SUCCESS
-- Pages run 36515542361: build/deploy/public verification SUCCESS
-- public Pages verification: source c92ad19915648c5651b08ee682664fdd46f0d6d7 / generated_at 2026-09-29T12:04:59+09:00 / fingerprint verified / core_sections OK
-- commit e0fa500: 운영 규칙/장기기억 문서화. Pages workflow는 즉시 감지했지만 사용자 표시 material 변화가 없어 deploy를 자동 skipped 처리
-- public Pages verification: source 7b8955349f0aed51f7dcfda40416ade5f942bec0 / updated 2026-09-29T11:02:18+09:00
-- AI-A review commit 2f55d85c: PASS_WITH_NOTES candidate
-
-## 최근 실패에서 얻은 교훈
-- 최초 Pages 구현 commit e01a3a66은 pages.py f-string 문법 오류로 system-check와 Pages build가 실패했고 즉시 최소 수정했다.
-- 기존 구조처럼 web/**만 trigger하면 canonical/data 변경이 사용자 화면에 반영되지 않는다.
-- commit 성공이나 deploy action success만으로 완료하지 않고 공개 URL의 source_commit/generated_at까지 확인한다.
-- 새 데이터가 없으면 UI를 채우기 위해 가짜 값을 만들지 않는다.
-
-## 현재 실험
-- virtual_position_range_v0: SHADOW / production_eligible=false
-- Pages material-fingerprint watchdog: E2E VERIFIED ON NEXT MATERIAL CHANGE
+- commit 38a453db: Self-Healing remediation engine, incident fingerprint, Known-Fix/Signature/Prevention registry 추가.
+- commit 358340b9: system-check·AGENTS·shared memory·Pages 영향 판정에 Self-Heal 연결.
+- system-check 36533434544 SUCCESS, Pages 36533434525 SUCCESS 및 public verifier SUCCESS.
+- commit e947d1c6: telemetry 오분류 수정, Pages Korean renderer 영향 경로 회귀테스트, retry loop guard 추가.
+- system-check 36534297464 SUCCESS, self-heal 36534327151 SUCCESS, Pages 36534297574 public verification SUCCESS.
+- commit f27068e6: service monitoring mode와 AI hourly cadence를 실제 운영 방식에 맞게 분리.
+- 최신 health snapshot은 news/market NOT_CONNECTED, canonical-guard READY, github-pages HEALTHY, ai-heartbeat HEALTHY로 분류했다.
+- remediation issue 수는 초기 14개에서 3개까지 감소했다. 남은 오래된 review 2개는 fallback substitution으로 non-blocking 처리했고 원래 AI backfill을 요구한다.
 
 ## 다음 우선순위
-1. AI-B/C/E가 REVIEW-20260929-PAGES-CLOSED-LOOP-001을 독립 검증
-2. services.json UNKNOWN을 Actions/데이터 timestamp 기반 evidence-backed telemetry로 전환
-3. agent별 실제 automation/workflow evidence 매핑 강화
-4. 공식 시장 canonical summary 입력을 연결해 Pages 시장 카드 UNKNOWN을 줄인다.
+1. Self-Healing 신규 review를 A/B/C/D/E가 각 전문 관점에서 독립 검증한다.
+2. news-fast-lane과 authoritative market-data의 실제 evidence source를 연결한다.
+3. AI agent가 각 실행 종료 때 heartbeat/output evidence를 자동 갱신하도록 계속 강화한다.
+4. 공식 시장 데이터가 연결될 때까지 시장 값을 임의 생성하지 않는다.
 
 ## 절대 다시 하지 말 것
-- web/** 변경만 Pages trigger로 사용
-- commit 성공 = Pages 업데이트 성공으로 간주
-- Actions success만 보고 실제 공개 URL 검증 생략
-- ACTIVE 문자열만 믿고 실제 heartbeat/output 증거를 무시
-- 데이터가 없는데 UI용 임의 값 생성
-- LOCAL Pages 장애 때문에 전체 automation 비활성화
+- repository ACTIVE 문자열만 보고 실제 automation이 살아 있다고 단정
+- 미연결 서비스를 HEALTHY로 표시
+- 같은 실패 fix를 무한 재시도
+- L0~L2 안전 복구를 단순 승인대기로 멈춤
+- review 지연 때문에 이미 검증된 독립 서비스 전체를 중단
+- 데이터가 없는데 최신값처럼 생성 또는 과거값 재사용
