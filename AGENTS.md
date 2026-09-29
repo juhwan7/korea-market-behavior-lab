@@ -185,3 +185,15 @@ AUTO_APPROVE_SAFE_FIX=true다. L0/L1/L2의 프로젝트 내부 안전하고 복�
 한 버그를 고치면 같은 패턴이 다른 workflow/code/path에도 있는지 sibling sweep를 수행한다. 의미 있는 버그 수정은 regression test, validation rule, monitor, schema guard, retry/concurrency guard 중 최소 하나를 남긴다. 재발방지 장치 없이 RESOLVED 처리하지 않는다.
 
 system-check는 감지, self-heal은 deterministic L0 복구와 진단, canonical-writer는 직렬 공식 반영, Pages는 사용자 표시를 담당한다. self-heal의 workflow 자동 재실행은 첫 실패에 한해 1회만 허용하며 재실패하면 AI recovery owner의 원인분석 대상으로 승격한다.
+
+
+## Mandatory runtime evidence persistence
+모든 AI-A/B/C/D/E 예약 실행은 실제 실행 자체와 GitHub에 남은 실행 증거를 분리하지 않는다.
+
+각 사이클 시작 직후와 종료 직전에 자기 `data/ai/agents/ai-?.json`의 runtime evidence를 확인한다. 실제 예약 실행이 시작됐으면 최소 `heartbeat_at`과 `runtime_evidence.last_run_time`을 실제 실행 시각으로 갱신하고 `runtime_evidence.source`에 실행 근거 종류를 남긴다. 이 기록은 시장 분석 결과가 아니라 해당 AI가 실제로 실행됐다는 운영 증거다.
+
+전문업무에서 실제 진전이 있었을 때만 `last_progress_at`을 갱신한다. heartbeat와 progress를 같은 의미로 사용하지 않는다.
+
+자기 heartbeat 기록이 실제 scheduler last_run보다 한 사이클 이상 뒤처지면 `AGENT_RUNTIME_EVIDENCE_DRIFT`로 취급한다. 자동화가 실제로 살아 있다면 disabled/stale로 오판하지 말고 runtime truth로 상태를 복구한 뒤 GitHub evidence를 동기화한다. 반대로 scheduler 자체가 멈췄다면 기존 survival recovery를 적용한다.
+
+실행은 성공했지만 자기 runtime evidence를 GitHub에 기록하지 못한 경우 조용히 종료하지 않는다. write 실패 원인을 recovery queue에 남기고 최신 SHA 재조회 → 자기 agent state 재적용 → candidate/patch 또는 안전한 writer 경로 순서로 복구한다.

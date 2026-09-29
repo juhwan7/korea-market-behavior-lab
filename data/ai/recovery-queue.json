@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-29T16:00:00+09:00",
+  "updated_at": "2026-09-29T16:26:00+09:00",
   "policy": {
     "one_blocked_task_does_not_stop_all_agents": true,
     "local_incident_isolation": true,
@@ -128,6 +128,38 @@
         "repeat disablement becomes structural incident instead of repeated manual toggle"
       ],
       "resolved_at": "2026-09-29T15:54:38+09:00"
+    },
+    {
+      "incident_id": "INC-20260929-AGENT-RUNTIME-EVIDENCE-DRIFT",
+      "scope": "LOCAL",
+      "affected_dependencies": [
+        "agent-runtime-evidence",
+        "self-heal-agent-health",
+        "five-agent-survival-preflight"
+      ],
+      "recovery_owner": "AI-D",
+      "status": "RESOLVED",
+      "started_at": "2026-09-29T16:25:00+09:00",
+      "root_cause": "Actual scheduled runs for AI-A/B/C were newer than repository heartbeat evidence. The repository contract did not explicitly require every scheduled cycle to persist heartbeat evidence at exit; the exact reason individual prior cycles omitted the write is not proven.",
+      "attempts": [
+        "compare repository heartbeat with actual automation runtime",
+        "confirm all five automations enabled",
+        "synchronize agent heartbeat from authoritative scheduler last_run",
+        "add mandatory runtime evidence persistence contract"
+      ],
+      "evidence": [
+        "AI-A actual last_run 2026-09-29T07:06:12.664439Z",
+        "AI-B actual last_run 2026-09-29T07:08:43.799713Z",
+        "AI-C actual last_run 2026-09-29T07:21:30.988942Z",
+        "all five scheduled automations enabled"
+      ],
+      "prevention": [
+        "every scheduled cycle persists heartbeat_at/runtime_evidence.last_run_time",
+        "heartbeat is separate from last_progress_at",
+        "scheduler runtime truth overrides stale repository declaration",
+        "heartbeat write failure becomes a recovery incident instead of silent completion"
+      ],
+      "resolved_at": "2026-09-29T16:26:00+09:00"
     }
   ]
 }
