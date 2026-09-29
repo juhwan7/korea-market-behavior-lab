@@ -1,66 +1,87 @@
 {
-  "schema_version": 1,
-  "generated_at": null,
+  "schema_version": 2,
+  "generated_at": "2026-09-29T16:04:00+09:00",
   "services": [
     {
       "id": "news-fast-lane",
       "owner": "A",
       "secondary": "D",
       "emergency_fallback": "E",
-      "status": "UNKNOWN",
+      "status": "PLANNED",
+      "monitoring_mode": "NOT_CONNECTED",
       "freshness_target_minutes": 10,
       "last_success_at": null,
       "last_attempt_at": null,
       "recovery_owner": null,
-      "lease_until": null
+      "lease_until": null,
+      "note": "Authoritative continuous news fast-lane runtime evidence is not connected yet; do not report this as healthy."
     },
     {
       "id": "market-data",
       "owner": "A",
       "secondary": "D",
       "emergency_fallback": "C",
-      "status": "UNKNOWN",
+      "status": "PLANNED",
+      "monitoring_mode": "NOT_CONNECTED",
       "freshness_target_minutes": 10,
       "last_success_at": null,
       "last_attempt_at": null,
       "recovery_owner": null,
-      "lease_until": null
+      "lease_until": null,
+      "note": "Authoritative continuous market-data runtime evidence is not connected yet; do not fabricate freshness."
     },
     {
       "id": "canonical-guard",
       "owner": "D",
       "secondary": "E",
       "emergency_fallback": "B",
-      "status": "UNKNOWN",
+      "status": "READY",
+      "monitoring_mode": "ON_DEMAND",
       "freshness_target_minutes": 10,
-      "last_success_at": null,
-      "last_attempt_at": null,
+      "last_success_at": "2026-09-28T23:56:33+09:00",
+      "last_attempt_at": "2026-09-28T23:56:33+09:00",
       "recovery_owner": null,
-      "lease_until": null
+      "lease_until": null,
+      "evidence": [
+        "canonical-writer smoke commit:1241460c4ce0b7772d9e5838ef4cb12078d53b10"
+      ],
+      "note": "Event-driven writer; absence of a recent patch is not staleness."
     },
     {
       "id": "github-pages",
       "owner": "D",
       "secondary": "E",
       "emergency_fallback": "A",
-      "status": "UNKNOWN",
-      "freshness_target_minutes": 10,
-      "last_success_at": null,
-      "last_attempt_at": null,
+      "status": "HEALTHY",
+      "monitoring_mode": "CONTINUOUS",
+      "freshness_target_minutes": 15,
+      "last_success_at": "2026-09-29T16:03:00+09:00",
+      "last_attempt_at": "2026-09-29T16:03:00+09:00",
       "recovery_owner": null,
-      "lease_until": null
+      "lease_until": null,
+      "evidence": [
+        "pages:36534297574",
+        "public-verifier:success"
+      ],
+      "note": "Public source/fingerprint/core-section verification succeeded."
     },
     {
       "id": "ai-heartbeat",
       "owner": "D",
       "secondary": "E",
       "emergency_fallback": "B",
-      "status": "UNKNOWN",
-      "freshness_target_minutes": 10,
-      "last_success_at": null,
-      "last_attempt_at": null,
+      "status": "HEALTHY",
+      "monitoring_mode": "CONTINUOUS",
+      "freshness_target_minutes": 75,
+      "last_success_at": "2026-09-29T15:04:07+09:00",
+      "last_attempt_at": "2026-09-29T15:54:38+09:00",
       "recovery_owner": null,
-      "lease_until": null
+      "lease_until": null,
+      "evidence": [
+        "runtime:A/B/C/D/E-enabled",
+        "oldest-last-run:AI-A-15:04:07-KST"
+      ],
+      "note": "Five scheduled AI automations are hourly/staggered; freshness target follows actual cadence, not 10 minutes."
     }
   ]
 }

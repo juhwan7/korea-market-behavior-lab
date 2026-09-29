@@ -30,12 +30,17 @@ BLOCKING_HANDOFF_STATES = {
 
 def classify(service: dict, now: datetime) -> str:
     status = str(service.get("status", "UNKNOWN")).lower()
+    mode = str(service.get("monitoring_mode", "CONTINUOUS")).upper()
     if status in BAD_SERVICE_STATES:
         return "RECOVERY_REQUIRED"
+    if mode == "NOT_CONNECTED":
+        return "NOT_CONNECTED"
+    if mode == "ON_DEMAND":
+        return "READY"
     last = parse_time(service.get("last_success_at"))
     target = int(service.get("freshness_target_minutes", 10))
     if last is None:
-        return "UNINITIALIZED"
+        return "EVIDENCE_PENDING"
     if now - last > timedelta(minutes=target):
         return "STALE"
     return "HEALTHY"

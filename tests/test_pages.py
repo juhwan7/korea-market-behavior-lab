@@ -33,6 +33,24 @@ class PagesTests(unittest.TestCase):
             self.assertEqual(ai_a["heartbeat"], "MISSING")
             self.assertEqual(ai_a["output"], "MISSING")
 
+    def test_fresh_scheduler_runtime_without_output_is_observed(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "data/ai/agents").mkdir(parents=True)
+            (root / "data/ai/agents/ai-a.json").write_text(json.dumps({
+                "agent": "AI-A", "status": "ACTIVE",
+                "heartbeat_at": "2026-09-29T06:00:00Z",
+                "runtime_evidence": {"enabled": True, "last_run_time": "2026-09-29T06:00:00Z"}
+            }), encoding="utf-8")
+            (root / "data/ai/task-board.json").write_text('{"tasks":[]}', encoding="utf-8")
+            (root / "data/ai/recovery-queue.json").write_text('{"incidents":[]}', encoding="utf-8")
+            (root / "data/ai/review-board.json").write_text('{"items":[]}', encoding="utf-8")
+            (root / "data/ai/events.jsonl").write_text("", encoding="utf-8")
+            rows = derive_agent_health(root, now=datetime(2026, 9, 29, 6, 30, tzinfo=timezone.utc))
+            ai_a = next(row for row in rows if row["agent"] == "AI-A")
+            self.assertEqual(ai_a["status"], "OBSERVED")
+            self.assertEqual(ai_a["execution"], "OBSERVED_NO_FRESH_OUTPUT")
+
     def test_material_fingerprint_changes_with_visible_state(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

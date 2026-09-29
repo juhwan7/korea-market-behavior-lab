@@ -223,15 +223,24 @@ def derive_agent_health(root: Path = ROOT, now: datetime | None = None) -> list[
             if str(i.get("recovery_owner", "")).upper() == agent
             and str(i.get("status", "")).upper() not in {"RESOLVED", "RECOVERED", "CLOSED"}
         ]
+        runtime_evidence = state.get("runtime_evidence") or {}
+        runtime_enabled = runtime_evidence.get("enabled")
         if active_incidents:
             overall = "RECOVERING"
-        elif declared in {"BLOCKED", "FAILED", "STOPPED", "DISABLED"}:
+        elif runtime_enabled is False or declared in {"BLOCKED", "FAILED", "STOPPED", "DISABLED"}:
             overall = "BLOCKED"
         elif heartbeat == "FRESH" and output == "FRESH":
             overall = "ACTIVE"
+        elif heartbeat == "FRESH" and runtime_enabled is True:
+            overall = "OBSERVED"
         else:
             overall = "DEGRADED"
-        execution = "STATE MISMATCH" if declared == "ACTIVE" and overall == "DEGRADED" else overall
+        if declared == "ACTIVE" and overall == "DEGRADED":
+            execution = "STATE MISMATCH"
+        elif overall == "OBSERVED":
+            execution = "OBSERVED_NO_FRESH_OUTPUT"
+        else:
+            execution = overall
         last_execution = max_time_text([heartbeat_at, output_at])
         rows.append({
             "agent": agent,

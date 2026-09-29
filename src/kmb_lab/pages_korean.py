@@ -43,6 +43,8 @@ STATUS_LABELS = {
     "UNMAPPED": "실행 정보 연결 전",
     "NONE": "해당 없음",
     "OFFLINE": "실행 정보 확인 불가",
+    "OBSERVED": "예약 실행 확인됨",
+    "OBSERVED_NO_FRESH_OUTPUT": "실행 확인됨 · 새 결과 없음",
     "CONFIRMED": "공식 자료로 확인",
     "ESTIMATED": "데이터 기반 추정",
     "HYPOTHESIS": "검증 중인 가설",
@@ -113,7 +115,7 @@ def status_class(value: Any) -> str:
     upper = str(value).upper()
     if upper in {"ACTIVE","FRESH","OK","SUCCESS","LIVE","RECOVERED","RESOLVED","PASS","COMPLETED","CONFIRMED"}:
         return "ok"
-    if upper in {"IN_PROGRESS","PENDING","DEGRADED","RECOVERING","STALE","STATE MISMATCH","PASS_WITH_NOTES","REVIEWING","OPEN","SHADOW","ESTIMATED","HYPOTHESIS"}:
+    if upper in {"IN_PROGRESS","PENDING","DEGRADED","RECOVERING","STALE","STATE MISMATCH","PASS_WITH_NOTES","REVIEWING","OPEN","SHADOW","ESTIMATED","HYPOTHESIS","OBSERVED","OBSERVED_NO_FRESH_OUTPUT"}:
         return "warn"
     if upper in {"BLOCKED","FAILED","FAILURE","FIX_REQUIRED","REJECT","REJECTED"}:
         return "bad"
