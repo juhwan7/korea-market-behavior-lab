@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "signatures": [
+    {
+      "signature_id": "SIG-STALE-SHA",
+      "family": "STALE_SHA",
+      "patterns": [
+        "STALE_SHA",
+        "base sha mismatch"
+      ]
+    },
+    {
+      "signature_id": "SIG-WRITER-NO-CHANGE",
+      "family": "WRITE_FAILURE",
+      "patterns": [
+        "Manifest applied but produced no worktree change",
+        "no canonical changes to commit"
+      ]
+    },
+    {
+      "signature_id": "SIG-PAGES-FINGERPRINT",
+      "family": "PAGE_STALE",
+      "patterns": [
+        "material fingerprint mismatch",
+        "source_commit mismatch"
+      ]
+    },
+    {
+      "signature_id": "SIG-JSON",
+      "family": "JSON_FAILURE",
+      "patterns": [
+        "JSONDecodeError",
+        "invalid json",
+        "parse error"
+      ]
+    },
+    {
+      "signature_id": "SIG-IMPORT",
+      "family": "IMPORT_FAILURE",
+      "patterns": [
+        "ImportError",
+        "ModuleNotFoundError",
+        "cannot import"
+      ]
+    },
+    {
+      "signature_id": "SIG-ACTION-STUCK",
+      "family": "ACTION_STUCK",
+      "patterns": [
+        "queued too long",
+        "in_progress too long"
+      ]
+    },
+    {
+      "signature_id": "SIG-AGENT-STALE",
+      "family": "AGENT_STALE",
+      "patterns": [
+        "ACTIVE without runtime evidence",
+        "heartbeat missing",
+        "output missing"
+      ]
+    }
+  ]
+}

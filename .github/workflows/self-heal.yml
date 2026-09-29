@@ -1,0 +1,64 @@
+name: self-heal
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_run:
+    workflows: ["system-check", "pages", "canonical-writer"]
+    types: [completed]
+
+permissions:
+  contents: read
+  actions: write
+
+concurrency:
+  group: self-heal
+  cancel-in-progress: false
+
+jobs:
+  diagnose:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.head_branch == 'main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate remediation registries
+        run: PYTHONPATH=src python -m kmb_lab.remediation validate
+      - name: Scan repository and runtime evidence
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: PYTHONPATH=src python -m kmb_lab.remediation scan --output data/system/remediation-snapshot.json --repository "$GITHUB_REPOSITORY"
+      - name: Upload remediation snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: remediation-snapshot-${{ github.run_id }}
+          path: data/system/remediation-snapshot.json
+          retention-days: 7
+
+  retry-once:
+    needs: diagnose
+    if: >-
+      github.event_name == 'workflow_run' &&
+      github.event.workflow_run.head_branch == 'main' &&
+      github.event.workflow_run.run_attempt == 1 &&
+      (github.event.workflow_run.conclusion == 'failure' || github.event.workflow_run.conclusion == 'cancelled' || github.event.workflow_run.conclusion == 'timed_out')
+    runs-on: ubuntu-latest
+    steps:
+      - name: One safe L0 retry, then escalate on repeated failure
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ github.event.workflow_run.id }}
+          CONCLUSION: ${{ github.event.workflow_run.conclusion }}
+        run: |
+          set -euo pipefail
+          if [ "$CONCLUSION" = "failure" ]; then
+            gh api -X POST "repos/$GITHUB_REPOSITORY/actions/runs/$RUN_ID/rerun-failed-jobs"
+          else
+            gh api -X POST "repos/$GITHUB_REPOSITORY/actions/runs/$RUN_ID/rerun"
+          fi
+          echo "Triggered one L0 retry for run $RUN_ID. Repeated failure is escalated."

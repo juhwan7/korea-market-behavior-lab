@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "AUTO_APPROVE_SAFE_FIX": true,
+  "repair_first_review_immediately_after": true,
+  "levels": {
+    "L0": {
+      "auto_approve": true,
+      "description": "재실행·재검사·생성물 재생성 등 기계적으로 되돌릴 수 있는 복구"
+    },
+    "L1": {
+      "auto_approve": true,
+      "description": "단순 코드·JSON·경로·STALE_SHA·회귀 버그 수정. 관련 회귀테스트 필수"
+    },
+    "L2": {
+      "auto_approve": true,
+      "description": "workflow·writer·scheduler·pipeline·복구 로직 변경. 전체 테스트와 downstream 검증 필수"
+    },
+    "L3": {
+      "auto_approve": false,
+      "description": "Secret/OAuth/결제/외부 권한 상승/자격증명/저장소 삭제/파괴적 이력 변경"
+    }
+  },
+  "known_fix_fast_path": {
+    "enabled": true,
+    "requirements": [
+      "existing_success_record",
+      "regression_guard",
+      "rollback_or_reversible",
+      "L0_L2"
+    ]
+  },
+  "retry_policy": {
+    "same_fix_max_consecutive_failures": 3,
+    "then": "LOWER_CONFIDENCE_AND_SWITCH_STRATEGY"
+  },
+  "global_stop_only_for": [
+    "canonical_corruption_propagation",
+    "credential_exposure",
+    "destructive_history_risk",
+    "active_large_scale_data_damage"
+  ]
+}

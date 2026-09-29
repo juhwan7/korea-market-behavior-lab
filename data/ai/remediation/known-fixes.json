@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "fixes": [
+    {
+      "fix_id": "FIX-STALE-SHA-001",
+      "incident_family": "STALE_SHA",
+      "enabled": true,
+      "execution_mode": "AI_REQUIRED",
+      "risk_level": "L1",
+      "root_cause": "target advanced after candidate base was read",
+      "fix_strategy": [
+        "refetch latest main/blob SHA",
+        "reapply only compatible change",
+        "run targeted and full tests",
+        "apply with new base SHA"
+      ],
+      "required_tests": [
+        "writer stale-sha regression"
+      ],
+      "verification": [
+        "main contains expected change",
+        "Actions success"
+      ],
+      "rollback": "discard candidate and rebuild from latest main",
+      "times_used": 1,
+      "success_count": 1,
+      "failure_count": 0,
+      "sample_count": 1,
+      "success_rate": 1.0,
+      "last_success_at": "2026-09-28T23:03:00+09:00",
+      "confidence": "HIGH",
+      "auto_approve": true
+    },
+    {
+      "fix_id": "FIX-WRITER-UNTRACKED-001",
+      "incident_family": "WRITE_FAILURE",
+      "enabled": true,
+      "execution_mode": "AI_REQUIRED",
+      "risk_level": "L1",
+      "root_cause": "git diff ignored untracked files",
+      "fix_strategy": [
+        "use git status --porcelain",
+        "verify expected target exists",
+        "verify writer commit"
+      ],
+      "required_tests": [
+        "canonical writer regression"
+      ],
+      "verification": [
+        "target exists",
+        "writer commit exists"
+      ],
+      "rollback": "restore prior target",
+      "times_used": 1,
+      "success_count": 1,
+      "failure_count": 0,
+      "sample_count": 1,
+      "success_rate": 1.0,
+      "last_success_at": "2026-09-28T23:56:33+09:00",
+      "confidence": "HIGH",
+      "auto_approve": true
+    },
+    {
+      "fix_id": "FIX-ACTION-RETRY-001",
+      "incident_family": "ACTION_FAILURE",
+      "enabled": true,
+      "execution_mode": "DETERMINISTIC",
+      "risk_level": "L0",
+      "root_cause": "may be transient; one retry is safe before escalation",
+      "fix_strategy": [
+        "rerun failed jobs once when run_attempt is 1",
+        "if retry fails stop repeating and escalate"
+      ],
+      "required_tests": [],
+      "verification": [
+        "new run success or escalation artifact"
+      ],
+      "rollback": "none",
+      "times_used": 0,
+      "success_count": 0,
+      "failure_count": 0,
+      "sample_count": 0,
+      "success_rate": 0.0,
+      "last_success_at": null,
+      "confidence": "MEDIUM",
+      "auto_approve": true
+    },
+    {
+      "fix_id": "FIX-PAGES-STALE-001",
+      "incident_family": "PAGE_STALE",
+      "enabled": true,
+      "execution_mode": "AI_REQUIRED",
+      "risk_level": "L1",
+      "root_cause": "display layer is behind canonical material state",
+      "fix_strategy": [
+        "verify trigger contract",
+        "generate artifact",
+        "deploy",
+        "verify public source commit/generated_at/fingerprint/core sections"
+      ],
+      "required_tests": [
+        "pages generator tests",
+        "public verifier"
+      ],
+      "verification": [
+        "public verifier success"
+      ],
+      "rollback": "restore last known-good Pages generator",
+      "times_used": 1,
+      "success_count": 1,
+      "failure_count": 0,
+      "sample_count": 1,
+      "success_rate": 1.0,
+      "last_success_at": "2026-09-29T12:05:17+09:00",
+      "confidence": "HIGH",
+      "auto_approve": true
+    },
+    {
+      "fix_id": "FIX-TELEMETRY-EVIDENCE-001",
+      "incident_family": "SERVICE_TELEMETRY_UNINITIALIZED",
+      "enabled": true,
+      "execution_mode": "DETERMINISTIC",
+      "risk_level": "L0",
+      "root_cause": "services.json lacks live runtime evidence",
+      "fix_strategy": [
+        "derive remediation snapshot from Actions/output evidence",
+        "do not fabricate success timestamps",
+        "route unresolved services to owner/fallback"
+      ],
+      "required_tests": [
+        "remediation scan tests"
+      ],
+      "verification": [
+        "evidence snapshot generated"
+      ],
+      "rollback": "delete generated artifact",
+      "times_used": 0,
+      "success_count": 0,
+      "failure_count": 0,
+      "sample_count": 0,
+      "success_rate": 0.0,
+      "last_success_at": null,
+      "confidence": "HIGH",
+      "auto_approve": true
+    },
+    {
+      "fix_id": "FIX-AGENT-STALE-001",
+      "incident_family": "AGENT_STALE",
+      "enabled": true,
+      "execution_mode": "AI_REQUIRED",
+      "risk_level": "L1",
+      "root_cause": "static agent state is not runtime proof",
+      "fix_strategy": [
+        "check actual automation/run/output",
+        "restore safely",
+        "verify progress/output advances",
+        "record prevention"
+      ],
+      "required_tests": [
+        "agent evidence derivation"
+      ],
+      "verification": [
+        "fresh runtime evidence exists"
+      ],
+      "rollback": "none",
+      "times_used": 0,
+      "success_count": 0,
+      "failure_count": 0,
+      "sample_count": 0,
+      "success_rate": 0.0,
+      "last_success_at": null,
+      "confidence": "MEDIUM",
+      "auto_approve": true
+    },
+    {
+      "fix_id": "FIX-REVIEW-STALE-001",
+      "incident_family": "REVIEW_STALE",
+      "enabled": true,
+      "execution_mode": "AI_REQUIRED",
+      "risk_level": "L1",
+      "root_cause": "review role did not advance",
+      "fix_strategy": [
+        "invoke assigned role or documented fallback",
+        "do not auto-pass",
+        "backfill original role later"
+      ],
+      "required_tests": [
+        "review mesh contract"
+      ],
+      "verification": [
+        "pending role replaced by evidence-backed review"
+      ],
+      "rollback": "restore review state if invalid",
+      "times_used": 0,
+      "success_count": 0,
+      "failure_count": 0,
+      "sample_count": 0,
+      "success_rate": 0.0,
+      "last_success_at": null,
+      "confidence": "MEDIUM",
+      "auto_approve": true
+    }
+  ]
+}
