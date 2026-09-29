@@ -9,8 +9,8 @@ def base_item():
         "event_type": "code_change",
         "reviews": {a: {"result": "PASS"} for a in AGENTS},
         "evidence": {
-            "commit_sha": "abc",
-            "actions_result": "success",
+            "commit_sha": "0123456789abcdef0123456789abcdef01234567",
+            "actions_result": "success:12345",
             "expected_state_verified": True,
         },
     }

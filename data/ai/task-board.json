@@ -1,41 +1,9 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-28T23:57:00+09:00",
+  "updated_at": "2026-09-29T10:40:00+09:00",
   "tasks": [
-    {
-      "task_id": "TASK-SHARED-MEMORY-001",
-      "title": "Initialize five-agent shared memory",
-      "owner": "AI-D",
-      "secondary": "AI-E",
-      "status": "COMPLETED",
-      "priority": "CRITICAL",
-      "dependencies": [],
-      "blocked_by": [],
-      "started_at": "2026-09-28T23:03:00+09:00",
-      "lease_until": null,
-      "last_progress_at": "2026-09-28T23:57:00+09:00",
-      "next_action": "Operate continuously; every agent reads and updates shared memory",
-      "evidence": [
-        "40192459da981bbad347ebba124b89e091201de8",
-        "1241460c4ce0b7772d9e5838ef4cb12078d53b10",
-        "actions:36439764613"
-      ]
-    },
-    {
-      "task_id": "TASK-TELEMETRY-001",
-      "title": "Replace UNKNOWN service telemetry with evidence-backed freshness",
-      "owner": "AI-D",
-      "secondary": "AI-E",
-      "status": "IN_PROGRESS",
-      "priority": "HIGH",
-      "dependencies": [
-        "TASK-SHARED-MEMORY-001"
-      ],
-      "blocked_by": [],
-      "started_at": "2026-09-28T23:57:00+09:00",
-      "lease_until": null,
-      "last_progress_at": "2026-09-28T23:57:00+09:00",
-      "next_action": "Derive service state from Actions and produced data rather than static UNKNOWN values"
-    }
+    {"task_id":"TASK-SHARED-MEMORY-001","title":"Initialize five-agent shared memory","owner":"AI-D","secondary":"AI-E","status":"COMPLETED","priority":"CRITICAL","dependencies":[],"blocked_by":[],"started_at":"2026-09-28T23:03:00+09:00","lease_until":null,"last_progress_at":"2026-09-28T23:57:00+09:00","next_action":"Operate continuously; every agent reads and updates shared memory","evidence":["40192459da981bbad347ebba124b89e091201de8","1241460c4ce0b7772d9e5838ef4cb12078d53b10","actions:36439764613"]},
+    {"task_id":"TASK-TELEMETRY-001","title":"Replace UNKNOWN service telemetry with evidence-backed freshness","owner":"AI-D","secondary":"AI-E","status":"IN_PROGRESS","priority":"HIGH","dependencies":["TASK-SHARED-MEMORY-001"],"blocked_by":[],"started_at":"2026-09-28T23:57:00+09:00","lease_until":null,"last_progress_at":"2026-09-28T23:57:00+09:00","next_action":"Derive service state from Actions and produced data rather than static UNKNOWN values"},
+    {"task_id":"TASK-PAGES-CLOSED-LOOP-001","title":"Make GitHub Pages follow material canonical state","owner":"AI-D","secondary":"AI-E","status":"IN_PROGRESS","priority":"CRITICAL","dependencies":["TASK-SHARED-MEMORY-001"],"blocked_by":[],"started_at":"2026-09-29T10:40:00+09:00","lease_until":null,"last_progress_at":"2026-09-29T10:40:00+09:00","next_action":"Verify Pages Actions, public URL, source commit/timestamp, then obtain five independent AI reviews.","evidence":[]}
   ]
 }

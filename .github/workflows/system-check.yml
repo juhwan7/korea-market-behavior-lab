@@ -25,6 +25,14 @@ jobs:
         run: PYTHONPATH=src python -m kmb_lab.memory --strict
       - name: Generate health snapshot
         run: PYTHONPATH=src python -m kmb_lab.supervisor --strict
+      - name: Pages generator smoke
+        run: |
+          PYTHONPATH=src python -m kmb_lab.pages generate --output-dir web --source-commit "$GITHUB_SHA" --repository "$GITHUB_REPOSITORY" --offline
+          test -s web/index.html
+          test -s web/status.json
+      - name: Pages freshness preflight (isolated display-layer check)
+        continue-on-error: true
+        run: PYTHONPATH=src python -m kmb_lab.pages preflight --source-commit "$GITHUB_SHA"
       - name: Validate JSON and JSONL
         run: |
           python - <<'PY'

@@ -1,27 +1,115 @@
 name: pages
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "*/10 * * * *"
   push:
     branches: [main]
     paths:
       - "web/**"
+      - "data/ai/CURRENT_BRIEFING.md"
+      - "data/ai/agents/**"
+      - "data/ai/review-board.json"
+      - "data/ai/recovery-queue.json"
+      - "data/ai/task-board.json"
+      - "data/ai/events.jsonl"
+      - "data/system/**"
+      - "data/market/**"
+      - "data/news/**"
+      - "data/discovery/**"
+      - "data/research/**"
+      - "data/audits/**"
+      - "data/experiments/**"
+      - "src/kmb_lab/pages.py"
+      - "tests/test_pages.py"
       - ".github/workflows/pages.yml"
+
 permissions:
   contents: read
+  actions: read
   pages: write
   id-token: write
+
 concurrency:
   group: pages
   cancel-in-progress: false
+
 jobs:
-  deploy:
-    environment:
-      name: github-pages
+  build:
     runs-on: ubuntu-latest
+    outputs:
+      should_deploy: ${{ steps.material.outputs.should_deploy }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile runtime
+        run: python -m compileall src
+
+      - name: Run tests
+        run: PYTHONPATH=src python -m unittest discover -s tests -v
+
+      - name: Validate shared AI memory
+        run: PYTHONPATH=src python -m kmb_lab.memory --strict
+
+      - name: Decide whether scheduled run needs deploy
+        id: material
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          if [ "$EVENT_NAME" = "schedule" ]; then
+            SHOULD_DEPLOY="$(PYTHONPATH=src python -m kmb_lab.pages should-deploy --source-commit "$GITHUB_SHA" | tail -n 1)"
+          else
+            SHOULD_DEPLOY=true
+          fi
+          echo "should_deploy=$SHOULD_DEPLOY" >> "$GITHUB_OUTPUT"
+          echo "Pages deploy required: $SHOULD_DEPLOY"
+
+      - name: Generate web output
+        if: steps.material.outputs.should_deploy == 'true'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          PYTHONPATH=src python -m kmb_lab.pages generate --output-dir web --source-commit "$GITHUB_SHA" --repository "$GITHUB_REPOSITORY"
+          test -s web/index.html
+          test -s web/status.json
+          grep -F "$GITHUB_SHA" web/index.html
+          python - <<'PY'
+          import json
+          status=json.load(open("web/status.json", encoding="utf-8"))
+          assert status["source_commit"]
+          assert status["generated_at"]
+          assert status["material_fingerprint"]
+          print(status["source_commit"], status["generated_at"])
+          PY
+
       - uses: actions/configure-pages@v5
+        if: steps.material.outputs.should_deploy == 'true'
+
       - uses: actions/upload-pages-artifact@v3
+        if: steps.material.outputs.should_deploy == 'true'
         with:
           path: web
+
+  deploy:
+    if: needs.build.outputs.should_deploy == 'true'
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
       - uses: actions/deploy-pages@v4
+        id: deployment
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify public Pages source commit and timestamp
+        run: |
+          PYTHONPATH=src python -m kmb_lab.pages verify-live --url "${{ steps.deployment.outputs.page_url }}" --source-commit "$GITHUB_SHA" --attempts 12 --sleep-seconds 5
