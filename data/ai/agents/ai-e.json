@@ -8,11 +8,12 @@
   "reads_shared_memory": true,
   "canonical_writer": "SECONDARY",
   "candidate_namespace": "data/ai/candidates/ai-e/",
-  "heartbeat_at": "2026-09-29T06:54:33.902594Z",
+  "heartbeat_at": "2026-09-29T19:47:35.000212Z",
   "runtime_evidence": {
     "source": "scheduled_automation_runtime_observed",
     "enabled": true,
-    "last_run_time": "2026-09-29T06:54:33.902594Z",
-    "checked_at": "2026-09-29T16:26:00+09:00"
-  }
+    "last_run_time": "2026-09-29T19:47:35.000212Z",
+    "checked_at": "2026-09-30T05:31:57+09:00"
+  },
+  "sre_finding": "Authoritative scheduler runtime reconciled by AI-D after repository observability drift; stale repository evidence alone does not imply automation failure."
 }
