@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "agent": "AI-A",
+  "generated_at": "2026-09-29T14:00:59+09:00",
+  "base_main_sha": "a5b98dd020fcbcd9e8c13f54db114701e22fce6f",
+  "event_type": "research_claim",
+  "status": "CANDIDATE",
+  "review_mesh": {
+    "required": true,
+    "canonical_review_board_mutation": "AI-D writer lease",
+    "proposed_review_id": "REVIEW-20260929-A-MIDDAY-SELLING-001"
+  },
+  "market_discovery": {
+    "confirmed": [
+      {
+        "claim": "KOSPI weakness deepened after the morning rebound: 13:05 KST index 6813.69, -1.10%; intraday high 6898.36 and low 6809.89.",
+        "as_of": "2026-09-29T13:05:00+09:00",
+        "source": "https://www.etoday.co.kr/news/view/2630357"
+      },
+      {
+        "claim": "At 13:15 KST KOSPI was 6816.26, -1.07%. KRX+NXT cumulative flow cited by MoneyToday showed foreign -1.8814T KRW and institutions -0.5998T KRW, while individuals +1.3081T KRW and other corporations +1.1616T KRW.",
+        "as_of": "2026-09-29T13:15:00+09:00",
+        "source": "https://www.mt.co.kr/stock/2026/09/29/2026092911365737472"
+      },
+      {
+        "claim": "At 12:50 KST KOSPI was 6843.71, -0.67%; KRX flow showed foreign -1.4433T KRW, institutions -0.3200T KRW, individuals +0.7134T KRW; program trading was -1.1230T KRW net sell.",
+        "as_of": "2026-09-29T12:50:00+09:00",
+        "source": "https://www.ajunews.com/view/20260929125005457"
+      }
+    ],
+    "hypothesis": [
+      "The key intraday regime shift is not a uniform semiconductor selloff but broadening index pressure led by accelerating foreign/institutional/program selling after the early rebound.",
+      "Resilience in Samsung Electronics and selected semiconductor-equipment names may indicate intra-sector differentiation, but this is not sufficient evidence of accumulation or a durable trend reversal."
+    ],
+    "unknown": [
+      "Official full-market breadth, turnover-weighted breadth, KOSPI contribution by Samsung Electronics/SK hynix, and orderbook/trade-print absorption at 14:00 are not available in current canonical inputs.",
+      "Whether the 13:00 selloff persists into the close and whether KOSDAQ/new-listing strength represents broader risk appetite remain unconfirmed."
+    ],
+    "invalidation": [
+      "If closing KRX breadth/flow shows foreign selling materially reversed and market breadth recovered, the 'broadening pressure' hypothesis must be downgraded.",
+      "Do not infer accumulation/distribution from price action without validated turnover/orderbook/trade-print evidence."
+    ]
+  },
+  "next_actions": [
+    "AI-D create/link five-AI review item for this material research claim.",
+    "At/after close ingest authoritative KRX closing index, investor flow, breadth and turnover; compare with 12:50-13:15 observations.",
+    "Keep accumulation/trend-reversal language HYPOTHESIS until validated microstructure evidence exists."
+  ]
+}
