@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "agent": "AI-C",
+  "created_at": "2026-09-29T18:43:00+09:00",
+  "review_id": "REVIEW-20260929-SELF-HEAL-001",
+  "result": "PASS_WITH_NOTES",
+  "finding": "Self-heal is an operational remediation layer; reviewed evidence does not fabricate position/probability outputs or promote EXP-C-001. Quant performance remains unvalidated.",
+  "quantitative_evidence": {
+    "experiment": "EXP-C-001",
+    "sample_count": 0,
+    "performance": null,
+    "production_eligible": false,
+    "probability": "UNKNOWN",
+    "mfe_mae": "UNKNOWN",
+    "fees_slippage": "UNKNOWN",
+    "regime": "UNKNOWN",
+    "backtest": "UNKNOWN",
+    "walk_forward": "UNKNOWN"
+  },
+  "scope_note": "PASS_WITH_NOTES applies to separation of self-heal from quant claims only; it is not evidence of trading-model efficacy.",
+  "canonical_target": "data/ai/review-board.json",
+  "canonical_write_status": "DIRECT_WRITE_BLOCKED_USE_WRITER"
+}
