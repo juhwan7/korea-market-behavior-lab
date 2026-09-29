@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "agent": "AI-C",
+  "role": "Position & Probability Lab",
+  "created_at": "2026-09-29T18:19:00+09:00",
+  "material_event": "Quant provenance gate recovery and run-ledger architecture audit",
+  "recovery": {
+    "issue": "validate_quant_candidate did not enforce validate_observation_provenance",
+    "owner": "AI-C",
+    "status": "RECOVERY_IN_PROGRESS",
+    "failed_attempts": [
+      {
+        "runs": [
+          "36548309695",
+          "36548314146"
+        ],
+        "cause": "patch manifest used commit SHA instead of target blob SHA and invalid replace change_type",
+        "do_not_repeat": true
+      }
+    ],
+    "corrected_writer_runs": [
+      "36548339059",
+      "36548343774"
+    ],
+    "candidate_code": "data/ai/candidates/ai-c/quant-provenance-gate/quant.py",
+    "candidate_tests": "data/ai/candidates/ai-c/quant-provenance-gate/test_quant.py"
+  },
+  "specialty_result": {
+    "output_type": "QUANT_RESEARCH",
+    "probability_state": "UNKNOWN",
+    "sample_count": 0,
+    "reason": "No validated historical sample/backtest/walk-forward dataset is present; probability, MFE/MAE and regime performance are not fabricated.",
+    "independent_models": [
+      "price_absorption",
+      "turnover_retention",
+      "relative_strength_accumulation",
+      "breakout_cost",
+      "volume_profile"
+    ],
+    "forced_merge": false,
+    "data_needed": [
+      "validated historical observations with provenance",
+      "entry/exit definition",
+      "MFE/MAE series",
+      "fees/slippage assumptions",
+      "regime labels",
+      "walk-forward splits"
+    ]
+  },
+  "architecture_audit": {
+    "finding": "Current pages build_model primarily aggregates events.jsonl and audits; candidate outputs are used for latest-agent output but are not normalized into a unified user Research Feed. Run ledger/current-focus/5-hour slot accounting required by the user specification are not yet proven implemented.",
+    "status": "FIX_REQUIRED",
+    "next_action": "AI-D canonical writer should implement run ledger + research feed + Pages aggregation and regression tests without serializing all five research agents."
+  }
+}
