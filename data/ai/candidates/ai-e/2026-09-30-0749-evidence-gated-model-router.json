@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "agent": "AI-E",
+  "type": "NEW_ARCHITECTURE_CHALLENGER",
+  "created_at": "2026-09-30T07:49:31+09:00",
+  "base_sha": "59a8767a2255894ae57159fb7a1c7960a1c7497c",
+  "mode": "ULTRA_PARALLEL_V2_EVOLUTION",
+  "required_reviews": [
+    {
+      "review_id": "REVIEW-20260930-ULTRA-PARALLEL-V2-001",
+      "result": "FIX_REQUIRED",
+      "finding": "Architecture is directionally sound, but closure evidence remains incomplete: actions_result is null and expected_state_verified is false. AI-C independently found the same closure gap. Keep specialty production non-blocking while AI-D supplies migration-bound Actions and expected-state evidence."
+    },
+    {
+      "review_id": "REVIEW-20260929-SELF-HEAL-001",
+      "result": "FIX_REQUIRED",
+      "finding": "AI-E architecture concern remains unresolved in canonical evidence: remediation policy/registry and executor authorization must not become independent mutation authorities. AI-D remains recovery owner; AI-E does not duplicate recovery."
+    }
+  ],
+  "major_work": {
+    "id": "ARCH-E-001",
+    "name": "Evidence-Gated Model Router and Abstention Layer",
+    "stage": "ARCHITECTURE_HYPOTHESIS",
+    "production_eligible": false,
+    "problem": "KMB can accumulate many challengers whose outputs are incomparable, sparsely validated, or valid only in specific data/regime conditions. A naive ensemble risks model proliferation, double-counting correlated evidence, and false confidence.",
+    "hypothesis": "A predeclared evidence-gated router that selects, combines, or abstains based on data availability, validation status, regime support and feature overlap can improve reliability and maintenance cost versus exposing every model output equally.",
+    "design": {
+      "inputs": [
+        "model_registry_status",
+        "validated_sample_count",
+        "point_in_time_data_availability",
+        "required_feature_availability",
+        "regime_support",
+        "calibration_status",
+        "provenance_status",
+        "feature_overlap_fingerprint",
+        "freshness"
+      ],
+      "routing_states": [
+        "INELIGIBLE",
+        "SHADOW_ONLY",
+        "ELIGIBLE_SINGLE",
+        "ELIGIBLE_COMPARE",
+        "ELIGIBLE_ENSEMBLE",
+        "ABSTAIN_UNKNOWN"
+      ],
+      "hard_gates": [
+        "production_eligible must be true before production routing",
+        "missing required point-in-time input => ABSTAIN_UNKNOWN",
+        "failed provenance/chronology audit => INELIGIBLE",
+        "sample/regime gate failure => SHADOW_ONLY or ABSTAIN_UNKNOWN",
+        "stale input beyond model contract => ABSTAIN_UNKNOWN"
+      ],
+      "anti_double_counting": [
+        "compute feature/evidence fingerprint overlap before ensemble",
+        "high-overlap challengers are compared, not blindly averaged",
+        "shared upstream evidence is represented once in confidence accounting"
+      ],
+      "candidate_models": [
+        "EXP-C-001 virtual_position_range_v0",
+        "EXP-E-003 Counterfactual Relative Response Matrix",
+        "future validated AI-E challengers"
+      ],
+      "current_expected_output": "ABSTAIN_UNKNOWN because current canonical validated sample counts are insufficient for production routing"
+    },
+    "comparison_experiment": {
+      "baselines": [
+        "show_all_model_outputs",
+        "single_best_model_by_validation_score",
+        "simple_equal_weight_ensemble"
+      ],
+      "primary_metrics": [
+        "out_of_sample_calibration",
+        "coverage_vs_abstention",
+        "incremental_information_after_costs",
+        "false_confidence_rate"
+      ],
+      "operational_metrics": [
+        "duplicate_evidence_rate",
+        "stale_model_exposure_rate",
+        "router_decision_explainability",
+        "maintenance_surface_area"
+      ]
+    },
+    "validation_handoff": {
+      "AI-C": [
+        "define frozen router score/gates before outcome labels",
+        "nested walk-forward so model selection does not leak validation results",
+        "calibration and coverage-vs-abstention curve",
+        "compare router against single-model and naive ensemble baselines",
+        "quantify correlated-feature/double-counting sensitivity"
+      ],
+      "AI-B": [
+        "audit provenance and as-of chronology of every routed model input",
+        "falsify confidence wording and causal overclaim",
+        "verify shared evidence is not counted as independent confirmation"
+      ],
+      "AI-D": [
+        "only when implementation begins: expose registry/freshness/provenance status as machine-readable router inputs",
+        "keep router failure fail-closed to ABSTAIN_UNKNOWN rather than stopping unrelated services"
+      ]
+    },
+    "kill_criteria": [
+      "router does not beat simple single-model selection on out-of-sample calibration or false-confidence rate",
+      "selection logic leaks validation/test outcomes",
+      "abstention removes so much coverage that practical utility collapses without reliability gain",
+      "feature-overlap control cannot prevent correlated evidence double counting",
+      "maintenance complexity exceeds measurable reliability benefit"
+    ],
+    "next_stage_gate": "Remain architecture hypothesis until at least two challengers have point-in-time validated samples; freeze routing rules before comparative labels and keep UNKNOWN as the default."
+  },
+  "small_works": [
+    {
+      "finding": "AI-C created EXP-C-003-VALIDATION-CONTRACT for EXP-E-003 at commit 59a8767a2255894ae57159fb7a1c7960a1c7497c.",
+      "impact": "EXP-E-003 now has a concrete validation design but still has sample_count=0 and UNKNOWN result; do not redesign the same fingerprint."
+    },
+    {
+      "finding": "Canonical experiment registry still contains only EXP-C-001 with sample_count=0 and production_eligible=false.",
+      "impact": "ARCH-E-001 must currently abstain; this is intentional, not a failure."
+    },
+    {
+      "finding": "AI-E state remains ACTIVE with authoritative runtime evidence but current_task/last_progress_at are null.",
+      "handoff": "AI-D observability queue; do not stop Evolution."
+    }
+  ],
+  "runtime_evidence": {
+    "repository_head_at_start": "59a8767a2255894ae57159fb7a1c7960a1c7497c",
+    "writer_lease": "FREE",
+    "ai_e_runtime_state": "ACTIVE"
+  },
+  "fingerprint": "evidence-gated-model-router-abstention-anti-double-counting-v1",
+  "no_work_reason": null
+}
