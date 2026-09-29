@@ -1,6 +1,6 @@
 {
   "schema_version": 3,
-  "mode": "FIVE_AI_CONTINUOUS_COLLABORATION",
+  "mode": "ULTRA_PARALLEL_EVOLUTION_V2",
   "canonical_writer": {
     "primary": "AI-D",
     "secondary": "AI-E",
@@ -20,21 +20,24 @@
     "incident-fingerprint",
     "known-fix-registry"
   ],
-  "updated_at": "2026-09-29T15:45:00+09:00",
+  "updated_at": "2026-09-30T01:39:00+09:00",
   "verification_mesh": {
     "enabled": true,
     "board": "data/ai/review-board.json",
-    "reviewers": [
-      "AI-A",
-      "AI-B",
-      "AI-C",
-      "AI-D",
-      "AI-E"
-    ],
-    "all_material_events_require_review": true,
+    "policy": "RISK_BASED_DYNAMIC_REVIEW",
+    "risk_requirements": {
+      "LOW": "owner+automated_tests",
+      "MEDIUM": "owner+1_specialist",
+      "HIGH": "owner+2_specialists",
+      "CRITICAL": "AI-A/B/C/D/E"
+    },
     "canonical_mutation": "WRITER_LEASE_ONLY",
-    "completion_rule": "ALL_FIVE_PASS_AND_EXTERNAL_EVIDENCE",
-    "local_findings": "ISOLATE_FIX_REVIEW_CONTINUE_INDEPENDENT_WORK"
+    "local_findings": "ASYNC_QUEUE_AND_CONTINUE_SPECIALTY_WORK",
+    "anti_patterns": [
+      "REVIEW_STORM",
+      "QUEUE_STORM",
+      "ROLE_STARVATION"
+    ]
   },
   "self_healing": {
     "enabled": true,
@@ -51,5 +54,18 @@
       "data/ai/remediation/error-signatures.json",
       "data/ai/remediation/prevention-registry.json"
     ]
+  },
+  "production_lines": {
+    "AI-A": "Discovery / Market Intelligence / Hypothesis Generator",
+    "AI-B": "Adversarial Audit / Falsification / Quality Control",
+    "AI-C": "Quant / Experiment / Statistical Validation",
+    "AI-D": "SRE / Recovery / Data Platform Guardian",
+    "AI-E": "Evolution / Challenger / New Architecture"
+  },
+  "run_policy": {
+    "specialty_target_pct": "70-85",
+    "support_target_pct": "15-30",
+    "goal": "1_MAJOR_PLUS_N_SMALL_WHILE_CAPACITY_REMAINS",
+    "no_work_reason_required": true
   }
 }
