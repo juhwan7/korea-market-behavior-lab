@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "agent": "AI-E",
+  "type": "CHALLENGER_HYPOTHESIS",
+  "created_at": "2026-09-30T05:49:23+09:00",
+  "base_sha": "d523b3313c5fc485774a5743bd097b6374fa6c88",
+  "major_work": {
+    "id": "EXP-E-003",
+    "name": "Counterfactual Relative Response Matrix",
+    "stage": "HYPOTHESIS",
+    "production_eligible": false,
+    "sample_count": 0,
+    "problem": "Raw price/turnover reactions confound stock-specific demand with market, sector, event and time-of-day effects.",
+    "hypothesis": "A matched-control counterfactual residual response can separate stock-specific absorption/continuation from common-factor moves better than raw relative strength or turnover alone.",
+    "design": {
+      "event_anchors": [
+        "breakout",
+        "large_negative_bar",
+        "large_positive_bar",
+        "VWAP_reclaim",
+        "high_turnover_stall"
+      ],
+      "matched_controls": [
+        "same_sector",
+        "similar_market_cap_bucket",
+        "similar_intraday_volatility",
+        "similar_turnover_bucket",
+        "same_time_of_day"
+      ],
+      "outputs": [
+        "residual_return_path",
+        "residual_VWAP_recovery_latency",
+        "residual_drawdown",
+        "residual_acceptance_time",
+        "control_match_quality",
+        "UNKNOWN_when_match_quality_insufficient"
+      ],
+      "prohibited_claims": [
+        "specific_actor_inventory",
+        "specific_actor_intent",
+        "manipulation_without_evidence"
+      ]
+    },
+    "baselines": [
+      "raw_relative_strength",
+      "turnover_only",
+      "volume_price_progress",
+      "virtual_position_range_v0",
+      "EXP-E-002-liquidity-response-surface"
+    ],
+    "validation_handoff": {
+      "AI-C": [
+        "date-ordered walk-forward",
+        "purge/embargo overlapping labels",
+        "matched-control balance diagnostics",
+        "bootstrap confidence intervals",
+        "regime segmentation",
+        "ablation by control dimension",
+        "incremental value versus baselines"
+      ],
+      "AI-B": [
+        "as-of chronology audit",
+        "primary-source provenance audit",
+        "counterfactual overclaim falsification",
+        "news/event contamination review"
+      ],
+      "AI-D": [
+        "only if data pipeline needs point-in-time peer snapshots; do not block hypothesis work"
+      ]
+    },
+    "kill_criteria": [
+      "no out-of-sample incremental value over raw relative strength",
+      "match quality unstable or sparse",
+      "effect disappears after market/sector/time-of-day controls",
+      "material look-ahead leakage",
+      "regime sign instability without explainable segmentation"
+    ],
+    "next_stage_gate": "Register only after dedupe and evidence contract review; SHADOW requires historical point-in-time samples and AI-C validation."
+  },
+  "small_works": [
+    {
+      "finding": "Experiment registry still contains only EXP-C-001; prior AI-E challengers are candidates, not canonical SHADOW experiments.",
+      "action": "Do not mislabel them as validated or production-ready."
+    },
+    {
+      "finding": "AI-E agent runtime evidence was reconciled on latest main, but current_task/last_progress_at remain null.",
+      "handoff": "AI-D observability queue; not a reason to stop Evolution."
+    },
+    {
+      "finding": "SELF-HEAL-001 remains AI-E-required and owned by AI-D.",
+      "action": "Do not duplicate canonical recovery; retain architecture concern about executor authorization until owner resolves it."
+    }
+  ],
+  "fingerprint": "counterfactual-relative-response-matched-controls-v1",
+  "no_work_reason": null
+}
