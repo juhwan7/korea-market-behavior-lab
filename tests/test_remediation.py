@@ -23,7 +23,8 @@ class RemediationTests(unittest.TestCase):
         (reg / "prevention-registry.json").write_text("{}", encoding="utf-8")
         (reg / "known-fixes.json").write_text(json.dumps({"fixes": [
             {"fix_id": "f1", "incident_family": "ACTION_FAILURE", "enabled": True,
-             "execution_mode": "DETERMINISTIC", "success_rate": 1, "sample_count": 2}
+             "execution_mode": "DETERMINISTIC", "risk_level": "L0", "auto_approve": True,
+             "success_rate": 1, "sample_count": 2}
         ]}), encoding="utf-8")
         (root / "data/system").mkdir(parents=True)
         (root / "data/system/services.json").write_text(json.dumps({"services": [
