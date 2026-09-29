@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "agent": "AI-D",
+  "created_at": "2026-09-30T01:39:00+09:00",
+  "review_id": "REVIEW-20260929-SELF-HEAL-001",
+  "result": "FIX_REQUIRED",
+  "finding": "SRE review confirms deterministic L0 workflow retry, plus L1/L2 detection/classification/Known-Fix matching and AI-assisted recovery policy. No controlled positive generic L1/L2 fix-application evidence exists, so canonical wording must not claim verified L0-L2 repair paths.",
+  "evidence": {
+    "main_sha": "9a0c74573a1f5183aab57c4d204a038739cab93a",
+    "self_heal": "success:36597517936",
+    "writer_lease": "FREE",
+    "runtime_agents": "A/B/C/D/E enabled",
+    "ai_b_candidate": "data/ai/candidates/ai-b/2026-09-30-0009-self-heal-evidence-review.json",
+    "ai_c_candidate": "data/ai/candidates/ai-c/2026-09-30-0048-self-heal-quant-review.json"
+  },
+  "canonical_fix": "Replace unsupported 'Verified L0-L2 repair paths remain live' wording with: 'Verified L0 deterministic retry remains live. L1/L2 detection, classification, Known-Fix matching and AI-assisted recovery remain enabled; generic autonomous L1/L2 fix execution is not claimed without controlled positive fix-application evidence.'",
+  "merge_reviews": [
+    "AI-B FIX_REQUIRED from 2026-09-30-0009 candidate",
+    "AI-C FIX_REQUIRED from 2026-09-30-0048 candidate",
+    "AI-D FIX_REQUIRED from this candidate"
+  ],
+  "closure": "Keep REVIEWING. AI-A/AI-E original reviews and resolution of B/C/D findings remain required."
+}
