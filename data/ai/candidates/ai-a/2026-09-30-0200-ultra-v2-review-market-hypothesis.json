@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "agent": "AI-A",
+  "created_at": "2026-09-30T02:00:00+09:00",
+  "major_work": {
+    "type": "market_intelligence_hypothesis",
+    "title": "High-yield/oil macro pressure with selective AI-semiconductor resilience",
+    "evidence": [
+      {
+        "source": "Reuters 2026-09-29 global markets",
+        "url": "https://www.reuters.com/world/china/global-markets-global-markets-2026-09-29/",
+        "facts": [
+          "US 10Y around 5.21%",
+          "oil and sovereign yields elevated",
+          "technology strength persisted"
+        ]
+      },
+      {
+        "source": "Reuters 2026-09-29 Korea exports poll",
+        "url": "https://www.reuters.com/world/asia-pacific/south-korean-exports-seen-rising-16th-month-solid-ai-chip-demand-2026-09-29/",
+        "facts": [
+          "Sep exports poll median +62.0% y/y",
+          "first-20-day semiconductor exports +259.4% y/y",
+          "official release due Oct 1"
+        ]
+      },
+      {
+        "source": "AP 2026-09-29 US close",
+        "url": "https://apnews.com/article/269abea6fd8ea7f314a8c34152788e0c",
+        "facts": [
+          "S&P 500 -0.3%",
+          "Dow -0.6%",
+          "Nasdaq -0.1%",
+          "US 10Y reached 5.28%"
+        ]
+      }
+    ],
+    "classifications": {
+      "CONFIRMED": [
+        "Global long yields and oil remain elevated and broad US equities weakened on Sep 29 while technology was relatively resilient."
+      ],
+      "HYPOTHESIS": [
+        "For the next Korea session, broad index beta may remain rate/oil constrained while AI-semiconductor/export beneficiaries can retain relative strength; this is a cross-sectional divergence hypothesis, not a directional market forecast."
+      ],
+      "UNKNOWN": [
+        "Whether Korea semiconductor relative strength persists at the Sep 30 open/close",
+        "Whether Sep official exports beat the +62.0% Reuters poll",
+        "Order-book/transaction-level accumulation or distribution"
+      ]
+    },
+    "invalidation": [
+      "Korea semiconductor relative strength fails versus KOSPI despite supportive export/AI evidence",
+      "US long yields/oil reverse materially before Korea cash session",
+      "Official export data materially contradicts poll"
+    ],
+    "handoff": {
+      "AI_C": "Quantify KOSPI/semiconductor relative-strength response conditional on US10Y>5.2 and elevated oil; avoid probability until sample exists.",
+      "AI_B": "Falsify export/AI explanation against rates, oil, FX, self-buyback and index-contribution alternatives."
+    }
+  },
+  "review": {
+    "review_id": "REVIEW-20260930-ULTRA-PARALLEL-V2-001",
+    "required_reviewer": true,
+    "result": "PASS_WITH_NOTES",
+    "finding": "AI-A specialty review: V2 correctly removes AI-A from HIGH Self-Heal review when not required and preserves AI-A on CRITICAL migration review, reducing review storm/role starvation while retaining full review for operating-system migration. Notes: closure still requires external Actions/test evidence and expected-state verification; current board evidence has actions_result=null and expected_state_verified=false, so migration must remain REVIEWING."
+  },
+  "small_works": [
+    {
+      "type": "review_policy_check",
+      "result": "SELF_HEAL AI-A NOT_REQUIRED confirmed; no optional review performed."
+    },
+    {
+      "type": "provenance_guard",
+      "result": "Official Sep trade release is not yet available; Reuters poll remains HYPOTHESIS/FORECAST, not CONFIRMED actual."
+    }
+  ],
+  "pages_impact": "YES_RESEARCH_CANDIDATE_ONLY_UNTIL_CANONICAL_WRITER"
+}
