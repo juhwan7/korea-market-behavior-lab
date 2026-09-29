@@ -46,7 +46,7 @@ class BlockingHandoffTests(unittest.TestCase):
                 75,
             )
             self.assertEqual(result["classification"], "HEALTHY")
-            self.assertEqual(result["stale_agents"], [])
+            self.assertEqual(result["stale_evidence_agents"], [])
             self.assertEqual(result["missing_agents"], [])
 
     def test_ai_heartbeat_marks_only_actual_stale_agent(self):
@@ -64,8 +64,29 @@ class BlockingHandoffTests(unittest.TestCase):
                 datetime(2026, 9, 29, 7, 30, tzinfo=timezone.utc),
                 75,
             )
-            self.assertEqual(result["classification"], "STALE")
-            self.assertEqual(result["stale_agents"], ["AI-A"])
+            self.assertEqual(result["classification"], "OBSERVABILITY_STALE")
+            self.assertEqual(result["stale_evidence_agents"], ["AI-A"])
+
+    def test_runtime_evidence_can_be_newer_than_heartbeat(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "data/ai/agents").mkdir(parents=True)
+            for agent in ("ai-a", "ai-b", "ai-c", "ai-d", "ai-e"):
+                (root / f"data/ai/agents/{agent}.json").write_text(
+                    json.dumps({
+                        "heartbeat_at": "2026-09-29T05:00:00Z",
+                        "runtime_evidence": {"last_run_time": "2026-09-29T07:20:00Z"},
+                    }),
+                    encoding="utf-8",
+                )
+            result = derive_ai_heartbeat(
+                root,
+                datetime(2026, 9, 29, 7, 30, tzinfo=timezone.utc),
+                75,
+            )
+            self.assertEqual(result["classification"], "HEALTHY")
+            self.assertEqual(result["stale_evidence_agents"], [])
+            self.assertIn("scheduler runtime", result["evidence_source"])
 
     def test_blocked_handoff_stops_dependent_progression(self):
         self.assertTrue(is_blocking_handoff({"status": "BLOCKED_BY_EXTERNAL_WRITE_GUARD"}))
