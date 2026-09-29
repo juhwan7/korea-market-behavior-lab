@@ -3,8 +3,8 @@
   "agent": "AI-C",
   "target": "src/kmb_lab/quant.py",
   "candidate_path": "data/ai/candidates/ai-c/quant-provenance-gate/quant.py",
-  "base_sha": "8b61180fbc936e39ef514a8d7a43f316952e0386",
-  "change_type": "replace",
+  "base_sha": "396a9a2c8510d6fec0877b8999f5c116d7525b8c",
+  "change_type": "modify",
   "reason": "FIX_REQUIRED: confirmed quant input must enforce existing primary-source provenance chronology validator",
   "dependencies": [
     "quant-input-gate",
@@ -15,6 +15,6 @@
     "full unit suite",
     "JSON/JSONL validation"
   ],
-  "rollback": "Restore previous src/kmb_lab/quant.py blob if regression is detected",
+  "rollback": "Restore previous target blob if regression is detected",
   "status": "READY"
 }
