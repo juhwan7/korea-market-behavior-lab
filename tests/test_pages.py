@@ -1,10 +1,11 @@
 import json
 import tempfile
 import unittest
+from unittest.mock import patch
 from datetime import datetime, timezone
 from pathlib import Path
 
-from kmb_lab.pages import derive_agent_health, is_material_path, material_fingerprint
+from kmb_lab.pages import CORE_SECTION_MARKERS, derive_agent_health, is_material_path, material_fingerprint, verify_live
 
 
 class PagesTests(unittest.TestCase):
@@ -43,6 +44,35 @@ class PagesTests(unittest.TestCase):
             after = material_fingerprint(root)
             self.assertNotEqual(before, after)
 
+    def test_verify_live_requires_fingerprint_and_core_sections(self):
+        sha = "a" * 40
+        fingerprint = "f" * 64
+        page = sha + fingerprint + "".join(
+            f' data-kmb-section="{marker}"' for marker in CORE_SECTION_MARKERS
+        )
+        with patch("kmb_lab.pages.material_fingerprint", return_value=fingerprint), \
+             patch("kmb_lab.pages.fetch_url_json", return_value={
+                 "source_commit": sha,
+                 "generated_at": "2026-09-29T12:00:00+09:00",
+                 "material_fingerprint": fingerprint,
+             }), \
+             patch("kmb_lab.pages.fetch_url_text", return_value=page):
+            result = verify_live("https://example.invalid/", sha, 1, 0)
+        self.assertEqual(result["status"], "LIVE")
+        self.assertEqual(result["material_fingerprint"], fingerprint)
+        self.assertEqual(result["core_sections"], "OK")
+
+    def test_verify_live_rejects_wrong_fingerprint(self):
+        sha = "b" * 40
+        with patch("kmb_lab.pages.material_fingerprint", return_value="expected"), \
+             patch("kmb_lab.pages.fetch_url_json", return_value={
+                 "source_commit": sha,
+                 "generated_at": "2026-09-29T12:00:00+09:00",
+                 "material_fingerprint": "wrong",
+             }), \
+             patch("kmb_lab.pages.fetch_url_text", return_value=sha):
+            with self.assertRaises(SystemExit):
+                verify_live("https://example.invalid/", sha, 1, 0)
 
 if __name__ == "__main__":
     unittest.main()

@@ -5,24 +5,6 @@ on:
     - cron: "*/10 * * * *"
   push:
     branches: [main]
-    paths:
-      - "web/**"
-      - "data/ai/CURRENT_BRIEFING.md"
-      - "data/ai/agents/**"
-      - "data/ai/review-board.json"
-      - "data/ai/recovery-queue.json"
-      - "data/ai/task-board.json"
-      - "data/ai/events.jsonl"
-      - "data/system/**"
-      - "data/market/**"
-      - "data/news/**"
-      - "data/discovery/**"
-      - "data/research/**"
-      - "data/audits/**"
-      - "data/experiments/**"
-      - "src/kmb_lab/pages.py"
-      - "tests/test_pages.py"
-      - ".github/workflows/pages.yml"
 
 permissions:
   contents: read
@@ -57,16 +39,35 @@ jobs:
       - name: Validate shared AI memory
         run: PYTHONPATH=src python -m kmb_lab.memory --strict
 
-      - name: Decide whether scheduled run needs deploy
+      - name: Decide whether this run needs a Pages deploy
         id: material
         env:
           EVENT_NAME: ${{ github.event_name }}
+          BEFORE_SHA: ${{ github.event.before }}
         run: |
-          if [ "$EVENT_NAME" = "schedule" ]; then
-            SHOULD_DEPLOY="$(PYTHONPATH=src python -m kmb_lab.pages should-deploy --source-commit "$GITHUB_SHA" | tail -n 1)"
-          else
+          set -eu
+          SHOULD_DEPLOY=false
+
+          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
             SHOULD_DEPLOY=true
+          else
+            if [ "$(PYTHONPATH=src python -m kmb_lab.pages should-deploy --source-commit "$GITHUB_SHA" | tail -n 1)" = "true" ]; then
+              SHOULD_DEPLOY=true
+            fi
           fi
+
+          if [ "$EVENT_NAME" = "push" ] && [ "$SHOULD_DEPLOY" != "true" ]; then
+            if [ -n "${BEFORE_SHA:-}" ] && [ "$BEFORE_SHA" != "0000000000000000000000000000000000000000" ]; then
+              CHANGED="$(git diff --name-only "$BEFORE_SHA" "$GITHUB_SHA")"
+            else
+              CHANGED="$(git show --pretty="" --name-only "$GITHUB_SHA")"
+            fi
+            printf '%s\n' "$CHANGED"
+            if printf '%s\n' "$CHANGED" | grep -Eq '^(web/|src/kmb_lab/pages\.py$|tests/test_pages\.py$|\.github/workflows/pages\.yml$)'; then
+              SHOULD_DEPLOY=true
+            fi
+          fi
+
           echo "should_deploy=$SHOULD_DEPLOY" >> "$GITHUB_OUTPUT"
           echo "Pages deploy required: $SHOULD_DEPLOY"
 
@@ -85,7 +86,7 @@ jobs:
           assert status["source_commit"]
           assert status["generated_at"]
           assert status["material_fingerprint"]
-          print(status["source_commit"], status["generated_at"])
+          print(status["source_commit"], status["generated_at"], status["material_fingerprint"])
           PY
 
       - uses: actions/configure-pages@v5
@@ -110,6 +111,6 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Verify public Pages source commit and timestamp
+      - name: Verify public Pages source, timestamp, fingerprint and core sections
         run: |
           PYTHONPATH=src python -m kmb_lab.pages verify-live --url "${{ steps.deployment.outputs.page_url }}" --source-commit "$GITHUB_SHA" --attempts 12 --sleep-seconds 5

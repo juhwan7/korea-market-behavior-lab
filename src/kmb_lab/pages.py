@@ -17,6 +17,7 @@ KST = timezone(timedelta(hours=9))
 AGENTS = ("AI-A", "AI-B", "AI-C", "AI-D", "AI-E")
 AGENT_FRESHNESS_MINUTES = 60
 DEFAULT_PAGES_URL = "https://juhwan7.github.io/korea-market-behavior-lab/"
+CORE_SECTION_MARKERS = ("overview", "market", "agent-health", "activity", "review", "recovery", "actions", "research", "experiments")
 
 MATERIAL_EXACT = {
     "data/ai/CURRENT_BRIEFING.md",
@@ -434,23 +435,23 @@ def render_html(model: dict[str, Any]) -> str:
     source_short = str(model["source_commit"])[:12]
     return f"""<!doctype html>
 <html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="kmb-source-commit" content="{esc(model['source_commit'])}"><meta name="kmb-generated-at" content="{esc(model['generated_at'])}">
+<meta name="kmb-source-commit" content="{esc(model['source_commit'])}"><meta name="kmb-generated-at" content="{esc(model['generated_at'])}"><meta name="kmb-material-fingerprint" content="{esc(model['material_fingerprint'])}">
 <title>KMB · Korea Market Behavior Lab</title>
 <style>
 :root{{--bg:#f4f6f8;--card:#fff;--line:#e5e7eb;--text:#111827;--muted:#64748b;--ok:#0f766e;--okbg:#ecfdf5;--warn:#a16207;--warnbg:#fffbeb;--bad:#b91c1c;--badbg:#fef2f2}}
 *{{box-sizing:border-box}}body{{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}}main{{max-width:1240px;margin:auto;padding:20px}}header{{position:sticky;top:0;z-index:3;background:rgba(244,246,248,.94);backdrop-filter:blur(12px);padding:14px 0 10px;border-bottom:1px solid var(--line);margin-bottom:18px}}h1{{font-size:clamp(24px,4vw,38px);margin:6px 0}}h2{{margin:30px 0 12px;font-size:20px}}h3{{margin:0 0 10px;font-size:15px}}p,li{{line-height:1.55}}small{{display:block;color:var(--muted);margin-top:4px}}ul{{padding-left:20px;margin:8px 0}}.meta{{display:flex;gap:8px;flex-wrap:wrap;color:var(--muted);font-size:13px}}.grid{{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}}.metric-grid{{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}}.card,.metric,.activity{{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}}.metric span{{display:block;color:var(--muted);font-size:12px;margin-bottom:7px}}.metric strong{{display:block;overflow-wrap:anywhere}}.badge{{display:inline-block;padding:4px 8px;border-radius:999px;font-size:11px;font-weight:700;background:#f1f5f9;color:#475569;margin:2px}}.badge.ok{{background:var(--okbg);color:var(--ok)}}.badge.warn{{background:var(--warnbg);color:var(--warn)}}.badge.bad{{background:var(--badbg);color:var(--bad)}}.badge.muted{{background:#f1f5f9;color:#64748b}}.table-wrap{{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:auto}}table{{width:100%;border-collapse:collapse;min-width:820px}}th,td{{padding:12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top;font-size:13px}}th{{background:#f8fafc}}details{{margin-bottom:10px}}summary{{cursor:pointer;line-height:1.5}}.activity summary{{display:grid;grid-template-columns:170px 70px 1fr;gap:8px}}pre{{white-space:pre-wrap;overflow-wrap:anywhere;background:#f8fafc;padding:12px;border-radius:10px;font-size:12px}}.empty,.section-note{{color:var(--muted)}}.section-note{{font-size:13px;margin-top:-6px}}.mobile-health{{display:none}}
 @media(max-width:860px){{.grid{{grid-template-columns:1fr 1fr}}.metric-grid{{grid-template-columns:1fr 1fr}}}}@media(max-width:640px){{main{{padding:12px}}header{{position:static}}.grid,.metric-grid{{grid-template-columns:1fr}}.table-wrap{{display:none}}.mobile-health{{display:block}}.activity summary{{grid-template-columns:1fr}}.card,.metric,.activity{{padding:14px}}}}
 </style></head>
-<body data-source-commit="{esc(model['source_commit'])}"><main><header><div class="meta"><span class="badge ok">{esc(model['freshness']['label'])}</span><span>Updated {esc(model['generated_at'])}</span><span>Source {esc(source_short)}</span></div><h1>Korea Market Behavior Lab</h1><p>시장 상태와 5-AI 운영 상태를 같은 화면에서 확인하는 운영 대시보드. 없는 데이터는 생성하지 않고 UNKNOWN/MISSING으로 표시합니다.</p></header>
-<h2>지금 핵심</h2><div class="grid">{briefing_html}</div>
-<h2>시장 상태</h2><p class="section-note">시장 canonical data가 아직 연결되지 않은 항목은 NOT COLLECTED/UNKNOWN입니다.</p><div class="metric-grid">{market_html}</div>
-<h2>5-AI Health Matrix</h2><p class="section-note">repository의 ACTIVE 문자열보다 heartbeat/output 증거를 우선합니다. per-agent workflow가 매핑되지 않으면 UNMAPPED입니다.</p><div class="table-wrap"><table><thead><tr><th>Agent</th><th>Status</th><th>Execution</th><th>Heartbeat</th><th>Output</th><th>Workflow</th><th>Queue</th><th>Recovery</th></tr></thead><tbody>{''.join(agent_rows)}</tbody></table></div><div class="mobile-health">{agent_details}</div>
-<h2>최근 AI 활동</h2>{activity_html}
-<h2>Five-AI Review Mesh</h2>{review_html}
-<h2>Recovery</h2>{recovery_html}
-<h2>GitHub Actions</h2><div class="grid">{workflow_html}</div>
-<h2>Research</h2>{research_html}
-<h2>Experiments</h2>{exp_html}
+<body data-source-commit="{esc(model['source_commit'])}" data-material-fingerprint="{esc(model['material_fingerprint'])}"><main><header><div class="meta"><span class="badge ok">{esc(model['freshness']['label'])}</span><span>Updated {esc(model['generated_at'])}</span><span>Source {esc(source_short)}</span></div><h1>Korea Market Behavior Lab</h1><p>시장 상태와 5-AI 운영 상태를 같은 화면에서 확인하는 운영 대시보드. 없는 데이터는 생성하지 않고 UNKNOWN/MISSING으로 표시합니다.</p></header>
+<h2 data-kmb-section="overview">지금 핵심</h2><div class="grid">{briefing_html}</div>
+<h2 data-kmb-section="market">시장 상태</h2><p class="section-note">시장 canonical data가 아직 연결되지 않은 항목은 NOT COLLECTED/UNKNOWN입니다.</p><div class="metric-grid">{market_html}</div>
+<h2 data-kmb-section="agent-health">5-AI Health Matrix</h2><p class="section-note">repository의 ACTIVE 문자열보다 heartbeat/output 증거를 우선합니다. per-agent workflow가 매핑되지 않으면 UNMAPPED입니다.</p><div class="table-wrap"><table><thead><tr><th>Agent</th><th>Status</th><th>Execution</th><th>Heartbeat</th><th>Output</th><th>Workflow</th><th>Queue</th><th>Recovery</th></tr></thead><tbody>{''.join(agent_rows)}</tbody></table></div><div class="mobile-health">{agent_details}</div>
+<h2 data-kmb-section="activity">최근 AI 활동</h2>{activity_html}
+<h2 data-kmb-section="review">Five-AI Review Mesh</h2>{review_html}
+<h2 data-kmb-section="recovery">Recovery</h2>{recovery_html}
+<h2 data-kmb-section="actions">GitHub Actions</h2><div class="grid">{workflow_html}</div>
+<h2 data-kmb-section="research">Research</h2>{research_html}
+<h2 data-kmb-section="experiments">Experiments</h2>{exp_html}
 <footer class="meta" style="margin:30px 0 12px">Generated from canonical repository data · material fingerprint {esc(model['material_fingerprint'][:16])}</footer>
 </main></body></html>"""
 
@@ -494,6 +495,7 @@ def inspect_live_pages(live_url: str, root: Path = ROOT, source_commit: str | No
 
 def verify_live(live_url: str, source_commit: str, attempts: int, sleep_seconds: float) -> dict[str, Any]:
     base = live_url.rstrip("/") + "/"
+    expected_fingerprint = material_fingerprint(ROOT)
     last_error = "not checked"
     for attempt in range(1, max(1, attempts) + 1):
         try:
@@ -503,9 +505,28 @@ def verify_live(live_url: str, source_commit: str, attempts: int, sleep_seconds:
                 raise RuntimeError(f"status.json source_commit={status.get('source_commit')} expected={source_commit}")
             if not status.get("generated_at"):
                 raise RuntimeError("status.json generated_at missing")
+            if status.get("material_fingerprint") != expected_fingerprint:
+                raise RuntimeError(
+                    f"status.json material_fingerprint={status.get('material_fingerprint')} expected={expected_fingerprint}"
+                )
             if source_commit not in page:
                 raise RuntimeError("index.html does not expose expected source commit")
-            result = {"status": "LIVE", "source_commit": status.get("source_commit"), "generated_at": status.get("generated_at"), "attempt": attempt}
+            if expected_fingerprint not in page:
+                raise RuntimeError("index.html does not expose expected material fingerprint")
+            missing_sections = [
+                marker for marker in CORE_SECTION_MARKERS
+                if f'data-kmb-section="{marker}"' not in page
+            ]
+            if missing_sections:
+                raise RuntimeError("index.html missing core sections: " + ",".join(missing_sections))
+            result = {
+                "status": "LIVE",
+                "source_commit": status.get("source_commit"),
+                "generated_at": status.get("generated_at"),
+                "material_fingerprint": status.get("material_fingerprint"),
+                "core_sections": "OK",
+                "attempt": attempt,
+            }
             print(json.dumps(result, ensure_ascii=False))
             return result
         except Exception as exc:
@@ -513,7 +534,6 @@ def verify_live(live_url: str, source_commit: str, attempts: int, sleep_seconds:
             if attempt < attempts:
                 time.sleep(max(0.0, sleep_seconds))
     raise SystemExit(f"live Pages verification failed: {last_error}")
-
 
 def git_head() -> str:
     if os.environ.get("GITHUB_SHA"):
