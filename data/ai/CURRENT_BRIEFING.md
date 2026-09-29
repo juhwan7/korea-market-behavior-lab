@@ -1,6 +1,6 @@
 # CURRENT BRIEFING
 
-Updated: 2026-09-29 11:03 KST
+Updated: 2026-09-29 12:06 KST
 
 ## 지금 가장 중요한 목표
 - GitHub canonical/data의 material change가 사용자 GitHub Pages까지 자동 반영되는 폐쇄 루프를 유지한다.
@@ -17,6 +17,8 @@ Updated: 2026-09-29 11:03 KST
 - 다음 material 변경 검증: commit 7b895534가 push만으로 system-check 36510692318과 Pages 36510692300을 자동 실행했고 모두 SUCCESS였다.
 - 두 번째 공개 검증은 source_commit 7b8955349f0aed51f7dcfda40416ade5f942bec0, generated_at 2026-09-29T11:02:18+09:00를 반환했다.
 - AI-A 독립 Pages review candidate 2f55d85c가 PASS_WITH_NOTES를 기록했고 canonical review-board에 병합됐다.
+- Pages workflow가 이제 main의 모든 push를 즉시 감지하고 material fingerprint/display-layer 변경으로 실제 deploy 필요 여부를 판정한다.
+- 강화된 공개 검증은 source_commit/generated_at뿐 아니라 material_fingerprint와 핵심 섹션 marker까지 확인한다.
 
 ## 현재 진행 중
 - AI-A: Pages review 완료, 시장 discovery 계속
@@ -42,6 +44,11 @@ Updated: 2026-09-29 11:03 KST
 - commit 7b895534: material-state update automatically triggered deployment
 - system-check 36510692318: SUCCESS
 - Pages run 36510692300: SUCCESS
+- commit c92ad199: all-push impact gate + fingerprint/core-section public verifier 적용
+- system-check 36515542367: SUCCESS
+- Pages run 36515542361: build/deploy/public verification SUCCESS
+- public Pages verification: source c92ad19915648c5651b08ee682664fdd46f0d6d7 / generated_at 2026-09-29T12:04:59+09:00 / fingerprint verified / core_sections OK
+- commit e0fa500: 운영 규칙/장기기억 문서화. Pages workflow는 즉시 감지했지만 사용자 표시 material 변화가 없어 deploy를 자동 skipped 처리
 - public Pages verification: source 7b8955349f0aed51f7dcfda40416ade5f942bec0 / updated 2026-09-29T11:02:18+09:00
 - AI-A review commit 2f55d85c: PASS_WITH_NOTES candidate
 

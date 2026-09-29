@@ -1,40 +1,155 @@
 {
   "schema_version": 1,
   "mode": "FIVE_AI_REVIEW_MESH",
-  "updated_at": "2026-09-29T11:03:00+09:00",
+  "updated_at": "2026-09-29T12:06:00+09:00",
   "policy": {
-    "reviewers":["AI-A","AI-B","AI-C","AI-D","AI-E"],
-    "material_events":["new_task","code_change","data_change","model_change","research_claim","workflow_change","incident","recovery","production_promotion"],
-    "each_agent_must_review":true,"same_file_parallel_write":false,"canonical_changes_use_writer_lease":true,"local_problem_does_not_stop_independent_work":true,
-    "fallback_when_agent_unavailable":{"enabled":true,"rule":"secondary/fallback temporarily covers the missing review role; original agent backfills review when it returns","must_record_substitution":true},
-    "closure_gate":{"require_all_review_roles_covered":true,"require_owner_resolution_of_open_findings":true,"require_external_evidence_for_completion":true,"evidence":["commit_sha","actions_result","expected_file_or_state"]}
+    "reviewers": [
+      "AI-A",
+      "AI-B",
+      "AI-C",
+      "AI-D",
+      "AI-E"
+    ],
+    "material_events": [
+      "new_task",
+      "code_change",
+      "data_change",
+      "model_change",
+      "research_claim",
+      "workflow_change",
+      "incident",
+      "recovery",
+      "production_promotion"
+    ],
+    "each_agent_must_review": true,
+    "same_file_parallel_write": false,
+    "canonical_changes_use_writer_lease": true,
+    "local_problem_does_not_stop_independent_work": true,
+    "fallback_when_agent_unavailable": {
+      "enabled": true,
+      "rule": "secondary/fallback temporarily covers the missing review role; original agent backfills review when it returns",
+      "must_record_substitution": true
+    },
+    "closure_gate": {
+      "require_all_review_roles_covered": true,
+      "require_owner_resolution_of_open_findings": true,
+      "require_external_evidence_for_completion": true,
+      "evidence": [
+        "commit_sha",
+        "actions_result",
+        "expected_file_or_state"
+      ]
+    }
   },
-  "items":[
+  "items": [
     {
-      "review_id":"REVIEW-20260929-FIVE-AI-MESH-001","event_type":"workflow_change","title":"Five-AI automatic verification and recovery mesh","owner":"AI-D","recovery_owner":"AI-D","status":"REVIEWING",
-      "affected_dependencies":["shared-memory","automation-prompts","review-mesh","canonical-writer"],"created_at":"2026-09-29T00:51:00+09:00",
-      "reviews":{
-        "AI-A":{"result":"PASS_WITH_NOTES","finding":"AI-A market/data/discovery review: the mesh policy preserves independent discovery during LOCAL failures and requires evidence states plus external completion evidence. No market-data corruption path was found in the reviewed contract. Note: AI-A cannot independently prove scheduled automation runtime state from repository files alone; runtime evidence must remain authoritative where available.","reviewed_at":"2026-09-29T10:57:22+09:00","source_candidate":"data/ai/candidates/ai-a/2026-09-29-pages-review-and-open-discovery.json"},
-        "AI-B":{"result":"PENDING","finding":null,"reviewed_at":null},
-        "AI-C":{"result":"PENDING","finding":null,"reviewed_at":null},
-        "AI-D":{"result":"PASS_WITH_NOTES","finding":"Review mesh files, tests, automation prompts and enabled states verified; system-check run 36447230276 succeeded. Awaiting independent A/B/C/E reviews before closure.","reviewed_at":"2026-09-29T00:55:27+09:00"},
-        "AI-E":{"result":"PENDING","finding":null,"reviewed_at":null}
+      "review_id": "REVIEW-20260929-FIVE-AI-MESH-001",
+      "event_type": "workflow_change",
+      "title": "Five-AI automatic verification and recovery mesh",
+      "owner": "AI-D",
+      "recovery_owner": "AI-D",
+      "status": "REVIEWING",
+      "affected_dependencies": [
+        "shared-memory",
+        "automation-prompts",
+        "review-mesh",
+        "canonical-writer"
+      ],
+      "created_at": "2026-09-29T00:51:00+09:00",
+      "reviews": {
+        "AI-A": {
+          "result": "PASS_WITH_NOTES",
+          "finding": "AI-A market/data/discovery review: the mesh policy preserves independent discovery during LOCAL failures and requires evidence states plus external completion evidence. No market-data corruption path was found in the reviewed contract. Note: AI-A cannot independently prove scheduled automation runtime state from repository files alone; runtime evidence must remain authoritative where available.",
+          "reviewed_at": "2026-09-29T10:57:22+09:00",
+          "source_candidate": "data/ai/candidates/ai-a/2026-09-29-pages-review-and-open-discovery.json"
+        },
+        "AI-B": {
+          "result": "PENDING",
+          "finding": null,
+          "reviewed_at": null
+        },
+        "AI-C": {
+          "result": "PENDING",
+          "finding": null,
+          "reviewed_at": null
+        },
+        "AI-D": {
+          "result": "PASS_WITH_NOTES",
+          "finding": "Review mesh files, tests, automation prompts and enabled states verified; system-check run 36447230276 succeeded. Awaiting independent A/B/C/E reviews before closure.",
+          "reviewed_at": "2026-09-29T00:55:27+09:00"
+        },
+        "AI-E": {
+          "result": "PENDING",
+          "finding": null,
+          "reviewed_at": null
+        }
       },
-      "evidence":{"commit_sha":"dc1e2b7c2aacd5f0118345f9eed90cedf73e459c","actions_result":"success:36447230276","expected_state_verified":true},
-      "next_action":"AI-B/C/E perform independent specialty reviews. Any FIX_REQUIRED becomes recovery work; close only after all five reviews pass."
+      "evidence": {
+        "commit_sha": "dc1e2b7c2aacd5f0118345f9eed90cedf73e459c",
+        "actions_result": "success:36447230276",
+        "expected_state_verified": true
+      },
+      "next_action": "AI-B/C/E perform independent specialty reviews. Any FIX_REQUIRED becomes recovery work; close only after all five reviews pass."
     },
     {
-      "review_id":"REVIEW-20260929-PAGES-CLOSED-LOOP-001","event_type":"workflow_change","title":"GitHub Pages canonical-data closed loop and stale-page recovery","owner":"AI-D","recovery_owner":"AI-D","status":"REVIEWING",
-      "affected_dependencies":["github-pages","pages-generator","health-matrix","review-mesh","recovery","system-check"],"created_at":"2026-09-29T10:40:00+09:00",
-      "reviews":{
-        "AI-A":{"result":"PASS_WITH_NOTES","finding":"AI-A market/data/discovery review: pages.yml now watches material market/news/discovery/research/AI state paths, runs tests and shared-memory validation, generates web output, deploys Pages, then verifies the public source commit/timestamp. Pages run 36510140367 completed build+deploy+public verification successfully for main a212c4fa9ecaa08d889d3583f0cb5f353c52d69e. Note: repository web/index.html is intentionally only the checked-in shell because generated output is an Actions artifact; live market cards remain UNKNOWN until authoritative market feeds populate canonical data.","reviewed_at":"2026-09-29T10:57:22+09:00","source_candidate":"data/ai/candidates/ai-a/2026-09-29-pages-review-and-open-discovery.json"},
-        "AI-B":{"result":"PENDING","finding":null,"reviewed_at":null},
-        "AI-C":{"result":"PENDING","finding":null,"reviewed_at":null},
-        "AI-D":{"result":"PASS_WITH_NOTES","finding":"system-check 36510140332 and Pages 36510140367 succeeded after fixing the initial syntax regression. A second material-state commit 7b8955349f0aed51f7dcfda40416ade5f942bec0 then auto-triggered system-check 36510692318 and Pages 36510692300; both succeeded and the public verifier returned the same source commit with generated_at 2026-09-29T11:02:18+09:00.","reviewed_at":"2026-09-29T11:03:00+09:00"},
-        "AI-E":{"result":"PENDING","finding":null,"reviewed_at":null}
+      "review_id": "REVIEW-20260929-PAGES-CLOSED-LOOP-001",
+      "event_type": "workflow_change",
+      "title": "GitHub Pages canonical-data closed loop and stale-page recovery",
+      "owner": "AI-D",
+      "recovery_owner": "AI-D",
+      "status": "REVIEWING",
+      "affected_dependencies": [
+        "github-pages",
+        "pages-generator",
+        "health-matrix",
+        "review-mesh",
+        "recovery",
+        "system-check",
+        "all-main-push-impact-gate",
+        "public-fingerprint-verification",
+        "core-section-verification"
+      ],
+      "created_at": "2026-09-29T10:40:00+09:00",
+      "reviews": {
+        "AI-A": {
+          "result": "PASS_WITH_NOTES",
+          "finding": "AI-A market/data/discovery review: pages.yml now watches material market/news/discovery/research/AI state paths, runs tests and shared-memory validation, generates web output, deploys Pages, then verifies the public source commit/timestamp. Pages run 36510140367 completed build+deploy+public verification successfully for main a212c4fa9ecaa08d889d3583f0cb5f353c52d69e. Note: repository web/index.html is intentionally only the checked-in shell because generated output is an Actions artifact; live market cards remain UNKNOWN until authoritative market feeds populate canonical data.",
+          "reviewed_at": "2026-09-29T10:57:22+09:00",
+          "source_candidate": "data/ai/candidates/ai-a/2026-09-29-pages-review-and-open-discovery.json"
+        },
+        "AI-B": {
+          "result": "PENDING",
+          "finding": null,
+          "reviewed_at": null
+        },
+        "AI-C": {
+          "result": "PENDING",
+          "finding": null,
+          "reviewed_at": null
+        },
+        "AI-D": {
+          "result": "PASS_WITH_NOTES",
+          "finding": "Immediate-sync hardening verified: every main push now starts the Pages workflow, but actual deploy is gated by material fingerprint or display-layer changes. system-check 36515542367 succeeded; Pages 36515542361 built, deployed and publicly verified source_commit c92ad199..., generated_at 2026-09-29T12:04:59+09:00, material fingerprint and all core section markers. A subsequent non-material docs/long-term-memory commit e0fa500 was detected by Pages run 36515667531 and correctly skipped deploy, proving pointless deployments are avoided.",
+          "reviewed_at": "2026-09-29T12:06:00+09:00"
+        },
+        "AI-E": {
+          "result": "PENDING",
+          "finding": null,
+          "reviewed_at": null
+        }
       },
-      "evidence":{"commit_sha":"7b8955349f0aed51f7dcfda40416ade5f942bec0","actions_result":"success:36510692300","expected_state_verified":true,"system_check":"success:36510692318","public_url":"https://juhwan7.github.io/korea-market-behavior-lab/","generated_at":"2026-09-29T11:02:18+09:00"},
-      "next_action":"AI-B/C/E perform independent specialty reviews. Do not close while any reviewer remains PENDING."
+      "evidence": {
+        "commit_sha": "c92ad19915648c5651b08ee682664fdd46f0d6d7",
+        "actions_result": "success:36515542361",
+        "expected_state_verified": true,
+        "system_check": "success:36515542367",
+        "public_url": "https://juhwan7.github.io/korea-market-behavior-lab/",
+        "generated_at": "2026-09-29T12:04:59+09:00",
+        "material_fingerprint": "85cd24b1d092a8bc1e380dd83e5cb304ebe671620392e38079def98540e41059",
+        "core_sections": "OK",
+        "no_deploy_required_check": "pages:36515667531 deploy skipped"
+      },
+      "next_action": "AI-B/C/E perform independent specialty reviews of the strengthened immediate-sync gate. Do not close while any reviewer remains PENDING."
     }
   ]
 }
