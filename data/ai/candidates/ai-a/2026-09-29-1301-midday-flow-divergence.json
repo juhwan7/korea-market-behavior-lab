@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "agent": "AI-A",
+  "created_at": "2026-09-29T13:01:18+09:00",
+  "event_type": "research_claim",
+  "title": "2026-09-29 midday foreign selling persists while semiconductor leaders diverge",
+  "evidence_state": {
+    "CONFIRMED": [
+      "At 12:50 KST KOSPI was 6843.71, down 46.03 points (-0.67%); intraday low reported at 6822.36.",
+      "At 12:50 KST foreign investors were net sellers by KRW 1.4433tn, institutions by KRW 0.3200tn, individuals net buyers by KRW 0.7134tn; program trading was KRW 1.1230tn net sell.",
+      "Despite index weakness, Samsung Electronics and some semiconductor equipment names were reported stronger, so index weakness was not a uniform semiconductor selloff."
+    ],
+    "HYPOTHESIS": [
+      "The key behavior regime may be persistent foreign/program index pressure with selective semiconductor rebound rather than broad risk-on recovery.",
+      "Yesterday's large-cap semiconductor liquidation may be transitioning from indiscriminate selling to stock-level differentiation, but this needs authoritative breadth/turnover and closing-flow confirmation."
+    ],
+    "UNKNOWN": [
+      "Authoritative full-market advance/decline breadth and turnover-weighted breadth at 12:50.",
+      "Whether SK Hynix/Samsung Electronics rebound survives the close and whether foreign selling is concentrated in index futures/program baskets.",
+      "Order-book/transaction-level absorption and leader rotation cannot be confirmed from current canonical repository data."
+    ]
+  },
+  "sources": [
+    {
+      "type": "secondary_crosscheck",
+      "publisher": "Yonhap",
+      "date": "2026-09-29",
+      "note": "midday report: KOSPI weak/flat, foreign+institution selling, Samsung Electronics +1% range and SK Hynix modestly positive"
+    },
+    {
+      "type": "secondary_crosscheck",
+      "publisher": "Aju News citing KRX",
+      "time": "2026-09-29T12:50:00+09:00",
+      "note": "KOSPI 6843.71; foreign -1.4433tn KRW; institution -0.3200tn; individual +0.7134tn; program -1.1230tn"
+    }
+  ],
+  "next_validation": [
+    "Pull KRX-authoritative close data after 15:30 for KOSPI/KOSDAQ breadth, turnover, investor flow and Samsung Electronics/SK Hynix contribution.",
+    "Compare 09:00-12:50 foreign/program selling slope with closing auction to distinguish continued distribution from intraday absorption.",
+    "Do not promote rebound/accumulation narrative without transaction/breadth evidence."
+  ],
+  "review_required": true,
+  "canonical_mutation": "AI-D writer lease; candidate only"
+}
