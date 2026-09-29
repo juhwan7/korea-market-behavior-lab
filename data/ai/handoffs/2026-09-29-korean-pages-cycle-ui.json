@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "handoff_id": "HANDOFF-20260929-KOREAN-PAGES-CYCLE-UI",
+  "created_at": "2026-09-29T15:24:03+09:00",
+  "scope": "GitHub Pages user-facing Korean UI",
+  "status": "VERIFIED",
+  "summary": "한국어 우선 Pages 표시 계층과 5-AI 순환형 연구 상태판을 적용했다. 내부 canonical/state 계약은 유지하고 사용자 화면에서 영어 enum, raw JSON, 기술 ID 노출을 줄였다.",
+  "implementation": {
+    "renderer": "src/kmb_lab/pages_korean.py",
+    "integration": "src/kmb_lab/pages.py render_html delegates to Korean renderer",
+    "tests": "tests/test_pages_korean.py",
+    "docs": "docs/PAGES_KOREAN_UI_IMPLEMENTATION.md",
+    "cycle": "AI-A 발견 → AI-B 근거 검증 → AI-C 수치 검증 → AI-D 시스템 검증 → AI-E 개선·진화 → AI-A",
+    "responsive": "desktop horizontal / mobile vertical",
+    "reduced_motion": true,
+    "technical_details": "collapsed under 기술 정보 보기",
+    "no_fabrication": "missing runtime or market evidence is shown as 확인 필요/수집 전, not invented activity"
+  },
+  "verification": {
+    "commit": "0126fc0eb592e20ba29778d520abd655f6e0dc63",
+    "system_check_run": 36530770586,
+    "system_check_conclusion": "success",
+    "pages_run": 36530770534,
+    "pages_build": "success",
+    "pages_deploy": "success",
+    "public_verifier": "success: source commit / generated_at / material fingerprint / core sections including cycle"
+  },
+  "lessons": [
+    "사용자용 한국어 표현은 내부 상태값과 분리된 중앙 매핑 계층에서 관리한다.",
+    "AI가 ACTIVE라고 선언돼도 실제 실행 증거가 없으면 분석 중이라고 표시하지 않는다.",
+    "raw JSON이나 Python object 문자열은 기본 화면에 노출하지 않는다.",
+    "새 핵심 UI 섹션은 CORE_SECTION_MARKERS에 추가해 공개 Pages 검증 대상에 포함한다.",
+    "애니메이션은 prefers-reduced-motion과 모바일 세로 흐름을 함께 지원한다."
+  ],
+  "next_actions": [
+    "공식 KRX/DART/ECOS 데이터가 연결되면 시장 카드의 확인 불가 항목을 실제 canonical 값으로 대체한다.",
+    "AI별 automation/workflow evidence 매핑을 강화해 최근 실행 확인 필요 상태를 줄인다.",
+    "연구 사건별 발견→반박→정량→운영→개선 판단 변화를 canonical event model로 확장한다."
+  ]
+}
