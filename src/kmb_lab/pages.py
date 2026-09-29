@@ -17,7 +17,7 @@ KST = timezone(timedelta(hours=9))
 AGENTS = ("AI-A", "AI-B", "AI-C", "AI-D", "AI-E")
 AGENT_FRESHNESS_MINUTES = 60
 DEFAULT_PAGES_URL = "https://juhwan7.github.io/korea-market-behavior-lab/"
-CORE_SECTION_MARKERS = ("overview", "market", "agent-health", "activity", "review", "recovery", "actions", "research", "experiments")
+CORE_SECTION_MARKERS = ("overview", "market", "cycle", "agent-health", "activity", "review", "recovery", "actions", "research", "experiments")
 
 MATERIAL_EXACT = {
     "data/ai/CURRENT_BRIEFING.md",
@@ -392,69 +392,9 @@ def build_model(root: Path, source_commit: str, repository: str | None, token: s
 
 
 def render_html(model: dict[str, Any]) -> str:
-    briefing = model["briefing"]
-    important = [
-        ("지금 가장 중요한 시장 변화", briefing.get("지금 가장 중요한 시장 변화", ["UNKNOWN"])),
-        ("지금 가장 중요한 시스템 문제", briefing.get("현재 문제", ["UNKNOWN"])),
-        ("현재 진행 중", briefing.get("현재 진행 중", ["UNKNOWN"])),
-        ("최근 성공", briefing.get("최근 성공", ["UNKNOWN"])),
-        ("현재 recovery", briefing.get("현재 recovery", ["UNKNOWN"])),
-        ("다음 우선순위", briefing.get("다음 우선순위", ["UNKNOWN"])),
-    ]
-    briefing_html = "".join(f'<article class="card"><h3>{esc(title)}</h3><ul>' + "".join(f"<li>{esc(item)}</li>" for item in (items or ["UNKNOWN"])) + "</ul></article>" for title, items in important)
-    market_html = "".join(f'<article class="metric"><span>{esc(label)}</span><strong>{esc(value)}</strong></article>' for label, value in model["market"].items())
-
-    agent_rows = []
-    for row in model["agents"]:
-        agent_rows.append("<tr>" + f"<td><strong>{esc(row['agent'])}</strong><small>{esc(row['declared'])}</small></td>" + f"<td><span class='badge {status_class(row['status'])}'>{esc(row['status'])}</span></td>" + f"<td><span class='badge {status_class(row['execution'])}'>{esc(row['execution'])}</span></td>" + f"<td>{esc(row['heartbeat'])}<small>{esc(row['heartbeat_at'] or 'UNKNOWN')}</small></td>" + f"<td>{esc(row['output'])}<small>{esc(row['output_at'] or 'UNKNOWN')}</small></td>" + f"<td>{esc(row['workflow'])}</td><td>{esc(row['queue'])}</td><td>{esc(row['recovery'])}</td></tr>")
-
-    agent_details = "".join("<details class='card'><summary>" + f"<strong>{esc(row['agent'])}</strong> · {esc(row['status'])} · {esc(row['current_task'])}</summary>" + f"<p><b>Last execution:</b> {esc(row['last_execution'])}</p><p><b>Last healthy:</b> {esc(row['last_healthy'])}</p><p><b>Last result:</b> {esc(row['last_result'])}</p><p><b>Next expected:</b> {esc(row['next_expected'])}</p></details>" for row in model["agents"])
-
-    activity_html = "".join("<details class='activity'><summary>" + f"<time>{esc(item.get('at') or 'UNKNOWN')}</time> <b>{esc(item.get('agent'))}</b> {esc(item.get('title'))}</summary><pre>{esc(item.get('detail'))}</pre></details>" for item in model["activity"]) or "<p class='empty'>활동 증거가 없습니다.</p>"
-
-    review_html = ""
-    for item in model["review"].get("items", []) if isinstance(model["review"], dict) else []:
-        reviews = item.get("reviews", {})
-        review_badges = " ".join(f"<span class='badge {status_class(str((reviews.get(agent) or {}).get('result','PENDING')))}'>{esc(agent)} {esc((reviews.get(agent) or {}).get('result','PENDING'))}</span>" for agent in AGENTS)
-        review_html += "<details class='card'><summary>" + f"<strong>{esc(item.get('title','Material event'))}</strong> · {esc(item.get('status','UNKNOWN'))}</summary>" + f"<p>{review_badges}</p><p><b>Recovery owner:</b> {esc(item.get('recovery_owner','UNKNOWN'))}</p><p><b>Commit:</b> {esc((item.get('evidence') or {}).get('commit_sha','UNKNOWN'))}</p><p><b>Actions:</b> {esc((item.get('evidence') or {}).get('actions_result','UNKNOWN'))}</p><p><b>Expected state:</b> {esc((item.get('evidence') or {}).get('expected_state_verified','UNKNOWN'))}</p><p><b>현재 병목:</b> {esc(item.get('next_action','UNKNOWN'))}</p></details>"
-    if not review_html:
-        review_html = "<p class='empty'>OPEN/REVIEWING material event가 없습니다.</p>"
-
-    incidents = model["recovery"].get("incidents", []) if isinstance(model["recovery"], dict) else []
-    recovery_html = "".join("<details class='card'><summary>" + f"<span class='badge {status_class(str(i.get('status','UNKNOWN')))}'>{esc(i.get('status','UNKNOWN'))}</span> <strong>{esc(i.get('incident_id','UNKNOWN'))}</strong></summary>" + f"<p><b>Recovery Owner:</b> {esc(i.get('recovery_owner','UNKNOWN'))}</p><p><b>Root cause:</b> {esc(i.get('root_cause','UNKNOWN'))}</p><p><b>Resolution commit:</b> {esc(i.get('resolution_commit','UNKNOWN'))}</p><p><b>Prevention:</b> {esc(i.get('prevention','UNKNOWN'))}</p></details>" for i in incidents[-12:]) or "<p class='empty'>Recovery 기록이 없습니다.</p>"
-
-    workflow_latest = model["workflows"].get("latest", {}) if isinstance(model["workflows"], dict) else {}
-    workflow_html = "".join("<article class='card compact'>" + f"<h3>{esc(name)}</h3><p><span class='badge {status_class(str(run.get('conclusion') or run.get('status') or 'UNKNOWN'))}'>{esc(run.get('conclusion') or run.get('status') or 'UNKNOWN')}</span></p><p>SHA {esc(str(run.get('head_sha') or 'UNKNOWN')[:12])}</p><p>{esc(run.get('created_at') or 'UNKNOWN')}</p></article>" for name, run in workflow_latest.items()) or "<p class='empty'>Workflow runtime evidence unavailable.</p>"
-
-    research_items = model["research"].get("items", []) if isinstance(model["research"], dict) else []
-    research_html = "".join("<details class='card'><summary>" + f"<strong>{esc(item.get('title',item.get('id','Research')))}</strong> · {esc(item.get('status','UNKNOWN'))}</summary><p>{esc(item.get('reason',''))}</p><p><b>Evidence:</b> {esc(item.get('evidence_state','UNKNOWN'))}</p></details>" for item in research_items[:20]) or "<p class='empty'>Research queue is empty.</p>"
-
-    exp_items = model["experiments"].get("experiments", []) if isinstance(model["experiments"], dict) else []
-    exp_html = "".join("<details class='card'><summary>" + f"<strong>{esc(item.get('name',item.get('id','Experiment')))}</strong> · {esc(item.get('status','UNKNOWN'))}</summary><p>sample_count={esc(item.get('sample_count','UNKNOWN'))} · production_eligible={esc(item.get('production_eligible','UNKNOWN'))}</p><p>{esc(item.get('failure_condition',''))}</p></details>" for item in exp_items[:20]) or "<p class='empty'>Experiments are not available.</p>"
-
-    source_short = str(model["source_commit"])[:12]
-    return f"""<!doctype html>
-<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="kmb-source-commit" content="{esc(model['source_commit'])}"><meta name="kmb-generated-at" content="{esc(model['generated_at'])}"><meta name="kmb-material-fingerprint" content="{esc(model['material_fingerprint'])}">
-<title>KMB · Korea Market Behavior Lab</title>
-<style>
-:root{{--bg:#f4f6f8;--card:#fff;--line:#e5e7eb;--text:#111827;--muted:#64748b;--ok:#0f766e;--okbg:#ecfdf5;--warn:#a16207;--warnbg:#fffbeb;--bad:#b91c1c;--badbg:#fef2f2}}
-*{{box-sizing:border-box}}body{{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}}main{{max-width:1240px;margin:auto;padding:20px}}header{{position:sticky;top:0;z-index:3;background:rgba(244,246,248,.94);backdrop-filter:blur(12px);padding:14px 0 10px;border-bottom:1px solid var(--line);margin-bottom:18px}}h1{{font-size:clamp(24px,4vw,38px);margin:6px 0}}h2{{margin:30px 0 12px;font-size:20px}}h3{{margin:0 0 10px;font-size:15px}}p,li{{line-height:1.55}}small{{display:block;color:var(--muted);margin-top:4px}}ul{{padding-left:20px;margin:8px 0}}.meta{{display:flex;gap:8px;flex-wrap:wrap;color:var(--muted);font-size:13px}}.grid{{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}}.metric-grid{{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}}.card,.metric,.activity{{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}}.metric span{{display:block;color:var(--muted);font-size:12px;margin-bottom:7px}}.metric strong{{display:block;overflow-wrap:anywhere}}.badge{{display:inline-block;padding:4px 8px;border-radius:999px;font-size:11px;font-weight:700;background:#f1f5f9;color:#475569;margin:2px}}.badge.ok{{background:var(--okbg);color:var(--ok)}}.badge.warn{{background:var(--warnbg);color:var(--warn)}}.badge.bad{{background:var(--badbg);color:var(--bad)}}.badge.muted{{background:#f1f5f9;color:#64748b}}.table-wrap{{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:auto}}table{{width:100%;border-collapse:collapse;min-width:820px}}th,td{{padding:12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top;font-size:13px}}th{{background:#f8fafc}}details{{margin-bottom:10px}}summary{{cursor:pointer;line-height:1.5}}.activity summary{{display:grid;grid-template-columns:170px 70px 1fr;gap:8px}}pre{{white-space:pre-wrap;overflow-wrap:anywhere;background:#f8fafc;padding:12px;border-radius:10px;font-size:12px}}.empty,.section-note{{color:var(--muted)}}.section-note{{font-size:13px;margin-top:-6px}}.mobile-health{{display:none}}
-@media(max-width:860px){{.grid{{grid-template-columns:1fr 1fr}}.metric-grid{{grid-template-columns:1fr 1fr}}}}@media(max-width:640px){{main{{padding:12px}}header{{position:static}}.grid,.metric-grid{{grid-template-columns:1fr}}.table-wrap{{display:none}}.mobile-health{{display:block}}.activity summary{{grid-template-columns:1fr}}.card,.metric,.activity{{padding:14px}}}}
-</style></head>
-<body data-source-commit="{esc(model['source_commit'])}" data-material-fingerprint="{esc(model['material_fingerprint'])}"><main><header><div class="meta"><span class="badge ok">{esc(model['freshness']['label'])}</span><span>Updated {esc(model['generated_at'])}</span><span>Source {esc(source_short)}</span></div><h1>Korea Market Behavior Lab</h1><p>시장 상태와 5-AI 운영 상태를 같은 화면에서 확인하는 운영 대시보드. 없는 데이터는 생성하지 않고 UNKNOWN/MISSING으로 표시합니다.</p></header>
-<h2 data-kmb-section="overview">지금 핵심</h2><div class="grid">{briefing_html}</div>
-<h2 data-kmb-section="market">시장 상태</h2><p class="section-note">시장 canonical data가 아직 연결되지 않은 항목은 NOT COLLECTED/UNKNOWN입니다.</p><div class="metric-grid">{market_html}</div>
-<h2 data-kmb-section="agent-health">5-AI Health Matrix</h2><p class="section-note">repository의 ACTIVE 문자열보다 heartbeat/output 증거를 우선합니다. per-agent workflow가 매핑되지 않으면 UNMAPPED입니다.</p><div class="table-wrap"><table><thead><tr><th>Agent</th><th>Status</th><th>Execution</th><th>Heartbeat</th><th>Output</th><th>Workflow</th><th>Queue</th><th>Recovery</th></tr></thead><tbody>{''.join(agent_rows)}</tbody></table></div><div class="mobile-health">{agent_details}</div>
-<h2 data-kmb-section="activity">최근 AI 활동</h2>{activity_html}
-<h2 data-kmb-section="review">Five-AI Review Mesh</h2>{review_html}
-<h2 data-kmb-section="recovery">Recovery</h2>{recovery_html}
-<h2 data-kmb-section="actions">GitHub Actions</h2><div class="grid">{workflow_html}</div>
-<h2 data-kmb-section="research">Research</h2>{research_html}
-<h2 data-kmb-section="experiments">Experiments</h2>{exp_html}
-<footer class="meta" style="margin:30px 0 12px">Generated from canonical repository data · material fingerprint {esc(model['material_fingerprint'][:16])}</footer>
-</main></body></html>"""
-
+    """Render the Korean-first user UI while keeping raw canonical state internal."""
+    from .pages_korean import render_korean_html
+    return render_korean_html(model)
 
 def generate(output_dir: Path, source_commit: str, repository: str | None, token: str | None, offline: bool) -> dict[str, Any]:
     model = build_model(ROOT, source_commit, repository, token, offline)
