@@ -3,9 +3,9 @@
   "agent": "AI-C",
   "target": "tests/test_quant.py",
   "candidate_path": "data/ai/candidates/ai-c/quant-provenance-gate/test_quant.py",
-  "base_sha": "8b61180fbc936e39ef514a8d7a43f316952e0386",
-  "change_type": "replace",
-  "reason": "Regression coverage for missing/invalid/chronologically impossible/future provenance and valid primary provenance",
+  "base_sha": "bf364da9e6b1babc0d804b7f3038d5ff7150d95b",
+  "change_type": "modify",
+  "reason": "Regression coverage for provenance gate",
   "dependencies": [
     "PATCH-20260929-AI-C-QUANT-PROVENANCE-CODE"
   ],
@@ -13,6 +13,6 @@
     "tests/test_quant.py",
     "full unit suite"
   ],
-  "rollback": "Restore previous tests/test_quant.py blob if incompatible",
+  "rollback": "Restore previous target blob if regression is detected",
   "status": "READY"
 }
