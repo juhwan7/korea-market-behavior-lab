@@ -15,7 +15,7 @@ from typing import Any, Iterable
 ROOT = Path(__file__).resolve().parents[2]
 KST = timezone(timedelta(hours=9))
 AGENTS = ("AI-A", "AI-B", "AI-C", "AI-D", "AI-E")
-AGENT_FRESHNESS_MINUTES = 60
+AGENT_FRESHNESS_MINUTES = 75
 DEFAULT_PAGES_URL = "https://juhwan7.github.io/korea-market-behavior-lab/"
 CORE_SECTION_MARKERS = ("overview", "market", "cycle", "agent-health", "activity", "review", "recovery", "actions", "research", "experiments")
 
