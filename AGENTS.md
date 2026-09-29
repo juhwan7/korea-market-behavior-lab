@@ -156,3 +156,16 @@ Pages 장애는 LOCAL display-layer incident로 격리한다. Pages failure/stal
 
 상세 규칙은 `docs/PAGES_OPERATIONS.md`를 따른다.
 
+
+## Pages impact exit gate
+모든 AI-A/B/C/D/E는 작업 종료 전에 `이번 변경이 사용자가 GitHub Pages에서 보게 되는 내용에 영향을 주는가?`를 판정한다.
+
+YES이면 commit 성공만으로 종료하지 않는다. Pages workflow 시작 → generator → deploy → 공개 URL → source_commit → generated_at → material_fingerprint → 핵심 section 검증까지 가능한 외부 증거를 확인한다. 하나라도 확인되지 않으면 완료가 아니라 검증 중/업데이트 지연/복구 중으로 남긴다.
+
+NO이면 실제 Pages deploy는 생략할 수 있다. Pages workflow는 모든 main push를 감지하지만 material fingerprint와 display-layer 변경을 기준으로 `NO_DEPLOY_REQUIRED`를 선택할 수 있다.
+
+새 사용자 표시 canonical 경로를 generator가 소비하도록 추가할 때는 material fingerprint contract도 같이 확장한다. 단순 data 변경 때문에 generator 코드를 매번 수정하지 않는다.
+
+Pages 장애는 LOCAL DISPLAY INCIDENT다. Pages 문제만으로 collectors, discovery, research, scheduler, canonical writer 또는 AI-A/B/C/D/E를 비활성화하지 않는다.
+
+상세 규칙은 `docs/PAGES_OPERATIONS.md`를 따른다.
