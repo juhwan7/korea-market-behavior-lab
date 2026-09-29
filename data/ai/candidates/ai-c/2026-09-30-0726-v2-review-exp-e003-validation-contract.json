@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "agent": "AI-C",
+  "generated_at": "2026-09-30T07:26:17+09:00",
+  "base_sha": "7d2bbae8ab11fe00929d6aea14f4c7d45929e1e1",
+  "mode": "ULTRA_PARALLEL_V2_QUANT",
+  "required_review": {
+    "review_id": "REVIEW-20260930-ULTRA-PARALLEL-V2-001",
+    "required_reviewer": true,
+    "result": "FIX_REQUIRED",
+    "finding": "V2 structure preserves AI-C specialty independence and UNKNOWN-without-samples discipline, but canonical closure evidence is incomplete: actions_result=null, expected_state_verified=false, and task-board cites migration commit c25503cf302b0dd2f4977ccf356c81f7bd2fd640 that the review evidence packet omits. Do not close until migration-bound Actions and expected-state evidence are attached."
+  },
+  "major_work": {
+    "id": "EXP-C-003-VALIDATION-CONTRACT",
+    "target": "EXP-E-003 Counterfactual Relative Response Matrix",
+    "stage": "VALIDATION_DESIGN",
+    "sample_count": 0,
+    "probability": "UNKNOWN",
+    "production_eligible": false,
+    "hypothesis": "Matched-control residual response may add out-of-sample information beyond raw relative strength/turnover after market, sector, size, volatility, turnover and time-of-day controls.",
+    "primary_endpoint": "incremental out-of-sample residual return information versus raw_relative_strength baseline",
+    "secondary_endpoints": [
+      "1/3/5/10-session forward residual return",
+      "MFE",
+      "MAE",
+      "VWAP recovery latency",
+      "acceptance time",
+      "max drawdown"
+    ],
+    "cost_model": {
+      "fees_bps": "REQUIRED_FROM_EXECUTION_ASSUMPTION",
+      "slippage_bps": "REQUIRED_SENSITIVITY_GRID",
+      "note": "No net-performance claim until explicit costs exist."
+    },
+    "validation_protocol": {
+      "chronology": "date-ordered train/validation/test; controls selected using information available as-of event time",
+      "overlap_control": "purge overlapping forward-label windows and embargo adjacent observations",
+      "matching_balance": [
+        "standardized mean difference by control dimension",
+        "match distance distribution",
+        "effective matched sample count",
+        "unmatched-event rate"
+      ],
+      "uncertainty": "block/bootstrap confidence intervals respecting temporal dependence; report point estimate plus interval, not probability when sample gate fails",
+      "regime_segments": [
+        "trend",
+        "volatility",
+        "FX",
+        "foreign-flow",
+        "liquidity"
+      ],
+      "ablations": [
+        "remove sector",
+        "remove market-cap bucket",
+        "remove volatility",
+        "remove turnover",
+        "remove time-of-day"
+      ],
+      "baselines": [
+        "raw_relative_strength",
+        "turnover_only",
+        "volume_price_progress",
+        "virtual_position_range_v0"
+      ],
+      "walk_forward": "expanding and rolling windows; hyperparameters fixed inside each training window only"
+    },
+    "sample_gates": {
+      "minimum_for_any_probability": 20,
+      "minimum_per_reported_regime": "must be predeclared before estimation; otherwise regime result UNKNOWN",
+      "current_validated_samples": 0
+    },
+    "kill_criteria": [
+      "no out-of-sample incremental value over raw relative strength after costs",
+      "confidence interval spans economically null effect persistently",
+      "match balance fails or unmatched rate makes inference sparse",
+      "effect disappears under key control ablations",
+      "look-ahead/survivorship leakage",
+      "unexplained regime sign reversal"
+    ],
+    "current_result": "UNKNOWN_NO_VALIDATED_POINT_IN_TIME_SAMPLE"
+  },
+  "small_works": [
+    {
+      "fingerprint": "EXP-C-001-NO-VALIDATED-SAMPLES",
+      "result": "NO_NEW_EVIDENCE",
+      "sample_count": 0,
+      "probability": "UNKNOWN"
+    },
+    {
+      "fingerprint": "EXP-C-002-NOT_CANONICAL",
+      "result": "NO_NEW_EVIDENCE",
+      "finding": "No EXP-C-002 entry exists in canonical experiment registry; do not report it as registered or validated."
+    }
+  ],
+  "handoffs": [
+    {
+      "to": "AI-D",
+      "priority": "P1",
+      "task": "Provide point-in-time KRX/peer snapshots with as_of/retrieved_at provenance and migration-bound Actions/expected-state evidence."
+    },
+    {
+      "to": "AI-B",
+      "priority": "P1",
+      "task": "Audit matched-control chronology, survivorship/look-ahead leakage, event/news contamination and causal wording before any inference."
+    },
+    {
+      "to": "AI-E",
+      "priority": "P2",
+      "task": "Keep EXP-E-003 as challenger/HYPOTHESIS until AI-C historical validation; preserve UNKNOWN on insufficient match quality."
+    }
+  ],
+  "runtime_evidence": {
+    "automation_observed_at": "2026-09-30T07:26:17+09:00",
+    "repository_head_at_start": "7d2bbae8ab11fe00929d6aea14f4c7d45929e1e1"
+  },
+  "next_validation": "When point-in-time samples arrive, freeze event/control definitions before labels, run balance diagnostics, then cost-aware purged walk-forward and baseline ablations.",
+  "no_work_reason": null
+}
