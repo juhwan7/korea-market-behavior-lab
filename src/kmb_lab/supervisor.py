@@ -51,39 +51,65 @@ def classify(service: dict, now: datetime) -> str:
 
 
 def derive_ai_heartbeat(root: Path, now: datetime, target_minutes: int) -> dict[str, Any]:
-    """Derive five-agent health from agent heartbeat evidence, not a static service timestamp."""
+    """Derive agent observability without confusing stale repository evidence with a dead scheduler."""
     rows: list[dict[str, Any]] = []
     for agent in ("AI-A", "AI-B", "AI-C", "AI-D", "AI-E"):
         path = root / f"data/ai/agents/{agent.lower()}.json"
         try:
             payload = json.loads(path.read_text(encoding="utf-8"))
         except (OSError, json.JSONDecodeError):
-            rows.append({"agent": agent, "heartbeat_at": None, "state": "MISSING"})
+            rows.append({
+                "agent": agent,
+                "heartbeat_at": None,
+                "runtime_last_run_time": None,
+                "effective_evidence_at": None,
+                "state": "MISSING",
+            })
             continue
+
         heartbeat = parse_time(payload.get("heartbeat_at"))
-        if heartbeat is None:
-            rows.append({"agent": agent, "heartbeat_at": None, "state": "MISSING"})
-        elif now - heartbeat > timedelta(minutes=target_minutes):
-            rows.append({"agent": agent, "heartbeat_at": heartbeat.isoformat(), "state": "STALE"})
+        runtime = payload.get("runtime_evidence") if isinstance(payload.get("runtime_evidence"), dict) else {}
+        runtime_last = parse_time(runtime.get("last_run_time"))
+        candidates = [value for value in (heartbeat, runtime_last) if value]
+        effective = max(candidates) if candidates else None
+
+        if effective is None:
+            state = "MISSING"
+        elif now - effective > timedelta(minutes=target_minutes):
+            state = "EVIDENCE_STALE"
         else:
-            rows.append({"agent": agent, "heartbeat_at": heartbeat.isoformat(), "state": "FRESH"})
+            state = "FRESH"
+
+        rows.append({
+            "agent": agent,
+            "heartbeat_at": heartbeat.isoformat() if heartbeat else None,
+            "runtime_last_run_time": runtime_last.isoformat() if runtime_last else None,
+            "effective_evidence_at": effective.isoformat() if effective else None,
+            "state": state,
+        })
 
     missing = [row["agent"] for row in rows if row["state"] == "MISSING"]
-    stale = [row["agent"] for row in rows if row["state"] == "STALE"]
+    stale = [row["agent"] for row in rows if row["state"] == "EVIDENCE_STALE"]
     if missing:
         classification = "EVIDENCE_PENDING"
     elif stale:
-        classification = "STALE"
+        classification = "OBSERVABILITY_STALE"
     else:
         classification = "HEALTHY"
-    times = [parse_time(row["heartbeat_at"]) for row in rows if row["heartbeat_at"]]
+
+    times = [parse_time(row["effective_evidence_at"]) for row in rows if row["effective_evidence_at"]]
     times = [value for value in times if value]
     return {
         "classification": classification,
-        "evidence_source": "data/ai/agents/* heartbeat_at",
-        "oldest_heartbeat_at": min(times).isoformat() if times else None,
+        "evidence_source": "max(agent heartbeat_at, persisted scheduler runtime_evidence.last_run_time)",
+        "oldest_evidence_at": min(times).isoformat() if times else None,
         "missing_agents": missing,
-        "stale_agents": stale,
+        "stale_evidence_agents": stale,
+        "interpretation": (
+            "OBSERVABILITY_STALE means repository runtime evidence is old; it does not by itself prove "
+            "the scheduled automation is disabled or dead. Actual scheduler runtime remains authoritative."
+        ),
+        "agents": rows,
     }
 
 
