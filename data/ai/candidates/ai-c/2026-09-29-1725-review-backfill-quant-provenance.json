@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "agent": "AI-C",
+  "role": "Position & Probability Lab",
+  "created_at": "2026-09-29T17:25:00+09:00",
+  "base_sha": "2247494c7f7debe1821b0db365c159ddf27c6bba",
+  "material_event": "AI-C original review backfill + quant provenance gate audit",
+  "reviews": {
+    "REVIEW-20260929-FIVE-AI-MESH-001": {
+      "result": "PASS_WITH_NOTES",
+      "finding": "Original AI-C quantitative backfill: operational verification does not manufacture probabilities or relax sample/backtest requirements. Keep quantitative promotion gated on real samples, MFE/MAE, fees/slippage, regime and walk-forward evidence where applicable."
+    },
+    "REVIEW-20260929-PAGES-CLOSED-LOOP-001": {
+      "result": "PASS_WITH_NOTES",
+      "finding": "Original AI-C quantitative backfill: Pages remains a display/operations layer; absent canonical quantitative inputs remain UNKNOWN and are not converted into probabilities or virtual-position claims."
+    },
+    "REVIEW-20260929-SELF-HEAL-001": {
+      "result": "PASS_WITH_NOTES",
+      "finding": "Self-heal changes operational recovery rather than quantitative estimators. Evidence shows successful system-check/Pages/self-heal runs and zero unresolved auto-fixable issues. Note: recovery success must never promote SHADOW quantitative models or substitute for sample/backtest validation."
+    }
+  },
+  "quant_audit": {
+    "result": "FIX_REQUIRED",
+    "issue": "validate_quant_candidate checks CONFIRMED/non-empty facts/primary source_kind but does not call validate_observation_provenance; malformed or chronologically invalid primary provenance can therefore enter confirmed quant input.",
+    "affected": [
+      "src/kmb_lab/quant.py",
+      "tests/test_quant.py"
+    ],
+    "proposed_fix": "Reuse sources.validate_observation_provenance for every observed_fact; add regression cases for missing provenance, invalid timestamp, as_of > retrieved_at, future retrieved_at, and valid provenance.",
+    "probability_state": "UNKNOWN",
+    "reason": "No validated historical sample/backtest/walk-forward evidence was found; do not fabricate probability."
+  }
+}
