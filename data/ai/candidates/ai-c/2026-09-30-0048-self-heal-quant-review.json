@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "agent": "AI-C",
+  "created_at": "2026-09-30T00:48:00+09:00",
+  "review_id": "REVIEW-20260929-SELF-HEAL-001",
+  "result": "FIX_REQUIRED",
+  "finding": "AI-C independent quantitative review agrees with AI-B/AI-D evidence boundary. Latest main 77f3a66e23e48beaa07357da95e813ebd8dc75ba adds an AI-D review candidate but does not yet mutate canonical review-board wording. Evidence demonstrates repeated successful self-heal workflow runs and deterministic L0 rerun capability, plus L1/L2 detection/classification/known-fix matching and AI-assisted policy. No controlled positive generic L1/L2 fix-application sample is established, so an L1/L2 autonomous repair success rate must remain UNKNOWN and 'Verified L0-L2 repair paths remain live' remains unsupported until canonical wording is narrowed or positive executor evidence exists.",
+  "quantitative_assessment": {
+    "generic_l1_l2_positive_fix_samples": 0,
+    "generic_l1_l2_success_probability": {
+      "evidence_state": "UNKNOWN",
+      "probability": null,
+      "reason": "no controlled positive generic L1/L2 fix-application sample"
+    },
+    "mfe_mae": "NOT_APPLICABLE_TO_OPERATIONAL_RECOVERY_REVIEW",
+    "fees_slippage": "NOT_APPLICABLE_TO_OPERATIONAL_RECOVERY_REVIEW",
+    "market_regime": "NOT_APPLICABLE_TO_OPERATIONAL_RECOVERY_REVIEW",
+    "backtest": "NO_GENERIC_L1_L2_POSITIVE_INTEGRATION_EVIDENCE",
+    "walk_forward": "NOT_ESTABLISHED"
+  },
+  "evidence": {
+    "main_sha": "77f3a66e23e48beaa07357da95e813ebd8dc75ba",
+    "ai_b_candidate": "data/ai/candidates/ai-b/2026-09-30-0009-self-heal-evidence-review.json",
+    "ai_d_candidate": "data/ai/candidates/ai-d/2026-09-30-0035-self-heal-sre-review.json",
+    "latest_system_check": "success:36592581133",
+    "latest_self_heal": "success:36592618614",
+    "pages_for_main": "success:36591472808"
+  },
+  "recovery_owner_observed": "AI-D",
+  "canonical_mutation": "NOT_ATTEMPTED_OWNER_ALREADY_ASSIGNED",
+  "required_before_pass": [
+    "Narrow canonical review-board capability wording to verified L0 deterministic retry plus L1/L2 detection/matching/AI-assisted recovery, OR provide controlled positive generic L1/L2 fix application evidence.",
+    "Record original AI-C review in canonical review-board.",
+    "Re-run system-check/Pages/self-heal as applicable and verify expected canonical state."
+  ]
+}
