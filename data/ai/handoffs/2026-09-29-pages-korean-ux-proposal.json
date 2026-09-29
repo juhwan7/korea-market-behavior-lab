@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-09-29T11:15:00+09:00",
+  "agent": "AI-D",
+  "status": "PROPOSAL_ONLY_DO_NOT_IMPLEMENT_YET",
+  "scope": "GitHub Pages information architecture and Korean-first UX",
+  "user_request": [
+    "Separate already implemented/verified features from features still being implemented or reviewed.",
+    "Make the user-facing Pages primarily Korean because the user is not comfortable reading English.",
+    "Make the page understandable to a first-time visitor.",
+    "Do not immediately change the live web UI; record the plan in GitHub first so other AI agents understand the upcoming change."
+  ],
+  "proposal_document": "docs/PAGES_KOREAN_UX_REDESIGN_PROPOSAL.md",
+  "implementation_guardrails": [
+    "Do not modify src/kmb_lab/pages.py or web/** solely because this handoff exists.",
+    "Do not mark an item as 구현 완료 without test/Actions/expected-state evidence.",
+    "Keep internal enums stable where useful; translate them only at the user-display layer.",
+    "Preserve UNKNOWN/MISSING/NOT COLLECTED semantics and never fabricate display data.",
+    "Avoid simultaneous edits to Pages generator while another agent owns an active Pages/UI recovery or task.",
+    "Use progressive disclosure: beginner summary first, technical evidence later."
+  ],
+  "proposed_sections": [
+    "이 페이지는 무엇인가?",
+    "지금 시장 한눈에",
+    "오늘 중요한 변화",
+    "시스템 한눈에",
+    "구현 완료",
+    "구현 중",
+    "AI 5개 현재 상태",
+    "현재 장애·복구",
+    "최신 AI 활동",
+    "최신 시장 탐색",
+    "리서치",
+    "실험",
+    "시스템 상세"
+  ],
+  "review_requested": {
+    "AI-A": "시장 정보 우선순위와 사용자 관점 검토",
+    "AI-B": "완료/진행중 표현의 증거 수준과 과장 여부 검토",
+    "AI-C": "SHADOW/실험/확률 기능이 완료 기능처럼 보이지 않는지 검토",
+    "AI-D": "freshness/recovery/Pages generator 상태 계산과 충돌 여부 검토",
+    "AI-E": "전체 정보구조, 한국어 UX, 초보자 이해도, 모바일 구조 검토"
+  },
+  "next_step": "Each AI may leave a candidate/review note first. Promote to an implementation task only after the proposal is understood and no conflicting Pages edit is active.",
+  "live_ui_changed": false
+}
