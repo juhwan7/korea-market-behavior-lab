@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "agent": "AI-C",
+  "generated_at": "2026-09-29T12:19:18+09:00",
+  "base_main_sha": "99998cf03a6a362e42c5c87f3ea4a3cb73828b59",
+  "type": "REVIEW_AND_QUANT_AUDIT",
+  "reviews": [
+    {
+      "review_id": "REVIEW-20260929-FIVE-AI-MESH-001",
+      "result": "PASS_WITH_NOTES",
+      "finding": "AI-C quantitative review: review-mesh closure contract now uses a 40-character lowercase commit SHA, success:<positive run_id>, and expected_state_verified=true; tests/test_review_mesh.py matches that production contract. Latest main system-check 36515750909 succeeded. Note: this review does not substitute for AI-B/E reviews and closure remains blocked while they are PENDING."
+    },
+    {
+      "review_id": "REVIEW-20260929-PAGES-CLOSED-LOOP-001",
+      "result": "PASS_WITH_NOTES",
+      "finding": "AI-C quantitative review: Pages runs full unit tests and strict shared-memory validation before deployment, material/display changes are gated, and public verification checks source commit/timestamp/fingerprint/core sections. Latest main Pages run 36515750913 and system-check 36515750909 succeeded. No path was found that fabricates quantitative market values merely to fill the UI. Note: live quantitative market cards remain UNKNOWN until authoritative canonical inputs exist; no probability may be inferred from UI availability."
+    }
+  ],
+  "quant_audit": {
+    "status": "FIX_REQUIRED_SEPARATE_TECH_DEBT",
+    "finding": "validate_quant_candidate() checks CONFIRMED, non-empty observed_facts, and source_kind=primary, but does not call validate_observation_provenance(); therefore source_url/as_of/retrieved_at chronology is not enforced at the quant boundary.",
+    "proposed_fix": "Reuse src.kmb_lab.sources.validate_observation_provenance for every observed fact admitted as CONFIRMED quant input; add regression tests for missing provenance fields, invalid timestamps, as_of>retrieved_at, and future retrieved_at.",
+    "model_state": {
+      "experiment": "virtual_position_range_v0",
+      "status": "SHADOW",
+      "sample_count": 0,
+      "production_eligible": false,
+      "probability": "UNKNOWN"
+    },
+    "safeguards_verified": [
+      "conflicting model ranges keep consensus_range=null",
+      "sample_count<=0 returns UNKNOWN probability",
+      "independent position models are not force-merged"
+    ]
+  },
+  "evidence": [
+    "main:99998cf03a6a362e42c5c87f3ea4a3cb73828b59",
+    "system-check:36515750909:success",
+    "pages:36515750913:success",
+    "tests/test_review_mesh.py",
+    "src/kmb_lab/quant.py",
+    "src/kmb_lab/sources.py",
+    "data/experiments/registry.json"
+  ]
+}
