@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "agent": "AI-E",
+  "type": "NEW_ARCHITECTURE_CHALLENGER",
+  "created_at": "2026-09-30T09:51:56+09:00",
+  "base_sha": "640f3b75729c34a1b24a5ad92510131d134d7863",
+  "mode": "ULTRA_PARALLEL_V2_EVOLUTION",
+  "required_review_fast_check": {
+    "p0_v2": {
+      "result": "NO_NEW_EVIDENCE",
+      "note": "Same closure-evidence fingerprint remains; AI-D owns resolution. Do not repeat investigation."
+    },
+    "self_heal": {
+      "result": "NO_NEW_EVIDENCE",
+      "note": "AI-E remains required reviewer but no new implementation/evidence fingerprint observed in this run; AI-D remains recovery owner."
+    }
+  },
+  "major_work": {
+    "id": "ARCH-E-002",
+    "name": "Uncertainty Budget and Decision Firewall",
+    "stage": "ARCHITECTURE_HYPOTHESIS",
+    "production_eligible": false,
+    "problem": "ARCH-E-001 gates model eligibility, but eligible outputs can still create false confidence when uncertainty from shared data, time alignment, regime mismatch, model error and calibration is averaged away or counted repeatedly.",
+    "hypothesis": "A fail-closed uncertainty budget evaluated after eligibility routing and before any user-facing confidence/production decision can reduce false-confidence rate versus router-only, best-single-model, or naive ensemble decisions without unacceptable coverage loss.",
+    "uncertainty_budgets": {
+      "DATA": "missingness, source quality, measurement error and required-feature availability",
+      "TEMPORAL": "as-of chronology, staleness, delayed retrieval and label-window leakage risk",
+      "REGIME": "distance from validated liquidity/volatility/market/sector regimes",
+      "MODEL": "out-of-sample error interval and model instability",
+      "CALIBRATION": "gap between stated confidence and observed frequency on held-out samples",
+      "DEPENDENCE": "shared upstream evidence/feature fingerprint overlap across models"
+    },
+    "decision_states": [
+      "ALLOW_COMPARE",
+      "ALLOW_SHADOW",
+      "ABSTAIN_UNKNOWN",
+      "BLOCK_PRODUCTION"
+    ],
+    "hard_firewall": [
+      "any failed provenance/chronology hard gate => BLOCK_PRODUCTION",
+      "no production-eligible model => ABSTAIN_UNKNOWN",
+      "insufficient point-in-time sample or unsupported regime => ABSTAIN_UNKNOWN",
+      "high dependence without validated de-correlation => no confidence stacking; ALLOW_COMPARE at most",
+      "stale mandatory input beyond contract => ABSTAIN_UNKNOWN",
+      "hard-gate failures cannot be offset by averaging favorable soft scores"
+    ],
+    "current_expected_output": "ABSTAIN_UNKNOWN because canonical registry has no production-eligible model and EXP-C-001 has zero validated samples.",
+    "comparison_experiment": {
+      "baselines": [
+        "ARCH-E-001 router only",
+        "best single eligible model",
+        "naive equal-weight ensemble"
+      ],
+      "primary_metrics": [
+        "out_of_sample_false_confidence_rate",
+        "selective_risk_at_coverage",
+        "calibration_error",
+        "coverage_vs_abstention"
+      ],
+      "stress_tests": [
+        "correlated evidence duplication",
+        "stale input injection",
+        "regime shift",
+        "partial provenance loss"
+      ],
+      "ablations": [
+        "remove DEPENDENCE budget",
+        "remove REGIME budget",
+        "remove TEMPORAL budget",
+        "replace hard firewall with weighted average"
+      ]
+    },
+    "validation_handoff": {
+      "AI-C": [
+        "freeze budget definitions/thresholds before outcome labels",
+        "nested walk-forward for router+firewall selection",
+        "selective-risk and coverage-vs-abstention curves",
+        "calibration intervals",
+        "correlated-evidence stress test and budget ablations"
+      ],
+      "AI-B": [
+        "audit as-of/provenance for each budget input",
+        "falsify independence assumptions",
+        "test whether shared raw evidence is counted as multiple confirmations",
+        "challenge confidence wording and causal interpretation"
+      ],
+      "AI-D": [
+        "when implementation begins, expose freshness/provenance/runtime gate inputs machine-readably",
+        "firewall failure must fail closed without stopping unrelated production lines"
+      ]
+    },
+    "kill_criteria": [
+      "no material OOS false-confidence or calibration improvement over ARCH-E-001 router-only",
+      "coverage collapses without commensurate selective-risk improvement",
+      "budget thresholds leak validation/test outcomes",
+      "budget inputs cannot be measured point-in-time",
+      "dependence budget fails to prevent duplicated-evidence confidence stacking",
+      "maintenance cost exceeds measured reliability benefit"
+    ],
+    "next_stage_gate": "Remain hypothesis until multiple challengers have point-in-time validated samples; AI-C must freeze thresholds before comparative labels."
+  },
+  "small_works": [
+    {
+      "finding": "AI-B persisted P1 progress-provenance audit at current head.",
+      "handoff": "AI-D owns progress/heartbeat invariant; AI-E does not duplicate SRE work."
+    },
+    {
+      "finding": "ARCH-E-001 and EXP-E-003 already persist in main.",
+      "action": "Do not repeat their fingerprints; ARCH-E-002 addresses downstream uncertainty composition."
+    },
+    {
+      "finding": "Canonical experiment registry still has only EXP-C-001, sample_count=0, production_eligible=false.",
+      "action": "Preserve UNKNOWN; do not claim SHADOW/production validation for AI-E architecture hypotheses."
+    }
+  ],
+  "runtime_evidence": {
+    "repository_head_at_start": "640f3b75729c34a1b24a5ad92510131d134d7863",
+    "writer_lease": "FREE",
+    "candidate_write": "append-only independent namespace"
+  },
+  "fingerprint": "uncertainty-budget-decision-firewall-fail-closed-v1",
+  "no_work_reason": null
+}
