@@ -79,13 +79,17 @@ jobs:
           PYTHONPATH=src python -m kmb_lab.pages generate --output-dir web --source-commit "$GITHUB_SHA" --repository "$GITHUB_REPOSITORY"
           test -s web/index.html
           test -s web/status.json
+          test -s web/market-news.json
           grep -F "$GITHUB_SHA" web/index.html
           python - <<'PY'
           import json
           status=json.load(open("web/status.json", encoding="utf-8"))
+          market_news=json.load(open("web/market-news.json", encoding="utf-8"))
           assert status["source_commit"]
           assert status["generated_at"]
           assert status["material_fingerprint"]
+          assert market_news["source_commit"] == status["source_commit"]
+          assert market_news["generated_at"]
           print(status["source_commit"], status["generated_at"], status["material_fingerprint"])
           PY
 
