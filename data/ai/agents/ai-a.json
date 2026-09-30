@@ -52,6 +52,18 @@
     "counter_scenario": "If long yields fall materially after PCE, or earnings/memory-price revisions dominate discount-rate pressure, Korean AI supply-chain equities can decouple positively.",
     "next_work": "Quantify whether front-end easing without long-end relief predicts weaker next-session Korean AI/semiconductor breadth than parallel yield declines.",
     "pages_impact": "YES_IF_PERSISTED",
-    "pages_verification": "NOT_APPLICABLE_CANDIDATE_CREATE_BLOCKED"
+    "pages_verification": "NOT_APPLICABLE_CANDIDATE_CREATE_BLOCKED",
+    "small_works": [
+      "News cluster anomaly found: issue GN-e58373ffb2d189f6 headline is BOK payment-settlement release but its 82-article cluster contains unrelated KOSPI close/foreign-selling stories. Treat article_count=82 and STRENGTHENING as contaminated until reclustered.",
+      "P0 Ultra-Parallel V2 required-review preflight read completed. No discovery-line conflict found; formal shared review-board mutation deferred to canonical writer path."
+    ],
+    "bugs_found": [
+      {
+        "fingerprint": "news-cluster|official-bok-payment-report|unrelated-kospi-close-articles",
+        "severity": "P1_DATA_QUALITY",
+        "evidence": "data/news/issue-digest.json GN-e58373ffb2d189f6 mixes BOK payment-settlement headline with unrelated KOSPI/foreign-flow articles",
+        "handoff": "AI-E/AI-D: inspect event_core_tokens/fingerprint clustering and add regression preventing unrelated official-release and market-close articles from sharing one issue."
+      }
+    ]
   }
 }
