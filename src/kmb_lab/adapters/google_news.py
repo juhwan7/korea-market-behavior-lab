@@ -378,13 +378,13 @@ def dedupe_and_cluster(items: list[dict[str, Any]]) -> tuple[list[dict[str, Any]
     are counted conservatively as one lineage.
     """
     enriched: list[dict[str, Any]] = []
-    promotion_filtered = 0
+    quality_filtered = 0
     for raw in items:
         item = dict(raw)
         quality = classify_content_quality(item)
         item.update(quality)
         if quality.get("filter_from_market_feed"):
-            promotion_filtered += 1
+            quality_filtered += 1
             continue
         enriched.append(item)
 
@@ -464,7 +464,7 @@ def dedupe_and_cluster(items: list[dict[str, Any]]) -> tuple[list[dict[str, Any]
             "independent_source_count": independent_count,
             "independent_publishers": independent_count,
             "reprint_count": reprint_count,
-            "promotion_filtered_count": promotion_filtered,
+            "quality_filtered_count": quality_filtered,
             "publishers": pubs[:12],
             "official_source_available": any(bool(a.get("official_source_available")) for a in articles),
             "state": "NEW",
