@@ -209,6 +209,71 @@ def _legacy_chart_rows(code: str, page_size: int) -> list[dict[str, Any]]:
     return rows[-page_size:]
 
 
+def fetch_market_universe(market: str, *, page_size: int = 100, max_pages: int = 35) -> list[dict[str, Any]]:
+    """Fetch the public Naver market-cap list with intraday trading value fields.
+
+    This is a secondary source used for turnover participation analysis. Pages
+    stop as soon as Naver returns fewer rows than requested.
+    """
+    market = market.upper()
+    if market not in {"KOSPI", "KOSDAQ"}:
+        raise ValueError(f"unsupported market: {market}")
+    rows: list[dict[str, Any]] = []
+    for page in range(1, max_pages + 1):
+        payload = request_json(
+            f"{MOBILE_API}/stocks/marketValue/{market}",
+            params={"page": page, "pageSize": page_size},
+            headers={"Referer": f"https://m.stock.naver.com/domestic/{market.lower()}"},
+        )
+        stocks = payload.get("stocks") if isinstance(payload, dict) else None
+        if not isinstance(stocks, list):
+            raise HttpError(f"Naver marketValue {market} returned unexpected JSON")
+        valid = [row for row in stocks if isinstance(row, dict)]
+        rows.extend(valid)
+        if len(valid) < page_size:
+            break
+    return rows
+
+
+def normalize_turnover_participation(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    advance = decline = flat = total = 0.0
+    valid_count = 0
+    for row in rows:
+        raw_value = (
+            row.get("accumulatedTradingValueRaw")
+            or row.get("accumulatedTradingValue")
+            or row.get("tradingValue")
+        )
+        value = _number(raw_value)
+        change_pct = _number(row.get("fluctuationsRatio") or row.get("changeRate"))
+        if value is None or value < 0 or change_pct is None:
+            continue
+        valid_count += 1
+        total += value
+        if change_pct > 0:
+            advance += value
+        elif change_pct < 0:
+            decline += value
+        else:
+            flat += value
+    directional = advance + decline
+    adv_share = advance / directional if directional > 0 else None
+    ratio = advance / decline if decline > 0 else (None if advance <= 0 else 10.0)
+    return {
+        "evidence_state": "ESTIMATED" if valid_count else "UNKNOWN",
+        "stock_count": valid_count,
+        "total_trading_value_krw": round(total, 0) if valid_count else None,
+        "advance_trading_value_krw": round(advance, 0) if valid_count else None,
+        "decline_trading_value_krw": round(decline, 0) if valid_count else None,
+        "flat_trading_value_krw": round(flat, 0) if valid_count else None,
+        "advance_directional_share": round(adv_share, 4) if adv_share is not None else None,
+        "advance_decline_turnover_ratio": round(ratio, 4) if ratio is not None else None,
+        "source_id": SOURCE_ID,
+        "source_kind": SOURCE_KIND,
+        "method_note": "상승·하락 종목의 누적 거래대금을 합산한 장중 거래대금 참여도입니다.",
+    }
+
+
 def fetch_index_daily(code: str, page_size: int = 80) -> list[dict[str, Any]]:
     payload = request_json(
         f"{INDEX_CHART_API}/{code}",
