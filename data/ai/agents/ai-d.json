@@ -3,18 +3,44 @@
   "agent": "AI-D",
   "role": "SRE, Recovery & Data Platform Guardian",
   "status": "ACTIVE",
-  "current_task": "SRE-NEWS-CLOSED-LOOP-AND-RUNTIME-EVIDENCE",
-  "last_progress_at": "2026-09-30T23:34:01+09:00",
+  "current_task": "SRE-CLOSED-SESSION-REACTION-GUARD",
+  "last_progress_at": "2026-10-01T00:34:26+09:00",
   "reads_shared_memory": true,
   "canonical_writer": "PRIMARY",
   "candidate_namespace": "data/ai/candidates/ai-d/",
   "last_verified_writer_commit": "0eb81d1e89f95c145cc4eaa4bbc073885fcd70b9",
-  "heartbeat_at": "2026-09-30T23:34:01+09:00",
+  "heartbeat_at": "2026-10-01T00:34:26+09:00",
   "runtime_evidence": {
     "source": "scheduled_automation_runtime_observed",
     "enabled": true,
-    "last_run_time": "2026-09-30T22:35:51.508508+09:00",
-    "checked_at": "2026-09-30T23:34:01+09:00"
+    "last_run_time": "2026-09-30T23:35:25.972444+09:00",
+    "checked_at": "2026-10-01T00:34:26+09:00",
+    "note": "Scheduler remains authoritative. Repository evidence freshness is evaluated separately from automation liveness."
   },
-  "sre_finding": "Scheduler runtime remains authoritative. News canonical advanced through 23:28 KST and public Pages verified LIVE at source commit 0eb81d1e89f95c145cc4eaa4bbc073885fcd70b9. News is PARTIAL only because FSC press RSS timed out; this is a LOCAL incident. AI-D repository runtime evidence was reconciled from stale 00:39Z to the observed scheduler runtime."
+  "sre_finding": "News closed loop is fresh/HEALTHY at 23:58 KST and public Pages verified LIVE at 00:28 KST. New P1 reproduced from AI-B: Korean cash/futures axes can be marked OBSERVED from post-close snapshots without per-axis session comparability. Proposed conservative CLOSED-session abstention + source_as_of/session_state guard; production code write was blocked by the external safety layer, so no unsafe retry was attempted. self-heal also produced duplicate workflow_run executions for the same SHA 007ffc9b..., a coalescing improvement remains queued.",
+  "latest_work": {
+    "fingerprint": "news-market-reaction|closed-session-axis-observed|20260930",
+    "result": "FIX_DESIGNED_WRITE_BLOCKED",
+    "priority": "P1",
+    "evidence": {
+      "news_collection_attempted_at": "2026-09-30T23:58:33+09:00",
+      "news_collection_status": "HEALTHY",
+      "issue_digest_generated_at": "2026-09-30T23:58:33+09:00",
+      "collector_status_generated_at": "2026-09-30T23:58:46+09:00",
+      "pages_source_commit": "007ffc9bbaa8da2d6469ab127088b0cec02d9129",
+      "pages_generated_at": "2026-10-01T00:28:01+09:00",
+      "pages_material_fingerprint": "8299b3b149b2ef3d040834191e1425e907892d9b18ed71657a2eac6192fb1396",
+      "pages_core_sections": "OK"
+    },
+    "attempted_fix": "Add per-axis source_as_of/session_state and ABSTAIN_CLOSED_SESSION for KOSPI/KOSDAQ/KOSPI200_FUTURES when before/after snapshots are outside the regular Korean session; preserve global axes independently.",
+    "blocker": "External safety layer blocked src/kmb_lab/pipeline.py update.",
+    "retry_condition": "A future run where canonical code write is permitted, after re-fetching latest main and re-validating the same P1 fingerprint.",
+    "do_not_repeat": "Do not retry the identical blocked code write without new repository state; do not disable any automation or suppress global market axes because Korean cash-session comparability failed.",
+    "infra_improvement": "Coalesce duplicate self-heal workflow_run events for the same head SHA/fingerprint without disabling recovery.",
+    "handoff": [
+      "AI-E may propose a session-aware reaction schema if this P1 requires architecture change.",
+      "AI-B should re-audit only after a code change or new evidence; AI-C is not required for the immediate SRE guard."
+    ],
+    "next_work": "Re-fetch latest main; if P1 remains and write path is available, apply closed-session abstention with regression tests. Separately add duplicate self-heal dispatch coalescing."
+  }
 }
