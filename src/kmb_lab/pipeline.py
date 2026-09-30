@@ -1083,12 +1083,12 @@ def collect_smart_money(root: Path) -> tuple[dict[str, Any], list[str]]:
             continue
         benchmark = str(item.get("benchmark") or "KOSPI").upper()
         try:
-            bars = naver_market.fetch_stock_daily(code, page_size=80)
+            bars = naver_market.fetch_stock_daily(code, page_size=260)
             analysis = analyze_smart_money(bars)
             benchmark_rows: list[dict[str, Any]] | None = None
             try:
                 if benchmark not in benchmark_cache:
-                    benchmark_cache[benchmark] = naver_market.fetch_index_daily(benchmark, page_size=80)
+                    benchmark_cache[benchmark] = naver_market.fetch_index_daily(benchmark, page_size=260)
                 benchmark_rows = benchmark_cache[benchmark]
             except Exception as exc:
                 errors.append(f"smart-money-benchmark-{benchmark}:{exc}")
