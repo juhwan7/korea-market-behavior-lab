@@ -9,6 +9,8 @@ from .instrument_filter import is_stock_analysis_eligible
 from .pages_korean import human_time, status_label
 from .pages_market import _flows, _futures_global, _relative_strength, _smart, _strength
 
+VERSION_LABEL = "시장 인텔리전스 V3"
+
 NAV_ITEMS = (
     ("index.html", "시장 홈"),
     ("issues.html", "시장 이슈"),
@@ -114,7 +116,7 @@ def page_shell(title: str, subtitle: str, active: str, body: str, model: dict[st
 <body data-source-commit="{esc(source)}" data-material-fingerprint="{esc(fp)}">
 <div class="top"><nav class="nav">{nav}</nav><details class="mobile-nav"><summary>메뉴</summary><ul>{mobile}</ul></details></div>
 <main class="wrap"><section class="hero"><h1>{esc(title)}</h1><p>{esc(subtitle)}</p></section>{body}
-<footer class="footer">페이지 생성 {esc(generated)} · 데이터가 없으면 임의로 채우지 않습니다. · 반영 버전 {esc(source[:8] or "확인 필요")}</footer>
+<footer class="footer">{esc(VERSION_LABEL)} · 페이지 생성 {esc(generated)} · 데이터가 없으면 임의로 채우지 않습니다. · 반영 버전 {esc(source[:8] or "확인 필요")}</footer>
 </main></body></html>"""
 
 
