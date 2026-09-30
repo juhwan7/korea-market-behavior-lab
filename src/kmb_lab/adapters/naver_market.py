@@ -6,6 +6,7 @@ from datetime import datetime, timedelta, timezone
 from typing import Any, Iterable
 
 from kmb_lab.http_client import HttpError, request_json, request_text
+from kmb_lab.instrument_filter import classify_instrument, is_excluded_instrument, is_stock_analysis_eligible
 
 FRONT = "https://m.stock.naver.com/front-api"
 STOCK_WEB = "https://stock.naver.com"
@@ -243,6 +244,8 @@ def top_turnover_candidates(rows: list[dict[str, Any]], market: str, *, limit: i
     candidates: list[dict[str, Any]] = []
     seen: set[str] = set()
     for row in rows:
+        if not is_stock_analysis_eligible(row):
+            continue
         code = str(row.get("itemCode") or row.get("stockCode") or row.get("code") or "").strip().upper()
         name = str(row.get("stockName") or row.get("itemName") or row.get("name") or code).strip()
         value = _number(
@@ -259,8 +262,9 @@ def top_turnover_candidates(rows: list[dict[str, Any]], market: str, *, limit: i
             "code": code,
             "name": name or code,
             "benchmark": market.upper(),
+            "instrument_type": classify_instrument(row),
             "trading_value_krw": round(float(value), 0),
-            "selection_reason": "top_intraday_trading_value_validation_sample",
+            "selection_reason": "top_intraday_trading_value_common_stock_validation_sample",
         })
     candidates.sort(key=lambda row: float(row["trading_value_krw"]), reverse=True)
     return candidates[:max(0, limit)]
@@ -269,7 +273,11 @@ def top_turnover_candidates(rows: list[dict[str, Any]], market: str, *, limit: i
 def normalize_turnover_participation(rows: list[dict[str, Any]]) -> dict[str, Any]:
     advance = decline = flat = total = 0.0
     valid_count = 0
+    filtered_excluded = 0
     for row in rows:
+        if is_excluded_instrument(row):
+            filtered_excluded += 1
+            continue
         raw_value = (
             row.get("accumulatedTradingValueRaw")
             or row.get("accumulatedTradingValue")
@@ -293,6 +301,8 @@ def normalize_turnover_participation(rows: list[dict[str, Any]]) -> dict[str, An
     return {
         "evidence_state": "ESTIMATED" if valid_count else "UNKNOWN",
         "stock_count": valid_count,
+        "excluded_instrument_count": filtered_excluded,
+        "universe_rule": "ordinary_equity_only_for_stock_analysis; ETF/ETN/SPAC/preferred/REIT/structured excluded",
         "total_trading_value_krw": round(total, 0) if valid_count else None,
         "advance_trading_value_krw": round(advance, 0) if valid_count else None,
         "decline_trading_value_krw": round(decline, 0) if valid_count else None,
@@ -412,7 +422,11 @@ def _market_cap_krw(value: Any) -> float | None:
 
 def normalize_size_participation(rows: list[dict[str, Any]]) -> dict[str, Any]:
     usable: list[dict[str, float]] = []
+    filtered_excluded = 0
     for row in rows:
+        if is_excluded_instrument(row):
+            filtered_excluded += 1
+            continue
         cap = _market_cap_krw(
             row.get("marketValueRaw") or row.get("marketValue") or
             row.get("marketCap") or row.get("marketCapitalization")
@@ -457,6 +471,8 @@ def normalize_size_participation(rows: list[dict[str, Any]]) -> dict[str, Any]:
     return {
         "evidence_state": "ESTIMATED",
         "stock_count": n,
+        "excluded_instrument_count": filtered_excluded,
+        "universe_rule": "ordinary_equity_only_for_stock_analysis; ETF/ETN/SPAC/preferred/REIT/structured excluded",
         "classification": "market_cap_rank_proxy_top20_mid30_bottom50",
         "segments": {name: summarize(group) for name, group in groups.items()},
         "source_id": SOURCE_ID,
