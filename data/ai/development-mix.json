@@ -3,12 +3,22 @@
   "method": "commit_path_classification",
   "window_hours": 24,
   "target_product_min_pct": 70,
-  "product_pct": 7.9,
-  "maintenance_pct": 92.1,
-  "labeled_commit_count": 63,
+  "product_pct": 10.8,
+  "maintenance_pct": 89.2,
+  "labeled_commit_count": 65,
   "unclassified_commit_count": 20,
   "warning": true,
   "recent": [
+    {
+      "sha": "405178a53266adfe4f3e26462b8f475a78ae37f4",
+      "subject": "news: constrain discovery queries to current window",
+      "class": "product"
+    },
+    {
+      "sha": "c924a6b2eba95602301f3fcab1468a49a10f9d1b",
+      "subject": "product: refresh market intelligence",
+      "class": "product"
+    },
     {
       "sha": "28f33ebc7635254a15c6890be756ea6e92866274",
       "subject": "fix: isolate fast-lane dirty worktree before persistence",
@@ -147,16 +157,6 @@
     {
       "sha": "7d2bbae8ab11fe00929d6aea14f4c7d45929e1e1",
       "subject": "audit: falsify stale scheduler-disabled evidence semantics",
-      "class": "maintenance"
-    },
-    {
-      "sha": "9d8d92f5fc589e775c116112058dbf579ddb27f6",
-      "subject": "sre: distinguish explicit scheduler disable from stale evidence",
-      "class": "unclassified"
-    },
-    {
-      "sha": "8dc155ed61a0d60aa57ea819c335c33eb8abaa35",
-      "subject": "evolution: add counterfactual response challenger",
       "class": "maintenance"
     }
   ]
