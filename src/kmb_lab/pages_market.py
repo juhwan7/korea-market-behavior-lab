@@ -221,9 +221,20 @@ def _futures_global(futures: dict[str, Any], global_data: dict[str, Any]) -> str
         if bok_rows
         else f'<article class="card"><h3>한국은행 공식 지표</h3>{badge(bok.get("status"))}<p>현재 ECOS 공식 API에서 사용 가능한 지표를 확인하지 못했습니다.</p></article>'
     )
+    study = futures.get("study") or {}
+    study_rows = []
+    for obs in study.get("observations") or []:
+        study_rows.append(
+            f'<li><b>{esc(obs.get("state"))}</b> · {esc(obs.get("explanation"))}</li>'
+        )
+    study_html = (
+        '<article class="card"><h3>선물·현물 읽는 법</h3>'
+        f'{badge(study.get("evidence_state"))}<ul>{"".join(study_rows) or "<li>해석 가능한 관측치가 아직 부족합니다.</li>"}</ul>'
+        f'<p class="section-note">{esc(study.get("method_note") or "")}</p></article>'
+    )
     return (
         '<h2 data-kmb-section="futures-global">선물·글로벌 선행시장</h2><p class="section-note">선물과 글로벌 지표는 방향 예측이 아니라 국내 수급·시장폭과 함께 환경을 해석하는 입력입니다.</p>'
-        f'<div class="grid"><article class="card"><h3>KOSPI200 선물</h3>{kbody}</article><article class="card"><h3>글로벌</h3><ul>{"".join(gl)}</ul></article>{bok_html}<article class="card"><h3>조합 해석</h3>{badge(interp.get("evidence_state"))}<p>{esc(interp.get("label"))}</p><p class="section-note">{esc(interp.get("note"))}</p></article></div>'
+        f'<div class="grid"><article class="card"><h3>KOSPI200 선물</h3>{kbody}</article>{study_html}<article class="card"><h3>글로벌</h3><ul>{"".join(gl)}</ul></article>{bok_html}<article class="card"><h3>조합 해석</h3>{badge(interp.get("evidence_state"))}<p>{esc(interp.get("label"))}</p><p class="section-note">{esc(interp.get("note"))}</p></article></div>'
     )
 
 
