@@ -1,21 +1,21 @@
 {
-  "snapshot_count": 2,
+  "snapshot_count": 3,
   "markets": {
     "KOSPI": {
       "individual": {
-        "net_100m_krw": null,
+        "net_100m_krw": 3469.89,
         "velocity_100m_krw_per_min": null,
         "acceleration": null,
         "reversal": false
       },
       "foreign": {
-        "net_100m_krw": null,
+        "net_100m_krw": -6279.53,
         "velocity_100m_krw_per_min": null,
         "acceleration": null,
         "reversal": false
       },
       "institution": {
-        "net_100m_krw": null,
+        "net_100m_krw": -6695.89,
         "velocity_100m_krw_per_min": null,
         "acceleration": null,
         "reversal": false
@@ -23,44 +23,44 @@
     },
     "KOSDAQ": {
       "individual": {
-        "net_100m_krw": null,
+        "net_100m_krw": 92.93,
         "velocity_100m_krw_per_min": null,
         "acceleration": null,
         "reversal": false
       },
       "foreign": {
-        "net_100m_krw": null,
+        "net_100m_krw": -132.79,
         "velocity_100m_krw_per_min": null,
         "acceleration": null,
         "reversal": false
       },
       "institution": {
-        "net_100m_krw": null,
+        "net_100m_krw": 143.75,
         "velocity_100m_krw_per_min": null,
         "acceleration": null,
         "reversal": false
       }
     }
   },
-  "as_of": "2026-09-30T12:27:42+09:00",
+  "as_of": "2026-09-30T12:30:43+09:00",
   "markets_raw": {
     "KOSPI": {
       "flows_100m_krw": {
-        "individual": null,
-        "foreign": null,
-        "institution": null
+        "individual": 3469.89,
+        "foreign": -6279.53,
+        "institution": -6695.89
       },
       "source_kind": "secondary",
-      "as_of": "2026-09-30T03:27:42.789836Z"
+      "as_of": "2026-09-30T03:30:43.674047Z"
     },
     "KOSDAQ": {
       "flows_100m_krw": {
-        "individual": null,
-        "foreign": null,
-        "institution": null
+        "individual": 92.93,
+        "foreign": -132.79,
+        "institution": 143.75
       },
       "source_kind": "secondary",
-      "as_of": "2026-09-30T03:27:42.789836Z"
+      "as_of": "2026-09-30T03:30:43.674047Z"
     }
   },
   "source_quality": "SECONDARY_UNLESS_KRX_PRIMARY_FIELDS_PRESENT"

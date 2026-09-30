@@ -1,31 +1,151 @@
 {
-  "generated_at": "2026-09-30T12:27:53+09:00",
+  "generated_at": "2026-09-30T12:30:52+09:00",
   "production_eligible": false,
   "model_status": "SHADOW",
   "items": [
     {
       "code": "005930",
       "name": "삼성전자",
-      "evidence_state": "UNKNOWN",
-      "reason": "Naver stock history unavailable: request failed: https://m.stock.naver.com/front-api/chart/domestic/stock/end?code=005930&chartInfoType=item&scriptChartType=candleDay: HTTP Error 404: Not Found | request failed: https://m.stock.naver.com/api/stock/005930/price?pageSize=80&page=1: HTTP Error 400: 400"
+      "as_of": "2026-09-30",
+      "source_id": "naver-finance-public",
+      "source_kind": "secondary",
+      "evidence_state": "ESTIMATED",
+      "state": "MIXED_OR_NEUTRAL",
+      "confidence": "medium",
+      "sample_count": 80,
+      "virtual_cost_range": {
+        "low": 250187.5,
+        "high": 270354.17,
+        "poc": 250187.5,
+        "label": "volume_profile_reference_not_account_cost"
+      },
+      "remaining_inventory_proxy": {
+        "low": 0.433,
+        "high": 0.792,
+        "unit": "fraction_of_virtual_inventory_proxy"
+      },
+      "accumulation_absorption_score": 50.0,
+      "distribution_risk_score": 25.0,
+      "external_demand_score": 44.5,
+      "additional_upside_incentive_proxy": 66.2,
+      "recent_volume_ratio": 0.99,
+      "recent_5d_return_pct": -2.0,
+      "breakout": false,
+      "model_agreement": "1/5",
+      "counter_hypotheses": [
+        "대량 거래는 동일 물량의 반복 회전일 수 있어 실제 보유량과 같지 않습니다.",
+        "고점 거래 증가는 분배가 아니라 새로운 외부수요의 흡수일 수 있습니다.",
+        "공개 일봉만으로 특정 주체의 실제 계좌·평단·의도를 식별할 수 없습니다."
+      ],
+      "method_note": "가격 복원력·거래량 상대치·돌파·상대강도·거래량 프로파일을 독립적으로 결합한 가상 포지션 프록시입니다."
     },
     {
       "code": "000660",
       "name": "SK하이닉스",
-      "evidence_state": "UNKNOWN",
-      "reason": "Naver stock history unavailable: request failed: https://m.stock.naver.com/front-api/chart/domestic/stock/end?code=000660&chartInfoType=item&scriptChartType=candleDay: HTTP Error 404: Not Found | request failed: https://m.stock.naver.com/api/stock/000660/price?pageSize=80&page=1: HTTP Error 400: 400"
+      "as_of": "2026-09-30",
+      "source_id": "naver-finance-public",
+      "source_kind": "secondary",
+      "evidence_state": "ESTIMATED",
+      "state": "MIXED_OR_NEUTRAL",
+      "confidence": "medium",
+      "sample_count": 80,
+      "virtual_cost_range": {
+        "low": 1583750.0,
+        "high": 1771083.33,
+        "poc": 1677416.67,
+        "label": "volume_profile_reference_not_account_cost"
+      },
+      "remaining_inventory_proxy": {
+        "low": 0.433,
+        "high": 0.792,
+        "unit": "fraction_of_virtual_inventory_proxy"
+      },
+      "accumulation_absorption_score": 25.0,
+      "distribution_risk_score": 0.0,
+      "external_demand_score": 39.7,
+      "additional_upside_incentive_proxy": 69.5,
+      "recent_volume_ratio": 0.84,
+      "recent_5d_return_pct": -5.06,
+      "breakout": false,
+      "model_agreement": "1/5",
+      "counter_hypotheses": [
+        "대량 거래는 동일 물량의 반복 회전일 수 있어 실제 보유량과 같지 않습니다.",
+        "고점 거래 증가는 분배가 아니라 새로운 외부수요의 흡수일 수 있습니다.",
+        "공개 일봉만으로 특정 주체의 실제 계좌·평단·의도를 식별할 수 없습니다."
+      ],
+      "method_note": "가격 복원력·거래량 상대치·돌파·상대강도·거래량 프로파일을 독립적으로 결합한 가상 포지션 프록시입니다."
     },
     {
       "code": "035420",
       "name": "NAVER",
-      "evidence_state": "UNKNOWN",
-      "reason": "Naver stock history unavailable: request failed: https://m.stock.naver.com/front-api/chart/domestic/stock/end?code=035420&chartInfoType=item&scriptChartType=candleDay: HTTP Error 404: Not Found | request failed: https://m.stock.naver.com/api/stock/035420/price?pageSize=80&page=1: HTTP Error 400: 400"
+      "as_of": "2026-09-30",
+      "source_id": "naver-finance-public",
+      "source_kind": "secondary",
+      "evidence_state": "ESTIMATED",
+      "state": "MIXED_OR_NEUTRAL",
+      "confidence": "medium",
+      "sample_count": 80,
+      "virtual_cost_range": {
+        "low": 205391.67,
+        "high": 222808.33,
+        "poc": 222808.33,
+        "label": "volume_profile_reference_not_account_cost"
+      },
+      "remaining_inventory_proxy": {
+        "low": 0.095,
+        "high": 0.455,
+        "unit": "fraction_of_virtual_inventory_proxy"
+      },
+      "accumulation_absorption_score": 0.0,
+      "distribution_risk_score": 50.0,
+      "external_demand_score": 43.5,
+      "additional_upside_incentive_proxy": 45.7,
+      "recent_volume_ratio": 0.93,
+      "recent_5d_return_pct": -2.47,
+      "breakout": false,
+      "model_agreement": "0/5",
+      "counter_hypotheses": [
+        "대량 거래는 동일 물량의 반복 회전일 수 있어 실제 보유량과 같지 않습니다.",
+        "고점 거래 증가는 분배가 아니라 새로운 외부수요의 흡수일 수 있습니다.",
+        "공개 일봉만으로 특정 주체의 실제 계좌·평단·의도를 식별할 수 없습니다."
+      ],
+      "method_note": "가격 복원력·거래량 상대치·돌파·상대강도·거래량 프로파일을 독립적으로 결합한 가상 포지션 프록시입니다."
     },
     {
       "code": "035720",
       "name": "카카오",
-      "evidence_state": "UNKNOWN",
-      "reason": "Naver stock history unavailable: request failed: https://m.stock.naver.com/front-api/chart/domestic/stock/end?code=035720&chartInfoType=item&scriptChartType=candleDay: HTTP Error 404: Not Found | request failed: https://m.stock.naver.com/api/stock/035720/price?pageSize=80&page=1: HTTP Error 400: 400"
+      "as_of": "2026-09-30",
+      "source_id": "naver-finance-public",
+      "source_kind": "secondary",
+      "evidence_state": "ESTIMATED",
+      "state": "MIXED_OR_NEUTRAL",
+      "confidence": "medium",
+      "sample_count": 80,
+      "virtual_cost_range": {
+        "low": 35322.92,
+        "high": 38206.25,
+        "poc": 36043.75,
+        "label": "volume_profile_reference_not_account_cost"
+      },
+      "remaining_inventory_proxy": {
+        "low": 0.325,
+        "high": 0.685,
+        "unit": "fraction_of_virtual_inventory_proxy"
+      },
+      "accumulation_absorption_score": 1.1,
+      "distribution_risk_score": 0.0,
+      "external_demand_score": 45.9,
+      "additional_upside_incentive_proxy": 66.9,
+      "recent_volume_ratio": 0.74,
+      "recent_5d_return_pct": 0.6,
+      "breakout": false,
+      "model_agreement": "2/5",
+      "counter_hypotheses": [
+        "대량 거래는 동일 물량의 반복 회전일 수 있어 실제 보유량과 같지 않습니다.",
+        "고점 거래 증가는 분배가 아니라 새로운 외부수요의 흡수일 수 있습니다.",
+        "공개 일봉만으로 특정 주체의 실제 계좌·평단·의도를 식별할 수 없습니다."
+      ],
+      "method_note": "가격 복원력·거래량 상대치·돌파·상대강도·거래량 프로파일을 독립적으로 결합한 가상 포지션 프록시입니다."
     }
   ],
   "warning": "특정 실존 계좌의 보유량·평단·의도를 의미하지 않는 공개데이터 기반 가상 프록시입니다."

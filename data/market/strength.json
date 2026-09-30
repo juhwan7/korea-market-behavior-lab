@@ -1,34 +1,34 @@
 {
-  "evidence_state": "UNKNOWN",
-  "composite": null,
+  "evidence_state": "ESTIMATED",
+  "composite": 36.5,
   "coverage": {
-    "available": 1,
+    "available": 3,
     "total": 5
   },
   "components": {
     "price": 51.5,
-    "breadth": null,
+    "breadth": 43.9,
     "turnover": null,
-    "foreign_flow": null,
+    "foreign_flow": 14.0,
     "program": null
   },
   "index_illusion": [],
   "method_note": "가용한 가격·시장폭·수급·프로그램·거래대금 축을 분리해 표시하며, 누락 축은 점수를 임의 생성하지 않습니다.",
-  "as_of": "2026-09-30T12:27:53+09:00",
+  "as_of": "2026-09-30T12:30:52+09:00",
   "breadth": {
     "KOSPI": {
-      "upper": 0,
-      "advance": 0,
-      "flat": 0,
-      "decline": 0,
+      "upper": 1,
+      "advance": 376,
+      "flat": 45,
+      "decline": 490,
       "lower": 0
     },
     "KOSDAQ": {
-      "upper": 0,
-      "advance": 0,
-      "flat": 0,
-      "decline": 0,
-      "lower": 0
+      "upper": 2,
+      "advance": 808,
+      "flat": 85,
+      "decline": 850,
+      "lower": 2
     }
   }
 }

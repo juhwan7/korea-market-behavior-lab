@@ -3,12 +3,32 @@
   "method": "commit_path_classification",
   "window_hours": 24,
   "target_product_min_pct": 70,
-  "product_pct": 10.8,
-  "maintenance_pct": 89.2,
-  "labeled_commit_count": 65,
-  "unclassified_commit_count": 20,
+  "product_pct": 14.7,
+  "maintenance_pct": 85.3,
+  "labeled_commit_count": 68,
+  "unclassified_commit_count": 21,
   "warning": true,
   "recent": [
+    {
+      "sha": "53b4dc312ce693c436aa60548a77a0a7204214a3",
+      "subject": "product: repair domestic flow and stock history adapters",
+      "class": "product"
+    },
+    {
+      "sha": "23536b94cc2e14df9e45abb0327a1d787ef0debd",
+      "subject": "product: refresh market intelligence",
+      "class": "product"
+    },
+    {
+      "sha": "51d668daadaba3cb3cd2b4abc291bb907839fafd",
+      "subject": "test: reject stale news from current feed",
+      "class": "unclassified"
+    },
+    {
+      "sha": "ccb382ef9919b26abb7a252322f8e9b0debf1f0a",
+      "subject": "news: filter stale articles and rank current issues",
+      "class": "product"
+    },
     {
       "sha": "405178a53266adfe4f3e26462b8f475a78ae37f4",
       "subject": "news: constrain discovery queries to current window",
@@ -137,26 +157,6 @@
     {
       "sha": "640f3b75729c34a1b24a5ad92510131d134d7863",
       "subject": "audit(ai-b): distinguish heartbeat from unverifiable research progress",
-      "class": "maintenance"
-    },
-    {
-      "sha": "286720a76a5edb52c8d98de3da9adfadd0c7de4f",
-      "subject": "chore(ai-a): refresh runtime evidence",
-      "class": "maintenance"
-    },
-    {
-      "sha": "97b1b0170493c590810ce587eb97f30ff632f280",
-      "subject": "evolution: add evidence-gated model router architecture",
-      "class": "maintenance"
-    },
-    {
-      "sha": "59a8767a2255894ae57159fb7a1c7960a1c7497c",
-      "subject": "quant: define counterfactual response validation contract",
-      "class": "maintenance"
-    },
-    {
-      "sha": "7d2bbae8ab11fe00929d6aea14f4c7d45929e1e1",
-      "subject": "audit: falsify stale scheduler-disabled evidence semantics",
       "class": "maintenance"
     }
   ]
