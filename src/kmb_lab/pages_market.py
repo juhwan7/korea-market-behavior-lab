@@ -130,6 +130,16 @@ def _strength(data: dict[str, Any]) -> str:
 
 def _flows(data: dict[str, Any], program: dict[str, Any] | None = None) -> str:
     markets = data.get("markets") or {}
+    pace_labels = {
+        "NET_SELLING_WORSENING": "순매도 확대",
+        "NET_SELLING_EASING": "순매도 둔화",
+        "NET_SELLING_STABLE": "순매도 유지",
+        "NET_BUYING_STRENGTHENING": "순매수 확대",
+        "NET_BUYING_EASING": "순매수 둔화",
+        "NET_BUYING_STABLE": "순매수 유지",
+        "NEUTRAL": "중립",
+        "UNKNOWN": "추세 확인 중",
+    }
     blocks=[]
     for market in ("KOSPI","KOSDAQ"):
         row=markets.get(market) or {}
@@ -138,8 +148,19 @@ def _flows(data: dict[str, Any], program: dict[str, Any] | None = None) -> str:
             v=row.get(key) or {}
             net=v.get("net_100m_krw")
             velocity=v.get("velocity_100m_krw_per_min")
-            arrow="전환" if v.get("reversal") else "유지"
-            items.append(f'<li><b>{label}</b> {num(net, suffix="억원", digits=0)} · 속도 {num(velocity, suffix="억원/분", digits=1)} · {arrow}</li>')
+            acceleration=v.get("acceleration")
+            windows=v.get("window_changes_100m_krw") or {}
+            delta30=windows.get("30m")
+            delta60=windows.get("60m")
+            pace=pace_labels.get(v.get("pace_state"), v.get("pace_state") or "추세 확인 중")
+            arrow="방향 전환 감지" if v.get("reversal") else "부호 유지"
+            items.append(
+                f'<li><b>{label}</b> {num(net, suffix="억원", digits=0)} · '
+                f'<b>{esc(pace)}</b> · 30분 {num(delta30, suffix="억원", digits=0)} · '
+                f'60분 {num(delta60, suffix="억원", digits=0)} · '
+                f'최근 속도 {num(velocity, suffix="억원/분", digits=1)} · '
+                f'가속도 {num(acceleration, digits=1)} · {arrow}</li>'
+            )
         blocks.append(f'<article class="card"><h3>{market}</h3><ul>{"".join(items)}</ul></article>')
     program = program or {}
     if isinstance(program.get("net_100m_krw"), (int, float)):
@@ -150,7 +171,7 @@ def _flows(data: dict[str, Any], program: dict[str, Any] | None = None) -> str:
             f'<b>비차익:</b> {num(program.get("non_arbitrage_net_100m_krw"), suffix="억원", digits=0)}</p>'
             '<p class="section-note">네이버 공개 보조 데이터 기준이며 공식 KRX 원자료와 동일하게 취급하지 않습니다.</p></article>'
         )
-    return '<h2 data-kmb-section="flows">시장 수급</h2><p class="section-note">순매수 누적값뿐 아니라 최근 스냅샷 간 속도·가속·방향전환을 분리합니다. 공개 보조 데이터는 공식 KRX 수급과 동일하게 취급하지 않습니다.</p><div class="grid">'+("".join(blocks) or '<p class="empty">수급 데이터 수집 전입니다.</p>')+'</div>'
+    return '<h2 data-kmb-section="flows">시장 수급</h2><p class="section-note">순매수 누적값뿐 아니라 최근 30·60분 변화, 속도·가속·방향전환을 분리해 매수·매도 압력이 강화되는지 둔화되는지 보여줍니다. 공개 보조 데이터는 공식 KRX 수급과 동일하게 취급하지 않습니다.</p><div class="grid">'+("".join(blocks) or '<p class="empty">수급 데이터 수집 전입니다.</p>')+'</div>'
 
 
 def _futures_global(futures: dict[str, Any], global_data: dict[str, Any]) -> str:
