@@ -363,6 +363,7 @@ def intelligence_model(root: Path) -> dict[str, Any]:
         "issues": load_json(root / "data/news/issues.json", {}),
         "issue_digest": load_json(root / "data/news/issue-digest.json", {}),
         "smart_money": load_json(root / "data/stocks/smart-money.json", {}),
+        "relative_strength": load_json(root / "data/stocks/relative-strength.json", {}),
         "collector_status": load_json(root / "data/system/collector-status.json", {}),
         "development_mix": load_json(root / "data/ai/development-mix.json", {}),
         "unresolved": load_jsonl(root / "data/ai/unresolved-problems.jsonl"),
