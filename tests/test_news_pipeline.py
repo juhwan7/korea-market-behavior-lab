@@ -1,7 +1,11 @@
 import unittest
+import json
+from pathlib import Path
+from tempfile import TemporaryDirectory
+from unittest.mock import patch
 
 from kmb_lab.adapters.google_news import parse_rss, dedupe_and_cluster, classify_channels
-from kmb_lab.pipeline import _merge_issue_history, _is_recent_news_item, _enrich_issue_market_reactions
+from kmb_lab.pipeline import _merge_issue_history, _is_recent_news_item, _enrich_issue_market_reactions, collect_news
 
 XML='''<rss><channel><item><title>반도체 수출 규제 논의 - A신문</title><link>https://a</link><pubDate>Wed, 30 Sep 2026 01:00:00 GMT</pubDate><source>A신문</source></item><item><title>반도체 수출 규제 논의 확대 - B뉴스</title><link>https://b</link><pubDate>Wed, 30 Sep 2026 01:02:00 GMT</pubDate><source>B뉴스</source></item></channel></rss>'''
 
@@ -58,6 +62,24 @@ class NewsTests(unittest.TestCase):
         self.assertEqual(result["interpretation_state"],"CORRELATION_ONLY")
         self.assertAlmostEqual(result["axes"]["KOSPI"]["price_return_pct"],1.0)
         self.assertEqual(result["axes"]["KOSPI"]["foreign_flow_change_100m_krw"],-50.0)
+
+    def test_isolated_official_feed_failure_is_persisted_without_killing_news(self):
+        feed = {"id":"fsc-press","publisher":"금융위원회","url":"https://example.invalid/rss","category":"보도자료"}
+        with TemporaryDirectory() as tmp, \
+             patch("kmb_lab.pipeline.google_news.DEFAULT_QUERIES", ("반도체",)), \
+             patch("kmb_lab.pipeline.google_news.fetch_rss", return_value=XML), \
+             patch("kmb_lab.pipeline._is_recent_news_item", return_value=True), \
+             patch("kmb_lab.pipeline.official_news.OFFICIAL_FEEDS", (feed,)), \
+             patch("kmb_lab.pipeline.official_news.fetch_feed", side_effect=RuntimeError("timeout")):
+            current, issues, digest, errors = collect_news(Path(tmp))
+            self.assertEqual(current["collection_status"], "PARTIAL")
+            self.assertGreater(current["count"], 0)
+            self.assertTrue(any("official-news:fsc-press:timeout" in row for row in errors))
+            ledger = Path(tmp, "data/ai/unresolved-problems.jsonl").read_text(encoding="utf-8").splitlines()
+            rows = [json.loads(line) for line in ledger if line.strip()]
+            problem = next(row for row in rows if row["id"] == "NEWS-OFFICIAL-FSC_PRESS")
+            self.assertEqual(problem["status"], "OPEN")
+            self.assertIn("retry", problem["do_not_repeat"].lower())
 
     def test_issue_history_strengthening_then_weakening(self):
         base={
