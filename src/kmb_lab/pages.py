@@ -17,7 +17,7 @@ KST = timezone(timedelta(hours=9))
 AGENTS = ("AI-A", "AI-B", "AI-C", "AI-D", "AI-E")
 AGENT_FRESHNESS_MINUTES = 75
 DEFAULT_PAGES_URL = "https://juhwan7.github.io/korea-market-behavior-lab/"
-CORE_SECTION_MARKERS = ("overview", "market", "market-strength", "flows", "futures-global", "news-issues", "smart-money", "cycle", "ai-workshop", "work-products", "agent-health", "activity", "review", "recovery", "actions", "research", "experiments")
+CORE_SECTION_MARKERS = ("market-issues", "today-news", "ai-news-analysis", "issue-timeline", "overview", "market", "market-strength", "flows", "futures-global", "news-issues", "smart-money", "cycle", "ai-workshop", "work-products", "agent-health", "activity", "review", "recovery", "actions", "research", "experiments")
 
 MATERIAL_EXACT = {
     "data/ai/CURRENT_BRIEFING.md",
@@ -361,6 +361,7 @@ def intelligence_model(root: Path) -> dict[str, Any]:
         "strength": load_json(root / "data/market/strength.json", {}),
         "news": load_json(root / "data/news/current.json", {}),
         "issues": load_json(root / "data/news/issues.json", {}),
+        "issue_digest": load_json(root / "data/news/issue-digest.json", {}),
         "smart_money": load_json(root / "data/stocks/smart-money.json", {}),
         "collector_status": load_json(root / "data/system/collector-status.json", {}),
         "development_mix": load_json(root / "data/ai/development-mix.json", {}),
@@ -426,6 +427,7 @@ def _candidate_summary(payload: dict[str, Any], path: Path, root: Path) -> dict[
         "handoffs": handoffs,
         "next_work": next_work,
         "verified": bool(payload.get("verified", False)),
+        "related_issue_ids": payload.get("related_issue_ids") or major.get("related_issue_ids") or [],
     }
 
 
@@ -456,6 +458,7 @@ def work_products_model(root: Path) -> list[dict[str, Any]]:
             "handoffs": payload.get("handoffs") or [],
             "next_work": payload.get("next_work") or payload.get("next_action"),
             "verified": bool(payload.get("verified", False)),
+            "related_issue_ids": payload.get("related_issue_ids") or [],
         })
     products.sort(key=lambda row: parse_time(row.get("updated_at")) or datetime.min.replace(tzinfo=timezone.utc), reverse=True)
     return products
@@ -514,6 +517,8 @@ def build_model(root: Path, source_commit: str, repository: str | None, token: s
     agents = derive_agent_health(root)
     work_products = work_products_model(root)
     executions = execution_model(root, agents, work_products)
+    intelligence = intelligence_model(root)
+    intelligence["news_work_products"] = [p for p in work_products if p.get("related_issue_ids")]
     return {
         "generated_at": kst_now_text(),
         "source_commit": source_commit,
@@ -521,7 +526,7 @@ def build_model(root: Path, source_commit: str, repository: str | None, token: s
         "repository": repository or "UNKNOWN",
         "freshness": {"label": "LIVE", "note": "generated from deployment material state"},
         "market": market_model(root),
-        "intelligence": intelligence_model(root),
+        "intelligence": intelligence,
         "briefing": parse_briefing(root / "data/ai/CURRENT_BRIEFING.md"),
         "agents": agents,
         "activity": activity[:30],
@@ -530,6 +535,32 @@ def build_model(root: Path, source_commit: str, repository: str | None, token: s
         "review": review, "recovery": recovery, "tasks": tasks,
         "experiments": experiments, "research": research,
         "workflows": workflow_evidence(repository, token, offline),
+    }
+
+
+
+def market_news_payload(model: dict[str, Any]) -> dict[str, Any]:
+    intelligence = model.get("intelligence") or {}
+    current = intelligence.get("news") or {}
+    issue_doc = intelligence.get("issues") or {}
+    digest = intelligence.get("issue_digest") or {}
+    issues = issue_doc.get("issues") or []
+    work = intelligence.get("news_work_products") or []
+    return {
+        "schema_version": 1,
+        "generated_at": model.get("generated_at"),
+        "source_commit": model.get("source_commit"),
+        "latest_news_at": current.get("latest_news_at"),
+        "latest_collection_at": current.get("collection_attempted_at") or current.get("generated_at"),
+        "latest_issue_at": digest.get("latest_issue_at") or issue_doc.get("generated_at"),
+        "collection_status": current.get("collection_status") or digest.get("collection_status") or "UNKNOWN",
+        "sources_checked": current.get("sources_checked"),
+        "issues": issues[:40],
+        "news": (current.get("items") or [])[:80],
+        "analysis_in_progress": work[:30],
+        "strengthening": [x for x in issues if x.get("state") == "STRENGTHENING"][:20],
+        "weakening": [x for x in issues if x.get("state") == "WEAKENING"][:20],
+        "resolved": [x for x in issues if x.get("state") == "RESOLVED"][:20],
     }
 
 
@@ -545,6 +576,7 @@ def generate(output_dir: Path, source_commit: str, repository: str | None, token
     status = {"schema_version": 1, "generated_at": model["generated_at"], "source_commit": source_commit, "material_fingerprint": model["material_fingerprint"], "freshness": model["freshness"], "agents": model["agents"], "workflows": model["workflows"]}
     (output_dir / "status.json").write_text(json.dumps(status, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     (output_dir / "ai-activity.json").write_text(json.dumps({"schema_version": 1, "generated_at": model["generated_at"], "source_commit": source_commit, "executions": model["executions"], "work_products": model["work_products"]}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (output_dir / "market-news.json").write_text(json.dumps(market_news_payload(model), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return status
 
 
@@ -584,6 +616,7 @@ def verify_live(live_url: str, source_commit: str, attempts: int, sleep_seconds:
         try:
             status = fetch_url_json(base + "status.json?ts=" + str(int(time.time())))
             page = fetch_url_text(base + "?ts=" + str(int(time.time())))
+            market_news = fetch_url_json(base + "market-news.json?ts=" + str(int(time.time())))
             if status.get("source_commit") != source_commit:
                 raise RuntimeError(f"status.json source_commit={status.get('source_commit')} expected={source_commit}")
             if not status.get("generated_at"):
@@ -592,6 +625,10 @@ def verify_live(live_url: str, source_commit: str, attempts: int, sleep_seconds:
                 raise RuntimeError(
                     f"status.json material_fingerprint={status.get('material_fingerprint')} expected={expected_fingerprint}"
                 )
+            if market_news.get("source_commit") != source_commit:
+                raise RuntimeError(f"market-news.json source_commit={market_news.get('source_commit')} expected={source_commit}")
+            if not market_news.get("generated_at"):
+                raise RuntimeError("market-news.json generated_at missing")
             if source_commit not in page:
                 raise RuntimeError("index.html does not expose expected source commit")
             if expected_fingerprint not in page:
