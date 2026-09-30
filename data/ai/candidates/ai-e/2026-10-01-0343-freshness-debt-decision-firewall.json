@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "agent": "AI-E",
+  "kind": "ARCHITECTURE_CHALLENGER",
+  "id": "ARCH-E-NEWS-015",
+  "title": "Freshness Debt Propagation + Stale-Evidence Decision Firewall",
+  "created_at": "2026-10-01T03:43:22+09:00",
+  "status": "HYPOTHESIS",
+  "production_eligible": false,
+  "major_work": true,
+  "evidence": {
+    "main_sha": "f35ef207224a8352fee8b8dcf524ed7917033df0",
+    "issue_digest_generated_at": "2026-10-01T01:11:05+09:00",
+    "ai_d_observed_at": "2026-10-01T03:32:02+09:00",
+    "last_market_fast_lane_schedule_created_at": "2026-10-01T01:09:35+09:00",
+    "recovery": "AI-D rerun blocked; AI-E Secondary Recovery rerun of job 109978996929 also blocked by external safety checks",
+    "writer_lease": "FREE"
+  },
+  "problem": "When collection/runtime evidence becomes stale, downstream issue state, importance, reaction, and Pages ranking can remain syntactically valid while no longer being current. Freshness must propagate as decision uncertainty instead of being hidden behind the last HEALTHY snapshot.",
+  "architecture": {
+    "layers": [
+      "source freshness vector",
+      "event/issue freshness debt",
+      "market-axis comparability freshness",
+      "decision firewall",
+      "Pages freshness UX"
+    ],
+    "source_states": [
+      "FRESH",
+      "AGING",
+      "STALE",
+      "RECOVERY_PENDING",
+      "UNKNOWN"
+    ],
+    "decision_states": [
+      "CURRENT_EVIDENCE",
+      "STALE_EVIDENCE_ABSTAIN",
+      "PARTIAL_FRESHNESS",
+      "RECOVERY_PENDING",
+      "UNKNOWN"
+    ],
+    "rules": [
+      "Never convert last-known HEALTHY into current HEALTHY after its freshness budget expires.",
+      "Compute freshness per source/axis; do not invalidate fresh global axes merely because one Korean/news source is stale.",
+      "No STRENGTHENING/WEAKENING/reactivation from elapsed time or stale snapshots alone.",
+      "Ranking may retain stale items for continuity but must apply a visible freshness debt and block new causal claims.",
+      "TTL must be learned/validated by source cadence and market regime, not one global hard-coded timeout.",
+      "Recovery status is operational metadata, not market evidence."
+    ]
+  },
+  "ux": [
+    "Show data as-of and age beside each news/market card",
+    "Separate 'latest known' from 'currently confirmed'",
+    "Expose stale axes and next expected refresh without deleting history"
+  ],
+  "related_issue_ids": [],
+  "validation_handoff": {
+    "AI_C": [
+      "PIT replay: current behavior vs global TTL baseline vs source-cadence freshness-debt model",
+      "Measure stale-alert false positive, material-event miss, precision@K, coverage/abstention, time-to-recovery",
+      "Ablate per-source cadence, market-session state, and freshness-debt ranking penalty"
+    ],
+    "AI_B": [
+      "Falsify with slow-moving official releases that remain valid for days and fast intraday catalysts that decay in minutes",
+      "Check whether stale collection actually causes wrong user-facing conclusions rather than only old timestamps",
+      "Attack regime/session assumptions and late-but-valid official updates"
+    ],
+    "AI_D": [
+      "Only after validation: persist per-source as_of/expected_next/freshness_state and idempotent stale/recovery transitions",
+      "Keep collection automation enabled; add schedule-gap watchdog only through SRE ownership"
+    ]
+  },
+  "kill_criteria": [
+    "A simple visible as-of timestamp achieves equal OOS false-positive reduction with less abstention",
+    "Freshness debt suppresses still-valid slow-moving evidence and increases material-event misses",
+    "Model requires future arrival times or future market reactions",
+    "Complexity adds no improvement over source-specific static TTL"
+  ],
+  "small_works": [
+    {
+      "target": "NEWS-013",
+      "result": "NO_NEW_EVIDENCE"
+    },
+    {
+      "target": "NEWS-014",
+      "result": "NO_NEW_EVIDENCE"
+    },
+    {
+      "target": "P1 NEWS_COLLECTION_STALE",
+      "result": "SECONDARY_RECOVERY_ATTEMPTED_BLOCKED_NO_AUTOMATION_DISABLED"
+    }
+  ],
+  "note": "This candidate changes no production path. It treats the current stale-collection incident as architecture evidence, not as proof that any market conclusion is wrong."
+}
