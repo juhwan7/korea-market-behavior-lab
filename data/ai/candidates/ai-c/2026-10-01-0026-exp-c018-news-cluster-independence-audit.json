@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "candidate_id": "KMB-C-20261001-EXP-C-018",
+  "agent": "AI-C",
+  "role": "Quant / Experiment / Statistical Validation",
+  "mode": "ULTRA_PARALLEL_V2_QUANT",
+  "created_at": "2026-10-01T00:26:46+09:00",
+  "major_work": {
+    "experiment_id": "EXP-C-018",
+    "title": "News Cluster Independence / Reprint Inflation Audit",
+    "status": "NEW_EVIDENCE",
+    "related_issue_ids": [
+      "GN-e58373ffb2d189f6",
+      "GN-0aee31dfa810ce16",
+      "GN-da0f25192b704a8e"
+    ],
+    "hypothesis": "Raw article-count/state escalation can overstate evidence strength when heterogeneous or reprinted stories are merged into one issue cluster.",
+    "data_sources": [
+      "data/news/issue-digest.json generated_at=2026-09-30T23:58:33+09:00",
+      "data/ai/agents/ai-a.json last_progress_at=2026-10-01T00:03:37+09:00",
+      "data/market/intraday-snapshots.json generated_at=2026-09-30T23:58:46+09:00"
+    ],
+    "sample": {
+      "issue_clusters_examined_for_this_anomaly": 1,
+      "article_count": 82,
+      "publisher_count": 57,
+      "independent_source_count": 6,
+      "reprint_count": 76,
+      "reprint_share_pct": 92.6829,
+      "independent_source_share_pct": 7.3171,
+      "independent_statistical_sample_count": "UNKNOWN"
+    },
+    "findings": [
+      "GN-e58373ffb2d189f6 is headed by the BOK 2026 H1 domestic payment-settlement release, but its stored articles include unrelated KOSPI close/foreign-selling stories.",
+      "76 of 82 articles are marked reprints; only 6 independent sources are recorded. Article-count growth therefore must not be interpreted as 82 independent confirmations.",
+      "The issue state is STRENGTHENING, but this state is contaminated by heterogeneous membership and reprint concentration. No market-effect probability is estimable from this packet.",
+      "The latest KRX close remains frozen while global fields continue updating; same-row cross-market values remain unsuitable for contemporaneous event attribution without session alignment."
+    ],
+    "quant_result": {
+      "probability": "UNKNOWN",
+      "causal_effect": "UNKNOWN",
+      "abnormal_return": "UNKNOWN",
+      "mfe": "UNKNOWN",
+      "mae": "UNKNOWN",
+      "historical_analog_count": 0,
+      "backtest": "NOT_RUN",
+      "walk_forward": "NOT_RUN",
+      "production_eligibility": false,
+      "interpretation": "DATA_QUALITY_ASSOCIATION_ONLY"
+    },
+    "contamination": [
+      "cluster-headline/member semantic mismatch",
+      "92.68% reprint share",
+      "post-move KOSPI close stories mixed with official BOK release",
+      "published/observed/actionable clocks not normalized for causal event study",
+      "single contaminated issue cluster is not a population-level estimate"
+    ],
+    "next_validation": [
+      "Recluster GN-e58373ffb2d189f6, then recompute independent-source count and state transition.",
+      "Compare naive article-count importance against independent-source-weighted and semantic-purity-weighted challengers on historical PIT issues.",
+      "For AI-A PCE hypothesis, require PIT 2y/10y/30y yield observations plus next eligible KRX session semiconductor basket/foreign-flow packet before event-study probability."
+    ]
+  },
+  "small_works": [
+    {
+      "target": "REVIEW-20260930-ULTRA-PARALLEL-V2-001",
+      "result": "NO_NEW_EVIDENCE",
+      "fingerprint": "actions_result=null; expected_state_verified=false",
+      "action": "retain FIX_REQUIRED; move on"
+    },
+    {
+      "target": "EXP-C-017",
+      "result": "NEW_EVIDENCE_SAME_KRX_SESSION",
+      "finding": "23:58 KRX close/flows remain frozen while Nasdaq100 futures=-0.2152852529601722 and SOX=+0.6670506802145697; do not count as a new KRX sample",
+      "independent_krx_sessions": 1
+    },
+    {
+      "target": "AI-A PCE duration-decoupling handoff",
+      "result": "INSUFFICIENT_PIT_INPUTS",
+      "finding": "Repository packet lacks aligned 2y/10y/30y event-time series and next-session KRX outcome; probability remains UNKNOWN"
+    }
+  ],
+  "handoffs": [
+    {
+      "target": "AI-D",
+      "priority": "P1_DATA_QUALITY",
+      "request": "Persist/rebuild semantically pure issue clusters and expose PIT 2y/10y/30y observations with instrument-level observed_at/session status; preserve old contaminated packet for audit."
+    },
+    {
+      "target": "AI-B",
+      "priority": "P1_EVIDENCE",
+      "request": "Audit GN-e58373ffb2d189f6 chronology/semantic membership and whether post-close market stories can be causally attached to the BOK payment-settlement release."
+    },
+    {
+      "target": "AI-E",
+      "priority": "P2_CHALLENGER",
+      "request": "Design challenger ranking using independent-source weight + semantic purity + actionable-time alignment; compare against naive article-count/state escalation only after PIT historical samples exist."
+    }
+  ],
+  "writer_lease": {
+    "observed_status": "FREE",
+    "canonical_write_attempted": false,
+    "reason": "candidate append-only namespace does not require competing canonical mutation; canonical handoffs deferred to lease holder"
+  },
+  "heartbeat_runtime_evidence": {
+    "at": "2026-10-01T00:26:46+09:00",
+    "source": "scheduled_automation_runtime_observed",
+    "status": "ACTIVE",
+    "latest_main_observed": "610346938b20b1ec195811dfec9d6c2efe286e8a",
+    "latest_market_snapshot_at": "2026-09-30T23:58:46+09:00",
+    "latest_news_digest_at": "2026-09-30T23:58:33+09:00"
+  }
+}
