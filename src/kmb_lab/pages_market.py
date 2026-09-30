@@ -87,10 +87,26 @@ def _strength(data: dict[str, Any]) -> str:
     illusions = "".join(f'<li>{esc(x.get("explanation"))}</li>' for x in (data.get("index_illusion") or [])) or '<li>현재 감지된 지수 착시 신호가 없습니다.</li>'
     composite = num(data.get("composite"))
     coverage = data.get("coverage") or {}
+    turnover = ((data.get("turnover_detail") or {}).get("combined") or {})
+    tv = turnover.get("total_trading_value_krw")
+    adv_tv = turnover.get("advance_trading_value_krw")
+    dec_tv = turnover.get("decline_trading_value_krw")
+    adv_share = turnover.get("advance_directional_share")
+    turnover_html = (
+        '<article class="card" style="margin-top:12px"><h3>거래대금 내부 힘</h3>'
+        f'<p><b>분석 종목:</b> {esc(turnover.get("stock_count") or 0)}개 · '
+        f'<b>전체:</b> {num(tv/1e12 if isinstance(tv,(int,float)) else None,suffix="조원",digits=2)}</p>'
+        f'<p><b>상승 종목:</b> {num(adv_tv/1e12 if isinstance(adv_tv,(int,float)) else None,suffix="조원",digits=2)} · '
+        f'<b>하락 종목:</b> {num(dec_tv/1e12 if isinstance(dec_tv,(int,float)) else None,suffix="조원",digits=2)}</p>'
+        f'<p><b>방향성 거래대금 중 상승 비중:</b> {num(adv_share*100 if isinstance(adv_share,(int,float)) else None,suffix="%",digits=1)}</p>'
+        '<p class="section-note">단순 거래량이 아니라 상승·하락 종목에 실제 누적된 거래대금의 비중을 비교합니다. 공개 보조 데이터 기준입니다.</p></article>'
+        if turnover.get("evidence_state") == "ESTIMATED"
+        else '<article class="card" style="margin-top:12px"><h3>거래대금 내부 힘</h3><p>아직 전 종목 거래대금 집계가 충분하지 않습니다.</p></article>'
+    )
     return (
         '<h2 data-kmb-section="market-strength">시장 힘</h2>'
         f'<p class="section-note">시장 체력 종합값 {esc(composite)} · 사용 축 {esc(coverage.get("available",0))}/{esc(coverage.get("total",0))}. 누락 축은 임의 점수로 채우지 않습니다.</p>'
-        f'<div class="metric-grid">{cards}</div><article class="card" style="margin-top:12px"><h3>지수 착시 확인</h3><ul>{illusions}</ul></article>'
+        f'<div class="metric-grid">{cards}</div>{turnover_html}<article class="card" style="margin-top:12px"><h3>지수 착시 확인</h3><ul>{illusions}</ul></article>'
     )
 
 
