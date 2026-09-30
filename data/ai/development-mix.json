@@ -3,12 +3,17 @@
   "method": "commit_path_classification",
   "window_hours": 24,
   "target_product_min_pct": 70,
-  "product_pct": 43.8,
-  "maintenance_pct": 56.2,
-  "labeled_commit_count": 112,
+  "product_pct": 44.2,
+  "maintenance_pct": 55.8,
+  "labeled_commit_count": 113,
   "unclassified_commit_count": 31,
   "warning": true,
   "recent": [
+    {
+      "sha": "053ea2ba98a200a67fa92d174f99e3db406e39a4",
+      "subject": "product: refresh market intelligence",
+      "class": "product"
+    },
     {
       "sha": "967dcb9d71adba5378434bd7fd2ad9409b82e420",
       "subject": "product: recover BOK indicators through ECOS Open API",
@@ -153,11 +158,6 @@
       "sha": "17313195f6b24e3147f47745999c0bee508517c2",
       "subject": "product: publish futures basis and investor flow fallback",
       "class": "product"
-    },
-    {
-      "sha": "a8e817df7b1a3b3fbb14364c143e50b755322bcd",
-      "subject": "test: cover KOSPI200 futures fallback normalization",
-      "class": "unclassified"
     }
   ]
 }
