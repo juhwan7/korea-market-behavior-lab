@@ -169,9 +169,22 @@ def _futures_global(futures: dict[str, Any], global_data: dict[str, Any]) -> str
         row=q.get(key) or {}
         gl.append(f'<li><b>{label}</b> {num(row.get("price"),digits=2)} · {num(row.get("change_pct"),suffix="%",digits=2)}</li>')
     interp=(global_data.get("interpretation") or {})
+    bok = global_data.get("bok_official") or {}
+    bok_ind = bok.get("indicators") or {}
+    bok_rows = []
+    for key,label,suffix in (("USD_KRW","원/달러","원"),("KOREA_3Y","국고채 3년","%"),("KOSPI","KOSPI",""),("KOSDAQ","KOSDAQ","")):
+        row = bok_ind.get(key) or {}
+        if isinstance(row.get("value"), (int, float)):
+            bok_rows.append(f'<li><b>{label}</b> {num(row.get("value"),suffix=suffix,digits=2)} · 기준 {esc(row.get("as_of_text") or "공식 화면 관측시각 확인")}</li>')
+    bok_html = (
+        f'<article class="card"><h3>한국은행 공식 지표</h3>{badge(bok.get("status"))}<ul>{"".join(bok_rows)}</ul>'
+        '<p class="section-note">한국은행 ECOS 공개 화면 직접 관측값입니다. Yahoo 등 보조 시세와 섞어 공식값처럼 표시하지 않습니다.</p></article>'
+        if bok_rows
+        else f'<article class="card"><h3>한국은행 공식 지표</h3>{badge(bok.get("status"))}<p>현재 공식 화면에서 파싱 가능한 지표를 확인하지 못했습니다.</p></article>'
+    )
     return (
         '<h2 data-kmb-section="futures-global">선물·글로벌 선행시장</h2><p class="section-note">선물과 글로벌 지표는 방향 예측이 아니라 국내 수급·시장폭과 함께 환경을 해석하는 입력입니다.</p>'
-        f'<div class="grid"><article class="card"><h3>KOSPI200 선물</h3>{kbody}</article><article class="card"><h3>글로벌</h3><ul>{"".join(gl)}</ul></article><article class="card"><h3>조합 해석</h3>{badge(interp.get("evidence_state"))}<p>{esc(interp.get("label"))}</p><p class="section-note">{esc(interp.get("note"))}</p></article></div>'
+        f'<div class="grid"><article class="card"><h3>KOSPI200 선물</h3>{kbody}</article><article class="card"><h3>글로벌</h3><ul>{"".join(gl)}</ul></article>{bok_html}<article class="card"><h3>조합 해석</h3>{badge(interp.get("evidence_state"))}<p>{esc(interp.get("label"))}</p><p class="section-note">{esc(interp.get("note"))}</p></article></div>'
     )
 
 
@@ -222,6 +235,7 @@ def _issue_card(issue: dict[str, Any], now_value: Any) -> str:
 
 def render_news_intelligence(data: dict[str, Any]) -> str:
     current = data.get("news") or {}
+    disclosures = data.get("disclosures") or {}
     issue_doc = data.get("issues") or {}
     digest = data.get("issue_digest") or {}
     issues = issue_doc.get("issues") or []
@@ -244,6 +258,26 @@ def render_news_intelligence(data: dict[str, Any]) -> str:
             f'<p><b>출처 구분:</b> {esc(item.get("source_type") or "UNKNOWN")} · 공식자료 {"있음" if item.get("official_source_available") else "추가 확인 필요"}</p></details>'
         )
     news_html = "".join(news_cards) or '<p class="empty">최근 수집 창에서 표시할 뉴스가 없습니다. 데이터가 없다고 임의의 뉴스를 만들지 않습니다.</p>'
+
+    disclosure_cards = []
+    for item in (disclosures.get("items") or [])[:30]:
+        href = item.get("url")
+        report = item.get("report_name") or "공시"
+        corp = item.get("corp_name") or "회사명 확인 필요"
+        title = f"{corp} · {report}"
+        link = f'<a href="{esc(href)}" rel="noopener noreferrer">{esc(title)}</a>' if href else esc(title)
+        disclosure_cards.append(
+            f'<article class="card"><strong>{link}</strong>'
+            f'<p><b>접수일:</b> {esc(item.get("receipt_date"))} · <b>제출인:</b> {esc(item.get("submitter"))}</p>'
+            f'<p class="section-note">OpenDART 공식 공시 · 접수번호 {esc(item.get("receipt_no"))}</p></article>'
+        )
+    disclosure_status = disclosures.get("status") or "UNKNOWN"
+    if disclosure_cards:
+        disclosure_html = '<div class="grid">' + "".join(disclosure_cards) + '</div>'
+    elif disclosure_status == "USER_ACTION_REQUIRED":
+        disclosure_html = '<article class="card"><p>DART 공식 API 키가 없어 현재 자동 공시 수집은 대기 중입니다. 일반 뉴스 수집은 이 상태와 독립적으로 계속됩니다.</p></article>'
+    else:
+        disclosure_html = '<p class="empty">현재 수집 구간에서 표시할 DART 공식 공시가 없습니다.</p>'
 
     linked = data.get("news_work_products") or []
     analysis_html = "".join(
@@ -290,6 +324,9 @@ def render_news_intelligence(data: dict[str, Any]) -> str:
         '<h2 id="today-news" data-kmb-section="today-news">오늘 주요 뉴스</h2>'
         '<p class="section-note">중복 기사를 제거한 최근 뉴스입니다. 보조 뉴스 소스는 공식자료와 동일하게 취급하지 않습니다.</p>'
         f'<div class="grid">{news_html}</div>'
+        '<h2 data-kmb-section="disclosures">공식 DART 공시</h2>'
+        f'<p class="section-note">공시 상태 {badge(disclosure_status)} · 공식 OpenDART 자료만 이 구역에 표시합니다.</p>'
+        f'{disclosure_html}'
         '<h2 data-kmb-section="ai-news-analysis">AI 뉴스 분석</h2>'
         '<p class="section-note">실제 저장된 작업물에 관련 이슈 ID가 있을 때만 연결합니다. 실행 중이라는 추정은 하지 않습니다.</p>'
         f'<div class="grid">{analysis_html}</div>'

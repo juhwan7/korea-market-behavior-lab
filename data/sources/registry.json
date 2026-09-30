@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-30T11:17:00+09:00",
+  "updated_at": "2026-09-30T13:05:00+09:00",
   "policy": "A source is not CONNECTED until an adapter and validation test exist.",
   "sources": [
     {
@@ -28,22 +28,23 @@
       ],
       "source_url": "https://opendart.fss.or.kr/",
       "kind": "primary",
-      "status": "PLANNED",
-      "adapter": null,
-      "validation": null
+      "status": "ADAPTER_READY",
+      "adapter": "src/kmb_lab/adapters/dart.py",
+      "validation": "tests/test_dart_adapter.py"
     },
     {
       "id": "bok-ecos",
       "authority": "Bank of Korea ECOS",
       "purpose": [
         "fx",
-        "macro"
+        "macro",
+        "official_daily_indicators"
       ],
       "source_url": "https://ecos.bok.or.kr/",
       "kind": "primary",
-      "status": "PLANNED",
-      "adapter": null,
-      "validation": null
+      "status": "ADAPTER_READY",
+      "adapter": "src/kmb_lab/adapters/bok_ecos.py",
+      "validation": "tests/test_bok_ecos.py"
     },
     {
       "id": "us-treasury",

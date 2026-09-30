@@ -7,7 +7,7 @@ import os
 from pathlib import Path
 from typing import Any
 
-from .adapters import google_news, krx, naver_market, official_news, yahoo_global
+from .adapters import bok_ecos, dart, google_news, krx, naver_market, official_news, yahoo_global
 from .adapters.treasury import fetch_yield_curve, observation_for_maturity
 from .development_mix import git_development_mix
 from .flow import analyze_flow_history
@@ -243,6 +243,80 @@ def _program_net(program: Any) -> float | None:
                     return found
         return None
     return walk(program)
+
+
+
+def collect_disclosures(root: Path) -> tuple[dict[str, Any], list[str]]:
+    key = os.environ.get("DART_API_KEY")
+    stamp = now_text()
+    if not key:
+        upsert_unresolved({
+            "id": "DATA-DART-API-KEY", "owner": "USER",
+            "problem": "OpenDART official disclosure feed is not authenticated",
+            "root_cause": "OpenDART disclosure search requires a certification key; DART_API_KEY is not available to the workflow.",
+            "attempted_solutions": ["implemented OpenDART list adapter and validation tests", "kept news fast lane independent from DART credentials"],
+            "why_failed": "a user-issued API key cannot be created by repository code",
+            "required_external_action": "Issue an OpenDART API key and add repository secret DART_API_KEY.",
+            "retry_condition": "DART_API_KEY becomes available",
+            "do_not_repeat": "Do not scrape DART pages as if they were the authenticated OpenDART API; keep secondary news running independently.",
+            "related_files": ["src/kmb_lab/adapters/dart.py", ".github/workflows/market-fast-lane.yml"],
+            "related_commits": [], "status": "USER_ACTION_REQUIRED",
+        }, root=root)
+        return {"generated_at": stamp, "status": "USER_ACTION_REQUIRED", "count": 0, "items": [],
+                "source_id": dart.SOURCE_ID, "source_kind": dart.SOURCE_KIND,
+                "reason": "DART_API_KEY is not configured"}, []
+    today = datetime.now(KST).date()
+    try:
+        items = dart.fetch_disclosures(api_key=key, begin_date=today-timedelta(days=3), end_date=today, page_count=100)
+        resolve_unresolved("DATA-DART-API-KEY", root=root, note="DART_API_KEY available and official disclosure request succeeded")
+        resolve_unresolved("DATA-DART-RUNTIME", root=root, note="OpenDART request recovered")
+        return {"generated_at": stamp, "status": "CONNECTED_PRIMARY", "count": len(items), "items": items,
+                "source_id": dart.SOURCE_ID, "source_kind": dart.SOURCE_KIND, "source_url": dart.BASE}, []
+    except Exception as exc:
+        upsert_unresolved({
+            "id": "DATA-DART-RUNTIME", "owner": "AI-D",
+            "problem": "OpenDART official disclosure request failed with a configured key",
+            "root_cause": str(exc), "attempted_solutions": ["official OpenDART list API request with configured DART_API_KEY"],
+            "why_failed": str(exc), "required_external_action": None, "retry_condition": "next scheduled collector run",
+            "do_not_repeat": "Do not mark DART CONNECTED_PRIMARY until a successful API response is persisted.",
+            "related_files": ["src/kmb_lab/adapters/dart.py", "data/news/disclosures.json"],
+            "related_commits": [], "status": "OPEN",
+        }, root=root)
+        return {"generated_at": stamp, "status": "FAILED", "count": 0, "items": [],
+                "source_id": dart.SOURCE_ID, "source_kind": dart.SOURCE_KIND, "reason": str(exc)}, [f"dart:{exc}"]
+
+
+def collect_bok_official(root: Path) -> tuple[dict[str, Any], list[str]]:
+    try:
+        result = bok_ecos.fetch_daily_indicators()
+    except Exception as exc:
+        upsert_unresolved({
+            "id": "DATA-BOK-ECOS-RUNTIME", "owner": "AI-D",
+            "problem": "Bank of Korea ECOS public indicator page could not be read",
+            "root_cause": str(exc), "attempted_solutions": ["direct no-key read of the official ECOS public page"],
+            "why_failed": str(exc), "required_external_action": None, "retry_condition": "next scheduled collector run",
+            "do_not_repeat": "Do not replace a failed official read with fabricated values; retain the secondary market feed separately.",
+            "related_files": ["src/kmb_lab/adapters/bok_ecos.py", "data/market/bok-official.json"],
+            "related_commits": [], "status": "OPEN",
+        }, root=root)
+        return {"generated_at": now_text(), "status": "FAILED", "indicators": {},
+                "source_id": bok_ecos.SOURCE_ID, "source_kind": bok_ecos.SOURCE_KIND, "reason": str(exc)}, [f"bok-ecos:{exc}"]
+    if result.get("status") == "CONNECTED_PRIMARY":
+        resolve_unresolved("DATA-BOK-ECOS-RUNTIME", root=root, note="official ECOS public page indicators parsed successfully")
+        resolve_unresolved("DATA-BOK-ECOS-PARSE", root=root, note="official ECOS public page indicators parsed successfully")
+        return result, []
+    upsert_unresolved({
+        "id": "DATA-BOK-ECOS-PARSE", "owner": "AI-A",
+        "problem": "Bank of Korea ECOS page was reachable but configured daily indicators were not parseable",
+        "root_cause": "The public page layout did not expose the configured indicator labels in parseable text.",
+        "attempted_solutions": ["official-page label parser for USD/KRW, Korean 3Y, KOSPI and KOSDAQ"],
+        "why_failed": result.get("reason") or "no configured indicators were found in rendered HTML",
+        "required_external_action": None, "retry_condition": "page markup changes or a validated no-key official endpoint is added",
+        "do_not_repeat": "Do not invent official values from secondary quotes; preserve source separation.",
+        "related_files": ["src/kmb_lab/adapters/bok_ecos.py", "data/market/bok-official.json"],
+        "related_commits": [], "status": "OPEN",
+    }, root=root)
+    return result, []
 
 
 def collect_domestic(root: Path) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any], list[str]]:
@@ -1088,7 +1162,10 @@ def run(root: Path = ROOT) -> dict[str, Any]:
     turnover, e = collect_turnover(root); errors += e
     futures, e = collect_futures(root, indices); errors += e
     global_data, e = collect_global(); errors += e
+    bok_official, e = collect_bok_official(root); errors += e
+    global_data["bok_official"] = bok_official
     news_current, news_issues, news_digest, e = collect_news(root); errors += e
+    disclosures, e = collect_disclosures(root); errors += e
     smart_money, e = collect_smart_money(root); errors += e
     relative_strength_data, e = collect_relative_strength(root); errors += e
 
@@ -1127,9 +1204,11 @@ def run(root: Path = ROOT) -> dict[str, Any]:
     write_json(root / "data/market/breadth.json", {"generated_at": now_text(), "markets": breadth})
     write_json(root / "data/market/futures.json", {"generated_at": now_text(), **futures})
     write_json(root / "data/market/global.json", global_data)
+    write_json(root / "data/market/bok-official.json", bok_official)
     write_json(root / "data/market/turnover.json", turnover)
     write_json(root / "data/market/strength.json", strength)
     write_json(root / "data/news/current.json", news_current)
+    write_json(root / "data/news/disclosures.json", disclosures)
     write_json(root / "data/news/issues.json", news_issues)
     write_json(root / "data/news/issue-digest.json", news_digest)
     write_json(root / "data/stocks/smart-money.json", smart_money)
@@ -1178,6 +1257,9 @@ def run(root: Path = ROOT) -> dict[str, Any]:
             "breadth": _has_breadth_values(breadth),
             "kospi200_futures": (futures.get("KOSPI200_FUTURES") or {}).get("status"),
             "global_futures": bool(global_data.get("quotes")),
+            "bok_official": bok_official.get("status"),
+            "dart_disclosures": disclosures.get("status"),
+            "dart_disclosure_count": disclosures.get("count", 0),
             "news": news_current.get("count", 0),
             "news_collection": news_current.get("collection_status"),
             "news_latest_at": news_current.get("latest_news_at"),

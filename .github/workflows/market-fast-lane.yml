@@ -41,6 +41,7 @@ jobs:
       - name: Collect and analyze market intelligence
         env:
           KRX_AUTH_KEY: ${{ secrets.KRX_AUTH_KEY }}
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
         run: PYTHONPATH=src python -m kmb_lab.pipeline
 
       - name: Validate generated canonical data
@@ -54,9 +55,11 @@ jobs:
               "data/market/breadth.json",
               "data/market/futures.json",
               "data/market/global.json",
+              "data/market/bok-official.json",
               "data/market/turnover.json",
               "data/market/strength.json",
               "data/news/current.json",
+              "data/news/disclosures.json",
               "data/news/issues.json",
               "data/news/issue-digest.json",
               "data/stocks/smart-money.json",
@@ -84,6 +87,7 @@ jobs:
       - name: Persist material outputs
         env:
           KRX_AUTH_KEY: ${{ secrets.KRX_AUTH_KEY }}
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
           GITHUB_TOKEN: ${{ github.token }}
         run: |
           set -eu

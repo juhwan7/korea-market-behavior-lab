@@ -17,7 +17,7 @@ KST = timezone(timedelta(hours=9))
 AGENTS = ("AI-A", "AI-B", "AI-C", "AI-D", "AI-E")
 AGENT_FRESHNESS_MINUTES = 75
 DEFAULT_PAGES_URL = "https://juhwan7.github.io/korea-market-behavior-lab/"
-CORE_SECTION_MARKERS = ("market-issues", "today-news", "ai-news-analysis", "issue-timeline", "overview", "market", "market-strength", "flows", "futures-global", "news-issues", "smart-money", "cycle", "ai-workshop", "work-products", "agent-health", "activity", "review", "recovery", "actions", "research", "experiments")
+CORE_SECTION_MARKERS = ("market-issues", "today-news", "disclosures", "ai-news-analysis", "issue-timeline", "overview", "market", "market-strength", "flows", "futures-global", "news-issues", "smart-money", "cycle", "ai-workshop", "work-products", "agent-health", "activity", "review", "recovery", "actions", "research", "experiments")
 
 MATERIAL_EXACT = {
     "data/ai/CURRENT_BRIEFING.md",
@@ -360,6 +360,7 @@ def intelligence_model(root: Path) -> dict[str, Any]:
         "global": load_json(root / "data/market/global.json", {}),
         "strength": load_json(root / "data/market/strength.json", {}),
         "news": load_json(root / "data/news/current.json", {}),
+        "disclosures": load_json(root / "data/news/disclosures.json", {}),
         "issues": load_json(root / "data/news/issues.json", {}),
         "issue_digest": load_json(root / "data/news/issue-digest.json", {}),
         "smart_money": load_json(root / "data/stocks/smart-money.json", {}),
