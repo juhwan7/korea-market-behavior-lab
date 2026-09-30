@@ -130,6 +130,7 @@ def _sync_service_status(
     flows: dict[str, Any],
     global_data: dict[str, Any],
     official: dict[str, Any],
+    turnover: dict[str, Any],
 ) -> None:
     path = root / "data/system/services.json"
     payload = load_json(path, {"schema_version": 2, "services": []})
@@ -167,13 +168,14 @@ def _sync_service_status(
         has_global = bool(global_data.get("quotes"))
         has_flow = _has_flow_values(flows)
         has_breadth = _has_breadth_values(breadth)
+        has_turnover = (turnover.get("combined") or {}).get("evidence_state") == "ESTIMATED"
         market_row["monitoring_mode"] = "SCHEDULED"
         market_row["last_attempt_at"] = stamp
         if has_indices or has_global:
             market_row["last_success_at"] = stamp
             market_row["status"] = (
                 "HEALTHY"
-                if has_indices and has_global and has_flow and has_breadth and bool(official)
+                if has_indices and has_global and has_flow and has_breadth and has_turnover and bool(official)
                 else "PARTIAL"
             )
             missing = []
@@ -183,6 +185,8 @@ def _sync_service_status(
                 missing.append("investor flow")
             if not has_breadth:
                 missing.append("breadth")
+            if not has_turnover:
+                missing.append("turnover participation")
             market_row["note"] = (
                 "Scheduled market collector is active."
                 + (f" Remaining gaps: {', '.join(missing)}." if missing else " Core configured market axes are populated.")
@@ -308,6 +312,63 @@ def collect_domestic(root: Path) -> tuple[dict[str, Any], dict[str, Any], dict[s
     raw_program = secondary_summary.get("program")
     program = naver_market.normalize_program(raw_program)
     return indices, breadth, {"flows": flow_analysis, "program": program, "official": official}, errors
+
+
+def collect_turnover(root: Path) -> tuple[dict[str, Any], list[str]]:
+    """Collect market-wide advancing/declining trading-value participation.
+
+    During the Korean regular session the full public market-cap lists are
+    paged. Outside the session the last valid snapshot is retained rather than
+    spending requests on unchanged closed-market data.
+    """
+    errors: list[str] = []
+    path = root / "data/market/turnover.json"
+    now = datetime.now(KST)
+    in_session = now.weekday() < 5 and (
+        (now.hour > 9 or (now.hour == 9 and now.minute >= 0))
+        and (now.hour < 15 or (now.hour == 15 and now.minute <= 40))
+    )
+    previous = load_json(path, {})
+    if not in_session and isinstance(previous, dict) and (previous.get("markets") or {}):
+        reused = dict(previous)
+        reused["collection_status"] = "REUSED_CLOSED_MARKET"
+        reused["last_checked_at"] = now_text()
+        return reused, errors
+
+    markets: dict[str, Any] = {}
+    for market in ("KOSPI", "KOSDAQ"):
+        try:
+            rows = naver_market.fetch_market_universe(market)
+            markets[market] = naver_market.normalize_turnover_participation(rows)
+        except Exception as exc:
+            errors.append(f"naver-turnover-{market}:{exc}")
+            markets[market] = {"evidence_state": "UNKNOWN", "reason": str(exc)}
+
+    valid = [row for row in markets.values() if row.get("evidence_state") == "ESTIMATED"]
+    advance = sum(float(row.get("advance_trading_value_krw") or 0) for row in valid)
+    decline = sum(float(row.get("decline_trading_value_krw") or 0) for row in valid)
+    flat = sum(float(row.get("flat_trading_value_krw") or 0) for row in valid)
+    total = sum(float(row.get("total_trading_value_krw") or 0) for row in valid)
+    directional = advance + decline
+    ratio = advance / decline if decline > 0 else (10.0 if advance > 0 else None)
+    return {
+        "generated_at": now_text(),
+        "collection_status": "HEALTHY" if len(valid) == 2 else "PARTIAL" if valid else "FAILED",
+        "markets": markets,
+        "combined": {
+            "evidence_state": "ESTIMATED" if valid else "UNKNOWN",
+            "stock_count": sum(int(row.get("stock_count") or 0) for row in valid),
+            "total_trading_value_krw": round(total, 0) if valid else None,
+            "advance_trading_value_krw": round(advance, 0) if valid else None,
+            "decline_trading_value_krw": round(decline, 0) if valid else None,
+            "flat_trading_value_krw": round(flat, 0) if valid else None,
+            "advance_directional_share": round(advance / directional, 4) if directional > 0 else None,
+            "advance_decline_turnover_ratio": round(ratio, 4) if ratio is not None else None,
+        },
+        "source_id": naver_market.SOURCE_ID,
+        "source_kind": naver_market.SOURCE_KIND,
+        "method_note": "상승·하락 종목별 누적 거래대금을 전 종목 공개 목록에서 합산합니다. 공식 KRX 값과 동일하게 취급하지 않습니다.",
+    }, errors
 
 
 def collect_futures(root: Path, indices: dict[str, Any] | None = None) -> tuple[dict[str, Any], list[str]]:
@@ -701,6 +762,7 @@ def run(root: Path = ROOT) -> dict[str, Any]:
     errors: list[str] = []
 
     indices, breadth, domestic, e = collect_domestic(root); errors += e
+    turnover, e = collect_turnover(root); errors += e
     futures, e = collect_futures(root, indices); errors += e
     global_data, e = collect_global(); errors += e
     news_current, news_issues, news_digest, e = collect_news(root); errors += e
@@ -708,9 +770,17 @@ def run(root: Path = ROOT) -> dict[str, Any]:
     relative_strength_data, e = collect_relative_strength(root); errors += e
 
     flow_analysis = domestic["flows"]; program = domestic["program"]
-    strength = market_strength(indices=indices, breadth=breadth, flows=flow_analysis, program_net_100m_krw=program.get("net_100m_krw"))
+    turnover_ratio = ((turnover.get("combined") or {}).get("advance_decline_turnover_ratio"))
+    strength = market_strength(
+        indices=indices,
+        breadth=breadth,
+        flows=flow_analysis,
+        program_net_100m_krw=program.get("net_100m_krw"),
+        turnover_ratio=turnover_ratio,
+    )
     strength["as_of"] = now_text()
     strength["breadth"] = breadth
+    strength["turnover_detail"] = turnover
 
     current = {"generated_at": now_text(), "indices": indices, "breadth": breadth, "program": program, "source_quality": "MIXED"}
     summary = build_summary(indices, breadth, flow_analysis, program, strength, news_issues, domestic.get("official") or {})
@@ -721,6 +791,7 @@ def run(root: Path = ROOT) -> dict[str, Any]:
     write_json(root / "data/market/breadth.json", {"generated_at": now_text(), "markets": breadth})
     write_json(root / "data/market/futures.json", {"generated_at": now_text(), **futures})
     write_json(root / "data/market/global.json", global_data)
+    write_json(root / "data/market/turnover.json", turnover)
     write_json(root / "data/market/strength.json", strength)
     write_json(root / "data/news/current.json", news_current)
     write_json(root / "data/news/issues.json", news_issues)
@@ -737,6 +808,7 @@ def run(root: Path = ROOT) -> dict[str, Any]:
         flows=flow_analysis,
         global_data=global_data,
         official=domestic.get("official") or {},
+        turnover=turnover,
     )
 
     smart_items = smart_money.get("items") or []
@@ -760,6 +832,8 @@ def run(root: Path = ROOT) -> dict[str, Any]:
             "news_collection": news_current.get("collection_status"),
             "news_latest_at": news_current.get("latest_news_at"),
             "market_strength": strength.get("evidence_state"),
+            "turnover": (turnover.get("combined") or {}).get("evidence_state"),
+            "turnover_stock_count": (turnover.get("combined") or {}).get("stock_count"),
             "smart_money": smart_money.get("model_status"),
             "smart_money_estimated_items": smart_estimated,
             "relative_strength_items": sum(
