@@ -1,5 +1,5 @@
 import unittest
-from kmb_lab.smart_money import analyze_smart_money
+from kmb_lab.smart_money import analyze_smart_money, backtest_smart_money
 class SmartMoneyTests(unittest.TestCase):
     def bars(self, distribution=False):
         rows=[]
@@ -24,6 +24,21 @@ class SmartMoneyTests(unittest.TestCase):
     def test_distribution_risk_rises_with_weak_high_volume_closes(self):
         a=analyze_smart_money(self.bars(False)); b=analyze_smart_money(self.bars(True))
         self.assertGreater(b["distribution_risk_score"],a["distribution_risk_score"])
+    def test_walk_forward_backtest_uses_historical_states_only(self):
+        rows = self.bars(False) + self.bars(False)[:20]
+        result = backtest_smart_money(rows, forward_days=5, min_history=30)
+        self.assertIn(result["evidence_state"], {"ESTIMATED", "UNKNOWN"})
+        if result["evidence_state"] == "ESTIMATED":
+            self.assertGreater(result["sample_count"], 0)
+            self.assertIn("overall", result)
+            self.assertEqual(result["cost_assumption"]["evidence_state"], "ASSUMPTION")
+            self.assertNotIn("probability", result)
+
+    def test_walk_forward_small_history_unknown(self):
+        result = backtest_smart_money(self.bars()[:20], forward_days=5, min_history=30)
+        self.assertEqual(result["evidence_state"], "UNKNOWN")
+        self.assertEqual(result["sample_count"], 0)
+
     def test_small_sample_unknown(self):
         self.assertEqual(analyze_smart_money(self.bars()[:10])["evidence_state"],"UNKNOWN")
 if __name__=='__main__': unittest.main()
