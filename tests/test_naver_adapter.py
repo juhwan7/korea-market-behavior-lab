@@ -6,6 +6,7 @@ from kmb_lab.adapters.naver_market import (
     normalize_main_summary,
     normalize_program,
     normalize_stock_bars,
+    normalize_turnover_participation,
 )
 
 
@@ -72,6 +73,17 @@ class NaverTests(unittest.TestCase):
         self.assertEqual(r["KOSDAQ"]["flows_100m_krw"]["foreign"], 120)
         self.assertEqual(r["KOSDAQ"]["breadth"]["advance"], 820)
         self.assertEqual(r["KPI200"]["breadth"]["decline"], 110)
+
+    def test_turnover_participation_uses_directional_trading_value(self):
+        rows = [
+            {"accumulatedTradingValueRaw": "100000000000", "fluctuationsRatio": "2.0"},
+            {"accumulatedTradingValueRaw": "50000000000", "fluctuationsRatio": "-1.0"},
+            {"accumulatedTradingValueRaw": "10000000000", "fluctuationsRatio": "0.0"},
+        ]
+        result = normalize_turnover_participation(rows)
+        self.assertEqual(result["stock_count"], 3)
+        self.assertEqual(result["advance_decline_turnover_ratio"], 2.0)
+        self.assertEqual(result["advance_directional_share"], 0.6667)
 
     def test_kospi200_futures_secondary_normalization(self):
         price_rows = [{
