@@ -189,6 +189,67 @@ def _list_block(title: str, values: Any, empty: str = "기록된 내용 없음")
     return f'<div><b>{esc(title)}</b><ul class="compact-list">{"".join(f"<li>{esc(x)}</li>" for x in clean) or f"<li>{esc(empty)}</li>"}</ul></div>'
 
 
+def _research_status(row: dict[str, Any]) -> str:
+    """Map heterogeneous agent result enums into a small Korean research lifecycle."""
+    raw = " ".join(str(row.get(key) or "") for key in ("result", "news_outcome", "status")).upper()
+    if any(token in raw for token in ("REJECTED", "FALSIFIED", "DISPROVED", "REFUTED")):
+        return "반증됨"
+    if any(token in raw for token in ("DISCARDED", "DROPPED", "ABANDONED")):
+        return "폐기"
+    if any(token in raw for token in ("WEAKEN", "EVIDENCE_DOWN", "DEGRADED")):
+        return "약화"
+    if any(token in raw for token in ("VERIFIED", "CONFIRMED", "PASS")) and "PASS_WITH_NOTES" not in raw:
+        return "검증 완료"
+    if any(token in raw for token in ("STRENGTHEN", "EVIDENCE_UP")):
+        return "강화"
+    if any(token in raw for token in ("UNKNOWN", "NO_NEW_EVIDENCE", "NO_WORK")):
+        return "확인 필요"
+    if any(token in raw for token in ("HYPOTHESIS", "CANDIDATE", "RESEARCH", "PARTIAL", "PASS_WITH_NOTES")):
+        return "검증 중"
+    return "새 가설"
+
+
+_RESEARCH_TOPIC_KEYWORDS = {
+    "반도체": ("hbm", "dram", "nand", "반도체", "메모리", "삼성전자", "sk하이닉스", "nvidia", "엔비디아", "ascend"),
+    "AI": ("인공지능", "deepseek", "hyperscaler", "데이터센터", "cuda"),
+    "금리": ("금리", "국채", "treasury", "duration", "credit spread", "신용 스프레드", "채권"),
+    "환율": ("환율", "원/달러", "usd/krw", "달러", "fx"),
+    "유가": ("유가", "brent", "wti", "디젤", "원유", "정유", "나프타"),
+    "지정학": ("미중", "중동", "이란", "호르무즈", "제재", "geopolit", "중국 팹", "수출통제"),
+    "수급": ("외국인", "기관", "프로그램", "수급", "breadth", "시장 확산도", "거래대금"),
+    "큰손": ("매집", "분배", "흡수", "큰손", "자사주", "buyback", "세력"),
+    "뉴스": ("뉴스", "reuters", "기사", "이슈", "headline"),
+    "기업": ("실적", "매출", "영업이익", "수주", "공급계약", "m&a", "인수"),
+    "정책": ("정책", "정부", "의회", "규제", "라이선스", "투자계획", "보조금"),
+}
+
+
+def _research_topics(row: dict[str, Any]) -> list[str]:
+    parts = [
+        row.get("title"), row.get("hypothesis"), row.get("why_important"),
+        row.get("counter_scenario"), row.get("fingerprint"),
+        row.get("confirmed"), row.get("unknown"), row.get("next_work"),
+        row.get("related_markets"), row.get("related_sectors"), row.get("related_stocks"),
+    ]
+    text = " ".join(str(x) for x in parts if x not in (None, "", [], {})).lower()
+    topics: list[str] = []
+    for label, keywords in _RESEARCH_TOPIC_KEYWORDS.items():
+        matched = False
+        for keyword in keywords:
+            key = keyword.lower()
+            if key == "ai":
+                matched = bool(re.search(r"(?<![a-z0-9])ai(?![a-z0-9])", text))
+            else:
+                matched = key in text
+            if matched:
+                topics.append(label)
+                break
+    # Catch standalone AI without making substrings such as "main" a false positive.
+    if "AI" not in topics and re.search(r"(?<![a-z0-9])ai(?![a-z0-9])", text):
+        topics.append("AI")
+    return topics or ["기타"]
+
+
 def research_card(row: dict[str, Any], now_value: Any) -> str:
     hypothesis = row.get("hypothesis")
     if isinstance(hypothesis, list):
@@ -201,10 +262,14 @@ def research_card(row: dict[str, Any], now_value: Any) -> str:
         flow = '<div class="flow">' + '<b>→</b>'.join(f'<span>{esc(ko_text(x))}</span>' for x in path) + '</div>'
     related = (row.get("related_markets") or []) + (row.get("related_sectors") or []) + (row.get("related_stocks") or [])
     source_kind = "GitHub 실행 기록" if row.get("source_kind") == "AGENT_STATE_HISTORY" else "현재 실행 기록" if row.get("source_kind") == "CURRENT_AGENT_STATE" else "저장된 연구 작업물"
+    lifecycle = _research_status(row)
+    topics = _research_topics(row)
+    topics_text = " · ".join(topics)
     return (
-        f'<article id="{esc(_research_anchor(row))}" class="card reasoning-card research-item" data-agent="{esc(row.get("agent") or "AI")}" data-search="{esc((str(row.get("title") or "")+" "+hypothesis_text).lower())}">'
+        f'<article id="{esc(_research_anchor(row))}" class="card reasoning-card research-item" data-agent="{esc(row.get("agent") or "AI")}" data-status="{esc(lifecycle)}" data-topics="{esc("|".join(topics))}" data-search="{esc((str(row.get("title") or "")+" "+hypothesis_text+" "+topics_text).lower())}">'
         f'<div class="meta">{esc(row.get("agent") or "AI")} · {esc(human_time(row.get("at"), now_value))} · {esc(source_kind)}</div>'
         f'<h3>{esc(ko_text(row.get("title") or "시장 연구"))}</h3>'
+        f'<p class="meta">연구 상태: <b>{esc(lifecycle)}</b> · 주제: {esc(topics_text)}</p>'
         f'<p>{badge(row.get("result") or row.get("news_outcome") or "HYPOTHESIS")} {badge(row.get("news_outcome")) if row.get("news_outcome") else ""}</p>'
         f'{_list_block("확인된 사실", row.get("confirmed"))}'
         f'<div class="hyp"><b>현재 가설</b><p>{esc(hypothesis_text)}</p></div>'
@@ -287,9 +352,17 @@ def render_ai_research(model: dict[str, Any]) -> str:
         title=ko_text(items[0].get("title") or "가설")
         times=" → ".join(human_time(x.get("at"),model.get("generated_at")) for x in reversed(items[:8]))
         evol.append(f'<article class="card"><strong>{esc(title)}</strong><p>{esc(times)}</p><p class="note">같은 연구 지문이 시간에 따라 {len(items)}회 업데이트됨</p></article>')
-    filters='''<div class="filters"><button class="on" data-agent-filter="ALL">전체</button><button data-agent-filter="AI-A">AI-A</button><button data-agent-filter="AI-B">AI-B</button><button data-agent-filter="AI-C">AI-C</button><button data-agent-filter="AI-D">AI-D</button><button data-agent-filter="AI-E">AI-E</button><input id="research-search" placeholder="가설·주제 검색"></div>'''
+    status_options = ["전체", "새 가설", "검증 중", "강화", "약화", "반증됨", "검증 완료", "폐기", "확인 필요"]
+    topic_options = ["전체"] + sorted({topic for row in rows for topic in _research_topics(row)})
+    filters=(
+        '<div class="filters">'
+        '<button class="on" data-agent-filter="ALL">전체</button><button data-agent-filter="AI-A">AI-A</button><button data-agent-filter="AI-B">AI-B</button><button data-agent-filter="AI-C">AI-C</button><button data-agent-filter="AI-D">AI-D</button><button data-agent-filter="AI-E">AI-E</button>'
+        '<label>연구 상태 <select id="research-status">' + "".join(f'<option value="{esc(x)}">{esc(x)}</option>' for x in status_options) + '</select></label>'
+        '<label>주제 <select id="research-topic">' + "".join(f'<option value="{esc(x)}">{esc(x)}</option>' for x in topic_options) + '</select></label>'
+        '<input id="research-search" placeholder="가설·주제 검색"></div>'
+    )
     cards="".join(research_card(x,model.get("generated_at")) for x in rows[:150]) or '<p>아직 구조화된 연구 기록이 없습니다.</p>'
-    script='''<script>(()=>{let agent="ALL";const items=[...document.querySelectorAll(".research-item")];const input=document.querySelector("#research-search");function draw(){const q=(input?.value||"").toLowerCase();items.forEach(x=>x.hidden=!((agent==="ALL"||x.dataset.agent===agent)&&(!q||x.dataset.search.includes(q))))}document.querySelectorAll("[data-agent-filter]").forEach(b=>b.onclick=()=>{agent=b.dataset.agentFilter;document.querySelectorAll("[data-agent-filter]").forEach(x=>x.classList.toggle("on",x===b));draw()});input?.addEventListener("input",draw)})();</script>'''
+    script='''<script>(()=>{let agent="ALL";const items=[...document.querySelectorAll(".research-item")];const input=document.querySelector("#research-search");const status=document.querySelector("#research-status");const topic=document.querySelector("#research-topic");function draw(){const q=(input?.value||"").toLowerCase();const sv=status?.value||"전체";const tv=topic?.value||"전체";items.forEach(x=>{const agentOk=agent==="ALL"||x.dataset.agent===agent;const statusOk=sv==="전체"||x.dataset.status===sv;const topicOk=tv==="전체"||(x.dataset.topics||"").split("|").includes(tv);const queryOk=!q||x.dataset.search.includes(q);x.hidden=!(agentOk&&statusOk&&topicOk&&queryOk)})}document.querySelectorAll("[data-agent-filter]").forEach(b=>b.onclick=()=>{agent=b.dataset.agentFilter;document.querySelectorAll("[data-agent-filter]").forEach(x=>x.classList.toggle("on",x===b));draw()});input?.addEventListener("input",draw);status?.addEventListener("change",draw);topic?.addEventListener("change",draw)})();</script>'''
     body=(
         '<section data-kmb-section="ai-market-reasoning">'
         '<p class="note">AI 실행 결과에 저장된 사실·가설·미확인 항목·반증·정량검증 계획을 모읍니다. candidate 저장이 막혀도 agent state가 Git에 남았다면 과거 기록에서 복원합니다.</p>'
