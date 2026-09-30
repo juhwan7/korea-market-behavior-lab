@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "candidate_id": "KMB-C-20261001-EXP-C-019",
+  "agent": "AI-C",
+  "created_at": "2026-10-01T01:21:06+09:00",
+  "experiment_id": "EXP-C-019",
+  "title": "News State Churn vs Independent Evidence Audit",
+  "major_work": true,
+  "evidence_state": "ESTIMATED",
+  "production_eligible": false,
+  "related_issue_ids": [
+    "GN-25b0e75405c01734"
+  ],
+  "hypothesis": "Issue lifecycle state should not strengthen merely because collection refreshes when independent evidence does not increase.",
+  "observations": {
+    "issue_generated_at": "2026-10-01T01:11:05+09:00",
+    "article_count": 4,
+    "publisher_count": 4,
+    "independent_source_count": 1,
+    "reprint_count": 3,
+    "reprint_share": 0.75,
+    "state_history": [
+      {
+        "at": "2026-09-30T23:15:46+09:00",
+        "state": "NEW"
+      },
+      {
+        "at": "2026-09-30T23:20:26+09:00",
+        "state": "WEAKENING"
+      },
+      {
+        "at": "2026-10-01T01:11:05+09:00",
+        "state": "STRENGTHENING"
+      }
+    ],
+    "independent_sample_count": 1,
+    "latest_market_snapshot": "2026-10-01T01:11:18+09:00",
+    "krx_session_count": 1
+  },
+  "result": {
+    "finding": "Lifecycle state churned NEW→WEAKENING→STRENGTHENING while current cluster exposes only one independent source and 75% reprints. This is evidence of state-instability risk, not evidence that the market impact strengthened.",
+    "causal_effect": "UNKNOWN",
+    "probability": "UNKNOWN",
+    "abnormal_return": "UNKNOWN",
+    "mfe": "UNKNOWN",
+    "mae": "UNKNOWN",
+    "backtest": "NOT_RUN",
+    "walk_forward": "NOT_RUN"
+  },
+  "contamination": [
+    "post-close market recap articles",
+    "reprints are not independent evidence",
+    "single KRX session",
+    "published/observed/actionable clocks not sufficient for causal event study"
+  ],
+  "small_works": [
+    {
+      "id": "EXP-C-018-followup",
+      "result": "NEW_PIPELINE_EVIDENCE",
+      "note": "Prior 82-article mixed cluster is no longer the current top issue; current top issue is smaller but still shows reprint/independence sensitivity."
+    },
+    {
+      "id": "EXP-C-017-followup",
+      "result": "NO_NEW_INDEPENDENT_KRX_EVIDENCE",
+      "note": "18 snapshots now exist, but all belong to the same 2026-09-30 KRX session; post-close global moves must not be counted as additional KRX samples."
+    }
+  ],
+  "handoffs": [
+    {
+      "to": "AI-D",
+      "request": "Persist lifecycle transition inputs and independent-source delta per transition; prevent collection refresh alone from acting as new evidence."
+    },
+    {
+      "to": "AI-B",
+      "request": "Audit GN-25b0e75405c01734 chronology/semantic membership and whether STRENGTHENING has evidence beyond one independent source."
+    },
+    {
+      "to": "AI-E",
+      "request": "Design challenger lifecycle score using independent-source delta, semantic purity and actionable-time alignment; compare against raw article/state escalation only after multi-issue OOS history exists."
+    }
+  ],
+  "next_validation": [
+    "Accumulate multiple independent issues and KRX sessions",
+    "Measure state-transition precision against subsequent independent-source additions",
+    "Run chronological OOS comparison only after adequate PIT history"
+  ],
+  "limitations": [
+    "No causal event-study window with independent pre/post samples",
+    "No validated probability can be produced from one independent source/session"
+  ]
+}
