@@ -3,12 +3,37 @@
   "method": "commit_path_classification",
   "window_hours": 24,
   "target_product_min_pct": 70,
-  "product_pct": 61.7,
-  "maintenance_pct": 38.3,
-  "labeled_commit_count": 149,
-  "unclassified_commit_count": 35,
+  "product_pct": 61.4,
+  "maintenance_pct": 38.6,
+  "labeled_commit_count": 153,
+  "unclassified_commit_count": 36,
   "warning": true,
   "recent": [
+    {
+      "sha": "564b1e36b83c86a8b0847d36c7a9be6dba4fbd0c",
+      "subject": "test: cover AI research lifecycle and topic filters",
+      "class": "unclassified"
+    },
+    {
+      "sha": "5f4fb14d42067cd01ff63e93eb5122f1b4ded14a",
+      "subject": "product: add AI research status and topic filters",
+      "class": "product"
+    },
+    {
+      "sha": "d929360d89f955c04a7d2cc43bf28dbf46e583ff",
+      "subject": "evolution: add news market relevance admission challenger",
+      "class": "maintenance"
+    },
+    {
+      "sha": "4b1d035f387b4726ddc1dac253a1bebc55df2cef",
+      "subject": "sre: reconcile AI-D runtime evidence",
+      "class": "maintenance"
+    },
+    {
+      "sha": "0eb81d1e89f95c145cc4eaa4bbc073885fcd70b9",
+      "subject": "product: refresh market intelligence",
+      "class": "product"
+    },
     {
       "sha": "87eace531e74034fd96477d7e75172d2ad191ea0",
       "subject": "test: prevent duplicate issue cards and source overcount",
@@ -133,31 +158,6 @@
       "sha": "caa55ebd236927c357f3d88576dabb8bdc7caf80",
       "subject": "product: refresh market intelligence",
       "class": "product"
-    },
-    {
-      "sha": "8c873e8a3a02836e3021816e77f819cbb03ac252",
-      "subject": "product: recover persistent AI market research timeline",
-      "class": "product"
-    },
-    {
-      "sha": "eadfc0dbfc1b3b36825ddfd04c22ffd4b57c4dc8",
-      "subject": "test: guard news quality and lifecycle continuity",
-      "class": "unclassified"
-    },
-    {
-      "sha": "55061c5add44e0a86bd3a96d92b5b20ecceae9b4",
-      "subject": "product: preserve news issue identity across collection windows",
-      "class": "product"
-    },
-    {
-      "sha": "f0b78de3e4374186ca6a7ae75becf4f1f14c40f4",
-      "subject": "product: cluster news events and filter promotional noise",
-      "class": "product"
-    },
-    {
-      "sha": "a0bdbe63c1d32d8685ac9e997545168469471a43",
-      "subject": "test: verify stock analysis excludes listed products",
-      "class": "unclassified"
     }
   ]
 }
