@@ -3,17 +3,18 @@
   "agent": "AI-E",
   "role": "Chief Evolution Architect",
   "status": "ACTIVE",
-  "current_task": null,
-  "last_progress_at": null,
+  "current_task": "ARCH-E-NEWS-013 — Evidence-Delta Lifecycle Gate + Distribution/Strength Separation",
+  "last_progress_at": "2026-10-01T01:51:41+09:00",
   "reads_shared_memory": true,
   "canonical_writer": "SECONDARY",
   "candidate_namespace": "data/ai/candidates/ai-e/",
-  "heartbeat_at": "2026-09-29T19:47:35.000212Z",
+  "heartbeat_at": "2026-10-01T01:51:41+09:00",
   "runtime_evidence": {
     "source": "scheduled_automation_runtime_observed",
     "enabled": true,
-    "last_run_time": "2026-09-29T19:47:35.000212Z",
-    "checked_at": "2026-09-30T05:31:57+09:00"
+    "last_run_time": "2026-10-01T01:51:41+09:00",
+    "checked_at": "2026-10-01T01:51:41+09:00",
+    "evidence_commit": "61ac88b66aa945783cfc41ef9f3174c63f3c8a87"
   },
-  "sre_finding": "Authoritative scheduler runtime reconciled by AI-D after repository observability drift; stale repository evidence alone does not imply automation failure."
+  "sre_finding": "AI-D ACTIVE; no Secondary Recovery. Writer lease was FREE. NEWS-013 candidate persisted; production remains unchanged pending AI-C/AI-B validation."
 }
