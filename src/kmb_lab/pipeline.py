@@ -1053,7 +1053,17 @@ def build_summary(indices: dict[str, Any], breadth: dict[str, Any], flows: dict[
     if not official: unknown.append("KRX 1차 시장 데이터는 인증키가 없어 미연결")
     return {
         "as_of": now_text(), "kospi": idx("KOSPI"), "kosdaq": idx("KOSDAQ"),
-        "turnover": "KRX 공식값" if official else "실시간 공식 거래대금 미연결",
+        "turnover": (
+            "KRX 공식값"
+            if official
+            else (
+                f"공개 보조 전종목 거래대금 {float(((strength.get('turnover_detail') or {}).get('combined') or {}).get('total_trading_value_krw'))/1e12:.2f}조원 · "
+                f"상승 방향 비중 {float(((strength.get('turnover_detail') or {}).get('combined') or {}).get('advance_directional_share'))*100:.1f}%"
+                if isinstance((((strength.get("turnover_detail") or {}).get("combined") or {}).get("total_trading_value_krw")), (int, float))
+                and isinstance((((strength.get("turnover_detail") or {}).get("combined") or {}).get("advance_directional_share")), (int, float))
+                else "거래대금 참여도 수집 중"
+            )
+        ),
         "movers": strength.get("index_illusion") or "특이 지수 착시 없음",
         "relative_strength": f"시장체력 {strength.get('composite')}" if strength.get("composite") is not None else "UNKNOWN",
         "themes": flat_themes[:5] or "UNKNOWN", "leaders": "관심종목 분석 화면 참조",
