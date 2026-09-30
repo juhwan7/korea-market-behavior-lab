@@ -208,17 +208,35 @@ def parse_rss(xml_text: str, *, query: str = "") -> list[dict[str, Any]]:
 
 
 def dedupe_and_cluster(items: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
-    unique: list[dict[str, Any]] = []
-    seen_urls: set[str] = set()
-    seen_titles: set[str] = set()
-    for item in sorted(items, key=lambda x: x.get("published_at") or "", reverse=True):
+    # Deduplicate exact URLs/titles while preserving first-party evidence.
+    # If an official source and a secondary copy share the same normalized
+    # headline, keep the official item even when the secondary item was newer.
+    candidates = sorted(items, key=lambda x: x.get("published_at") or "", reverse=True)
+    by_title: dict[str, dict[str, Any]] = {}
+    url_to_title: dict[str, str] = {}
+    order: list[str] = []
+    for item in candidates:
         key = re.sub(r"\W+", "", str(item.get("headline") or item.get("title", "")).lower())
         url = str(item.get("url", ""))
-        if url in seen_urls or key in seen_titles:
+        if not key:
             continue
-        seen_urls.add(url)
-        seen_titles.add(key)
-        unique.append(dict(item))
+        existing_key = url_to_title.get(url) if url else None
+        target_key = existing_key or key
+        existing = by_title.get(target_key)
+        if existing is None:
+            by_title[target_key] = dict(item)
+            order.append(target_key)
+            if url:
+                url_to_title[url] = target_key
+            continue
+        existing_primary = bool(existing.get("official_source_available")) or existing.get("source_type") == "PRIMARY"
+        incoming_primary = bool(item.get("official_source_available")) or item.get("source_type") == "PRIMARY"
+        if incoming_primary and not existing_primary:
+            by_title[target_key] = dict(item)
+            if url:
+                url_to_title[url] = target_key
+    unique = [by_title[key] for key in order if key in by_title]
+
 
     clusters: list[dict[str, Any]] = []
     for item in unique:
