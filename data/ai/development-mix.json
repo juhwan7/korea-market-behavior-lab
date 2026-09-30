@@ -3,12 +3,32 @@
   "method": "commit_path_classification",
   "window_hours": 24,
   "target_product_min_pct": 70,
-  "product_pct": 61.0,
-  "maintenance_pct": 39.0,
-  "labeled_commit_count": 146,
-  "unclassified_commit_count": 34,
+  "product_pct": 61.7,
+  "maintenance_pct": 38.3,
+  "labeled_commit_count": 149,
+  "unclassified_commit_count": 35,
   "warning": true,
   "recent": [
+    {
+      "sha": "87eace531e74034fd96477d7e75172d2ad191ea0",
+      "subject": "test: prevent duplicate issue cards and source overcount",
+      "class": "unclassified"
+    },
+    {
+      "sha": "e366eb49b8e71898bbf781568232b93017f3b7d2",
+      "subject": "product: collapse superseded news issue fragments",
+      "class": "product"
+    },
+    {
+      "sha": "793823c0a2616442af6e03c58f572583b5e766b5",
+      "subject": "product: conservatively count independent news origins",
+      "class": "product"
+    },
+    {
+      "sha": "b556c15446c74f7fac0b9ce2233703b942bf0645",
+      "subject": "product: refresh market intelligence",
+      "class": "product"
+    },
     {
       "sha": "8bd0c1285c753db20a657ed0f1e3a52cbccba115",
       "subject": "product: finalize KMB market intelligence V3 surface",
@@ -138,26 +158,6 @@
       "sha": "a0bdbe63c1d32d8685ac9e997545168469471a43",
       "subject": "test: verify stock analysis excludes listed products",
       "class": "unclassified"
-    },
-    {
-      "sha": "34ad092a180f1f3ae6718eb821be2361e4c382cd",
-      "subject": "test: lock common-stock universe exclusions",
-      "class": "unclassified"
-    },
-    {
-      "sha": "c07b6bbf8af02b11c1f8b74e5ed77a484c801b54",
-      "subject": "product: filter non-common instruments from stock analysis",
-      "class": "product"
-    },
-    {
-      "sha": "a69fccd5973b2e2b24214f5d5b1b4ba677e60bf6",
-      "subject": "product: add common-stock universe filter",
-      "class": "product"
-    },
-    {
-      "sha": "9c85aed4883e18033f89fb2b89abf4548df824c5",
-      "subject": "product: refresh market intelligence",
-      "class": "product"
     }
   ]
 }
