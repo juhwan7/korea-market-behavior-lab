@@ -2,6 +2,7 @@ import unittest
 
 from kmb_lab.pages import CORE_SECTION_MARKERS, render_html
 from kmb_lab.pages_korean import human_time, status_label
+from kmb_lab.pages_v3 import render_pages
 
 
 class KoreanPagesTests(unittest.TestCase):
@@ -41,23 +42,28 @@ class KoreanPagesTests(unittest.TestCase):
     def test_human_time(self):
         self.assertEqual(human_time("2026-09-29T14:57:00+09:00", "2026-09-29T15:00:00+09:00"), "3분 전")
 
-    def test_render_contains_korean_cycle_and_all_agents(self):
-        page = render_html(self.sample_model())
-        self.assertIn('lang="ko"', page)
-        self.assertIn('data-kmb-section="cycle"', page)
-        self.assertIn("5개 AI 연구 순환", page)
+    def test_render_is_korean_multipage_and_all_agents_are_visible(self):
+        pages = render_pages(self.sample_model())
+        self.assertEqual(set(pages), {
+            "index.html", "issues.html", "ai-research.html", "stocks.html",
+            "smart-money.html", "news.html", "global.html", "lab.html", "system.html",
+        })
+        combined = "\n".join(pages.values())
+        self.assertIn('lang="ko"', pages["index.html"])
+        self.assertIn('data-kmb-section="cycle"', pages["index.html"])
+        self.assertIn("AI 시장 추론", pages["ai-research.html"])
         for agent in ("AI-A", "AI-B", "AI-C", "AI-D", "AI-E"):
-            self.assertIn(agent, page)
+            self.assertIn(agent, combined)
         for marker in CORE_SECTION_MARKERS:
-            self.assertIn(f'data-kmb-section="{marker}"', page)
+            self.assertIn(f'data-kmb-section="{marker}"', combined)
 
     def test_user_surface_avoids_raw_json_and_internal_assignments(self):
-        page = render_html(self.sample_model())
-        self.assertNotIn("[object Object]", page)
-        self.assertNotIn('"evidence_state"', page)
-        self.assertNotIn("production_eligible=", page)
-        self.assertNotIn("<pre>", page)
-        self.assertIn("아직 사용하지 않음", page)
+        pages = render_pages(self.sample_model())
+        combined = "\n".join(pages.values())
+        self.assertNotIn("[object Object]", combined)
+        self.assertNotIn('"evidence_state"', combined)
+        self.assertNotIn("production_eligible=", combined)
+        self.assertNotIn("<pre>", combined)
 
     def test_reduced_motion_is_supported(self):
         page = render_html(self.sample_model())
