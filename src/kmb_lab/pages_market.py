@@ -215,9 +215,9 @@ def render_news_intelligence(data: dict[str, Any]) -> str:
 
     return (
         '<section data-kmb-section="news-issues">'
-        '<h2 data-kmb-section="market-issues">현재 시장 핵심 이슈</h2>'
+        '<h2 id="market-issues" data-kmb-section="market-issues">현재 시장 핵심 이슈</h2>'
         f'<p class="section-note">{freshness}. 뉴스 자체와 시장 인과는 분리해 표시합니다.</p><div class="grid">{core_html}</div>'
-        '<h2 data-kmb-section="today-news">오늘 주요 뉴스</h2>'
+        '<h2 id="today-news" data-kmb-section="today-news">오늘 주요 뉴스</h2>'
         '<p class="section-note">중복 기사를 제거한 최근 뉴스입니다. 보조 뉴스 소스는 공식자료와 동일하게 취급하지 않습니다.</p>'
         f'<div class="grid">{news_html}</div>'
         '<h2 data-kmb-section="ai-news-analysis">AI 뉴스 분석</h2>'
@@ -255,8 +255,6 @@ def _system(data: dict[str, Any]) -> str:
 
 
 def render_market_intelligence(data: dict[str, Any], *, include_news: bool = True) -> str:
-    if not data:
-        return '<p class="empty">시장 인텔리전스 데이터가 아직 생성되지 않았습니다.</p>'
     nav='<nav class="card" aria-label="시장 기능 바로가기"><b>바로가기</b> · <a href="#market-issues">핵심 이슈</a> · <a href="#today-news">뉴스</a> · <a href="#market-strength">시장 힘</a> · <a href="#flows">수급</a> · <a href="#futures-global">선물·글로벌</a> · <a href="#smart-money">큰손 분석</a></nav>'
     news = render_news_intelligence(data) if include_news else ""
     body=(
