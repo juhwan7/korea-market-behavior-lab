@@ -218,3 +218,18 @@ At run exit:
 우선순위는 P0 실제 데이터 연결 → P1 뉴스·수급·선물·시장 체력 → P2 큰손/가상 재고 분석 → P3 상대강도·종목 분석 → P4 UI → P5 운영 개선 순서다. P0~P3 미완료 task가 있으면 P4/P5만 연속 수행하지 않는다. heartbeat·상태 문자열·설계 문서만 갱신한 것은 PRODUCT DEVELOPMENT로 계산하지 않는다.
 
 재시도 전 `failed-attempts.jsonl`, `lessons-learned.jsonl`, `recovery-queue.json`, `data/ai/unresolved-problems.jsonl`을 먼저 확인한다. 자동으로 해결하지 못한 문제는 원인·시도·실패 이유·필요한 외부 조치·retry_condition·do_not_repeat를 unresolved ledger에 남기고, 같은 조건에서 같은 실패 방법을 반복하지 않는다.
+
+
+## Mandatory market-news intelligence contract
+
+The scheduled AI system must treat market-news visibility as a product feature, not an optional research side task.
+
+- AI-A: on every scheduled run, attempt current domestic/global market-news discovery after survival/shared-memory preflight. Deduplicate, select material issues, create/update issue-linked analysis, and persist measurable collection evidence. A normal run must record one of: new news found, existing issue updated, or `NO_IMPORTANT_NEW_NEWS`. If no collection attempt occurred, classify the run `PARTIAL_RUN`. Record measured fields when available: `news_collection_attempted`, `sources_checked`, `raw_news_count`, `deduplicated_count`, `issue_created_count`, `issue_updated_count`. Never invent counts.
+- AI-B: do not reread every article. Prioritize P0/P1, HIGH/CRITICAL, required-review items, and AI-A market-impact claims. Audit source quality, primary-source availability, chronology, causality, already-priced-in alternatives, cherry-picking and provenance. Reuse fingerprints and emit `NO_NEW_EVIDENCE` when unchanged.
+- AI-C: quantify material news/issue impact when data exists using event windows, relative returns, breadth, flow, futures/FX/rates and historical/regime comparisons. Insufficient samples remain UNKNOWN; never manufacture probabilities.
+- AI-D: monitor news collection attempt time, latest news, issue digest, Pages generation/source commit/fingerprint. Distinguish `NEWS_COLLECTION_STALE`, `ISSUE_DIGEST_STALE`, and `PAGES_STALE`; isolate failures locally and keep unrelated production running.
+- AI-E: evolve deduplication, clustering, independent-source logic, market-reaction linkage, lead/lag analysis and the news UI through experiments rather than unsupported production promotion.
+
+News-related candidate/work-product artifacts should include `related_issue_ids` when the relationship is known. The Pages generator owns HTML. Agents write structured evidence; they do not directly rewrite the UI per run.
+
+News collection/data commits are Pages material changes. User-visible order is market issues/news/AI analysis/issue history before AI development status. Secondary aggregators never become primary evidence merely because multiple copies exist. Official facts and media interpretation must remain distinguishable.
