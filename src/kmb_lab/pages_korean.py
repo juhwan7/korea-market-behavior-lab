@@ -5,7 +5,7 @@ import re
 from datetime import datetime, timedelta, timezone
 from typing import Any
 
-from .pages_market import render_market_intelligence
+from .pages_market import render_market_intelligence, render_news_intelligence
 
 KST = timezone(timedelta(hours=9))
 AGENT_ORDER = ("AI-A", "AI-B", "AI-C", "AI-D", "AI-E")
@@ -522,9 +522,9 @@ def render_korean_html(model: dict[str, Any]) -> str:
 <header><div class="meta"><span class="badge ok">공개 페이지 최신 반영</span><span>마지막 화면 생성: {_esc(generated)}</span></div>
 <h1>한국 시장 행동 연구소</h1><p class="lead">한국 주식시장의 큰 자금 움직임과 시장 행동을 5개의 AI가 서로 발견하고 반박하고 검증하면서 계속 연구합니다. 확인되지 않은 내용은 사실처럼 표시하지 않습니다.</p></header>
 
-<h2 data-kmb-section="overview">지금 한눈에 보기</h2><p class="section-note">시장·연구·시스템에서 지금 알아야 할 내용만 먼저 보여줍니다.</p><div class="grid">{briefing_html}</div>
+{render_news_intelligence(model.get("intelligence") or {})}\n\n<h2 data-kmb-section="overview">지금 한눈에 보기</h2><p class="section-note">시장·연구·시스템에서 지금 알아야 할 내용만 먼저 보여줍니다.</p><div class="grid">{briefing_html}</div>
 
-<h2 data-kmb-section="market">현재 시장 요약</h2><p class="section-note">공식 시장 데이터가 아직 연결되지 않은 항목은 임의 숫자를 만들지 않고 수집 전 또는 확인 불가로 표시합니다.</p><div class="metric-grid">{market_cards}</div>\n\n{render_market_intelligence(model.get("intelligence") or {})}\n\n<h2 data-kmb-section="cycle">5개 AI 연구 순환</h2><p class="section-note">{_esc(activity_intro)} 가장 최근 실행 증거가 있는 AI를 부드럽게 강조합니다.</p><div class="cycle-wrap">{''.join(cycle_cards)}</div>
+<h2 data-kmb-section="market">현재 시장 요약</h2><p class="section-note">공식 시장 데이터가 아직 연결되지 않은 항목은 임의 숫자를 만들지 않고 수집 전 또는 확인 불가로 표시합니다.</p><div class="metric-grid">{market_cards}</div>\n\n{render_market_intelligence(model.get("intelligence") or {}, include_news=False)}\n\n<h2 data-kmb-section="cycle">5개 AI 연구 순환</h2><p class="section-note">{_esc(activity_intro)} 가장 최근 실행 증거가 있는 AI를 부드럽게 강조합니다.</p><div class="cycle-wrap">{''.join(cycle_cards)}</div>
 
 <h2 data-kmb-section="ai-workshop">AI 작업실</h2><p class="section-note">AI가 단순히 실행됐는지와 실제 작업물을 만들었는지를 분리해 보여줍니다. 실제 실행 중임을 확인할 수 없으면 최근 실행 상태로만 표시합니다.</p><div class="grid">{workshop_html}</div>\n\n<h2 data-kmb-section="work-products">최근 AI 작업물</h2><p class="section-note">연구·감사·실험 후보가 저장소에 남은 경우 여기서 바로 내용을 확인할 수 있습니다. 검증 전 후보는 공식 반영 결과처럼 표시하지 않습니다.</p><div class="grid">{work_product_html}</div>\n\n<h2 data-kmb-section="activity">최근 AI 협업 흐름</h2><p class="section-note">기술 로그 대신 각 AI가 어떤 일을 했는지 시간순으로 보여줍니다.</p><div class="timeline">{activity_html}</div>
 
