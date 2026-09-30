@@ -56,6 +56,61 @@ class NewsTests(unittest.TestCase):
         self.assertEqual(unique[0]["headline"], "삼성전자 HBM 공급계약 확대")
         self.assertEqual(len(issues), 1)
 
+    def test_low_information_auto_generated_article_is_filtered(self):
+        items = [
+            {
+                "headline": "GBP/USD 종목이 9월30일에 0.52% 상승한 이유는 무엇인가요?",
+                "title": "GBP/USD 종목이 9월30일에 0.52% 상승한 이유는 무엇인가요?",
+                "url": "https://auto.example/1",
+                "published_at": "2026-09-30T01:00:00Z",
+                "source": "자동콘텐츠",
+                "publisher": "자동콘텐츠",
+                "source_type": "SECONDARY",
+                "official_source_available": False,
+            },
+            {
+                "headline": "미국 10년물 국채금리 5% 돌파",
+                "title": "미국 10년물 국채금리 5% 돌파",
+                "url": "https://news.example/2",
+                "published_at": "2026-09-30T01:01:00Z",
+                "source": "A신문",
+                "publisher": "A신문",
+                "source_type": "SECONDARY",
+                "official_source_available": False,
+            },
+        ]
+        unique, _ = dedupe_and_cluster(items)
+        self.assertEqual(len(unique), 1)
+        self.assertIn("국채금리", unique[0]["headline"])
+
+    def test_same_acquisition_event_clusters_despite_rewritten_headlines(self):
+        items = [
+            {
+                "headline": "한화생명, 애큐온캐피탈 지분 50.5% 취득…4400억원 투입",
+                "title": "한화생명, 애큐온캐피탈 지분 50.5% 취득…4400억원 투입",
+                "url": "https://a.example/1",
+                "published_at": "2026-09-30T01:00:00Z",
+                "source": "A신문",
+                "publisher": "A신문",
+                "source_type": "SECONDARY",
+                "official_source_available": False,
+            },
+            {
+                "headline": "김동원 금융영토 또 넓혔다…한화생명, 애큐온캐피탈 인수 본계약",
+                "title": "김동원 금융영토 또 넓혔다…한화생명, 애큐온캐피탈 인수 본계약",
+                "url": "https://b.example/2",
+                "published_at": "2026-09-30T01:02:00Z",
+                "source": "B뉴스",
+                "publisher": "B뉴스",
+                "source_type": "SECONDARY",
+                "official_source_available": False,
+            },
+        ]
+        unique, issues = dedupe_and_cluster(items)
+        self.assertEqual(len(unique), 2)
+        self.assertEqual(len(issues), 1)
+        self.assertEqual(issues[0]["article_count"], 2)
+
     def test_reprints_are_not_counted_as_independent_confirmation(self):
         items = [
             {
