@@ -93,7 +93,7 @@ def _strength(data: dict[str, Any]) -> str:
     )
 
 
-def _flows(data: dict[str, Any]) -> str:
+def _flows(data: dict[str, Any], program: dict[str, Any] | None = None) -> str:
     markets = data.get("markets") or {}
     blocks=[]
     for market in ("KOSPI","KOSDAQ"):
@@ -106,6 +106,15 @@ def _flows(data: dict[str, Any]) -> str:
             arrow="전환" if v.get("reversal") else "유지"
             items.append(f'<li><b>{label}</b> {num(net, suffix="억원", digits=0)} · 속도 {num(velocity, suffix="억원/분", digits=1)} · {arrow}</li>')
         blocks.append(f'<article class="card"><h3>{market}</h3><ul>{"".join(items)}</ul></article>')
+    program = program or {}
+    if isinstance(program.get("net_100m_krw"), (int, float)):
+        blocks.append(
+            '<article class="card"><h3>KOSPI 프로그램</h3>'
+            f'<p><b>총 순매수:</b> {num(program.get("net_100m_krw"), suffix="억원", digits=0)}</p>'
+            f'<p><b>차익:</b> {num(program.get("arbitrage_net_100m_krw"), suffix="억원", digits=0)} · '
+            f'<b>비차익:</b> {num(program.get("non_arbitrage_net_100m_krw"), suffix="억원", digits=0)}</p>'
+            '<p class="section-note">네이버 공개 보조 데이터 기준이며 공식 KRX 원자료와 동일하게 취급하지 않습니다.</p></article>'
+        )
     return '<h2 data-kmb-section="flows">시장 수급</h2><p class="section-note">순매수 누적값뿐 아니라 최근 스냅샷 간 속도·가속·방향전환을 분리합니다. 공개 보조 데이터는 공식 KRX 수급과 동일하게 취급하지 않습니다.</p><div class="grid">'+("".join(blocks) or '<p class="empty">수급 데이터 수집 전입니다.</p>')+'</div>'
 
 
@@ -292,7 +301,7 @@ def render_market_intelligence(data: dict[str, Any], *, include_news: bool = Tru
         nav
         + news
         + '<div id="market-strength">'+_strength(data.get("strength") or {})+'</div>'
-        + '<div id="flows">'+_flows(data.get("flows") or {})+'</div>'
+        + '<div id="flows">'+_flows(data.get("flows") or {}, ((data.get("current") or {}).get("program") or {}))+'</div>'
         + '<div id="futures-global">'+_futures_global(data.get("futures") or {},data.get("global") or {})+'</div>'
         + '<div id="relative-strength">'+_relative_strength(data.get("relative_strength") or {})+'</div>'
         + '<div id="smart-money">'+_smart(data.get("smart_money") or {})+'</div>'
