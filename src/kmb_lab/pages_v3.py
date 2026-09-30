@@ -310,7 +310,13 @@ def render_news(model: dict[str, Any]) -> str:
         title=f'{x.get("corp_name") or "회사"} · {x.get("report_name") or "공시"}'
         href=x.get("url")
         drows.append(f'<li><a href="{esc(href)}" rel="noopener noreferrer">{esc(title)}</a></li>' if href else f'<li>{esc(title)}</li>')
-    stats=f'수집 원문 {current.get("raw_count") or current.get("raw_news_count") or "확인 필요"}건 → 정제 후 {current.get("deduplicated_count") or current.get("count") or "확인 필요"}건 · 확인 소스 {current.get("sources_checked") or "확인 필요"}개'
+    stats=(
+        f'수집 원문 {current.get("raw_count") or current.get("raw_news_count") or "확인 필요"}건'
+        f' → 홍보성 제외 {current.get("promotion_filtered_count") if current.get("promotion_filtered_count") is not None else "측정 전"}건'
+        f' · 중복/재인용 정리 {current.get("duplicate_or_reprint_filtered_count") if current.get("duplicate_or_reprint_filtered_count") is not None else "측정 전"}건'
+        f' → 정제 후 {current.get("deduplicated_count") or current.get("count") or "확인 필요"}건'
+        f' · 확인 소스 {current.get("sources_checked") or "확인 필요"}개'
+    )
     body=(
         '<section data-kmb-section="news-issues"><article class="card"><strong>뉴스는 기사 수가 아니라 이슈 품질로 봅니다.</strong>'
         f'<p>{esc(stats)}</p><p>광고·홍보성 2차 콘텐츠는 기본 분석에서 제외하고, 원출처·공식자료·독립 취재와 재인용을 구분합니다.</p></article>'
