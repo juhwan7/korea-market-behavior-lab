@@ -3,12 +3,22 @@
   "method": "commit_path_classification",
   "window_hours": 24,
   "target_product_min_pct": 70,
-  "product_pct": 16.7,
-  "maintenance_pct": 83.3,
-  "labeled_commit_count": 72,
+  "product_pct": 17.6,
+  "maintenance_pct": 82.4,
+  "labeled_commit_count": 74,
   "unclassified_commit_count": 22,
   "warning": true,
   "recent": [
+    {
+      "sha": "c93100050f7784373ddadea199014dbe1f0c2a7b",
+      "subject": "fix: dispatch Pages after market data persistence",
+      "class": "maintenance"
+    },
+    {
+      "sha": "c83624c3750cf398fe2f1459c39cd973ffeb5e3b",
+      "subject": "product: refresh market intelligence",
+      "class": "product"
+    },
     {
       "sha": "c603a835830b8e323012a052ed9104c65c1abeda",
       "subject": "ci: persist live market service health",
@@ -148,16 +158,6 @@
       "sha": "4df4564696a63a38d1fc993c30dc58941bc96f88",
       "subject": "sre: reconcile AI-D scheduler runtime evidence",
       "class": "maintenance"
-    },
-    {
-      "sha": "fafe6f1b6dc99ac3c4679588eb465db7be697993",
-      "subject": "ops: require per-run execution and work-output records",
-      "class": "unclassified"
-    },
-    {
-      "sha": "43478712f837879bd80315d2c2effd61f2f04557",
-      "subject": "test: cover AI work product dashboard contracts",
-      "class": "unclassified"
     }
   ]
 }
