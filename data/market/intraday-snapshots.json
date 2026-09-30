@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-09-30T13:04:00+09:00",
+  "generated_at": "2026-09-30T13:22:42+09:00",
   "retention_days": 7,
-  "count": 2,
+  "count": 3,
   "snapshots": [
     {
       "at": "2026-09-30T12:56:25+09:00",
@@ -144,6 +144,77 @@
       },
       "market_strength": 36.6,
       "turnover_advance_share": 0.58
+    },
+    {
+      "at": "2026-09-30T13:22:42+09:00",
+      "indices": {
+        "KOSPI": {
+          "close": 6855.88,
+          "change_pct": -0.22,
+          "breadth": {
+            "upper": 1,
+            "advance": 370,
+            "flat": 52,
+            "decline": 491,
+            "lower": 0
+          },
+          "foreign_net_100m_krw": -8589.88
+        },
+        "KOSDAQ": {
+          "close": 857.77,
+          "change_pct": 0.94,
+          "breadth": {
+            "upper": 2,
+            "advance": 836,
+            "flat": 89,
+            "decline": 818,
+            "lower": 2
+          },
+          "foreign_net_100m_krw": -91.92
+        },
+        "KPI200": {
+          "close": 1084.83,
+          "change_pct": -0.31,
+          "breadth": {},
+          "foreign_net_100m_krw": null
+        }
+      },
+      "program_net_100m_krw": -6371.19,
+      "futures": {
+        "close": 1087.5,
+        "change_pct": -0.78,
+        "basis": 2.67,
+        "foreign_net_100m_krw": -7940.0,
+        "source_kind": "secondary"
+      },
+      "global": {
+        "NASDAQ100_FUTURES": {
+          "price": 30650.5,
+          "change_pct": -0.7729226187103927
+        },
+        "SP500_FUTURES": {
+          "price": 7750.25,
+          "change_pct": -0.6855678359762934
+        },
+        "SOX": {
+          "price": 12629.161,
+          "change_pct": -0.47801308450395397
+        },
+        "VIX": {
+          "price": 16.04,
+          "change_pct": 5.665349143610009
+        },
+        "USD_KRW": {
+          "price": 1356.68,
+          "change_pct": -0.42715596330274763
+        },
+        "WTI": {
+          "price": 89.77,
+          "change_pct": -2.8568336760090904
+        }
+      },
+      "market_strength": 36.6,
+      "turnover_advance_share": 0.5813
     }
   ]
 }

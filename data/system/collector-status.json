@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-30T13:04:00+09:00",
+  "generated_at": "2026-09-30T13:22:42+09:00",
   "status": "PARTIAL",
   "product_features": {
     "domestic_indices": true,
@@ -7,8 +7,11 @@
     "breadth": true,
     "kospi200_futures": "CONNECTED_SECONDARY",
     "global_futures": true,
-    "news": 205,
-    "news_collection": "PARTIAL",
+    "bok_official": "FAILED",
+    "dart_disclosures": "USER_ACTION_REQUIRED",
+    "dart_disclosure_count": 0,
+    "news": 202,
+    "news_collection": "HEALTHY",
     "news_latest_at": "2026-09-30T03:53:19Z",
     "market_strength": "ESTIMATED",
     "turnover": "ESTIMATED",
@@ -19,6 +22,6 @@
     "relative_strength_items": 4
   },
   "errors": [
-    "official-news:fsc-press:request failed: https://www.fsc.go.kr/about/fsc_bbs_rss/?fid=0111: The read operation timed out"
+    "bok-ecos:request failed: https://ecos.bok.or.kr/: <urlopen error timed out>"
   ]
 }

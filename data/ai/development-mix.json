@@ -3,12 +3,27 @@
   "method": "commit_path_classification",
   "window_hours": 24,
   "target_product_min_pct": 70,
-  "product_pct": 41.1,
-  "maintenance_pct": 58.9,
-  "labeled_commit_count": 107,
+  "product_pct": 42.2,
+  "maintenance_pct": 57.8,
+  "labeled_commit_count": 109,
   "unclassified_commit_count": 31,
   "warning": true,
   "recent": [
+    {
+      "sha": "3d4b8a86c1598ed0833e8b85e0a049ed48800e7a",
+      "subject": "product: connect OpenDART and Bank of Korea primary feeds",
+      "class": "product"
+    },
+    {
+      "sha": "8a023d29e7b26816a8e6f226219494ee8cde9783",
+      "subject": "ops: refresh AI-B runtime evidence",
+      "class": "maintenance"
+    },
+    {
+      "sha": "13353a1774004c9617431e6a7b1121cebf1507ec",
+      "subject": "product: refresh market intelligence",
+      "class": "product"
+    },
     {
       "sha": "d60fa898acd14e936845416cb935b9fa433d01cd",
       "subject": "product: isolate slow official news feeds from fast lane",
@@ -142,21 +157,6 @@
     {
       "sha": "2a48891704dbd06d46b75f74c895e1b69dca0826",
       "subject": "product: refresh market intelligence",
-      "class": "product"
-    },
-    {
-      "sha": "fa7690d1672b49fa79f1c2e1d9c356e164858b78",
-      "subject": "product: show program flow beside investor supply demand",
-      "class": "product"
-    },
-    {
-      "sha": "1b60da0132e6d6cb513aa7f832b12524c3392d92",
-      "subject": "test: verify program arbitrage flow normalization",
-      "class": "unclassified"
-    },
-    {
-      "sha": "d8ecab86531e40c57055518148ef4fb629d99422",
-      "subject": "product: connect parsed program flow to market strength",
       "class": "product"
     }
   ]
