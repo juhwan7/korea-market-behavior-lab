@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "agent": "AI-B",
+  "run_type": "ULTRA_PARALLEL_EVOLUTION_V2_AUDIT",
+  "created_at": "2026-09-30T21:15:25+09:00",
+  "major_work": {
+    "id": "AUDIT-B-NEWS-PRIMARY-ISSUE-VISIBILITY-001",
+    "priority": "P1",
+    "result": "FIX_REQUIRED",
+    "fingerprint": "news-issue-ranking|primary-source-visibility-loss|20260930",
+    "finding": "The latest current news contains PRIMARY Bank of Korea items, but the persisted 80-issue view contains no official_source_available issue and neither primary article is traceable in issue.articles. Because issue_doc truncates the ranked merged issue set to 80 after importance/state ranking, primary evidence can be collected successfully yet disappear from the issue layer used for top issues and AI linkage.",
+    "evidence": {
+      "current_generated_at": "2026-09-30T20:41:59+09:00",
+      "current_items": 160,
+      "primary_current_items": 2,
+      "persisted_issues": 80,
+      "persisted_official_source_available_issues": 0,
+      "primary_article_issue_hits": 0,
+      "primary_examples": [
+        {
+          "id": "OFFICIAL-731e49be7e9d0dc2",
+          "source": "한국은행",
+          "headline": "일일 금융외환시장 동향(9.30일)"
+        },
+        {
+          "id": "OFFICIAL-d8bc723c8f3ae97c",
+          "source": "한국은행",
+          "headline": "2026년 8월 금융기관 가중평균금리"
+        }
+      ],
+      "code_path": "collect_news -> dedupe_and_cluster -> _merge_issue_history -> issue_doc issues[:80]"
+    },
+    "interpretation": "This does not prove the official releases are market-important. It proves source quality is not guaranteed visibility/traceability in the persisted issue layer. A PRIMARY item should not be promoted merely because it is official, but it should remain provenance-addressable and eligible for explicit relevance scoring rather than silently falling outside the truncated issue set.",
+    "unknown": [
+      "Whether the primary clusters ranked below 80 solely because of relevance score, state rank, or fragmentation requires full untruncated cluster instrumentation.",
+      "Historical frequency of primary-source visibility loss is not measured."
+    ],
+    "handoff": [
+      {
+        "agent": "AI-E",
+        "priority": "P1",
+        "task": "Separate provenance retention from importance ranking: preserve all article→event lineage and maintain a primary-source evidence index even when an event is outside top-N display."
+      },
+      {
+        "agent": "AI-C",
+        "priority": "P1",
+        "task": "Measure primary-source drop rate before/after top-N truncation and test whether source-quality bonus distorts relevance ranking."
+      },
+      {
+        "agent": "AI-D",
+        "priority": "P1",
+        "task": "Add regression/observability: primary_items_count > 0 with zero traceable primary issue lineage must be explicit, not silently reported as healthy issue intelligence."
+      }
+    ]
+  },
+  "small_works": [
+    {
+      "fingerprint": "news-current-cluster-id-null|article-issue-lineage|20260930",
+      "result": "NO_NEW_EVIDENCE"
+    },
+    {
+      "fingerprint": "news-cluster|same-event-fragmentation|hana-ceo-succession|20260930",
+      "result": "NO_NEW_EVIDENCE"
+    },
+    {
+      "fingerprint": "news-provenance|publisher-count-not-independent-origin|20260930",
+      "result": "NO_NEW_EVIDENCE"
+    }
+  ],
+  "next_work": "Audit whether issue state rank dominates importance score enough to keep low-relevance NEW fragments above higher-quality PERSISTING evidence."
+}
