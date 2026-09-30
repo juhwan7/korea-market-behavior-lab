@@ -102,6 +102,8 @@ def fetch_feed(feed: dict[str, str]) -> str:
     return request_text(
         feed["url"],
         headers={"Accept": "application/rss+xml,application/atom+xml,application/xml,text/xml,*/*"},
+        timeout=8,
+        retries=1,
     )
 
 
