@@ -76,31 +76,49 @@ jobs:
           PY
 
       - name: Persist material outputs
+        env:
+          KRX_AUTH_KEY: ${{ secrets.KRX_AUTH_KEY }}
         run: |
           set -eu
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A \
-            data/market \
-            data/news \
-            data/stocks \
-            data/system/collector-status.json \
-            data/ai/development-mix.json \
-            data/ai/unresolved-problems.jsonl
-          if git diff --cached --quiet; then
-            echo "No material market change."
-            exit 0
-          fi
-          git commit -m "product: refresh market intelligence"
 
-          # Tests or adapters may leave non-canonical runtime leftovers. All intended
-          # market/news outputs are committed above; isolate anything else so it
-          # cannot block the rebase/push persistence step.
-          if [ -n "$(git status --porcelain)" ]; then
-            echo "Isolating non-canonical dirty worktree before rebase:"
-            git status --short
-            git stash push --include-untracked -m "market-fast-lane-runtime-leftovers"
-          fi
+          MATERIAL_PATHS="data/market data/news data/stocks data/system/collector-status.json data/ai/development-mix.json data/ai/unresolved-problems.jsonl"
 
-          git pull --rebase origin main
-          git push origin HEAD:main
+          # Generated snapshots are not mergeable source code. Rebase of two independently
+          # generated snapshots creates conflicts and can stall the 10-minute lane.
+          # For each bounded attempt, move to the latest main, regenerate there, and commit
+          # one coherent snapshot. If collector code itself advanced, a newer workflow run
+          # owns persistence and this older run exits without overwriting it.
+          for ATTEMPT in 1 2 3; do
+            echo "Persistence attempt $ATTEMPT/3"
+            git fetch origin main
+
+            CODE_CHANGES="$(git diff --name-only "$GITHUB_SHA" origin/main -- src/kmb_lab tests .github/workflows/market-fast-lane.yml data/config || true)"
+            if [ -n "$CODE_CHANGES" ] && [ "$ATTEMPT" = "1" ]; then
+              echo "Collector code/config advanced after this run started; newer run owns persistence:"
+              printf '%s\n' "$CODE_CHANGES"
+              exit 0
+            fi
+
+            git reset --hard origin/main
+            git clean -fd
+            PYTHONPATH=src python -m kmb_lab.pipeline
+
+            git add -A $MATERIAL_PATHS
+            if git diff --cached --quiet; then
+              echo "No material market change."
+              exit 0
+            fi
+
+            git commit -m "product: refresh market intelligence"
+            if git push origin HEAD:main; then
+              echo "Market intelligence persisted successfully."
+              exit 0
+            fi
+
+            echo "Push raced with another main update; regenerating on latest main."
+          done
+
+          echo "Failed to persist market intelligence after 3 bounded attempts."
+          exit 1
