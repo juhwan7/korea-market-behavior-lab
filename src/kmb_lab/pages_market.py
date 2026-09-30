@@ -17,9 +17,10 @@ def num(value: Any, *, suffix: str = "", digits: int = 1) -> str:
 
 def badge(value: Any) -> str:
     raw = str(value or "UNKNOWN")
-    cls = "ok" if raw in {"CONNECTED", "CONNECTED_EOD_PRIMARY", "HEALTHY", "ESTIMATED", "RESOLVED"} else "warn" if raw in {"PARTIAL", "SHADOW", "USER_ACTION_REQUIRED", "HYPOTHESIS", "NEW", "PERSISTING", "STRENGTHENING", "WEAKENING"} else "bad" if raw in {"FAILED"} else "muted"
+    cls = "ok" if raw in {"CONNECTED", "CONNECTED_EOD_PRIMARY", "CONNECTED_SECONDARY", "HEALTHY", "ESTIMATED", "RESOLVED"} else "warn" if raw in {"PARTIAL", "SHADOW", "USER_ACTION_REQUIRED", "HYPOTHESIS", "NEW", "PERSISTING", "STRENGTHENING", "WEAKENING"} else "bad" if raw in {"FAILED"} else "muted"
     labels = {
         "CONNECTED_EOD_PRIMARY": "공식 일별 연결",
+        "CONNECTED_SECONDARY": "보조 데이터 연결",
         "USER_ACTION_REQUIRED": "사용자 설정 필요",
         "NOT_CONNECTED": "미연결",
         "ESTIMATED": "데이터 기반 추정",
@@ -120,10 +121,32 @@ def _flows(data: dict[str, Any], program: dict[str, Any] | None = None) -> str:
 
 def _futures_global(futures: dict[str, Any], global_data: dict[str, Any]) -> str:
     k200=futures.get("KOSPI200_FUTURES") or {}
-    kbody=(
-        f'{badge(k200.get("status"))}<p><b>종목:</b> {esc(k200.get("instrument"))}</p><p><b>종가:</b> {esc(num(k200.get("close"),digits=2))} · <b>베이시스:</b> {esc(num(k200.get("basis"),digits=2))}</p><p><b>미결제약정:</b> {esc(num(k200.get("open_interest"),digits=0))}</p>'
-        if k200.get("status") == "CONNECTED_EOD_PRIMARY" else f'{badge(k200.get("status"))}<p>{esc(k200.get("reason") or "공식 선물 데이터를 현재 확인할 수 없습니다.")}</p>'
-    )
+    status = k200.get("status")
+    if status in {"CONNECTED_EOD_PRIMARY", "CONNECTED_SECONDARY"}:
+        flows = k200.get("investor_flow_100m_krw") or {}
+        source_note = (
+            "KRX 공식 일별 데이터"
+            if status == "CONNECTED_EOD_PRIMARY"
+            else "네이버 공개 보조 데이터 · KRX 공식 인증 미연결"
+        )
+        kbody=(
+            f'{badge(status)}'
+            f'<p><b>종목:</b> {esc(k200.get("instrument"))}</p>'
+            f'<p><b>선물:</b> {esc(num(k200.get("close"),digits=2))} · '
+            f'<b>전일대비:</b> {esc(num(k200.get("change"),digits=2))} '
+            f'({esc(num(k200.get("change_pct"),suffix="%",digits=2))})</p>'
+            f'<p><b>KOSPI200 현물:</b> {esc(num(k200.get("spot_kpi200"),digits=2))} · '
+            f'<b>베이시스:</b> {esc(num(k200.get("basis"),digits=2))} '
+            f'({esc(num(k200.get("basis_pct"),suffix="%",digits=2))})</p>'
+            f'<p><b>선물 수급:</b> 외국인 {esc(num(flows.get("foreign"),suffix="억원",digits=0))} · '
+            f'기관 {esc(num(flows.get("institution"),suffix="억원",digits=0))} · '
+            f'개인 {esc(num(flows.get("individual"),suffix="억원",digits=0))}</p>'
+            f'<p><b>미결제약정:</b> {esc(num(k200.get("open_interest"),digits=0))}</p>'
+            f'<p class="section-note">{esc(source_note)}. 보조값은 공식 확정값으로 승격하지 않습니다.</p>'
+        )
+    else:
+        kbody=f'{badge(status)}<p>{esc(k200.get("reason") or "선물 데이터를 현재 확인할 수 없습니다.")}</p>'
+
     q=global_data.get("quotes") or {}
     gl=[]
     for key,label in (("NASDAQ100_FUTURES","Nasdaq 100 선물"),("SP500_FUTURES","S&P 500 선물"),("SOX","SOX"),("VIX","VIX"),("USD_KRW","USD/KRW"),("WTI","WTI"),("GOLD","금")):
