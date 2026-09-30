@@ -566,6 +566,174 @@ def _merge_issue_history(current_issues: list[dict[str, Any]], previous_issues: 
     return merged
 
 
+def _market_snapshot(
+    *,
+    indices: dict[str, Any],
+    breadth: dict[str, Any],
+    flows: dict[str, Any],
+    program: dict[str, Any],
+    futures: dict[str, Any],
+    global_data: dict[str, Any],
+    strength: dict[str, Any],
+    turnover: dict[str, Any],
+) -> dict[str, Any]:
+    def foreign(market: str) -> float | None:
+        value = ((((flows.get("markets") or {}).get(market) or {}).get("foreign") or {}).get("net_100m_krw"))
+        return float(value) if isinstance(value, (int, float)) else None
+
+    fut = futures.get("KOSPI200_FUTURES") or {}
+    quotes = global_data.get("quotes") or {}
+    return {
+        "at": now_text(),
+        "indices": {
+            code: {
+                "close": (indices.get(code) or {}).get("close"),
+                "change_pct": (indices.get(code) or {}).get("change_pct"),
+                "breadth": breadth.get(code) or {},
+                "foreign_net_100m_krw": foreign(code) if code in {"KOSPI", "KOSDAQ"} else None,
+            }
+            for code in ("KOSPI", "KOSDAQ", "KPI200")
+        },
+        "program_net_100m_krw": program.get("net_100m_krw"),
+        "futures": {
+            "close": fut.get("close"),
+            "change_pct": fut.get("change_pct"),
+            "basis": fut.get("basis"),
+            "foreign_net_100m_krw": (fut.get("investor_flow_100m_krw") or {}).get("foreign"),
+            "source_kind": fut.get("source_kind"),
+        },
+        "global": {
+            key: {
+                "price": (quotes.get(key) or {}).get("price"),
+                "change_pct": (quotes.get(key) or {}).get("change_pct"),
+            }
+            for key in ("NASDAQ100_FUTURES", "SP500_FUTURES", "SOX", "VIX", "USD_KRW", "WTI")
+        },
+        "market_strength": strength.get("composite"),
+        "turnover_advance_share": ((turnover.get("combined") or {}).get("advance_directional_share")),
+    }
+
+
+def _append_market_snapshot(root: Path, snapshot: dict[str, Any]) -> list[dict[str, Any]]:
+    path = root / "data/market/intraday-snapshots.json"
+    payload = load_json(path, {"snapshots": []})
+    rows = payload.get("snapshots", []) if isinstance(payload, dict) else []
+    if not isinstance(rows, list):
+        rows = []
+    rows.append(snapshot)
+    cutoff = datetime.now(timezone.utc) - timedelta(days=7)
+    kept: list[dict[str, Any]] = []
+    for row in rows[-1200:]:
+        at = _parse_dt(row.get("at")) if isinstance(row, dict) else None
+        if at is not None and at >= cutoff:
+            kept.append(row)
+    write_json(path, {
+        "generated_at": now_text(),
+        "retention_days": 7,
+        "count": len(kept),
+        "snapshots": kept,
+    })
+    return kept
+
+
+def _pct_between(before: Any, after: Any) -> float | None:
+    if not isinstance(before, (int, float)) or not isinstance(after, (int, float)) or float(before) == 0:
+        return None
+    return round((float(after) / float(before) - 1.0) * 100.0, 3)
+
+
+def _enrich_issue_market_reactions(
+    issue_doc: dict[str, Any],
+    snapshots: list[dict[str, Any]],
+) -> dict[str, Any]:
+    issues = issue_doc.get("issues") or []
+    parsed = [(row, _parse_dt(row.get("at"))) for row in snapshots if isinstance(row, dict)]
+    parsed = [(row, at) for row, at in parsed if at is not None]
+    parsed.sort(key=lambda pair: pair[1])
+
+    for issue in issues:
+        event_at = _parse_dt(issue.get("first_seen_at") or issue.get("latest_at"))
+        if event_at is None:
+            issue["market_reaction"] = {"evidence_state": "UNKNOWN", "reason": "이슈 기준시각을 해석할 수 없습니다."}
+            continue
+        before_candidates = [(row, at) for row, at in parsed if at <= event_at and event_at - at <= timedelta(minutes=90)]
+        after_candidates = [(row, at) for row, at in parsed if at >= event_at + timedelta(minutes=20) and at - event_at <= timedelta(hours=2)]
+        if not before_candidates or not after_candidates:
+            issue["market_reaction"] = {
+                "evidence_state": "PENDING",
+                "event_at": event_at.isoformat(),
+                "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다.",
+            }
+            continue
+        before, before_at = before_candidates[-1]
+        after, after_at = after_candidates[-1]
+
+        axes: dict[str, Any] = {}
+        for code in ("KOSPI", "KOSDAQ"):
+            b = ((before.get("indices") or {}).get(code) or {})
+            a = ((after.get("indices") or {}).get(code) or {})
+            axes[code] = {
+                "price_return_pct": _pct_between(b.get("close"), a.get("close")),
+                "foreign_flow_change_100m_krw": (
+                    round(float(a["foreign_net_100m_krw"]) - float(b["foreign_net_100m_krw"]), 2)
+                    if isinstance(a.get("foreign_net_100m_krw"), (int, float))
+                    and isinstance(b.get("foreign_net_100m_krw"), (int, float))
+                    else None
+                ),
+            }
+        bf = before.get("futures") or {}
+        af = after.get("futures") or {}
+        axes["KOSPI200_FUTURES"] = {
+            "price_return_pct": _pct_between(bf.get("close"), af.get("close")),
+            "basis_change": (
+                round(float(af["basis"]) - float(bf["basis"]), 3)
+                if isinstance(af.get("basis"), (int, float)) and isinstance(bf.get("basis"), (int, float))
+                else None
+            ),
+            "foreign_flow_change_100m_krw": (
+                round(float(af["foreign_net_100m_krw"]) - float(bf["foreign_net_100m_krw"]), 2)
+                if isinstance(af.get("foreign_net_100m_krw"), (int, float))
+                and isinstance(bf.get("foreign_net_100m_krw"), (int, float))
+                else None
+            ),
+        }
+        for key in ("NASDAQ100_FUTURES", "USD_KRW", "WTI", "VIX"):
+            b = ((before.get("global") or {}).get(key) or {})
+            a = ((after.get("global") or {}).get(key) or {})
+            axes[key] = {"price_return_pct": _pct_between(b.get("price"), a.get("price"))}
+
+        observed = sum(
+            1 for values in axes.values()
+            for value in values.values()
+            if isinstance(value, (int, float))
+        )
+        issue["market_reaction"] = {
+            "evidence_state": "OBSERVED" if observed else "UNKNOWN",
+            "interpretation_state": "CORRELATION_ONLY",
+            "event_at": event_at.isoformat(),
+            "before_at": before_at.isoformat(),
+            "after_at": after_at.isoformat(),
+            "window_minutes": round((after_at - before_at).total_seconds() / 60.0, 1),
+            "axes": axes,
+            "note": "뉴스 시각 전후 시장 변화의 관측치이며 뉴스가 가격 변화를 일으켰다는 인과관계 증거가 아닙니다.",
+        }
+        components = issue.get("importance_components")
+        if isinstance(components, dict):
+            components["market_reaction_component"] = "OBSERVED" if observed else "UNKNOWN"
+    return issue_doc
+
+
+def _refresh_issue_digest_reactions(digest: dict[str, Any], issue_doc: dict[str, Any]) -> dict[str, Any]:
+    issues = issue_doc.get("issues") or []
+    by_id = {row.get("issue_id"): row for row in issues if isinstance(row, dict)}
+    for key in ("top_issues", "strengthening", "weakening", "resolved"):
+        updated = []
+        for row in digest.get(key) or []:
+            updated.append(by_id.get(row.get("issue_id"), row))
+        digest[key] = updated
+    return digest
+
+
 def collect_news(root: Path) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any], list[str]]:
     all_items: list[dict[str, Any]] = []
     errors: list[str] = []
@@ -900,6 +1068,19 @@ def run(root: Path = ROOT) -> dict[str, Any]:
     strength["as_of"] = now_text()
     strength["breadth"] = breadth
     strength["turnover_detail"] = turnover
+
+    snapshots = _append_market_snapshot(root, _market_snapshot(
+        indices=indices,
+        breadth=breadth,
+        flows=flow_analysis,
+        program=program,
+        futures=futures,
+        global_data=global_data,
+        strength=strength,
+        turnover=turnover,
+    ))
+    news_issues = _enrich_issue_market_reactions(news_issues, snapshots)
+    news_digest = _refresh_issue_digest_reactions(news_digest, news_issues)
 
     current = {"generated_at": now_text(), "indices": indices, "breadth": breadth, "program": program, "source_quality": "MIXED"}
     summary = build_summary(indices, breadth, flow_analysis, program, strength, news_issues, domestic.get("official") or {})
