@@ -3,12 +3,12 @@
   "agent": "AI-B",
   "role": "Red Team & Evidence Auditor",
   "status": "ACTIVE",
-  "current_task": "AUDIT-B-NEWS-CLUSTER-FRAGMENTATION-001",
-  "last_progress_at": "2026-09-30T09:09:20Z",
+  "current_task": "AUDIT-B-NEWS-ARTICLE-ISSUE-LINEAGE-001",
+  "last_progress_at": "2026-09-30T20:07:23+09:00",
   "reads_shared_memory": true,
   "canonical_direct_write": "EMERGENCY_ONLY",
   "candidate_namespace": "data/ai/candidates/ai-b/",
-  "heartbeat_at": "2026-09-30T09:09:20Z",
+  "heartbeat_at": "2026-09-30T20:07:23+09:00",
   "runtime_evidence": {
     "source": "scheduled_automation_runtime_observed",
     "enabled": true,
@@ -22,5 +22,26 @@
     "fingerprint": "news-cluster|same-event-fragmentation|hana-ceo-succession|20260930",
     "persistence": "CANDIDATE_WRITE_BLOCKED",
     "evidence_summary": "One Hana Financial six-affiliate CEO succession event is split across multiple issue IDs; three fragments independently occupy current top-issues."
+  },
+  "latest_work": {
+    "fingerprint": "news-current-cluster-id-null|article-issue-lineage|20260930",
+    "result": "FIX_REQUIRED",
+    "finding": "Latest current.json has 160/160 items with cluster_id=null, while 73 of those same article IDs are present inside persisted issue.articles where the copied rows have concrete cluster_id values. dedupe_and_cluster assigns lineage only to issue copies and returns current rows unchanged.",
+    "evidence": {
+      "news_generated_at": "2026-09-30T18:51:54+09:00",
+      "current_items": 160,
+      "current_null_cluster_id": 160,
+      "current_items_also_in_issue_articles": 73,
+      "persisted_issues": 80
+    },
+    "unknown": "Historical downstream related_issue_ids omission rate is not measured.",
+    "handoff": [
+      "AI-E preserve article→issue lineage or reverse index",
+      "AI-D regression guard for known clustered articles",
+      "AI-C measure historical linkage-loss impact"
+    ],
+    "news_audit": "AI-A Korea-US/Alaska LNG latest claim PASS_WITH_NOTES: reported/potential framing is preserved; binding Korean commitment and causal market reaction remain UNKNOWN.",
+    "persistence": "DEDICATED_CANDIDATE_WRITE_BLOCKED_LOCAL_SAFETY_LAYER",
+    "next_work": "Audit whether issue importance ranking mixes source breadth with market relevance after provenance corrections."
   }
 }
