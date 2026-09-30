@@ -19,11 +19,17 @@ def badge(value: Any) -> str:
     raw = str(value or "UNKNOWN")
     cls = "ok" if raw in {"CONNECTED", "CONNECTED_EOD_PRIMARY", "CONNECTED_SECONDARY", "HEALTHY", "ESTIMATED", "RESOLVED"} else "warn" if raw in {"PARTIAL", "SHADOW", "USER_ACTION_REQUIRED", "HYPOTHESIS", "NEW", "PERSISTING", "STRENGTHENING", "WEAKENING"} else "bad" if raw in {"FAILED"} else "muted"
     labels = {
+        "CONNECTED": "연결됨",
+        "CONNECTED_PRIMARY": "공식 데이터 연결",
         "CONNECTED_EOD_PRIMARY": "공식 일별 연결",
         "CONNECTED_SECONDARY": "보조 데이터 연결",
+        "HEALTHY": "정상",
+        "PARTIAL": "일부 수집",
         "USER_ACTION_REQUIRED": "사용자 설정 필요",
         "NOT_CONNECTED": "미연결",
         "ESTIMATED": "데이터 기반 추정",
+        "OBSERVED": "관측됨",
+        "ASSUMPTION": "가정값",
         "SHADOW": "검증 중",
         "UNKNOWN": "확인 불가",
         "NEW": "등장",
@@ -224,8 +230,25 @@ def _futures_global(futures: dict[str, Any], global_data: dict[str, Any]) -> str
     study = futures.get("study") or {}
     study_rows = []
     for obs in study.get("observations") or []:
+        state_labels = {
+            "FUTURES_RELATIVELY_STRONG": "선물 상대강세",
+            "FUTURES_RELATIVELY_WEAK": "선물 상대약세",
+            "FUTURES_SPOT_ALIGNED": "선물·현물 유사",
+            "POSITIVE_BASIS": "양(+) 베이시스",
+            "NEGATIVE_BASIS": "음(-) 베이시스",
+            "NEAR_FLAT_BASIS": "베이시스 중립",
+            "FOREIGN_FUTURES_BUY_SPOT_SELL": "외국인 선물매수·현물매도",
+            "FOREIGN_FUTURES_SELL_SPOT_BUY": "외국인 선물매도·현물매수",
+            "FOREIGN_BUY_ALIGNED": "외국인 현물·선물 동반매수",
+            "FOREIGN_SELL_ALIGNED": "외국인 현물·선물 동반매도",
+            "FOREIGN_FLOW_MIXED": "외국인 수급 혼재",
+            "PROGRAM_NET_BUY": "프로그램 순매수",
+            "PROGRAM_NET_SELL": "프로그램 순매도",
+            "PROGRAM_FLAT": "프로그램 중립",
+            "OBSERVED_CONTEXT": "시장 환경 관측",
+        }
         study_rows.append(
-            f'<li><b>{esc(obs.get("state"))}</b> · {esc(obs.get("explanation"))}</li>'
+            f'<li><b>{esc(state_labels.get(str(obs.get("state") or ""), "상태 확인 중"))}</b> · {esc(obs.get("explanation"))}</li>'
         )
     study_html = (
         '<article class="card"><h3>선물·현물 읽는 법</h3>'
@@ -449,7 +472,7 @@ def _smart(data: dict[str, Any]) -> str:
         )
         cards.append(
             f'<article class="card"><div class="card-head"><strong>{esc(item.get("name"))} ({esc(item.get("code"))})</strong>{badge(item.get("evidence_state"))}</div>'
-            f'<p><b>상태:</b> {esc(item.get("state"))} · <b>신뢰도:</b> {esc(item.get("confidence"))}</p>'
+            f'<p><b>상태:</b> {esc({"MIXED_OR_NEUTRAL":"혼재·중립","ACCUMULATION_ABSORPTION":"매집·흡수 가능성","DISTRIBUTION_RISK":"분배 위험 가능성","BREAKOUT_DEMAND":"돌파 수요 가능성","UNKNOWN":"확인 불가"}.get(str(item.get("state") or "UNKNOWN"), "확인 필요"))} · <b>신뢰도:</b> {esc({"high":"높음","medium":"보통","low":"낮음"}.get(str(item.get("confidence") or "").lower(), "확인 필요"))}</p>'
             f'<p><b>가상 평균단가 참고범위:</b> {num(cost.get("low"),digits=0)} ~ {num(cost.get("high"),digits=0)}</p>'
             f'<p><b>잔존 재고 프록시:</b> {num((remain.get("low")*100) if isinstance(remain.get("low"),(int,float)) else None,suffix="%",digits=0)} ~ {num((remain.get("high")*100) if isinstance(remain.get("high"),(int,float)) else None,suffix="%",digits=0)}</p>'
             f'<p><b>매집/흡수:</b> {num(item.get("accumulation_absorption_score"))} · <b>분배위험:</b> {num(item.get("distribution_risk_score"))}</p>'
