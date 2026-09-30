@@ -173,6 +173,65 @@ def fetch_stock_daily(code: str, page_size: int = 80) -> list[dict[str, Any]]:
     raise HttpError("Naver stock history unavailable: " + " | ".join(errors))
 
 
+def normalize_program(payload: Any) -> dict[str, Any]:
+    """Normalize Naver KOSPI program trading amounts to 100M KRW.
+
+    difference* = arbitrage program trading; biDifference* = non-arbitrage.
+    Amount fields are KRW. Both consign and self accounts are included.
+    """
+    raw = payload if isinstance(payload, dict) else {}
+
+    def amount(name: str) -> float:
+        return float(_number(raw.get(name)) or 0.0)
+
+    def side(prefix: str, side_name: str) -> float:
+        return amount(f"{prefix}{side_name}ConsignAmount") + amount(f"{prefix}{side_name}SelfAmount")
+
+    arbitrage_buy = side("difference", "Buy")
+    arbitrage_sell = side("difference", "Sell")
+    non_arbitrage_buy = side("biDifference", "Buy")
+    non_arbitrage_sell = side("biDifference", "Sell")
+
+    any_amount = any(
+        key.endswith("Amount") and _number(value) is not None
+        for key, value in raw.items()
+    )
+    if not any_amount:
+        fallback = _number(
+            raw.get("netBuyValue")
+            or raw.get("netValue")
+            or raw.get("programNetValue")
+            or raw.get("allNetValue")
+            or raw.get("totalNetValue")
+        )
+        return {
+            "net_100m_krw": fallback,
+            "arbitrage_net_100m_krw": None,
+            "non_arbitrage_net_100m_krw": None,
+            "source_id": SOURCE_ID,
+            "source_kind": SOURCE_KIND,
+            "raw_available": bool(raw),
+        }
+
+    arbitrage_net = arbitrage_buy - arbitrage_sell
+    non_arbitrage_net = non_arbitrage_buy - non_arbitrage_sell
+    total_net = arbitrage_net + non_arbitrage_net
+    unit = 100_000_000.0
+    return {
+        "net_100m_krw": round(total_net / unit, 2),
+        "arbitrage_net_100m_krw": round(arbitrage_net / unit, 2),
+        "non_arbitrage_net_100m_krw": round(non_arbitrage_net / unit, 2),
+        "arbitrage_buy_100m_krw": round(arbitrage_buy / unit, 2),
+        "arbitrage_sell_100m_krw": round(arbitrage_sell / unit, 2),
+        "non_arbitrage_buy_100m_krw": round(non_arbitrage_buy / unit, 2),
+        "non_arbitrage_sell_100m_krw": round(non_arbitrage_sell / unit, 2),
+        "as_of": raw.get("bizdate"),
+        "source_id": SOURCE_ID,
+        "source_kind": SOURCE_KIND,
+        "raw_available": True,
+    }
+
+
 def normalize_index_basic(payload: Any, code: str) -> dict[str, Any]:
     source = _payload(payload)
     row = source if isinstance(source, dict) else next(_iter_dicts(source), {})
