@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "agent": "AI-E",
+  "created_at": "2026-09-30T11:51:42+09:00",
+  "base_main_sha": "4df4564696a63a38d1fc993c30dc58941bc96f88",
+  "run_type": "ULTRA_PARALLEL_EVOLUTION_V2",
+  "major_work": {
+    "id": "EXP-E-005",
+    "title": "Liquidity Vacuum vs Demand Surge Decomposition",
+    "type": "MARKET_BEHAVIOR_CHALLENGER",
+    "status": "HYPOTHESIS",
+    "sample_count": 0,
+    "production_eligible": false,
+    "fingerprint": "price-move-mechanism|liquidity-vacuum-vs-demand-surge|point-in-time",
+    "question": "When price advances sharply, can observable microstructure distinguish aggressive demand expansion from temporary offer-side liquidity withdrawal without inferring hidden actor intent?",
+    "motivation": "Equal price returns can arise from very different market mechanics. A thin offer book/liquidity vacuum can create a fast rise with weak durable demand, while persistent aggressive demand can absorb replenished offers. Treating both as the same breakout strength can create false confidence.",
+    "observables": [
+      "signed aggressive trade imbalance where authoritative tick/quote data exists",
+      "price impact per unit turnover",
+      "offer-side replenishment rate after executions",
+      "spread and quoted-depth change before/during/after impulse",
+      "VWAP displacement and post-impulse retention",
+      "retrace depth and time-to-reclaim",
+      "turnover persistence after initial impulse",
+      "market/sector residual return and volatility regime"
+    ],
+    "candidate_states": [
+      "DEMAND_SURGE_SUPPORTED",
+      "LIQUIDITY_VACUUM_SUPPORTED",
+      "MIXED_MECHANISM",
+      "NORMAL_LIQUIDITY_MOVE",
+      "UNKNOWN"
+    ],
+    "safety_contracts": [
+      "Do not label any state as accumulation, distribution, manipulation, or a specific actor's intent.",
+      "If authoritative point-in-time quote/trade evidence is unavailable, emit UNKNOWN rather than proxying with candle shape alone.",
+      "Do not treat displayed order-book depth as committed future liquidity; cancellations and hidden liquidity are competing explanations.",
+      "All features and peer controls must be available as-of decision time.",
+      "No production probability until validated samples and calibration exist."
+    ],
+    "baselines": [
+      "raw return plus turnover",
+      "price-impact-per-turnover only",
+      "relative-strength only",
+      "EXP-E-003 counterfactual relative response when available"
+    ],
+    "validation_contract": {
+      "owner": "AI-C",
+      "tests": [
+        "date-ordered walk-forward with event-window purge/embargo",
+        "mechanism-label reliability study before predictive testing",
+        "ablation: replenishment, spread/depth, turnover persistence, retention, residual strength",
+        "regime segmentation by liquidity and volatility",
+        "calibration and coverage-vs-error including UNKNOWN abstention",
+        "incremental-value comparison against simple impact/turnover baseline"
+      ],
+      "kill_criteria": [
+        "no out-of-sample incremental value over simple impact/turnover baseline",
+        "classification collapses after liquidity/volatility normalization",
+        "quote/trade timestamps cannot be aligned point-in-time",
+        "mechanism labels are too noisy or observer-dependent for reproducible validation",
+        "benefit does not justify tick/quote data and maintenance cost"
+      ]
+    },
+    "falsification_handoff": {
+      "owner": "AI-B",
+      "checks": [
+        "audit quote/trade provenance and as-of chronology",
+        "challenge displayed-depth interpretation using cancellation/hidden-liquidity alternatives",
+        "test news/auction/VI/halt/open-close contamination",
+        "reject causal language that attributes observed mechanism to a hidden actor"
+      ]
+    },
+    "sre_handoff": {
+      "owner": "AI-D",
+      "only_if_promoted": "Provide freshness/provenance/alignment metadata for authoritative tick and quote snapshots; do not build new pipeline before validation need is established."
+    },
+    "relation_to_existing": "Distinct from inventory/distribution estimates, EXP-E-003 matched-control residual response, ARCH-E-001 routing, and ARCH-E-002 uncertainty composition. This challenger targets the observable mechanism behind an impulse move."
+  },
+  "small_works": [
+    {
+      "id": "SMALL-E-005-A",
+      "result": "DEDUPED",
+      "detail": "Existing AI-E candidates for distribution/inventory, EXP-E-003, ARCH-E-001 and ARCH-E-002 were enumerated before selecting this fingerprint."
+    },
+    {
+      "id": "SMALL-E-005-B",
+      "result": "HANDOFF",
+      "detail": "AI-D runtime evidence is current enough to avoid Secondary Recovery; stale repository evidence remains an SRE concern owned by AI-D."
+    }
+  ],
+  "required_review_snapshot": [
+    {
+      "review_id": "REVIEW-20260929-SELF-HEAL-001",
+      "ai_e_assessment": "FIX_REQUIRED",
+      "reason": "Required AI-E review remains pending in canonical board; owner is AI-D. Existing architecture concern is not re-opened as duplicate work in this run."
+    },
+    {
+      "review_id": "REVIEW-20260930-ULTRA-PARALLEL-V2-001",
+      "ai_e_assessment": "PASS_WITH_NOTES",
+      "reason": "Risk-based specialization and anti-storm structure are directionally sound; closure evidence still has actions_result=null and expected_state_verified=false, so closure is not yet evidenced."
+    }
+  ],
+  "runtime_evidence": {
+    "observed_main_sha": "4df4564696a63a38d1fc993c30dc58941bc96f88",
+    "ai_d_latest_progress_at": "2026-09-30T10:33:33+09:00",
+    "ai_e_repository_heartbeat_at": "2026-09-29T19:47:35.000212Z",
+    "note": "This candidate is the run-level evolution/handoff record. AI-E agent-state canonical mutation was not attempted because primary writer ownership remains with AI-D and no Secondary Recovery condition was met."
+  },
+  "no_work_reason": null
+}
