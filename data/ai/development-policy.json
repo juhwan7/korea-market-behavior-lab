@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-09-30T11:17:00+09:00",
+  "target": {
+    "product_development_min_pct": 70,
+    "maintenance_optimization_max_pct": 30,
+    "window_hours": 24
+  },
+  "classifications": {
+    "product": [
+      "data collection",
+      "news analysis",
+      "market flows",
+      "futures",
+      "market strength",
+      "stock analysis",
+      "smart-money estimation",
+      "model calculations",
+      "user-facing market features"
+    ],
+    "maintenance": [
+      "refactoring",
+      "test cleanup",
+      "duplicate removal",
+      "documentation cleanup",
+      "workflow optimization",
+      "status dashboard maintenance"
+    ]
+  },
+  "priority": [
+    {
+      "level": "P0",
+      "work": "actual data connections"
+    },
+    {
+      "level": "P1",
+      "work": "news / flows / futures / market strength"
+    },
+    {
+      "level": "P2",
+      "work": "smart-money / virtual inventory"
+    },
+    {
+      "level": "P3",
+      "work": "relative strength / stock analysis"
+    },
+    {
+      "level": "P4",
+      "work": "UI"
+    },
+    {
+      "level": "P5",
+      "work": "operations / maintenance"
+    }
+  ],
+  "gate": "When recent product development is below 70%, do not start discretionary P4/P5 maintenance while P0-P3 actionable work exists."
+}

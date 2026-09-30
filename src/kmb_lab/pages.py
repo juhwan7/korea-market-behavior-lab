@@ -17,7 +17,7 @@ KST = timezone(timedelta(hours=9))
 AGENTS = ("AI-A", "AI-B", "AI-C", "AI-D", "AI-E")
 AGENT_FRESHNESS_MINUTES = 75
 DEFAULT_PAGES_URL = "https://juhwan7.github.io/korea-market-behavior-lab/"
-CORE_SECTION_MARKERS = ("overview", "market", "cycle", "ai-workshop", "work-products", "agent-health", "activity", "review", "recovery", "actions", "research", "experiments")
+CORE_SECTION_MARKERS = ("overview", "market", "market-strength", "flows", "futures-global", "news-issues", "smart-money", "cycle", "ai-workshop", "work-products", "agent-health", "activity", "review", "recovery", "actions", "research", "experiments")
 
 MATERIAL_EXACT = {
     "data/ai/CURRENT_BRIEFING.md",
@@ -25,6 +25,8 @@ MATERIAL_EXACT = {
     "data/ai/recovery-queue.json",
     "data/ai/task-board.json",
     "data/ai/events.jsonl",
+    "data/ai/unresolved-problems.jsonl",
+    "data/ai/development-mix.json",
 }
 MATERIAL_PREFIXES = (
     "data/ai/agents/",
@@ -37,6 +39,7 @@ MATERIAL_PREFIXES = (
     "data/research/",
     "data/audits/",
     "data/experiments/",
+    "data/stocks/",
 )
 TIME_KEYS = (
     "generated_at", "updated_at", "last_progress_at", "last_success_at",
@@ -349,6 +352,22 @@ def market_model(root: Path) -> dict[str, Any]:
     return result
 
 
+def intelligence_model(root: Path) -> dict[str, Any]:
+    return {
+        "current": load_json(root / "data/market/current.json", {}),
+        "flows": load_json(root / "data/market/flows.json", {}),
+        "futures": load_json(root / "data/market/futures.json", {}),
+        "global": load_json(root / "data/market/global.json", {}),
+        "strength": load_json(root / "data/market/strength.json", {}),
+        "news": load_json(root / "data/news/current.json", {}),
+        "issues": load_json(root / "data/news/issues.json", {}),
+        "smart_money": load_json(root / "data/stocks/smart-money.json", {}),
+        "collector_status": load_json(root / "data/system/collector-status.json", {}),
+        "development_mix": load_json(root / "data/ai/development-mix.json", {}),
+        "unresolved": load_jsonl(root / "data/ai/unresolved-problems.jsonl"),
+    }
+
+
 def stringify(value: Any) -> str:
     if isinstance(value, (dict, list)):
         return json.dumps(value, ensure_ascii=False, separators=(",", ":"))
@@ -502,6 +521,7 @@ def build_model(root: Path, source_commit: str, repository: str | None, token: s
         "repository": repository or "UNKNOWN",
         "freshness": {"label": "LIVE", "note": "generated from deployment material state"},
         "market": market_model(root),
+        "intelligence": intelligence_model(root),
         "briefing": parse_briefing(root / "data/ai/CURRENT_BRIEFING.md"),
         "agents": agents,
         "activity": activity[:30],

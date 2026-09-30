@@ -210,3 +210,11 @@ At run exit:
 7. Never claim "currently running" from stale repository state. Pages may say "recent run in progress" or "next run" unless live runtime evidence proves active execution.
 8. A Pages/local display failure is handed to AI-D and must not stop unrelated production lines.
 9. Keep reporting overhead below roughly 10-20% of a run; specialist work remains the priority.
+
+
+## Product delivery ratio and priority gate
+실제 사용자 기능 개발을 전체 작업의 최소 70%로 유지하고, 리팩터링·문서·상태판·복구·UI 미세조정 등 유지보수는 30% 이하로 제한한다. 각 실행은 결과를 PRODUCT DEVELOPMENT 또는 MAINTENANCE / OPTIMIZATION으로 분류하고, 최근 24시간 개발 비율을 `data/ai/development-mix.json`으로 추적한다.
+
+우선순위는 P0 실제 데이터 연결 → P1 뉴스·수급·선물·시장 체력 → P2 큰손/가상 재고 분석 → P3 상대강도·종목 분석 → P4 UI → P5 운영 개선 순서다. P0~P3 미완료 task가 있으면 P4/P5만 연속 수행하지 않는다. heartbeat·상태 문자열·설계 문서만 갱신한 것은 PRODUCT DEVELOPMENT로 계산하지 않는다.
+
+재시도 전 `failed-attempts.jsonl`, `lessons-learned.jsonl`, `recovery-queue.json`, `data/ai/unresolved-problems.jsonl`을 먼저 확인한다. 자동으로 해결하지 못한 문제는 원인·시도·실패 이유·필요한 외부 조치·retry_condition·do_not_repeat를 unresolved ledger에 남기고, 같은 조건에서 같은 실패 방법을 반복하지 않는다.

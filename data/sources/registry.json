@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-28T12:45:00Z",
+  "updated_at": "2026-09-30T11:17:00+09:00",
   "policy": "A source is not CONNECTED until an adapter and validation test exist.",
   "sources": [
     {
@@ -11,13 +11,14 @@
         "breadth",
         "market_cap",
         "investor_flow",
-        "price_volume"
+        "price_volume",
+        "futures"
       ],
       "source_url": "https://data.krx.co.kr/",
       "kind": "primary",
-      "status": "PLANNED",
-      "adapter": null,
-      "validation": null
+      "status": "ADAPTER_READY",
+      "adapter": "src/kmb_lab/adapters/krx.py",
+      "validation": "tests/test_krx_adapter.py"
     },
     {
       "id": "dart-disclosure",
