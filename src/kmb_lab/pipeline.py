@@ -705,22 +705,61 @@ def _issue_importance(issue: dict[str, Any], *, now: datetime) -> tuple[float, d
 
 
 def _merge_issue_history(current_issues: list[dict[str, Any]], previous_issues: list[dict[str, Any]], *, observed_at: str, collection_succeeded: bool) -> list[dict[str, Any]]:
-    prior_map = {}
+    """Keep issue lifecycle identity stable even when a cluster headline drifts.
+
+    Exact fingerprint remains the first key. If it changes because another
+    article enters the cluster, a conservative semantic headline match can
+    inherit the previous issue ID. This prevents repeated NEW resets without
+    claiming that weakly similar stories are the same event.
+    """
+    prior_map: dict[str, dict[str, Any]] = {}
+    prior_rows: list[tuple[str, dict[str, Any]]] = []
     for row in previous_issues:
         if not isinstance(row, dict):
             continue
-        key = row.get("fingerprint") or row.get("issue_id") or str(row.get("headline", "")).strip().lower()
-        prior_map[str(key)] = row
+        key = str(row.get("fingerprint") or row.get("issue_id") or str(row.get("headline", "")).strip().lower())
+        prior_map[key] = row
+        prior_rows.append((key, row))
 
-    seen: set[str] = set()
+    seen_prior: set[str] = set()
     merged: list[dict[str, Any]] = []
     for issue in current_issues:
-        key = str(issue.get("fingerprint") or issue.get("issue_id") or str(issue.get("headline", "")).strip().lower())
-        seen.add(key)
-        prior = prior_map.get(key)
-        if prior:
+        current_key = str(issue.get("fingerprint") or issue.get("issue_id") or str(issue.get("headline", "")).strip().lower())
+        prior_key = current_key if current_key in prior_map and current_key not in seen_prior else None
+        prior = prior_map.get(prior_key) if prior_key else None
+
+        if prior is None:
+            current_headline = str(issue.get("headline") or "")
+            current_tokens = set(issue.get("event_core_tokens") or [])
+            best: tuple[float, str, dict[str, Any]] | None = None
+            for candidate_key, candidate in prior_rows:
+                if candidate_key in seen_prior:
+                    continue
+                previous_headline = str(candidate.get("headline") or "")
+                title_score = google_news._headline_similarity(current_headline, previous_headline)
+                previous_tokens = set(candidate.get("event_core_tokens") or [])
+                token_score = (
+                    len(current_tokens & previous_tokens) / max(1, len(current_tokens | previous_tokens))
+                    if current_tokens and previous_tokens else 0.0
+                )
+                score = max(title_score, token_score)
+                # Require strong title continuity or a strong core-token overlap.
+                if title_score >= 0.76 or token_score >= 0.60:
+                    if best is None or score > best[0]:
+                        best = (score, candidate_key, candidate)
+            if best is not None:
+                _, prior_key, prior = best
+                issue["identity_match"] = "SEMANTIC_CONTINUITY"
+                issue["generated_fingerprint"] = issue.get("fingerprint")
+                if prior.get("issue_id"):
+                    issue["issue_id"] = prior.get("issue_id")
+                if prior.get("fingerprint"):
+                    issue["fingerprint"] = prior.get("fingerprint")
+
+        if prior is not None and prior_key is not None:
+            seen_prior.add(prior_key)
             article_growth = int(issue.get("article_count") or 0) - int(prior.get("article_count") or 0)
-            publisher_growth = int(issue.get("independent_publishers") or 0) - int(prior.get("independent_publishers") or 0)
+            publisher_growth = int(issue.get("independent_source_count") or issue.get("independent_publishers") or 0) - int(prior.get("independent_source_count") or prior.get("independent_publishers") or 0)
             issue["state"] = "STRENGTHENING" if article_growth > 0 or publisher_growth > 0 else "PERSISTING"
             issue["first_seen_at"] = prior.get("first_seen_at") or issue.get("first_seen_at")
             history = list(prior.get("history") or [])
@@ -741,8 +780,8 @@ def _merge_issue_history(current_issues: list[dict[str, Any]], previous_issues: 
 
     if collection_succeeded:
         now = _parse_dt(observed_at) or datetime.now(timezone.utc)
-        for key, prior in prior_map.items():
-            if key in seen:
+        for key, prior in prior_rows:
+            if key in seen_prior:
                 continue
             latest = _parse_dt(prior.get("latest_at") or prior.get("last_updated_at") or prior.get("first_seen_at"))
             if latest is None:
@@ -778,7 +817,6 @@ def _merge_issue_history(current_issues: list[dict[str, Any]], previous_issues: 
         reverse=True,
     )
     return merged
-
 
 def _market_snapshot(
     *,
