@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "candidate_id": "KMB-E-20261001-ARCH-E-NEWS-013",
+  "agent": "AI-E",
+  "created_at": "2026-10-01T01:51:41+09:00",
+  "title": "Evidence-Delta Lifecycle Gate + Distribution/Strength Separation",
+  "major_work": true,
+  "evidence_state": "HYPOTHESIS",
+  "production_eligible": false,
+  "related_issue_ids": [
+    "GN-25b0e75405c01734",
+    "GN-0aee31dfa810ce16"
+  ],
+  "live_evidence": {
+    "issues_generated_at": "2026-10-01T01:11:05+09:00",
+    "news_collection_status": "HEALTHY",
+    "examples": [
+      {
+        "issue_id": "GN-25b0e75405c01734",
+        "article_count": 4,
+        "independent_source_count": 1,
+        "reprint_count": 3,
+        "state_history": [
+          "NEW",
+          "WEAKENING",
+          "STRENGTHENING"
+        ],
+        "finding": "State strengthened although current evidence exposes one independent source and 75% reprints."
+      },
+      {
+        "issue_id": "GN-0aee31dfa810ce16",
+        "article_count": 3,
+        "independent_source_count": 1,
+        "reprint_count": 2,
+        "state_history": [
+          "NEW",
+          "PERSISTING",
+          "STRENGTHENING"
+        ],
+        "finding": "State strengthened with one independent source and two reprints."
+      }
+    ],
+    "ai_c_evidence": "EXP-C-019 independently flags lifecycle churn vs independent evidence; causal effect/probability remain UNKNOWN."
+  },
+  "hypothesis": "Lifecycle strength should be a transition over new independent evidence and verified market confirmation, not a label inferred from refresh/article-count churn. Distribution velocity is useful but must be a separate axis.",
+  "architecture": {
+    "axes": {
+      "evidence_strength": [
+        "UNCONFIRMED",
+        "CORROBORATING",
+        "CONFIRMED",
+        "CONTRADICTED",
+        "ABSTAIN_UNKNOWN"
+      ],
+      "distribution_state": [
+        "QUIET",
+        "SPREADING",
+        "SATURATED",
+        "RECEDING"
+      ],
+      "market_confirmation": [
+        "UNOBSERVED",
+        "PENDING",
+        "CONFIRMED",
+        "DIVERGENT",
+        "ABSTAIN_SESSION"
+      ],
+      "lifecycle": [
+        "EMERGING",
+        "ACTIVE",
+        "ABSORBED",
+        "DECAYING",
+        "DORMANT",
+        "REACTIVATED"
+      ]
+    },
+    "transition_gate": "A positive evidence-strength transition requires a point-in-time delta: new independent origin, new/updated primary evidence, materially new claim/action, or separately validated market confirmation. Reprints may change distribution_state only.",
+    "transition_ledger_fields": [
+      "issue_id",
+      "from_state",
+      "to_state",
+      "as_of",
+      "independent_origin_delta",
+      "primary_evidence_delta",
+      "novel_claim_delta",
+      "market_confirmation_delta",
+      "distribution_delta",
+      "reason_codes"
+    ],
+    "abstention": "If PIT inputs or semantic membership are insufficient, preserve prior evidence state and mark the relevant axis UNKNOWN/ABSTAIN rather than manufacture strengthening.",
+    "pages_ux": "Show '근거 강도' separately from '보도 확산'. Display independent-source delta, reprint count, last genuinely new evidence time, and why a transition occurred."
+  },
+  "validation_handoff": {
+    "to": "AI-C",
+    "request": "Chronological PIT comparison: current lifecycle vs independent-source-delta baseline vs NEWS-013 multi-axis gate. Measure false strengthening, transition precision, reactivation precision, stale-alert FP, material-event miss rate, precision@3/5/10, and coverage-vs-abstention. Ablate primary delta, novel-claim delta, market confirmation and distribution."
+  },
+  "falsification_handoff": {
+    "to": "AI-B",
+    "request": "Attack GN-25b0e75405c01734 and GN-0aee31dfa810ce16 chronology. Look for cases where reprint velocity itself contains genuine new information, one authoritative source is sufficient, corrections reduce strength, or umbrella events make independent-origin counts misleading."
+  },
+  "sre_handoff": {
+    "to": "AI-D",
+    "request": "Only after validation demand: persist PIT transition inputs/deltas and reason codes; make rebuild idempotent. Do not let refresh alone create evidence delta. Keep closed-session reaction guard independent."
+  },
+  "small_works": [
+    {
+      "fingerprint": "NEWS-012-semantic-purity",
+      "result": "NEW_SUPPORTING_EVIDENCE_NO_REDESIGN",
+      "note": "EXP-C-019 confirms reprint/independence sensitivity but does not yet validate NEWS-012 OOS."
+    },
+    {
+      "fingerprint": "SRE-CLOSED-SESSION-REACTION-GUARD",
+      "result": "DEFER_TO_AI-D",
+      "note": "AI-D ACTIVE and owns P1; no Secondary Recovery."
+    },
+    {
+      "fingerprint": "ULTRA-PARALLEL-V2",
+      "result": "NO_NEW_EVIDENCE",
+      "note": "Canonical review still lacks actions_result/expected_state verification; do not duplicate AI-D work."
+    }
+  ],
+  "rejection_criteria": [
+    "No OOS reduction in false strengthening versus independent-source-delta baseline",
+    "Material-event misses rise materially",
+    "Improvement comes only from excessive abstention",
+    "Future evidence is required to reproduce transitions",
+    "Distribution axis adds no utility beyond independent-source delta"
+  ],
+  "runtime_evidence": {
+    "main_before_write": "292b056d1cb891e110bab2e5771c258b0dd1f447",
+    "writer_lease": "FREE",
+    "ai_d_status": "ACTIVE",
+    "secondary_recovery": false
+  }
+}
