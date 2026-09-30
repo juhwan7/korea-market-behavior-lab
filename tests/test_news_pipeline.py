@@ -1,7 +1,7 @@
 import unittest
 
 from kmb_lab.adapters.google_news import parse_rss, dedupe_and_cluster, classify_channels
-from kmb_lab.pipeline import _merge_issue_history
+from kmb_lab.pipeline import _merge_issue_history, _is_recent_news_item
 
 XML='''<rss><channel><item><title>반도체 수출 규제 논의 - A신문</title><link>https://a</link><pubDate>Wed, 30 Sep 2026 01:00:00 GMT</pubDate><source>A신문</source></item><item><title>반도체 수출 규제 논의 확대 - B뉴스</title><link>https://b</link><pubDate>Wed, 30 Sep 2026 01:02:00 GMT</pubDate><source>B뉴스</source></item></channel></rss>'''
 
@@ -23,6 +23,12 @@ class NewsTests(unittest.TestCase):
         self.assertTrue(issues[0]["fingerprint"])
         self.assertEqual(issues[0]["issue_id"], dedupe_and_cluster(items)[1][0]["issue_id"])
         self.assertTrue(all(a["cluster_id"] == issues[0]["issue_id"] for a in issues[0]["articles"]))
+
+    def test_old_search_result_is_not_current_news(self):
+        self.assertFalse(_is_recent_news_item({
+            "published_at":"1995-02-18T08:00:00Z",
+            "observed_at":"2026-09-30T03:00:00Z"
+        }, now=__import__("datetime").datetime(2026,9,30,3,0,tzinfo=__import__("datetime").timezone.utc)))
 
     def test_no_keyword_sentiment_claim(self):
         r=classify_channels("유가 급등과 금리 변화")
