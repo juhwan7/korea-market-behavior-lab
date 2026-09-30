@@ -430,6 +430,17 @@ def _candidate_summary(payload: dict[str, Any], path: Path, root: Path) -> dict[
         "next_work": next_work,
         "verified": bool(payload.get("verified", False)),
         "related_issue_ids": payload.get("related_issue_ids") or major.get("related_issue_ids") or [],
+        "fingerprint": payload.get("fingerprint") or major.get("fingerprint"),
+        "confirmed": major.get("confirmed") or payload.get("confirmed") or [],
+        "hypothesis": major.get("hypothesis") or payload.get("hypothesis"),
+        "unknown": major.get("unknown") or payload.get("unknown") or [],
+        "counter_scenario": major.get("counter_scenario") or payload.get("counter_scenario") or payload.get("counterpoint"),
+        "why_important": major.get("why_important") or payload.get("why_important") or payload.get("importance"),
+        "impact_path": major.get("impact_path") or payload.get("impact_path") or payload.get("transmission_path") or [],
+        "next_variables": major.get("next_variables") or payload.get("next_variables") or [],
+        "related_markets": major.get("related_markets") or payload.get("related_markets") or [],
+        "related_sectors": major.get("related_sectors") or payload.get("related_sectors") or [],
+        "related_stocks": major.get("related_stocks") or payload.get("related_stocks") or [],
     }
 
 
@@ -500,6 +511,148 @@ def execution_model(root: Path, agents: list[dict[str, Any]], products: list[dic
         })
     return {"explicit": explicit[:100], "current": current}
 
+
+def _as_list(value: Any) -> list[Any]:
+    if value in (None, "", []):
+        return []
+    return value if isinstance(value, list) else [value]
+
+
+def _agent_latest_work_row(payload: dict[str, Any], *, agent: str, source_commit: str | None, source_kind: str) -> dict[str, Any] | None:
+    work = payload.get("latest_work")
+    if not isinstance(work, dict) or not work:
+        return None
+    at = payload.get("last_progress_at") or payload.get("heartbeat_at") or work.get("generated_at")
+    hypothesis = work.get("hypothesis")
+    title = work.get("title")
+    if not title:
+        if isinstance(hypothesis, str) and hypothesis.strip():
+            title = hypothesis.strip()[:110]
+        else:
+            title = payload.get("current_task") or work.get("fingerprint") or f"{agent} 시장 연구"
+    return {
+        "agent": agent,
+        "at": at,
+        "title": title,
+        "fingerprint": work.get("fingerprint") or payload.get("current_task"),
+        "result": work.get("result"),
+        "news_outcome": work.get("news_outcome"),
+        "confirmed": _as_list(work.get("confirmed")),
+        "hypothesis": hypothesis,
+        "unknown": _as_list(work.get("unknown")),
+        "counter_scenario": work.get("counter_scenario") or work.get("counterpoint"),
+        "why_important": work.get("why_important") or work.get("importance"),
+        "impact_path": _as_list(work.get("impact_path") or work.get("transmission_path")),
+        "handoffs": _as_list(work.get("handoff") or work.get("handoffs")),
+        "next_work": work.get("next_work"),
+        "next_variables": _as_list(work.get("next_variables")),
+        "related_issue_ids": _as_list(work.get("related_issue_ids")),
+        "related_markets": _as_list(work.get("related_markets")),
+        "related_sectors": _as_list(work.get("related_sectors")),
+        "related_stocks": _as_list(work.get("related_stocks")),
+        "collector_evidence": work.get("collector_evidence") if isinstance(work.get("collector_evidence"), dict) else {},
+        "source_commit": source_commit,
+        "source_kind": source_kind,
+    }
+
+
+def agent_research_history_model(root: Path, *, per_agent_limit: int = 40) -> list[dict[str, Any]]:
+    """Recover structured AI research from current and historical agent-state files.
+
+    This is intentionally based on persisted public summaries/latest_work, not
+    hidden reasoning. It also recovers research whose candidate file write was
+    blocked but whose runtime evidence reached the agent-state file.
+    """
+    rows: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for agent in AGENTS:
+        rel = f"data/ai/agents/{agent.lower()}.json"
+        current = load_json(root / rel, {})
+        if isinstance(current, dict):
+            row = _agent_latest_work_row(current, agent=agent, source_commit=None, source_kind="CURRENT_AGENT_STATE")
+            if row:
+                key = json.dumps([agent, row.get("at"), row.get("fingerprint"), row.get("hypothesis")], ensure_ascii=False, sort_keys=True)
+                seen.add(key)
+                rows.append(row)
+        try:
+            history = subprocess.check_output(
+                ["git", "log", f"-n{per_agent_limit}", "--format=%H", "--", rel],
+                cwd=root, text=True, stderr=subprocess.DEVNULL,
+            ).splitlines()
+        except Exception:
+            history = []
+        for sha in history:
+            sha = sha.strip()
+            if not sha:
+                continue
+            try:
+                raw = subprocess.check_output(
+                    ["git", "show", f"{sha}:{rel}"],
+                    cwd=root, text=True, stderr=subprocess.DEVNULL,
+                )
+                payload = json.loads(raw)
+            except Exception:
+                continue
+            if not isinstance(payload, dict):
+                continue
+            row = _agent_latest_work_row(payload, agent=agent, source_commit=sha, source_kind="AGENT_STATE_HISTORY")
+            if not row:
+                continue
+            key = json.dumps([agent, row.get("at"), row.get("fingerprint"), row.get("hypothesis")], ensure_ascii=False, sort_keys=True)
+            if key in seen:
+                continue
+            seen.add(key)
+            rows.append(row)
+    rows.sort(
+        key=lambda row: parse_time(row.get("at")) or datetime.min.replace(tzinfo=timezone.utc),
+        reverse=True,
+    )
+    return rows[:250]
+
+
+def research_feed_model(root: Path, products: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    rows = agent_research_history_model(root)
+    seen = {
+        json.dumps([r.get("agent"), r.get("at"), r.get("fingerprint"), r.get("hypothesis")], ensure_ascii=False, sort_keys=True)
+        for r in rows
+    }
+    for product in products:
+        if not any((product.get("hypothesis"), product.get("confirmed"), product.get("unknown"))):
+            continue
+        row = {
+            "agent": product.get("agent"),
+            "at": product.get("updated_at") or product.get("created_at"),
+            "title": product.get("title"),
+            "fingerprint": product.get("fingerprint") or product.get("id"),
+            "result": product.get("result"),
+            "news_outcome": None,
+            "confirmed": _as_list(product.get("confirmed")),
+            "hypothesis": product.get("hypothesis"),
+            "unknown": _as_list(product.get("unknown")),
+            "counter_scenario": product.get("counter_scenario"),
+            "why_important": product.get("why_important"),
+            "impact_path": _as_list(product.get("impact_path")),
+            "handoffs": _as_list(product.get("handoffs")),
+            "next_work": product.get("next_work"),
+            "next_variables": _as_list(product.get("next_variables")),
+            "related_issue_ids": _as_list(product.get("related_issue_ids")),
+            "related_markets": _as_list(product.get("related_markets")),
+            "related_sectors": _as_list(product.get("related_sectors")),
+            "related_stocks": _as_list(product.get("related_stocks")),
+            "source_commit": product.get("source_commit"),
+            "source_kind": "CANDIDATE_OR_AUDIT",
+        }
+        key = json.dumps([row.get("agent"), row.get("at"), row.get("fingerprint"), row.get("hypothesis")], ensure_ascii=False, sort_keys=True)
+        if key not in seen:
+            seen.add(key)
+            rows.append(row)
+    rows.sort(
+        key=lambda row: parse_time(row.get("at")) or datetime.min.replace(tzinfo=timezone.utc),
+        reverse=True,
+    )
+    return rows[:300]
+
+
 def build_model(root: Path, source_commit: str, repository: str | None, token: str | None, offline: bool) -> dict[str, Any]:
     review = load_json(root / "data/ai/review-board.json", {})
     recovery = load_json(root / "data/ai/recovery-queue.json", {})
@@ -519,6 +672,7 @@ def build_model(root: Path, source_commit: str, repository: str | None, token: s
     agents = derive_agent_health(root)
     work_products = work_products_model(root)
     executions = execution_model(root, agents, work_products)
+    research_timeline = research_feed_model(root, work_products)
     intelligence = intelligence_model(root)
     intelligence["news_work_products"] = [p for p in work_products if p.get("related_issue_ids")]
     return {
@@ -534,6 +688,7 @@ def build_model(root: Path, source_commit: str, repository: str | None, token: s
         "activity": activity[:30],
         "work_products": work_products[:100],
         "executions": executions,
+        "research_timeline": research_timeline,
         "review": review, "recovery": recovery, "tasks": tasks,
         "experiments": experiments, "research": research,
         "workflows": workflow_evidence(repository, token, offline),
