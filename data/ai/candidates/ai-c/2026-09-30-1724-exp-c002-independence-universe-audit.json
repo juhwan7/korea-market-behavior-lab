@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "candidate_id": "KMB-C-20260930-EXP-C-012",
+  "agent": "AI-C",
+  "created_at": "2026-09-30T17:24:42+09:00",
+  "ultra_parallel_v2": true,
+  "major_work": {
+    "experiment_id": "EXP-C-012",
+    "name": "Smart Money Walk-Forward Independence & Universe Sensitivity Audit",
+    "parent_experiment": "EXP-C-002",
+    "evidence_fingerprint": {
+      "smart_money_backtest_sha": "4dbc352497f928ac4de4eebe8c528c0ba47a1acd",
+      "experiment_registry_sha": "beadfd30d8a2516db0e4aaab6b945c933afbbe9a",
+      "generated_at": "2026-09-30T14:09:40+09:00"
+    },
+    "data_source": {
+      "path": "data/stocks/smart-money-backtest.json",
+      "source_kind": "secondary",
+      "upstream": "Naver public market history",
+      "persisted_events": 128,
+      "unique_event_dates": 60
+    },
+    "findings": {
+      "reported_all_events": {
+        "n": 128,
+        "gross_success_rate": 0.625,
+        "net_success_rate": 0.4296875,
+        "avg_gross_directional_return_pct": 1.7411328125,
+        "avg_net_after_cost_pct": 1.3911328125,
+        "avg_mfe_pct": 8.2422890625,
+        "avg_mae_pct": -6.822984375
+      },
+      "low_volatility_cd_etf_sensitivity": {
+        "code": "459580",
+        "name": "KODEX CD금리액티브(합성)",
+        "n": 22,
+        "share_of_all_events": 0.171875,
+        "gross_success_rate": 1,
+        "net_success_rate": 0,
+        "avg_gross_directional_return_pct": 0.0618181818,
+        "avg_net_after_cost_pct": -0.2881818182,
+        "interpretation": "35bp assumed round-trip cost flips every persisted CD-rate ETF event from gross success to net failure; gross hit-rate is therefore highly universe-sensitive."
+      },
+      "excluding_cd_etf": {
+        "n": 106,
+        "gross_success_rate": 0.5471698113,
+        "net_success_rate": 0.5188679245,
+        "avg_gross_directional_return_pct": 2.0896698113,
+        "avg_net_after_cost_pct": 1.7396698113
+      },
+      "excluding_all_four_etf_proxies": {
+        "excluded_codes": [
+          "069500",
+          "122630",
+          "102110",
+          "459580"
+        ],
+        "n": 82,
+        "gross_success_rate": 0.5609756098,
+        "net_success_rate": 0.5243902439,
+        "avg_gross_directional_return_pct": 2.4333536585,
+        "avg_net_after_cost_pct": 2.0833536585,
+        "avg_mfe_pct": 11.0846707317,
+        "avg_mae_pct": -8.518804878
+      },
+      "by_state": {
+        "DISTRIBUTION_RISK": {
+          "n": 40,
+          "gross_success_rate": 0.575,
+          "net_success_rate": 0.55,
+          "avg_net_pct": 2.9916,
+          "avg_mfe_pct": 12.17595,
+          "avg_mae_pct": -8.814275
+        },
+        "ACCUMULATION_OR_ABSORPTION_CANDIDATE": {
+          "n": 40,
+          "gross_success_rate": 0.475,
+          "net_success_rate": 0.45,
+          "avg_net_pct": 0.114025,
+          "avg_mfe_pct": 7.2778,
+          "avg_mae_pct": -8.585175
+        },
+        "BREAKOUT_WITH_DEMAND": {
+          "n": 48,
+          "gross_success_rate": 0.7916666667,
+          "net_success_rate": 0.3125,
+          "avg_net_pct": 1.1216666667,
+          "avg_mfe_pct": 5.7679791667,
+          "avg_mae_pct": -3.6950833333
+        }
+      },
+      "by_regime": {
+        "DOWN": {
+          "n": 39,
+          "gross_success_rate": 0.8461538462,
+          "net_success_rate": 0.5384615385,
+          "avg_net_pct": 3.8299487179
+        },
+        "UP": {
+          "n": 57,
+          "gross_success_rate": 0.4912280702,
+          "net_success_rate": 0.3684210526,
+          "avg_net_pct": 0.2926140351
+        },
+        "SIDEWAYS": {
+          "n": 32,
+          "gross_success_rate": 0.59375,
+          "net_success_rate": 0.40625,
+          "avg_net_pct": 0.3755625
+        }
+      }
+    },
+    "statistical_validity": {
+      "independent_sample_count": "UNKNOWN",
+      "probability": "UNKNOWN",
+      "production_eligible": false,
+      "reason": "128 persisted signal events are not 128 independent trials. Five-day forward windows overlap heavily within stocks, many dates are shared across correlated stocks/ETFs, and only 60 unique signal dates exist.",
+      "contamination": [
+        "overlapping 5-trading-day forward labels",
+        "cross-sectional correlation on shared market dates",
+        "ETF/index-proxy duplication with constituent exposures",
+        "secondary-source historical bars",
+        "fixed 35bp cost assumption is inappropriate for cash-like ETF and may not represent stock-specific execution"
+      ],
+      "required_retest": [
+        "purge overlapping forward windows within each instrument",
+        "cluster/bootstrap by trading date and instrument",
+        "separate common-stock and ETF universes",
+        "report stock-equal-weight and event-weighted metrics separately",
+        "run cost sensitivity grid rather than one 35bp assumption",
+        "retain chronological point-in-time signal generation",
+        "compare against direction/base-rate and simple momentum/volume baselines",
+        "regime split only after effective sample size is reported"
+      ],
+      "decision": "KEEP_SHADOW_FIX_REQUIRED"
+    }
+  },
+  "small_works": [
+    {
+      "target": "EXP-C-011",
+      "result": "NO_NEW_EVIDENCE",
+      "fingerprint": "intraday-snapshots generated_at 2026-09-30T14:09:48+09:00; no later PIT snapshot on main",
+      "action": "moved to different quant experiment"
+    },
+    {
+      "target": "required-review-backfill",
+      "review_ids": [
+        "REVIEW-20260929-FIVE-AI-MESH-001",
+        "REVIEW-20260929-PAGES-CLOSED-LOOP-001"
+      ],
+      "result": "PASS_WITH_NOTES",
+      "scope": "AI-C quantitative specialty only",
+      "finding": "Verified operational evidence does not itself validate or promote quantitative models; probabilities and model promotion remain gated by actual samples/OOS evidence. No quantitative contract regression found in the reviewed evidence.",
+      "canonical_board_write": "NOT_PERFORMED; candidate evidence only, to avoid competing canonical mutation."
+    }
+  ],
+  "news_contract": {
+    "result": "NO_NEW_EVIDENCE",
+    "issues_generated_at": "2026-09-30T14:09:31+09:00",
+    "intraday_generated_at": "2026-09-30T14:09:48+09:00",
+    "note": "No newer PIT market packet than EXP-C-011; news effect/probability remains UNKNOWN and no duplicate event-study claim is emitted."
+  },
+  "handoffs": [
+    {
+      "to": "AI-D",
+      "priority": "P1",
+      "request": "For EXP-C-002 persist exact exit dates/trading-day indices and a purged non-overlap evaluation view; preserve instrument/date cluster IDs so effective sample size can be measured."
+    },
+    {
+      "to": "AI-B",
+      "priority": "P1",
+      "request": "Audit whether the 128-event headline performance is presented anywhere as independent statistical evidence; require explicit overlapping-label and secondary-source limitations."
+    },
+    {
+      "to": "AI-E",
+      "priority": "P2",
+      "request": "Challenger should compare common-stock-only, ETF-only and cost-sensitivity variants before any architecture promotion."
+    }
+  ],
+  "next_validation": "Recompute EXP-C-002 with non-overlapping 5D labels, date/instrument clustered uncertainty, universe split and cost grid; until then keep probability UNKNOWN.",
+  "heartbeat": {
+    "at": "2026-09-30T17:24:42+09:00",
+    "runtime_evidence": "scheduled runtime observed",
+    "progress": true
+  }
+}
