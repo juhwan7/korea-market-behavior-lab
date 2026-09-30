@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "agent": "AI-A",
+  "created_at": "2026-10-01T03:03:19+09:00",
+  "fingerprint": "china-manufacturing-ai|memory-capacity-crowding|dram-price-channel",
+  "status": "OUTPUT_CREATED",
+  "news_outcome": "NEW_IMPORTANT_NEWS_FOUND_EXTERNALLY_NOT_YET_IN_COLLECTOR",
+  "news_collection": {
+    "news_collection_attempted": true,
+    "repository_collector_generated_at": "2026-10-01T01:11:05+09:00",
+    "repository_collection_status": "HEALTHY",
+    "sources_checked": 20,
+    "raw_news_count": 223,
+    "deduplicated_count": 213,
+    "issue_created_count": null,
+    "issue_updated_count": null
+  },
+  "major_work": {
+    "title": "중국 제조업 재확장과 HBM 용량 잠식의 한국 메모리 간접 가격 경로",
+    "classifications": {
+      "CONFIRMED": [
+        "중국 국가통계국 9월 제조업 PMI 50.1, 생산 51.7, 신규주문 50.5. 중형 49.7, 소형 48.9.",
+        "삼성전자 임원은 HBM의 업계 DRAM 웨이퍼 용량 비중이 현재 약 20%에서 내년 약 30%로 높아질 것으로 예상했고 HBM과 일반 DRAM이 같은 웨이퍼 용량을 두고 경쟁한다고 설명했다.",
+        "AI-B 기존 반증은 중국 가속기 증가에서 한국 HBM 직접판매로 가는 경로에 수출자격·메모리구조·공급사 인증·중국산 대체 등의 관문이 있음을 지적했다."
+      ],
+      "HYPOTHESIS": [
+        "중국 AI·산업 수요가 메모리 소비를 지지하는 동시에 HBM이 DRAM 웨이퍼 용량을 더 차지하면, 중국향 첨단 HBM 직접판매가 제한돼도 일반 DRAM 공급제약과 글로벌 가격을 통해 삼성전자·SK하이닉스 실적에 간접적인 우호 경로가 생길 수 있다.",
+        "중국 AI 자립의 한국 메모리 영향은 직접판매 경로와 글로벌 용량·가격 경로를 분리해 평가해야 한다."
+      ],
+      "UNKNOWN": [
+        "9월 PMI 개선의 지속성",
+        "중국 전자·AI 장비의 실제 DRAM bit 수요 기여",
+        "CXMT 증설이 글로벌 DRAM 타이트닝을 얼마나 상쇄하는지",
+        "삼성전자·SK하이닉스의 차기 웨이퍼 배분과 ASP 민감도"
+      ]
+    },
+    "why_important": "중국 AI 자립을 한국 메모리에 단순 호재/악재로 읽는 오류를 줄인다.",
+    "impact_path": [
+      "중국 제조업·AI 투자 개선",
+      "메모리 소비 증가 가능",
+      "HBM의 DRAM 웨이퍼 점유 확대",
+      "일반 DRAM 공급 제약 가능",
+      "글로벌 DRAM 가격·믹스 개선 가능",
+      "한국 메모리 실적의 간접 수혜 가능"
+    ],
+    "counter_scenario": "중국 PMI 반등이 일시적이거나 CXMT 증설·수율개선이 수요보다 빠르고 하위 IT 수요가 약하면 공급제약 경로는 약해질 수 있다.",
+    "next_variables": [
+      "중국 전자·AI 신규주문",
+      "DRAM 계약·현물가격",
+      "HBM 웨이퍼 비중",
+      "CXMT 증설·수율",
+      "삼성전자·SK하이닉스 웨이퍼 배분·ASP"
+    ],
+    "related_sectors": [
+      "반도체",
+      "AI",
+      "메모리"
+    ],
+    "related_stocks": [
+      "삼성전자",
+      "SK하이닉스"
+    ],
+    "related_issue_ids": [],
+    "provenance": [
+      {
+        "source": "중국 국가통계국",
+        "published_at": "2026-09-30",
+        "url": "https://www.stats.gov.cn/sj/zxfb/202609/t20260930_1965449.html",
+        "evidence_type": "PRIMARY_OFFICIAL"
+      },
+      {
+        "source": "Reuters",
+        "published_at": "2026-09-30",
+        "title": "China factory activity returns to growth amid AI boom",
+        "evidence_type": "SECONDARY_REPORTING"
+      },
+      {
+        "source": "Reuters",
+        "published_at": "2026-09-29",
+        "title": "Samsung says HBM to account for nearly 30% of industry DRAM capacity next year",
+        "evidence_type": "SECONDARY_REPORTING"
+      },
+      {
+        "source": "KMB AI-B candidate",
+        "path": "data/ai/candidates/ai-b/2026-10-01-0211-china-ai-hbm-transmission-falsification.json",
+        "evidence_type": "INTERNAL_FALSIFICATION"
+      }
+    ],
+    "handoff": {
+      "AI_C": "직접 중국 HBM 판매 관문과 간접 글로벌 DRAM 용량·가격 효과를 분리한 2경로 모델을 정량검증한다. 충분한 표본 전 확률은 만들지 않는다.",
+      "AI_B": "CXMT 증설, DRAM 수율·생산성 개선, 약한 하위 IT 수요, PMI 일시반등으로 용량잠식 가설을 반증한다."
+    }
+  },
+  "small_works": [
+    {
+      "fingerprint": "ai-debt-duration|credit-refinancing|memory-demand",
+      "result": "EVIDENCE_STRENGTHENED",
+      "detail": "영란은행 2026년 7월 FSR 1차 자료는 AI 외부금융 급증과 hyperscaler의 리파이낸싱 의존 증가를 확인한다. CAPEX→한국 메모리 전파는 아직 가설이다."
+    },
+    {
+      "fingerprint": "iran-hormuz-negotiation|oil-supply-risk",
+      "result": "EVIDENCE_STRENGTHENED_TWO_SIDED",
+      "detail": "9월30일 협상 피드백과 동시에 Reuters poll의 2026 유가 전망 상향이 관측돼 협상과 실제 물동량 정상화를 분리해야 한다."
+    },
+    {
+      "fingerprint": "russia-diesel-export-ban|refined-products-inflation|bond-duration",
+      "result": "NEW_RISK_SIGNAL",
+      "detail": "러시아가 디젤 수출 금지를 10월 말까지 연장했다는 Reuters 보도로 정제제품 인플레 위험이 추가됐다."
+    }
+  ],
+  "pages_impact": "YES"
+}
