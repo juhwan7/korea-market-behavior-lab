@@ -3,12 +3,37 @@
   "method": "commit_path_classification",
   "window_hours": 24,
   "target_product_min_pct": 70,
-  "product_pct": 27.9,
-  "maintenance_pct": 72.1,
-  "labeled_commit_count": 86,
-  "unclassified_commit_count": 26,
+  "product_pct": 31.1,
+  "maintenance_pct": 68.9,
+  "labeled_commit_count": 90,
+  "unclassified_commit_count": 27,
   "warning": true,
   "recent": [
+    {
+      "sha": "17313195f6b24e3147f47745999c0bee508517c2",
+      "subject": "product: publish futures basis and investor flow fallback",
+      "class": "product"
+    },
+    {
+      "sha": "a8e817df7b1a3b3fbb14364c143e50b755322bcd",
+      "subject": "test: cover KOSPI200 futures fallback normalization",
+      "class": "unclassified"
+    },
+    {
+      "sha": "5e11694149e1744e0b8c874ba8d7e5a57ef4e8eb",
+      "subject": "product: provide KOSPI200 futures secondary fallback and basis",
+      "class": "product"
+    },
+    {
+      "sha": "284efaea1b83b1c56aba88c716a57555d7d0ba20",
+      "subject": "product: add public KOSPI200 futures fallback feed",
+      "class": "product"
+    },
+    {
+      "sha": "2a48891704dbd06d46b75f74c895e1b69dca0826",
+      "subject": "product: refresh market intelligence",
+      "class": "product"
+    },
     {
       "sha": "fa7690d1672b49fa79f1c2e1d9c356e164858b78",
       "subject": "product: show program flow beside investor supply demand",
@@ -133,31 +158,6 @@
       "sha": "23536b94cc2e14df9e45abb0327a1d787ef0debd",
       "subject": "product: refresh market intelligence",
       "class": "product"
-    },
-    {
-      "sha": "51d668daadaba3cb3cd2b4abc291bb907839fafd",
-      "subject": "test: reject stale news from current feed",
-      "class": "unclassified"
-    },
-    {
-      "sha": "ccb382ef9919b26abb7a252322f8e9b0debf1f0a",
-      "subject": "news: filter stale articles and rank current issues",
-      "class": "product"
-    },
-    {
-      "sha": "405178a53266adfe4f3e26462b8f475a78ae37f4",
-      "subject": "news: constrain discovery queries to current window",
-      "class": "product"
-    },
-    {
-      "sha": "c924a6b2eba95602301f3fcab1468a49a10f9d1b",
-      "subject": "product: refresh market intelligence",
-      "class": "product"
-    },
-    {
-      "sha": "28f33ebc7635254a15c6890be756ea6e92866274",
-      "subject": "fix: isolate fast-lane dirty worktree before persistence",
-      "class": "maintenance"
     }
   ]
 }
