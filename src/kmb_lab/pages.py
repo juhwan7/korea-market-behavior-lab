@@ -17,7 +17,7 @@ KST = timezone(timedelta(hours=9))
 AGENTS = ("AI-A", "AI-B", "AI-C", "AI-D", "AI-E")
 AGENT_FRESHNESS_MINUTES = 75
 DEFAULT_PAGES_URL = "https://juhwan7.github.io/korea-market-behavior-lab/"
-CORE_SECTION_MARKERS = ("overview", "market", "cycle", "agent-health", "activity", "review", "recovery", "actions", "research", "experiments")
+CORE_SECTION_MARKERS = ("overview", "market", "cycle", "ai-workshop", "work-products", "agent-health", "activity", "review", "recovery", "actions", "research", "experiments")
 
 MATERIAL_EXACT = {
     "data/ai/CURRENT_BRIEFING.md",
@@ -28,6 +28,8 @@ MATERIAL_EXACT = {
 }
 MATERIAL_PREFIXES = (
     "data/ai/agents/",
+    "data/ai/candidates/",
+    "data/ai/executions/",
     "data/system/",
     "data/market/",
     "data/news/",
@@ -368,6 +370,112 @@ def status_class(value: str) -> str:
     return "muted"
 
 
+
+def _candidate_summary(payload: dict[str, Any], path: Path, root: Path) -> dict[str, Any]:
+    major = payload.get("major_work") if isinstance(payload.get("major_work"), dict) else {}
+    agent = str(payload.get("agent") or payload.get("auditor") or "UNKNOWN").upper()
+    created = payload.get("created_at") or payload.get("generated_at")
+    times = extract_times(payload)
+    if not created and times:
+        created = max(times).astimezone(KST).isoformat(timespec="seconds")
+    title = (
+        major.get("title") or payload.get("title") or payload.get("name")
+        or major.get("hypothesis_id") or payload.get("id") or path.stem
+    )
+    result = major.get("result") or payload.get("verdict") or payload.get("status") or major.get("status") or "CANDIDATE"
+    summary = major.get("summary") or payload.get("summary")
+    if not summary:
+        hypotheses = major.get("hypothesis") or payload.get("hypothesis")
+        if isinstance(hypotheses, list) and hypotheses:
+            summary = hypotheses[0]
+        elif isinstance(hypotheses, str):
+            summary = hypotheses
+    handoffs = payload.get("handoffs") if isinstance(payload.get("handoffs"), list) else []
+    next_work = payload.get("next_work") or payload.get("next_action")
+    return {
+        "id": major.get("hypothesis_id") or payload.get("id") or path.stem,
+        "title": title,
+        "agent": agent,
+        "type": payload.get("type") or "CANDIDATE",
+        "created_at": created,
+        "updated_at": created,
+        "status": "CANDIDATE",
+        "result": result,
+        "summary": summary or "상세 결과는 작업물 원문에서 확인할 수 있습니다.",
+        "artifact_path": path.relative_to(root).as_posix(),
+        "source_commit": payload.get("source_commit") or payload.get("commit_sha"),
+        "handoffs": handoffs,
+        "next_work": next_work,
+        "verified": bool(payload.get("verified", False)),
+    }
+
+
+def work_products_model(root: Path) -> list[dict[str, Any]]:
+    products: list[dict[str, Any]] = []
+    candidate_root = root / "data/ai/candidates"
+    if candidate_root.exists():
+        for path in candidate_root.rglob("*.json"):
+            payload = load_json(path, {})
+            if isinstance(payload, dict):
+                products.append(_candidate_summary(payload, path, root))
+    for path in (root / "data/audits").glob("*.json") if (root / "data/audits").exists() else []:
+        payload = load_json(path, {})
+        if not isinstance(payload, dict):
+            continue
+        products.append({
+            "id": payload.get("id") or path.stem,
+            "title": payload.get("title") or f"Evidence audit · {payload.get('verdict', 'UNKNOWN')}",
+            "agent": str(payload.get("auditor") or "AI-B").upper(),
+            "type": "AUDIT",
+            "created_at": payload.get("generated_at"),
+            "updated_at": payload.get("generated_at"),
+            "status": "VERIFIED" if payload.get("verified") is True else "OUTPUT_CREATED",
+            "result": payload.get("verdict") or payload.get("status") or "UNKNOWN",
+            "summary": payload.get("summary") or "근거·출처 검증 작업",
+            "artifact_path": path.relative_to(root).as_posix(),
+            "source_commit": payload.get("source_commit") or payload.get("commit_sha"),
+            "handoffs": payload.get("handoffs") or [],
+            "next_work": payload.get("next_work") or payload.get("next_action"),
+            "verified": bool(payload.get("verified", False)),
+        })
+    products.sort(key=lambda row: parse_time(row.get("updated_at")) or datetime.min.replace(tzinfo=timezone.utc), reverse=True)
+    return products
+
+
+def execution_model(root: Path, agents: list[dict[str, Any]], products: list[dict[str, Any]]) -> dict[str, Any]:
+    explicit: list[dict[str, Any]] = []
+    execution_root = root / "data/ai/executions"
+    if execution_root.exists():
+        for path in execution_root.rglob("*.json"):
+            if path.name == "latest.json":
+                continue
+            payload = load_json(path, {})
+            if isinstance(payload, dict):
+                row = dict(payload)
+                row["artifact_path"] = path.relative_to(root).as_posix()
+                explicit.append(row)
+    explicit.sort(key=lambda row: parse_time(row.get("finished_at") or row.get("started_at")) or datetime.min.replace(tzinfo=timezone.utc), reverse=True)
+    latest_products: dict[str, dict[str, Any]] = {}
+    for item in products:
+        agent = str(item.get("agent", "")).upper()
+        if agent in AGENTS and agent not in latest_products:
+            latest_products[agent] = item
+    current = []
+    for row in agents:
+        agent = row["agent"]
+        product = latest_products.get(agent)
+        current.append({
+            "agent": agent,
+            "status": row.get("execution") or row.get("status"),
+            "last_execution": row.get("last_execution"),
+            "heartbeat_at": row.get("heartbeat_at"),
+            "output_at": row.get("output_at"),
+            "current_task": row.get("current_task"),
+            "latest_output": product,
+            "next_work": (product or {}).get("next_work"),
+        })
+    return {"explicit": explicit[:100], "current": current}
+
 def build_model(root: Path, source_commit: str, repository: str | None, token: str | None, offline: bool) -> dict[str, Any]:
     review = load_json(root / "data/ai/review-board.json", {})
     recovery = load_json(root / "data/ai/recovery-queue.json", {})
@@ -384,6 +492,9 @@ def build_model(root: Path, source_commit: str, repository: str | None, token: s
             if isinstance(payload, dict) and payload.get("generated_at"):
                 activity.append({"at": payload.get("generated_at"), "agent": payload.get("auditor", "AI-B"), "title": f"evidence audit · {payload.get('verdict', 'UNKNOWN')}", "detail": {"file": path.name, "findings": payload.get("findings", [])}})
     activity.sort(key=lambda item: parse_time(item.get("at")) or datetime.min.replace(tzinfo=timezone.utc), reverse=True)
+    agents = derive_agent_health(root)
+    work_products = work_products_model(root)
+    executions = execution_model(root, agents, work_products)
     return {
         "generated_at": kst_now_text(),
         "source_commit": source_commit,
@@ -392,8 +503,10 @@ def build_model(root: Path, source_commit: str, repository: str | None, token: s
         "freshness": {"label": "LIVE", "note": "generated from deployment material state"},
         "market": market_model(root),
         "briefing": parse_briefing(root / "data/ai/CURRENT_BRIEFING.md"),
-        "agents": derive_agent_health(root),
+        "agents": agents,
         "activity": activity[:30],
+        "work_products": work_products[:100],
+        "executions": executions,
         "review": review, "recovery": recovery, "tasks": tasks,
         "experiments": experiments, "research": research,
         "workflows": workflow_evidence(repository, token, offline),
@@ -411,6 +524,7 @@ def generate(output_dir: Path, source_commit: str, repository: str | None, token
     (output_dir / "index.html").write_text(render_html(model), encoding="utf-8")
     status = {"schema_version": 1, "generated_at": model["generated_at"], "source_commit": source_commit, "material_fingerprint": model["material_fingerprint"], "freshness": model["freshness"], "agents": model["agents"], "workflows": model["workflows"]}
     (output_dir / "status.json").write_text(json.dumps(status, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (output_dir / "ai-activity.json").write_text(json.dumps({"schema_version": 1, "generated_at": model["generated_at"], "source_commit": source_commit, "executions": model["executions"], "work_products": model["work_products"]}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return status
 
 
