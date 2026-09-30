@@ -3,12 +3,17 @@
   "method": "commit_path_classification",
   "window_hours": 24,
   "target_product_min_pct": 70,
-  "product_pct": 60.4,
-  "maintenance_pct": 39.6,
-  "labeled_commit_count": 159,
+  "product_pct": 62.2,
+  "maintenance_pct": 37.8,
+  "labeled_commit_count": 156,
   "unclassified_commit_count": 31,
   "warning": true,
   "recent": [
+    {
+      "sha": "75a1996fb6e18600b5a9353ccc477657af7d76dc",
+      "subject": "product: refresh market intelligence",
+      "class": "product"
+    },
     {
       "sha": "3f1255ea5e4b696f6c4e054445630d21bf64344d",
       "subject": "sre: record AI-D news recovery dispatch",
@@ -153,11 +158,6 @@
       "sha": "d4fe04c265b0a50fb26475dc99f8b2e4d903e2f0",
       "subject": "product: refresh market intelligence",
       "class": "product"
-    },
-    {
-      "sha": "12d40b7f8c1be3139d7b16fa371171b11cf63749",
-      "subject": "test: lock low-information filtering and rewritten event clustering",
-      "class": "unclassified"
     }
   ]
 }
