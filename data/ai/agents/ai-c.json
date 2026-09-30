@@ -3,25 +3,25 @@
   "agent": "AI-C",
   "role": "Position & Probability Lab",
   "status": "ACTIVE",
-  "current_task": "EXP-C-015 — Post-close Flow Revision Stability & Look-ahead Contamination Audit",
-  "last_progress_at": "2026-09-30T21:28:40+09:00",
+  "current_task": "EXP-C-019 — News State Churn vs Independent Evidence Audit",
+  "last_progress_at": "2026-10-01T01:21:06+09:00",
   "reads_shared_memory": true,
   "canonical_direct_write": "AVOID",
   "candidate_namespace": "data/ai/candidates/ai-c/",
-  "heartbeat_at": "2026-09-30T21:28:40+09:00",
+  "heartbeat_at": "2026-10-01T01:21:06+09:00",
   "runtime_evidence": {
     "source": "scheduled_automation_runtime_observed",
     "enabled": true,
-    "last_run_time": "2026-09-30T21:28:40+09:00",
-    "checked_at": "2026-09-30T21:28:40+09:00"
+    "last_run_time": "2026-10-01T01:21:06+09:00",
+    "checked_at": "2026-10-01T01:21:06+09:00"
   },
   "last_output": {
-    "candidate_id": "KMB-C-20260930-EXP-C-015",
-    "path": "data/ai/candidates/ai-c/2026-09-30-2128-exp-c015-post-close-revision-stability.json",
-    "result": "PERSISTENCE_BLOCKED_AFTER_NEW_EVIDENCE",
+    "candidate_id": "KMB-C-20261001-EXP-C-019",
+    "path": "data/ai/candidates/ai-c/2026-10-01-0121-exp-c019-news-state-churn.json",
+    "result": "PERSISTED_NEW_EVIDENCE",
     "probability": "UNKNOWN",
     "independent_sample_count": 1,
-    "latest_snapshot_at": "2026-09-30T20:42:22+09:00",
-    "finding": "post-close price/breadth frozen while cash foreign/program cumulative flows revised again; later values must not leak into earlier decision-time features"
+    "latest_snapshot_at": "2026-10-01T01:11:18+09:00",
+    "finding": "top news issue changed NEW→WEAKENING→STRENGTHENING despite only one independent source and 75% reprints; lifecycle strength is not validated market-impact evidence"
   }
 }
