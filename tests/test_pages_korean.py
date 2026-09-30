@@ -65,6 +65,27 @@ class KoreanPagesTests(unittest.TestCase):
         self.assertNotIn("production_eligible=", combined)
         self.assertNotIn("<pre>", combined)
 
+    def test_ai_research_filters_include_status_and_topic(self):
+        model = self.sample_model()
+        model["research_timeline"] = [{
+            "agent": "AI-A",
+            "at": "2026-09-29T14:55:00+09:00",
+            "title": "AI HBM 공급망 가설",
+            "result": "HYPOTHESIS",
+            "hypothesis": "AI 데이터센터 투자 확대가 HBM 수요로 이어질 가능성",
+            "confirmed": ["HBM 공급 확대"],
+            "unknown": ["실제 주문량"],
+            "handoffs": ["AI-C 정량검증"],
+            "related_sectors": ["반도체"],
+        }]
+        page = render_pages(model)["ai-research.html"]
+        self.assertIn('id="research-status"', page)
+        self.assertIn('id="research-topic"', page)
+        self.assertIn('data-status="검증 중"', page)
+        self.assertIn('data-topics="반도체|AI"', page)
+        self.assertIn("연구 상태:", page)
+        self.assertIn("주제:", page)
+
     def test_reduced_motion_is_supported(self):
         page = render_html(self.sample_model())
         self.assertIn("prefers-reduced-motion", page)
