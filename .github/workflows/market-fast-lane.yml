@@ -60,11 +60,13 @@ jobs:
               "data/news/issues.json",
               "data/news/issue-digest.json",
               "data/stocks/smart-money.json",
+              "data/stocks/smart-money-backtest.json",
               "data/stocks/relative-strength.json",
               "data/system/collector-status.json",
               "data/system/services.json",
               "data/ai/development-mix.json",
               "data/ai/unresolved-problems.jsonl",
+              "data/experiments/registry.json",
           ]
           for name in required:
               path = pathlib.Path(name)
@@ -88,7 +90,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          MATERIAL_PATHS="data/market data/news data/stocks data/system/collector-status.json data/system/services.json data/ai/development-mix.json data/ai/unresolved-problems.jsonl"
+          MATERIAL_PATHS="data/market data/news data/stocks data/system/collector-status.json data/system/services.json data/ai/development-mix.json data/ai/unresolved-problems.jsonl data/experiments/registry.json"
 
           # Generated snapshots are not mergeable source code. Rebase of two independently
           # generated snapshots creates conflicts and can stall the 10-minute lane.
