@@ -39,7 +39,8 @@ STOP = {
 
 
 def build_url(query: str) -> str:
-    return BASE + "?" + urlencode({"q": query, "hl": "ko", "gl": "KR", "ceid": "KR:ko"})
+    scoped = query if "when:" in query.lower() else f"{query} when:1d"
+    return BASE + "?" + urlencode({"q": scoped, "hl": "ko", "gl": "KR", "ceid": "KR:ko"})
 
 
 def fetch_rss(query: str) -> str:
