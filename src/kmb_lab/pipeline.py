@@ -784,6 +784,29 @@ def _merge_issue_history(current_issues: list[dict[str, Any]], previous_issues: 
         for key, prior in prior_rows:
             if key in seen_prior:
                 continue
+
+            # If an older split issue is semantically absorbed by a current
+            # cluster, do not keep showing the predecessor as a separate
+            # weakening/resolved card. Preserve its ID on the merged issue.
+            superseded_by = None
+            prior_title = str(prior.get("headline") or "")
+            prior_tokens = google_news._tokens(prior_title)
+            for current in merged:
+                current_title = str(current.get("headline") or "")
+                probe = {
+                    "_tokens": google_news._tokens(current_title),
+                    "articles": [{"headline": current_title}],
+                }
+                if google_news._cluster_match(prior_tokens, prior_title, probe) > 0:
+                    superseded_by = current
+                    break
+            if superseded_by is not None:
+                merged_ids = superseded_by.setdefault("merged_prior_issue_ids", [])
+                prior_id = prior.get("issue_id")
+                if prior_id and prior_id not in merged_ids:
+                    merged_ids.append(prior_id)
+                continue
+
             latest = _parse_dt(prior.get("latest_at") or prior.get("last_updated_at") or prior.get("first_seen_at"))
             if latest is None:
                 continue
