@@ -7,7 +7,7 @@ import os
 from pathlib import Path
 from typing import Any
 
-from .adapters import google_news, krx, naver_market, yahoo_global
+from .adapters import google_news, krx, naver_market, official_news, yahoo_global
 from .adapters.treasury import fetch_yield_curve, observation_for_maturity
 from .development_mix import git_development_mix
 from .flow import analyze_flow_history
@@ -737,15 +737,32 @@ def _refresh_issue_digest_reactions(digest: dict[str, Any], issue_doc: dict[str,
 def collect_news(root: Path) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any], list[str]]:
     all_items: list[dict[str, Any]] = []
     errors: list[str] = []
+
     checked = list(google_news.DEFAULT_QUERIES)
     succeeded = 0
+    secondary_items = 0
     for query in checked:
         try:
             rows = google_news.parse_rss(google_news.fetch_rss(query), query=query)
-            all_items.extend([row for row in rows if _is_recent_news_item(row)])
+            recent = [row for row in rows if _is_recent_news_item(row)]
+            all_items.extend(recent)
+            secondary_items += len(recent)
             succeeded += 1
         except Exception as exc:
             errors.append(f"google-news:{query}:{exc}")
+
+    official_checked = len(official_news.OFFICIAL_FEEDS)
+    official_succeeded = 0
+    official_items = 0
+    for feed in official_news.OFFICIAL_FEEDS:
+        try:
+            rows = official_news.parse_feed(official_news.fetch_feed(feed), feed=feed)
+            recent = [row for row in rows if _is_recent_news_item(row)]
+            all_items.extend(recent)
+            official_items += len(recent)
+            official_succeeded += 1
+        except Exception as exc:
+            errors.append(f"official-news:{feed.get('id')}:{exc}")
 
     unique, clustered = google_news.dedupe_and_cluster(all_items)
     observed_at = now_text()
@@ -762,21 +779,28 @@ def collect_news(root: Path) -> tuple[dict[str, Any], dict[str, Any], dict[str, 
         (str(x.get("published_at") or x.get("observed_at") or "") for x in unique),
         default=None,
     ) or None
-    collection_status = "HEALTHY" if succeeded == len(checked) else "PARTIAL" if succeeded > 0 else "FAILED"
+    total_success = succeeded + official_succeeded
+    total_checked = len(checked) + official_checked
+    collection_status = "HEALTHY" if total_success == total_checked else "PARTIAL" if total_success > 0 else "FAILED"
     current = {
         "generated_at": observed_at,
         "collection_attempted_at": observed_at,
         "collection_status": collection_status,
-        "sources_checked": len(checked),
+        "sources_checked": total_checked,
         "queries_succeeded": succeeded,
         "queries_failed": len(checked) - succeeded,
+        "official_sources_checked": official_checked,
+        "official_sources_succeeded": official_succeeded,
+        "official_sources_failed": official_checked - official_succeeded,
+        "official_items_count": official_items,
+        "secondary_items_count": secondary_items,
         "raw_count": len(all_items),
         "deduplicated_count": len(unique),
         "count": len(unique),
         "latest_news_at": latest_news_at,
         "items": unique[:160],
-        "source_quality": "SECONDARY_AGGREGATOR",
-        "note": "기사 발견용 보조 소스입니다. 공식자료가 있는 사안은 1차 자료 확인 전 CONFIRMED로 승격하지 않습니다.",
+        "source_quality": "MIXED_PRIMARY_SECONDARY" if official_items else "SECONDARY_AGGREGATOR",
+        "note": "한국은행·금융위원회 공식 RSS는 PRIMARY로, Google News RSS는 SECONDARY discovery로 구분합니다. 동일 제목 중복 시 공식자료를 우선 보존합니다.",
     }
     issue_doc = {
         "generated_at": observed_at,
@@ -790,8 +814,10 @@ def collect_news(root: Path) -> tuple[dict[str, Any], dict[str, Any], dict[str, 
         "latest_news_at": latest_news_at,
         "latest_issue_at": max((str(x.get("last_updated_at") or x.get("latest_at") or "") for x in issues), default=None) or None,
         "collection_status": collection_status,
-        "sources_checked": len(checked),
+        "sources_checked": total_checked,
         "queries_succeeded": succeeded,
+        "official_sources_succeeded": official_succeeded,
+        "official_items_count": official_items,
         "raw_news_count": len(all_items),
         "deduplicated_count": len(unique),
         "top_issues": issues[:10],
@@ -800,14 +826,14 @@ def collect_news(root: Path) -> tuple[dict[str, Any], dict[str, Any], dict[str, 
         "resolved": [x for x in issues if x.get("state") == "RESOLVED"][:10],
     }
 
-    if succeeded == 0:
+    if total_success == 0:
         upsert_unresolved({
             "id": "NEWS-COLLECTION-FAILURE",
             "owner": "AI-D",
-            "problem": "All configured market-news discovery queries failed in the latest collector run.",
+            "problem": "All configured secondary discovery queries and official news feeds failed in the latest collector run.",
             "root_cause": "See collector-status errors for per-query failures.",
-            "attempted_solutions": ["Google News RSS discovery across configured fallback queries"],
-            "why_failed": "No configured query returned a usable response in this run.",
+            "attempted_solutions": ["Google News RSS discovery", "Bank of Korea official RSS", "Financial Services Commission official RSS"],
+            "why_failed": "No configured news source returned a usable response in this run.",
             "required_external_action": None,
             "retry_condition": "next scheduled market-fast-lane run",
             "do_not_repeat": "Do not disable unrelated agents or market collectors for this LOCAL news-source failure.",
@@ -816,7 +842,7 @@ def collect_news(root: Path) -> tuple[dict[str, Any], dict[str, Any], dict[str, 
             "status": "OPEN",
         }, root=root)
     else:
-        resolve_unresolved("NEWS-COLLECTION-FAILURE", root=root, note="At least one configured news query succeeded.")
+        resolve_unresolved("NEWS-COLLECTION-FAILURE", root=root, note="At least one configured official or secondary news source succeeded.")
 
     return current, issue_doc, digest, errors
 
