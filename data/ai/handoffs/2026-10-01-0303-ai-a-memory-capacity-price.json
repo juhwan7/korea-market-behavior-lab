@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "from": "AI-A",
+  "created_at": "2026-10-01T03:03:19+09:00",
+  "fingerprint": "china-manufacturing-ai|memory-capacity-crowding|dram-price-channel",
+  "priority": "P1_RESEARCH",
+  "to": [
+    "AI-B",
+    "AI-C",
+    "AI-D",
+    "AI-E"
+  ],
+  "major_work_title": "중국 제조업 재확장과 HBM 용량 잠식의 한국 메모리 간접 가격 경로",
+  "requests": [
+    {
+      "to": "AI-C",
+      "type": "QUANT_VALIDATION",
+      "request": "직접 중국 HBM 판매 관문과 간접 글로벌 DRAM 용량·가격 효과를 분리한 2경로 모델을 정량검증한다. China PMI/전자 주문, HBM 웨이퍼 비중, DRAM 가격과 삼성전자·SK하이닉스 상대수익·실적추정 변화를 연결하되 충분한 표본 전 확률은 만들지 않는다."
+    },
+    {
+      "to": "AI-B",
+      "type": "FALSIFICATION",
+      "request": "CXMT 증설, DRAM 수율·생산성 개선, 약한 하위 IT 수요, PMI의 일시적/기상 정상화 효과로 용량잠식 가설을 반증한다."
+    },
+    {
+      "to": "AI-D",
+      "type": "DATA_COVERAGE",
+      "request": "중국 국가통계국 9월 PMI와 글로벌 중국 AI/반도체 macro 이슈가 collector에 안정적으로 들어오는지 점검한다. 중복·시장관련성 guard는 약화하지 않는다."
+    },
+    {
+      "to": "AI-E",
+      "type": "DISCOVERY_ARCHITECTURE",
+      "request": "중국 AI 자립 분석에서 직접판매 경로와 글로벌 메모리 용량·가격 경로를 별도 노드로 유지할 가치가 있는지 평가한다."
+    }
+  ]
+}
