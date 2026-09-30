@@ -4,6 +4,8 @@ from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
 import hashlib
 import re
+from collections import Counter
+from difflib import SequenceMatcher
 from typing import Any
 from urllib.parse import urlencode
 import xml.etree.ElementTree as ET
@@ -66,6 +68,109 @@ def _similarity(a: set[str], b: set[str]) -> float:
     if not a or not b:
         return 0.0
     return len(a & b) / max(1, len(a | b))
+
+
+
+PROMO_TERMS = {
+    "리딩방": 4, "수강생": 4, "무료체험": 4, "할인쿠폰": 4,
+    "경품": 3, "증정": 3, "체험단": 3, "프로모션": 3,
+    "기획전": 2, "세미나": 2, "설명회": 2, "이벤트": 1,
+    "캠페인": 1, "혜택": 1, "출시기념": 2,
+}
+MARKET_FACT_TERMS = (
+    "실적", "매출", "영업이익", "순이익", "수주", "계약", "공급계약",
+    "투자", "증설", "공장", "인수", "합병", "m&a", "공시", "허가",
+    "임상", "배당", "자사주", "증자", "감자", "제재", "과징금",
+    "리콜", "파산", "회생", "채권발행", "유상증자", "무상증자",
+)
+
+
+def _normalized_headline(value: str) -> str:
+    text = _headline_without_source(value).lower()
+    text = re.sub(r"\([^)]*\)|\[[^]]*\]", " ", text)
+    return re.sub(r"[^가-힣a-z0-9]+", " ", text).strip()
+
+
+def _headline_similarity(a: str, b: str) -> float:
+    na, nb = _normalized_headline(a), _normalized_headline(b)
+    if not na or not nb:
+        return 0.0
+    return SequenceMatcher(None, na, nb).ratio()
+
+
+def classify_content_quality(item: dict[str, Any]) -> dict[str, Any]:
+    """Classify promotional/reprint risk without turning headlines into facts."""
+    headline = str(item.get("headline") or item.get("title") or "")
+    lower = headline.lower()
+    primary = bool(item.get("official_source_available")) or str(item.get("source_type") or "").upper() == "PRIMARY"
+    score = sum(weight for token, weight in PROMO_TERMS.items() if token in lower)
+    factual = any(token in lower for token in MARKET_FACT_TERMS)
+    hard_promo = bool(not primary and score >= 3 and not factual)
+    possible = bool(not primary and score > 0 and not factual)
+    if primary:
+        quality = "OFFICIAL_FACTUAL_OR_NOTICE"
+    elif hard_promo:
+        quality = "PROMOTIONAL"
+    elif possible:
+        quality = "POSSIBLE_PROMOTION"
+    else:
+        quality = "EDITORIAL_OR_FACTUAL"
+    return {
+        "promotion_score": score,
+        "content_quality": quality,
+        "is_promotional": hard_promo,
+        "market_fact_signal": factual,
+    }
+
+
+def _cluster_match(item_tokens: set[str], item_title: str, cluster: dict[str, Any]) -> float:
+    token_score = _similarity(item_tokens, cluster["_tokens"])
+    title_score = max(
+        (_headline_similarity(item_title, str(a.get("headline") or a.get("title") or "")) for a in cluster["articles"]),
+        default=0.0,
+    )
+    common = len(item_tokens & cluster["_tokens"])
+    if title_score >= 0.82 and common >= 2:
+        return max(token_score, title_score)
+    if token_score >= 0.30 and common >= 2:
+        return token_score
+    return 0.0
+
+
+def _event_core_tokens(articles: list[dict[str, Any]]) -> list[str]:
+    token_sets = [_tokens(str(a.get("headline") or a.get("title") or "")) for a in articles]
+    if not token_sets:
+        return []
+    counts = Counter(token for tokens in token_sets for token in tokens)
+    threshold = max(1, (len(token_sets) + 1) // 2)
+    core = sorted(token for token, count in counts.items() if count >= threshold)
+    if len(core) < 2:
+        oldest = min(articles, key=lambda a: a.get("published_at") or a.get("observed_at") or "")
+        core = sorted(_tokens(str(oldest.get("headline") or oldest.get("title") or "")))
+    return core[:10]
+
+
+def _independent_lineages(articles: list[dict[str, Any]]) -> tuple[int, int]:
+    """Conservatively estimate independent origins; near-identical rewrites count once."""
+    lineages: list[dict[str, Any]] = []
+    for article in articles:
+        source = str(article.get("source") or article.get("publisher") or "").strip()
+        title = str(article.get("headline") or article.get("title") or "")
+        primary = bool(article.get("official_source_available")) or str(article.get("source_type") or "").upper() == "PRIMARY"
+        if primary:
+            key = "primary:" + source.lower()
+            if not any(row["key"] == key for row in lineages):
+                lineages.append({"key": key, "title": title})
+            continue
+        matched = False
+        for row in lineages:
+            if not row["key"].startswith("primary:") and _headline_similarity(title, row["title"]) >= 0.90:
+                matched = True
+                break
+        if not matched:
+            lineages.append({"key": "secondary:" + (source.lower() or str(len(lineages))), "title": title})
+    independent = len(lineages)
+    return independent, max(0, len(articles) - independent)
 
 
 def classify_channels(title: str) -> dict[str, Any]:
@@ -208,15 +313,29 @@ def parse_rss(xml_text: str, *, query: str = "") -> list[dict[str, Any]]:
 
 
 def dedupe_and_cluster(items: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
-    # Deduplicate exact URLs/titles while preserving first-party evidence.
-    # If an official source and a secondary copy share the same normalized
-    # headline, keep the official item even when the secondary item was newer.
-    candidates = sorted(items, key=lambda x: x.get("published_at") or "", reverse=True)
+    """Deduplicate, remove high-confidence promotion and cluster one real-world event.
+
+    Raw article volume is never treated as independent confirmation. Official
+    first-party material is preserved, while near-identical secondary rewrites
+    are counted conservatively as one lineage.
+    """
+    enriched: list[dict[str, Any]] = []
+    promotion_filtered = 0
+    for raw in items:
+        item = dict(raw)
+        quality = classify_content_quality(item)
+        item.update(quality)
+        if quality["is_promotional"]:
+            promotion_filtered += 1
+            continue
+        enriched.append(item)
+
+    candidates = sorted(enriched, key=lambda x: x.get("published_at") or "", reverse=True)
     by_title: dict[str, dict[str, Any]] = {}
     url_to_title: dict[str, str] = {}
     order: list[str] = []
     for item in candidates:
-        key = re.sub(r"\W+", "", str(item.get("headline") or item.get("title", "")).lower())
+        key = re.sub(r"\W+", "", _normalized_headline(str(item.get("headline") or item.get("title", ""))))
         url = str(item.get("url", ""))
         if not key:
             continue
@@ -233,21 +352,21 @@ def dedupe_and_cluster(items: list[dict[str, Any]]) -> tuple[list[dict[str, Any]
         incoming_primary = bool(item.get("official_source_available")) or item.get("source_type") == "PRIMARY"
         if incoming_primary and not existing_primary:
             by_title[target_key] = dict(item)
-            if url:
-                url_to_title[url] = target_key
+        if url:
+            url_to_title[url] = target_key
     unique = [by_title[key] for key in order if key in by_title]
-
 
     clusters: list[dict[str, Any]] = []
     for item in unique:
-        toks = _tokens(str(item.get("headline") or item.get("title", "")))
+        title = str(item.get("headline") or item.get("title", ""))
+        toks = _tokens(title)
         target = None
         best = 0.0
         for cluster in clusters:
-            sim = _similarity(toks, cluster["_tokens"])
-            if sim > best:
-                best, target = sim, cluster
-        if target is not None and best >= 0.34:
+            score = _cluster_match(toks, title, cluster)
+            if score > best:
+                best, target = score, cluster
+        if target is not None and best > 0:
             target["articles"].append(item)
             target["_tokens"] |= toks
         else:
@@ -256,36 +375,54 @@ def dedupe_and_cluster(items: list[dict[str, Any]]) -> tuple[list[dict[str, Any]
     output: list[dict[str, Any]] = []
     for cluster in clusters:
         articles = cluster["articles"]
+        # Prefer a primary source as the representative; otherwise use the newest.
+        primary_articles = [
+            a for a in articles
+            if bool(a.get("official_source_available")) or str(a.get("source_type") or "").upper() == "PRIMARY"
+        ]
+        head = primary_articles[0] if primary_articles else articles[0]
         pubs = sorted({a.get("source") or a.get("publisher") for a in articles if a.get("source") or a.get("publisher")})
-        head = articles[0]
-        fingerprint_tokens = sorted(cluster["_tokens"])[:12]
-        fingerprint = _stable_id("|".join(fingerprint_tokens), prefix="ISSUE-FP-")
+        independent_count, reprint_count = _independent_lineages(articles)
+        core_tokens = _event_core_tokens(articles)
+        fingerprint = _stable_id("|".join(core_tokens), prefix="ISSUE-FP-")
         issue_id = "GN-" + fingerprint.replace("ISSUE-FP-", "")
         latest_at = max((a.get("published_at") or a.get("observed_at") or "" for a in articles), default=None)
         first_at = min((a.get("published_at") or a.get("observed_at") or "" for a in articles), default=None)
         impact = classify_channels(str(head.get("headline") or head.get("title", "")))
         normalized_articles = []
-        for article in articles[:10]:
+        for article in articles[:20]:
             row = dict(article)
             row["cluster_id"] = issue_id
             normalized_articles.append(row)
         output.append({
             "issue_id": issue_id,
             "fingerprint": fingerprint,
+            "event_core_tokens": core_tokens,
             "headline": head.get("headline") or head.get("title"),
             "first_seen_at": first_at,
             "latest_at": latest_at,
             "article_count": len(articles),
-            "independent_publishers": len(pubs),
-            "publishers": pubs[:8],
+            "publisher_count": len(pubs),
+            "independent_source_count": independent_count,
+            "independent_publishers": independent_count,
+            "reprint_count": reprint_count,
+            "promotion_filtered_count": promotion_filtered,
+            "publishers": pubs[:12],
             "official_source_available": any(bool(a.get("official_source_available")) for a in articles),
             "state": "NEW",
             "why_important": why_important(impact),
-            "counterpoint": "뉴스 제목과 동시 가격 움직임만으로 인과를 확정할 수 없습니다.",
+            "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
             "next_variables": list(dict.fromkeys((impact.get("related_markets") or []) + ["외국인 수급", "기관 수급"]))[:6],
             "history": [],
             **impact,
             "articles": normalized_articles,
         })
-    output.sort(key=lambda x: (x.get("latest_at") or "", x.get("article_count", 0), x.get("independent_publishers", 0)), reverse=True)
+    output.sort(
+        key=lambda x: (
+            x.get("latest_at") or "",
+            x.get("independent_source_count", 0),
+            x.get("article_count", 0),
+        ),
+        reverse=True,
+    )
     return unique, output
