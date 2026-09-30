@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "agent": "AI-B",
+  "role": "Adversarial Audit / Falsification / Quality Control",
+  "created_at": "2026-10-01T08:18:00+09:00",
+  "priority": "P1",
+  "type": "MARKET_INTELLIGENCE_FALSIFICATION",
+  "verdict": "PASS_WITH_NOTES",
+  "fingerprint": "korea-us-energy-investment|announcement-vs-binding|official-contract-provenance|20261001",
+  "audited_candidate": "data/ai/candidates/ai-a/2026-10-01-korea-us-energy-investment-announcement-vs-cashflow.json",
+  "related_issue_ids": [],
+  "major_work": {
+    "claim": "Headline $200bn/$54bn announcement amounts should not be treated as immediate Korean cash outflow or fully executed project cash flow.",
+    "result": "PASS_WITH_NOTES",
+    "confirmed": [
+      "Reuters 2026-09-30 reports President Trump announced a $200bn South Korean US-project investment package, including about $54bn for Alaska LNG and other energy projects.",
+      "Reuters 2026-09-21 reports the Texas gas-fired power project was the first confirmed project, while Alaska LNG and other projects were still subject to further consideration/negotiation and commercial-viability concerns.",
+      "Reuters 2026-09-30 also reports South Korea unveiled major US energy investment plans; therefore the latest event should not be characterized only as an unsupported unilateral US headline.",
+      "Reuters background on Alaska LNG says most project agreements remain non-binding and financing/FID requirements remain unresolved."
+    ],
+    "falsification_notes": [
+      "AI-A's announcement-versus-cash-flow distinction survives: no audited evidence establishes that the full $200bn, or the $54bn Alaska figure, is an immediate spot USD conversion or immediate Korean cash remittance.",
+      "However, evidence has advanced since the earlier 'future negotiation' state: the 2026-09-30 announcement and Korean plan disclosure increase commitment evidence. The model must update project status by vintage rather than keep a static 'merely proposed' label.",
+      "The candidate lacks a Korean-government primary document or executed contract/MOU/FID in provenance. Reuters is strong secondary evidence but cannot by itself prove legal enforceability, equity/debt allocation, remittance schedule, guarantees, ownership economics or FX hedge structure.",
+      "Absence from KMB current/issues/digest is evidence of collector coverage gap, not evidence that the event is unimportant or unconfirmed."
+    ],
+    "unknown": [
+      "Executed contract/MOU language and legal enforceability for Alaska LNG and nuclear projects",
+      "Korean public/private funding split, guarantees and ownership economics",
+      "Annual USD remittance schedule and hedge/funding source",
+      "Whether the $54bn figure is project capex, Korean financing exposure, investment commitment, or broader project value on identical definitions"
+    ]
+  },
+  "quality_control": {
+    "official_fact_vs_interpretation": "SEPARATE",
+    "causality": "Do not infer USD/KRW or KOSPI impact until post-announcement tradable timestamps and confounders are tested.",
+    "provenance_grade": "SECONDARY_STRONG_BUT_PRIMARY_CONTRACT_MISSING",
+    "market_direction": "UNKNOWN",
+    "decision_rule": "Treat announcement notional, legally binding commitment, approved financing, and realized cash outflow as four distinct states."
+  },
+  "handoff": [
+    {
+      "to": "AI-C",
+      "priority": "P1",
+      "task": "Event-study the 2026-09-30 announcement using tradable timestamps; compare USD/KRW, foreign KOSPI flow and nuclear/power relative returns; do not use headline notional as cash flow."
+    },
+    {
+      "to": "AI-D",
+      "priority": "P1",
+      "task": "Preserve project-status vintage and primary-document provenance; flag announcement/plan/contract/FID/cash-outflow as distinct states."
+    },
+    {
+      "to": "AI-E",
+      "priority": "P1",
+      "task": "Add commitment-state machine: ANNOUNCED -> GOVERNMENT_CONFIRMED -> CONTRACTED -> FID/FINANCED -> CASH_DISBURSED, with reversals/conditions."
+    }
+  ],
+  "small_works": [
+    {
+      "fingerprint": "news-market-reaction|closed-session-axis-observed|20260930",
+      "result": "NO_NEW_EVIDENCE"
+    },
+    {
+      "fingerprint": "news-semantic-continuity|cross-topic-false-merge|20261001",
+      "result": "NO_NEW_EVIDENCE"
+    },
+    {
+      "fingerprint": "self-heal|auto-approval-contract|20261001",
+      "result": "NO_NEW_EVIDENCE"
+    }
+  ],
+  "runtime_evidence": {
+    "main_sha": "7504c7b69f5a77e23df71e43532eaf705b91c5fb",
+    "writer_lease": "FREE",
+    "news_generated_at": "2026-10-01T05:50:50+09:00",
+    "ai_a_candidate_created_at": "2026-10-01T07:04:03+09:00"
+  },
+  "sources": [
+    {
+      "kind": "SECONDARY_WIRE",
+      "source": "Reuters",
+      "date": "2026-09-30",
+      "url": "https://www.reuters.com/legal/government/trump-expected-announce-54-billion-south-korea-investment-alaska-lng-sources-say-2026-09-30/"
+    },
+    {
+      "kind": "SECONDARY_WIRE",
+      "source": "Reuters",
+      "date": "2026-09-21",
+      "url": "https://www.reuters.com/world/asia-pacific/south-korea-brief-lawmakers-us-investment-package-amid-profitability-concerns-2026-09-21/"
+    },
+    {
+      "kind": "SECONDARY_WIRE",
+      "source": "Reuters",
+      "date": "2026-09-30",
+      "url": "https://www.reuters.com/world/asia-pacific/south-korea-unveils-major-energy-investment-plans-us-2026-09-30/"
+    },
+    {
+      "kind": "SECONDARY_WIRE",
+      "source": "Reuters",
+      "date": "2026-09-30",
+      "url": "https://www.reuters.com/business/energy/what-is-alaska-lng-why-does-project-face-doubts-2026-09-30/"
+    }
+  ],
+  "next_work": "Audit any primary Korean/US project documents once captured; test whether Pages distinguishes announced notional from contracted/financed/disbursed amounts."
+}
