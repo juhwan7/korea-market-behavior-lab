@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "agent": "AI-B",
+  "run_type": "ULTRA_PARALLEL_EVOLUTION_V2_AUDIT",
+  "created_at": "2026-09-30T22:10:50+09:00",
+  "major_work": {
+    "id": "AUDIT-B-NEWS-LIFECYCLE-CONTINUITY-001",
+    "priority": "P1",
+    "result": "FIX_REQUIRED",
+    "fingerprint": "news-lifecycle|zero-issue-id-overlap-consecutive-snapshots|20260930",
+    "finding": "Consecutive persisted issue snapshots have zero issue_id overlap: 17:38→18:51 KST = 0/80 and 18:51→20:41 KST = 0/80. The latest persisted 80 issues are all state=NEW. This is direct runtime evidence that the current token-union fingerprint cannot preserve issue identity across collector refreshes, so PERSISTING/STRENGTHENING/WEAKENING/RESOLVED lifecycle tracking is effectively reset for the displayed issue set.",
+    "evidence": {
+      "main_sha": "cdecf23cb0f2df695639cc212ca17eedd3d418b9",
+      "snapshots": [
+        {
+          "commit": "387172bf13dd1b92fb6519a51f193497a26a8efa",
+          "generated_at": "2026-09-30T17:38:56+09:00",
+          "persisted_issues": 80
+        },
+        {
+          "commit": "540189d7b282abe7b95d7a62501cff576a05bf17",
+          "generated_at": "2026-09-30T18:51:54+09:00",
+          "persisted_issues": 80
+        },
+        {
+          "commit": "6085809e4420b67e5f6aae2f9620320f5a3e0a62",
+          "generated_at": "2026-09-30T20:41:59+09:00",
+          "persisted_issues": 80
+        }
+      ],
+      "overlap": [
+        {
+          "older": "387172bf",
+          "newer": "540189d7",
+          "issue_id_overlap": 0,
+          "denominator_each": 80
+        },
+        {
+          "older": "540189d7",
+          "newer": "6085809e",
+          "issue_id_overlap": 0,
+          "denominator_each": 80
+        }
+      ],
+      "latest_state_counts": {
+        "NEW": 80
+      },
+      "code_path": "dedupe_and_cluster fingerprint = SHA1(sorted(cluster token union)[:12]); _merge_issue_history joins prior/current by fingerprint/issue_id"
+    },
+    "interpretation": "This does not prove every underlying real-world event is new. It proves the persisted identity key is not stable enough to support the claimed lifecycle semantics in these consecutive runtime snapshots. Any UI or model treating NEW as real event novelty is unreliable until identity continuity is repaired.",
+    "handoff": [
+      {
+        "agent": "AI-E",
+        "priority": "P1",
+        "task": "Implement stable event identity independent of mutable cluster token union, with alias/merge/split provenance and series/release distinction."
+      },
+      {
+        "agent": "AI-C",
+        "priority": "P1",
+        "task": "Replay preserved snapshots and measure same-event continuity, split rate, merge rate and lifecycle reset rate before/after the new identity model."
+      },
+      {
+        "agent": "AI-D",
+        "priority": "P1",
+        "task": "Add regression/observability: consecutive healthy news runs with zero or implausibly low issue-id overlap and all-NEW state must raise NEWS_LIFECYCLE_RESET instead of HEALTHY lifecycle intelligence."
+      }
+    ]
+  },
+  "small_works": [
+    {
+      "fingerprint": "news-issue-ranking|primary-source-visibility-loss|20260930",
+      "result": "NO_NEW_EVIDENCE"
+    },
+    {
+      "fingerprint": "news-provenance|publisher-count-not-independent-origin|20260930",
+      "result": "NO_NEW_EVIDENCE"
+    },
+    {
+      "fingerprint": "news-market-reaction|mixed-market-clock|20260930",
+      "result": "NO_NEW_EVIDENCE"
+    }
+  ],
+  "next_work": "After identity repair lands, falsify whether state-rank-before-importance still lets low-relevance NEW fragments crowd out higher-quality continuing evidence."
+}
