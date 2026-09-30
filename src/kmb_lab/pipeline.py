@@ -542,6 +542,120 @@ def global_interpretation(quotes: dict[str, Any], yields: dict[str, Any]) -> dic
     return {"evidence_state": "HYPOTHESIS", "label": label, "signals": signals, "note": "글로벌 지표 조합은 한국시장 방향 예측이 아니라 환경 설명용이며 국내 수급·시장폭과 함께 봅니다."}
 
 
+
+def futures_study(
+    futures: dict[str, Any],
+    indices: dict[str, Any],
+    flows: dict[str, Any],
+    program: dict[str, Any],
+    global_data: dict[str, Any],
+) -> dict[str, Any]:
+    """Explain observable futures/spot/flow relationships without predicting direction."""
+    k200 = futures.get("KOSPI200_FUTURES") or {}
+    spot = indices.get("KPI200") or {}
+    kospi_flow = ((flows.get("markets") or {}).get("KOSPI") or {}).get("foreign") or {}
+    foreign_spot = kospi_flow.get("net_100m_krw")
+    foreign_futures = (k200.get("investor_flow_100m_krw") or {}).get("foreign")
+    program_net = program.get("net_100m_krw")
+    observations: list[dict[str, Any]] = []
+
+    fut_change = k200.get("change_pct")
+    spot_change = spot.get("change_pct")
+    if isinstance(fut_change, (int, float)) and isinstance(spot_change, (int, float)):
+        gap = round(float(fut_change) - float(spot_change), 3)
+        if gap > 0.15:
+            state = "FUTURES_RELATIVELY_STRONG"
+            explanation = "KOSPI200 선물의 등락률이 현물 KOSPI200보다 높습니다. 선물이 상대적으로 강하지만 이것만으로 현물 상승을 예측하지 않습니다."
+        elif gap < -0.15:
+            state = "FUTURES_RELATIVELY_WEAK"
+            explanation = "KOSPI200 선물의 등락률이 현물 KOSPI200보다 낮습니다. 선물이 상대적으로 약하지만 이것만으로 현물 하락을 예측하지 않습니다."
+        else:
+            state = "FUTURES_SPOT_ALIGNED"
+            explanation = "KOSPI200 선물과 현물의 당일 등락률 차이가 크지 않습니다."
+        observations.append({
+            "factor": "futures_vs_spot",
+            "state": state,
+            "value": gap,
+            "unit": "percentage_point",
+            "explanation": explanation,
+        })
+
+    basis_pct = k200.get("basis_pct")
+    if isinstance(basis_pct, (int, float)):
+        state = "POSITIVE_BASIS" if basis_pct > 0.05 else "NEGATIVE_BASIS" if basis_pct < -0.05 else "NEAR_FLAT_BASIS"
+        explanation = (
+            "선물이 현물보다 높은 콘탱고형 베이시스입니다. 배당·금리·잔존만기 영향을 받으므로 강세 신호로 단독 해석하지 않습니다."
+            if state == "POSITIVE_BASIS"
+            else "선물이 현물보다 낮은 백워데이션형 베이시스입니다. 헤지·수급·만기 요인을 함께 확인해야 합니다."
+            if state == "NEGATIVE_BASIS"
+            else "선물과 현물 가격 차이가 작은 구간입니다."
+        )
+        observations.append({
+            "factor": "basis",
+            "state": state,
+            "value": round(float(basis_pct), 3),
+            "unit": "percent",
+            "explanation": explanation,
+        })
+
+    if isinstance(foreign_futures, (int, float)) and isinstance(foreign_spot, (int, float)):
+        if foreign_futures > 0 and foreign_spot < 0:
+            state = "FOREIGN_FUTURES_BUY_SPOT_SELL"
+            explanation = "외국인이 선물은 순매수하지만 KOSPI 현물은 순매도 중입니다. 선물 매수만 보고 시장 전체 Risk-on으로 해석하면 안 되는 괴리입니다."
+        elif foreign_futures < 0 and foreign_spot > 0:
+            state = "FOREIGN_FUTURES_SELL_SPOT_BUY"
+            explanation = "외국인이 현물은 순매수하지만 선물은 순매도 중입니다. 현물 매수와 지수 헤지가 함께 나타나는지 추가 확인이 필요합니다."
+        elif foreign_futures > 0 and foreign_spot > 0:
+            state = "FOREIGN_BUY_ALIGNED"
+            explanation = "외국인 현물·선물 방향이 모두 순매수입니다. 다만 시장폭과 프로그램 수급이 동반되는지 함께 봐야 합니다."
+        elif foreign_futures < 0 and foreign_spot < 0:
+            state = "FOREIGN_SELL_ALIGNED"
+            explanation = "외국인 현물·선물 방향이 모두 순매도입니다. 매도 압력이 시장폭과 거래대금으로 확산되는지 함께 확인해야 합니다."
+        else:
+            state = "FOREIGN_FLOW_MIXED"
+            explanation = "외국인 현물·선물 방향성이 뚜렷하게 일치하지 않습니다."
+        observations.append({
+            "factor": "foreign_spot_futures",
+            "state": state,
+            "foreign_futures_100m_krw": float(foreign_futures),
+            "foreign_spot_100m_krw": float(foreign_spot),
+            "explanation": explanation,
+        })
+
+    if isinstance(program_net, (int, float)):
+        state = "PROGRAM_NET_BUY" if program_net > 0 else "PROGRAM_NET_SELL" if program_net < 0 else "PROGRAM_FLAT"
+        observations.append({
+            "factor": "program",
+            "state": state,
+            "value_100m_krw": float(program_net),
+            "explanation": (
+                "프로그램 순매수가 현물 수급을 보조하고 있습니다. 차익·비차익 구성을 함께 확인합니다."
+                if program_net > 0
+                else "프로그램 순매도가 현물 수급에 부담을 주고 있습니다. 차익·비차익 구성을 함께 확인합니다."
+                if program_net < 0
+                else "프로그램 순매수·순매도 방향이 중립에 가깝습니다."
+            ),
+        })
+
+    quotes = global_data.get("quotes") or {}
+    nq = (quotes.get("NASDAQ100_FUTURES") or {}).get("change_pct")
+    sox = (quotes.get("SOX") or {}).get("change_pct")
+    if isinstance(nq, (int, float)) or isinstance(sox, (int, float)):
+        observations.append({
+            "factor": "us_tech_context",
+            "state": "OBSERVED_CONTEXT",
+            "nasdaq100_futures_change_pct": nq,
+            "sox_change_pct": sox,
+            "explanation": "Nasdaq100 선물은 현재 선행시장, SOX는 최근 미국 현물 세션의 반도체 환경을 보여주는 보조 관측치입니다. 서로 다른 시점의 지표를 같은 실시간 신호처럼 합치지 않습니다.",
+        })
+
+    return {
+        "evidence_state": "OBSERVED" if observations else "UNKNOWN",
+        "observations": observations,
+        "method_note": "현물·선물·베이시스·외국인 수급·프로그램·미국 기술주 환경을 분리해 설명합니다. 관측 관계이지 향후 방향 예측이나 특정 주체의 의도 판정이 아닙니다.",
+    }
+
+
 def _parse_dt(value: Any) -> datetime | None:
     if not isinstance(value, str) or not value.strip():
         return None
@@ -1234,6 +1348,7 @@ def run(root: Path = ROOT) -> dict[str, Any]:
     relative_strength_data, e = collect_relative_strength(root, turnover); errors += e
 
     flow_analysis = domestic["flows"]; program = domestic["program"]
+    futures["study"] = futures_study(futures, indices, flow_analysis, program, global_data)
     turnover_ratio = ((turnover.get("combined") or {}).get("advance_decline_turnover_ratio"))
     strength = market_strength(
         indices=indices,
