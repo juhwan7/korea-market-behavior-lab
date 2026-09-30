@@ -3,12 +3,57 @@
   "method": "commit_path_classification",
   "window_hours": 24,
   "target_product_min_pct": 70,
-  "product_pct": 54.9,
-  "maintenance_pct": 45.1,
-  "labeled_commit_count": 122,
-  "unclassified_commit_count": 28,
+  "product_pct": 57.0,
+  "maintenance_pct": 43.0,
+  "labeled_commit_count": 128,
+  "unclassified_commit_count": 31,
   "warning": true,
   "recent": [
+    {
+      "sha": "8c873e8a3a02836e3021816e77f819cbb03ac252",
+      "subject": "product: recover persistent AI market research timeline",
+      "class": "product"
+    },
+    {
+      "sha": "eadfc0dbfc1b3b36825ddfd04c22ffd4b57c4dc8",
+      "subject": "test: guard news quality and lifecycle continuity",
+      "class": "unclassified"
+    },
+    {
+      "sha": "55061c5add44e0a86bd3a96d92b5b20ecceae9b4",
+      "subject": "product: preserve news issue identity across collection windows",
+      "class": "product"
+    },
+    {
+      "sha": "f0b78de3e4374186ca6a7ae75becf4f1f14c40f4",
+      "subject": "product: cluster news events and filter promotional noise",
+      "class": "product"
+    },
+    {
+      "sha": "a0bdbe63c1d32d8685ac9e997545168469471a43",
+      "subject": "test: verify stock analysis excludes listed products",
+      "class": "unclassified"
+    },
+    {
+      "sha": "34ad092a180f1f3ae6718eb821be2361e4c382cd",
+      "subject": "test: lock common-stock universe exclusions",
+      "class": "unclassified"
+    },
+    {
+      "sha": "c07b6bbf8af02b11c1f8b74e5ed77a484c801b54",
+      "subject": "product: filter non-common instruments from stock analysis",
+      "class": "product"
+    },
+    {
+      "sha": "a69fccd5973b2e2b24214f5d5b1b4ba677e60bf6",
+      "subject": "product: add common-stock universe filter",
+      "class": "product"
+    },
+    {
+      "sha": "9c85aed4883e18033f89fb2b89abf4548df824c5",
+      "subject": "product: refresh market intelligence",
+      "class": "product"
+    },
     {
       "sha": "0ee23eac75f91cd6e837ccba0a2e20c477bc0fa0",
       "subject": "audit: prove news lifecycle identity reset across snapshots",
@@ -113,51 +158,6 @@
       "sha": "73a001eb3bcfe0c4ef4bf773233dabd12d675c21",
       "subject": "maintenance: persist isolated official-news failures",
       "class": "maintenance"
-    },
-    {
-      "sha": "10b878b07b805ccce03381c83a73978162bb130f",
-      "subject": "product: test futures spot-flow interpretation",
-      "class": "product"
-    },
-    {
-      "sha": "4a766b2cd4cdf0ce932c69a385b239b36786ea58",
-      "subject": "product: teach futures spot-flow relationships on pages",
-      "class": "product"
-    },
-    {
-      "sha": "d6cf6889b118b7577f6c90f9adbd697427c1eba8",
-      "subject": "product: add futures spot-flow study interpretation",
-      "class": "product"
-    },
-    {
-      "sha": "c8dfaf26f43ca88779af6d931cfeb335e761966f",
-      "subject": "product: test dynamic liquid validation samples",
-      "class": "product"
-    },
-    {
-      "sha": "b1d1c95af72a785ae986d41ee11a67954e15d888",
-      "subject": "product: auto-expand model validation universe",
-      "class": "product"
-    },
-    {
-      "sha": "c6a4037c52b4a2c7af7355f6820a9fa02020f749",
-      "subject": "product: derive liquid validation universe from turnover",
-      "class": "product"
-    },
-    {
-      "sha": "135ef600710793636d6f2af46c699bda6d0154b2",
-      "subject": "product: test extended stock-history request",
-      "class": "product"
-    },
-    {
-      "sha": "be0f4bed1a985f99eb3cf1116749271b55b672de",
-      "subject": "product: deepen smart-money walk-forward history",
-      "class": "product"
-    },
-    {
-      "sha": "d0d40f6997020aebc00276e6ed808d52ebf094fe",
-      "subject": "product: request longer smart-money price history",
-      "class": "product"
     }
   ]
 }
