@@ -5,13 +5,15 @@ from unittest.mock import patch
 from datetime import datetime, timezone
 from pathlib import Path
 
-from kmb_lab.pages import CORE_SECTION_MARKERS, derive_agent_health, is_material_path, material_fingerprint, verify_live
+from kmb_lab.pages import CORE_SECTION_MARKERS, derive_agent_health, is_material_path, material_fingerprint, verify_live, work_products_model, execution_model
 
 
 class PagesTests(unittest.TestCase):
     def test_material_path_contract(self):
         self.assertTrue(is_material_path("data/ai/agents/ai-a.json"))
         self.assertTrue(is_material_path("data/ai/CURRENT_BRIEFING.md"))
+        self.assertTrue(is_material_path("data/ai/candidates/ai-b/audit.json"))
+        self.assertTrue(is_material_path("data/ai/executions/ai-b/run.json"))
         self.assertTrue(is_material_path("data/system/services.json"))
         self.assertTrue(is_material_path("data/research/research-queue.json"))
         self.assertFalse(is_material_path("data/ai/failed-attempts.jsonl"))
@@ -61,6 +63,45 @@ class PagesTests(unittest.TestCase):
             path.write_text("B", encoding="utf-8")
             after = material_fingerprint(root)
             self.assertNotEqual(before, after)
+
+
+    def test_candidate_becomes_visible_work_product_without_becoming_verified(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            path = root / "data/ai/candidates/ai-b/audit.json"
+            path.parent.mkdir(parents=True)
+            path.write_text(json.dumps({
+                "agent": "AI-B",
+                "type": "AUDIT",
+                "created_at": "2026-09-30T01:00:00Z",
+                "major_work": {"title": "인과관계 반증", "result": "FIX_REQUIRED", "summary": "시간순서 오류 가능성"},
+                "next_work": "AI-C 정량검증"
+            }), encoding="utf-8")
+            rows = work_products_model(root)
+            self.assertEqual(len(rows), 1)
+            self.assertEqual(rows[0]["agent"], "AI-B")
+            self.assertEqual(rows[0]["status"], "CANDIDATE")
+            self.assertFalse(rows[0]["verified"])
+            self.assertEqual(rows[0]["result"], "FIX_REQUIRED")
+
+    def test_execution_model_separates_runtime_from_latest_output(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            agents = [{
+                "agent": "AI-B", "execution": "OBSERVED_NO_FRESH_OUTPUT",
+                "status": "OBSERVED", "last_execution": "2026-09-30T01:10:00Z",
+                "heartbeat_at": "2026-09-30T01:10:00Z", "output_at": None,
+                "current_task": "근거 검증"
+            }]
+            products = [{
+                "agent": "AI-B", "title": "이전 감사", "updated_at": "2026-09-30T00:30:00Z",
+                "next_work": "새 주장 검증"
+            }]
+            model = execution_model(root, agents, products)
+            current = model["current"][0]
+            self.assertEqual(current["status"], "OBSERVED_NO_FRESH_OUTPUT")
+            self.assertEqual(current["latest_output"]["title"], "이전 감사")
+            self.assertNotEqual(current["last_execution"], current["latest_output"]["updated_at"])
 
     def test_verify_live_requires_fingerprint_and_core_sections(self):
         sha = "a" * 40
