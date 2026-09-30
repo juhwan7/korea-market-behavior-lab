@@ -4,44 +4,45 @@
   "role": "SRE, Recovery & Data Platform Guardian",
   "status": "ACTIVE",
   "current_task": "SRE-NEWS-COLLECTION-STALE-RECOVERY",
-  "last_progress_at": "2026-10-01T03:32:02+09:00",
+  "last_progress_at": "2026-10-01T04:40:07+09:00",
   "reads_shared_memory": true,
   "canonical_writer": "PRIMARY",
   "candidate_namespace": "data/ai/candidates/ai-d/",
   "last_verified_writer_commit": "0eb81d1e89f95c145cc4eaa4bbc073885fcd70b9",
-  "heartbeat_at": "2026-10-01T03:32:02+09:00",
+  "heartbeat_at": "2026-10-01T04:40:07+09:00",
   "runtime_evidence": {
     "source": "scheduled_automation_runtime_observed",
     "enabled": true,
-    "last_run_time": "2026-10-01T02:31:58.986206+09:00",
-    "checked_at": "2026-10-01T03:32:02+09:00",
-    "note": "Scheduler remains authoritative; repository evidence was stale and has been synchronized from observed runtime."
+    "last_run_time": "2026-10-01T04:40:07+09:00",
+    "checked_at": "2026-10-01T04:40:07+09:00",
+    "note": "Scheduler runtime is authoritative; repository evidence synchronized from the live AI-D run."
   },
-  "sre_finding": "P1 NEWS_COLLECTION_STALE persists: current/issues/issue-digest remain at 01:11:05 KST and collector-status at 01:11:18 KST while main advanced to 1098aa2d... at 03:04:52 KST. Last independent market-fast-lane schedule remains 01:09:35 KST. AI-D Primary rerun of collect job 109978996929 was attempted but blocked by external safety checks; no automation was disabled.",
+  "sre_finding": "P1 NEWS_COLLECTION_STALE persists from 01:11:05 KST, but AI-D Primary Recovery is no longer blocked: rerun_workflow_job for last known-good market-fast-lane collect job 109978996929 was accepted and new collect job 110064678271 is queued. Do not close until news->digest->Pages closed loop advances.",
   "latest_work": {
-    "fingerprint": "news-collection|market-fast-lane-schedule-gap|20261001-0332",
-    "result": "RECOVERY_BLOCKED_NEW_EVIDENCE",
+    "fingerprint": "news-collection|market-fast-lane-schedule-gap|20261001-0440",
+    "result": "RECOVERY_DISPATCHED",
     "priority": "P1",
     "evidence": {
-      "main_sha": "1098aa2d225accdeb22f122d97541641523db558",
+      "main_sha": "67667757c5f2522375edf527b4dc5cc436357976",
       "news_collection_attempted_at": "2026-10-01T01:11:05+09:00",
       "news_collection_status": "HEALTHY",
       "issue_digest_generated_at": "2026-10-01T01:11:05+09:00",
       "collector_status_generated_at": "2026-10-01T01:11:18+09:00",
-      "last_market_fast_lane_schedule_run_id": 36742149927,
-      "last_market_fast_lane_schedule_created_at": "2026-10-01T01:09:35+09:00",
-      "last_market_fast_lane_schedule_conclusion": "success",
+      "last_known_good_market_fast_lane_run_id": 36742149927,
+      "recovery_source_job_id": 109978996929,
+      "recovery_job_id": 110064678271,
+      "recovery_job_status": "queued",
       "writer_lease": "FREE"
     },
-    "attempted_fix": "Re-run last known-good market-fast-lane collect job 109978996929 as AI-D Primary Recovery.",
-    "blocker": "External safety checks blocked rerun_workflow_job before GitHub dispatch.",
-    "retry_condition": "Retry only when action write path is permitted or a new market-fast-lane schedule event appears; then verify full news->digest->Pages closed loop.",
-    "do_not_repeat": "Do not spam the identical blocked rerun; do not disable any automation; do not classify A/B/C/D/E as dead from stale repository heartbeat alone.",
-    "infra_improvement": "Add an independent schedule-gap watchdog/fallback dispatch path for market-fast-lane, with idempotent fingerprinting and Pages closed-loop verification.",
+    "recovery_fix": "AI-D Primary rerun of the last known-good market-fast-lane collect job was accepted by GitHub Actions.",
+    "successful_pattern": "When schedule dispatch is absent but the last known-good collect job is available, perform one idempotent AI-D Primary rerun; never disable automations.",
+    "retry_condition": "Do not dispatch another identical rerun while job 110064678271 is queued/in_progress. Recheck only after completion or a new schedule event.",
+    "do_not_repeat": "Do not spam reruns; do not close on workflow success alone; do not classify agents dead from stale repository heartbeat.",
+    "infra_improvement": "Add independent schedule-gap watchdog/fallback dispatch with idempotent fingerprinting and news->digest->Pages closed-loop verification.",
     "handoff": [
-      "AI-E Secondary Recovery only if AI-D path remains blocked and schedule remains stale.",
+      "AI-E Secondary only if recovery job fails/never starts and schedule remains stale.",
       "AI-B Emergency only after AI-E cannot recover; A/C not required."
     ],
-    "next_work": "Check for a new schedule dispatch; if absent and write path opens, perform one idempotent recovery, then require current/issues/digest/collector-status and public Pages to advance before closing."
+    "next_work": "Verify recovery job completion, then require current/issues/digest/collector-status to advance and public Pages source_commit/generated_at/material_fingerprint/core news section to match before closing."
   }
 }
