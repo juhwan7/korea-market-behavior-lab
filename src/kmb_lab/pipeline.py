@@ -415,6 +415,9 @@ def collect_turnover(root: Path) -> tuple[dict[str, Any], list[str]]:
             rows = naver_market.fetch_market_universe(market)
             markets[market] = naver_market.normalize_turnover_participation(rows)
             markets[market]["size_participation"] = naver_market.normalize_size_participation(rows)
+            markets[market]["top_trading_value_candidates"] = naver_market.top_turnover_candidates(
+                rows, market, limit=6
+            )
         except Exception as exc:
             errors.append(f"naver-turnover-{market}:{exc}")
             markets[market] = {"evidence_state": "UNKNOWN", "reason": str(exc)}
@@ -944,9 +947,47 @@ def collect_news(root: Path) -> tuple[dict[str, Any], dict[str, Any], dict[str, 
     return current, issue_doc, digest, errors
 
 
-def collect_relative_strength(root: Path) -> tuple[dict[str, Any], list[str]]:
+
+def _model_validation_universe(root: Path, turnover: dict[str, Any] | None = None, *, limit: int = 16) -> list[dict[str, Any]]:
+    """Combine explicit research symbols with liquid current-market validation samples."""
     config = load_json(root / "data/config/watchlist.json", {})
-    items = config.get("items", []) if isinstance(config, dict) else []
+    configured = config.get("items", []) if isinstance(config, dict) else []
+    output: list[dict[str, Any]] = []
+    seen: set[str] = set()
+
+    for item in configured:
+        code = str(item.get("code") or "").strip().upper()
+        if not code or code in seen:
+            continue
+        seen.add(code)
+        output.append({
+            **item,
+            "code": code,
+            "benchmark": str(item.get("benchmark") or "KOSPI").upper(),
+            "selection_reason": item.get("selection_reason") or "configured_research_watchlist",
+        })
+
+    for market in ("KOSPI", "KOSDAQ"):
+        row = ((turnover or {}).get("markets") or {}).get(market) or {}
+        for item in row.get("top_trading_value_candidates") or []:
+            code = str(item.get("code") or "").strip().upper()
+            if not code or code in seen:
+                continue
+            seen.add(code)
+            output.append({
+                "code": code,
+                "name": item.get("name") or code,
+                "benchmark": market,
+                "selection_reason": "top_intraday_trading_value_validation_sample",
+                "trading_value_krw": item.get("trading_value_krw"),
+            })
+            if len(output) >= limit:
+                return output
+    return output[:limit]
+
+
+def collect_relative_strength(root: Path, turnover: dict[str, Any] | None = None) -> tuple[dict[str, Any], list[str]]:
+    items = _model_validation_universe(root, turnover)
     errors: list[str] = []
     benchmark_cache: dict[str, list[dict[str, Any]]] = {}
     output: list[dict[str, Any]] = []
@@ -1070,9 +1111,8 @@ def _sync_smart_money_experiment(root: Path, aggregate: dict[str, Any]) -> None:
     write_json(path, registry)
 
 
-def collect_smart_money(root: Path) -> tuple[dict[str, Any], list[str]]:
-    config = load_json(root / "data/config/watchlist.json", {})
-    items = config.get("items", []) if isinstance(config, dict) else []
+def collect_smart_money(root: Path, turnover: dict[str, Any] | None = None) -> tuple[dict[str, Any], list[str]]:
+    items = _model_validation_universe(root, turnover)
     output: list[dict[str, Any]] = []
     errors: list[str] = []
     benchmark_cache: dict[str, list[dict[str, Any]]] = {}
@@ -1190,8 +1230,8 @@ def run(root: Path = ROOT) -> dict[str, Any]:
     global_data["bok_official"] = bok_official
     news_current, news_issues, news_digest, e = collect_news(root); errors += e
     disclosures, e = collect_disclosures(root); errors += e
-    smart_money, e = collect_smart_money(root); errors += e
-    relative_strength_data, e = collect_relative_strength(root); errors += e
+    smart_money, e = collect_smart_money(root, turnover); errors += e
+    relative_strength_data, e = collect_relative_strength(root, turnover); errors += e
 
     flow_analysis = domestic["flows"]; program = domestic["program"]
     turnover_ratio = ((turnover.get("combined") or {}).get("advance_decline_turnover_ratio"))
