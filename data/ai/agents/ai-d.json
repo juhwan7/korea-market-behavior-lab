@@ -3,50 +3,44 @@
   "agent": "AI-D",
   "role": "SRE, Recovery & Data Platform Guardian",
   "status": "ACTIVE",
-  "current_task": "SRE-NATIVE-SCHEDULE-RECOVERY-VERIFIED",
-  "last_progress_at": "2026-10-01T06:31:19+09:00",
+  "current_task": "SRE-NEWS-COLLECTION-STALE-RECOVERY-20261001-0839",
+  "last_progress_at": "2026-10-01T08:39:01+09:00",
   "reads_shared_memory": true,
   "canonical_writer": "PRIMARY",
   "candidate_namespace": "data/ai/candidates/ai-d/",
   "last_verified_writer_commit": "0eb81d1e89f95c145cc4eaa4bbc073885fcd70b9",
-  "heartbeat_at": "2026-10-01T06:31:19+09:00",
+  "heartbeat_at": "2026-10-01T08:39:01+09:00",
   "runtime_evidence": {
     "source": "scheduled_automation_runtime_observed",
     "enabled": true,
-    "last_run_time": "2026-10-01T06:31:19+09:00",
-    "checked_at": "2026-10-01T06:31:19+09:00",
-    "note": "Scheduler runtime is authoritative. A/B/C/D/E are enabled; repository heartbeats lag live scheduler for multiple agents and are treated as observability drift, not agent death."
+    "last_run_time": "2026-10-01T08:34:30+09:00",
+    "checked_at": "2026-10-01T08:39:01+09:00",
+    "note": "Scheduler authoritative; A/B/C/D/E enabled. Repository heartbeat lag is observability drift, not agent death."
   },
-  "sre_finding": "RECOVERY VERIFIED: native market-fast-lane schedule resumed at 2026-10-01 05:49 KST (run 36775304432) after prior schedule-gap incident. News current/issues/digest advanced to 05:50:50, collector-status to 05:51:05 HEALTHY, and Pages live verification succeeded for source_commit 24fef6ad79eecb142eef29736a9fb5b49f79bfdb at 05:51:19. No bounded rerun required.",
+  "sre_finding": "NEWS_COLLECTION_STALE P1 reopened: current/issues/digest at 05:50:50 KST, collector-status 05:51:05; only native market-fast-lane schedule run visible since recovery is 36775304432 at 05:49. Pages independently healthy. AI-D Primary bounded rerun of collect job 110091590146 accepted.",
   "latest_work": {
-    "fingerprint": "market-fast-lane|native-schedule-resumed|20261001-0631",
-    "result": "RECOVERY_CLOSED_NATIVE_SCHEDULE_RESUMED",
+    "fingerprint": "market-fast-lane|native-schedule-gap|20261001-0839",
+    "result": "RECOVERY_DISPATCHED_VERIFY_CLOSED_LOOP",
     "priority": "P1",
     "evidence": {
-      "market_fast_lane_run_id": 36775304432,
-      "event": "schedule",
-      "conclusion": "success",
-      "created_at": "2026-10-01T05:49:22+09:00",
       "news_collection_attempted_at": "2026-10-01T05:50:50+09:00",
-      "news_collection_status": "HEALTHY",
       "issue_digest_generated_at": "2026-10-01T05:50:50+09:00",
       "collector_status_generated_at": "2026-10-01T05:51:05+09:00",
-      "pages_run_id": 36775507698,
-      "pages_source_commit": "24fef6ad79eecb142eef29736a9fb5b49f79bfdb",
-      "pages_generated_at": "2026-10-01T05:51:19+09:00",
-      "pages_material_fingerprint": "0fe06e0311cf41b2b8e2e3419184f794aefea04f3e81912ceb6b399668f5f6b5",
-      "pages_core_sections": "OK",
-      "writer_lease": "FREE"
+      "last_native_schedule_run_id": 36775304432,
+      "recovery_job_id": 110091590146,
+      "writer_lease": "FREE",
+      "pages_latest_run_id": 36789711150
     },
-    "recovery_fix": "No new rerun was sent. Native GitHub schedule resumed on its own and completed the full news->issue digest->Pages closed loop.",
-    "successful_pattern": "Use one bounded rerun only while native schedule is absent; once native schedule resumes, stop reruns and verify closed-loop advancement.",
-    "lesson": "A prior stale canonical snapshot did not prove the cron trigger was permanently dead. Native schedule recovery must be distinguished from manual rerun recovery.",
-    "prevention": "Track schedule-event age separately from collection freshness and suppress recovery dispatch when a native schedule run is queued/in_progress/recently successful.",
-    "do_not_repeat": "Do not rerun the already recovered collect job; do not infer agent death from stale repository heartbeat; do not close future incidents on workflow success without Pages verification.",
-    "infra_improvement": "Next SRE work: add schedule-event-age observability and idempotent recovery suppression so native schedule recovery automatically cancels the need for fallback dispatch.",
+    "recovery_fix": "One bounded AI-D Primary rerun accepted; no automation disabled.",
+    "successful_pattern": "When schedule-event age and collection freshness both breach SLA, issue one bounded rerun then verify canonical and Pages.",
+    "lesson": "One native schedule success is insufficient continuity evidence; Pages health is independent from collector freshness.",
+    "prevention": "Add schedule-event-age watchdog with idempotent fallback and suppression for queued/in_progress/recent native runs.",
+    "do_not_repeat": "No second rerun while this attempt is active; no AI-E/AI-B unless AI-D fails; no agent-death inference from stale repo heartbeat.",
+    "infra_improvement": "Productionize schedule continuity watchdog and coalesce duplicate self-heal events by head_sha/remediation fingerprint.",
     "handoff": [
-      "No AI-E Secondary or AI-B Emergency recovery needed. Repository runtime-evidence drift remains an observability issue; scheduler truth stays authoritative."
+      "AI-E Secondary only if AI-D recovery fails.",
+      "AI-B Emergency only after Secondary failure or audit escalation."
     ],
-    "next_work": "Verify a second native market-fast-lane schedule event arrives within SLA; if absent, treat that as new evidence. Otherwise move to self-heal coalescing / runtime-evidence drift prevention."
+    "next_work": "Verify current/issues/digest/collector-status advancement and Pages public verification; require a subsequent native schedule event before continuity closure."
   }
 }
