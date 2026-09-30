@@ -8,6 +8,7 @@ from kmb_lab.adapters.naver_market import (
     normalize_program,
     normalize_sector_dispersion,
     fetch_sector_list,
+    fetch_stock_daily,
     normalize_stock_bars,
     normalize_turnover_participation,
 )
@@ -143,6 +144,14 @@ class NaverTests(unittest.TestCase):
         self.assertAlmostEqual(result["non_arbitrage_net_100m_krw"], -4185.57, places=2)
         self.assertAlmostEqual(result["net_100m_krw"], -4729.59, places=2)
 
+    def test_stock_history_requests_requested_count(self):
+        payload = {"priceInfos": [
+            {"localDate": "20260929", "openPrice": 10000, "highPrice": 11000, "lowPrice": 9900, "closePrice": 10500, "accumulatedTradingVolume": 1000}
+        ]}
+        with patch("kmb_lab.adapters.naver_market.request_json", return_value=payload) as request_json:
+            rows = fetch_stock_daily("005930", page_size=260)
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(request_json.call_args.kwargs["params"]["count"], 260)
     def test_generic_stock_bars_support_current_chart_payload(self):
         p = {
             "priceInfos": [
