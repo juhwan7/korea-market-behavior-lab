@@ -10,6 +10,7 @@ FRONT = "https://m.stock.naver.com/front-api"
 MAIN_SUMMARY = "https://finance.naver.com/main/mainSummary.naver"
 LEGACY_STOCK = "https://m.stock.naver.com/api/stock"
 CHART_API = "https://api.stock.naver.com/chart/domestic/item"
+INDEX_CHART_API = "https://api.stock.naver.com/chart/domestic/index"
 LEGACY_CHART = "https://api.finance.naver.com/siseJson.naver"
 SOURCE_ID = "naver-finance-public"
 SOURCE_KIND = "secondary"
@@ -131,6 +132,18 @@ def _legacy_chart_rows(code: str, page_size: int) -> list[dict[str, Any]]:
             "source_kind": SOURCE_KIND,
         })
     rows.sort(key=lambda item: item["date"])
+    return rows[-page_size:]
+
+
+def fetch_index_daily(code: str, page_size: int = 80) -> list[dict[str, Any]]:
+    payload = request_json(
+        f"{INDEX_CHART_API}/{code}",
+        params={"periodType": "dayCandle", "count": page_size},
+        headers={"Referer": REFERER},
+    )
+    rows = normalize_stock_bars(payload)
+    if not rows:
+        raise HttpError(f"Naver index history unavailable: {code}")
     return rows[-page_size:]
 
 
