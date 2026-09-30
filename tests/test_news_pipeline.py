@@ -1,7 +1,7 @@
 import unittest
 
 from kmb_lab.adapters.google_news import parse_rss, dedupe_and_cluster, classify_channels
-from kmb_lab.pipeline import _merge_issue_history, _is_recent_news_item
+from kmb_lab.pipeline import _merge_issue_history, _is_recent_news_item, _enrich_issue_market_reactions
 
 XML='''<rss><channel><item><title>반도체 수출 규제 논의 - A신문</title><link>https://a</link><pubDate>Wed, 30 Sep 2026 01:00:00 GMT</pubDate><source>A신문</source></item><item><title>반도체 수출 규제 논의 확대 - B뉴스</title><link>https://b</link><pubDate>Wed, 30 Sep 2026 01:02:00 GMT</pubDate><source>B뉴스</source></item></channel></rss>'''
 
@@ -33,6 +33,31 @@ class NewsTests(unittest.TestCase):
     def test_no_keyword_sentiment_claim(self):
         r=classify_channels("유가 급등과 금리 변화")
         self.assertEqual(r["market_bias"],"UNDETERMINED")
+
+    def test_issue_market_reaction_is_observation_not_causality(self):
+        issue_doc={"issues":[{
+            "issue_id":"GN-r","first_seen_at":"2026-09-30T01:00:00Z",
+            "importance_components":{"market_reaction_component":"PENDING"}
+        }]}
+        snapshots=[
+            {
+                "at":"2026-09-30T00:50:00Z",
+                "indices":{"KOSPI":{"close":100.0,"foreign_net_100m_krw":-100.0},"KOSDAQ":{"close":200.0,"foreign_net_100m_krw":50.0}},
+                "futures":{"close":300.0,"basis":1.0,"foreign_net_100m_krw":-20.0},
+                "global":{"NASDAQ100_FUTURES":{"price":1000.0},"USD_KRW":{"price":1400.0},"WTI":{"price":70.0},"VIX":{"price":20.0}},
+            },
+            {
+                "at":"2026-09-30T01:40:00Z",
+                "indices":{"KOSPI":{"close":101.0,"foreign_net_100m_krw":-150.0},"KOSDAQ":{"close":198.0,"foreign_net_100m_krw":20.0}},
+                "futures":{"close":303.0,"basis":1.5,"foreign_net_100m_krw":10.0},
+                "global":{"NASDAQ100_FUTURES":{"price":1005.0},"USD_KRW":{"price":1398.0},"WTI":{"price":71.0},"VIX":{"price":19.5}},
+            },
+        ]
+        result=_enrich_issue_market_reactions(issue_doc,snapshots)["issues"][0]["market_reaction"]
+        self.assertEqual(result["evidence_state"],"OBSERVED")
+        self.assertEqual(result["interpretation_state"],"CORRELATION_ONLY")
+        self.assertAlmostEqual(result["axes"]["KOSPI"]["price_return_pct"],1.0)
+        self.assertEqual(result["axes"]["KOSPI"]["foreign_flow_change_100m_krw"],-50.0)
 
     def test_issue_history_strengthening_then_weakening(self):
         base={
