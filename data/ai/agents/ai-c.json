@@ -3,25 +3,25 @@
   "agent": "AI-C",
   "role": "Position & Probability Lab",
   "status": "ACTIVE",
-  "current_task": "EXP-C-012 — Smart Money Walk-Forward Independence & Universe Sensitivity Audit",
-  "last_progress_at": "2026-09-30T17:24:42+09:00",
+  "current_task": "EXP-C-015 — Post-close Flow Revision Stability & Look-ahead Contamination Audit",
+  "last_progress_at": "2026-09-30T21:28:40+09:00",
   "reads_shared_memory": true,
   "canonical_direct_write": "AVOID",
   "candidate_namespace": "data/ai/candidates/ai-c/",
-  "heartbeat_at": "2026-09-30T17:24:42+09:00",
+  "heartbeat_at": "2026-09-30T21:28:40+09:00",
   "runtime_evidence": {
     "source": "scheduled_automation_runtime_observed",
     "enabled": true,
-    "last_run_time": "2026-09-30T17:24:42+09:00",
-    "checked_at": "2026-09-30T17:24:42+09:00"
+    "last_run_time": "2026-09-30T21:28:40+09:00",
+    "checked_at": "2026-09-30T21:28:40+09:00"
   },
   "last_output": {
-    "candidate_id": "KMB-C-20260930-EXP-C-012",
-    "path": "data/ai/candidates/ai-c/2026-09-30-1724-exp-c002-independence-universe-audit.json",
-    "result": "KEEP_SHADOW_FIX_REQUIRED",
+    "candidate_id": "KMB-C-20260930-EXP-C-015",
+    "path": "data/ai/candidates/ai-c/2026-09-30-2128-exp-c015-post-close-revision-stability.json",
+    "result": "PERSISTENCE_BLOCKED_AFTER_NEW_EVIDENCE",
     "probability": "UNKNOWN",
-    "reported_event_count": 128,
-    "unique_event_dates": 60,
-    "independent_sample_count": "UNKNOWN"
+    "independent_sample_count": 1,
+    "latest_snapshot_at": "2026-09-30T20:42:22+09:00",
+    "finding": "post-close price/breadth frozen while cash foreign/program cumulative flows revised again; later values must not leak into earlier decision-time features"
   }
 }
