@@ -138,6 +138,91 @@ class NewsTests(unittest.TestCase):
         self.assertEqual(len(unique), 1)
         self.assertEqual(issues[0]["independent_source_count"], 1)
 
+    def test_many_secondary_rewrites_do_not_equal_many_independent_sources(self):
+        items = [
+            {
+                "headline": "한화생명, 애큐온캐피탈 인수 본계약",
+                "title": "한화생명, 애큐온캐피탈 인수 본계약",
+                "url": "https://news1.example/1",
+                "published_at": "2026-09-30T01:00:00Z",
+                "source": "뉴스1",
+                "publisher": "뉴스1",
+                "source_type": "SECONDARY",
+                "official_source_available": False,
+            },
+            {
+                "headline": "한화생명 애큐온 품고 종합금융 도약",
+                "title": "한화생명 애큐온 품고 종합금융 도약",
+                "url": "https://small-a.example/2",
+                "published_at": "2026-09-30T01:02:00Z",
+                "source": "A경제",
+                "publisher": "A경제",
+                "source_type": "SECONDARY",
+                "official_source_available": False,
+            },
+            {
+                "headline": "애큐온 인수한 한화생명, 종합금융 확대",
+                "title": "애큐온 인수한 한화생명, 종합금융 확대",
+                "url": "https://small-b.example/3",
+                "published_at": "2026-09-30T01:03:00Z",
+                "source": "B경제",
+                "publisher": "B경제",
+                "source_type": "SECONDARY",
+                "official_source_available": False,
+            },
+        ]
+        _, issues = dedupe_and_cluster(items)
+        self.assertEqual(len(issues), 1)
+        self.assertEqual(issues[0]["publisher_count"], 3)
+        self.assertEqual(issues[0]["independent_source_count"], 2)
+        self.assertEqual(issues[0]["reprint_count"], 1)
+
+    def test_superseded_prior_issue_fragments_are_not_kept_as_cards(self):
+        current = {
+            "issue_id": "GN-current",
+            "fingerprint": "ISSUE-FP-current",
+            "headline": "한화생명, 애큐온캐피탈 인수 본계약",
+            "event_core_tokens": ["한화생명", "애큐온캐피탈", "인수"],
+            "latest_at": "2026-09-30T02:00:00Z",
+            "first_seen_at": "2026-09-30T01:30:00Z",
+            "article_count": 8,
+            "independent_source_count": 3,
+            "independent_publishers": 3,
+            "history": [],
+        }
+        prior_main = {
+            "issue_id": "GN-main",
+            "fingerprint": "ISSUE-FP-main",
+            "headline": "한화생명 애큐온캐피탈 인수",
+            "event_core_tokens": ["한화생명", "애큐온캐피탈", "인수"],
+            "latest_at": "2026-09-30T01:20:00Z",
+            "first_seen_at": "2026-09-30T01:00:00Z",
+            "article_count": 4,
+            "independent_source_count": 2,
+            "independent_publishers": 2,
+            "history": [],
+        }
+        prior_split = {
+            "issue_id": "GN-split",
+            "fingerprint": "ISSUE-FP-split",
+            "headline": "애큐온 품고 한화생명 종합금융 확대",
+            "event_core_tokens": ["애큐온", "한화생명", "종합금융"],
+            "latest_at": "2026-09-30T01:15:00Z",
+            "first_seen_at": "2026-09-30T01:05:00Z",
+            "article_count": 2,
+            "independent_source_count": 1,
+            "independent_publishers": 1,
+            "history": [],
+        }
+        merged = _merge_issue_history(
+            [current], [prior_main, prior_split],
+            observed_at="2026-09-30T02:01:00Z",
+            collection_succeeded=True,
+        )
+        hanwha = [x for x in merged if "한화생명" in str(x.get("headline"))]
+        self.assertEqual(len(hanwha), 1)
+        self.assertIn("GN-split", hanwha[0].get("merged_prior_issue_ids", []))
+
     def test_semantic_continuity_preserves_issue_identity(self):
         prior = {
             "issue_id": "GN-stable",
