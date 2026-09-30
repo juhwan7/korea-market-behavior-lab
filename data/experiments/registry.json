@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-28T11:37:00Z",
+  "updated_at": "2026-09-30T12:56:20+09:00",
   "champions": {},
   "challengers": {
     "virtual_position_range_v0": {
@@ -22,6 +22,38 @@
         "regime-segmented performance",
         "AI-B evidence audit"
       ]
+    },
+    "smart_money_behavior_v0": {
+      "owner": "AI-C",
+      "status": "SHADOW",
+      "production_eligible": false,
+      "implementation": "src/kmb_lab/smart_money.py",
+      "purpose": "Validate accumulation/absorption, breakout-demand and distribution-risk state labels with walk-forward historical samples.",
+      "sample_count": 17,
+      "performance": {
+        "evidence_state": "ESTIMATED",
+        "sample_count": 17,
+        "gross_success_rate": 0.4118,
+        "net_success_rate": 0.2941,
+        "avg_gross_directional_return_pct": -1.2262,
+        "avg_net_after_cost_pct": -1.5762,
+        "avg_mfe_pct": 4.4297,
+        "avg_mae_pct": -7.2649,
+        "cost_assumption": {
+          "evidence_state": "ASSUMPTION",
+          "fees_bps": 15.0,
+          "slippage_bps": 20.0,
+          "round_trip_total_bps": 35.0
+        },
+        "method_note": "관심종목별 walk-forward 방향성 검증을 표본수로 가중 집계합니다. 과거 검증률은 미래 확률이 아닙니다."
+      },
+      "required_before_promotion": [
+        "larger multi-regime historical sample",
+        "primary-source market data where available",
+        "out-of-sample stability",
+        "fees/slippage sensitivity",
+        "AI-B evidence audit"
+      ]
     }
   },
   "experiments": [
@@ -34,6 +66,32 @@
       "performance": null,
       "production_eligible": false,
       "failure_condition": "fabricated probability, unverified-input consumption, or forced merge of conflicting model ranges"
+    },
+    {
+      "id": "EXP-C-002",
+      "name": "Smart Money Behavior Walk-Forward v0",
+      "owner": "AI-C",
+      "status": "SHADOW",
+      "sample_count": 17,
+      "performance": {
+        "evidence_state": "ESTIMATED",
+        "sample_count": 17,
+        "gross_success_rate": 0.4118,
+        "net_success_rate": 0.2941,
+        "avg_gross_directional_return_pct": -1.2262,
+        "avg_net_after_cost_pct": -1.5762,
+        "avg_mfe_pct": 4.4297,
+        "avg_mae_pct": -7.2649,
+        "cost_assumption": {
+          "evidence_state": "ASSUMPTION",
+          "fees_bps": 15.0,
+          "slippage_bps": 20.0,
+          "round_trip_total_bps": 35.0
+        },
+        "method_note": "관심종목별 walk-forward 방향성 검증을 표본수로 가중 집계합니다. 과거 검증률은 미래 확률이 아닙니다."
+      },
+      "production_eligible": false,
+      "failure_condition": "look-ahead leakage, fabricated probability, or promotion without out-of-sample/primary-source audit"
     }
   ]
 }

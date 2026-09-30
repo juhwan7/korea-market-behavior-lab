@@ -3,12 +3,82 @@
   "method": "commit_path_classification",
   "window_hours": 24,
   "target_product_min_pct": 70,
-  "product_pct": 31.1,
-  "maintenance_pct": 68.9,
-  "labeled_commit_count": 90,
-  "unclassified_commit_count": 27,
+  "product_pct": 36.6,
+  "maintenance_pct": 63.4,
+  "labeled_commit_count": 101,
+  "unclassified_commit_count": 30,
   "warning": true,
   "recent": [
+    {
+      "sha": "2b73a459d9bd727bfb3747a45a230063588a11b5",
+      "subject": "product: show observed market reaction on news issues",
+      "class": "product"
+    },
+    {
+      "sha": "724107239ed54ef2b678972bd6b72b488eb4097e",
+      "subject": "test: protect news market-reaction causality boundary",
+      "class": "unclassified"
+    },
+    {
+      "sha": "39a7368401ce8622372167fac59db69a382bd05a",
+      "subject": "product: link news issues to observed market reactions",
+      "class": "product"
+    },
+    {
+      "sha": "d5c505ce4f4c048ea0b6353a324c1416a45ee9c9",
+      "subject": "product: publish Smart Money validation metrics",
+      "class": "product"
+    },
+    {
+      "sha": "7df10debd504f443d94d021ba7306b4e28beeda1",
+      "subject": "ci: persist Smart Money validation evidence",
+      "class": "maintenance"
+    },
+    {
+      "sha": "de34f34730e9653bbb3efb218bd195b40f81f4ff",
+      "subject": "test: cover Smart Money walk-forward validation",
+      "class": "unclassified"
+    },
+    {
+      "sha": "8b7768091f2762ec6146664cff17e45b387c08dc",
+      "subject": "product: connect Smart Money walk-forward backtest",
+      "class": "product"
+    },
+    {
+      "sha": "83244a0c32022e1d7e08ce603d740d28944ef221",
+      "subject": "product: add Smart Money walk-forward validation",
+      "class": "product"
+    },
+    {
+      "sha": "ba4b82e0fda5a153b7ca7139ca319fd1fdd367ec",
+      "subject": "product: explain market strength with turnover breadth",
+      "class": "product"
+    },
+    {
+      "sha": "3a78da162ecf54738d35b5ac1d1f6da686fe588b",
+      "subject": "ci: persist turnover and live service state",
+      "class": "maintenance"
+    },
+    {
+      "sha": "3bdbaa1244a9f1647d98a165b48aa6170eaced4e",
+      "subject": "test: verify turnover participation normalization",
+      "class": "unclassified"
+    },
+    {
+      "sha": "6b1b872b3d51e97a7f756da838de20ad9334a0e3",
+      "subject": "product: connect full-market turnover participation to strength",
+      "class": "product"
+    },
+    {
+      "sha": "25f20cecaa305bf67311aef768433c1562a27ff5",
+      "subject": "product: add full-market turnover participation feed",
+      "class": "product"
+    },
+    {
+      "sha": "29df8c489d5821efd5a6f5c3f7deb879cdbcf873",
+      "subject": "product: refresh market intelligence",
+      "class": "product"
+    },
     {
       "sha": "17313195f6b24e3147f47745999c0bee508517c2",
       "subject": "product: publish futures basis and investor flow fallback",
@@ -88,76 +158,6 @@
       "sha": "55a2f1ee9b77d166d07be7815cee6840678101c1",
       "subject": "test: cover multi-window relative strength engine",
       "class": "unclassified"
-    },
-    {
-      "sha": "2108a0bd61c1328654f68a285f93be5e13bea6e6",
-      "subject": "product: add multi-window relative strength engine",
-      "class": "product"
-    },
-    {
-      "sha": "dce35e7216e5c920352cd5d4b75dd911a050757b",
-      "subject": "product: refresh market intelligence",
-      "class": "product"
-    },
-    {
-      "sha": "e99a53c6b220d59c5e6849b226ab69a9a08435c2",
-      "subject": "product: expose program data shape for parser recovery",
-      "class": "product"
-    },
-    {
-      "sha": "e0a5962ae94ce1ac610e9f5a782362a94d2b0626",
-      "subject": "ops: reconcile service health with live collectors",
-      "class": "unclassified"
-    },
-    {
-      "sha": "767fb386f26d27d8a560dc2cfca6abb231821326",
-      "subject": "product: refresh market intelligence",
-      "class": "product"
-    },
-    {
-      "sha": "c93100050f7784373ddadea199014dbe1f0c2a7b",
-      "subject": "fix: dispatch Pages after market data persistence",
-      "class": "maintenance"
-    },
-    {
-      "sha": "c83624c3750cf398fe2f1459c39cd973ffeb5e3b",
-      "subject": "product: refresh market intelligence",
-      "class": "product"
-    },
-    {
-      "sha": "c603a835830b8e323012a052ed9104c65c1abeda",
-      "subject": "ci: persist live market service health",
-      "class": "maintenance"
-    },
-    {
-      "sha": "04118e33f0264f6b5a7607b710135dd583d50bf5",
-      "subject": "product: make collector health reflect real market data",
-      "class": "product"
-    },
-    {
-      "sha": "b86f7be045f05dc2be8c812cc80aa75880cbd672",
-      "subject": "fix: regenerate fast-lane snapshots on latest main",
-      "class": "maintenance"
-    },
-    {
-      "sha": "f1bc49c518f603014b780937755a116f272d4b01",
-      "subject": "product: refresh market intelligence",
-      "class": "product"
-    },
-    {
-      "sha": "5646a00f0a8ce111a18e522db8c40fa64701d4a6",
-      "subject": "test: cover domestic positional flow and current chart payloads",
-      "class": "unclassified"
-    },
-    {
-      "sha": "53b4dc312ce693c436aa60548a77a0a7204214a3",
-      "subject": "product: repair domestic flow and stock history adapters",
-      "class": "product"
-    },
-    {
-      "sha": "23536b94cc2e14df9e45abb0327a1d787ef0debd",
-      "subject": "product: refresh market intelligence",
-      "class": "product"
     }
   ]
 }

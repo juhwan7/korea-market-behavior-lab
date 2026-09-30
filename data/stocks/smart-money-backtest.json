@@ -1,6 +1,5 @@
 {
   "generated_at": "2026-09-30T12:56:20+09:00",
-  "production_eligible": false,
   "model_status": "SHADOW",
   "validation": {
     "evidence_state": "ESTIMATED",
@@ -24,48 +23,6 @@
       "code": "005930",
       "name": "삼성전자",
       "benchmark": "KOSPI",
-      "as_of": "2026-09-30",
-      "source_id": "naver-finance-public",
-      "source_kind": "secondary",
-      "evidence_state": "ESTIMATED",
-      "state": "MIXED_OR_NEUTRAL",
-      "confidence": "medium",
-      "sample_count": 80,
-      "virtual_cost_range": {
-        "low": 250187.5,
-        "high": 270354.17,
-        "poc": 250187.5,
-        "label": "volume_profile_reference_not_account_cost"
-      },
-      "remaining_inventory_proxy": {
-        "low": 0.433,
-        "high": 0.792,
-        "unit": "fraction_of_virtual_inventory_proxy"
-      },
-      "accumulation_absorption_score": 50.0,
-      "distribution_risk_score": 25.0,
-      "external_demand_score": 44.5,
-      "additional_upside_incentive_proxy": 66.2,
-      "recent_volume_ratio": 1.0,
-      "recent_5d_return_pct": -2.09,
-      "breakout": false,
-      "model_agreement": "1/5",
-      "counter_hypotheses": [
-        "대량 거래는 동일 물량의 반복 회전일 수 있어 실제 보유량과 같지 않습니다.",
-        "고점 거래 증가는 분배가 아니라 새로운 외부수요의 흡수일 수 있습니다.",
-        "공개 일봉만으로 특정 주체의 실제 계좌·평단·의도를 식별할 수 없습니다."
-      ],
-      "method_note": "가격 복원력·거래량 상대치·돌파·상대강도·거래량 프로파일을 독립적으로 결합한 가상 포지션 프록시입니다.",
-      "validation": {
-        "evidence_state": "UNKNOWN",
-        "sample_count": 0,
-        "overall": null,
-        "by_state": null,
-        "by_regime": null,
-        "cost_assumption": null,
-        "method_note": null,
-        "reason": "과거 구간에서 검증할 방향성 상태가 발생하지 않았습니다."
-      },
       "backtest": {
         "evidence_state": "UNKNOWN",
         "sample_count": 0,
@@ -76,48 +33,6 @@
       "code": "000660",
       "name": "SK하이닉스",
       "benchmark": "KOSPI",
-      "as_of": "2026-09-30",
-      "source_id": "naver-finance-public",
-      "source_kind": "secondary",
-      "evidence_state": "ESTIMATED",
-      "state": "MIXED_OR_NEUTRAL",
-      "confidence": "medium",
-      "sample_count": 80,
-      "virtual_cost_range": {
-        "low": 1583750.0,
-        "high": 1771083.33,
-        "poc": 1677416.67,
-        "label": "volume_profile_reference_not_account_cost"
-      },
-      "remaining_inventory_proxy": {
-        "low": 0.433,
-        "high": 0.792,
-        "unit": "fraction_of_virtual_inventory_proxy"
-      },
-      "accumulation_absorption_score": 25.0,
-      "distribution_risk_score": 0.0,
-      "external_demand_score": 39.8,
-      "additional_upside_incentive_proxy": 69.6,
-      "recent_volume_ratio": 0.85,
-      "recent_5d_return_pct": -5.0,
-      "breakout": false,
-      "model_agreement": "1/5",
-      "counter_hypotheses": [
-        "대량 거래는 동일 물량의 반복 회전일 수 있어 실제 보유량과 같지 않습니다.",
-        "고점 거래 증가는 분배가 아니라 새로운 외부수요의 흡수일 수 있습니다.",
-        "공개 일봉만으로 특정 주체의 실제 계좌·평단·의도를 식별할 수 없습니다."
-      ],
-      "method_note": "가격 복원력·거래량 상대치·돌파·상대강도·거래량 프로파일을 독립적으로 결합한 가상 포지션 프록시입니다.",
-      "validation": {
-        "evidence_state": "UNKNOWN",
-        "sample_count": 0,
-        "overall": null,
-        "by_state": null,
-        "by_regime": null,
-        "cost_assumption": null,
-        "method_note": null,
-        "reason": "과거 구간에서 검증할 방향성 상태가 발생하지 않았습니다."
-      },
       "backtest": {
         "evidence_state": "UNKNOWN",
         "sample_count": 0,
@@ -128,114 +43,6 @@
       "code": "035420",
       "name": "NAVER",
       "benchmark": "KOSPI",
-      "as_of": "2026-09-30",
-      "source_id": "naver-finance-public",
-      "source_kind": "secondary",
-      "evidence_state": "ESTIMATED",
-      "state": "MIXED_OR_NEUTRAL",
-      "confidence": "medium",
-      "sample_count": 80,
-      "virtual_cost_range": {
-        "low": 205391.67,
-        "high": 222808.33,
-        "poc": 222808.33,
-        "label": "volume_profile_reference_not_account_cost"
-      },
-      "remaining_inventory_proxy": {
-        "low": 0.095,
-        "high": 0.455,
-        "unit": "fraction_of_virtual_inventory_proxy"
-      },
-      "accumulation_absorption_score": 0.0,
-      "distribution_risk_score": 50.0,
-      "external_demand_score": 43.6,
-      "additional_upside_incentive_proxy": 45.8,
-      "recent_volume_ratio": 0.94,
-      "recent_5d_return_pct": -2.37,
-      "breakout": false,
-      "model_agreement": "0/5",
-      "counter_hypotheses": [
-        "대량 거래는 동일 물량의 반복 회전일 수 있어 실제 보유량과 같지 않습니다.",
-        "고점 거래 증가는 분배가 아니라 새로운 외부수요의 흡수일 수 있습니다.",
-        "공개 일봉만으로 특정 주체의 실제 계좌·평단·의도를 식별할 수 없습니다."
-      ],
-      "method_note": "가격 복원력·거래량 상대치·돌파·상대강도·거래량 프로파일을 독립적으로 결합한 가상 포지션 프록시입니다.",
-      "validation": {
-        "evidence_state": "ESTIMATED",
-        "sample_count": 7,
-        "overall": {
-          "sample_count": 7,
-          "gross_success_rate": 0.1429,
-          "net_success_rate": 0.0,
-          "avg_gross_directional_return_pct": -3.655,
-          "avg_net_after_cost_pct": -4.005,
-          "avg_mfe_pct": 2.015,
-          "avg_mae_pct": -9.619,
-          "worst_mae_pct": -10.965
-        },
-        "by_state": {
-          "ACCUMULATION_OR_ABSORPTION_CANDIDATE": {
-            "sample_count": 5,
-            "gross_success_rate": 0.2,
-            "net_success_rate": 0.0,
-            "avg_gross_directional_return_pct": -3.031,
-            "avg_net_after_cost_pct": -3.381,
-            "avg_mfe_pct": 2.291,
-            "avg_mae_pct": -9.725,
-            "worst_mae_pct": -10.965
-          },
-          "DISTRIBUTION_RISK": {
-            "sample_count": 2,
-            "gross_success_rate": 0.0,
-            "net_success_rate": 0.0,
-            "avg_gross_directional_return_pct": -5.215,
-            "avg_net_after_cost_pct": -5.565,
-            "avg_mfe_pct": 1.325,
-            "avg_mae_pct": -9.354,
-            "worst_mae_pct": -9.677
-          }
-        },
-        "by_regime": {
-          "UP": {
-            "sample_count": 5,
-            "gross_success_rate": 0.2,
-            "net_success_rate": 0.0,
-            "avg_gross_directional_return_pct": -3.031,
-            "avg_net_after_cost_pct": -3.381,
-            "avg_mfe_pct": 2.291,
-            "avg_mae_pct": -9.725,
-            "worst_mae_pct": -10.965
-          },
-          "SIDEWAYS": {
-            "sample_count": 1,
-            "gross_success_rate": 0.0,
-            "net_success_rate": 0.0,
-            "avg_gross_directional_return_pct": -2.535,
-            "avg_net_after_cost_pct": -2.885,
-            "avg_mfe_pct": 0.955,
-            "avg_mae_pct": -9.032,
-            "worst_mae_pct": -9.032
-          },
-          "DOWN": {
-            "sample_count": 1,
-            "gross_success_rate": 0.0,
-            "net_success_rate": 0.0,
-            "avg_gross_directional_return_pct": -7.895,
-            "avg_net_after_cost_pct": -8.245,
-            "avg_mfe_pct": 1.695,
-            "avg_mae_pct": -9.677,
-            "worst_mae_pct": -9.677
-          }
-        },
-        "cost_assumption": {
-          "evidence_state": "ASSUMPTION",
-          "fees_bps": 15.0,
-          "slippage_bps": 20.0,
-          "round_trip_total_bps": 35.0
-        },
-        "method_note": "각 과거 시점에서 당시까지의 데이터만 사용해 상태를 재계산한 walk-forward 검증입니다. 성공률은 과거 방향 일치율이며 미래 확률이 아닙니다.",
-        "reason": null
-      },
       "backtest": {
         "evidence_state": "ESTIMATED",
         "sample_count": 7,
@@ -410,114 +217,6 @@
       "code": "035720",
       "name": "카카오",
       "benchmark": "KOSPI",
-      "as_of": "2026-09-30",
-      "source_id": "naver-finance-public",
-      "source_kind": "secondary",
-      "evidence_state": "ESTIMATED",
-      "state": "MIXED_OR_NEUTRAL",
-      "confidence": "medium",
-      "sample_count": 80,
-      "virtual_cost_range": {
-        "low": 35322.92,
-        "high": 38206.25,
-        "poc": 36043.75,
-        "label": "volume_profile_reference_not_account_cost"
-      },
-      "remaining_inventory_proxy": {
-        "low": 0.325,
-        "high": 0.685,
-        "unit": "fraction_of_virtual_inventory_proxy"
-      },
-      "accumulation_absorption_score": 1.1,
-      "distribution_risk_score": 0.0,
-      "external_demand_score": 45.9,
-      "additional_upside_incentive_proxy": 66.9,
-      "recent_volume_ratio": 0.74,
-      "recent_5d_return_pct": 0.6,
-      "breakout": false,
-      "model_agreement": "2/5",
-      "counter_hypotheses": [
-        "대량 거래는 동일 물량의 반복 회전일 수 있어 실제 보유량과 같지 않습니다.",
-        "고점 거래 증가는 분배가 아니라 새로운 외부수요의 흡수일 수 있습니다.",
-        "공개 일봉만으로 특정 주체의 실제 계좌·평단·의도를 식별할 수 없습니다."
-      ],
-      "method_note": "가격 복원력·거래량 상대치·돌파·상대강도·거래량 프로파일을 독립적으로 결합한 가상 포지션 프록시입니다.",
-      "validation": {
-        "evidence_state": "ESTIMATED",
-        "sample_count": 10,
-        "overall": {
-          "sample_count": 10,
-          "gross_success_rate": 0.6,
-          "net_success_rate": 0.5,
-          "avg_gross_directional_return_pct": 0.474,
-          "avg_net_after_cost_pct": 0.124,
-          "avg_mfe_pct": 6.12,
-          "avg_mae_pct": -5.617,
-          "worst_mae_pct": -16.209
-        },
-        "by_state": {
-          "ACCUMULATION_OR_ABSORPTION_CANDIDATE": {
-            "sample_count": 1,
-            "gross_success_rate": 1.0,
-            "net_success_rate": 1.0,
-            "avg_gross_directional_return_pct": 6.317,
-            "avg_net_after_cost_pct": 5.967,
-            "avg_mfe_pct": 9.14,
-            "avg_mae_pct": -1.344,
-            "worst_mae_pct": -1.344
-          },
-          "BREAKOUT_WITH_DEMAND": {
-            "sample_count": 9,
-            "gross_success_rate": 0.5556,
-            "net_success_rate": 0.4444,
-            "avg_gross_directional_return_pct": -0.175,
-            "avg_net_after_cost_pct": -0.525,
-            "avg_mfe_pct": 5.785,
-            "avg_mae_pct": -6.091,
-            "worst_mae_pct": -16.209
-          }
-        },
-        "by_regime": {
-          "UP": {
-            "sample_count": 4,
-            "gross_success_rate": 0.75,
-            "net_success_rate": 0.75,
-            "avg_gross_directional_return_pct": 1.259,
-            "avg_net_after_cost_pct": 0.909,
-            "avg_mfe_pct": 7.074,
-            "avg_mae_pct": -6.054,
-            "worst_mae_pct": -16.209
-          },
-          "SIDEWAYS": {
-            "sample_count": 4,
-            "gross_success_rate": 0.25,
-            "net_success_rate": 0.25,
-            "avg_gross_directional_return_pct": -1.715,
-            "avg_net_after_cost_pct": -2.065,
-            "avg_mfe_pct": 4.97,
-            "avg_mae_pct": -6.774,
-            "worst_mae_pct": -10.442
-          },
-          "DOWN": {
-            "sample_count": 2,
-            "gross_success_rate": 1.0,
-            "net_success_rate": 0.5,
-            "avg_gross_directional_return_pct": 3.284,
-            "avg_net_after_cost_pct": 2.934,
-            "avg_mfe_pct": 6.513,
-            "avg_mae_pct": -2.426,
-            "worst_mae_pct": -3.509
-          }
-        },
-        "cost_assumption": {
-          "evidence_state": "ASSUMPTION",
-          "fees_bps": 15.0,
-          "slippage_bps": 20.0,
-          "round_trip_total_bps": 35.0
-        },
-        "method_note": "각 과거 시점에서 당시까지의 데이터만 사용해 상태를 재계산한 walk-forward 검증입니다. 성공률은 과거 방향 일치율이며 미래 확률이 아닙니다.",
-        "reason": null
-      },
       "backtest": {
         "evidence_state": "ESTIMATED",
         "sample_count": 10,
@@ -727,6 +426,5 @@
         "method_note": "각 과거 시점에서 당시까지의 데이터만 사용해 상태를 재계산한 walk-forward 검증입니다. 성공률은 과거 방향 일치율이며 미래 확률이 아닙니다."
       }
     }
-  ],
-  "warning": "특정 실존 계좌의 보유량·평단·의도를 의미하지 않는 공개데이터 기반 가상 프록시입니다."
+  ]
 }
