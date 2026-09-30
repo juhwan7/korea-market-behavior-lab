@@ -3,16 +3,23 @@
   "agent": "AI-C",
   "role": "Position & Probability Lab",
   "status": "ACTIVE",
-  "current_task": null,
-  "last_progress_at": null,
+  "current_task": "EXP-C-011 — Index resilience vs breadth confirmation PIT feasibility check",
+  "last_progress_at": "2026-09-30T16:27:17+09:00",
   "reads_shared_memory": true,
   "canonical_direct_write": "AVOID",
   "candidate_namespace": "data/ai/candidates/ai-c/",
-  "heartbeat_at": "2026-09-29T07:21:30.988942Z",
+  "heartbeat_at": "2026-09-30T16:27:17+09:00",
   "runtime_evidence": {
     "source": "scheduled_automation_runtime_observed",
     "enabled": true,
-    "last_run_time": "2026-09-29T07:21:30.988942Z",
-    "checked_at": "2026-09-29T16:26:00+09:00"
+    "last_run_time": "2026-09-30T16:27:17+09:00",
+    "checked_at": "2026-09-30T16:27:17+09:00"
+  },
+  "last_output": {
+    "candidate_id": "KMB-C-20260930-EXP-C-011",
+    "path": "data/ai/candidates/ai-c/2026-09-30-1627-index-resilience-breadth-quant.json",
+    "result": "ASSOCIATION_ONLY",
+    "probability": "UNKNOWN",
+    "sample_count_independent_sessions": 1
   }
 }
