@@ -349,6 +349,7 @@ def render_news(model: dict[str, Any]) -> str:
     stats=(
         f'수집 원문 {current.get("raw_count") or current.get("raw_news_count") or "확인 필요"}건'
         f' → 홍보성 제외 {current.get("promotion_filtered_count") if current.get("promotion_filtered_count") is not None else "측정 전"}건'
+        f' · 저정보 제외 {current.get("low_information_filtered_count") if current.get("low_information_filtered_count") is not None else "측정 전"}건'
         f' · 중복/재인용 정리 {current.get("duplicate_or_reprint_filtered_count") if current.get("duplicate_or_reprint_filtered_count") is not None else "측정 전"}건'
         f' → 정제 후 {current.get("deduplicated_count") or current.get("count") or "확인 필요"}건'
         f' · 확인 소스 {current.get("sources_checked") or "확인 필요"}개'
