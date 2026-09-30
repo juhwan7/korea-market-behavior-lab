@@ -1,66 +1,139 @@
 {
-  "snapshot_count": 13,
+  "snapshot_count": 14,
   "markets": {
     "KOSPI": {
       "individual": {
-        "net_100m_krw": 5913.98,
-        "velocity_100m_krw_per_min": 5.56701030927835,
-        "acceleration": -58.38928789123573,
-        "reversal": false
+        "net_100m_krw": 7305.71,
+        "velocity_100m_krw_per_min": 36.883,
+        "acceleration": 31.316,
+        "reversal": false,
+        "window_changes_100m_krw": {
+          "10m": null,
+          "30m": null,
+          "60m": 1824.38,
+          "session": 3835.82
+        },
+        "window_velocity_100m_krw_per_min": {
+          "10m": null,
+          "30m": null,
+          "60m": 38.448
+        },
+        "pace_state": "NET_BUYING_STRENGTHENING"
       },
       "foreign": {
-        "net_100m_krw": -8984.62,
-        "velocity_100m_krw_per_min": -26.727835051546414,
-        "acceleration": 20.827949010150476,
-        "reversal": false
+        "net_100m_krw": -10069.54,
+        "velocity_100m_krw_per_min": -28.752,
+        "acceleration": -2.024,
+        "reversal": false,
+        "window_changes_100m_krw": {
+          "10m": null,
+          "30m": null,
+          "60m": -1479.66,
+          "session": -3790.01
+        },
+        "window_velocity_100m_krw_per_min": {
+          "10m": null,
+          "30m": null,
+          "60m": -31.184
+        },
+        "pace_state": "NET_SELLING_WORSENING"
       },
       "institution": {
-        "net_100m_krw": -9225.28,
-        "velocity_100m_krw_per_min": -24.896907216494846,
-        "acceleration": 27.81980229507338,
-        "reversal": false
+        "net_100m_krw": -11373.66,
+        "velocity_100m_krw_per_min": -56.936,
+        "acceleration": -32.039,
+        "reversal": false,
+        "window_changes_100m_krw": {
+          "10m": null,
+          "30m": null,
+          "60m": -2570.66,
+          "session": -4677.77
+        },
+        "window_velocity_100m_krw_per_min": {
+          "10m": null,
+          "30m": null,
+          "60m": -54.176
+        },
+        "pace_state": "NET_SELLING_WORSENING"
       }
     },
     "KOSDAQ": {
       "individual": {
-        "net_100m_krw": -19.98,
-        "velocity_100m_krw_per_min": 1.0422680412371137,
-        "acceleration": -1.7572178199454052,
-        "reversal": false
+        "net_100m_krw": 72.13,
+        "velocity_100m_krw_per_min": 2.441,
+        "acceleration": 1.399,
+        "reversal": true,
+        "window_changes_100m_krw": {
+          "10m": null,
+          "30m": null,
+          "60m": 113.63,
+          "session": -20.8
+        },
+        "window_velocity_100m_krw_per_min": {
+          "10m": null,
+          "30m": null,
+          "60m": 2.395
+        },
+        "pace_state": "NET_BUYING_STRENGTHENING"
       },
       "foreign": {
-        "net_100m_krw": -122.36,
-        "velocity_100m_krw_per_min": -1.1164948453608246,
-        "acceleration": 3.021808496541489,
-        "reversal": false
+        "net_100m_krw": -241.65,
+        "velocity_100m_krw_per_min": -3.161,
+        "acceleration": -2.045,
+        "reversal": false,
+        "window_changes_100m_krw": {
+          "10m": null,
+          "30m": null,
+          "60m": -149.73,
+          "session": -108.86
+        },
+        "window_velocity_100m_krw_per_min": {
+          "10m": null,
+          "30m": null,
+          "60m": -3.156
+        },
+        "pace_state": "NET_SELLING_WORSENING"
       },
       "institution": {
-        "net_100m_krw": 234.55,
-        "velocity_100m_krw_per_min": -0.021649484536080364,
-        "acceleration": -1.278718893276441,
-        "reversal": false
+        "net_100m_krw": 232.18,
+        "velocity_100m_krw_per_min": -0.063,
+        "acceleration": -0.041,
+        "reversal": false,
+        "window_changes_100m_krw": {
+          "10m": null,
+          "30m": null,
+          "60m": 5.71,
+          "session": 88.43
+        },
+        "window_velocity_100m_krw_per_min": {
+          "10m": null,
+          "30m": null,
+          "60m": 0.12
+        },
+        "pace_state": "NET_BUYING_EASING"
       }
     }
   },
-  "as_of": "2026-09-30T13:30:37+09:00",
+  "method_note": "순매수 누적값의 최근 10·30·60분 변화와 장중 첫 관측 대비 변화를 계산합니다. pace_state는 누적 순매수 부호와 최근 30분 변화 방향을 설명하며 매수·매도 주체의 의도를 확정하지 않습니다.",
+  "as_of": "2026-09-30T14:08:21+09:00",
   "markets_raw": {
     "KOSPI": {
       "flows_100m_krw": {
-        "individual": 5913.98,
-        "foreign": -8984.62,
-        "institution": -9225.28
+        "individual": 7305.71,
+        "foreign": -10069.54,
+        "institution": -11373.66
       },
       "source_kind": "secondary",
-      "as_of": "2026-09-30T04:30:37.733356Z"
+      "as_of": "2026-09-30T05:08:21.108204Z"
     },
     "KOSDAQ": {
       "flows_100m_krw": {
-        "individual": -19.98,
-        "foreign": -122.36,
-        "institution": 234.55
+        "individual": 72.13,
+        "foreign": -241.65,
+        "institution": 232.18
       },
       "source_kind": "secondary",
-      "as_of": "2026-09-30T04:30:37.733356Z"
+      "as_of": "2026-09-30T05:08:21.108204Z"
     }
   },
   "source_quality": "SECONDARY_UNLESS_KRX_PRIMARY_FIELDS_PRESENT"

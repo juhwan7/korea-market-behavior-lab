@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-09-30T13:32:18+09:00",
+  "generated_at": "2026-09-30T14:09:48+09:00",
   "KOSPI200_FUTURES": {
     "status": "CONNECTED_SECONDARY",
     "instrument": "KOSPI200 연결선물 (NAVER FUT)",
-    "close": 1090.4,
-    "previous_close": 1096.1000000000001,
-    "change": -5.7,
-    "change_pct": -0.52,
+    "close": 1091.85,
+    "previous_close": 1096.1,
+    "change": -4.25,
+    "change_pct": -0.39,
     "as_of": "2026-09-30",
     "investor_flow_100m_krw": {
-      "individual": 410.0,
-      "foreign": -8204.0,
-      "institution": 7305.0
+      "individual": 1032.0,
+      "foreign": -10902.0,
+      "institution": 9266.0
     },
     "flow_as_of": "20260930",
     "history": [
@@ -131,9 +131,9 @@
       },
       {
         "date": "2026-09-30",
-        "close": 1090.4,
-        "change": -5.7,
-        "change_pct": -0.52
+        "close": 1091.85,
+        "change": -4.25,
+        "change_pct": -0.39
       }
     ],
     "open_interest": null,
@@ -141,10 +141,50 @@
     "source_kind": "secondary",
     "source_url": "https://m.stock.naver.com/api/index/FUT/price",
     "note": "무료 공개 보조 데이터입니다. KRX 공식 데이터가 연결되면 공식값을 우선합니다.",
-    "spot_kpi200": 1084.11,
-    "basis": 6.29,
-    "basis_pct": 0.58,
+    "spot_kpi200": 1083.57,
+    "basis": 8.28,
+    "basis_pct": 0.764,
     "official_status": "USER_ACTION_REQUIRED",
     "official_reason": "KRX_AUTH_KEY required for authoritative KOSPI200 futures feed"
+  },
+  "study": {
+    "evidence_state": "OBSERVED",
+    "observations": [
+      {
+        "factor": "futures_vs_spot",
+        "state": "FUTURES_SPOT_ALIGNED",
+        "value": 0.03,
+        "unit": "percentage_point",
+        "explanation": "KOSPI200 선물과 현물의 당일 등락률 차이가 크지 않습니다."
+      },
+      {
+        "factor": "basis",
+        "state": "POSITIVE_BASIS",
+        "value": 0.764,
+        "unit": "percent",
+        "explanation": "선물이 현물보다 높은 콘탱고형 베이시스입니다. 배당·금리·잔존만기 영향을 받으므로 강세 신호로 단독 해석하지 않습니다."
+      },
+      {
+        "factor": "foreign_spot_futures",
+        "state": "FOREIGN_SELL_ALIGNED",
+        "foreign_futures_100m_krw": -10902.0,
+        "foreign_spot_100m_krw": -10069.54,
+        "explanation": "외국인 현물·선물 방향이 모두 순매도입니다. 매도 압력이 시장폭과 거래대금으로 확산되는지 함께 확인해야 합니다."
+      },
+      {
+        "factor": "program",
+        "state": "PROGRAM_NET_SELL",
+        "value_100m_krw": -7280.6,
+        "explanation": "프로그램 순매도가 현물 수급에 부담을 주고 있습니다. 차익·비차익 구성을 함께 확인합니다."
+      },
+      {
+        "factor": "us_tech_context",
+        "state": "OBSERVED_CONTEXT",
+        "nasdaq100_futures_change_pct": -0.7818253923290466,
+        "sox_change_pct": -0.47801308450395397,
+        "explanation": "Nasdaq100 선물은 현재 선행시장, SOX는 최근 미국 현물 세션의 반도체 환경을 보여주는 보조 관측치입니다. 서로 다른 시점의 지표를 같은 실시간 신호처럼 합치지 않습니다."
+      }
+    ],
+    "method_note": "현물·선물·베이시스·외국인 수급·프로그램·미국 기술주 환경을 분리해 설명합니다. 관측 관계이지 향후 방향 예측이나 특정 주체의 의도 판정이 아닙니다."
   }
 }

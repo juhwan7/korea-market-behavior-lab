@@ -3,12 +3,102 @@
   "method": "commit_path_classification",
   "window_hours": 24,
   "target_product_min_pct": 70,
-  "product_pct": 44.2,
-  "maintenance_pct": 55.8,
-  "labeled_commit_count": 113,
+  "product_pct": 50.4,
+  "maintenance_pct": 49.6,
+  "labeled_commit_count": 129,
   "unclassified_commit_count": 31,
   "warning": true,
   "recent": [
+    {
+      "sha": "75b9311238372a134038302c90721f34a472a4d4",
+      "subject": "maintenance: test isolated official-news failure ledger",
+      "class": "maintenance"
+    },
+    {
+      "sha": "73a001eb3bcfe0c4ef4bf773233dabd12d675c21",
+      "subject": "maintenance: persist isolated official-news failures",
+      "class": "maintenance"
+    },
+    {
+      "sha": "10b878b07b805ccce03381c83a73978162bb130f",
+      "subject": "product: test futures spot-flow interpretation",
+      "class": "product"
+    },
+    {
+      "sha": "4a766b2cd4cdf0ce932c69a385b239b36786ea58",
+      "subject": "product: teach futures spot-flow relationships on pages",
+      "class": "product"
+    },
+    {
+      "sha": "d6cf6889b118b7577f6c90f9adbd697427c1eba8",
+      "subject": "product: add futures spot-flow study interpretation",
+      "class": "product"
+    },
+    {
+      "sha": "c8dfaf26f43ca88779af6d931cfeb335e761966f",
+      "subject": "product: test dynamic liquid validation samples",
+      "class": "product"
+    },
+    {
+      "sha": "b1d1c95af72a785ae986d41ee11a67954e15d888",
+      "subject": "product: auto-expand model validation universe",
+      "class": "product"
+    },
+    {
+      "sha": "c6a4037c52b4a2c7af7355f6820a9fa02020f749",
+      "subject": "product: derive liquid validation universe from turnover",
+      "class": "product"
+    },
+    {
+      "sha": "135ef600710793636d6f2af46c699bda6d0154b2",
+      "subject": "product: test extended stock-history request",
+      "class": "product"
+    },
+    {
+      "sha": "be0f4bed1a985f99eb3cf1116749271b55b672de",
+      "subject": "product: deepen smart-money walk-forward history",
+      "class": "product"
+    },
+    {
+      "sha": "d0d40f6997020aebc00276e6ed808d52ebf094fe",
+      "subject": "product: request longer smart-money price history",
+      "class": "product"
+    },
+    {
+      "sha": "ec18789a46630e8e2c3d1db2ac57f4036fbacd30",
+      "subject": "product: explain flow acceleration on market pages",
+      "class": "product"
+    },
+    {
+      "sha": "6531aac5d415d06f13e573d4ec9f1c8c5601332e",
+      "subject": "product: test intraday flow pace states",
+      "class": "product"
+    },
+    {
+      "sha": "bb73e82726e816b43dffef309c6f0256f1dc9eea",
+      "subject": "product: add multi-window market flow pace analysis",
+      "class": "product"
+    },
+    {
+      "sha": "7e0e7493709a1bbd232b7af99e565dc4b1a2ca26",
+      "subject": "product: cover repaired sector breadth feed",
+      "class": "product"
+    },
+    {
+      "sha": "b822c2ec6e055ea89fd96a5cf5242c6a47e012a9",
+      "subject": "evolution: add point-in-time news impact challenger",
+      "class": "maintenance"
+    },
+    {
+      "sha": "370f79ea86d2acb8fe16aa4bd4609e641bb2dae2",
+      "subject": "product: repair sector breadth feed fallbacks",
+      "class": "product"
+    },
+    {
+      "sha": "bf2659c208c7d3fde8f1fae085ae3599f30e1b30",
+      "subject": "product: refresh market intelligence",
+      "class": "product"
+    },
     {
       "sha": "053ea2ba98a200a67fa92d174f99e3db406e39a4",
       "subject": "product: refresh market intelligence",
@@ -67,96 +157,6 @@
     {
       "sha": "3892534608a378ac527b1513a19f272acbc39b88",
       "subject": "product: merge first-party official feeds into news fast lane",
-      "class": "product"
-    },
-    {
-      "sha": "9a904f0e2eada5f5ffee9aadc1130c3df8139580",
-      "subject": "product: preserve primary evidence during news deduplication",
-      "class": "product"
-    },
-    {
-      "sha": "0fafdb0b875def555373944539b42ab770ee4dfd",
-      "subject": "product: add no-key official Korean news feeds",
-      "class": "product"
-    },
-    {
-      "sha": "6f350aac708df25595a3836f9e0279d88b93ebd2",
-      "subject": "product: refresh market intelligence",
-      "class": "product"
-    },
-    {
-      "sha": "2b73a459d9bd727bfb3747a45a230063588a11b5",
-      "subject": "product: show observed market reaction on news issues",
-      "class": "product"
-    },
-    {
-      "sha": "724107239ed54ef2b678972bd6b72b488eb4097e",
-      "subject": "test: protect news market-reaction causality boundary",
-      "class": "unclassified"
-    },
-    {
-      "sha": "39a7368401ce8622372167fac59db69a382bd05a",
-      "subject": "product: link news issues to observed market reactions",
-      "class": "product"
-    },
-    {
-      "sha": "d5c505ce4f4c048ea0b6353a324c1416a45ee9c9",
-      "subject": "product: publish Smart Money validation metrics",
-      "class": "product"
-    },
-    {
-      "sha": "7df10debd504f443d94d021ba7306b4e28beeda1",
-      "subject": "ci: persist Smart Money validation evidence",
-      "class": "maintenance"
-    },
-    {
-      "sha": "de34f34730e9653bbb3efb218bd195b40f81f4ff",
-      "subject": "test: cover Smart Money walk-forward validation",
-      "class": "unclassified"
-    },
-    {
-      "sha": "8b7768091f2762ec6146664cff17e45b387c08dc",
-      "subject": "product: connect Smart Money walk-forward backtest",
-      "class": "product"
-    },
-    {
-      "sha": "83244a0c32022e1d7e08ce603d740d28944ef221",
-      "subject": "product: add Smart Money walk-forward validation",
-      "class": "product"
-    },
-    {
-      "sha": "ba4b82e0fda5a153b7ca7139ca319fd1fdd367ec",
-      "subject": "product: explain market strength with turnover breadth",
-      "class": "product"
-    },
-    {
-      "sha": "3a78da162ecf54738d35b5ac1d1f6da686fe588b",
-      "subject": "ci: persist turnover and live service state",
-      "class": "maintenance"
-    },
-    {
-      "sha": "3bdbaa1244a9f1647d98a165b48aa6170eaced4e",
-      "subject": "test: verify turnover participation normalization",
-      "class": "unclassified"
-    },
-    {
-      "sha": "6b1b872b3d51e97a7f756da838de20ad9334a0e3",
-      "subject": "product: connect full-market turnover participation to strength",
-      "class": "product"
-    },
-    {
-      "sha": "25f20cecaa305bf67311aef768433c1562a27ff5",
-      "subject": "product: add full-market turnover participation feed",
-      "class": "product"
-    },
-    {
-      "sha": "29df8c489d5821efd5a6f5c3f7deb879cdbcf873",
-      "subject": "product: refresh market intelligence",
-      "class": "product"
-    },
-    {
-      "sha": "17313195f6b24e3147f47745999c0bee508517c2",
-      "subject": "product: publish futures basis and investor flow fallback",
       "class": "product"
     }
   ]
