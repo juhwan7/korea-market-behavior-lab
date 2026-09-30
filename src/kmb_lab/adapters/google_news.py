@@ -96,6 +96,11 @@ GENERIC_EVENT_TOKENS = {
     "발표", "계획", "추진", "전망", "확대", "상승", "하락", "강세", "약세",
     "속도", "도약", "그룹", "억원", "조원", "종목", "뉴스", "기자",
 }
+ORIGINAL_REPORTER_HINTS = (
+    "reuters", "로이터", "associated press", " ap", "bloomberg", "블룸버그",
+    "연합뉴스", "연합인포맥스", "뉴시스", "뉴스1", "뉴스핌",
+)
+
 ACTION_GROUPS = {
     "인수합병": ("인수", "취득", "합병", "경영권", "본계약", "품는다", "품고"),
     "투자증설": ("투자", "증설", "출자", "증자", "공장", "설비"),
@@ -209,24 +214,29 @@ def _event_core_tokens(articles: list[dict[str, Any]]) -> list[str]:
 
 
 def _independent_lineages(articles: list[dict[str, Any]]) -> tuple[int, int]:
-    """Conservatively estimate independent origins; near-identical rewrites count once."""
-    lineages: list[dict[str, Any]] = []
+    """Conservatively estimate independent origins.
+
+    A cluster can contain many publisher rewrites of one corporate release or
+    wire story. First-party sources and publishers commonly acting as original
+    reporters/wires count separately. Other secondary rewrites inside the same
+    event cluster share one conservative lineage unless provenance proves more.
+    This intentionally avoids treating 20 rewrites as 20 confirmations.
+    """
+    lineages: set[str] = set()
+    secondary_bucket = False
     for article in articles:
         source = str(article.get("source") or article.get("publisher") or "").strip()
-        title = str(article.get("headline") or article.get("title") or "")
+        source_lower = source.lower()
         primary = bool(article.get("official_source_available")) or str(article.get("source_type") or "").upper() == "PRIMARY"
         if primary:
-            key = "primary:" + source.lower()
-            if not any(row["key"] == key for row in lineages):
-                lineages.append({"key": key, "title": title})
+            lineages.add("primary:" + (source_lower or "official"))
             continue
-        matched = False
-        for row in lineages:
-            if not row["key"].startswith("primary:") and _headline_similarity(title, row["title"]) >= 0.90:
-                matched = True
-                break
-        if not matched:
-            lineages.append({"key": "secondary:" + (source.lower() or str(len(lineages))), "title": title})
+        if any(hint.strip() and hint.strip() in source_lower for hint in ORIGINAL_REPORTER_HINTS):
+            lineages.add("original:" + source_lower)
+            continue
+        secondary_bucket = True
+    if secondary_bucket:
+        lineages.add("secondary:event-syndication")
     independent = len(lineages)
     return independent, max(0, len(articles) - independent)
 
