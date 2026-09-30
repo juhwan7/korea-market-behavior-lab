@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import ast
+import re
 from datetime import datetime, timedelta, timezone
 from typing import Any, Iterable
 
@@ -271,6 +272,132 @@ def normalize_turnover_participation(rows: list[dict[str, Any]]) -> dict[str, An
         "source_id": SOURCE_ID,
         "source_kind": SOURCE_KIND,
         "method_note": "상승·하락 종목의 누적 거래대금을 합산한 장중 거래대금 참여도입니다.",
+    }
+
+
+
+def fetch_sector_list() -> Any:
+    """Fetch Naver's public domestic industry-index list.
+
+    This is an undocumented secondary endpoint. Results are never promoted to
+    official KRX industry breadth.
+    """
+    return request_json(
+        f"{FRONT}/stock/sectors/all",
+        params={"nationType": "domestic", "sectorType": "upjong"},
+        headers={"Referer": REFERER},
+    )
+
+
+def normalize_sector_dispersion(payload: Any) -> dict[str, Any]:
+    sectors: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for row in _iter_dicts(_payload(payload)):
+        change = _number(row.get("fluctuationsRatio") or row.get("changeRate") or row.get("rate"))
+        name = row.get("sectorName") or row.get("name") or row.get("itemName") or row.get("stockName")
+        code = row.get("sectorCode") or row.get("code") or row.get("itemCode")
+        if change is None or not name:
+            continue
+        key = str(code or name)
+        if key in seen:
+            continue
+        seen.add(key)
+        sectors.append({"code": code, "name": str(name), "change_pct": change})
+    sectors.sort(key=lambda x: float(x["change_pct"]), reverse=True)
+    positive = sum(1 for row in sectors if row["change_pct"] > 0)
+    negative = sum(1 for row in sectors if row["change_pct"] < 0)
+    flat = len(sectors) - positive - negative
+    directional = positive + negative
+    return {
+        "evidence_state": "ESTIMATED" if sectors else "UNKNOWN",
+        "sector_count": len(sectors),
+        "positive": positive,
+        "negative": negative,
+        "flat": flat,
+        "positive_directional_share": round(positive / directional, 4) if directional else None,
+        "average_change_pct": round(sum(float(x["change_pct"]) for x in sectors) / len(sectors), 3) if sectors else None,
+        "strongest": sectors[:8],
+        "weakest": list(reversed(sectors[-8:])),
+        "sectors": sectors,
+        "source_id": SOURCE_ID,
+        "source_kind": SOURCE_KIND,
+        "method_note": "네이버 공개 업종지수의 상승·하락 확산도 프록시이며 KRX 공식 업종 구성종목 breadth가 아닙니다.",
+    }
+
+
+def _market_cap_krw(value: Any) -> float | None:
+    if isinstance(value, (int, float)) and not isinstance(value, bool):
+        return float(value)
+    raw = str(value or "").strip().replace(",", "").replace(" ", "")
+    if not raw:
+        return None
+    total = 0.0
+    matched = False
+    trillion = re.search(r"([0-9]+(?:\.[0-9]+)?)조", raw)
+    billion = re.search(r"([0-9]+(?:\.[0-9]+)?)억", raw)
+    if trillion:
+        total += float(trillion.group(1)) * 1_000_000_000_000
+        matched = True
+    if billion:
+        total += float(billion.group(1)) * 100_000_000
+        matched = True
+    if matched:
+        return total
+    return _number(raw)
+
+
+def normalize_size_participation(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    usable: list[dict[str, float]] = []
+    for row in rows:
+        cap = _market_cap_krw(
+            row.get("marketValueRaw") or row.get("marketValue") or
+            row.get("marketCap") or row.get("marketCapitalization")
+        )
+        change = _number(row.get("fluctuationsRatio") or row.get("changeRate"))
+        turnover = _number(
+            row.get("accumulatedTradingValueRaw") or row.get("accumulatedTradingValue") or row.get("tradingValue")
+        )
+        if cap is None or cap <= 0 or change is None:
+            continue
+        usable.append({"cap": cap, "change": change, "turnover": max(0.0, turnover or 0.0)})
+    if len(usable) < 30:
+        return {"evidence_state": "UNKNOWN", "stock_count": len(usable), "reason": "시가총액 기준 유효 종목이 30개 미만입니다."}
+
+    usable.sort(key=lambda x: x["cap"], reverse=True)
+    n = len(usable)
+    large_end = max(1, int(n * 0.20))
+    mid_end = max(large_end + 1, int(n * 0.50))
+    groups = {
+        "large_proxy": usable[:large_end],
+        "mid_proxy": usable[large_end:mid_end],
+        "small_proxy": usable[mid_end:],
+    }
+    total_cap = sum(x["cap"] for x in usable)
+    total_turnover = sum(x["turnover"] for x in usable)
+
+    def summarize(group: list[dict[str, float]]) -> dict[str, Any]:
+        adv = sum(1 for x in group if x["change"] > 0)
+        dec = sum(1 for x in group if x["change"] < 0)
+        flat = len(group) - adv - dec
+        return {
+            "stock_count": len(group),
+            "advance": adv,
+            "decline": dec,
+            "flat": flat,
+            "advance_share": round(adv / len(group), 4) if group else None,
+            "average_change_pct": round(sum(x["change"] for x in group) / len(group), 3) if group else None,
+            "market_cap_share": round(sum(x["cap"] for x in group) / total_cap, 4) if total_cap else None,
+            "turnover_share": round(sum(x["turnover"] for x in group) / total_turnover, 4) if total_turnover else None,
+        }
+
+    return {
+        "evidence_state": "ESTIMATED",
+        "stock_count": n,
+        "classification": "market_cap_rank_proxy_top20_mid30_bottom50",
+        "segments": {name: summarize(group) for name, group in groups.items()},
+        "source_id": SOURCE_ID,
+        "source_kind": SOURCE_KIND,
+        "method_note": "공식 KRX 대형/중형/소형 지수 분류가 아니라 시가총액 순위 상위20%·중간30%·하위50% 참여도 프록시입니다.",
     }
 
 

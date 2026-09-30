@@ -79,7 +79,7 @@ def _join(values: Any, fallback: str = "추가 확인 중") -> str:
 
 def _strength(data: dict[str, Any]) -> str:
     components = data.get("components") or {}
-    labels = {"price":"가격","breadth":"시장폭","turnover":"거래대금","foreign_flow":"외국인 수급","program":"프로그램"}
+    labels = {"price":"가격","breadth":"시장폭","turnover":"거래대금","foreign_flow":"외국인 수급","program":"프로그램","sector_breadth":"업종 확산"}
     cards = "".join(
         f'<article class="metric"><span>{esc(labels.get(k,k))}</span><strong>{esc(num(v))}</strong></article>'
         for k,v in components.items()
@@ -103,10 +103,28 @@ def _strength(data: dict[str, Any]) -> str:
         if turnover.get("evidence_state") == "ESTIMATED"
         else '<article class="card" style="margin-top:12px"><h3>거래대금 내부 힘</h3><p>아직 전 종목 거래대금 집계가 충분하지 않습니다.</p></article>'
     )
+    size = data.get("size_participation") or {}
+    size_labels = {"large_proxy":"시총 상위 20%","mid_proxy":"시총 중간 30%","small_proxy":"시총 하위 50%"}
+    size_cards = "".join(
+        f'<article class="metric"><span>{esc(size_labels.get(k,k))}</span><strong>{esc(num(v,suffix="점"))}</strong></article>'
+        for k,v in size.items() if isinstance(v,(int,float))
+    ) or '<p class="empty">규모별 참여도 계산에 필요한 시가총액 데이터가 부족합니다.</p>'
+    sectors = data.get("sector_breadth_detail") or {}
+    strong = " · ".join(f"{x.get('name')} {num(x.get('change_pct'),suffix='%',digits=2)}" for x in (sectors.get("strongest") or [])[:5])
+    weak = " · ".join(f"{x.get('name')} {num(x.get('change_pct'),suffix='%',digits=2)}" for x in (sectors.get("weakest") or [])[:5])
+    sector_html = (
+        f'<article class="card" style="margin-top:12px"><h3>업종 확산</h3>{badge(sectors.get("evidence_state"))}'
+        f'<p><b>상승 업종:</b> {esc(sectors.get("positive"))} · <b>하락 업종:</b> {esc(sectors.get("negative"))}</p>'
+        f'<p><b>강한 업종:</b> {esc(strong or "확인 중")}</p><p><b>약한 업종:</b> {esc(weak or "확인 중")}</p>'
+        '<p class="section-note">공개 업종지수 기반 확산도 프록시이며 KRX 공식 구성종목 breadth가 아닙니다.</p></article>'
+    )
     return (
         '<h2 data-kmb-section="market-strength">시장 힘</h2>'
         f'<p class="section-note">시장 체력 종합값 {esc(composite)} · 사용 축 {esc(coverage.get("available",0))}/{esc(coverage.get("total",0))}. 누락 축은 임의 점수로 채우지 않습니다.</p>'
-        f'<div class="metric-grid">{cards}</div>{turnover_html}<article class="card" style="margin-top:12px"><h3>지수 착시 확인</h3><ul>{illusions}</ul></article>'
+        f'<div class="metric-grid">{cards}</div>'
+        '<h3 style="margin-top:16px">규모별 참여도</h3>'
+        f'<div class="metric-grid">{size_cards}</div>'
+        f'{sector_html}{turnover_html}<article class="card" style="margin-top:12px"><h3>지수 착시 확인</h3><ul>{illusions}</ul></article>'
     )
 
 

@@ -414,6 +414,7 @@ def collect_turnover(root: Path) -> tuple[dict[str, Any], list[str]]:
         try:
             rows = naver_market.fetch_market_universe(market)
             markets[market] = naver_market.normalize_turnover_participation(rows)
+            markets[market]["size_participation"] = naver_market.normalize_size_participation(rows)
         except Exception as exc:
             errors.append(f"naver-turnover-{market}:{exc}")
             markets[market] = {"evidence_state": "UNKNOWN", "reason": str(exc)}
@@ -443,6 +444,28 @@ def collect_turnover(root: Path) -> tuple[dict[str, Any], list[str]]:
         "source_kind": naver_market.SOURCE_KIND,
         "method_note": "상승·하락 종목별 누적 거래대금을 전 종목 공개 목록에서 합산합니다. 공식 KRX 값과 동일하게 취급하지 않습니다.",
     }, errors
+
+
+
+def collect_sector_breadth(root: Path) -> tuple[dict[str, Any], list[str]]:
+    try:
+        result = naver_market.normalize_sector_dispersion(naver_market.fetch_sector_list())
+        if result.get("evidence_state") == "ESTIMATED":
+            resolve_unresolved("DATA-SECTOR-BREADTH", root=root, note="secondary sector dispersion feed recovered")
+            return {"generated_at": now_text(), **result}, []
+        raise RuntimeError(result.get("reason") or "sector list normalized without usable rows")
+    except Exception as exc:
+        upsert_unresolved({
+            "id": "DATA-SECTOR-BREADTH", "owner": "AI-A",
+            "problem": "Sector dispersion feed is unavailable or its public schema changed",
+            "root_cause": str(exc), "attempted_solutions": ["Naver public domestic industry-index list with schema-tolerant normalization"],
+            "why_failed": str(exc), "required_external_action": None, "retry_condition": "next scheduled collector run or endpoint schema repair",
+            "do_not_repeat": "Do not fabricate sector breadth; keep the core market-strength axes running without this optional diagnostic.",
+            "related_files": ["src/kmb_lab/adapters/naver_market.py", "data/market/sector-breadth.json"],
+            "related_commits": [], "status": "OPEN",
+        }, root=root)
+        return {"generated_at": now_text(), "evidence_state": "UNKNOWN", "sectors": [], "reason": str(exc),
+                "source_id": naver_market.SOURCE_ID, "source_kind": naver_market.SOURCE_KIND}, [f"sector-breadth:{exc}"]
 
 
 def collect_futures(root: Path, indices: dict[str, Any] | None = None) -> tuple[dict[str, Any], list[str]]:
@@ -1160,6 +1183,7 @@ def run(root: Path = ROOT) -> dict[str, Any]:
 
     indices, breadth, domestic, e = collect_domestic(root); errors += e
     turnover, e = collect_turnover(root); errors += e
+    sector_breadth, e = collect_sector_breadth(root); errors += e
     futures, e = collect_futures(root, indices); errors += e
     global_data, e = collect_global(); errors += e
     bok_official, e = collect_bok_official(root); errors += e
@@ -1177,10 +1201,13 @@ def run(root: Path = ROOT) -> dict[str, Any]:
         flows=flow_analysis,
         program_net_100m_krw=program.get("net_100m_krw"),
         turnover_ratio=turnover_ratio,
+        sector_breadth=sector_breadth,
+        size_participation=turnover.get("markets") or {},
     )
     strength["as_of"] = now_text()
     strength["breadth"] = breadth
     strength["turnover_detail"] = turnover
+    strength["sector_breadth_detail"] = sector_breadth
 
     snapshots = _append_market_snapshot(root, _market_snapshot(
         indices=indices,
@@ -1206,6 +1233,7 @@ def run(root: Path = ROOT) -> dict[str, Any]:
     write_json(root / "data/market/global.json", global_data)
     write_json(root / "data/market/bok-official.json", bok_official)
     write_json(root / "data/market/turnover.json", turnover)
+    write_json(root / "data/market/sector-breadth.json", sector_breadth)
     write_json(root / "data/market/strength.json", strength)
     write_json(root / "data/news/current.json", news_current)
     write_json(root / "data/news/disclosures.json", disclosures)
@@ -1266,6 +1294,12 @@ def run(root: Path = ROOT) -> dict[str, Any]:
             "market_strength": strength.get("evidence_state"),
             "turnover": (turnover.get("combined") or {}).get("evidence_state"),
             "turnover_stock_count": (turnover.get("combined") or {}).get("stock_count"),
+            "sector_breadth": sector_breadth.get("evidence_state"),
+            "sector_count": sector_breadth.get("sector_count", 0),
+            "size_participation": any(
+                (((row or {}).get("size_participation") or {}).get("evidence_state") == "ESTIMATED")
+                for row in (turnover.get("markets") or {}).values()
+            ),
             "smart_money": smart_money.get("model_status"),
             "smart_money_estimated_items": smart_estimated,
             "smart_money_backtest_samples": ((smart_money.get("validation") or {}).get("sample_count") or 0),
