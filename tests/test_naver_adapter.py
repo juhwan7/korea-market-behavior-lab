@@ -1,10 +1,13 @@
 import unittest
+from unittest.mock import patch
 
 from kmb_lab.adapters.naver_market import (
     normalize_index_basic,
     normalize_kospi200_futures,
     normalize_main_summary,
     normalize_program,
+    normalize_sector_dispersion,
+    fetch_sector_list,
     normalize_stock_bars,
     normalize_turnover_participation,
 )
@@ -74,6 +77,26 @@ class NaverTests(unittest.TestCase):
         self.assertEqual(r["KOSDAQ"]["breadth"]["advance"], 820)
         self.assertEqual(r["KPI200"]["breadth"]["decline"], 110)
 
+    def test_sector_dispersion_supports_current_v2_shape(self):
+        payload = {"items": [
+            {"no": "101", "name": "반도체", "changeRate": "1.25"},
+            {"no": "102", "name": "화학", "changeRate": "-0.75"},
+            {"no": "103", "name": "운송", "changeRate": "0.00"},
+        ]}
+        result = normalize_sector_dispersion(payload)
+        self.assertEqual(result["sector_count"], 3)
+        self.assertEqual(result["positive"], 1)
+        self.assertEqual(result["negative"], 1)
+        self.assertEqual(result["flat"], 1)
+        self.assertEqual(result["strongest"][0]["code"], "101")
+
+    def test_sector_fetch_prefers_current_stock_naver_endpoint(self):
+        payload = {"items": [{"no": "101", "name": "반도체", "changeRate": "1.25"}]}
+        with patch("kmb_lab.adapters.naver_market.request_json", return_value=payload) as request_json:
+            result = fetch_sector_list()
+        self.assertEqual(result, payload)
+        self.assertIn("/api/stockSecurity/rankings/v2/domestic/industries", request_json.call_args.args[0])
+        self.assertEqual(request_json.call_args.kwargs["params"]["period"], "daily")
     def test_turnover_participation_uses_directional_trading_value(self):
         rows = [
             {"accumulatedTradingValueRaw": "100000000000", "fluctuationsRatio": "2.0"},
