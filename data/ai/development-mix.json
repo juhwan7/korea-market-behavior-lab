@@ -3,12 +3,37 @@
   "method": "commit_path_classification",
   "window_hours": 24,
   "target_product_min_pct": 70,
-  "product_pct": 56.4,
-  "maintenance_pct": 43.6,
-  "labeled_commit_count": 117,
+  "product_pct": 54.9,
+  "maintenance_pct": 45.1,
+  "labeled_commit_count": 122,
   "unclassified_commit_count": 28,
   "warning": true,
   "recent": [
+    {
+      "sha": "0ee23eac75f91cd6e837ccba0a2e20c477bc0fa0",
+      "subject": "audit: prove news lifecycle identity reset across snapshots",
+      "class": "maintenance"
+    },
+    {
+      "sha": "cdecf23cb0f2df695639cc212ca17eedd3d418b9",
+      "subject": "AI-A: persist 21:57 discovery runtime evidence",
+      "class": "maintenance"
+    },
+    {
+      "sha": "797f5a9b9fc4c9cb0d63eaa132abc405772f74ab",
+      "subject": "ai-c: record EXP-C-015 quant heartbeat",
+      "class": "maintenance"
+    },
+    {
+      "sha": "c0d10089bbc66efea7571d7994122d452a8603f0",
+      "subject": "ai-b: audit primary-source issue visibility loss",
+      "class": "maintenance"
+    },
+    {
+      "sha": "6085809e4420b67e5f6aae2f9620320f5a3e0a62",
+      "subject": "product: refresh market intelligence",
+      "class": "product"
+    },
     {
       "sha": "3628f77119fca89194db67129d08d6240a479111",
       "subject": "ai-b: record article issue lineage audit",
@@ -133,31 +158,6 @@
       "sha": "d0d40f6997020aebc00276e6ed808d52ebf094fe",
       "subject": "product: request longer smart-money price history",
       "class": "product"
-    },
-    {
-      "sha": "ec18789a46630e8e2c3d1db2ac57f4036fbacd30",
-      "subject": "product: explain flow acceleration on market pages",
-      "class": "product"
-    },
-    {
-      "sha": "6531aac5d415d06f13e573d4ec9f1c8c5601332e",
-      "subject": "product: test intraday flow pace states",
-      "class": "product"
-    },
-    {
-      "sha": "bb73e82726e816b43dffef309c6f0256f1dc9eea",
-      "subject": "product: add multi-window market flow pace analysis",
-      "class": "product"
-    },
-    {
-      "sha": "7e0e7493709a1bbd232b7af99e565dc4b1a2ca26",
-      "subject": "product: cover repaired sector breadth feed",
-      "class": "product"
-    },
-    {
-      "sha": "b822c2ec6e055ea89fd96a5cf5242c6a47e012a9",
-      "subject": "evolution: add point-in-time news impact challenger",
-      "class": "maintenance"
     }
   ]
 }
