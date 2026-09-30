@@ -63,7 +63,7 @@ jobs:
               CHANGED="$(git show --pretty="" --name-only "$GITHUB_SHA")"
             fi
             printf '%s\n' "$CHANGED"
-            if printf '%s\n' "$CHANGED" | grep -Eq '^(web/|src/kmb_lab/pages(_korean)?\.py$|tests/test_pages.*\.py$|\.github/workflows/pages\.yml$)'; then
+            if printf '%s\n' "$CHANGED" | grep -Eq '^(web/|src/kmb_lab/pages.*\.py$|src/kmb_lab/instrument_filter\.py$|src/kmb_lab/adapters/(google_news|naver_market)\.py$|tests/test_pages.*\.py$|tests/test_(instrument_filter|news_pipeline|naver_adapter)\.py$|\.github/workflows/pages\.yml$)'; then
               SHOULD_DEPLOY=true
             fi
           fi
@@ -77,10 +77,12 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
           PYTHONPATH=src python -m kmb_lab.pages generate --output-dir web --source-commit "$GITHUB_SHA" --repository "$GITHUB_REPOSITORY"
-          test -s web/index.html
+          for page in index.html issues.html ai-research.html stocks.html smart-money.html news.html global.html lab.html system.html; do
+            test -s "web/$page"
+            grep -F "$GITHUB_SHA" "web/$page"
+          done
           test -s web/status.json
           test -s web/market-news.json
-          grep -F "$GITHUB_SHA" web/index.html
           python - <<'PY'
           import json
           status=json.load(open("web/status.json", encoding="utf-8"))
