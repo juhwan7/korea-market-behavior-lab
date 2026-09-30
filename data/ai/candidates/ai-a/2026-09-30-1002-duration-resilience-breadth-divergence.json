@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "agent": "AI-A",
+  "type": "MARKET_DISCOVERY_HYPOTHESIS",
+  "created_at": "2026-09-30T10:02:35+09:00",
+  "base_sha": "8f1214ebe9c4d10c1b41ca82fd35a911f9bef5b7",
+  "mode": "ULTRA_PARALLEL_EVOLUTION_V2",
+  "major_work": {
+    "hypothesis_id": "KMB-A-20260930-DURATION-RESILIENCE-BREADTH-DIVERGENCE",
+    "fingerprint": "us10y_above_5.2_and_broad_us_equities_soft_but_korea_chip_led_open_strength",
+    "title": "고금리 충격 속 반도체 상대강도는 시장 전체 Risk-On보다 이익 모멘텀 집중/좁은 breadth 신호일 수 있다",
+    "status": "HYPOTHESIS",
+    "confirmed": [
+      "2026-09-29 US session: 10Y Treasury yield reached about 5.293% and 30Y about 5.621%; Dow/S&P500/Nasdaq all closed slightly lower.",
+      "2026-09-30 09:15 KST: KOSPI was 6,951.27, +1.17%, with the open described as chip-led despite elevated US Treasury yields.",
+      "2026-09-29 Korea session already showed a related divergence: foreign selling kept KOSPI weak while Samsung Electronics and other chip stocks rebounded in the morning."
+    ],
+    "hypothesis": [
+      "If semiconductor relative strength persists while global duration pressure remains extreme, earnings/export momentum may temporarily dominate discount-rate pressure specifically in chips rather than signal broad Korean risk-on.",
+      "A widening gap between cap-weighted KOSPI and equal-weight/breadth would be a warning that headline index strength is increasingly concentrated and fragile."
+    ],
+    "unknown": [
+      "10:02 KST full-market breadth, final close and investor-flow decomposition are not yet known.",
+      "Causal share of AI/export earnings versus technical rebound, dividend-related flow, treasury-share demand and overnight semiconductor beta is unknown.",
+      "No claim is made about specific large-player inventory, intent or target price."
+    ],
+    "provenance": [
+      {
+        "source": "Yonhap",
+        "published_at": "2026-09-30T09:20:00+09:00",
+        "fact": "KOSPI +1.17% at 09:15; chip gains led open; elevated US yields weighed on sentiment",
+        "url": "https://en.yna.co.kr/view/AEN20260930001751320"
+      },
+      {
+        "source": "Seoul Economic Daily",
+        "published_at": "2026-09-30T06:12:39+09:00",
+        "fact": "US 10Y intraday 5.293%, 30Y 5.621%; US major indices slightly lower",
+        "url": "https://en.sedaily.com/international/2026/09/30/us-treasury-yields-climb-as-oil-slides-stocks-end-slightly"
+      },
+      {
+        "source": "Aju Press",
+        "published_at": "2026-09-29",
+        "fact": "Sept 29 morning foreign selling > KRW1tn kept KOSPI lower despite Samsung/chip rebound",
+        "url": "https://www.ajupress.com/view/20260929114521326"
+      }
+    ]
+  },
+  "small_works": [
+    {
+      "fingerprint": "september_export_62pct_poll",
+      "result": "NO_NEW_EVIDENCE",
+      "note": "Official September trade release remains scheduled for Oct 1; Reuters +62.0% remains forecast, not actual."
+    },
+    {
+      "fingerprint": "power_constraint_capex_quality",
+      "result": "NO_NEW_EVIDENCE",
+      "note": "No new authoritative evidence in this run sufficient to change prior classification."
+    }
+  ],
+  "handoffs": [
+    {
+      "to": "AI-C",
+      "priority": "P2",
+      "request": "Test days/regimes with US10Y >=5.2%: semiconductor basket vs KOSPI, equal-weight KOSPI and advance/decline breadth; control USDKRW, oil, SOX overnight return, export surprises and dividend/ex-date effects."
+    },
+    {
+      "to": "AI-B",
+      "priority": "P2",
+      "request": "Falsify earnings-dominance interpretation using mechanical rebound, dividend arbitrage unwind, treasury-share/corporate buying, index concentration and overnight beta explanations."
+    }
+  ],
+  "runtime_preflight": {
+    "five_automations_enabled": true,
+    "checked_at": "2026-09-30T10:02:35+09:00",
+    "note": "Actual scheduler state checked; all A/B/C/D/E enabled. Repository state alone not used."
+  },
+  "pages_impact": "NO_DIRECT_CANONICAL_DISPLAY_CHANGE",
+  "next_work": "Recheck intraday/close breadth and investor flows; Oct 1 official export release should replace poll forecast and decompose semiconductor contribution."
+}
