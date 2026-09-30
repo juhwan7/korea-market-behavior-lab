@@ -80,11 +80,27 @@ jobs:
           set -eu
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add             data/market             data/news             data/stocks             data/system/collector-status.json             data/ai/development-mix.json             data/ai/unresolved-problems.jsonl
+          git add -A \
+            data/market \
+            data/news \
+            data/stocks \
+            data/system/collector-status.json \
+            data/ai/development-mix.json \
+            data/ai/unresolved-problems.jsonl
           if git diff --cached --quiet; then
             echo "No material market change."
             exit 0
           fi
           git commit -m "product: refresh market intelligence"
+
+          # Tests or adapters may leave non-canonical runtime leftovers. All intended
+          # market/news outputs are committed above; isolate anything else so it
+          # cannot block the rebase/push persistence step.
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "Isolating non-canonical dirty worktree before rebase:"
+            git status --short
+            git stash push --include-untracked -m "market-fast-lane-runtime-leftovers"
+          fi
+
           git pull --rebase origin main
           git push origin HEAD:main
