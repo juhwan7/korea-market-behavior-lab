@@ -1,34 +1,45 @@
 {
   "schema_version": 2,
-  "generated_at": "2026-09-29T16:31:00+09:00",
+  "generated_at": "2026-09-30T12:33:44+09:00",
   "services": [
     {
       "id": "news-fast-lane",
       "owner": "A",
       "secondary": "D",
       "emergency_fallback": "E",
-      "status": "PLANNED",
-      "monitoring_mode": "NOT_CONNECTED",
+      "status": "HEALTHY",
+      "monitoring_mode": "SCHEDULED",
       "freshness_target_minutes": 10,
-      "last_success_at": null,
-      "last_attempt_at": null,
+      "last_success_at": "2026-09-30T12:33:44+09:00",
+      "last_attempt_at": "2026-09-30T12:33:44+09:00",
       "recovery_owner": null,
       "lease_until": null,
-      "note": "Authoritative continuous news fast-lane runtime evidence is not connected yet; do not report this as healthy."
+      "note": "Scheduled Google News RSS discovery is producing normalized current news. It remains a secondary discovery feed; official-source verification is separate.",
+      "evidence": [
+        "data/news/current.json collection_status=HEALTHY",
+        "data/news/current.json current-window items"
+      ]
     },
     {
       "id": "market-data",
       "owner": "A",
       "secondary": "D",
       "emergency_fallback": "C",
-      "status": "PLANNED",
-      "monitoring_mode": "NOT_CONNECTED",
+      "status": "PARTIAL",
+      "monitoring_mode": "SCHEDULED",
       "freshness_target_minutes": 10,
-      "last_success_at": null,
-      "last_attempt_at": null,
+      "last_success_at": "2026-09-30T12:33:44+09:00",
+      "last_attempt_at": "2026-09-30T12:33:44+09:00",
       "recovery_owner": null,
       "lease_until": null,
-      "note": "Authoritative continuous market-data runtime evidence is not connected yet; do not fabricate freshness."
+      "note": "Scheduled market collector is active. Domestic indices, investor flows, breadth and global quotes are populated; KRX primary authentication, program net flow and turnover axis remain incomplete.",
+      "evidence": [
+        "data/market/current.json",
+        "data/market/flows.json",
+        "data/market/breadth.json",
+        "data/market/global.json",
+        "data/system/collector-status.json"
+      ]
     },
     {
       "id": "canonical-guard",
