@@ -32,9 +32,16 @@ class PagesMarketTests(unittest.TestCase):
             }]},
             "issue_digest":{"collection_status":"HEALTHY","sources_checked":4},
             "news_work_products":[],
-            "smart_money":{"items":[]},"unresolved":[],"development_mix":{}
+            "relative_strength":{"items":[{
+                "code":"005930","name":"삼성전자","benchmark":"KOSPI","evidence_state":"ESTIMATED",
+                "overall_state":"STRONGER","weighted_excess_return_pct":3.2,
+                "windows":{"1":{"stock_return_pct":1.0,"benchmark_return_pct":0.2,"excess_return_pct":0.8,"state":"SIMILAR"},
+                           "3":{"stock_return_pct":5.0,"benchmark_return_pct":1.0,"excess_return_pct":4.0,"state":"STRONGER"},
+                           "5":{"stock_return_pct":7.0,"benchmark_return_pct":2.0,"excess_return_pct":5.0,"state":"STRONGER"},
+                           "20":{"stock_return_pct":12.0,"benchmark_return_pct":4.0,"excess_return_pct":8.0,"state":"STRONGER"}}
+            }]},"smart_money":{"items":[]},"unresolved":[],"development_mix":{}
         })
-        for marker in ("market-issues","today-news","ai-news-analysis","issue-timeline","market-strength","flows","futures-global","news-issues","smart-money"):
+        for marker in ("market-issues","today-news","ai-news-analysis","issue-timeline","market-strength","flows","futures-global","news-issues","relative-strength","smart-money"):
             self.assertIn(f'data-kmb-section="{marker}"',html)
         self.assertIn("왜 중요한가",html)
         self.assertIn("A신문",html)
@@ -42,7 +49,7 @@ class PagesMarketTests(unittest.TestCase):
         self.assertIn("실제 특정 계좌",html)
 
     def test_empty_news_is_explicit_not_fabricated(self):
-        html=render_market_intelligence({"news":{},"issues":{},"issue_digest":{},"strength":{},"flows":{},"futures":{},"global":{},"smart_money":{}})
+        html=render_market_intelligence({"news":{},"issues":{},"issue_digest":{},"strength":{},"flows":{},"futures":{},"global":{},"relative_strength":{},"smart_money":{}})
         self.assertIn("현재 확인된 핵심 시장 이슈가 없습니다.",html)
         self.assertIn("임의의 뉴스를 만들지 않습니다",html)
 
