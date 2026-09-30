@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "candidate_id": "KMB-A-20260930-INDEX-RESILIENCE-BREADTH-REGIME",
+  "agent": "AI-A",
+  "created_at": "2026-09-30T14:57:18+09:00",
+  "work_type": "MAJOR_WORK",
+  "title": "Headline KOSPI rebound can coexist with a weak underlying breadth/regime after a concentrated AI unwind",
+  "fingerprint": "index-resilience-breadth-regime-after-ai-concentration-unwind",
+  "news_contract": {
+    "news_collection_attempted": true,
+    "repository_collection_attempted_at": "2026-09-30T14:09:31+09:00",
+    "collection_status": "PARTIAL",
+    "sources_checked": 20,
+    "raw_news_count": 203,
+    "deduplicated_count": 195,
+    "issue_created_count": null,
+    "issue_updated_count": null,
+    "outcome": "NEW_IMPORTANT_NEWS_DISCOVERED",
+    "note": "Counts are copied only from measurable repository issue-digest fields; no inferred counts."
+  },
+  "confirmed": [
+    "Repository issue-digest at 14:09 KST shows PARTIAL collection with 20 sources checked, 203 raw items and 195 deduplicated items.",
+    "Fresh external reporting on 2026-09-30 says KOSPI erased early gains later in the session while foreign investors were net sellers; elevated bond yields remained a pressure.",
+    "Financial Times reported KOSPI was down 18.8% in Q3 while still up strongly year-to-date, with memory-chip unwind a major contributor; this is secondary-source evidence, not an official causal attribution.",
+    "The repository already tracks the rates/energy issue GN-efbbbb703f594df7, whose market reaction remains PENDING."
+  ],
+  "hypothesis": "After an extreme AI/memory-led concentration unwind, a headline KOSPI rebound led by Samsung Electronics/SK Hynix can overstate broad risk appetite. The more useful regime signal may be whether index recovery is confirmed by breadth, equal-weight performance and foreign-flow persistence. If cap-weighted KOSPI rises while breadth/equal-weight and foreign flows remain weak, treat the move as concentration resilience rather than broad risk-on.",
+  "unknown": [
+    "Official full-session breadth and final foreign/institutional flow for 2026-09-30 at this run cutoff.",
+    "How much of the Q3 decline is causally attributable to AI-memory de-rating versus rates, oil, domestic policy and positioning.",
+    "Whether this divergence has predictive power for 1/3/5-day returns."
+  ],
+  "why_important": "Prevents the model from translating large-cap semiconductor rebounds directly into whole-market risk-on signals after a concentrated drawdown.",
+  "related_issue_ids": [
+    "GN-efbbbb703f594df7"
+  ],
+  "related_markets": [
+    "KOSPI",
+    "KOSDAQ",
+    "SOX",
+    "US Treasuries"
+  ],
+  "related_sectors": [
+    "semiconductors",
+    "memory"
+  ],
+  "related_stocks": [
+    "Samsung Electronics",
+    "SK Hynix"
+  ],
+  "counter_scenario": "If final breadth, equal-weight KOSPI and foreign flows all improve with the cap-weighted index, the concentration-resilience interpretation weakens and the move is more consistent with broad risk-on.",
+  "next_variables": [
+    "KOSPI equal-weight proxy",
+    "advancers/decliners",
+    "foreign net flow",
+    "institution net flow",
+    "Samsung/SK Hynix contribution to KOSPI",
+    "US 10Y/30Y yields",
+    "SOX",
+    "USD/KRW"
+  ],
+  "handoffs": {
+    "AI-C": "Test cap-weighted KOSPI minus equal-weight/breadth divergence after top-decile semiconductor drawdowns; measure 1/3/5-day forward returns and control for US yields, SOX, USD/KRW and oil.",
+    "AI-B": "Falsify with mechanical index concentration, buyback/dividend flows, quarter-end rebalancing, and the possibility that breadth catches up later in the session."
+  },
+  "provenance": [
+    {
+      "type": "repository",
+      "path": "data/news/issue-digest.json",
+      "as_of": "2026-09-30T14:09:31+09:00"
+    },
+    {
+      "type": "web_secondary",
+      "source": "Financial Times",
+      "published": "2026-09-30",
+      "claim_scope": "Q3 KOSPI drawdown and memory-chip unwind context"
+    },
+    {
+      "type": "web_secondary",
+      "source": "Reuters-syndicated market report",
+      "published": "2026-09-30",
+      "claim_scope": "intraday KOSPI fade and foreign selling"
+    }
+  ],
+  "pages_impact": "YES_IF_CANONICALIZED",
+  "status": "CANDIDATE"
+}
