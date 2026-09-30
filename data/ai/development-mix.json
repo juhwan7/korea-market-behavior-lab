@@ -3,12 +3,77 @@
   "method": "commit_path_classification",
   "window_hours": 24,
   "target_product_min_pct": 70,
-  "product_pct": 19.7,
-  "maintenance_pct": 80.3,
-  "labeled_commit_count": 76,
-  "unclassified_commit_count": 23,
+  "product_pct": 27.9,
+  "maintenance_pct": 72.1,
+  "labeled_commit_count": 86,
+  "unclassified_commit_count": 26,
   "warning": true,
   "recent": [
+    {
+      "sha": "fa7690d1672b49fa79f1c2e1d9c356e164858b78",
+      "subject": "product: show program flow beside investor supply demand",
+      "class": "product"
+    },
+    {
+      "sha": "1b60da0132e6d6cb513aa7f832b12524c3392d92",
+      "subject": "test: verify program arbitrage flow normalization",
+      "class": "unclassified"
+    },
+    {
+      "sha": "d8ecab86531e40c57055518148ef4fb629d99422",
+      "subject": "product: connect parsed program flow to market strength",
+      "class": "product"
+    },
+    {
+      "sha": "87bb30758e8b04e77f9b1485e343489bb5f02cf7",
+      "subject": "product: normalize arbitrage and non-arbitrage program flow",
+      "class": "product"
+    },
+    {
+      "sha": "3cb531e2712ef6a8f378a1b085ce64b5d3526835",
+      "subject": "test: keep relative strength visible in Pages",
+      "class": "unclassified"
+    },
+    {
+      "sha": "0b84e3b06173030af683aab1442a997857bbb0d8",
+      "subject": "ci: require relative strength canonical output",
+      "class": "maintenance"
+    },
+    {
+      "sha": "0245576afd0244cf85b417a4c8d1f20273ff70ac",
+      "subject": "product: publish multi-window relative strength view",
+      "class": "product"
+    },
+    {
+      "sha": "b036fd4ef16f08c033edca5f006b38c42cc6eb84",
+      "subject": "product: load relative strength into Pages model",
+      "class": "product"
+    },
+    {
+      "sha": "2c27440862f8f35fe9bfdcc86c80244a592d4f10",
+      "subject": "product: connect watchlist relative strength pipeline",
+      "class": "product"
+    },
+    {
+      "sha": "14a754df11ea58fbe525ad676dd5b10f81371902",
+      "subject": "product: add domestic index history feed",
+      "class": "product"
+    },
+    {
+      "sha": "55a2f1ee9b77d166d07be7815cee6840678101c1",
+      "subject": "test: cover multi-window relative strength engine",
+      "class": "unclassified"
+    },
+    {
+      "sha": "2108a0bd61c1328654f68a285f93be5e13bea6e6",
+      "subject": "product: add multi-window relative strength engine",
+      "class": "product"
+    },
+    {
+      "sha": "dce35e7216e5c920352cd5d4b75dd911a050757b",
+      "subject": "product: refresh market intelligence",
+      "class": "product"
+    },
     {
       "sha": "e99a53c6b220d59c5e6849b226ab69a9a08435c2",
       "subject": "product: expose program data shape for parser recovery",
@@ -93,71 +158,6 @@
       "sha": "28f33ebc7635254a15c6890be756ea6e92866274",
       "subject": "fix: isolate fast-lane dirty worktree before persistence",
       "class": "maintenance"
-    },
-    {
-      "sha": "d89b4b1cfd5bf97c313ba7324c18556abf54cdf3",
-      "subject": "ai-c: audit KRX adapter quant readiness",
-      "class": "maintenance"
-    },
-    {
-      "sha": "bd2f583dfc52c0ea7e17453d282ac93ff887f1b5",
-      "subject": "ops: make market news collection and analysis mandatory",
-      "class": "unclassified"
-    },
-    {
-      "sha": "ccaeae9923a13dd759c13f8f0c9d2a8077113acf",
-      "subject": "ci: verify market news page artifact",
-      "class": "maintenance"
-    },
-    {
-      "sha": "b0112648fd241a6b93d3e7f348215dc344d75767",
-      "subject": "ci: require news issue digest output",
-      "class": "maintenance"
-    },
-    {
-      "sha": "25fb0e6f385c2d87f986214bf676205acace42e5",
-      "subject": "test: verify visible market news sections",
-      "class": "unclassified"
-    },
-    {
-      "sha": "be2eac3063c38b6c3a46b129a546afb4959670fd",
-      "subject": "test: cover normalized news lifecycle contract",
-      "class": "unclassified"
-    },
-    {
-      "sha": "03ce3816b32f21c9afc66edcccdb39c9791fbae2",
-      "subject": "pages: keep market section contracts visible without data",
-      "class": "unclassified"
-    },
-    {
-      "sha": "7d67b05b8d595009d49a5ed83b10fac03e77650d",
-      "subject": "pages: prioritize market news before development status",
-      "class": "unclassified"
-    },
-    {
-      "sha": "ed24a87609499885e91bc79cca869a387de7fbe8",
-      "subject": "pages: split core issues news AI analysis and issue timeline",
-      "class": "unclassified"
-    },
-    {
-      "sha": "4ba2bf6ab204a29e88d10030228135dc0fb6fc2e",
-      "subject": "pages: publish structured market news and issue lifecycle",
-      "class": "unclassified"
-    },
-    {
-      "sha": "bdbd976fe70a734ca13bce7a7aadb537576f604d",
-      "subject": "news: persist issue lifecycle digest and collection evidence",
-      "class": "product"
-    },
-    {
-      "sha": "87a548264298b710a3ffddd44a556252bbc68863",
-      "subject": "news: expand normalized market news discovery contract",
-      "class": "product"
-    },
-    {
-      "sha": "65e8e24eb542dfdd6d50b224be4fcfadca842dab",
-      "subject": "product: build live market intelligence vertical slice",
-      "class": "product"
     }
   ]
 }
