@@ -98,6 +98,103 @@ def resolve_unresolved(problem_id: str, *, root: Path = ROOT, note: str = "autom
         write_jsonl(path, rows)
 
 
+def _has_flow_values(flow_analysis: dict[str, Any]) -> bool:
+    for market in ("KOSPI", "KOSDAQ"):
+        investors = ((flow_analysis.get("markets") or {}).get(market) or {})
+        for investor in ("individual", "foreign", "institution"):
+            value = ((investors.get(investor) or {}).get("net_100m_krw"))
+            if isinstance(value, (int, float)):
+                return True
+    return False
+
+
+def _has_breadth_values(breadth: dict[str, Any]) -> bool:
+    for market in ("KOSPI", "KOSDAQ"):
+        row = breadth.get(market) or {}
+        total = sum(
+            int(row.get(key) or 0)
+            for key in ("upper", "advance", "flat", "decline", "lower")
+        )
+        if total > 0:
+            return True
+    return False
+
+
+def _sync_service_status(
+    root: Path,
+    *,
+    news: dict[str, Any],
+    indices: dict[str, Any],
+    breadth: dict[str, Any],
+    flows: dict[str, Any],
+    global_data: dict[str, Any],
+    official: dict[str, Any],
+) -> None:
+    path = root / "data/system/services.json"
+    payload = load_json(path, {"schema_version": 2, "services": []})
+    if not isinstance(payload, dict):
+        payload = {"schema_version": 2, "services": []}
+    services = payload.get("services")
+    if not isinstance(services, list):
+        services = []
+
+    stamp = now_text()
+    by_id = {str(row.get("id")): row for row in services if isinstance(row, dict)}
+
+    news_row = by_id.get("news-fast-lane")
+    if news_row is not None:
+        collection = str(news.get("collection_status") or "UNKNOWN")
+        news_row["monitoring_mode"] = "SCHEDULED"
+        news_row["last_attempt_at"] = stamp
+        if int(news.get("count") or 0) > 0 and collection in {"HEALTHY", "PARTIAL"}:
+            news_row["status"] = "HEALTHY" if collection == "HEALTHY" else "PARTIAL"
+            news_row["last_success_at"] = stamp
+            news_row["note"] = (
+                "Scheduled Google News RSS discovery is producing normalized current news. "
+                "It remains a secondary discovery feed; official-source verification is separate."
+            )
+        else:
+            news_row["status"] = "FAILED" if collection == "FAILED" else "PARTIAL"
+            news_row["note"] = "Scheduled news collection ran but no usable current items were produced."
+
+    market_row = by_id.get("market-data")
+    if market_row is not None:
+        has_indices = any(
+            isinstance((indices.get(code) or {}).get("close"), (int, float))
+            for code in ("KOSPI", "KOSDAQ")
+        )
+        has_global = bool(global_data.get("quotes"))
+        has_flow = _has_flow_values(flows)
+        has_breadth = _has_breadth_values(breadth)
+        market_row["monitoring_mode"] = "SCHEDULED"
+        market_row["last_attempt_at"] = stamp
+        if has_indices or has_global:
+            market_row["last_success_at"] = stamp
+            market_row["status"] = (
+                "HEALTHY"
+                if has_indices and has_global and has_flow and has_breadth and bool(official)
+                else "PARTIAL"
+            )
+            missing = []
+            if not official:
+                missing.append("KRX primary")
+            if not has_flow:
+                missing.append("investor flow")
+            if not has_breadth:
+                missing.append("breadth")
+            market_row["note"] = (
+                "Scheduled market collector is active."
+                + (f" Remaining gaps: {', '.join(missing)}." if missing else " Core configured market axes are populated.")
+            )
+        else:
+            market_row["status"] = "FAILED"
+            market_row["note"] = "Scheduled market collector ran without usable domestic index or global quote output."
+
+    payload["generated_at"] = stamp
+    payload["services"] = services
+    write_json(path, payload)
+
+
 def _program_net(program: Any) -> float | None:
     preferred = ("netBuyValue", "netValue", "programNetValue", "allNetValue", "totalNetValue", "totalValue")
     def walk(value: Any) -> float | None:
@@ -239,7 +336,7 @@ def global_interpretation(quotes: dict[str, Any], yields: dict[str, Any]) -> dic
     label = "MIXED"
     if support >= 2 and risk == 0: label = "SUPPORTIVE_ENVIRONMENT"
     elif risk >= 2 and support == 0: label = "RISK_ENVIRONMENT"
-    return {"evidence_state": "HYPOTHESIS", "label": label, "signals": signals, "note": "글로벌 지표 조합읅 한국시장 방향 예측이 아니라 환경 설명용이며 국내 수급·시장폭과 함께 봅니다."}
+    return {"evidence_state": "HYPOTHESIS", "label": label, "signals": signals, "note": "글로벌 지표 조합은 한국시장 방향 예측이 아니라 환경 설명용이며 국내 수급·시장폭과 함께 봅니다."}
 
 
 def _parse_dt(value: Any) -> datetime | None:
@@ -539,15 +636,39 @@ def run(root: Path = ROOT) -> dict[str, Any]:
     write_json(root / "data/stocks/smart-money.json", smart_money)
     write_json(root / "data/ai/development-mix.json", git_development_mix(24))
 
+    _sync_service_status(
+        root,
+        news=news_current,
+        indices=indices,
+        breadth=breadth,
+        flows=flow_analysis,
+        global_data=global_data,
+        official=domestic.get("official") or {},
+    )
+
+    smart_items = smart_money.get("items") or []
+    smart_estimated = sum(
+        1 for item in smart_items
+        if isinstance(item, dict) and item.get("evidence_state") == "ESTIMATED"
+    )
     status = {
         "generated_at": now_text(),
         "status": "HEALTHY" if not errors else "PARTIAL",
         "product_features": {
-            "domestic_indices": bool(indices), "investor_flow": bool((flow_analysis.get("markets") or {})),
-            "breadth": bool(breadth), "kospi200_futures": (futures.get("KOSPI200_FUTURES") or {}).get("status"),
-            "global_futures": bool(global_data.get("quotes")), "news": news_current.get("count", 0),
-            "news_collection": news_current.get("collection_status"), "news_latest_at": news_current.get("latest_news_at"),
-            "market_strength": strength.get("evidence_state"), "smart_money": smart_money.get("model_status"),
+            "domestic_indices": any(
+                isinstance((indices.get(code) or {}).get("close"), (int, float))
+                for code in ("KOSPI", "KOSDAQ")
+            ),
+            "investor_flow": _has_flow_values(flow_analysis),
+            "breadth": _has_breadth_values(breadth),
+            "kospi200_futures": (futures.get("KOSPI200_FUTURES") or {}).get("status"),
+            "global_futures": bool(global_data.get("quotes")),
+            "news": news_current.get("count", 0),
+            "news_collection": news_current.get("collection_status"),
+            "news_latest_at": news_current.get("latest_news_at"),
+            "market_strength": strength.get("evidence_state"),
+            "smart_money": smart_money.get("model_status"),
+            "smart_money_estimated_items": smart_estimated,
         },
         "errors": errors[-40:],
     }
