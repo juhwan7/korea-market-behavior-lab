@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "agent": "AI-B",
+  "created_at": "2026-10-01T02:11:42+09:00",
+  "fingerprint": "deepseek-huawei-ascend-software-sovereignty|direct-korean-hbm-demand-transmission-challenger|20261001",
+  "priority": "P1_RESEARCH",
+  "result": "FIX_REQUIRED",
+  "major_work": {
+    "title": "AI-A China AI software sovereignty → Korean HBM demand decoupling thesis falsification",
+    "source_candidate_commit": "0750e1c258f1927072a4f3b84f9e9edd5682da5b",
+    "related_issue_ids": [],
+    "confirmed": [
+      "Reuters 2026-09-30 confirms DeepSeek and Huawei are collaborating on open-source programming infrastructure for Ascend, including TileLang and compute/communication libraries.",
+      "Reuters 2026-09-10 reports Chinese AI-chip vendors are facing an HBM bottleneck; Huawei's Ascend 950DT indicated price rose above CNY250,000 and advanced HBM shortages/export controls are raising accelerator costs.",
+      "US BIS December 2024 controls cover certain advanced HBM, including foreign-produced HBM subject to the advanced-computing FDP rule; current EAR 740.25 provides only conditional HBM license-exception paths.",
+      "Reuters 2026-09-20 confirms CXMT has mass-produced a newer DRAM platform, but the cited primary announcement concerns LPDDR5X/DRAM rather than proof of qualified volume HBM supply for Ascend."
+    ],
+    "falsification": {
+      "finding": "AI-A is correct to separate compute-vendor substitution from memory-bit demand, but its Samsung/SK Hynix transmission variable is incomplete if interpreted as direct China HBM demand. Advanced HBM access to China is already constrained by export controls, while Reuters reports Huawei uses proprietary HiBL/HiZQ memory without disclosing manufacturing origin and Chinese vendors rely partly on expensive grey-market HBM. Therefore rising Ascend deployment can increase aggregate memory scarcity/value without creating a proportional, directly observable Samsung/SK Hynix China HBM sales channel.",
+      "causal_gap": "Ascend unit growth -> HBM-equivalent memory demand does not imply Ascend unit growth -> Korean HBM shipments to China. The missing gates are legal export eligibility, memory architecture/content, supplier qualification, domestic substitution, inventory/grey-market sourcing, and indirect global capacity displacement.",
+      "alternative_explanation": "The more defensible near-term Korean-memory transmission may be indirect: China AI demand tightens scarce advanced-memory capacity or diverts inventory, supporting global HBM/DRAM pricing even when direct Korean advanced-HBM shipments into China are restricted.",
+      "counterevidence": "Reuters 2026-09-10 explicitly reports HBM shortages and controls are a cost bottleneck for Chinese accelerators. This weakens any assumption that software portability alone makes Ascend scaling frictionless. Reuters 2026-09-17 also reports Huawei cannot produce enough AI computing equipment to satisfy domestic demand.",
+      "unknown": [
+        "Ascend 950PR/950DT shipment volume and realized ramp",
+        "HiBL/HiZQ memory technology, capacity and manufacturing origin",
+        "legal/approved Korean HBM shipment volume into PRC accelerator use",
+        "CXMT qualified HBM volume/yield for Huawei",
+        "grey-market inventory share",
+        "Samsung/SK Hynix direct versus indirect revenue sensitivity to China accelerator growth"
+      ]
+    },
+    "verdict": "FIX_REQUIRED",
+    "required_revision": "Keep the decoupling thesis as HYPOTHESIS, but replace 'China accelerator unit growth × HBM capacity per accelerator × domestic Chinese HBM substitution rate' with a gated chain: accelerator units × memory architecture/content × export eligibility × supplier qualification × domestic substitution × inventory/grey-market sourcing, then separately model indirect global HBM/DRAM capacity-price effects.",
+    "handoff": {
+      "AI-C": "Quantify direct-vs-indirect transmission scenarios; no probability until shipment, memory-content, legal-eligibility and supplier-mix samples exist.",
+      "AI-D": "Collector/data contract should preserve export-control status and source date as provenance fields for China semiconductor hypotheses; do not infer legal eligibility from article presence.",
+      "AI-E": "Architecture should model policy/export-control gate separately from vendor-share and memory-bit-demand nodes."
+    }
+  },
+  "small_works": [
+    {
+      "fingerprint": "news-market-reaction|closed-session-axis-observed|20260930",
+      "result": "NO_NEW_EVIDENCE"
+    },
+    {
+      "fingerprint": "news-lifecycle-continuity|semantic-continuity|canonical-generated-id",
+      "result": "NO_NEW_EVIDENCE"
+    },
+    {
+      "fingerprint": "self-heal-evidence-review",
+      "result": "NO_NEW_EVIDENCE",
+      "detail": "Existing AI-B self-heal evidence review candidate already exists; no duplicate optional review performed."
+    }
+  ],
+  "sources": [
+    "Reuters 2026-09-30 DeepSeek/Huawei Ascend programming tools",
+    "Reuters 2026-09-10 China AI chipmakers raise prices as HBM shortage bites",
+    "Reuters 2026-09-17 Huawei cannot satisfy domestic AI compute demand",
+    "Reuters 2026-09-20 CXMT fifth-generation DRAM platform",
+    "US BIS 2024-12-02 HBM export controls and current EAR 740.25"
+  ],
+  "next_work": "Audit whether KMB news/research cards conflate direct Korean HBM sales with indirect global memory-price/capacity effects in China AI narratives."
+}
