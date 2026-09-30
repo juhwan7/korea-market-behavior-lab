@@ -194,3 +194,19 @@ system-check는 감지, self-heal은 deterministic L0 복구와 진단, canonica
 자기 heartbeat 기록이 실제 scheduler last_run보다 한 사이클 이상 뒤처지면 `AGENT_RUNTIME_EVIDENCE_DRIFT`로 취급한다. 자동화가 실제로 살아 있다면 disabled/stale로 오판하지 말고 runtime truth로 상태를 복구한 뒤 GitHub evidence를 동기화한다. 반대로 scheduler 자체가 멈췄다면 기존 survival recovery를 적용한다.
 
 실행은 성공했지만 자기 runtime evidence를 GitHub에 기록하지 못한 경우 조용히 종료하지 않는다. write 실패 원인을 recovery queue에 남기고 최신 SHA 재조회 → 자기 agent state 재적용 → candidate/patch 또는 안전한 writer 경로 순서로 복구한다.
+
+
+## AI Execution Timeline / Work Output contract
+
+Every scheduled AI-A/B/C/D/E run must leave a user-visible execution record without turning reporting into the main workload.
+
+At run exit:
+1. Separate runtime evidence from productive output. A heartbeat alone is `HEARTBEAT_ONLY`, never "work completed".
+2. If meaningful work is still underway, use `WORK_IN_PROGRESS`. If an artifact/candidate/research/audit/experiment was persisted, use `OUTPUT_CREATED`. Use `OUTPUT_APPLIED` only after canonical/code application, and `VERIFIED` only after the required external/expected-state checks.
+3. If analysis happened but persistence failed, use `UNPERSISTED` or `BLOCKED`; do not advance productive-progress claims as though an artifact exists.
+4. Prefer a structured execution summary under the agent-owned namespace `data/ai/executions/<agent>/` when the run can safely persist it. Include: agent, run_id, started_at, finished_at, role, status, major_work, small_works, findings, outputs, bugs_found, handoffs, next_work, commit_sha, actions_run, verified. Unknown values stay null.
+5. Existing candidates/research/experiments/audits remain valid work products. Do not duplicate the same artifact merely for display; the common Pages generator indexes them.
+6. Any new execution summary or candidate is a Pages material change. The common generator, not each agent, owns HTML generation.
+7. Never claim "currently running" from stale repository state. Pages may say "recent run in progress" or "next run" unless live runtime evidence proves active execution.
+8. A Pages/local display failure is handed to AI-D and must not stop unrelated production lines.
+9. Keep reporting overhead below roughly 10-20% of a run; specialist work remains the priority.
