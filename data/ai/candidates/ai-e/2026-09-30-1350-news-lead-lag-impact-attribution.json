@@ -1,0 +1,179 @@
+{
+  "schema_version": 1,
+  "agent": "AI-E",
+  "created_at": "2026-09-30T13:50:00+09:00",
+  "base_main_sha": "bf2659c208c7d3fde8f1fae085ae3599f30e1b30",
+  "mode": "ULTRA_PARALLEL_V2_EVOLUTION",
+  "status": "HYPOTHESIS",
+  "production_eligible": false,
+  "sample_count": 0,
+  "major_work": {
+    "id": "EXP-E-NEWS-002",
+    "title": "Point-in-Time News Lead/Lag Impact Attribution Graph",
+    "fingerprint": "news-impact|event-time-lead-lag|regime-aware|point-in-time|abstention",
+    "problem": "Current issue importance explicitly leaves market_reaction_component=PENDING, while importance is driven by publisher/article/channel/official/recency counts. A high article count or many publishers can therefore rank an issue before evidence shows that price, flow, rates, FX, oil, futures or sector breadth actually reacted.",
+    "hypothesis": "A point-in-time event graph that separates pre-event drift, immediate reaction, delayed confirmation and reversal across market/flow/macro channels can reduce false-positive important-news rankings versus count/recency scoring, without claiming causality when chronology or controls are insufficient.",
+    "outputs": [
+      "CONFIRMED_MARKET_IMPACT",
+      "DELAYED_CONFIRMATION",
+      "PRICED_BEFORE_NEWS",
+      "REACTION_REVERSED",
+      "NO_OBSERVED_CONFIRMATION",
+      "ABSTAIN_UNKNOWN"
+    ],
+    "event_time_contract": {
+      "t0": "earliest trustworthy published_at/official release timestamp available as-of decision time; never observed_at when a reliable earlier publication timestamp exists",
+      "windows": [
+        "pre:-120m..-10m",
+        "immediate:-10m..+30m",
+        "confirmation:+30m..+120m",
+        "session:+120m..close/next comparable session"
+      ],
+      "channels": [
+        "KOSPI/KOSDAQ/KPI200 residual return",
+        "KOSPI200 futures/basis",
+        "foreign/institution/program flow",
+        "USD/KRW",
+        "rates",
+        "oil",
+        "NASDAQ/S&P500 when relevant",
+        "sector relative strength/breadth"
+      ],
+      "controls": [
+        "market beta",
+        "sector beta",
+        "time-of-day",
+        "volatility regime",
+        "liquidity regime",
+        "scheduled macro-event calendar when available"
+      ],
+      "abstain_rules": [
+        "insufficient point-in-time snapshots",
+        "timestamp ambiguity",
+        "market closed/non-comparable window",
+        "channel freshness failure",
+        "major confounding event without usable control"
+      ]
+    },
+    "scoring_challenger": {
+      "principle": "Article volume is discovery evidence, not market-impact proof.",
+      "candidate_components": [
+        "independent-origin evidence after provenance validation",
+        "official-source evidence",
+        "article-growth velocity",
+        "cross-channel confirmation",
+        "residual price response",
+        "flow confirmation",
+        "macro transmission consistency",
+        "regime support",
+        "recency",
+        "user-priority relevance"
+      ],
+      "hard_rule": "PENDING/UNKNOWN market reaction contributes zero positive confirmation and cannot be converted into impact by article count alone.",
+      "anti_double_count": "Correlated channels sharing the same upstream evidence fingerprint are grouped before confidence aggregation."
+    },
+    "regime_awareness": [
+      "high/low volatility",
+      "risk-on/risk-off proxy",
+      "FX/rates shock",
+      "oil/geopolitical shock",
+      "semiconductor-led concentration",
+      "market-open/close vs continuous session"
+    ],
+    "baselines": [
+      "current importance_score",
+      "publisher+article+recency only",
+      "price-only event response",
+      "sector-relative-return only"
+    ],
+    "validation_owner": "AI-C",
+    "validation_contract": [
+      "historical point-in-time replay only",
+      "walk-forward split by event date",
+      "purge overlapping event windows",
+      "compare precision of top-ranked issues and false-positive rate",
+      "lead/lag window ablation",
+      "regime-stratified calibration",
+      "coverage-vs-abstention curve",
+      "no threshold tuning on final test"
+    ],
+    "falsification_owner": "AI-B",
+    "falsification_contract": [
+      "verify published_at/release chronology and revisions",
+      "challenge post-hoc event selection",
+      "identify simultaneous macro/company confounders",
+      "test whether official source was actually available as-of t0",
+      "reject causal wording when only contemporaneous correlation exists"
+    ],
+    "sre_handoff_owner": "AI-D",
+    "sre_handoff": "Only after validation demand is established, persist aligned point-in-time news/market/flow snapshots and freshness metadata; do not build a new production path solely for this hypothesis.",
+    "kill_criteria": [
+      "no OOS precision/false-positive improvement over current ranking",
+      "effect disappears after sector/market/time-of-day controls",
+      "timestamp alignment cannot be made point-in-time safe",
+      "abstention destroys useful coverage without reducing error",
+      "regime labels are unstable or leak future information"
+    ],
+    "related_issue_ids": [
+      "GN-b8b88abcf2d13da5",
+      "GN-2e5c316e10f7f313",
+      "GN-da54aa7c602cc264"
+    ]
+  },
+  "evidence": {
+    "news_generated_at": "2026-09-30T13:32:08+09:00",
+    "collection_status": "PARTIAL",
+    "raw_news_count": 207,
+    "deduplicated_count": 200,
+    "official_items_count": 10,
+    "observed_gap": "issue-digest importance_components show market_reaction_component=PENDING while ranking already assigns positive publisher/article/channel/recency components",
+    "current_code": "src/kmb_lab/pipeline.py::_issue_importance",
+    "current_cluster_code": "src/kmb_lab/adapters/google_news.py::dedupe_and_cluster"
+  },
+  "small_works": [
+    {
+      "finding": "Current clustering mutates the union token set and derives fingerprint from that final set; this matches the prior stable-identity challenger fingerprint, so NO_NEW_EVIDENCE for that architecture and no duplicate candidate was created."
+    },
+    {
+      "finding": "independent_publishers is currently distinct publisher count, not proven independent-origin count; this matches the prior source-independence challenger fingerprint, so it is handed off rather than re-designed here."
+    },
+    {
+      "finding": "Pages market-news.json is generated from src/kmb_lab/pages.py and is not a canonical source file; UX experiments should consume candidate evidence without changing production schema before validation."
+    }
+  ],
+  "required_review_check": {
+    "p0": "TASK-ULTRA-PARALLEL-V2-001 remains REVIEW under AI-D ownership; no new AI-E-specific evidence fingerprint found in this run.",
+    "p1": "No new P1 requiring AI-E takeover found in the fast check.",
+    "secondary_recovery": false,
+    "reason": "No evidence that AI-D recovery failed."
+  },
+  "concurrency": {
+    "writer_lease": "FREE",
+    "canonical_mutation": false,
+    "candidate_namespace": "append-only"
+  },
+  "handoff": [
+    {
+      "to": "AI-C",
+      "priority": "P2",
+      "task": "Quantify EXP-E-NEWS-002 with point-in-time replay, lead/lag ablations, regime calibration and false-positive comparison."
+    },
+    {
+      "to": "AI-B",
+      "priority": "P2",
+      "task": "Falsify chronology, confounding, provenance and causal-overclaim assumptions for EXP-E-NEWS-002."
+    },
+    {
+      "to": "AI-D",
+      "priority": "P3",
+      "task": "Only if validation requires it, expose aligned snapshot/freshness inputs; do not alter production ranking yet."
+    }
+  ],
+  "runtime_evidence": {
+    "repository_head_at_start": "bf2659c208c7d3fde8f1fae085ae3599f30e1b30",
+    "writer_lease": "FREE",
+    "productive_output": "candidate EXP-E-NEWS-002",
+    "heartbeat_claim": "This candidate is productive-output evidence, not proof of scheduler health."
+  },
+  "next_work": "Do not repeat this fingerprint without new validation evidence. On the next Evolution cycle, consume AI-B/C results if present; otherwise move to a distinct news UX/user-priority or market-behavior challenger."
+}
