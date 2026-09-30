@@ -1,13 +1,16 @@
 from __future__ import annotations
 
-from datetime import datetime, timezone
+import ast
+from datetime import datetime, timedelta, timezone
 from typing import Any, Iterable
 
-from kmb_lab.http_client import HttpError, request_json
+from kmb_lab.http_client import HttpError, request_json, request_text
 
 FRONT = "https://m.stock.naver.com/front-api"
 MAIN_SUMMARY = "https://finance.naver.com/main/mainSummary.naver"
 LEGACY_STOCK = "https://m.stock.naver.com/api/stock"
+CHART_API = "https://api.stock.naver.com/chart/domestic/item"
+LEGACY_CHART = "https://api.finance.naver.com/siseJson.naver"
 SOURCE_ID = "naver-finance-public"
 SOURCE_KIND = "secondary"
 REFERER = "https://stock.naver.com/"
@@ -70,25 +73,90 @@ def fetch_market_trend() -> Any:
 
 
 def fetch_program_trend() -> Any:
-    # mainSummary currently exposes kospiTrendProgram. Keeping this function separate
-    # lets us swap to a dedicated endpoint without changing pipeline contracts.
     return fetch_main_summary()
+
+
+def _legacy_chart_rows(code: str, page_size: int) -> list[dict[str, Any]]:
+    end = datetime.now(timezone.utc).date()
+    start = end - timedelta(days=max(180, page_size * 3))
+    text = request_text(
+        LEGACY_CHART,
+        params={
+            "symbol": code,
+            "requestType": 1,
+            "startTime": start.strftime("%Y%m%d"),
+            "endTime": end.strftime("%Y%m%d"),
+            "timeframe": "day",
+        },
+        headers={"Referer": "https://finance.naver.com/"},
+    )
+    try:
+        payload = ast.literal_eval(text.strip())
+    except (ValueError, SyntaxError) as exc:
+        raise HttpError(f"Naver legacy chart parse failed: {exc}") from exc
+    if not isinstance(payload, list) or len(payload) < 2:
+        return []
+    header = [str(x).strip().lower() for x in payload[0]]
+    aliases = {
+        "날짜": "date", "date": "date",
+        "시가": "open", "open": "open",
+        "고가": "high", "high": "high",
+        "저가": "low", "low": "low",
+        "종가": "close", "close": "close",
+        "거래량": "volume", "volume": "volume",
+        "외국인소진율": "foreign_rate",
+    }
+    mapped = [aliases.get(x, x) for x in header]
+    rows: list[dict[str, Any]] = []
+    for raw in payload[1:]:
+        if not isinstance(raw, (list, tuple)) or len(raw) < len(mapped):
+            continue
+        row = dict(zip(mapped, raw))
+        close = _number(row.get("close"))
+        volume = _number(row.get("volume"))
+        if row.get("date") is None or close is None or volume is None:
+            continue
+        date = str(row["date"]).replace(".", "").replace("-", "")
+        if len(date) == 8 and date.isdigit():
+            date = f"{date[:4]}-{date[4:6]}-{date[6:8]}"
+        rows.append({
+            "date": date[:10],
+            "open": _number(row.get("open")) or close,
+            "high": _number(row.get("high")) or close,
+            "low": _number(row.get("low")) or close,
+            "close": close,
+            "volume": volume,
+            "trading_value": None,
+            "source_id": SOURCE_ID,
+            "source_kind": SOURCE_KIND,
+        })
+    rows.sort(key=lambda item: item["date"])
+    return rows[-page_size:]
 
 
 def fetch_stock_daily(code: str, page_size: int = 80) -> list[dict[str, Any]]:
     errors: list[str] = []
-    candidates = [
+    json_candidates = [
+        (f"{CHART_API}/{code}", {"periodType": "dayCandle"}),
         (f"{FRONT}/chart/domestic/stock/end", {"code": code, "chartInfoType": "item", "scriptChartType": "candleDay"}),
         (f"{LEGACY_STOCK}/{code}/price", {"pageSize": page_size, "page": 1}),
     ]
-    for url, params in candidates:
+    for url, params in json_candidates:
         try:
             payload = request_json(url, params=params, headers={"Referer": REFERER})
             rows = normalize_stock_bars(payload)
             if rows:
                 return rows[-page_size:]
-        except Exception as exc:  # source fallback is intentional
+            errors.append(f"{url}: empty normalized rows")
+        except Exception as exc:
             errors.append(str(exc))
+    try:
+        rows = _legacy_chart_rows(code, page_size)
+        if rows:
+            return rows
+        errors.append("legacy siseJson: empty normalized rows")
+    except Exception as exc:
+        errors.append(str(exc))
     raise HttpError("Naver stock history unavailable: " + " | ".join(errors))
 
 
@@ -104,6 +172,8 @@ def normalize_index_basic(payload: Any, code: str) -> dict[str, Any]:
         "close": close,
         "change": change,
         "change_pct": change_pct,
+        "trading_volume": _number(row.get("accumulatedTradingVolume") or row.get("tradingVolume")),
+        "trading_value": _number(row.get("accumulatedTradingValue") or row.get("tradingValue")),
         "market_status": row.get("marketStatus") or row.get("marketStatusType"),
         "as_of": row.get("localTradedAt") or row.get("localDate") or now,
         "retrieved_at": now,
@@ -114,12 +184,26 @@ def normalize_index_basic(payload: Any, code: str) -> dict[str, Any]:
 
 
 def _market_row(rows: Any, code: str) -> dict[str, Any] | None:
-    aliases = {code.upper(), {"KOSPI": "코스피", "KOSDAQ": "코스닥", "KPI200": "코스피200"}.get(code.upper(), code).upper()}
+    aliases = {
+        code.upper(),
+        {"KOSPI": "코스피", "KOSDAQ": "코스닥", "KPI200": "코스피200"}.get(code.upper(), code).upper(),
+    }
+    normalized_aliases = {a.replace(" ", "").upper() for a in aliases}
     for row in _iter_dicts(rows):
         candidates = [row.get(k) for k in ("itemCode", "code", "cd", "name", "itemName", "nm")]
-        if any(str(v).replace(" ", "").upper() in {a.replace(" ", "") for a in aliases} for v in candidates if v is not None):
+        if any(
+            str(v).replace(" ", "").upper() in normalized_aliases
+            for v in candidates
+            if v is not None
+        ):
             return row
     return None
+
+
+def _positional_row(rows: Any, position: int) -> dict[str, Any]:
+    if isinstance(rows, list) and 0 <= position < len(rows) and isinstance(rows[position], dict):
+        return rows[position]
+    return {}
 
 
 def normalize_main_summary(payload: Any) -> dict[str, Any]:
@@ -131,9 +215,15 @@ def normalize_main_summary(payload: Any) -> dict[str, Any]:
     program = root.get("kospiTrendProgram")
     now = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
     result: dict[str, Any] = {"indices": {}, "program": program, "retrieved_at": now}
+
+    # Naver has historically returned these lists in KOSPI/KOSDAQ/KPI200 order.
+    # Some responses omit itemCode/name entirely, so positional fallback is
+    # required; otherwise every flow becomes null and every breadth count zero.
+    positions = {"KOSPI": 0, "KOSDAQ": 1, "KPI200": 2}
     for code in ("KOSPI", "KOSDAQ", "KPI200"):
-        item = _market_row(item_rows, code) or {}
-        trend = _market_row(trend_rows, code) or {}
+        pos = positions[code]
+        item = _market_row(item_rows, code) or _positional_row(item_rows, pos)
+        trend = _market_row(trend_rows, code) or _positional_row(trend_rows, pos)
         flows = {
             "individual": _number(trend.get("personalValue") or trend.get("individualValue")),
             "foreign": _number(trend.get("foreignValue") or trend.get("foreignerValue")),
@@ -157,6 +247,14 @@ def normalize_main_summary(payload: Any) -> dict[str, Any]:
     return result
 
 
+def _date_text(value: Any) -> str:
+    raw = str(value or "").strip()
+    compact = raw.replace(".", "").replace("-", "").replace("/", "")
+    if len(compact) >= 8 and compact[:8].isdigit():
+        return f"{compact[:4]}-{compact[4:6]}-{compact[6:8]}"
+    return raw[:10]
+
+
 def normalize_stock_bars(payload: Any) -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
     seen: set[str] = set()
@@ -169,12 +267,12 @@ def normalize_stock_bars(payload: Any) -> list[dict[str, Any]]:
         volume = _number(row.get("accumulatedTradingVolume") or row.get("tradingVolume") or row.get("volume"))
         if date is None or close is None or volume is None:
             continue
-        key = str(date)
-        if key in seen:
+        key = _date_text(date)
+        if not key or key in seen:
             continue
         seen.add(key)
         rows.append({
-            "date": key[:10],
+            "date": key,
             "open": open_ if open_ is not None else close,
             "high": high if high is not None else close,
             "low": low if low is not None else close,
@@ -184,5 +282,5 @@ def normalize_stock_bars(payload: Any) -> list[dict[str, Any]]:
             "source_id": SOURCE_ID,
             "source_kind": SOURCE_KIND,
         })
-    rows.sort(key=lambda x: x["date"])
+    rows.sort(key=lambda item: item["date"])
     return rows
