@@ -969,14 +969,34 @@ def collect_news(root: Path) -> tuple[dict[str, Any], dict[str, Any], dict[str, 
     official_succeeded = 0
     official_items = 0
     for feed in official_news.OFFICIAL_FEEDS:
+        feed_id = str(feed.get("id") or "unknown")
+        problem_id = "NEWS-OFFICIAL-" + feed_id.upper().replace("-", "_")
         try:
             rows = official_news.parse_feed(official_news.fetch_feed(feed), feed=feed)
             recent = [row for row in rows if _is_recent_news_item(row)]
             all_items.extend(recent)
             official_items += len(recent)
             official_succeeded += 1
+            resolve_unresolved(problem_id, root=root, note=f"{feed_id} official feed recovered on scheduled collection")
         except Exception as exc:
-            errors.append(f"official-news:{feed.get('id')}:{exc}")
+            errors.append(f"official-news:{feed_id}:{exc}")
+            upsert_unresolved({
+                "id": problem_id,
+                "owner": "AI-D",
+                "problem": f"Official news feed {feed_id} failed while other news collection may remain available.",
+                "root_cause": str(exc),
+                "attempted_solutions": [
+                    "use the institution-published official RSS endpoint",
+                    "keep the failing official feed isolated from secondary/other official feeds",
+                ],
+                "why_failed": str(exc),
+                "required_external_action": None,
+                "retry_condition": "next scheduled market-fast-lane run",
+                "do_not_repeat": "Do not replace the official feed with an unverified source or block the whole news fast lane; retry this source independently.",
+                "related_files": ["src/kmb_lab/adapters/official_news.py", "src/kmb_lab/pipeline.py"],
+                "related_commits": [],
+                "status": "OPEN",
+            }, root=root)
 
     unique, clustered = google_news.dedupe_and_cluster(all_items)
     observed_at = now_text()
