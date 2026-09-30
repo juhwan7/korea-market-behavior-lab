@@ -3,12 +3,37 @@
   "method": "commit_path_classification",
   "window_hours": 24,
   "target_product_min_pct": 70,
-  "product_pct": 62.2,
-  "maintenance_pct": 37.8,
-  "labeled_commit_count": 156,
-  "unclassified_commit_count": 31,
+  "product_pct": 62.4,
+  "maintenance_pct": 37.6,
+  "labeled_commit_count": 157,
+  "unclassified_commit_count": 30,
   "warning": true,
   "recent": [
+    {
+      "sha": "c027b14d80ac2fb82cfeb31f04339440bd829c99",
+      "subject": "ai-d: reopen stale news recovery and record bounded rerun",
+      "class": "maintenance"
+    },
+    {
+      "sha": "ac8a8975fdd7d331993554fb95fb9182debb9215",
+      "subject": "ai-b: audit Korea-US energy investment commitment status",
+      "class": "maintenance"
+    },
+    {
+      "sha": "7504c7b69f5a77e23df71e43532eaf705b91c5fb",
+      "subject": "ai-a: research Korea-US investment announcement versus cash-flow impact",
+      "class": "maintenance"
+    },
+    {
+      "sha": "e1a84964971855364880c1a0952458cea893ee74",
+      "subject": "sre: close news schedule-gap recovery with native run evidence",
+      "class": "maintenance"
+    },
+    {
+      "sha": "24fef6ad79eecb142eef29736a9fb5b49f79bfdb",
+      "subject": "product: refresh market intelligence",
+      "class": "product"
+    },
     {
       "sha": "75a1996fb6e18600b5a9353ccc477657af7d76dc",
       "subject": "product: refresh market intelligence",
@@ -133,31 +158,6 @@
       "sha": "87eace531e74034fd96477d7e75172d2ad191ea0",
       "subject": "test: prevent duplicate issue cards and source overcount",
       "class": "unclassified"
-    },
-    {
-      "sha": "e366eb49b8e71898bbf781568232b93017f3b7d2",
-      "subject": "product: collapse superseded news issue fragments",
-      "class": "product"
-    },
-    {
-      "sha": "793823c0a2616442af6e03c58f572583b5e766b5",
-      "subject": "product: conservatively count independent news origins",
-      "class": "product"
-    },
-    {
-      "sha": "b556c15446c74f7fac0b9ce2233703b942bf0645",
-      "subject": "product: refresh market intelligence",
-      "class": "product"
-    },
-    {
-      "sha": "8bd0c1285c753db20a657ed0f1e3a52cbccba115",
-      "subject": "product: finalize KMB market intelligence V3 surface",
-      "class": "product"
-    },
-    {
-      "sha": "d4fe04c265b0a50fb26475dc99f8b2e4d903e2f0",
-      "subject": "product: refresh market intelligence",
-      "class": "product"
     }
   ]
 }
