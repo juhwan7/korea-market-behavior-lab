@@ -242,25 +242,166 @@ def global_interpretation(quotes: dict[str, Any], yields: dict[str, Any]) -> dic
     return {"evidence_state": "HYPOTHESIS", "label": label, "signals": signals, "note": "글로벌 지표 조합읅 한국시장 방향 예측이 아니라 환경 설명용이며 국내 수급·시장폭과 함께 봅니다."}
 
 
-def collect_news(root: Path) -> tuple[dict[str, Any], dict[str, Any], list[str]]:
-    all_items: list[dict[str, Any]] = []; errors: list[str] = []
-    for query in google_news.DEFAULT_QUERIES:
+def _parse_dt(value: Any) -> datetime | None:
+    if not isinstance(value, str) or not value.strip():
+        return None
+    try:
+        dt = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    except ValueError:
+        return None
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+    return dt.astimezone(timezone.utc)
+
+
+def _merge_issue_history(current_issues: list[dict[str, Any]], previous_issues: list[dict[str, Any]], *, observed_at: str, collection_succeeded: bool) -> list[dict[str, Any]]:
+    prior_map = {}
+    for row in previous_issues:
+        if not isinstance(row, dict):
+            continue
+        key = row.get("fingerprint") or row.get("issue_id") or str(row.get("headline", "")).strip().lower()
+        prior_map[str(key)] = row
+
+    seen: set[str] = set()
+    merged: list[dict[str, Any]] = []
+    for issue in current_issues:
+        key = str(issue.get("fingerprint") or issue.get("issue_id") or str(issue.get("headline", "")).strip().lower())
+        seen.add(key)
+        prior = prior_map.get(key)
+        if prior:
+            article_growth = int(issue.get("article_count") or 0) - int(prior.get("article_count") or 0)
+            publisher_growth = int(issue.get("independent_publishers") or 0) - int(prior.get("independent_publishers") or 0)
+            issue["state"] = "STRENGTHENING" if article_growth > 0 or publisher_growth > 0 else "PERSISTING"
+            issue["first_seen_at"] = prior.get("first_seen_at") or issue.get("first_seen_at")
+            history = list(prior.get("history") or [])
+            issue["ai_analysis"] = dict(prior.get("ai_analysis") or {})
+        else:
+            issue["state"] = "NEW"
+            history = []
+            issue["ai_analysis"] = {}
+        issue["last_updated_at"] = observed_at
+        if not history or history[-1].get("state") != issue["state"]:
+            history.append({
+                "at": observed_at,
+                "state": issue["state"],
+                "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다.",
+            })
+        issue["history"] = history[-20:]
+        merged.append(issue)
+
+    if collection_succeeded:
+        now = _parse_dt(observed_at) or datetime.now(timezone.utc)
+        for key, prior in prior_map.items():
+            if key in seen:
+                continue
+            latest = _parse_dt(prior.get("latest_at") or prior.get("last_updated_at") or prior.get("first_seen_at"))
+            if latest is None:
+                continue
+            age = now - latest
+            if age > timedelta(hours=24):
+                continue
+            row = dict(prior)
+            new_state = "WEAKENING" if age <= timedelta(hours=6) else "RESOLVED"
+            if str(row.get("state")) != new_state:
+                history = list(row.get("history") or [])
+                history.append({
+                    "at": observed_at,
+                    "state": new_state,
+                    "reason": "현재 수집 창에서 새 독립 근거가 추가되지 않아 상태를 낮췄습니다. 사건 자체의 소멸을 단정하는 의미는 아닙니다.",
+                })
+                row["history"] = history[-20:]
+            row["state"] = new_state
+            row["last_updated_at"] = observed_at
+            merged.append(row)
+
+    merged.sort(key=lambda x: (x.get("state") != "STRENGTHENING", x.get("latest_at") or "", x.get("article_count", 0)), reverse=False)
+    return merged
+
+
+def collect_news(root: Path) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any], list[str]]:
+    all_items: list[dict[str, Any]] = []
+    errors: list[str] = []
+    checked = list(google_news.DEFAULT_QUERIES)
+    succeeded = 0
+    for query in checked:
         try:
             all_items.extend(google_news.parse_rss(google_news.fetch_rss(query), query=query))
+            succeeded += 1
         except Exception as exc:
             errors.append(f"google-news:{query}:{exc}")
-    unique, issues = google_news.dedupe_and_cluster(all_items)
+
+    unique, clustered = google_news.dedupe_and_cluster(all_items)
+    observed_at = now_text()
     previous = load_json(root / "data/news/issues.json", {})
     previous_issues = previous.get("issues", []) if isinstance(previous, dict) else []
-    prior_map = {str(x.get("headline", "")).strip().lower(): x for x in previous_issues if isinstance(x, dict)}
-    for issue in issues:
-        prior = prior_map.get(str(issue.get("headline", "")).strip().lower())
-        if prior:
-            if issue.get("article_count", 0) > prior.get("article_count", 0): issue["state"] = "STRENGTHENING"
-            else: issue["state"] = "PERSISTING"
-    current = {"generated_at": now_text(), "count": len(unique), "items": unique[:120], "source_quality": "SECONDARY_AGGREGATOR"}
-    issue_doc = {"generated_at": now_text(), "count": len(issues), "issues": issues[:40], "note": "호재/악재 방향읅 제목만으로 확정하지 않고 시장 반응·공식자료 확인 전에는 UNDETERMINED로 유지합니다."}
-    return current, issue_doc, errors
+    issues = _merge_issue_history(
+        clustered,
+        previous_issues if isinstance(previous_issues, list) else [],
+        observed_at=observed_at,
+        collection_succeeded=succeeded > 0,
+    )
+
+    latest_news_at = max(
+        (str(x.get("published_at") or x.get("observed_at") or "") for x in unique),
+        default=None,
+    ) or None
+    collection_status = "HEALTHY" if succeeded == len(checked) else "PARTIAL" if succeeded > 0 else "FAILED"
+    current = {
+        "generated_at": observed_at,
+        "collection_attempted_at": observed_at,
+        "collection_status": collection_status,
+        "sources_checked": len(checked),
+        "queries_succeeded": succeeded,
+        "queries_failed": len(checked) - succeeded,
+        "raw_count": len(all_items),
+        "deduplicated_count": len(unique),
+        "count": len(unique),
+        "latest_news_at": latest_news_at,
+        "items": unique[:160],
+        "source_quality": "SECONDARY_AGGREGATOR",
+        "note": "기사 발견용 보조 소스입니다. 공식자료가 있는 사안은 1차 자료 확인 전 CONFIRMED로 승격하지 않습니다.",
+    }
+    issue_doc = {
+        "generated_at": observed_at,
+        "collection_status": collection_status,
+        "count": len(issues),
+        "issues": issues[:80],
+        "note": "호재/악재 방향을 제목만으로 확정하지 않고 시장 반응·공식자료 확인 전에는 UNDETERMINED로 유지합니다.",
+    }
+    digest = {
+        "generated_at": observed_at,
+        "latest_news_at": latest_news_at,
+        "latest_issue_at": max((str(x.get("last_updated_at") or x.get("latest_at") or "") for x in issues), default=None) or None,
+        "collection_status": collection_status,
+        "sources_checked": len(checked),
+        "queries_succeeded": succeeded,
+        "raw_news_count": len(all_items),
+        "deduplicated_count": len(unique),
+        "top_issues": issues[:10],
+        "strengthening": [x for x in issues if x.get("state") == "STRENGTHENING"][:10],
+        "weakening": [x for x in issues if x.get("state") == "WEAKENING"][:10],
+        "resolved": [x for x in issues if x.get("state") == "RESOLVED"][:10],
+    }
+
+    if succeeded == 0:
+        upsert_unresolved({
+            "id": "NEWS-COLLECTION-FAILURE",
+            "owner": "AI-D",
+            "problem": "All configured market-news discovery queries failed in the latest collector run.",
+            "root_cause": "See collector-status errors for per-query failures.",
+            "attempted_solutions": ["Google News RSS discovery across configured fallback queries"],
+            "why_failed": "No configured query returned a usable response in this run.",
+            "required_external_action": None,
+            "retry_condition": "next scheduled market-fast-lane run",
+            "do_not_repeat": "Do not disable unrelated agents or market collectors for this LOCAL news-source failure.",
+            "related_files": ["src/kmb_lab/adapters/google_news.py", "src/kmb_lab/pipeline.py"],
+            "related_commits": [],
+            "status": "OPEN",
+        }, root=root)
+    else:
+        resolve_unresolved("NEWS-COLLECTION-FAILURE", root=root, note="At least one configured news query succeeded.")
+
+    return current, issue_doc, digest, errors
 
 
 def collect_smart_money(root: Path) -> tuple[dict[str, Any], list[str]]:
@@ -325,7 +466,7 @@ def run(root: Path = ROOT) -> dict[str, Any]:
     indices, breadth, domestic, e = collect_domestic(root); errors += e
     futures, e = collect_futures(root); errors += e
     global_data, e = collect_global(); errors += e
-    news_current, news_issues, e = collect_news(root); errors += e
+    news_current, news_issues, news_digest, e = collect_news(root); errors += e
     smart_money, e = collect_smart_money(root); errors += e
 
     flow_analysis = domestic["flows"]; program = domestic["program"]
@@ -345,6 +486,7 @@ def run(root: Path = ROOT) -> dict[str, Any]:
     write_json(root / "data/market/strength.json", strength)
     write_json(root / "data/news/current.json", news_current)
     write_json(root / "data/news/issues.json", news_issues)
+    write_json(root / "data/news/issue-digest.json", news_digest)
     write_json(root / "data/stocks/smart-money.json", smart_money)
     write_json(root / "data/ai/development-mix.json", git_development_mix(24))
 
@@ -355,6 +497,7 @@ def run(root: Path = ROOT) -> dict[str, Any]:
             "domestic_indices": bool(indices), "investor_flow": bool((flow_analysis.get("markets") or {})),
             "breadth": bool(breadth), "kospi200_futures": (futures.get("KOSPI200_FUTURES") or {}).get("status"),
             "global_futures": bool(global_data.get("quotes")), "news": news_current.get("count", 0),
+            "news_collection": news_current.get("collection_status"), "news_latest_at": news_current.get("latest_news_at"),
             "market_strength": strength.get("evidence_state"), "smart_money": smart_money.get("model_status"),
         },
         "errors": errors[-40:],
