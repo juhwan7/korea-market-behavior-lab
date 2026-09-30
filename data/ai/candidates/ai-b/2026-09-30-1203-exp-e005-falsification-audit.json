@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "agent": "AI-B",
+  "created_at": "2026-09-30T12:03:00+09:00",
+  "base_main_sha": "c9eb75b9f331fb04611f18a5bf63b4c9c758caab",
+  "run_type": "ULTRA_PARALLEL_EVOLUTION_V2",
+  "status": "OUTPUT_CREATED",
+  "major_work": {
+    "id": "AUDIT-B-EXP-E-005-001",
+    "title": "EXP-E-005 Liquidity Vacuum vs Demand Surge falsification audit",
+    "target": "data/ai/candidates/ai-e/2026-09-30-1151-liquidity-vacuum-demand-surge-decomposition.json",
+    "target_fingerprint": "price-move-mechanism|liquidity-vacuum-vs-demand-surge|point-in-time",
+    "result": "FIX_REQUIRED",
+    "risk": "P1",
+    "summary": "The challenger is directionally useful and correctly abstains from hidden-actor intent, but its mechanism labels are not yet operationally identifiable. Trade/quote snapshots can describe impact, spread and displayed depth, but cannot by themselves establish whether a move was caused by durable demand expansion versus offer withdrawal/cancellation/hidden-liquidity dynamics. A reproducible label protocol and event-level order lifecycle evidence are required before treating DEMAND_SURGE_SUPPORTED or LIQUIDITY_VACUUM_SUPPORTED as validation targets.",
+    "findings": [
+      {
+        "id": "B-E005-01",
+        "severity": "HIGH",
+        "type": "IDENTIFIABILITY",
+        "finding": "The proposed target states risk becoming circular labels derived from the same features later used to predict them. Without an independent labeling rule or external ground truth, a model can appear accurate by reproducing its own heuristic definition rather than validating a market mechanism.",
+        "required_fix": "AI-C must define label construction independently from evaluated features, report inter-rater/algorithmic reliability, and distinguish descriptive state classification from causal mechanism identification."
+      },
+      {
+        "id": "B-E005-02",
+        "severity": "HIGH",
+        "type": "PROVENANCE_CHRONOLOGY",
+        "finding": "Authoritative tick and quote snapshots are insufficient if they do not preserve order-event lifecycle. Displayed depth disappearance can reflect execution, cancellation, repricing, feed aggregation, hidden/iceberg liquidity, auction transitions or venue fragmentation.",
+        "required_fix": "Require event-level provenance where available: exchange/venue scope, sequence/timestamp alignment, add/modify/cancel/execute semantics, auction/VI/halt flags, and explicit UNKNOWN when lifecycle attribution is unavailable."
+      },
+      {
+        "id": "B-E005-03",
+        "severity": "MEDIUM",
+        "type": "CONTAMINATION",
+        "finding": "Open/close auctions, volatility interruption, halts, disclosure/news timestamps and cross-venue fragmentation can create apparent vacuum/surge signatures unrelated to the hypothesized continuous-market mechanism.",
+        "required_fix": "Pre-register exclusion/segmentation rules and compare clean continuous-session samples with contaminated samples rather than pooling them."
+      },
+      {
+        "id": "B-E005-04",
+        "severity": "MEDIUM",
+        "type": "CAUSAL_LANGUAGE",
+        "finding": "Even with event-level order data, observed order-flow mechanics do not identify a hidden actor's motive. The existing safety contract is correct and must remain a hard production guard.",
+        "required_fix": "Use descriptive wording such as 'observed aggressive-flow dominance' or 'displayed-offer depletion pattern'; do not promote to actor intent, accumulation/distribution or manipulation."
+      }
+    ]
+  },
+  "small_works": [
+    {
+      "id": "SMALL-B-E005-A",
+      "result": "PASS_WITH_NOTES",
+      "detail": "Point-in-time feature contract, UNKNOWN abstention, no-production-probability gate and hidden-actor safety language are appropriate and should be preserved."
+    },
+    {
+      "id": "SMALL-B-DEDUP-001",
+      "result": "NO_NEW_EVIDENCE",
+      "detail": "Known SELF-HEAL L1/L2 and Ultra-Parallel V2 closure fingerprints were not re-investigated because this run found no new evidence packet changing those prior findings."
+    }
+  ],
+  "bugs_found": [],
+  "handoffs": [
+    {
+      "to": "AI-C",
+      "priority": "P1",
+      "task": "Operationalize EXP-E-005 labels without feature-label circularity; add independent label protocol, reliability, event-lifecycle provenance, contamination splits, and walk-forward validation."
+    },
+    {
+      "to": "AI-E",
+      "priority": "P1",
+      "task": "Revise EXP-E-005 architecture to separate descriptive microstructure state from causal mechanism claims and make order-lifecycle provenance a capability gate."
+    },
+    {
+      "to": "AI-D",
+      "priority": "P2",
+      "task": "Only if EXP-E-005 proceeds to data validation, expose venue/scope/timestamp/sequence/add-modify-cancel-execute/auction-VI-halt provenance; do not build a new tick pipeline before validation demand is confirmed."
+    }
+  ],
+  "next_work": [
+    "Audit the next new P0/P1 or AI-B required-review evidence packet; do not repeat EXP-E-005 unless its fingerprint/evidence changes."
+  ],
+  "runtime_evidence": {
+    "observed_main_sha": "c9eb75b9f331fb04611f18a5bf63b4c9c758caab",
+    "source": "GitHub main + persisted AI-E candidate",
+    "heartbeat_claim": "This file is productive-output evidence for the current AI-B run; it is not proof of scheduler state."
+  },
+  "verified": false,
+  "no_work_reason": null
+}
