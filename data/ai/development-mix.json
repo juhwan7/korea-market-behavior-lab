@@ -3,12 +3,52 @@
   "method": "commit_path_classification",
   "window_hours": 24,
   "target_product_min_pct": 70,
-  "product_pct": 36.6,
-  "maintenance_pct": 63.4,
-  "labeled_commit_count": 101,
-  "unclassified_commit_count": 30,
+  "product_pct": 41.1,
+  "maintenance_pct": 58.9,
+  "labeled_commit_count": 107,
+  "unclassified_commit_count": 31,
   "warning": true,
   "recent": [
+    {
+      "sha": "d60fa898acd14e936845416cb935b9fa433d01cd",
+      "subject": "product: isolate slow official news feeds from fast lane",
+      "class": "product"
+    },
+    {
+      "sha": "6a89dc7ef6cfb29abcf5ead2831d0c04a06b8ae6",
+      "subject": "product: expose official-source coverage on news page",
+      "class": "product"
+    },
+    {
+      "sha": "86581b66f3b837f4bbdf5ee5a7ab1932203a4e87",
+      "subject": "product: surface live turnover participation in market briefing",
+      "class": "product"
+    },
+    {
+      "sha": "cdb6225f46e8a93e9d3ddc5c83b0743a93e037c9",
+      "subject": "test: protect official news provenance and dedupe priority",
+      "class": "unclassified"
+    },
+    {
+      "sha": "3892534608a378ac527b1513a19f272acbc39b88",
+      "subject": "product: merge first-party official feeds into news fast lane",
+      "class": "product"
+    },
+    {
+      "sha": "9a904f0e2eada5f5ffee9aadc1130c3df8139580",
+      "subject": "product: preserve primary evidence during news deduplication",
+      "class": "product"
+    },
+    {
+      "sha": "0fafdb0b875def555373944539b42ab770ee4dfd",
+      "subject": "product: add no-key official Korean news feeds",
+      "class": "product"
+    },
+    {
+      "sha": "6f350aac708df25595a3836f9e0279d88b93ebd2",
+      "subject": "product: refresh market intelligence",
+      "class": "product"
+    },
     {
       "sha": "2b73a459d9bd727bfb3747a45a230063588a11b5",
       "subject": "product: show observed market reaction on news issues",
@@ -118,46 +158,6 @@
       "sha": "d8ecab86531e40c57055518148ef4fb629d99422",
       "subject": "product: connect parsed program flow to market strength",
       "class": "product"
-    },
-    {
-      "sha": "87bb30758e8b04e77f9b1485e343489bb5f02cf7",
-      "subject": "product: normalize arbitrage and non-arbitrage program flow",
-      "class": "product"
-    },
-    {
-      "sha": "3cb531e2712ef6a8f378a1b085ce64b5d3526835",
-      "subject": "test: keep relative strength visible in Pages",
-      "class": "unclassified"
-    },
-    {
-      "sha": "0b84e3b06173030af683aab1442a997857bbb0d8",
-      "subject": "ci: require relative strength canonical output",
-      "class": "maintenance"
-    },
-    {
-      "sha": "0245576afd0244cf85b417a4c8d1f20273ff70ac",
-      "subject": "product: publish multi-window relative strength view",
-      "class": "product"
-    },
-    {
-      "sha": "b036fd4ef16f08c033edca5f006b38c42cc6eb84",
-      "subject": "product: load relative strength into Pages model",
-      "class": "product"
-    },
-    {
-      "sha": "2c27440862f8f35fe9bfdcc86c80244a592d4f10",
-      "subject": "product: connect watchlist relative strength pipeline",
-      "class": "product"
-    },
-    {
-      "sha": "14a754df11ea58fbe525ad676dd5b10f81371902",
-      "subject": "product: add domestic index history feed",
-      "class": "product"
-    },
-    {
-      "sha": "55a2f1ee9b77d166d07be7815cee6840678101c1",
-      "subject": "test: cover multi-window relative strength engine",
-      "class": "unclassified"
     }
   ]
 }
