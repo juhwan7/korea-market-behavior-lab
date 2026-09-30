@@ -42,6 +42,7 @@ jobs:
         env:
           KRX_AUTH_KEY: ${{ secrets.KRX_AUTH_KEY }}
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
+          ECOS_API_KEY: ${{ secrets.ECOS_API_KEY }}
         run: PYTHONPATH=src python -m kmb_lab.pipeline
 
       - name: Validate generated canonical data
@@ -89,6 +90,7 @@ jobs:
         env:
           KRX_AUTH_KEY: ${{ secrets.KRX_AUTH_KEY }}
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
+          ECOS_API_KEY: ${{ secrets.ECOS_API_KEY }}
           GITHUB_TOKEN: ${{ github.token }}
         run: |
           set -eu

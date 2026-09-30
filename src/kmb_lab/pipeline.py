@@ -288,12 +288,12 @@ def collect_disclosures(root: Path) -> tuple[dict[str, Any], list[str]]:
 
 def collect_bok_official(root: Path) -> tuple[dict[str, Any], list[str]]:
     try:
-        result = bok_ecos.fetch_daily_indicators()
+        result = bok_ecos.fetch_daily_indicators(os.environ.get("ECOS_API_KEY"))
     except Exception as exc:
         upsert_unresolved({
             "id": "DATA-BOK-ECOS-RUNTIME", "owner": "AI-D",
-            "problem": "Bank of Korea ECOS public indicator page could not be read",
-            "root_cause": str(exc), "attempted_solutions": ["direct no-key read of the official ECOS public page"],
+            "problem": "Bank of Korea ECOS official ECOS StatisticSearch request failed",
+            "root_cause": str(exc), "attempted_solutions": ["official ECOS StatisticSearch API with configured-or-sample credential"],
             "why_failed": str(exc), "required_external_action": None, "retry_condition": "next scheduled collector run",
             "do_not_repeat": "Do not replace a failed official read with fabricated values; retain the secondary market feed separately.",
             "related_files": ["src/kmb_lab/adapters/bok_ecos.py", "data/market/bok-official.json"],
@@ -302,17 +302,17 @@ def collect_bok_official(root: Path) -> tuple[dict[str, Any], list[str]]:
         return {"generated_at": now_text(), "status": "FAILED", "indicators": {},
                 "source_id": bok_ecos.SOURCE_ID, "source_kind": bok_ecos.SOURCE_KIND, "reason": str(exc)}, [f"bok-ecos:{exc}"]
     if result.get("status") == "CONNECTED_PRIMARY":
-        resolve_unresolved("DATA-BOK-ECOS-RUNTIME", root=root, note="official ECOS public page indicators parsed successfully")
-        resolve_unresolved("DATA-BOK-ECOS-PARSE", root=root, note="official ECOS public page indicators parsed successfully")
+        resolve_unresolved("DATA-BOK-ECOS-RUNTIME", root=root, note="official ECOS StatisticSearch indicators parsed successfully")
+        resolve_unresolved("DATA-BOK-ECOS-PARSE", root=root, note="official ECOS StatisticSearch indicators parsed successfully")
         return result, []
     upsert_unresolved({
         "id": "DATA-BOK-ECOS-PARSE", "owner": "AI-A",
-        "problem": "Bank of Korea ECOS page was reachable but configured daily indicators were not parseable",
-        "root_cause": "The public page layout did not expose the configured indicator labels in parseable text.",
-        "attempted_solutions": ["official-page label parser for USD/KRW, Korean 3Y, KOSPI and KOSDAQ"],
+        "problem": "Bank of Korea ECOS API was reachable but configured indicator series produced no usable rows",
+        "root_cause": "The configured ECOS series returned no usable numeric rows.",
+        "attempted_solutions": ["ECOS StatisticSearch series for USD/KRW and Korean 3Y"],
         "why_failed": result.get("reason") or "no configured indicators were found in rendered HTML",
-        "required_external_action": None, "retry_condition": "page markup changes or a validated no-key official endpoint is added",
-        "do_not_repeat": "Do not invent official values from secondary quotes; preserve source separation.",
+        "required_external_action": None, "retry_condition": "next scheduled run or ECOS series/API repair",
+        "do_not_repeat": "Do not invent official values from secondary quotes; preserve ECOS API and secondary quote separation.",
         "related_files": ["src/kmb_lab/adapters/bok_ecos.py", "data/market/bok-official.json"],
         "related_commits": [], "status": "OPEN",
     }, root=root)

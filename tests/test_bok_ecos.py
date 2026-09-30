@@ -1,28 +1,25 @@
 import unittest
 
-from kmb_lab.adapters.bok_ecos import normalize_daily_indicators
+from kmb_lab.adapters.bok_ecos import normalize_search
+from kmb_lab.http_client import HttpError
 
 
 class BokEcosAdapterTests(unittest.TestCase):
-    def test_normalize_official_public_page_indicators(self):
-        raw = """
-        <div>원/달러 1,355.20 09.30 13:00</div>
-        <div>국고채(3년) 4.21 09.30 마감</div>
-        <div>코스피 6,842.37 09.30 13:00</div>
-        <div>코스닥 856.46 09.30 13:00</div>
-        """
-        result = normalize_daily_indicators(raw)
-        self.assertEqual(result["status"], "CONNECTED_PRIMARY")
-        self.assertEqual(result["source_kind"], "primary")
-        self.assertEqual(result["indicators"]["USD_KRW"]["value"], 1355.20)
-        self.assertEqual(result["indicators"]["KOREA_3Y"]["value"], 4.21)
-        self.assertEqual(result["indicators"]["KOSPI"]["value"], 6842.37)
+    def test_normalize_official_ecos_rows(self):
+        payload = {"StatisticSearch":{"row":[
+            {"STAT_CODE":"731Y001","ITEM_NAME1":"원/미국달러(매매기준율)","UNIT_NAME":"원","TIME":"20260929","DATA_VALUE":"1,355.20"},
+            {"STAT_CODE":"731Y001","ITEM_NAME1":"원/미국달러(매매기준율)","UNIT_NAME":"원","TIME":"20260930","DATA_VALUE":"1352.70"},
+        ]}}
+        rows=normalize_search(payload,indicator_key="USD_KRW")
+        self.assertEqual(len(rows),2)
+        self.assertEqual(rows[-1]["value"],1352.70)
+        self.assertEqual(rows[-1]["source_kind"],"primary")
+        self.assertEqual(rows[-1]["time"],"20260930")
 
-    def test_missing_values_are_not_fabricated(self):
-        result = normalize_daily_indicators("<html><body>자료 갱신 중</body></html>")
-        self.assertEqual(result["status"], "PARTIAL")
-        self.assertEqual(result["indicators"], {})
+    def test_ecos_error_is_not_fabricated(self):
+        with self.assertRaises(HttpError):
+            normalize_search({"RESULT":{"CODE":"ERROR-100","MESSAGE":"bad request"}},indicator_key="USD_KRW")
 
 
-if __name__ == "__main__":
+if __name__=="__main__":
     unittest.main()

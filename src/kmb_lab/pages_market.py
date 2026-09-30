@@ -196,9 +196,9 @@ def _futures_global(futures: dict[str, Any], global_data: dict[str, Any]) -> str
             bok_rows.append(f'<li><b>{label}</b> {num(row.get("value"),suffix=suffix,digits=2)} · 기준 {esc(row.get("as_of_text") or "공식 화면 관측시각 확인")}</li>')
     bok_html = (
         f'<article class="card"><h3>한국은행 공식 지표</h3>{badge(bok.get("status"))}<ul>{"".join(bok_rows)}</ul>'
-        '<p class="section-note">한국은행 ECOS 공개 화면 직접 관측값입니다. Yahoo 등 보조 시세와 섞어 공식값처럼 표시하지 않습니다.</p></article>'
+        '<p class="section-note">한국은행 ECOS 공식 Open API 관측값입니다. Yahoo 등 보조 시세와 섞어 공식값처럼 표시하지 않습니다.</p></article>'
         if bok_rows
-        else f'<article class="card"><h3>한국은행 공식 지표</h3>{badge(bok.get("status"))}<p>현재 공식 화면에서 파싱 가능한 지표를 확인하지 못했습니다.</p></article>'
+        else f'<article class="card"><h3>한국은행 공식 지표</h3>{badge(bok.get("status"))}<p>현재 ECOS 공식 API에서 사용 가능한 지표를 확인하지 못했습니다.</p></article>'
     )
     return (
         '<h2 data-kmb-section="futures-global">선물·글로벌 선행시장</h2><p class="section-note">선물과 글로벌 지표는 방향 예측이 아니라 국내 수급·시장폭과 함께 환경을 해석하는 입력입니다.</p>'
