@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from datetime import datetime, timezone
 import html
 from typing import Any
 
@@ -16,7 +17,7 @@ def num(value: Any, *, suffix: str = "", digits: int = 1) -> str:
 
 def badge(value: Any) -> str:
     raw = str(value or "UNKNOWN")
-    cls = "ok" if raw in {"CONNECTED", "CONNECTED_EOD_PRIMARY", "HEALTHY", "ESTIMATED"} else "warn" if raw in {"PARTIAL", "SHADOW", "USER_ACTION_REQUIRED", "HYPOTHESIS"} else "muted"
+    cls = "ok" if raw in {"CONNECTED", "CONNECTED_EOD_PRIMARY", "HEALTHY", "ESTIMATED", "RESOLVED"} else "warn" if raw in {"PARTIAL", "SHADOW", "USER_ACTION_REQUIRED", "HYPOTHESIS", "NEW", "PERSISTING", "STRENGTHENING", "WEAKENING"} else "bad" if raw in {"FAILED"} else "muted"
     labels = {
         "CONNECTED_EOD_PRIMARY": "공식 일별 연결",
         "USER_ACTION_REQUIRED": "사용자 설정 필요",
@@ -24,8 +25,55 @@ def badge(value: Any) -> str:
         "ESTIMATED": "데이터 기반 추정",
         "SHADOW": "검증 중",
         "UNKNOWN": "확인 불가",
+        "NEW": "등장",
+        "PERSISTING": "지속",
+        "STRENGTHENING": "강화",
+        "WEAKENING": "완화",
+        "RESOLVED": "해소",
+        "UNDETERMINED": "판단 유보",
+        "POSITIVE_BIAS": "상승 요인 가능",
+        "NEGATIVE_BIAS": "하락 요인 가능",
+        "MIXED": "혼합",
+        "NEUTRAL": "중립",
+        "FAILED": "수집 실패",
     }
     return f'<span class="badge {cls}">{esc(labels.get(raw, raw))}</span>'
+
+
+def _parse_time(value: Any) -> datetime | None:
+    if not isinstance(value, str) or not value.strip():
+        return None
+    try:
+        dt = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    except ValueError:
+        return None
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+    return dt.astimezone(timezone.utc)
+
+
+def _relative(value: Any, now_value: Any) -> str:
+    target = _parse_time(value)
+    now = _parse_time(now_value) or datetime.now(timezone.utc)
+    if target is None:
+        return "시각 확인 필요"
+    seconds = max(0, int((now - target).total_seconds()))
+    if seconds < 60:
+        return "방금 전"
+    minutes = seconds // 60
+    if minutes < 60:
+        return f"{minutes}분 전"
+    hours = minutes // 60
+    if hours < 24:
+        return f"{hours}시간 전"
+    return target.astimezone().strftime("%m월 %d일 %H:%M")
+
+
+def _join(values: Any, fallback: str = "추가 확인 중") -> str:
+    if not isinstance(values, list):
+        return fallback
+    cleaned = [str(x) for x in values if x not in (None, "")]
+    return " · ".join(cleaned[:8]) if cleaned else fallback
 
 
 def _strength(data: dict[str, Any]) -> str:
@@ -79,16 +127,106 @@ def _futures_global(futures: dict[str, Any], global_data: dict[str, Any]) -> str
     )
 
 
-def _news(data: dict[str, Any]) -> str:
-    issues=data.get("issues") or []
-    cards=[]
-    for issue in issues[:12]:
-        channels=" · ".join(issue.get("impact_channels") or []) or "영향 경로 추가 확인 중"
-        cards.append(
-            f'<details class="card"><summary><strong>{esc(issue.get("headline"))}</strong><span class="summary-meta">기사 {esc(issue.get("article_count",0))} · 독립 매체 {esc(issue.get("independent_publishers",0))}</span></summary>'
-            f'<p><b>상태:</b> {esc(issue.get("state"))} · <b>방향:</b> {esc(issue.get("market_bias"))}</p><p><b>영향 경로:</b> {esc(channels)}</p><p class="section-note">{esc(issue.get("reason"))}</p></details>'
+def _issue_card(issue: dict[str, Any], now_value: Any) -> str:
+    channels = _join(issue.get("impact_channels"), "영향 경로 추가 확인 중")
+    related = _join((issue.get("related_markets") or []) + (issue.get("related_sectors") or []) + (issue.get("related_stocks") or []))
+    publishers = _join(issue.get("publishers"), "출처 확인 중")
+    articles = issue.get("articles") or []
+    links = "".join(
+        f'<li><a href="{esc(a.get("url"))}" rel="noopener noreferrer">{esc(a.get("source") or a.get("publisher") or "출처")}</a> · {esc(a.get("headline") or a.get("title"))}</li>'
+        for a in articles[:5] if a.get("url")
+    )
+    analysis = issue.get("ai_analysis") or {}
+    ai_lines = "".join(
+        f'<li><b>{esc(agent)}</b> · {esc((detail or {}).get("status") if isinstance(detail, dict) else detail)}'
+        + (f' · {esc((detail or {}).get("summary"))}' if isinstance(detail, dict) and (detail or {}).get("summary") else "")
+        + '</li>'
+        for agent,detail in analysis.items()
+    ) or '<li>아직 이 이슈와 연결된 AI 분석 기록이 없습니다.</li>'
+    return (
+        f'<details class="card"><summary><span>{badge(issue.get("state"))}</span><strong>{esc(issue.get("headline"))}</strong>'
+        f'<span class="summary-meta">{esc(_relative(issue.get("latest_at") or issue.get("last_updated_at"), now_value))} · 기사 {esc(issue.get("article_count",0))} · 독립 출처 {esc(issue.get("independent_publishers",0))}</span></summary>'
+        f'<p><b>시장 영향:</b> {badge(issue.get("market_bias"))}</p>'
+        f'<p><b>왜 중요한가:</b> {esc(issue.get("why_important") or issue.get("reason"))}</p>'
+        f'<p><b>관련:</b> {esc(related)}</p><p><b>영향 경로:</b> {esc(channels)}</p>'
+        f'<p><b>반론/주의:</b> {esc(issue.get("counterpoint") or "뉴스와 가격의 동시 발생만으로 인과를 확정하지 않습니다.")}</p>'
+        f'<p><b>다음 확인 변수:</b> {esc(_join(issue.get("next_variables")))}</p>'
+        f'<p><b>출처:</b> {esc(publishers)} · 공식자료 {"있음" if issue.get("official_source_available") else "추가 확인 필요"}</p>'
+        f'<details><summary>관련 기사</summary><ul>{links or "<li>표시 가능한 기사 링크가 없습니다.</li>"}</ul></details>'
+        f'<details><summary>AI 분석 연결</summary><ul>{ai_lines}</ul></details></details>'
+    )
+
+
+def render_news_intelligence(data: dict[str, Any]) -> str:
+    current = data.get("news") or {}
+    issue_doc = data.get("issues") or {}
+    digest = data.get("issue_digest") or {}
+    issues = issue_doc.get("issues") or []
+    now_value = issue_doc.get("generated_at") or current.get("generated_at")
+
+    core = [x for x in issues if x.get("state") not in {"RESOLVED"}][:10]
+    core_html = "".join(_issue_card(x, now_value) for x in core) or '<p class="empty">현재 확인된 핵심 시장 이슈가 없습니다.</p>'
+
+    news_cards = []
+    for item in (current.get("items") or [])[:24]:
+        related = _join((item.get("related_markets") or []) + (item.get("related_sectors") or []) + (item.get("related_stocks") or []))
+        source = item.get("source") or item.get("publisher") or "출처 확인 필요"
+        href = item.get("url")
+        title = item.get("headline") or item.get("title")
+        source_html = f'<a href="{esc(href)}" rel="noopener noreferrer">{esc(source)}</a>' if href else esc(source)
+        news_cards.append(
+            f'<details class="card"><summary><strong>{esc(title)}</strong><span class="summary-meta">{esc(_relative(item.get("published_at") or item.get("observed_at"), now_value))} · {source_html}</span></summary>'
+            f'<p><b>주제:</b> {esc(item.get("topic") or "시장일반")}</p><p><b>관련:</b> {esc(related)}</p>'
+            f'<p><b>왜 확인하나:</b> {esc(item.get("reason") or "시장 반응과 공식자료를 추가 확인합니다.")}</p>'
+            f'<p><b>출처 구분:</b> {esc(item.get("source_type") or "UNKNOWN")} · 공식자료 {"있음" if item.get("official_source_available") else "추가 확인 필요"}</p></details>'
         )
-    return '<h2 data-kmb-section="news-issues">뉴스·이슈</h2><p class="section-note">중복 기사를 묶고 독립 출처 수를 세며, 제목 키워드만으로 호재·악재를 확정하지 않습니다.</p><div class="grid">'+("".join(cards) or '<p class="empty">현재 수집된 뉴스 이슈가 없습니다.</p>')+'</div>'
+    news_html = "".join(news_cards) or '<p class="empty">최근 수집 창에서 표시할 뉴스가 없습니다. 데이터가 없다고 임의의 뉴스를 만들지 않습니다.</p>'
+
+    linked = data.get("news_work_products") or []
+    analysis_html = "".join(
+        f'<article class="card"><div class="card-head"><strong>{esc(item.get("agent") or "AI")} · {esc(item.get("title"))}</strong>{badge(item.get("status"))}</div>'
+        f'<p>{esc(item.get("summary"))}</p><p><b>연결 이슈:</b> {esc(_join(item.get("related_issue_ids")))}</p>'
+        f'<p><b>다음:</b> {esc(item.get("next_work") or "추가 검증 계획 미기록")}</p></article>'
+        for item in linked[:20]
+    ) or '<p class="empty">현재 뉴스 이슈와 명시적으로 연결된 AI 작업물이 없습니다. 단순 실행 상태를 “분석 중”으로 표시하지 않습니다.</p>'
+
+    timeline = []
+    for issue in issues:
+        for event in issue.get("history") or []:
+            timeline.append({
+                "at": event.get("at"),
+                "state": event.get("state"),
+                "headline": issue.get("headline"),
+                "reason": event.get("reason"),
+            })
+    timeline.sort(key=lambda x: x.get("at") or "", reverse=True)
+    timeline_html = "".join(
+        f'<article class="timeline-item"><div class="timeline-dot"></div><div class="timeline-time">{esc(_relative(row.get("at"), now_value))}</div>'
+        f'<div><strong>{badge(row.get("state"))} {esc(row.get("headline"))}</strong><p>{esc(row.get("reason"))}</p></div></article>'
+        for row in timeline[:30]
+    ) or '<p class="empty">아직 이슈 상태 변화 기록이 없습니다.</p>'
+
+    collection = current.get("collection_status") or digest.get("collection_status") or "UNKNOWN"
+    freshness = (
+        f'뉴스 수집 {badge(collection)} · 마지막 수집 {esc(_relative(current.get("collection_attempted_at") or current.get("generated_at"), now_value))}'
+        f' · 최신 기사 {esc(_relative(current.get("latest_news_at"), now_value))}'
+        f' · 확인 쿼리 {esc(current.get("sources_checked") or digest.get("sources_checked") or 0)}개'
+    )
+
+    return (
+        '<section data-kmb-section="news-issues">'
+        '<h2 data-kmb-section="market-issues">현재 시장 핵심 이슈</h2>'
+        f'<p class="section-note">{freshness}. 뉴스 자체와 시장 인과는 분리해 표시합니다.</p><div class="grid">{core_html}</div>'
+        '<h2 data-kmb-section="today-news">오늘 주요 뉴스</h2>'
+        '<p class="section-note">중복 기사를 제거한 최근 뉴스입니다. 보조 뉴스 소스는 공식자료와 동일하게 취급하지 않습니다.</p>'
+        f'<div class="grid">{news_html}</div>'
+        '<h2 data-kmb-section="ai-news-analysis">AI 뉴스 분석</h2>'
+        '<p class="section-note">실제 저장된 작업물에 관련 이슈 ID가 있을 때만 연결합니다. 실행 중이라는 추정은 하지 않습니다.</p>'
+        f'<div class="grid">{analysis_html}</div>'
+        '<h2 data-kmb-section="issue-timeline">이슈 변화</h2>'
+        '<p class="section-note">등장 → 지속 → 강화 → 완화 → 해소 상태 변화를 최신순으로 보여줍니다.</p>'
+        f'<div class="timeline">{timeline_html}</div></section>'
+    )
 
 
 def _smart(data: dict[str, Any]) -> str:
@@ -116,17 +254,17 @@ def _system(data: dict[str, Any]) -> str:
     return f'<details class="card" style="margin-top:30px"><summary><strong>개발 비율·미해결 문제</strong></summary><p>{esc(mix_text)}</p><ul>{items}</ul></details>'
 
 
-def render_market_intelligence(data: dict[str, Any]) -> str:
+def render_market_intelligence(data: dict[str, Any], *, include_news: bool = True) -> str:
     if not data:
         return '<p class="empty">시장 인텔리전스 데이터가 아직 생성되지 않았습니다.</p>'
-    nav='<nav class="card" aria-label="시장 기능 바로가기"><b>바로가기</b> · <a href="#market-strength">시장 힘</a> · <a href="#flows">수급</a> · <a href="#futures-global">선물·글로벌</a> · <a href="#news-issues">뉴스</a> · <a href="#smart-money">큰손 분석</a></nav>'
-    # IDs are mirrored with section markers for usable in-page navigation.
+    nav='<nav class="card" aria-label="시장 기능 바로가기"><b>바로가기</b> · <a href="#market-issues">핵심 이슈</a> · <a href="#today-news">뉴스</a> · <a href="#market-strength">시장 힘</a> · <a href="#flows">수급</a> · <a href="#futures-global">선물·글로벌</a> · <a href="#smart-money">큰손 분석</a></nav>'
+    news = render_news_intelligence(data) if include_news else ""
     body=(
         nav
+        + news
         + '<div id="market-strength">'+_strength(data.get("strength") or {})+'</div>'
         + '<div id="flows">'+_flows(data.get("flows") or {})+'</div>'
         + '<div id="futures-global">'+_futures_global(data.get("futures") or {},data.get("global") or {})+'</div>'
-        + '<div id="news-issues">'+_news(data.get("issues") or {})+'</div>'
         + '<div id="smart-money">'+_smart(data.get("smart_money") or {})+'</div>'
         + _system(data)
     )
