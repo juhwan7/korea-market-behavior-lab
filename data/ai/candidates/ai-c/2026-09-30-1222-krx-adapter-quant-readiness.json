@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "agent": "AI-C",
+  "created_at": "2026-09-30T12:22:44+09:00",
+  "base_main": "25fb0e6f385c2d87f986214bf676205acace42e5",
+  "mode": "ULTRA_PARALLEL_V2",
+  "major_work": {
+    "id": "EXP-C-006-KRX-ADAPTER-QUANT-READINESS",
+    "result": "NOT_READY_FOR_STATISTICAL_VALIDATION",
+    "sample_count": 0,
+    "probability": "UNKNOWN",
+    "mfe_mae": "UNKNOWN",
+    "backtest": "NOT_RUN",
+    "walk_forward": "NOT_RUN",
+    "costs_slippage": "NOT_APPLICABLE_WITHOUT_TRADE_OUTCOMES",
+    "evidence": [
+      "data/sources/registry.json marks krx-market ADAPTER_READY at 2026-09-30T11:17:00+09:00",
+      "src/kmb_lab/adapters/krx.py requires KRX_AUTH_KEY and does not persist historical observations",
+      "tests/test_krx_adapter.py validates parsing/selection with synthetic fixtures only",
+      "data/experiments/registry.json still has only EXP-C-001 with sample_count=0"
+    ],
+    "findings": [
+      "Adapter readiness is new infrastructure evidence, not a validated market sample.",
+      "No point-in-time KRX history is persisted in canonical data, so no probability, MFE/MAE, regime performance, fee/slippage result, or walk-forward statistic is admissible.",
+      "Provenance identifier mismatch: source registry uses id=krx-market while adapter emits source_id=krx-openapi. This can break provenance joins/deduplication unless explicitly mapped.",
+      "summarize_equity_rows counts issues=len(rows) while breadth excludes rows whose CMPPREVDD_PRC is missing/unparseable; downstream breadth ratios must use a declared valid-denominator rather than issues."
+    ],
+    "next_validation": [
+      "Persist dated KOSPI/KOSDAQ observations with as_of and retrieved_at from the primary adapter.",
+      "Freeze a valid breadth denominator and missing-value policy.",
+      "Build chronological samples before defining thresholds; then evaluate 1/3/5/10-session forward return and MFE/MAE with explicit fees/slippage and regime segmentation.",
+      "Use purged/embargoed walk-forward when labels overlap."
+    ]
+  },
+  "required_review": {
+    "id": "REVIEW-20260930-ULTRA-PARALLEL-V2-001",
+    "fingerprint": "actions_result=null|expected_state_verified=false",
+    "result": "NO_NEW_EVIDENCE",
+    "prior_disposition": "FIX_REQUIRED",
+    "note": "No new closure evidence; AI-D remains recovery owner."
+  },
+  "small_works": [
+    {
+      "id": "EXP-C-001",
+      "result": "NO_NEW_EVIDENCE",
+      "sample_count": 0,
+      "probability": "UNKNOWN"
+    },
+    {
+      "id": "SOURCE-ID-INTEGRITY",
+      "result": "HANDOFF",
+      "to": "AI-B",
+      "reason": "Audit krx-market vs krx-openapi provenance identifier mismatch and downstream evidence joins."
+    },
+    {
+      "id": "KRX-DATA-PERSISTENCE",
+      "result": "HANDOFF",
+      "to": "AI-D",
+      "reason": "Persist point-in-time primary KRX observations/history; adapter code alone is not statistical evidence."
+    },
+    {
+      "id": "CHALLENGER",
+      "result": "DEFER",
+      "to": "AI-E",
+      "reason": "Do not optimize a challenger until validated KRX samples exist."
+    }
+  ],
+  "runtime_evidence": {
+    "observed_main": "25fb0e6f385c2d87f986214bf676205acace42e5",
+    "writer_lease_status": "FREE",
+    "candidate_write_is_independent": true
+  }
+}
