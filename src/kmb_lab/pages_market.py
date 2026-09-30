@@ -184,6 +184,20 @@ def _issue_card(issue: dict[str, Any], now_value: Any) -> str:
         f'<li><a href="{esc(a.get("url"))}" rel="noopener noreferrer">{esc(a.get("source") or a.get("publisher") or "출처")}</a> · {esc(a.get("headline") or a.get("title"))}</li>'
         for a in articles[:5] if a.get("url")
     )
+    reaction = issue.get("market_reaction") or {}
+    reaction_axes = reaction.get("axes") or {}
+    reaction_lines = []
+    for key, label in (("KOSPI","KOSPI"),("KOSDAQ","KOSDAQ"),("KOSPI200_FUTURES","KOSPI200 선물"),("NASDAQ100_FUTURES","Nasdaq100 선물"),("USD_KRW","USD/KRW"),("WTI","WTI"),("VIX","VIX")):
+        row = reaction_axes.get(key) or {}
+        if isinstance(row.get("price_return_pct"), (int, float)):
+            reaction_lines.append(f'<li><b>{label}</b> {num(row.get("price_return_pct"),suffix="%",digits=2)}</li>')
+    reaction_html = (
+        f'<p><b>시장 반응 관측:</b> {badge(reaction.get("evidence_state"))} · '
+        f'{esc(reaction.get("window_minutes"))}분 창</p>'
+        + (f'<ul>{"".join(reaction_lines)}</ul>' if reaction_lines else "")
+        + f'<p class="section-note">{esc(reaction.get("note") or reaction.get("reason") or "")}</p>'
+    ) if reaction else '<p><b>시장 반응 관측:</b> 아직 스냅샷 누적 전</p>'
+
     analysis = issue.get("ai_analysis") or {}
     ai_lines = "".join(
         f'<li><b>{esc(agent)}</b> · {esc((detail or {}).get("status") if isinstance(detail, dict) else detail)}'
@@ -198,6 +212,7 @@ def _issue_card(issue: dict[str, Any], now_value: Any) -> str:
         f'<p><b>왜 중요한가:</b> {esc(issue.get("why_important") or issue.get("reason"))}</p>'
         f'<p><b>관련:</b> {esc(related)}</p><p><b>영향 경로:</b> {esc(channels)}</p>'
         f'<p><b>반론/주의:</b> {esc(issue.get("counterpoint") or "뉴스와 가격의 동시 발생만으로 인과를 확정하지 않습니다.")}</p>'
+        f'{reaction_html}'
         f'<p><b>다음 확인 변수:</b> {esc(_join(issue.get("next_variables")))}</p>'
         f'<p><b>출처:</b> {esc(publishers)} · 공식자료 {"있음" if issue.get("official_source_available") else "추가 확인 필요"}</p>'
         f'<details><summary>관련 기사</summary><ul>{links or "<li>표시 가능한 기사 링크가 없습니다.</li>"}</ul></details>'
