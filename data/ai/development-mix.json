@@ -3,12 +3,57 @@
   "method": "commit_path_classification",
   "window_hours": 24,
   "target_product_min_pct": 70,
-  "product_pct": 50.4,
-  "maintenance_pct": 49.6,
-  "labeled_commit_count": 129,
-  "unclassified_commit_count": 31,
+  "product_pct": 53.7,
+  "maintenance_pct": 46.3,
+  "labeled_commit_count": 123,
+  "unclassified_commit_count": 28,
   "warning": true,
   "recent": [
+    {
+      "sha": "6f39e76bfd9713ebfaaf0acebdf09a038be60e1e",
+      "subject": "ai-c: record EXP-C-012 quant progress heartbeat",
+      "class": "maintenance"
+    },
+    {
+      "sha": "0f52c041f425703e3ae4685e846a130d60195365",
+      "subject": "ai-c: audit smart-money sample independence and universe sensitivity",
+      "class": "maintenance"
+    },
+    {
+      "sha": "20f75268bbdd005ed4f1d1f9a3bb94d439536a2f",
+      "subject": "ai-c: record quant progress heartbeat",
+      "class": "maintenance"
+    },
+    {
+      "sha": "357d36946c12d2286f2d907ff35b0e88df434e52",
+      "subject": "ai-c: add index resilience breadth quant check",
+      "class": "maintenance"
+    },
+    {
+      "sha": "281ea1d7c5ea50bbfa043cbe81d3caa0a08b365a",
+      "subject": "ai-a: record 16:09 discovery heartbeat",
+      "class": "maintenance"
+    },
+    {
+      "sha": "5ac0410a55a83167ad3a34c08acb7fa17818a558",
+      "subject": "ai-a: record 16:04 discovery heartbeat",
+      "class": "maintenance"
+    },
+    {
+      "sha": "132a03ba3ce049695b831f7f032641347a869262",
+      "subject": "ai-b: record news reaction clock audit heartbeat",
+      "class": "maintenance"
+    },
+    {
+      "sha": "724d48105b2a37253d0d9379230bedf383df294f",
+      "subject": "ai-a: add index resilience breadth regime candidate",
+      "class": "maintenance"
+    },
+    {
+      "sha": "ac21cc5218176dbb0cdc095b7651c7be0fdb81ff",
+      "subject": "product: refresh market intelligence",
+      "class": "product"
+    },
     {
       "sha": "75b9311238372a134038302c90721f34a472a4d4",
       "subject": "maintenance: test isolated official-news failure ledger",
@@ -112,51 +157,6 @@
     {
       "sha": "d55ed71d95449206b4c8395147ad7cf49c4cc7cc",
       "subject": "product: add sector and market-cap participation breadth",
-      "class": "product"
-    },
-    {
-      "sha": "2943bec72f50504db42b1f840b68e13775c8beb4",
-      "subject": "product: refresh market intelligence",
-      "class": "product"
-    },
-    {
-      "sha": "3d4b8a86c1598ed0833e8b85e0a049ed48800e7a",
-      "subject": "product: connect OpenDART and Bank of Korea primary feeds",
-      "class": "product"
-    },
-    {
-      "sha": "8a023d29e7b26816a8e6f226219494ee8cde9783",
-      "subject": "ops: refresh AI-B runtime evidence",
-      "class": "maintenance"
-    },
-    {
-      "sha": "13353a1774004c9617431e6a7b1121cebf1507ec",
-      "subject": "product: refresh market intelligence",
-      "class": "product"
-    },
-    {
-      "sha": "d60fa898acd14e936845416cb935b9fa433d01cd",
-      "subject": "product: isolate slow official news feeds from fast lane",
-      "class": "product"
-    },
-    {
-      "sha": "6a89dc7ef6cfb29abcf5ead2831d0c04a06b8ae6",
-      "subject": "product: expose official-source coverage on news page",
-      "class": "product"
-    },
-    {
-      "sha": "86581b66f3b837f4bbdf5ee5a7ab1932203a4e87",
-      "subject": "product: surface live turnover participation in market briefing",
-      "class": "product"
-    },
-    {
-      "sha": "cdb6225f46e8a93e9d3ddc5c83b0743a93e037c9",
-      "subject": "test: protect official news provenance and dedupe priority",
-      "class": "unclassified"
-    },
-    {
-      "sha": "3892534608a378ac527b1513a19f272acbc39b88",
-      "subject": "product: merge first-party official feeds into news fast lane",
       "class": "product"
     }
   ]
