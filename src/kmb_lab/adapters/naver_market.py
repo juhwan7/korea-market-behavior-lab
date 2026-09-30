@@ -237,6 +237,35 @@ def fetch_market_universe(market: str, *, page_size: int = 100, max_pages: int =
     return rows
 
 
+
+def top_turnover_candidates(rows: list[dict[str, Any]], market: str, *, limit: int = 6) -> list[dict[str, Any]]:
+    """Select liquid symbols for model validation, not as investment recommendations."""
+    candidates: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for row in rows:
+        code = str(row.get("itemCode") or row.get("stockCode") or row.get("code") or "").strip().upper()
+        name = str(row.get("stockName") or row.get("itemName") or row.get("name") or code).strip()
+        value = _number(
+            row.get("accumulatedTradingValueRaw")
+            or row.get("accumulatedTradingValue")
+            or row.get("tradingValue")
+        )
+        if not code or code in seen or value is None or value <= 0:
+            continue
+        if not re.fullmatch(r"[0-9A-Z]{6}", code):
+            continue
+        seen.add(code)
+        candidates.append({
+            "code": code,
+            "name": name or code,
+            "benchmark": market.upper(),
+            "trading_value_krw": round(float(value), 0),
+            "selection_reason": "top_intraday_trading_value_validation_sample",
+        })
+    candidates.sort(key=lambda row: float(row["trading_value_krw"]), reverse=True)
+    return candidates[:max(0, limit)]
+
+
 def normalize_turnover_participation(rows: list[dict[str, Any]]) -> dict[str, Any]:
     advance = decline = flat = total = 0.0
     valid_count = 0
