@@ -8,6 +8,7 @@ from typing import Any, Iterable
 from kmb_lab.http_client import HttpError, request_json, request_text
 
 FRONT = "https://m.stock.naver.com/front-api"
+STOCK_WEB = "https://stock.naver.com"
 MOBILE_API = "https://m.stock.naver.com/api"
 MAIN_SUMMARY = "https://finance.naver.com/main/mainSummary.naver"
 LEGACY_STOCK = "https://m.stock.naver.com/api/stock"
@@ -277,16 +278,47 @@ def normalize_turnover_participation(rows: list[dict[str, Any]]) -> dict[str, An
 
 
 def fetch_sector_list() -> Any:
-    """Fetch Naver's public domestic industry-index list.
+    """Fetch a public domestic industry ranking with bounded fallbacks.
 
-    This is an undocumented secondary endpoint. Results are never promoted to
-    official KRX industry breadth.
+    Naver's old mobile front-api sector route started returning HTTP 400 in
+    September 2026. Prefer the current stock.naver.com category APIs and keep
+    the old route only as a final compatibility fallback.
+
+    Every route here is an undocumented secondary source. The result must never
+    be promoted to official KRX industry breadth.
     """
-    return request_json(
-        f"{FRONT}/stock/sectors/all",
-        params={"nationType": "domestic", "sectorType": "upjong"},
-        headers={"Referer": REFERER},
-    )
+    attempts: list[str] = []
+    candidates = [
+        (
+            f"{STOCK_WEB}/api/stockSecurity/rankings/v2/domestic/industries",
+            {"sortType": "changeRate", "size": 100, "period": "daily"},
+            {"Referer": f"{STOCK_WEB}/"},
+        ),
+        (
+            f"{STOCK_WEB}/api/domestic/market/upjong/list",
+            {"startIdx": 0, "pageSize": 100, "sortType": "changeRate"},
+            {"Referer": f"{STOCK_WEB}/"},
+        ),
+        (
+            f"{FRONT}/stock/sectors/all",
+            {"nationType": "domestic", "sectorType": "upjong"},
+            {"Referer": REFERER},
+        ),
+    ]
+    for url, params, headers in candidates:
+        try:
+            payload = request_json(url, params=params, headers=headers)
+        except HttpError as exc:
+            attempts.append(str(exc))
+            continue
+        if isinstance(payload, (dict, list)):
+            normalized = normalize_sector_dispersion(payload)
+            if normalized.get("sector_count", 0) > 0:
+                return payload
+            attempts.append(f"{url}: response contained no normalizable sector rows")
+        else:
+            attempts.append(f"{url}: unexpected response type {type(payload).__name__}")
+    raise HttpError("all public sector ranking fallbacks failed: " + " | ".join(attempts))
 
 
 def normalize_sector_dispersion(payload: Any) -> dict[str, Any]:
@@ -295,7 +327,10 @@ def normalize_sector_dispersion(payload: Any) -> dict[str, Any]:
     for row in _iter_dicts(_payload(payload)):
         change = _number(row.get("fluctuationsRatio") or row.get("changeRate") or row.get("rate"))
         name = row.get("sectorName") or row.get("name") or row.get("itemName") or row.get("stockName")
-        code = row.get("sectorCode") or row.get("code") or row.get("itemCode")
+        code = (
+            row.get("sectorCode") or row.get("industryCode") or row.get("categoryCode")
+            or row.get("code") or row.get("itemCode") or row.get("no")
+        )
         if change is None or not name:
             continue
         key = str(code or name)
