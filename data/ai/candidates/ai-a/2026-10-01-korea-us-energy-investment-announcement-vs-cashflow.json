@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "agent": "AI-A",
+  "role": "Discovery / Market Intelligence / Hypothesis Generator",
+  "created_at": "2026-10-01T07:04:03+09:00",
+  "fingerprint": "korea-us-energy-investment|announcement-vs-binding-commitment|fx-fiscal-optionality|ai-power-demand",
+  "type": "MARKET_INTELLIGENCE_HYPOTHESIS",
+  "status": "CANDIDATE",
+  "news_outcome": "NEW_IMPORTANT_NEWS",
+  "title": "대미 에너지 투자 발표액과 실제 현금유출·국내시장 충격을 분리해야 한다",
+  "confirmed": [
+    "Reuters on 2026-09-30 reported a US announcement covering $200bn of South Korean strategic investment projects, including about $54bn for Alaska LNG, eight nuclear reactors and a Texas gas-fired power project.",
+    "Reuters on 2026-09-22 reported Seoul had confirmed the Texas gas power project as the first project while Alaska LNG and nuclear projects were still being considered amid commercial-viability concerns.",
+    "KMB current/issue-digest generated 2026-10-01T05:50:50+09:00 is HEALTHY: sources_checked=20, raw_news_count=221, deduplicated_count=212.",
+    "Exact searches of current/issues/issue-digest found no Alaska/알래스카/Texas/텍사스/2000억/전략투자 issue match, indicating a coverage gap for this market-relevant event."
+  ],
+  "hypothesis": "The market impact should depend less on the headline $200bn/$54bn figures than on binding project approvals, annual cash-remittance timing, funding source, ownership/return structure and FX hedging. A staged, commercially conditional program can have materially smaller near-term USD/KRW and Korean-liquidity pressure than headline notional amounts imply, while still creating medium-term order opportunities for Korean power/nuclear/engineering supply chains.",
+  "unknown": [
+    "Which announced projects are legally binding versus political/project pipeline announcements",
+    "Final Korean equity/debt exposure and ownership economics for Alaska LNG and nuclear projects",
+    "Actual annual dollar remittance schedule and FX hedge/funding source",
+    "Named Korean EPC/equipment beneficiaries and domestic order capture",
+    "Whether public announcement changes USD/KRW, foreign flow or sector relative strength after Korea market opens"
+  ],
+  "why_important": "This event combines Korea-US trade policy, FX/funding risk and AI power infrastructure. Treating headline investment size as immediate capital outflow can distort USD/KRW and KOSPI risk assessment; treating all projects as confirmed orders can overstate beneficiary earnings.",
+  "counter_scenario": "If contracts become binding quickly, require large unhedged dollar conversion, or Korea bears asymmetric financing/ownership risk, near-term FX/fiscal pressure could be larger. If commercial returns and Korean equipment content are high, beneficiary order momentum could dominate macro leakage.",
+  "next_variables": [
+    "Korean government project-level confirmation",
+    "binding FID/offtake/financing",
+    "annual remittance cap and funding source",
+    "USD/KRW spot/forward/basis",
+    "foreign KOSPI flow",
+    "nuclear/power/EPC order disclosures"
+  ],
+  "related_markets": [
+    "KOSPI",
+    "USD/KRW",
+    "US Treasuries",
+    "LNG"
+  ],
+  "related_sectors": [
+    "원전",
+    "전력기기",
+    "건설/EPC",
+    "가스/LNG",
+    "AI 데이터센터 인프라"
+  ],
+  "related_stocks": [],
+  "related_issue_ids": [],
+  "provenance": [
+    {
+      "kind": "SECONDARY_WIRE",
+      "source": "Reuters",
+      "date": "2026-09-30",
+      "topic": "$200bn US investment announcement and Alaska LNG"
+    },
+    {
+      "kind": "SECONDARY_WIRE",
+      "source": "Reuters",
+      "date": "2026-09-22",
+      "topic": "Seoul first confirmed Texas project; other projects under consideration"
+    },
+    {
+      "kind": "REPOSITORY_CANONICAL",
+      "source": "data/news/current.json + issue-digest.json",
+      "generated_at": "2026-10-01T05:50:50+09:00"
+    }
+  ],
+  "collector_evidence": {
+    "news_collection_attempted": true,
+    "sources_checked": 20,
+    "raw_news_count": 221,
+    "deduplicated_count": 212,
+    "issue_created_count": null,
+    "issue_updated_count": null
+  },
+  "handoffs": [
+    "AI-C: event study announcement/project-confirmation dates -> USD/KRW, foreign KOSPI flow, power/nuclear sector relative return; model cash-outflow scenarios by annual remittance rather than headline notional.",
+    "AI-B: falsify announcement-vs-binding distinction using actual MOU/project contracts, ownership, funding and government disclosures.",
+    "AI-D/AI-E: investigate news coverage gap: latest KMB issue files contain no Alaska/Texas/strategic-investment issue despite market relevance; expand Korea-US policy/energy query coverage without weakening dedupe."
+  ],
+  "pages_impact": "YES"
+}
