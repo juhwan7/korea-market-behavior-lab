@@ -7,6 +7,7 @@ from typing import Any, Iterable
 from kmb_lab.http_client import HttpError, request_json, request_text
 
 FRONT = "https://m.stock.naver.com/front-api"
+MOBILE_API = "https://m.stock.naver.com/api"
 MAIN_SUMMARY = "https://finance.naver.com/main/mainSummary.naver"
 LEGACY_STOCK = "https://m.stock.naver.com/api/stock"
 CHART_API = "https://api.stock.naver.com/chart/domestic/item"
@@ -56,6 +57,79 @@ def fetch_index_basic(code: str) -> dict[str, Any]:
         params={"code": code, "endType": "index"},
         headers={"Referer": REFERER},
     )
+
+
+def fetch_kospi200_futures_price(page_size: int = 20) -> list[dict[str, Any]]:
+    payload = request_json(
+        f"{MOBILE_API}/index/FUT/price",
+        params={"pageSize": min(max(1, page_size), 60), "page": 1},
+        headers={"Referer": "https://m.stock.naver.com/domestic/index/FUT/total"},
+    )
+    if not isinstance(payload, list):
+        raise HttpError("Naver FUT price returned non-list JSON")
+    return [row for row in payload if isinstance(row, dict)]
+
+
+def fetch_kospi200_futures_trend(bizdate: str | None = None) -> dict[str, Any]:
+    params = {"bizdate": bizdate} if bizdate else None
+    payload = request_json(
+        f"{MOBILE_API}/index/FUT/trend",
+        params=params,
+        headers={"Referer": "https://m.stock.naver.com/domestic/index/FUT/total"},
+    )
+    row = payload[0] if isinstance(payload, list) and payload and isinstance(payload[0], dict) else payload
+    if not isinstance(row, dict):
+        raise HttpError("Naver FUT trend returned unexpected JSON")
+    return row
+
+
+def normalize_kospi200_futures(price_rows: list[dict[str, Any]], trend: dict[str, Any] | None = None) -> dict[str, Any]:
+    if not price_rows:
+        raise HttpError("Naver FUT price rows empty")
+    latest = price_rows[0]
+    price = _number(latest.get("closePrice"))
+    change = _number(latest.get("compareToPreviousClosePrice"))
+    if price is None:
+        raise HttpError("Naver FUT latest close missing")
+    previous = price - change if change is not None else None
+    change_pct = _number(latest.get("fluctuationsRatio"))
+    if change_pct is None and previous not in (None, 0):
+        change_pct = (price / previous - 1.0) * 100.0
+
+    trend = trend or {}
+    flows = {
+        "individual": _number(trend.get("personalValue") or trend.get("individualValue")),
+        "foreign": _number(trend.get("foreignValue") or trend.get("foreignerValue")),
+        "institution": _number(trend.get("institutionalValue") or trend.get("institutionValue")),
+    }
+    history = []
+    for row in reversed(price_rows):
+        close = _number(row.get("closePrice"))
+        if close is None:
+            continue
+        history.append({
+            "date": _date_text(row.get("localTradedAt")),
+            "close": close,
+            "change": _number(row.get("compareToPreviousClosePrice")),
+            "change_pct": _number(row.get("fluctuationsRatio")),
+        })
+    return {
+        "status": "CONNECTED_SECONDARY",
+        "instrument": "KOSPI200 연결선물 (NAVER FUT)",
+        "close": price,
+        "previous_close": previous,
+        "change": change,
+        "change_pct": round(change_pct, 3) if isinstance(change_pct, (int, float)) else None,
+        "as_of": latest.get("localTradedAt"),
+        "investor_flow_100m_krw": flows,
+        "flow_as_of": trend.get("bizdate"),
+        "history": history,
+        "open_interest": None,
+        "source_id": SOURCE_ID,
+        "source_kind": SOURCE_KIND,
+        "source_url": f"{MOBILE_API}/index/FUT/price",
+        "note": "무료 공개 보조 데이터입니다. KRX 공식 데이터가 연결되면 공식값을 우선합니다.",
+    }
 
 
 def fetch_main_summary() -> dict[str, Any]:
