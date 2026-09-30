@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-09-30T23:16:04+09:00",
+  "generated_at": "2026-09-30T23:20:46+09:00",
   "retention_days": 7,
-  "count": 13,
+  "count": 14,
   "snapshots": [
     {
       "at": "2026-09-30T12:56:25+09:00",
@@ -921,6 +921,77 @@
         "WTI": {
           "price": 90.65,
           "change_pct": -1.90455578400605
+        }
+      },
+      "market_strength": 35.0,
+      "turnover_advance_share": 0.5792
+    },
+    {
+      "at": "2026-09-30T23:20:46+09:00",
+      "indices": {
+        "KOSPI": {
+          "close": 6838.04,
+          "change_pct": -0.48,
+          "breadth": {
+            "upper": 1,
+            "advance": 352,
+            "flat": 49,
+            "decline": 513,
+            "lower": 0
+          },
+          "foreign_net_100m_krw": -20645.56
+        },
+        "KOSDAQ": {
+          "close": 855.91,
+          "change_pct": 0.72,
+          "breadth": {
+            "upper": 3,
+            "advance": 804,
+            "flat": 94,
+            "decline": 845,
+            "lower": 2
+          },
+          "foreign_net_100m_krw": -713.08
+        },
+        "KPI200": {
+          "close": 1081.82,
+          "change_pct": -0.58,
+          "breadth": {},
+          "foreign_net_100m_krw": null
+        }
+      },
+      "program_net_100m_krw": -12666.12,
+      "futures": {
+        "close": 1091.5,
+        "change_pct": -0.42,
+        "basis": 9.68,
+        "foreign_net_100m_krw": -13079.0,
+        "source_kind": "secondary"
+      },
+      "global": {
+        "NASDAQ100_FUTURES": {
+          "price": 30854.0,
+          "change_pct": -0.1141173709300161
+        },
+        "SP500_FUTURES": {
+          "price": 7773.5,
+          "change_pct": -0.3876341502482781
+        },
+        "SOX": {
+          "price": 12622.257,
+          "change_pct": 0.7018911337547825
+        },
+        "VIX": {
+          "price": 15.7,
+          "change_pct": 0.19144862795149561
+        },
+        "USD_KRW": {
+          "price": 1352.82,
+          "change_pct": -0.710458715596335
+        },
+        "WTI": {
+          "price": 90.74,
+          "change_pct": -1.8071637268693885
         }
       },
       "market_strength": 35.0,

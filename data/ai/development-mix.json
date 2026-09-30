@@ -3,12 +3,47 @@
   "method": "commit_path_classification",
   "window_hours": 24,
   "target_product_min_pct": 70,
-  "product_pct": 59.4,
-  "maintenance_pct": 40.6,
-  "labeled_commit_count": 138,
-  "unclassified_commit_count": 33,
+  "product_pct": 60.4,
+  "maintenance_pct": 39.6,
+  "labeled_commit_count": 144,
+  "unclassified_commit_count": 34,
   "warning": true,
   "recent": [
+    {
+      "sha": "12d40b7f8c1be3139d7b16fa371171b11cf63749",
+      "subject": "test: lock low-information filtering and rewritten event clustering",
+      "class": "unclassified"
+    },
+    {
+      "sha": "2a0d31138f9e37cc3ef4f8ea3ae5b989c1f6b6b3",
+      "subject": "product: show separated news cleanup metrics",
+      "class": "product"
+    },
+    {
+      "sha": "6c18087c40f2cf7b5d8625aabf7982266dc8cd2e",
+      "subject": "product: measure promo and low-information news separately",
+      "class": "product"
+    },
+    {
+      "sha": "8838e6b6735f2d6cf782c0137ea733d45b54f70c",
+      "subject": "fix: separate news quality filter metrics",
+      "class": "product"
+    },
+    {
+      "sha": "a1747cedd2b519874676c882410e3bff8571d681",
+      "subject": "audit(ai-b): record closed-session reaction finding",
+      "class": "maintenance"
+    },
+    {
+      "sha": "4ddaa65d2af87557b42a807e480ac16ccfada291",
+      "subject": "product: strengthen event clustering and low-information filtering",
+      "class": "product"
+    },
+    {
+      "sha": "178d7d26768d919e57d04aad029b3c961a37ec40",
+      "subject": "product: refresh market intelligence",
+      "class": "product"
+    },
     {
       "sha": "af33ddccb9aef823338154c5cb7e21869bf5de78",
       "subject": "product: link market issues to AI research and stocks",
@@ -122,41 +157,6 @@
     {
       "sha": "cdecf23cb0f2df695639cc212ca17eedd3d418b9",
       "subject": "AI-A: persist 21:57 discovery runtime evidence",
-      "class": "maintenance"
-    },
-    {
-      "sha": "797f5a9b9fc4c9cb0d63eaa132abc405772f74ab",
-      "subject": "ai-c: record EXP-C-015 quant heartbeat",
-      "class": "maintenance"
-    },
-    {
-      "sha": "c0d10089bbc66efea7571d7994122d452a8603f0",
-      "subject": "ai-b: audit primary-source issue visibility loss",
-      "class": "maintenance"
-    },
-    {
-      "sha": "6085809e4420b67e5f6aae2f9620320f5a3e0a62",
-      "subject": "product: refresh market intelligence",
-      "class": "product"
-    },
-    {
-      "sha": "3628f77119fca89194db67129d08d6240a479111",
-      "subject": "ai-b: record article issue lineage audit",
-      "class": "maintenance"
-    },
-    {
-      "sha": "7e87292570e52208baa2ca63b3624ff7504f8a06",
-      "subject": "ai-a: record 19:01 discovery and news evidence",
-      "class": "maintenance"
-    },
-    {
-      "sha": "540189d7b282abe7b95d7a62501cff576a05bf17",
-      "subject": "product: refresh market intelligence",
-      "class": "product"
-    },
-    {
-      "sha": "43a5aab565e3e1507817b59404429ed637dcb1b5",
-      "subject": "ai-b: record news cluster fragmentation audit heartbeat",
       "class": "maintenance"
     }
   ]
