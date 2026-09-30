@@ -13,7 +13,7 @@ from .development_mix import git_development_mix
 from .flow import analyze_flow_history
 from .market_strength import market_strength
 from .relative_strength import relative_strength
-from .smart_money import analyze_smart_money
+from .smart_money import analyze_smart_money, backtest_smart_money
 
 ROOT = Path(__file__).resolve().parents[2]
 KST = timezone(timedelta(hours=9))
@@ -702,21 +702,140 @@ def collect_relative_strength(root: Path) -> tuple[dict[str, Any], list[str]]:
     }, errors
 
 
+def _aggregate_smart_backtests(items: list[dict[str, Any]]) -> dict[str, Any]:
+    valid = [item for item in items if (item.get("backtest") or {}).get("evidence_state") == "ESTIMATED"]
+    total = sum(int((item.get("backtest") or {}).get("sample_count") or 0) for item in valid)
+    if total <= 0:
+        return {"evidence_state": "UNKNOWN", "sample_count": 0, "reason": "검증 가능한 방향성 상태 표본이 아직 없습니다."}
+
+    def weighted(field: str) -> float | None:
+        pairs = []
+        for item in valid:
+            bt = item.get("backtest") or {}
+            n = int(bt.get("sample_count") or 0)
+            value = (bt.get("overall") or {}).get(field)
+            if n > 0 and isinstance(value, (int, float)):
+                pairs.append((float(value), n))
+        return round(sum(v*n for v,n in pairs) / sum(n for _,n in pairs), 4) if pairs else None
+
+    return {
+        "evidence_state": "ESTIMATED",
+        "sample_count": total,
+        "gross_success_rate": weighted("gross_success_rate"),
+        "net_success_rate": weighted("net_success_rate"),
+        "avg_gross_directional_return_pct": weighted("avg_gross_directional_return_pct"),
+        "avg_net_after_cost_pct": weighted("avg_net_after_cost_pct"),
+        "avg_mfe_pct": weighted("avg_mfe_pct"),
+        "avg_mae_pct": weighted("avg_mae_pct"),
+        "cost_assumption": {
+            "evidence_state": "ASSUMPTION",
+            "fees_bps": 15.0,
+            "slippage_bps": 20.0,
+            "round_trip_total_bps": 35.0,
+        },
+        "method_note": "관심종목별 walk-forward 방향성 검증을 표본수로 가중 집계합니다. 과거 검증률은 미래 확률이 아닙니다.",
+    }
+
+
+def _sync_smart_money_experiment(root: Path, aggregate: dict[str, Any]) -> None:
+    path = root / "data/experiments/registry.json"
+    registry = load_json(path, {"schema_version": 1, "champions": {}, "challengers": {}, "experiments": []})
+    if not isinstance(registry, dict):
+        registry = {"schema_version": 1, "champions": {}, "challengers": {}, "experiments": []}
+    challengers = registry.setdefault("challengers", {})
+    challengers["smart_money_behavior_v0"] = {
+        "owner": "AI-C",
+        "status": "SHADOW",
+        "production_eligible": False,
+        "implementation": "src/kmb_lab/smart_money.py",
+        "purpose": "Validate accumulation/absorption, breakout-demand and distribution-risk state labels with walk-forward historical samples.",
+        "sample_count": int(aggregate.get("sample_count") or 0),
+        "performance": aggregate if aggregate.get("evidence_state") == "ESTIMATED" else None,
+        "required_before_promotion": [
+            "larger multi-regime historical sample",
+            "primary-source market data where available",
+            "out-of-sample stability",
+            "fees/slippage sensitivity",
+            "AI-B evidence audit",
+        ],
+    }
+    experiments = registry.setdefault("experiments", [])
+    exp = next((row for row in experiments if row.get("id") == "EXP-C-002"), None)
+    payload = {
+        "id": "EXP-C-002",
+        "name": "Smart Money Behavior Walk-Forward v0",
+        "owner": "AI-C",
+        "status": "SHADOW",
+        "sample_count": int(aggregate.get("sample_count") or 0),
+        "performance": aggregate if aggregate.get("evidence_state") == "ESTIMATED" else None,
+        "production_eligible": False,
+        "failure_condition": "look-ahead leakage, fabricated probability, or promotion without out-of-sample/primary-source audit",
+    }
+    if exp is None:
+        experiments.append(payload)
+    else:
+        exp.update(payload)
+    registry["updated_at"] = now_text()
+    write_json(path, registry)
+
+
 def collect_smart_money(root: Path) -> tuple[dict[str, Any], list[str]]:
     config = load_json(root / "data/config/watchlist.json", {})
     items = config.get("items", []) if isinstance(config, dict) else []
-    output: list[dict[str, Any]] = []; errors: list[str] = []
+    output: list[dict[str, Any]] = []
+    errors: list[str] = []
+    benchmark_cache: dict[str, list[dict[str, Any]]] = {}
+
     for item in items[:30]:
         code = str(item.get("code") or "")
-        if not code: continue
+        if not code:
+            continue
+        benchmark = str(item.get("benchmark") or "KOSPI").upper()
         try:
             bars = naver_market.fetch_stock_daily(code, page_size=80)
             analysis = analyze_smart_money(bars)
-            output.append({"code": code, "name": item.get("name") or code, "as_of": bars[-1].get("date") if bars else None, "source_id": naver_market.SOURCE_ID, "source_kind": "secondary", **analysis})
+            benchmark_rows: list[dict[str, Any]] | None = None
+            try:
+                if benchmark not in benchmark_cache:
+                    benchmark_cache[benchmark] = naver_market.fetch_index_daily(benchmark, page_size=80)
+                benchmark_rows = benchmark_cache[benchmark]
+            except Exception as exc:
+                errors.append(f"smart-money-benchmark-{benchmark}:{exc}")
+            backtest = backtest_smart_money(bars, benchmark_rows=benchmark_rows)
+            output.append({
+                "code": code,
+                "name": item.get("name") or code,
+                "benchmark": benchmark,
+                "as_of": bars[-1].get("date") if bars else None,
+                "source_id": naver_market.SOURCE_ID,
+                "source_kind": "secondary",
+                **analysis,
+                "validation": {
+                    "evidence_state": backtest.get("evidence_state"),
+                    "sample_count": backtest.get("sample_count"),
+                    "overall": backtest.get("overall"),
+                    "by_state": backtest.get("by_state"),
+                    "by_regime": backtest.get("by_regime"),
+                    "cost_assumption": backtest.get("cost_assumption"),
+                    "method_note": backtest.get("method_note"),
+                    "reason": backtest.get("reason"),
+                },
+                "backtest": backtest,
+            })
         except Exception as exc:
             errors.append(f"smart-money-{code}:{exc}")
             output.append({"code": code, "name": item.get("name") or code, "evidence_state": "UNKNOWN", "reason": str(exc)})
-    return {"generated_at": now_text(), "production_eligible": False, "model_status": "SHADOW", "items": output, "warning": "특정 실존 계좌의 보유량·평단·의도를 의미하지 않는 공개데이터 기반 가상 프록시입니다."}, errors
+
+    aggregate = _aggregate_smart_backtests(output)
+    _sync_smart_money_experiment(root, aggregate)
+    return {
+        "generated_at": now_text(),
+        "production_eligible": False,
+        "model_status": "SHADOW",
+        "validation": aggregate,
+        "items": output,
+        "warning": "특정 실존 계좌의 보유량·평단·의도를 의미하지 않는 공개데이터 기반 가상 프록시입니다.",
+    }, errors
 
 
 def build_summary(indices: dict[str, Any], breadth: dict[str, Any], flows: dict[str, Any], program: dict[str, Any], strength: dict[str, Any], news: dict[str, Any], official: dict[str, Any]) -> dict[str, Any]:
@@ -797,6 +916,20 @@ def run(root: Path = ROOT) -> dict[str, Any]:
     write_json(root / "data/news/issues.json", news_issues)
     write_json(root / "data/news/issue-digest.json", news_digest)
     write_json(root / "data/stocks/smart-money.json", smart_money)
+    write_json(root / "data/stocks/smart-money-backtest.json", {
+        "generated_at": smart_money.get("generated_at"),
+        "model_status": smart_money.get("model_status"),
+        "validation": smart_money.get("validation"),
+        "items": [
+            {
+                "code": item.get("code"),
+                "name": item.get("name"),
+                "benchmark": item.get("benchmark"),
+                "backtest": item.get("backtest"),
+            }
+            for item in (smart_money.get("items") or [])
+        ],
+    })
     write_json(root / "data/stocks/relative-strength.json", relative_strength_data)
     write_json(root / "data/ai/development-mix.json", git_development_mix(24))
 
@@ -836,6 +969,7 @@ def run(root: Path = ROOT) -> dict[str, Any]:
             "turnover_stock_count": (turnover.get("combined") or {}).get("stock_count"),
             "smart_money": smart_money.get("model_status"),
             "smart_money_estimated_items": smart_estimated,
+            "smart_money_backtest_samples": ((smart_money.get("validation") or {}).get("sample_count") or 0),
             "relative_strength_items": sum(
                 1 for item in (relative_strength_data.get("items") or [])
                 if isinstance(item, dict) and item.get("evidence_state") == "ESTIMATED"
