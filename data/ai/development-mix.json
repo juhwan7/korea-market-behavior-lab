@@ -3,12 +3,22 @@
   "method": "commit_path_classification",
   "window_hours": 24,
   "target_product_min_pct": 70,
-  "product_pct": 53.7,
-  "maintenance_pct": 46.3,
-  "labeled_commit_count": 123,
+  "product_pct": 56.5,
+  "maintenance_pct": 43.5,
+  "labeled_commit_count": 115,
   "unclassified_commit_count": 28,
   "warning": true,
   "recent": [
+    {
+      "sha": "43a5aab565e3e1507817b59404429ed637dcb1b5",
+      "subject": "ai-b: record news cluster fragmentation audit heartbeat",
+      "class": "maintenance"
+    },
+    {
+      "sha": "387172bf13dd1b92fb6519a51f193497a26a8efa",
+      "subject": "product: refresh market intelligence",
+      "class": "product"
+    },
     {
       "sha": "6f39e76bfd9713ebfaaf0acebdf09a038be60e1e",
       "subject": "ai-c: record EXP-C-012 quant progress heartbeat",
@@ -147,16 +157,6 @@
     {
       "sha": "053ea2ba98a200a67fa92d174f99e3db406e39a4",
       "subject": "product: refresh market intelligence",
-      "class": "product"
-    },
-    {
-      "sha": "967dcb9d71adba5378434bd7fd2ad9409b82e420",
-      "subject": "product: recover BOK indicators through ECOS Open API",
-      "class": "product"
-    },
-    {
-      "sha": "d55ed71d95449206b4c8395147ad7cf49c4cc7cc",
-      "subject": "product: add sector and market-cap participation breadth",
       "class": "product"
     }
   ]
