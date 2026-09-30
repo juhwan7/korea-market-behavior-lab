@@ -28,6 +28,97 @@ class NewsTests(unittest.TestCase):
         self.assertEqual(issues[0]["issue_id"], dedupe_and_cluster(items)[1][0]["issue_id"])
         self.assertTrue(all(a["cluster_id"] == issues[0]["issue_id"] for a in issues[0]["articles"]))
 
+    def test_promotional_secondary_news_is_filtered(self):
+        items = [
+            {
+                "headline": "주식 리딩방 무료체험 이벤트 경품 증정",
+                "title": "주식 리딩방 무료체험 이벤트 경품 증정",
+                "url": "https://promo.example/1",
+                "published_at": "2026-09-30T01:00:00Z",
+                "source": "홍보매체",
+                "publisher": "홍보매체",
+                "source_type": "SECONDARY",
+                "official_source_available": False,
+            },
+            {
+                "headline": "삼성전자 HBM 공급계약 확대",
+                "title": "삼성전자 HBM 공급계약 확대",
+                "url": "https://news.example/2",
+                "published_at": "2026-09-30T01:01:00Z",
+                "source": "A신문",
+                "publisher": "A신문",
+                "source_type": "SECONDARY",
+                "official_source_available": False,
+            },
+        ]
+        unique, issues = dedupe_and_cluster(items)
+        self.assertEqual(len(unique), 1)
+        self.assertEqual(unique[0]["headline"], "삼성전자 HBM 공급계약 확대")
+        self.assertEqual(len(issues), 1)
+
+    def test_reprints_are_not_counted_as_independent_confirmation(self):
+        items = [
+            {
+                "headline": "삼성전자 HBM 생산 확대 계획 발표",
+                "title": "삼성전자 HBM 생산 확대 계획 발표",
+                "url": "https://a.example/1",
+                "published_at": "2026-09-30T01:00:00Z",
+                "source": "A신문",
+                "publisher": "A신문",
+                "source_type": "SECONDARY",
+                "official_source_available": False,
+            },
+            {
+                "headline": "삼성전자 HBM 생산 확대 계획 발표",
+                "title": "삼성전자 HBM 생산 확대 계획 발표 - B뉴스",
+                "url": "https://b.example/2",
+                "published_at": "2026-09-30T01:02:00Z",
+                "source": "B뉴스",
+                "publisher": "B뉴스",
+                "source_type": "SECONDARY",
+                "official_source_available": False,
+            },
+        ]
+        unique, issues = dedupe_and_cluster(items)
+        self.assertEqual(len(unique), 1)
+        self.assertEqual(issues[0]["independent_source_count"], 1)
+
+    def test_semantic_continuity_preserves_issue_identity(self):
+        prior = {
+            "issue_id": "GN-stable",
+            "fingerprint": "ISSUE-FP-stable",
+            "headline": "삼성전자 HBM 생산 확대 계획",
+            "event_core_tokens": ["삼성전자", "hbm", "생산", "확대"],
+            "latest_at": "2026-09-30T01:00:00Z",
+            "first_seen_at": "2026-09-30T00:50:00Z",
+            "article_count": 2,
+            "independent_source_count": 1,
+            "independent_publishers": 1,
+            "history": [],
+        }
+        current = {
+            "issue_id": "GN-new",
+            "fingerprint": "ISSUE-FP-new",
+            "headline": "삼성 HBM 생산능력 확대 계획 발표",
+            "event_core_tokens": ["삼성", "hbm", "생산능력", "확대", "계획"],
+            "latest_at": "2026-09-30T01:10:00Z",
+            "first_seen_at": "2026-09-30T01:05:00Z",
+            "article_count": 3,
+            "independent_source_count": 2,
+            "independent_publishers": 2,
+            "history": [],
+        }
+        merged = _merge_issue_history(
+            [current], [prior],
+            observed_at="2026-09-30T01:11:00Z",
+            collection_succeeded=True,
+        )
+        row = next(x for x in merged if x["headline"].startswith("삼성"))
+        self.assertEqual(row["issue_id"], "GN-stable")
+        self.assertEqual(row["fingerprint"], "ISSUE-FP-stable")
+        self.assertEqual(row["state"], "STRENGTHENING")
+        self.assertEqual(row["identity_match"], "SEMANTIC_CONTINUITY")
+
     def test_old_search_result_is_not_current_news(self):
         self.assertFalse(_is_recent_news_item({
             "published_at":"1995-02-18T08:00:00Z",
