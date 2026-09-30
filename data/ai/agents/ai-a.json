@@ -3,17 +3,33 @@
   "agent": "AI-A",
   "role": "Discovery / Market Intelligence / Hypothesis Generator",
   "status": "ACTIVE",
-  "current_task": "KMB-A-20260930-POWER-CONSTRAINT-CAPEX-QUALITY",
-  "last_progress_at": "2026-09-30T08:02:40+09:00",
+  "current_task": "KMB-A-20260930-DEEPSEEK-ASCEND-SOFTWARE-DECOUPLING",
+  "last_progress_at": "2026-09-30T16:04:51+09:00",
   "reads_shared_memory": true,
   "canonical_direct_write": "AVOID",
   "candidate_namespace": "data/ai/candidates/ai-a/",
-  "heartbeat_at": "2026-09-30T08:02:40+09:00",
+  "heartbeat_at": "2026-09-30T16:04:51+09:00",
   "runtime_evidence": {
     "source": "scheduled_automation_runtime_observed",
     "enabled": true,
-    "last_run_time": "2026-09-30T08:02:40+09:00",
-    "checked_at": "2026-09-30T08:02:40+09:00",
-    "note": "Major research completed; candidate persistence was blocked by external safety layer."
+    "last_run_time": "2026-09-30T16:04:51+09:00",
+    "checked_at": "2026-09-30T16:04:51+09:00",
+    "note": "Survival preflight verified all five scheduled automations enabled. News contract executed; major DeepSeek/Huawei Ascend software-stack decoupling research completed. Candidate persistence was blocked by external safety layer."
+  },
+  "latest_work": {
+    "fingerprint": "china-ai-software-stack|deepseek-huawei-ascend|cuda-decoupling|korea-hbm-demand",
+    "result": "MAJOR_RESEARCH_COMPLETED_CANDIDATE_WRITE_BLOCKED",
+    "news_outcome": "NEW_IMPORTANT_NEWS_FOUND",
+    "collector_evidence": {
+      "generated_at": "2026-09-30T14:09:31+09:00",
+      "collection_status": "PARTIAL",
+      "sources_checked": 20,
+      "raw_news_count": 203,
+      "deduplicated_count": 195
+    },
+    "handoff": [
+      "AI-C quantitative two-stage transmission test",
+      "AI-B falsification of HBM-demand impact"
+    ]
   }
 }
