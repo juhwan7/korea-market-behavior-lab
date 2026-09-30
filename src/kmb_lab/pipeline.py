@@ -254,6 +254,42 @@ def _parse_dt(value: Any) -> datetime | None:
     return dt.astimezone(timezone.utc)
 
 
+def _is_recent_news_item(item: dict[str, Any], *, now: datetime | None = None, hours: int = 36) -> bool:
+    now = now or datetime.now(timezone.utc)
+    published = _parse_dt(item.get("published_at"))
+    if published is None:
+        observed = _parse_dt(item.get("observed_at") or item.get("retrieved_at"))
+        return observed is not None and now - observed <= timedelta(hours=hours)
+    age = now - published
+    return timedelta(minutes=-5) <= age <= timedelta(hours=hours)
+
+
+def _issue_importance(issue: dict[str, Any], *, now: datetime) -> tuple[float, dict[str, Any]]:
+    publishers = min(5, int(issue.get("independent_publishers") or 0))
+    articles = min(8, int(issue.get("article_count") or 0))
+    channels = min(4, len(issue.get("impact_channels") or []))
+    official = 1 if issue.get("official_source_available") else 0
+    latest = _parse_dt(issue.get("latest_at"))
+    recency = 0
+    if latest is not None:
+        age = now - latest
+        if age <= timedelta(hours=2):
+            recency = 8
+        elif age <= timedelta(hours=8):
+            recency = 5
+        elif age <= timedelta(hours=24):
+            recency = 2
+    score = publishers * 4 + articles * 1.5 + channels * 2 + official * 10 + recency
+    return score, {
+        "independent_source_component": publishers,
+        "article_component": articles,
+        "channel_component": channels,
+        "official_source_component": official,
+        "recency_component": recency,
+        "market_reaction_component": "PENDING",
+    }
+
+
 def _merge_issue_history(current_issues: list[dict[str, Any]], previous_issues: list[dict[str, Any]], *, observed_at: str, collection_succeeded: bool) -> list[dict[str, Any]]:
     prior_map = {}
     for row in previous_issues:
@@ -314,7 +350,19 @@ def _merge_issue_history(current_issues: list[dict[str, Any]], previous_issues: 
             row["last_updated_at"] = observed_at
             merged.append(row)
 
-    merged.sort(key=lambda x: (x.get("state") != "STRENGTHENING", x.get("latest_at") or "", x.get("article_count", 0)), reverse=False)
+    rank = {"STRENGTHENING": 5, "NEW": 4, "PERSISTING": 3, "WEAKENING": 2, "RESOLVED": 1}
+    for row in merged:
+        score, components = _issue_importance(row, now=_parse_dt(observed_at) or datetime.now(timezone.utc))
+        row["importance_score"] = round(score, 2)
+        row["importance_components"] = components
+    merged.sort(
+        key=lambda x: (
+            rank.get(str(x.get("state")), 0),
+            float(x.get("importance_score") or 0),
+            x.get("latest_at") or "",
+        ),
+        reverse=True,
+    )
     return merged
 
 
@@ -325,7 +373,8 @@ def collect_news(root: Path) -> tuple[dict[str, Any], dict[str, Any], dict[str, 
     succeeded = 0
     for query in checked:
         try:
-            all_items.extend(google_news.parse_rss(google_news.fetch_rss(query), query=query))
+            rows = google_news.parse_rss(google_news.fetch_rss(query), query=query)
+            all_items.extend([row for row in rows if _is_recent_news_item(row)])
             succeeded += 1
         except Exception as exc:
             errors.append(f"google-news:{query}:{exc}")
