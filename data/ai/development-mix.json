@@ -3,12 +3,62 @@
   "method": "commit_path_classification",
   "window_hours": 24,
   "target_product_min_pct": 70,
-  "product_pct": 57.0,
-  "maintenance_pct": 43.0,
-  "labeled_commit_count": 128,
-  "unclassified_commit_count": 31,
+  "product_pct": 58.8,
+  "maintenance_pct": 41.2,
+  "labeled_commit_count": 136,
+  "unclassified_commit_count": 33,
   "warning": true,
   "recent": [
+    {
+      "sha": "0274b6496332e8cebca6b56b864a7fb2f557f26f",
+      "subject": "product: expose measurable news cleanup metrics",
+      "class": "product"
+    },
+    {
+      "sha": "96e4a0b653b03eb680c5a79da5a7637450c19c7a",
+      "subject": "product: complete Korean status localization",
+      "class": "product"
+    },
+    {
+      "sha": "ff2328bb90ad07492c09201103a6aa87b8a3bfc6",
+      "subject": "product: localize market status and confidence labels",
+      "class": "product"
+    },
+    {
+      "sha": "2eefe7f1b8eec8a35dc9ebc63ffe5482bdcf5539",
+      "subject": "product: persist news quality metrics and enforce common-stock model universe",
+      "class": "product"
+    },
+    {
+      "sha": "5710fab44131e6b08ac69b282238d7ee626731de",
+      "subject": "test: update Pages workflow contract for V3 multipage UI",
+      "class": "unclassified"
+    },
+    {
+      "sha": "d01a66f310537884246bbabc1cbcc0d2bba8c4d2",
+      "subject": "ci: verify all market intelligence pages",
+      "class": "maintenance"
+    },
+    {
+      "sha": "39b86f2eba5f2c02c06407760f04f192073c59cf",
+      "subject": "test: enforce V3 multipage Korean UI contract",
+      "class": "unclassified"
+    },
+    {
+      "sha": "e0cb13ab28293ee8fe241aa93390184e6345875c",
+      "subject": "product: generate and verify V3 multipage Pages",
+      "class": "product"
+    },
+    {
+      "sha": "fc9d0497d1db13619a4d8e0ebde6a51c8729f89c",
+      "subject": "product: add multipage market intelligence UI",
+      "class": "product"
+    },
+    {
+      "sha": "caa55ebd236927c357f3d88576dabb8bdc7caf80",
+      "subject": "product: refresh market intelligence",
+      "class": "product"
+    },
     {
       "sha": "8c873e8a3a02836e3021816e77f819cbb03ac252",
       "subject": "product: recover persistent AI market research timeline",
@@ -107,56 +157,6 @@
     {
       "sha": "6f39e76bfd9713ebfaaf0acebdf09a038be60e1e",
       "subject": "ai-c: record EXP-C-012 quant progress heartbeat",
-      "class": "maintenance"
-    },
-    {
-      "sha": "0f52c041f425703e3ae4685e846a130d60195365",
-      "subject": "ai-c: audit smart-money sample independence and universe sensitivity",
-      "class": "maintenance"
-    },
-    {
-      "sha": "20f75268bbdd005ed4f1d1f9a3bb94d439536a2f",
-      "subject": "ai-c: record quant progress heartbeat",
-      "class": "maintenance"
-    },
-    {
-      "sha": "357d36946c12d2286f2d907ff35b0e88df434e52",
-      "subject": "ai-c: add index resilience breadth quant check",
-      "class": "maintenance"
-    },
-    {
-      "sha": "281ea1d7c5ea50bbfa043cbe81d3caa0a08b365a",
-      "subject": "ai-a: record 16:09 discovery heartbeat",
-      "class": "maintenance"
-    },
-    {
-      "sha": "5ac0410a55a83167ad3a34c08acb7fa17818a558",
-      "subject": "ai-a: record 16:04 discovery heartbeat",
-      "class": "maintenance"
-    },
-    {
-      "sha": "132a03ba3ce049695b831f7f032641347a869262",
-      "subject": "ai-b: record news reaction clock audit heartbeat",
-      "class": "maintenance"
-    },
-    {
-      "sha": "724d48105b2a37253d0d9379230bedf383df294f",
-      "subject": "ai-a: add index resilience breadth regime candidate",
-      "class": "maintenance"
-    },
-    {
-      "sha": "ac21cc5218176dbb0cdc095b7651c7be0fdb81ff",
-      "subject": "product: refresh market intelligence",
-      "class": "product"
-    },
-    {
-      "sha": "75b9311238372a134038302c90721f34a472a4d4",
-      "subject": "maintenance: test isolated official-news failure ledger",
-      "class": "maintenance"
-    },
-    {
-      "sha": "73a001eb3bcfe0c4ef4bf773233dabd12d675c21",
-      "subject": "maintenance: persist isolated official-news failures",
       "class": "maintenance"
     }
   ]
