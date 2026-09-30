@@ -3,12 +3,22 @@
   "method": "commit_path_classification",
   "window_hours": 24,
   "target_product_min_pct": 70,
-  "product_pct": 58.8,
-  "maintenance_pct": 41.2,
-  "labeled_commit_count": 136,
+  "product_pct": 59.4,
+  "maintenance_pct": 40.6,
+  "labeled_commit_count": 138,
   "unclassified_commit_count": 33,
   "warning": true,
   "recent": [
+    {
+      "sha": "af33ddccb9aef823338154c5cb7e21869bf5de78",
+      "subject": "product: link market issues to AI research and stocks",
+      "class": "product"
+    },
+    {
+      "sha": "9a91496fc77d3df938abdd9ad306c698a9ea68b4",
+      "subject": "product: refresh market intelligence",
+      "class": "product"
+    },
     {
       "sha": "0274b6496332e8cebca6b56b864a7fb2f557f26f",
       "subject": "product: expose measurable news cleanup metrics",
@@ -147,16 +157,6 @@
     {
       "sha": "43a5aab565e3e1507817b59404429ed637dcb1b5",
       "subject": "ai-b: record news cluster fragmentation audit heartbeat",
-      "class": "maintenance"
-    },
-    {
-      "sha": "387172bf13dd1b92fb6519a51f193497a26a8efa",
-      "subject": "product: refresh market intelligence",
-      "class": "product"
-    },
-    {
-      "sha": "6f39e76bfd9713ebfaaf0acebdf09a038be60e1e",
-      "subject": "ai-c: record EXP-C-012 quant progress heartbeat",
       "class": "maintenance"
     }
   ]
