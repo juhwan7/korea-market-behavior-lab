@@ -3,6 +3,7 @@ import unittest
 from kmb_lab.adapters.naver_market import (
     normalize_index_basic,
     normalize_main_summary,
+    normalize_program,
     normalize_stock_bars,
 )
 
@@ -70,6 +71,23 @@ class NaverTests(unittest.TestCase):
         self.assertEqual(r["KOSDAQ"]["flows_100m_krw"]["foreign"], 120)
         self.assertEqual(r["KOSDAQ"]["breadth"]["advance"], 820)
         self.assertEqual(r["KPI200"]["breadth"]["decline"], 110)
+
+    def test_program_normalization_sums_arbitrage_and_non_arbitrage(self):
+        raw = {
+            "differenceBuyConsignAmount": 178846184885,
+            "differenceBuySelfAmount": 5594262325,
+            "differenceSellConsignAmount": 236017483275,
+            "differenceSellSelfAmount": 2825198040,
+            "biDifferenceBuyConsignAmount": 2702407317889,
+            "biDifferenceBuySelfAmount": 11301313667,
+            "biDifferenceSellConsignAmount": 3125066980094,
+            "biDifferenceSellSelfAmount": 7198649934,
+            "bizdate": 20260930,
+        }
+        result = normalize_program(raw)
+        self.assertAlmostEqual(result["arbitrage_net_100m_krw"], -544.02, places=2)
+        self.assertAlmostEqual(result["non_arbitrage_net_100m_krw"], -4185.57, places=2)
+        self.assertAlmostEqual(result["net_100m_krw"], -4729.59, places=2)
 
     def test_generic_stock_bars_support_current_chart_payload(self):
         p = {
