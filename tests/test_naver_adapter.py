@@ -2,6 +2,7 @@ import unittest
 
 from kmb_lab.adapters.naver_market import (
     normalize_index_basic,
+    normalize_kospi200_futures,
     normalize_main_summary,
     normalize_program,
     normalize_stock_bars,
@@ -71,6 +72,24 @@ class NaverTests(unittest.TestCase):
         self.assertEqual(r["KOSDAQ"]["flows_100m_krw"]["foreign"], 120)
         self.assertEqual(r["KOSDAQ"]["breadth"]["advance"], 820)
         self.assertEqual(r["KPI200"]["breadth"]["decline"], 110)
+
+    def test_kospi200_futures_secondary_normalization(self):
+        price_rows = [{
+            "localTradedAt": "2026-09-30",
+            "closePrice": "1,086.25",
+            "compareToPreviousClosePrice": "5.50",
+            "fluctuationsRatio": "0.51",
+        }]
+        trend = {
+            "bizdate": "20260930",
+            "personalValue": "-120",
+            "foreignValue": "350",
+            "institutionalValue": "-230",
+        }
+        result = normalize_kospi200_futures(price_rows, trend)
+        self.assertEqual(result["status"], "CONNECTED_SECONDARY")
+        self.assertEqual(result["close"], 1086.25)
+        self.assertEqual(result["investor_flow_100m_krw"]["foreign"], 350)
 
     def test_program_normalization_sums_arbitrage_and_non_arbitrage(self):
         raw = {
