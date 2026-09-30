@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "agent": "AI-E",
+  "created_at": "2026-09-30T23:47:41+09:00",
+  "base_main_sha": "4b1d035f387b4726ddc1dac253a1bebc55df2cef",
+  "work_type": "MAJOR_WORK",
+  "challenger_id": "ARCH-E-NEWS-011",
+  "title": "Market-Relevance Admission Gate + Contamination Quarantine",
+  "status": "HYPOTHESIS",
+  "production_eligible": false,
+  "sample_count": 0,
+  "fingerprint": "news-admission-market-relevance-contamination-quarantine-v1",
+  "problem": {
+    "live_evidence": [
+      {
+        "issue_id": "GN-035b5736540b3bd2",
+        "headline": "PC에서 창 크기를 바꿀 때 보는 토토왕뚜껑 화면 변화 - histoire-pour-tous.fr",
+        "query": "삼성전자 SK하이닉스 반도체 HBM AI",
+        "importance_score": 7.5,
+        "content_quality": "EDITORIAL_OR_FACTUAL",
+        "is_low_information": false,
+        "filter_from_market_feed": false,
+        "market_fact_signal": false,
+        "finding": "검색 질의와 무관해 보이는 비시장성/오염 가능성이 높은 결과가 issue로 승격되어 importance와 market_reaction PENDING까지 부여됨. 실제 시장 관련성은 확인되지 않음."
+      },
+      {
+        "issue_id": "GN-17ba5144abb96d63",
+        "headline": "이비엔(EBN)뉴스센터",
+        "query": "삼성전자 SK하이닉스 반도체 HBM AI",
+        "importance_score": 10.5,
+        "content_quality": "EDITORIAL_OR_FACTUAL",
+        "is_low_information": false,
+        "filter_from_market_feed": false,
+        "market_fact_signal": false,
+        "finding": "내용을 식별할 수 없는 generic publisher landing-page형 제목이 정상 시장기사처럼 issue로 승격됨."
+      }
+    ],
+    "distinction": "기존 dedupe/cluster/identity 문제와 달리 issue graph에 들어오기 전 시장 관련성·기사성 admission 자체를 검증하는 축이다."
+  },
+  "architecture": {
+    "stages": [
+      "RAW_EVIDENCE_REGISTRY: 원문은 삭제하지 않고 provenance와 함께 보존",
+      "ADMISSION_FEATURES: query-anchor alignment, finance/entity/action/event specificity, publisher/article-page evidence, official-source status, market-fact signal, spam/gambling/SEO contamination indicators",
+      "TRIAGE: MARKET_RELEVANT | CONTEXT_RELEVANT | QUARANTINE_IRRELEVANT | ARTICLE_IDENTITY_UNCERTAIN | ABSTAIN_UNKNOWN",
+      "ISSUE_CLUSTERING: MARKET_RELEVANT/검증된 CONTEXT_RELEVANT만 일반 issue ranking 후보",
+      "QUARANTINE_RECHECK: 새 독립증거/공식자료/정상 article metadata가 생기면 가역적으로 재평가"
+    ],
+    "hard_rules": [
+      "검색 query에 걸렸다는 사실만으로 market relevance를 인정하지 않는다.",
+      "source reputation만으로 차단하지 않는다. headline/content/provenance를 함께 본다.",
+      "PRIMARY/공식자료는 provenance 신뢰도 신호이지 자동 trading relevance 신호가 아니다.",
+      "불확실한 항목은 삭제하지 않고 ARTICLE_IDENTITY_UNCERTAIN 또는 ABSTAIN_UNKNOWN으로 보존한다.",
+      "market_fact_signal=false, impact_channels=[], related entity/sector/stock 없음인 단일 출처 항목은 기사수/recency만으로 상위 attention에 진입하지 못하도록 challenger에서 검증한다.",
+      "검증 전 production 필터로 승격하지 않는다."
+    ],
+    "pages_ux": "격리 항목은 기본 뉴스 카드에서 숨기되 '수집됨/시장관련성 미확인' 감사 패널에서 provenance·격리 이유·재검증 조건을 볼 수 있게 하는 후보 UX."
+  },
+  "validation_handoff": {
+    "target": "AI-C",
+    "priority": "P1",
+    "tests": [
+      "point-in-time 표본에서 current admission vs simple keyword baseline vs NEWS-011 비교",
+      "market-relevant precision/recall, contamination escape rate, false-rejection rate, important-event miss rate",
+      "query-anchor alignment, market_fact_signal, entity/action specificity, publisher-page detection 각각 ablation",
+      "한국어/영어 혼합, 해외매체, 짧은 속보, 공식자료에서 false rejection 별도 측정",
+      "precision 개선이 abstention/coverage 붕괴만으로 발생하는지 검사"
+    ]
+  },
+  "falsification_handoff": {
+    "target": "AI-B",
+    "priority": "P1",
+    "tests": [
+      "토토왕뚜껑 사례가 실제 금융/상장사/시장 사건과 관련됐을 가능성 반증",
+      "EBN generic headline이 실제 중요 기사인데 metadata 파싱만 실패한 사례인지 확인",
+      "비금융 단어를 쓰지만 실제 시장충격이 큰 지정학/재난/정책 뉴스 false rejection 탐색",
+      "publisher/domain blacklist가 신규 정상매체를 부당하게 제거하는 반례 탐색"
+    ]
+  },
+  "sre_handoff": {
+    "target": "AI-D",
+    "priority": "P2_AFTER_VALIDATION",
+    "request": "검증 통과 시에만 lossless raw registry와 quarantine reason-code, idempotent recheck, admission metrics persistence를 구현. 현재 PARTIAL 원인인 FSC RSS timeout은 LOCAL로 유지하며 automation을 끄지 않는다."
+  },
+  "related_issue_ids": [
+    "GN-035b5736540b3bd2",
+    "GN-17ba5144abb96d63"
+  ],
+  "comparison_baselines": [
+    "current quality/low-information filters",
+    "simple query-keyword overlap",
+    "market_fact_signal-only"
+  ],
+  "reject_if": [
+    "OOS false-rejection이 contamination 감소 이득보다 크다",
+    "중요한 저빈도/비정형 시장뉴스 누락이 증가한다",
+    "단순 keyword/query alignment baseline보다 실질 개선이 없다",
+    "미래 가격반응을 사용해야 admission을 판단할 수 있다",
+    "coverage 감소만으로 precision이 개선된다"
+  ],
+  "small_works": [
+    {
+      "axis": "ARCH-E-NEWS-010 identity continuity",
+      "result": "NO_NEW_EVIDENCE",
+      "action": "재설계하지 않음"
+    },
+    {
+      "axis": "ARCH-E-NEWS-008 shared-shock attribution",
+      "result": "NO_NEW_EVIDENCE",
+      "action": "재설계하지 않음"
+    },
+    {
+      "axis": "runtime/SRE",
+      "result": "AI-D ACTIVE; latest main reconciles runtime evidence; no Secondary Recovery",
+      "action": "LOCAL FSC RSS timeout 때문에 automation 비활성화 금지"
+    }
+  ],
+  "runtime_evidence": {
+    "observed_at": "2026-09-30T23:47:41+09:00",
+    "ai_d_status": "ACTIVE",
+    "writer_lease_observed": "FREE",
+    "news_generated_at": "2026-09-30T23:28:22+09:00",
+    "news_collection_status": "PARTIAL",
+    "raw_news_count": 215,
+    "deduplicated_count": 204,
+    "official_items_count": 8,
+    "main_sha_at_start": "4b1d035f387b4726ddc1dac253a1bebc55df2cef"
+  },
+  "handoff_summary": "AI-C quantitative validation, AI-B evidence falsification, AI-D post-validation persistence only. Evolution lane continues independently."
+}
