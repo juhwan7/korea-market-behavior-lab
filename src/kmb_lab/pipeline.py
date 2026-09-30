@@ -12,6 +12,7 @@ from .adapters.treasury import fetch_yield_curve, observation_for_maturity
 from .development_mix import git_development_mix
 from .flow import analyze_flow_history
 from .market_strength import market_strength
+from .relative_strength import relative_strength
 from .smart_money import analyze_smart_money
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -578,6 +579,55 @@ def collect_news(root: Path) -> tuple[dict[str, Any], dict[str, Any], dict[str, 
     return current, issue_doc, digest, errors
 
 
+def collect_relative_strength(root: Path) -> tuple[dict[str, Any], list[str]]:
+    config = load_json(root / "data/config/watchlist.json", {})
+    items = config.get("items", []) if isinstance(config, dict) else []
+    errors: list[str] = []
+    benchmark_cache: dict[str, list[dict[str, Any]]] = {}
+    output: list[dict[str, Any]] = []
+
+    for item in items[:30]:
+        code = str(item.get("code") or "")
+        if not code:
+            continue
+        benchmark = str(item.get("benchmark") or "KOSPI").upper()
+        try:
+            if benchmark not in benchmark_cache:
+                benchmark_cache[benchmark] = naver_market.fetch_index_daily(benchmark, page_size=80)
+            stock_rows = naver_market.fetch_stock_daily(code, page_size=80)
+            analysis = relative_strength(stock_rows, benchmark_cache[benchmark])
+            output.append({
+                "code": code,
+                "name": item.get("name") or code,
+                "benchmark": benchmark,
+                "source_id": naver_market.SOURCE_ID,
+                "source_kind": naver_market.SOURCE_KIND,
+                **analysis,
+            })
+        except Exception as exc:
+            errors.append(f"relative-strength-{code}:{exc}")
+            output.append({
+                "code": code,
+                "name": item.get("name") or code,
+                "benchmark": benchmark,
+                "evidence_state": "UNKNOWN",
+                "reason": str(exc),
+            })
+
+    output.sort(
+        key=lambda row: (
+            isinstance(row.get("weighted_excess_return_pct"), (int, float)),
+            float(row.get("weighted_excess_return_pct") or -9999),
+        ),
+        reverse=True,
+    )
+    return {
+        "generated_at": now_text(),
+        "items": output,
+        "method_note": "관심종목과 지정 벤치마크의 같은 거래일 종가를 정렬해 1·3·5·20거래일 상대수익률을 계산합니다.",
+    }, errors
+
+
 def collect_smart_money(root: Path) -> tuple[dict[str, Any], list[str]]:
     config = load_json(root / "data/config/watchlist.json", {})
     items = config.get("items", []) if isinstance(config, dict) else []
@@ -642,6 +692,7 @@ def run(root: Path = ROOT) -> dict[str, Any]:
     global_data, e = collect_global(); errors += e
     news_current, news_issues, news_digest, e = collect_news(root); errors += e
     smart_money, e = collect_smart_money(root); errors += e
+    relative_strength_data, e = collect_relative_strength(root); errors += e
 
     flow_analysis = domestic["flows"]; program = domestic["program"]
     strength = market_strength(indices=indices, breadth=breadth, flows=flow_analysis, program_net_100m_krw=program.get("net_100m_krw"))
@@ -662,6 +713,7 @@ def run(root: Path = ROOT) -> dict[str, Any]:
     write_json(root / "data/news/issues.json", news_issues)
     write_json(root / "data/news/issue-digest.json", news_digest)
     write_json(root / "data/stocks/smart-money.json", smart_money)
+    write_json(root / "data/stocks/relative-strength.json", relative_strength_data)
     write_json(root / "data/ai/development-mix.json", git_development_mix(24))
 
     _sync_service_status(
@@ -697,6 +749,10 @@ def run(root: Path = ROOT) -> dict[str, Any]:
             "market_strength": strength.get("evidence_state"),
             "smart_money": smart_money.get("model_status"),
             "smart_money_estimated_items": smart_estimated,
+            "relative_strength_items": sum(
+                1 for item in (relative_strength_data.get("items") or [])
+                if isinstance(item, dict) and item.get("evidence_state") == "ESTIMATED"
+            ),
         },
         "errors": errors[-40:],
     }
