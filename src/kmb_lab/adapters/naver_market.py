@@ -451,7 +451,7 @@ def fetch_index_daily(code: str, page_size: int = 80) -> list[dict[str, Any]]:
 def fetch_stock_daily(code: str, page_size: int = 80) -> list[dict[str, Any]]:
     errors: list[str] = []
     json_candidates = [
-        (f"{CHART_API}/{code}", {"periodType": "dayCandle"}),
+        (f"{CHART_API}/{code}", {"periodType": "dayCandle", "count": page_size}),
         (f"{FRONT}/chart/domestic/stock/end", {"code": code, "chartInfoType": "item", "scriptChartType": "candleDay"}),
         (f"{LEGACY_STOCK}/{code}/price", {"pageSize": page_size, "page": 1}),
     ]
