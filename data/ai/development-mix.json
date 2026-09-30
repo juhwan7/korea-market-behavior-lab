@@ -1,0 +1,163 @@
+{
+  "status": "ESTIMATED",
+  "method": "commit_path_classification",
+  "window_hours": 24,
+  "target_product_min_pct": 70,
+  "product_pct": 7.9,
+  "maintenance_pct": 92.1,
+  "labeled_commit_count": 63,
+  "unclassified_commit_count": 20,
+  "warning": true,
+  "recent": [
+    {
+      "sha": "28f33ebc7635254a15c6890be756ea6e92866274",
+      "subject": "fix: isolate fast-lane dirty worktree before persistence",
+      "class": "maintenance"
+    },
+    {
+      "sha": "d89b4b1cfd5bf97c313ba7324c18556abf54cdf3",
+      "subject": "ai-c: audit KRX adapter quant readiness",
+      "class": "maintenance"
+    },
+    {
+      "sha": "bd2f583dfc52c0ea7e17453d282ac93ff887f1b5",
+      "subject": "ops: make market news collection and analysis mandatory",
+      "class": "unclassified"
+    },
+    {
+      "sha": "ccaeae9923a13dd759c13f8f0c9d2a8077113acf",
+      "subject": "ci: verify market news page artifact",
+      "class": "maintenance"
+    },
+    {
+      "sha": "b0112648fd241a6b93d3e7f348215dc344d75767",
+      "subject": "ci: require news issue digest output",
+      "class": "maintenance"
+    },
+    {
+      "sha": "25fb0e6f385c2d87f986214bf676205acace42e5",
+      "subject": "test: verify visible market news sections",
+      "class": "unclassified"
+    },
+    {
+      "sha": "be2eac3063c38b6c3a46b129a546afb4959670fd",
+      "subject": "test: cover normalized news lifecycle contract",
+      "class": "unclassified"
+    },
+    {
+      "sha": "03ce3816b32f21c9afc66edcccdb39c9791fbae2",
+      "subject": "pages: keep market section contracts visible without data",
+      "class": "unclassified"
+    },
+    {
+      "sha": "7d67b05b8d595009d49a5ed83b10fac03e77650d",
+      "subject": "pages: prioritize market news before development status",
+      "class": "unclassified"
+    },
+    {
+      "sha": "ed24a87609499885e91bc79cca869a387de7fbe8",
+      "subject": "pages: split core issues news AI analysis and issue timeline",
+      "class": "unclassified"
+    },
+    {
+      "sha": "4ba2bf6ab204a29e88d10030228135dc0fb6fc2e",
+      "subject": "pages: publish structured market news and issue lifecycle",
+      "class": "unclassified"
+    },
+    {
+      "sha": "bdbd976fe70a734ca13bce7a7aadb537576f604d",
+      "subject": "news: persist issue lifecycle digest and collection evidence",
+      "class": "product"
+    },
+    {
+      "sha": "87a548264298b710a3ffddd44a556252bbc68863",
+      "subject": "news: expand normalized market news discovery contract",
+      "class": "product"
+    },
+    {
+      "sha": "65e8e24eb542dfdd6d50b224be4fcfadca842dab",
+      "subject": "product: build live market intelligence vertical slice",
+      "class": "product"
+    },
+    {
+      "sha": "cb256660bcfa1f2fe309807b22dc998c7c5a8643",
+      "subject": "audit: falsify EXP-E-005 mechanism identifiability",
+      "class": "maintenance"
+    },
+    {
+      "sha": "c9eb75b9f331fb04611f18a5bf63b4c9c758caab",
+      "subject": "evolution: add liquidity vacuum vs demand surge challenger",
+      "class": "maintenance"
+    },
+    {
+      "sha": "4df4564696a63a38d1fc993c30dc58941bc96f88",
+      "subject": "sre: reconcile AI-D scheduler runtime evidence",
+      "class": "maintenance"
+    },
+    {
+      "sha": "fafe6f1b6dc99ac3c4679588eb465db7be697993",
+      "subject": "ops: require per-run execution and work-output records",
+      "class": "unclassified"
+    },
+    {
+      "sha": "43478712f837879bd80315d2c2effd61f2f04557",
+      "subject": "test: cover AI work product dashboard contracts",
+      "class": "unclassified"
+    },
+    {
+      "sha": "d8e9d10ceb9628625c0d0cb115297a7bf282cda9",
+      "subject": "pages: add AI workshop and work product views",
+      "class": "unclassified"
+    },
+    {
+      "sha": "1653f50f8b8497f8b34dab3ba7bf452a7eae4b6b",
+      "subject": "pages: collect AI executions and work products",
+      "class": "unclassified"
+    },
+    {
+      "sha": "06a81a84565712c8f418232601f699aa28379933",
+      "subject": "discovery: add duration-resilience breadth divergence hypothesis",
+      "class": "maintenance"
+    },
+    {
+      "sha": "8f1214ebe9c4d10c1b41ca82fd35a911f9bef5b7",
+      "subject": "evolution: add uncertainty budget decision firewall",
+      "class": "maintenance"
+    },
+    {
+      "sha": "640f3b75729c34a1b24a5ad92510131d134d7863",
+      "subject": "audit(ai-b): distinguish heartbeat from unverifiable research progress",
+      "class": "maintenance"
+    },
+    {
+      "sha": "286720a76a5edb52c8d98de3da9adfadd0c7de4f",
+      "subject": "chore(ai-a): refresh runtime evidence",
+      "class": "maintenance"
+    },
+    {
+      "sha": "97b1b0170493c590810ce587eb97f30ff632f280",
+      "subject": "evolution: add evidence-gated model router architecture",
+      "class": "maintenance"
+    },
+    {
+      "sha": "59a8767a2255894ae57159fb7a1c7960a1c7497c",
+      "subject": "quant: define counterfactual response validation contract",
+      "class": "maintenance"
+    },
+    {
+      "sha": "7d2bbae8ab11fe00929d6aea14f4c7d45929e1e1",
+      "subject": "audit: falsify stale scheduler-disabled evidence semantics",
+      "class": "maintenance"
+    },
+    {
+      "sha": "9d8d92f5fc589e775c116112058dbf579ddb27f6",
+      "subject": "sre: distinguish explicit scheduler disable from stale evidence",
+      "class": "unclassified"
+    },
+    {
+      "sha": "8dc155ed61a0d60aa57ea819c335c33eb8abaa35",
+      "subject": "evolution: add counterfactual response challenger",
+      "class": "maintenance"
+    }
+  ]
+}

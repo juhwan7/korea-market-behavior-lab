@@ -1,0 +1,22 @@
+{
+  "generated_at": "2026-09-30T12:26:11+09:00",
+  "status": "PARTIAL",
+  "product_features": {
+    "domestic_indices": true,
+    "investor_flow": true,
+    "breadth": true,
+    "kospi200_futures": "USER_ACTION_REQUIRED",
+    "global_futures": true,
+    "news": 831,
+    "news_collection": "HEALTHY",
+    "news_latest_at": "2026-09-30T02:22:53Z",
+    "market_strength": "UNKNOWN",
+    "smart_money": "SHADOW"
+  },
+  "errors": [
+    "smart-money-005930:Naver stock history unavailable: request failed: https://m.stock.naver.com/front-api/chart/domestic/stock/end?code=005930&chartInfoType=item&scriptChartType=candleDay: HTTP Error 404: Not Found | request failed: https://m.stock.naver.com/api/stock/005930/price?pageSize=80&page=1: HTTP Error 400: 400",
+    "smart-money-000660:Naver stock history unavailable: request failed: https://m.stock.naver.com/front-api/chart/domestic/stock/end?code=000660&chartInfoType=item&scriptChartType=candleDay: HTTP Error 404: Not Found | request failed: https://m.stock.naver.com/api/stock/000660/price?pageSize=80&page=1: HTTP Error 400: 400",
+    "smart-money-035420:Naver stock history unavailable: request failed: https://m.stock.naver.com/front-api/chart/domestic/stock/end?code=035420&chartInfoType=item&scriptChartType=candleDay: HTTP Error 404: Not Found | request failed: https://m.stock.naver.com/api/stock/035420/price?pageSize=80&page=1: HTTP Error 400: 400",
+    "smart-money-035720:Naver stock history unavailable: request failed: https://m.stock.naver.com/front-api/chart/domestic/stock/end?code=035720&chartInfoType=item&scriptChartType=candleDay: HTTP Error 404: Not Found | request failed: https://m.stock.naver.com/api/stock/035720/price?pageSize=80&page=1: HTTP Error 400: 400"
+  ]
+}

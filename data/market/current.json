@@ -1,0 +1,64 @@
+{
+  "generated_at": "2026-09-30T12:26:11+09:00",
+  "indices": {
+    "KOSPI": {
+      "code": "KOSPI",
+      "close": 6849.77,
+      "change": -21.04,
+      "change_pct": -0.31,
+      "market_status": "OPEN",
+      "as_of": "2026-09-30T12:25:00+09:00",
+      "retrieved_at": "2026-09-30T03:25:57.784475Z",
+      "source_id": "naver-finance-public",
+      "source_kind": "secondary",
+      "source_url": "https://m.stock.naver.com/front-api/stock/domestic/basic?code=KOSPI&endType=index"
+    },
+    "KOSDAQ": {
+      "code": "KOSDAQ",
+      "close": 854.55,
+      "change": 4.75,
+      "change_pct": 0.56,
+      "market_status": "OPEN",
+      "as_of": "2026-09-30T12:24:00+09:00",
+      "retrieved_at": "2026-09-30T03:25:58.389763Z",
+      "source_id": "naver-finance-public",
+      "source_kind": "secondary",
+      "source_url": "https://m.stock.naver.com/front-api/stock/domestic/basic?code=KOSDAQ&endType=index"
+    },
+    "KPI200": {
+      "code": "KPI200",
+      "close": 1083.95,
+      "change": -4.2,
+      "change_pct": -0.39,
+      "market_status": "OPEN",
+      "as_of": "2026-09-30T12:25:00+09:00",
+      "retrieved_at": "2026-09-30T03:25:58.987704Z",
+      "source_id": "naver-finance-public",
+      "source_kind": "secondary",
+      "source_url": "https://m.stock.naver.com/front-api/stock/domestic/basic?code=KPI200&endType=index"
+    }
+  },
+  "breadth": {
+    "KOSPI": {
+      "upper": 0,
+      "advance": 0,
+      "flat": 0,
+      "decline": 0,
+      "lower": 0
+    },
+    "KOSDAQ": {
+      "upper": 0,
+      "advance": 0,
+      "flat": 0,
+      "decline": 0,
+      "lower": 0
+    }
+  },
+  "program": {
+    "net_100m_krw": null,
+    "raw_available": true,
+    "source_id": "naver-finance-public",
+    "source_kind": "secondary"
+  },
+  "source_quality": "MIXED"
+}
