@@ -49,6 +49,14 @@ STATUS_LABELS = {
     "ESTIMATED": "데이터 기반 추정",
     "HYPOTHESIS": "검증 중인 가설",
     "VERIFIED_WITH_SUBSTITUTIONS": "대체 검토로 우선 검증 완료",
+    "HEARTBEAT_ONLY": "실행 확인 · 작업물 없음",
+    "WORK_IN_PROGRESS": "최근 실행에서 진행 중",
+    "OUTPUT_CREATED": "작업물 생성",
+    "OUTPUT_APPLIED": "공식 반영 완료",
+    "VERIFIED": "검증 완료",
+    "CANDIDATE": "검증 전 작업물",
+    "UNPERSISTED": "작업물 저장 실패",
+    "UNVERIFIED": "검증 전",
 }
 
 AGENT_INFO = {
@@ -114,9 +122,9 @@ def status_label(value: Any) -> str:
 
 def status_class(value: Any) -> str:
     upper = str(value).upper()
-    if upper in {"ACTIVE","FRESH","OK","SUCCESS","LIVE","RECOVERED","RESOLVED","PASS","COMPLETED","CONFIRMED"}:
+    if upper in {"ACTIVE","FRESH","OK","SUCCESS","LIVE","RECOVERED","RESOLVED","PASS","COMPLETED","CONFIRMED","OUTPUT_APPLIED","VERIFIED"}:
         return "ok"
-    if upper in {"IN_PROGRESS","PENDING","DEGRADED","RECOVERING","STALE","STATE MISMATCH","PASS_WITH_NOTES","REVIEWING","OPEN","SHADOW","ESTIMATED","HYPOTHESIS","OBSERVED","OBSERVED_NO_FRESH_OUTPUT","VERIFIED_WITH_SUBSTITUTIONS"}:
+    if upper in {"IN_PROGRESS","PENDING","DEGRADED","RECOVERING","STALE","STATE MISMATCH","PASS_WITH_NOTES","REVIEWING","OPEN","SHADOW","ESTIMATED","HYPOTHESIS","OBSERVED","OBSERVED_NO_FRESH_OUTPUT","VERIFIED_WITH_SUBSTITUTIONS","WORK_IN_PROGRESS","OUTPUT_CREATED","CANDIDATE","UNVERIFIED","HEARTBEAT_ONLY"}:
         return "warn"
     if upper in {"BLOCKED","FAILED","FAILURE","FIX_REQUIRED","REJECT","REJECTED"}:
         return "bad"
@@ -459,6 +467,31 @@ def render_korean_html(model: dict[str, Any]) -> str:
         briefing_items.append(f'<article class="card"><h3>{_esc(title)}</h3><ul>{body}</ul></article>')
     briefing_html="".join(briefing_items)
 
+    work_products = model.get("work_products") or []
+    executions = model.get("executions") or {}
+    current_runs = executions.get("current", []) if isinstance(executions, dict) else []
+    workshop_html = "".join(
+        f'<article class="card"><div class="card-head"><strong>{_esc(row.get("agent","AI"))} · {_esc(AGENT_INFO.get(row.get("agent"),("AI 작업",""))[0])}</strong>'
+        f'<span class="badge {status_class(row.get("status","UNKNOWN"))}">{_esc(status_label(row.get("status","UNKNOWN")))}</span></div>'
+        f'<p><b>현재/최근 작업:</b> {_esc(user_text(row.get("current_task")))}</p>'
+        f'<p><b>최근 실행:</b> {_esc(human_time(row.get("last_execution"),now_value))}</p>'
+        f'<p><b>최근 작업물:</b> {_esc(user_text((row.get("latest_output") or {}).get("title"), fallback="아직 확인된 작업물 없음"))}</p>'
+        f'<p><b>다음:</b> {_esc(user_text(row.get("next_work"), fallback="다음 실행에서 결정"))}</p></article>'
+        for row in current_runs
+    ) or '<p class="empty">현재 AI 실행 상태를 구성할 데이터가 없습니다.</p>'
+
+    work_product_html = "".join(
+        f'<details class="card work-product"><summary><span class="badge {status_class(item.get("status","CANDIDATE"))}">{_esc(status_label(item.get("status","CANDIDATE")))}</span>'
+        f'<strong>{_esc(user_text(item.get("title")))}</strong><span class="summary-meta">{_esc(item.get("agent","AI"))} · {_esc(human_time(item.get("updated_at") or item.get("created_at"),now_value))}</span></summary>'
+        f'<p>{_esc(user_text(item.get("summary")))}</p>'
+        f'<p><b>유형:</b> {_esc(user_text(item.get("type")))}</p><p><b>판정/단계:</b> {_esc(status_label(item.get("result","UNKNOWN")))}</p>'
+        f'<p><b>다음:</b> {_esc(user_text(item.get("next_work"), fallback="추가 작업 미기록"))}</p>'
+        f'<details><summary>작업물 위치·검증 정보</summary><p>파일: {_esc(item.get("artifact_path","확인 불가"))}</p>'
+        f'<p>반영 버전: {_esc(str(item.get("source_commit") or "작업물 내부에 미기록")[:40])}</p>'
+        f'<p>외부 검증: {"완료" if item.get("verified") is True else "검증 전"}</p></details></details>'
+        for item in work_products[:30]
+    ) or '<p class="empty">아직 표시할 AI 작업물이 없습니다.</p>'
+
     source_short=str(model.get("source_commit","확인 불가"))[:12]
     fingerprint=str(model.get("material_fingerprint",""))
     generated=human_time(model.get("generated_at"),model.get("generated_at"))
@@ -493,7 +526,7 @@ def render_korean_html(model: dict[str, Any]) -> str:
 
 <h2 data-kmb-section="cycle">5개 AI 연구 순환</h2><p class="section-note">{_esc(activity_intro)} 가장 최근 실행 증거가 있는 AI를 부드럽게 강조합니다.</p><div class="cycle-wrap">{''.join(cycle_cards)}</div>
 
-<h2 data-kmb-section="activity">최근 AI 협업 흐름</h2><p class="section-note">기술 로그 대신 각 AI가 어떤 일을 했는지 시간순으로 보여줍니다.</p><div class="timeline">{activity_html}</div>
+<h2 data-kmb-section="ai-workshop">AI 작업실</h2><p class="section-note">AI가 단순히 실행됐는지와 실제 작업물을 만들었는지를 분리해 보여줍니다. 실제 실행 중임을 확인할 수 없으면 최근 실행 상태로만 표시합니다.</p><div class="grid">{workshop_html}</div>\n\n<h2 data-kmb-section="work-products">최근 AI 작업물</h2><p class="section-note">연구·감사·실험 후보가 저장소에 남은 경우 여기서 바로 내용을 확인할 수 있습니다. 검증 전 후보는 공식 반영 결과처럼 표시하지 않습니다.</p><div class="grid">{work_product_html}</div>\n\n<h2 data-kmb-section="activity">최근 AI 협업 흐름</h2><p class="section-note">기술 로그 대신 각 AI가 어떤 일을 했는지 시간순으로 보여줍니다.</p><div class="timeline">{activity_html}</div>
 
 <h2 data-kmb-section="experiments">큰손·가상 포지션 분석</h2><p class="section-note">특정 계좌의 실제 보유량·평단을 안다고 가정하지 않습니다. 공개 시장 데이터로 가능한 범위만 추정하며 검증 전 모델은 실전에 사용하지 않습니다.</p><div class="grid">{big_money_html}</div>
 
