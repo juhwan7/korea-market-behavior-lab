@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "agent": "AI-A",
+  "created_at": "2026-10-01T01:58:12+09:00",
+  "fingerprint": "deepseek-huawei-ascend-software-sovereignty|memory-hbm-decoupling|china-ai-stack",
+  "status": "OUTPUT_CREATED",
+  "news_outcome": "NEW_IMPORTANT_NEWS_FOUND_EXTERNALLY_NOT_YET_IN_COLLECTOR",
+  "news_collection": {
+    "news_collection_attempted": true,
+    "repository_collector_generated_at": "2026-10-01T01:11:05+09:00",
+    "repository_collection_status": "HEALTHY",
+    "sources_checked": 20,
+    "raw_news_count": 223,
+    "deduplicated_count": 213,
+    "issue_created_count": null,
+    "issue_updated_count": null,
+    "note": "Repository collector counts are copied only from issue-digest. Fresh external discovery was performed separately; no issue count is inferred."
+  },
+  "major_work": {
+    "type": "market_intelligence_hypothesis",
+    "title": "중국 AI 컴퓨팅 소프트웨어 자립과 HBM 수요를 분리해서 봐야 한다",
+    "classifications": {
+      "CONFIRMED": [
+        "Reuters 2026-09-30 reported DeepSeek and Huawei are collaborating on open-source programming infrastructure for Huawei Ascend AI chips, including compute/communication libraries and TileLang, with the stated goal of reducing reliance on Nvidia's CUDA ecosystem.",
+        "KMB issue-digest generated 2026-10-01 01:11 KST is HEALTHY with 20 sources checked, 223 raw items and 213 deduplicated items.",
+        "The current KMB issues dataset did not contain a DeepSeek/Huawei issue at this run's preflight, so this fresh discovery is not yet represented by a related_issue_id."
+      ],
+      "HYPOTHESIS": [
+        "China reducing CUDA/software dependence can weaken Nvidia ecosystem lock-in without proportionally reducing advanced-memory demand. If Ascend deployment scales, accelerator substitution may change GPU vendor share while aggregate HBM/advanced-memory bit demand remains supported by AI compute growth.",
+        "For Samsung Electronics and SK Hynix, the key transmission variable may be China accelerator unit growth × HBM capacity per accelerator × domestic Chinese HBM substitution rate, rather than Nvidia China share alone."
+      ],
+      "UNKNOWN": [
+        "Actual Ascend 950 shipment volumes and ramp timing",
+        "HBM capacity/type per Ascend configuration and supplier mix",
+        "Chinese domestic HBM yield, qualification and volume ramp",
+        "Export-control/licensing constraints affecting Korean memory shipments into China",
+        "Whether software portability materially changes training/inference TCO and adoption"
+      ]
+    },
+    "why_important": "A headline such as 'China reduces Nvidia dependence' can be misread as automatically bearish for Korean memory. Compute-vendor substitution and memory-content substitution are separate causal links and should be tested independently.",
+    "impact_path": [
+      "DeepSeek/Huawei software tooling improves Ascend usability",
+      "Ascend adoption can rise relative to Nvidia in China",
+      "AI accelerator vendor mix changes",
+      "Total AI compute and memory bits may still grow",
+      "Korean HBM demand depends on memory content/supplier substitution, not GPU share alone"
+    ],
+    "counter_scenario": "If Chinese HBM suppliers scale qualification/yield rapidly, export controls tighten, or Ascend designs materially reduce imported HBM content, Nvidia share loss could coincide with lower Samsung/SK Hynix China AI-memory demand.",
+    "next_variables": [
+      "Ascend shipments",
+      "HBM GB per accelerator/supernode",
+      "Chinese HBM qualification/yield",
+      "Samsung/SK Hynix China AI-memory exposure",
+      "US export-control/licensing changes"
+    ],
+    "related_markets": [
+      "KOSPI",
+      "NASDAQ"
+    ],
+    "related_sectors": [
+      "반도체",
+      "AI"
+    ],
+    "related_stocks": [
+      "삼성전자",
+      "SK하이닉스"
+    ],
+    "related_issue_ids": [],
+    "provenance": [
+      {
+        "source": "Reuters",
+        "published_at": "2026-09-30",
+        "url": "https://www.reuters.com/world/asia-pacific/deepseek-partners-with-huawei-develop-chip-programming-tools-reducing-reliance-2026-09-30/",
+        "evidence_type": "SECONDARY_REPORTING"
+      },
+      {
+        "source": "KMB data/news/issue-digest.json",
+        "generated_at": "2026-10-01T01:11:05+09:00",
+        "evidence_type": "REPOSITORY_COLLECTOR_STATE"
+      }
+    ],
+    "handoff": {
+      "AI_C": "Build a scenario table/event study using Ascend shipment proxies × HBM content assumptions × Chinese HBM substitution rates; do not output probability until authoritative shipment/memory-content samples exist.",
+      "AI_B": "Falsify the decoupling thesis: test whether Ascend adoption is actually paired with domestic-memory substitution, export-control tightening, lower HBM content, or weaker economics versus Nvidia."
+    }
+  },
+  "small_works": [
+    {
+      "fingerprint": "pce-disinflation|front-end-rate-relief|long-duration-term-premium|korea-ai-beta",
+      "result": "NEW_EVIDENCE_BUT_SAME_HYPOTHESIS",
+      "detail": "Reuters Sep 30 later market coverage confirmed 2Y yields eased after soft PCE while 10Y continued rising; this strengthens curve-decoupling evidence but does not create a new fingerprint.",
+      "related_issue_ids": [
+        "GN-0aee31dfa810ce16",
+        "GN-1c4469bc37bff22e"
+      ]
+    },
+    {
+      "fingerprint": "iran-hormuz-negotiation|oil-supply-risk",
+      "result": "EXISTING_RISK_REMAINS_TWO_SIDED",
+      "detail": "Reuters Sep 30 reported US feedback on Iran's seven-day trust-building plan while Brent remained above $100 amid stalled talks/tight fuel markets. Negotiation progress must not be equated with restored Hormuz flows.",
+      "related_issue_ids": []
+    },
+    {
+      "fingerprint": "ultra-parallel-v2-review",
+      "result": "NO_NEW_EVIDENCE",
+      "detail": "AI-A already persisted PASS_WITH_NOTES specialty review in 2026-09-30-0200 candidate; no duplicate review performed."
+    }
+  ],
+  "bugs_found": [
+    {
+      "fingerprint": "news-discovery-gap|deepseek-huawei-20260930",
+      "severity": "P1_DATA_COVERAGE",
+      "detail": "Fresh Reuters DeepSeek/Huawei market-relevant story was absent from current KMB issues at preflight.",
+      "handoff": "AI-D/AI-E: inspect collector query/source coverage for global semiconductor/China AI infrastructure news without widening duplicate noise."
+    }
+  ],
+  "pages_impact": "YES"
+}
