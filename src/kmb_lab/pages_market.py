@@ -270,10 +270,17 @@ def render_news_intelligence(data: dict[str, Any]) -> str:
     ) or '<p class="empty">아직 이슈 상태 변화 기록이 없습니다.</p>'
 
     collection = current.get("collection_status") or digest.get("collection_status") or "UNKNOWN"
+    official_count = current.get("official_items_count")
+    official_ok = current.get("official_sources_succeeded")
+    official_checked = current.get("official_sources_checked")
     freshness = (
         f'뉴스 수집 {badge(collection)} · 마지막 수집 {esc(_relative(current.get("collection_attempted_at") or current.get("generated_at"), now_value))}'
         f' · 최신 기사 {esc(_relative(current.get("latest_news_at"), now_value))}'
-        f' · 확인 쿼리 {esc(current.get("sources_checked") or digest.get("sources_checked") or 0)}개'
+        f' · 확인 소스 {esc(current.get("sources_checked") or digest.get("sources_checked") or 0)}개'
+        + (
+            f' · 공식 피드 {esc(official_ok)}/{esc(official_checked)} 성공 · 공식자료 {esc(official_count or 0)}건'
+            if official_checked is not None else ''
+        )
     )
 
     return (
