@@ -84,6 +84,27 @@ MARKET_FACT_TERMS = (
     "리콜", "파산", "회생", "채권발행", "유상증자", "무상증자",
 )
 
+LOW_INFORMATION_PATTERNS = (
+    r"종목이 .{0,40}(?:상승|하락)한 이유는 무엇인가요",
+    r"상한가 및 상승종목",
+    r"오늘의 추천주",
+    r"급등주 추천",
+    r"종목추천",
+)
+GENERIC_EVENT_TOKENS = {
+    "오늘", "관련", "시장", "증시", "주가", "코스피", "코스닥", "한국", "미국",
+    "발표", "계획", "추진", "전망", "확대", "상승", "하락", "강세", "약세",
+    "속도", "도약", "그룹", "억원", "조원", "종목", "뉴스", "기자",
+}
+ACTION_GROUPS = {
+    "인수합병": ("인수", "취득", "합병", "경영권", "본계약", "품는다", "품고"),
+    "투자증설": ("투자", "증설", "출자", "증자", "공장", "설비"),
+    "실적": ("실적", "매출", "영업이익", "순이익", "적자", "흑자"),
+    "계약수주": ("계약", "수주", "공급계약", "납품"),
+    "정책규제": ("규제", "제재", "법안", "금지", "허가", "승인"),
+    "금리채권": ("금리", "국채", "채권", "기준금리"),
+}
+
 
 def _normalized_headline(value: str) -> str:
     text = _headline_without_source(value).lower()
@@ -105,12 +126,16 @@ def classify_content_quality(item: dict[str, Any]) -> dict[str, Any]:
     primary = bool(item.get("official_source_available")) or str(item.get("source_type") or "").upper() == "PRIMARY"
     score = sum(weight for token, weight in PROMO_TERMS.items() if token in lower)
     factual = any(token in lower for token in MARKET_FACT_TERMS)
+    low_information = any(re.search(pattern, headline, flags=re.IGNORECASE) for pattern in LOW_INFORMATION_PATTERNS)
     hard_promo = bool(not primary and score >= 3 and not factual)
     possible = bool(not primary and score > 0 and not factual)
+    filtered = bool(not primary and (hard_promo or low_information))
     if primary:
         quality = "OFFICIAL_FACTUAL_OR_NOTICE"
     elif hard_promo:
         quality = "PROMOTIONAL"
+    elif low_information:
+        quality = "LOW_INFORMATION"
     elif possible:
         quality = "POSSIBLE_PROMOTION"
     else:
@@ -119,7 +144,21 @@ def classify_content_quality(item: dict[str, Any]) -> dict[str, Any]:
         "promotion_score": score,
         "content_quality": quality,
         "is_promotional": hard_promo,
+        "is_low_information": low_information,
+        "filter_from_market_feed": filtered,
         "market_fact_signal": factual,
+    }
+
+
+def _salient_tokens(title: str) -> set[str]:
+    return {token for token in _tokens(title) if token not in GENERIC_EVENT_TOKENS and len(token) >= 2}
+
+
+def _action_groups(title: str) -> set[str]:
+    lower = title.lower()
+    return {
+        group for group, terms in ACTION_GROUPS.items()
+        if any(term.lower() in lower for term in terms)
     }
 
 
@@ -130,10 +169,29 @@ def _cluster_match(item_tokens: set[str], item_title: str, cluster: dict[str, An
         default=0.0,
     )
     common = len(item_tokens & cluster["_tokens"])
+    item_salient = _salient_tokens(item_title)
+    cluster_salient = set().union(*(
+        _salient_tokens(str(a.get("headline") or a.get("title") or ""))
+        for a in cluster["articles"]
+    ))
+    salient_common = len(item_salient & cluster_salient)
+    item_actions = _action_groups(item_title)
+    cluster_actions = set().union(*(
+        _action_groups(str(a.get("headline") or a.get("title") or ""))
+        for a in cluster["articles"]
+    ))
+    action_match = bool(item_actions & cluster_actions)
+
     if title_score >= 0.82 and common >= 2:
         return max(token_score, title_score)
     if token_score >= 0.30 and common >= 2:
         return token_score
+    # Different wording can still describe one event when two uncommon core
+    # tokens overlap, or one uncommon entity overlaps with the same action.
+    if salient_common >= 2:
+        return max(0.72, title_score)
+    if salient_common >= 1 and action_match:
+        return max(0.64, title_score)
     return 0.0
 
 
@@ -325,7 +383,7 @@ def dedupe_and_cluster(items: list[dict[str, Any]]) -> tuple[list[dict[str, Any]
         item = dict(raw)
         quality = classify_content_quality(item)
         item.update(quality)
-        if quality["is_promotional"]:
+        if quality.get("filter_from_market_feed"):
             promotion_filtered += 1
             continue
         enriched.append(item)
