@@ -229,6 +229,37 @@ def render_news_intelligence(data: dict[str, Any]) -> str:
     )
 
 
+def _relative_strength(data: dict[str, Any]) -> str:
+    cards = []
+    labels = {"STRONGER": "강함", "WEAKER": "약함", "SIMILAR": "비슷", "UNKNOWN": "확인 불가"}
+    for item in (data.get("items") or [])[:20]:
+        windows = item.get("windows") or {}
+        rows = []
+        for window in ("1", "3", "5", "20"):
+            metric = windows.get(window) or {}
+            rows.append(
+                f'<tr><td>{window}일</td>'
+                f'<td>{num(metric.get("stock_return_pct"), suffix="%", digits=2)}</td>'
+                f'<td>{num(metric.get("benchmark_return_pct"), suffix="%", digits=2)}</td>'
+                f'<td>{num(metric.get("excess_return_pct"), suffix="%", digits=2)}</td>'
+                f'<td>{esc(labels.get(str(metric.get("state") or "UNKNOWN"), metric.get("state") or "확인 불가"))}</td></tr>'
+            )
+        cards.append(
+            f'<article class="card"><div class="card-head"><strong>{esc(item.get("name"))} ({esc(item.get("code"))})</strong>{badge(item.get("evidence_state"))}</div>'
+            f'<p><b>벤치마크:</b> {esc(item.get("benchmark") or "KOSPI")} · '
+            f'<b>종합:</b> {esc(labels.get(str(item.get("overall_state") or "UNKNOWN"), item.get("overall_state") or "확인 불가"))} · '
+            f'<b>가중 초과수익:</b> {num(item.get("weighted_excess_return_pct"), suffix="%", digits=2)}</p>'
+            '<div class="table-wrap"><table><thead><tr><th>기간</th><th>종목</th><th>지수</th><th>초과</th><th>상태</th></tr></thead>'
+            f'<tbody>{"".join(rows)}</tbody></table></div>'
+            '<p class="section-note">같은 거래일 종가 기준 상대성과입니다. 향후 상승 확률이나 매수 신호가 아닙니다.</p></article>'
+        )
+    return (
+        '<h2 data-kmb-section="relative-strength">종목 상대강도</h2>'
+        '<p class="section-note">관심종목이 KOSPI/KOSDAQ 벤치마크보다 실제로 강했는지 1·3·5·20거래일로 나눠 비교합니다.</p>'
+        '<div class="grid">' + ("".join(cards) or '<p class="empty">상대강도 데이터가 아직 수집되지 않았습니다.</p>') + '</div>'
+    )
+
+
 def _smart(data: dict[str, Any]) -> str:
     cards=[]
     for item in (data.get("items") or [])[:20]:
@@ -255,7 +286,7 @@ def _system(data: dict[str, Any]) -> str:
 
 
 def render_market_intelligence(data: dict[str, Any], *, include_news: bool = True) -> str:
-    nav='<nav class="card" aria-label="시장 기능 바로가기"><b>바로가기</b> · <a href="#market-issues">핵심 이슈</a> · <a href="#today-news">뉴스</a> · <a href="#market-strength">시장 힘</a> · <a href="#flows">수급</a> · <a href="#futures-global">선물·글로벌</a> · <a href="#smart-money">큰손 분석</a></nav>'
+    nav='<nav class="card" aria-label="시장 기능 바로가기"><b>바로가기</b> · <a href="#market-issues">핵심 이슈</a> · <a href="#today-news">뉴스</a> · <a href="#market-strength">시장 힘</a> · <a href="#flows">수급</a> · <a href="#futures-global">선물·글로벌</a> · <a href="#relative-strength">상대강도</a> · <a href="#smart-money">큰손 분석</a></nav>'
     news = render_news_intelligence(data) if include_news else ""
     body=(
         nav
@@ -263,6 +294,7 @@ def render_market_intelligence(data: dict[str, Any], *, include_news: bool = Tru
         + '<div id="market-strength">'+_strength(data.get("strength") or {})+'</div>'
         + '<div id="flows">'+_flows(data.get("flows") or {})+'</div>'
         + '<div id="futures-global">'+_futures_global(data.get("futures") or {},data.get("global") or {})+'</div>'
+        + '<div id="relative-strength">'+_relative_strength(data.get("relative_strength") or {})+'</div>'
         + '<div id="smart-money">'+_smart(data.get("smart_money") or {})+'</div>'
         + _system(data)
     )
