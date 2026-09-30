@@ -4,17 +4,17 @@
   "role": "SRE, Recovery & Data Platform Guardian",
   "status": "ACTIVE",
   "current_task": "INC-20260929-AGENT-RUNTIME-EVIDENCE-DRIFT",
-  "last_progress_at": "2026-09-30T05:31:57+09:00",
+  "last_progress_at": "2026-09-30T10:33:33+09:00",
   "reads_shared_memory": true,
   "canonical_writer": "PRIMARY",
   "candidate_namespace": "data/ai/candidates/ai-d/",
   "last_verified_writer_commit": "1241460c4ce0b7772d9e5838ef4cb12078d53b10",
-  "heartbeat_at": "2026-09-29T19:41:48.735823Z",
+  "heartbeat_at": "2026-09-30T00:39:18.942578Z",
   "runtime_evidence": {
     "source": "scheduled_automation_runtime_observed",
     "enabled": true,
-    "last_run_time": "2026-09-29T19:41:48.735823Z",
-    "checked_at": "2026-09-30T05:31:57+09:00"
+    "last_run_time": "2026-09-30T00:39:18.942578Z",
+    "checked_at": "2026-09-30T10:33:33+09:00"
   },
-  "sre_finding": "Authoritative scheduler runtime reconciled by AI-D after repository observability drift; stale repository evidence alone does not imply automation failure."
+  "sre_finding": "Actual scheduler runtime is authoritative. AI-D is enabled and running; repository evidence was reconciled after observability drift. P1 stale-disabled-evidence fix remains pending because code write was blocked by the external safety layer."
 }
