@@ -132,3 +132,135 @@ def analyze_smart_money(rows: list[dict[str, Any]], *, index_returns: list[float
         ],
         "method_note": "가격 복원력·거래량 상대치·돌파·상대강도·거래량 프로파일을 독립적으로 결합한 가상 포지션 프록시입니다.",
     }
+
+
+BULLISH_STATES = {"ACCUMULATION_OR_ABSORPTION_CANDIDATE", "BREAKOUT_WITH_DEMAND"}
+BEARISH_STATES = {"DISTRIBUTION_RISK"}
+
+
+def _benchmark_regime(date: str, benchmark_rows: list[dict[str, Any]] | None) -> str:
+    if not benchmark_rows:
+        return "UNKNOWN"
+    closes = {
+        str(row.get("date") or "")[:10]: float(row["close"])
+        for row in benchmark_rows
+        if row.get("date") and isinstance(row.get("close"), (int, float)) and float(row["close"]) > 0
+    }
+    dates = sorted(d for d in closes if d <= date)
+    if len(dates) < 6:
+        return "UNKNOWN"
+    end, start = dates[-1], dates[-6]
+    ret = closes[end] / closes[start] - 1.0
+    if ret >= 0.02:
+        return "UP"
+    if ret <= -0.02:
+        return "DOWN"
+    return "SIDEWAYS"
+
+
+def backtest_smart_money(
+    rows: list[dict[str, Any]],
+    *,
+    benchmark_rows: list[dict[str, Any]] | None = None,
+    forward_days: int = 5,
+    min_history: int = 40,
+    fees_bps: float = 15.0,
+    slippage_bps: float = 20.0,
+) -> dict[str, Any]:
+    """Walk-forward validation of directional state labels.
+
+    This evaluates only historically emitted directional states. It does not
+    turn the result into a future probability. Costs are explicit assumptions.
+    """
+    if len(rows) < min_history + forward_days:
+        return {
+            "evidence_state": "UNKNOWN",
+            "sample_count": 0,
+            "reason": "walk-forward 평가에 필요한 과거 일봉이 부족합니다.",
+        }
+
+    events: list[dict[str, Any]] = []
+    cost_pct = (float(fees_bps) + float(slippage_bps)) / 100.0
+    for end in range(min_history - 1, len(rows) - forward_days):
+        history = rows[: end + 1]
+        signal = analyze_smart_money(history)
+        state = signal.get("state")
+        direction = 1 if state in BULLISH_STATES else -1 if state in BEARISH_STATES else 0
+        if not direction:
+            continue
+        entry = float(rows[end]["close"])
+        future = rows[end + 1 : end + 1 + forward_days]
+        if entry <= 0 or len(future) < forward_days:
+            continue
+        exit_close = float(future[-1]["close"])
+        highs = [float(row.get("high", row["close"])) for row in future]
+        lows = [float(row.get("low", row["close"])) for row in future]
+        if direction > 0:
+            gross = (exit_close / entry - 1.0) * 100.0
+            mfe = (max(highs) / entry - 1.0) * 100.0
+            mae = (min(lows) / entry - 1.0) * 100.0
+        else:
+            gross = (entry / exit_close - 1.0) * 100.0
+            mfe = (entry / min(lows) - 1.0) * 100.0
+            mae = (entry / max(highs) - 1.0) * 100.0
+        net = gross - cost_pct
+        date = str(rows[end].get("date") or "")[:10]
+        events.append({
+            "date": date,
+            "state": state,
+            "direction": "BULLISH" if direction > 0 else "BEARISH",
+            "regime": _benchmark_regime(date, benchmark_rows),
+            "forward_days": forward_days,
+            "gross_directional_return_pct": round(gross, 3),
+            "net_after_cost_pct": round(net, 3),
+            "mfe_pct": round(mfe, 3),
+            "mae_pct": round(mae, 3),
+            "gross_success": gross > 0,
+            "net_success": net > 0,
+        })
+
+    if not events:
+        return {
+            "evidence_state": "UNKNOWN",
+            "sample_count": 0,
+            "reason": "과거 구간에서 검증할 방향성 상태가 발생하지 않았습니다.",
+        }
+
+    def summary(group: list[dict[str, Any]]) -> dict[str, Any]:
+        n = len(group)
+        return {
+            "sample_count": n,
+            "gross_success_rate": round(sum(bool(e["gross_success"]) for e in group) / n, 4),
+            "net_success_rate": round(sum(bool(e["net_success"]) for e in group) / n, 4),
+            "avg_gross_directional_return_pct": round(_mean([float(e["gross_directional_return_pct"]) for e in group]), 3),
+            "avg_net_after_cost_pct": round(_mean([float(e["net_after_cost_pct"]) for e in group]), 3),
+            "avg_mfe_pct": round(_mean([float(e["mfe_pct"]) for e in group]), 3),
+            "avg_mae_pct": round(_mean([float(e["mae_pct"]) for e in group]), 3),
+            "worst_mae_pct": round(min(float(e["mae_pct"]) for e in group), 3),
+        }
+
+    by_state = {
+        state: summary([e for e in events if e["state"] == state])
+        for state in sorted({str(e["state"]) for e in events})
+    }
+    by_regime = {
+        regime: summary([e for e in events if e["regime"] == regime])
+        for regime in ("UP", "SIDEWAYS", "DOWN", "UNKNOWN")
+        if any(e["regime"] == regime for e in events)
+    }
+    return {
+        "evidence_state": "ESTIMATED",
+        "sample_count": len(events),
+        "forward_days": forward_days,
+        "cost_assumption": {
+            "evidence_state": "ASSUMPTION",
+            "fees_bps": fees_bps,
+            "slippage_bps": slippage_bps,
+            "round_trip_total_bps": fees_bps + slippage_bps,
+        },
+        "overall": summary(events),
+        "by_state": by_state,
+        "by_regime": by_regime,
+        "events": events[-80:],
+        "method_note": "각 과거 시점에서 당시까지의 데이터만 사용해 상태를 재계산한 walk-forward 검증입니다. 성공률은 과거 방향 일치율이며 미래 확률이 아닙니다.",
+    }
