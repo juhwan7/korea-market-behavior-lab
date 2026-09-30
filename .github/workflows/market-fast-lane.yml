@@ -54,6 +54,7 @@ jobs:
               "data/market/breadth.json",
               "data/market/futures.json",
               "data/market/global.json",
+              "data/market/turnover.json",
               "data/market/strength.json",
               "data/news/current.json",
               "data/news/issues.json",
@@ -87,7 +88,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          MATERIAL_PATHS="data/market data/news data/stocks data/system/collector-status.json data/ai/development-mix.json data/ai/unresolved-problems.jsonl"
+          MATERIAL_PATHS="data/market data/news data/stocks data/system/collector-status.json data/system/services.json data/ai/development-mix.json data/ai/unresolved-problems.jsonl"
 
           # Generated snapshots are not mergeable source code. Rebase of two independently
           # generated snapshots creates conflicts and can stall the 10-minute lane.
