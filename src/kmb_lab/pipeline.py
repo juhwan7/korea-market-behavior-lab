@@ -12,6 +12,7 @@ from .adapters.treasury import fetch_yield_curve, observation_for_maturity
 from .development_mix import git_development_mix
 from .flow import analyze_flow_history
 from .market_strength import market_strength
+from .instrument_filter import is_stock_analysis_eligible
 from .relative_strength import relative_strength
 from .smart_money import analyze_smart_money, backtest_smart_money
 
@@ -1036,7 +1037,12 @@ def collect_news(root: Path) -> tuple[dict[str, Any], dict[str, Any], dict[str, 
                 "status": "OPEN",
             }, root=root)
 
+    promotion_filtered_count = sum(
+        1 for item in all_items
+        if google_news.classify_content_quality(item).get("is_promotional")
+    )
     unique, clustered = google_news.dedupe_and_cluster(all_items)
+    duplicate_or_reprint_filtered_count = max(0, len(all_items) - promotion_filtered_count - len(unique))
     observed_at = now_text()
     previous = load_json(root / "data/news/issues.json", {})
     previous_issues = previous.get("issues", []) if isinstance(previous, dict) else []
@@ -1067,12 +1073,14 @@ def collect_news(root: Path) -> tuple[dict[str, Any], dict[str, Any], dict[str, 
         "official_items_count": official_items,
         "secondary_items_count": secondary_items,
         "raw_count": len(all_items),
+        "promotion_filtered_count": promotion_filtered_count,
+        "duplicate_or_reprint_filtered_count": duplicate_or_reprint_filtered_count,
         "deduplicated_count": len(unique),
         "count": len(unique),
         "latest_news_at": latest_news_at,
         "items": unique[:160],
         "source_quality": "MIXED_PRIMARY_SECONDARY" if official_items else "SECONDARY_AGGREGATOR",
-        "note": "한국은행·금융위원회 공식 RSS는 PRIMARY로, Google News RSS는 SECONDARY discovery로 구분합니다. 동일 제목 중복 시 공식자료를 우선 보존합니다.",
+        "note": "공식 RSS는 PRIMARY, Google News RSS는 SECONDARY discovery로 구분합니다. 고신뢰 홍보성 2차 콘텐츠는 기본 분석에서 제외하고, 동일 사건 재인용은 독립 근거로 중복 계산하지 않습니다.",
     }
     issue_doc = {
         "generated_at": observed_at,
@@ -1091,6 +1099,8 @@ def collect_news(root: Path) -> tuple[dict[str, Any], dict[str, Any], dict[str, 
         "official_sources_succeeded": official_succeeded,
         "official_items_count": official_items,
         "raw_news_count": len(all_items),
+        "promotion_filtered_count": promotion_filtered_count,
+        "duplicate_or_reprint_filtered_count": duplicate_or_reprint_filtered_count,
         "deduplicated_count": len(unique),
         "top_issues": issues[:10],
         "strengthening": [x for x in issues if x.get("state") == "STRENGTHENING"][:10],
@@ -1131,6 +1141,8 @@ def _model_validation_universe(root: Path, turnover: dict[str, Any] | None = Non
         code = str(item.get("code") or "").strip().upper()
         if not code or code in seen:
             continue
+        if not is_stock_analysis_eligible({"itemCode": code, "stockName": item.get("name"), **item}):
+            continue
         seen.add(code)
         output.append({
             **item,
@@ -1144,6 +1156,8 @@ def _model_validation_universe(root: Path, turnover: dict[str, Any] | None = Non
         for item in row.get("top_trading_value_candidates") or []:
             code = str(item.get("code") or "").strip().upper()
             if not code or code in seen:
+                continue
+            if not is_stock_analysis_eligible({"itemCode": code, "stockName": item.get("name"), **item}):
                 continue
             seen.add(code)
             output.append({
