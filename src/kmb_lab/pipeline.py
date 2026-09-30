@@ -306,14 +306,7 @@ def collect_domestic(root: Path) -> tuple[dict[str, Any], dict[str, Any], dict[s
     flow_analysis = analyze_flow_history(trimmed)
     flow_analysis.update({"as_of": snapshot["at"], "markets_raw": markets, "source_quality": "SECONDARY_UNLESS_KRX_PRIMARY_FIELDS_PRESENT"})
     raw_program = secondary_summary.get("program")
-    program_net = _program_net(raw_program)
-    program = {
-        "net_100m_krw": program_net,
-        "raw_available": raw_program is not None,
-        "numeric_fields": _program_numeric_leaves(raw_program),
-        "source_id": naver_market.SOURCE_ID,
-        "source_kind": naver_market.SOURCE_KIND,
-    }
+    program = naver_market.normalize_program(raw_program)
     return indices, breadth, {"flows": flow_analysis, "program": program, "official": official}, errors
 
 
