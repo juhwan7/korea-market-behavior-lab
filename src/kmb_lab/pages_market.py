@@ -310,8 +310,34 @@ def _relative_strength(data: dict[str, Any]) -> str:
 
 def _smart(data: dict[str, Any]) -> str:
     cards=[]
+    aggregate = data.get("validation") or {}
+    aggregate_html = ""
+    if aggregate.get("evidence_state") == "ESTIMATED":
+        aggregate_html = (
+            '<article class="card" style="margin-bottom:12px"><h3>과거 Walk-forward 검증</h3>'
+            f'<p><b>검증 표본:</b> {esc(aggregate.get("sample_count"))}개 · '
+            f'<b>방향 일치율:</b> {num((aggregate.get("gross_success_rate") or 0)*100,suffix="%",digits=1)} · '
+            f'<b>비용 반영 일치율:</b> {num((aggregate.get("net_success_rate") or 0)*100,suffix="%",digits=1)}</p>'
+            f'<p><b>평균 방향수익:</b> {num(aggregate.get("avg_gross_directional_return_pct"),suffix="%",digits=2)} · '
+            f'<b>평균 MFE:</b> {num(aggregate.get("avg_mfe_pct"),suffix="%",digits=2)} · '
+            f'<b>평균 MAE:</b> {num(aggregate.get("avg_mae_pct"),suffix="%",digits=2)}</p>'
+            '<p class="section-note">과거 방향 일치율이지 향후 상승·하락 확률이 아닙니다. 비용·슬리피지는 명시된 가정값입니다.</p></article>'
+        )
+    else:
+        aggregate_html = '<article class="card" style="margin-bottom:12px"><h3>과거 검증</h3><p>아직 방향성 상태의 검증 표본이 충분하지 않습니다.</p></article>'
+
     for item in (data.get("items") or [])[:20]:
         cost=item.get("virtual_cost_range") or {}; remain=item.get("remaining_inventory_proxy") or {}
+        validation=item.get("validation") or {}
+        overall=validation.get("overall") or {}
+        validation_line = (
+            f'<p><b>과거 검증:</b> 표본 {esc(validation.get("sample_count"))} · '
+            f'방향 일치 {num((overall.get("gross_success_rate") or 0)*100,suffix="%",digits=1)} · '
+            f'평균 MFE {num(overall.get("avg_mfe_pct"),suffix="%",digits=2)} · '
+            f'평균 MAE {num(overall.get("avg_mae_pct"),suffix="%",digits=2)}</p>'
+            if validation.get("evidence_state") == "ESTIMATED"
+            else '<p><b>과거 검증:</b> 아직 유효 표본 부족</p>'
+        )
         cards.append(
             f'<article class="card"><div class="card-head"><strong>{esc(item.get("name"))} ({esc(item.get("code"))})</strong>{badge(item.get("evidence_state"))}</div>'
             f'<p><b>상태:</b> {esc(item.get("state"))} · <b>신뢰도:</b> {esc(item.get("confidence"))}</p>'
@@ -319,9 +345,15 @@ def _smart(data: dict[str, Any]) -> str:
             f'<p><b>잔존 재고 프록시:</b> {num((remain.get("low")*100) if isinstance(remain.get("low"),(int,float)) else None,suffix="%",digits=0)} ~ {num((remain.get("high")*100) if isinstance(remain.get("high"),(int,float)) else None,suffix="%",digits=0)}</p>'
             f'<p><b>매집/흡수:</b> {num(item.get("accumulation_absorption_score"))} · <b>분배위험:</b> {num(item.get("distribution_risk_score"))}</p>'
             f'<p><b>외부수요:</b> {num(item.get("external_demand_score"))} · <b>추가상승 유인 프록시:</b> {num(item.get("additional_upside_incentive_proxy"))}</p>'
+            f'{validation_line}'
             f'<p class="section-note">실제 특정 계좌의 물량·평단·의도가 아니라 공개 데이터 기반 범위 추정입니다.</p></article>'
         )
-    return '<h2 data-kmb-section="smart-money">큰손·종목 행동</h2><p class="section-note">거래량=매집량으로 두지 않습니다. 실제 특정 계좌의 보유량·평단·의도를 안다고 가정하지 않고 가격 복원력·상대 거래량·돌파·거래량 프로파일을 분리해 가상 범위와 반대가설을 보존합니다.</p><div class="grid">'+("".join(cards) or '<p class="empty">관심종목 데이터가 아직 수집되지 않았습니다.</p>')+'</div>'
+    return (
+        '<h2 data-kmb-section="smart-money">큰손·종목 행동</h2>'
+        '<p class="section-note">거래량=매집량으로 두지 않습니다. 실제 특정 계좌의 보유량·평단·의도를 안다고 가정하지 않고 가격 복원력·상대 거래량·돌파·상대강도·거래량 프로파일을 분리해 가상 범위와 반대가설을 보존합니다.</p>'
+        + aggregate_html
+        + '<div class="grid">'+("".join(cards) or '<p class="empty">관심종목 데이터가 아직 수집되지 않았습니다.</p>')+'</div>'
+    )
 
 
 def _system(data: dict[str, Any]) -> str:
