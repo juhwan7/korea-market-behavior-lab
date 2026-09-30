@@ -108,7 +108,18 @@ class NaverTests(unittest.TestCase):
         result = top_turnover_candidates(rows, "KOSPI", limit=2)
         self.assertEqual([row["code"] for row in result], ["000660", "035420"])
         self.assertEqual(result[0]["benchmark"], "KOSPI")
-        self.assertEqual(result[0]["selection_reason"], "top_intraday_trading_value_validation_sample")
+        self.assertEqual(result[0]["selection_reason"], "top_intraday_trading_value_common_stock_validation_sample")
+    def test_top_turnover_candidates_exclude_non_common_products(self):
+        rows = [
+            {"itemCode":"005930","stockName":"삼성전자","accumulatedTradingValueRaw":1000},
+            {"itemCode":"005935","stockName":"삼성전자우","accumulatedTradingValueRaw":9000},
+            {"itemCode":"091160","stockName":"KODEX 반도체","accumulatedTradingValueRaw":8000},
+            {"itemCode":"123456","stockName":"테스트스팩1호","accumulatedTradingValueRaw":7000},
+        ]
+        result = top_turnover_candidates(rows, "KOSPI", limit=10)
+        self.assertEqual([row["code"] for row in result], ["005930"])
+        self.assertEqual(result[0]["instrument_type"], "COMMON_STOCK_CANDIDATE")
+
     def test_turnover_participation_uses_directional_trading_value(self):
         rows = [
             {"accumulatedTradingValueRaw": "100000000000", "fluctuationsRatio": "2.0"},
