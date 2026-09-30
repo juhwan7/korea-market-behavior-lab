@@ -3,50 +3,55 @@
   "agent": "AI-A",
   "role": "Discovery / Market Intelligence / Hypothesis Generator",
   "status": "ACTIVE",
-  "current_task": "KMB-A-20260930-AI-DEBT-DURATION-FEEDBACK",
-  "last_progress_at": "2026-09-30T21:57:44+09:00",
+  "current_task": "KMB-A-20261001-DISINFLATION-DURATION-DECOUPLING",
+  "last_progress_at": "2026-10-01T00:03:37+09:00",
   "reads_shared_memory": true,
   "canonical_direct_write": "AVOID",
   "candidate_namespace": "data/ai/candidates/ai-a/",
-  "heartbeat_at": "2026-09-30T21:57:44+09:00",
+  "heartbeat_at": "2026-10-01T00:03:37+09:00",
   "runtime_evidence": {
     "source": "scheduled_automation_runtime_observed",
     "enabled": true,
-    "last_run_time": "2026-09-30T21:57:44+09:00",
-    "checked_at": "2026-09-30T21:57:44+09:00",
-    "note": "A/B/C/D/E scheduled automations observed enabled. News contract executed from 20:41 repository collector evidence plus fresh Korea/US/global search. Candidate create hit a local safety blocker and was not retried."
+    "last_run_time": "2026-10-01T00:03:37+09:00",
+    "checked_at": "2026-10-01T00:03:37+09:00",
+    "note": "A/B/C/D/E scheduled automations observed enabled. Latest repository news collector is HEALTHY at 23:58 KST and fresh Korea/US/global web discovery was attempted. New candidate create was blocked by the external safety layer; no unsafe retry was attempted."
   },
   "latest_work": {
-    "fingerprint": "ai-capex|external-debt|bond-yields|refinancing|korea-ai-supply-chain",
+    "fingerprint": "pce-disinflation|front-end-rate-relief|long-duration-term-premium|korea-ai-beta",
     "result": "MAJOR_RESEARCH_COMPLETED_CANDIDATE_WRITE_BLOCKED",
-    "news_outcome": "NEW_IMPORTANT_NEWS_FOUND",
+    "news_outcome": "EXISTING_ISSUE_UPDATE_PROPOSED",
     "collector_evidence": {
-      "generated_at": "2026-09-30T20:41:59+09:00",
-      "collection_status": "PARTIAL",
+      "generated_at": "2026-09-30T23:58:33+09:00",
+      "collection_status": "HEALTHY",
       "sources_checked": 20,
-      "raw_news_count": 211,
-      "deduplicated_count": 206,
+      "raw_news_count": 219,
+      "deduplicated_count": 209,
       "issue_created_count": null,
       "issue_updated_count": null
     },
     "confirmed": [
-      "BoE July 2026 FSR says AI infrastructure external financing accelerated sharply and hyperscalers accounted for >15% of YTD US IG issuance as of early May.",
-      "BoE says declining hyperscaler free cash flow raises dependence on future refinancing conditions and broadens AI debt exposure across structured/private credit.",
-      "Reuters Sep 30 reports BoE warning that AI-related debt issuance and geopolitical/energy shocks are increasing financial-stability risks."
+      "Reuters Sep 30 reported August US headline PCE at 3.4% y/y and core PCE at 3.0%, below consensus, reducing near-term Fed hike expectations.",
+      "Reuters Sep 30 reported the US 10-year Treasury yield around 5.2363%, still near a 2007-era high, with September's monthly rise above 47 bp.",
+      "KMB issue-digest at 23:58 KST was HEALTHY with 20 sources checked, 219 raw items and 209 deduplicated items."
     ],
-    "hypothesis": "Debt-funded AI infrastructure may create a duration/refinancing feedback loop: tighter bond/credit conditions raise AI project hurdle rates and can transmit into hyperscaler capex and Korean AI-supply-chain demand before headline capex guidance fully reverses.",
+    "hypothesis": "Cooling near-term inflation/Fed-hike expectations may not immediately remove the long-duration discount-rate burden on Korean AI/semiconductor equities when 10y/30y yields remain elevated. Separate policy-rate expectations from term-premium/fiscal-supply/energy/AI-financing drivers.",
     "unknown": [
-      "AI-specific contribution to Treasury term premium",
-      "lead-lag from hyperscaler spreads to Korean AI supply-chain returns",
-      "measurable project delay/cancellation response"
+      "High-frequency 2y/10y/30y response and term-premium decomposition after PCE",
+      "Next Korean-session Samsung Electronics/SK Hynix relative returns and foreign flow",
+      "Effect of BEA annual methodology revisions on the surprise magnitude",
+      "Independent contribution of issuer credit spreads versus sovereign duration"
     ],
     "handoff": [
-      "AI-C: event/regime study on hyperscaler issuance/spreads, term premium, capex revisions and Korean HBM/power-equipment relative returns",
-      "AI-B: falsify against fiscal/inflation/energy/general-duration explanations"
+      "AI-C: event study PCE/CPI surprise -> 2y/10y/30y -> next Korean session KOSPI/semiconductor relative return and foreign flow; split curve regimes.",
+      "AI-B: falsify with BEA methodology revisions, fiscal/Treasury supply, oil and growth explanations; test pre-pricing."
     ],
-    "related_issue_ids": [],
-    "next_work": "Separate sovereign term-premium shock from issuer credit-spread/new-issue-concession shock and test which one leads Korean AI-supply-chain breadth.",
-    "pages_impact": "YES_IF_CANONICALIZED",
-    "pages_verification": "NOT_APPLICABLE_YET_CANDIDATE_WRITE_BLOCKED"
+    "related_issue_ids": [
+      "GN-0aee31dfa810ce16",
+      "GN-da0f25192b704a8e"
+    ],
+    "counter_scenario": "If long yields fall materially after PCE, or earnings/memory-price revisions dominate discount-rate pressure, Korean AI supply-chain equities can decouple positively.",
+    "next_work": "Quantify whether front-end easing without long-end relief predicts weaker next-session Korean AI/semiconductor breadth than parallel yield declines.",
+    "pages_impact": "YES_IF_PERSISTED",
+    "pages_verification": "NOT_APPLICABLE_CANDIDATE_CREATE_BLOCKED"
   }
 }
