@@ -1,5 +1,5 @@
 {
-  "snapshot_count": 26,
+  "snapshot_count": 27,
   "markets": {
     "KOSPI": {
       "individual": {
@@ -11,7 +11,7 @@
           "10m": null,
           "30m": null,
           "60m": null,
-          "session": null
+          "session": 0.0
         },
         "window_velocity_100m_krw_per_min": {
           "10m": null,
@@ -29,7 +29,7 @@
           "10m": null,
           "30m": null,
           "60m": null,
-          "session": null
+          "session": 0.0
         },
         "window_velocity_100m_krw_per_min": {
           "10m": null,
@@ -47,7 +47,7 @@
           "10m": null,
           "30m": null,
           "60m": null,
-          "session": null
+          "session": 0.0
         },
         "window_velocity_100m_krw_per_min": {
           "10m": null,
@@ -67,7 +67,7 @@
           "10m": null,
           "30m": null,
           "60m": null,
-          "session": null
+          "session": 0.0
         },
         "window_velocity_100m_krw_per_min": {
           "10m": null,
@@ -85,7 +85,7 @@
           "10m": null,
           "30m": null,
           "60m": null,
-          "session": null
+          "session": 0.0
         },
         "window_velocity_100m_krw_per_min": {
           "10m": null,
@@ -103,7 +103,7 @@
           "10m": null,
           "30m": null,
           "60m": null,
-          "session": null
+          "session": 0.0
         },
         "window_velocity_100m_krw_per_min": {
           "10m": null,
@@ -115,7 +115,7 @@
     }
   },
   "method_note": "순매수 누적값의 최근 10·30·60분 변화와 장중 첫 관측 대비 변화를 계산합니다. pace_state는 누적 순매수 부호와 최근 30분 변화 방향을 설명하며 매수·매도 주체의 의도를 확정하지 않습니다.",
-  "as_of": "2026-10-01T01:10:40+09:00",
+  "as_of": "2026-10-01T04:41:44+09:00",
   "markets_raw": {
     "KOSPI": {
       "flows_100m_krw": {
@@ -124,7 +124,7 @@
         "institution": -7992.51
       },
       "source_kind": "secondary",
-      "as_of": "2026-09-30T16:10:40.419816Z"
+      "as_of": "2026-09-30T19:41:44.786835Z"
     },
     "KOSDAQ": {
       "flows_100m_krw": {
@@ -133,7 +133,7 @@
         "institution": 481.64
       },
       "source_kind": "secondary",
-      "as_of": "2026-09-30T16:10:40.419816Z"
+      "as_of": "2026-09-30T19:41:44.786835Z"
     }
   },
   "source_quality": "SECONDARY_UNLESS_KRX_PRIMARY_FIELDS_PRESENT"
