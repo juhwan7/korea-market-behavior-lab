@@ -3,12 +3,37 @@
   "method": "commit_path_classification",
   "window_hours": 24,
   "target_product_min_pct": 70,
-  "product_pct": 61.4,
-  "maintenance_pct": 38.6,
-  "labeled_commit_count": 153,
+  "product_pct": 60.9,
+  "maintenance_pct": 39.1,
+  "labeled_commit_count": 156,
   "unclassified_commit_count": 36,
   "warning": true,
   "recent": [
+    {
+      "sha": "a807300901404f73e3ab636a120107261ddffa89",
+      "subject": "ai-d: record closed-session reaction P1 and SRE evidence",
+      "class": "maintenance"
+    },
+    {
+      "sha": "007ffc9bbaa8da2d6469ab127088b0cec02d9129",
+      "subject": "ai-c: audit news cluster independence and reprint inflation",
+      "class": "maintenance"
+    },
+    {
+      "sha": "610346938b20b1ec195811dfec9d6c2efe286e8a",
+      "subject": "ai-a: flag contaminated news cluster and review preflight",
+      "class": "maintenance"
+    },
+    {
+      "sha": "b5cd16126083c6ad8941a3d18948b3e321eec880",
+      "subject": "ai-a: record duration-decoupling discovery evidence",
+      "class": "maintenance"
+    },
+    {
+      "sha": "7cd71ab71a165562cc2abfab35e1402ea41a05a2",
+      "subject": "product: refresh market intelligence",
+      "class": "product"
+    },
     {
       "sha": "564b1e36b83c86a8b0847d36c7a9be6dba4fbd0c",
       "subject": "test: cover AI research lifecycle and topic filters",
@@ -133,31 +158,6 @@
       "sha": "5710fab44131e6b08ac69b282238d7ee626731de",
       "subject": "test: update Pages workflow contract for V3 multipage UI",
       "class": "unclassified"
-    },
-    {
-      "sha": "d01a66f310537884246bbabc1cbcc0d2bba8c4d2",
-      "subject": "ci: verify all market intelligence pages",
-      "class": "maintenance"
-    },
-    {
-      "sha": "39b86f2eba5f2c02c06407760f04f192073c59cf",
-      "subject": "test: enforce V3 multipage Korean UI contract",
-      "class": "unclassified"
-    },
-    {
-      "sha": "e0cb13ab28293ee8fe241aa93390184e6345875c",
-      "subject": "product: generate and verify V3 multipage Pages",
-      "class": "product"
-    },
-    {
-      "sha": "fc9d0497d1db13619a4d8e0ebde6a51c8729f89c",
-      "subject": "product: add multipage market intelligence UI",
-      "class": "product"
-    },
-    {
-      "sha": "caa55ebd236927c357f3d88576dabb8bdc7caf80",
-      "subject": "product: refresh market intelligence",
-      "class": "product"
     }
   ]
 }
