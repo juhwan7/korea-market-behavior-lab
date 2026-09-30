@@ -128,7 +128,20 @@ def _confidence(issue: dict[str, Any]) -> tuple[str, str]:
     return "낮음", "confidence-low"
 
 
-def issue_card(issue: dict[str, Any], now_value: Any) -> str:
+def _research_anchor(row: dict[str, Any]) -> str:
+    raw = str(row.get("fingerprint") or row.get("title") or row.get("at") or "research")
+    return "research-" + re.sub(r"[^A-Za-z0-9_-]+", "-", raw)[:90].strip("-")
+
+
+def _research_by_issue(model: dict[str, Any]) -> dict[str, list[dict[str, Any]]]:
+    linked: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for row in model.get("research_timeline") or []:
+        for issue_id in row.get("related_issue_ids") or []:
+            linked[str(issue_id)].append(row)
+    return linked
+
+
+def issue_card(issue: dict[str, Any], now_value: Any, related_research: list[dict[str, Any]] | None = None) -> str:
     trust, cls = _confidence(issue)
     independent = issue.get("independent_source_count") or issue.get("independent_publishers") or 0
     article_count = issue.get("article_count") or 0
@@ -146,6 +159,14 @@ def issue_card(issue: dict[str, Any], now_value: Any) -> str:
         label = f"{source} · {qlabel}"
         articles.append(f'<li><a href="{esc(href)}" rel="noopener noreferrer">{esc(label)}</a></li>' if href else f'<li>{esc(label)}</li>')
     related = (issue.get("related_markets") or []) + (issue.get("related_sectors") or []) + (issue.get("related_stocks") or [])
+    research_links = "".join(
+        f'<li><a href="ai-research.html#{esc(_research_anchor(row))}">{esc(row.get("agent") or "AI")} · {esc(ko_text(row.get("title") or "관련 연구"))}</a></li>'
+        for row in (related_research or [])[:8]
+    )
+    research_html = (
+        f'<details><summary>연결된 AI 연구 {len(related_research or [])}개</summary><ul class="compact-list">{research_links}</ul></details>'
+        if related_research else ""
+    )
     return (
         '<details class="card issue-card">'
         f'<summary><strong>{esc(issue.get("headline"))}</strong><div class="meta">{badge(issue.get("state"))} · 신뢰도 <b class="{cls}">{trust}</b> · {esc(human_time(issue.get("latest_at"), now_value))}</div></summary>'
@@ -154,6 +175,7 @@ def issue_card(issue: dict[str, Any], now_value: Any) -> str:
         f'<p><b>관련 시장·업종·종목:</b> {esc(" · ".join(map(str, related[:10])) if related else "추가 확인 중")}</p>'
         f'<p><b>반대 해석:</b> {esc(issue.get("counterpoint") or "뉴스와 가격이 동시에 움직였다는 사실만으로 인과를 확정하지 않습니다.")}</p>'
         f'<p><b>다음 확인:</b> {esc(" · ".join(map(str, issue.get("next_variables") or [])) or "추가 확인 중")}</p>'
+        f'{research_html}'
         f'<details><summary>관련 원문 보기</summary><ul class="compact-list">{"".join(articles) or "<li>표시 가능한 원문 링크 없음</li>"}</ul></details>'
         '</details>'
     )
@@ -178,7 +200,7 @@ def research_card(row: dict[str, Any], now_value: Any) -> str:
     related = (row.get("related_markets") or []) + (row.get("related_sectors") or []) + (row.get("related_stocks") or [])
     source_kind = "GitHub 실행 기록" if row.get("source_kind") == "AGENT_STATE_HISTORY" else "현재 실행 기록" if row.get("source_kind") == "CURRENT_AGENT_STATE" else "저장된 연구 작업물"
     return (
-        f'<article class="card reasoning-card research-item" data-agent="{esc(row.get("agent") or "AI")}" data-search="{esc((str(row.get("title") or "")+" "+hypothesis_text).lower())}">'
+        f'<article id="{esc(_research_anchor(row))}" class="card reasoning-card research-item" data-agent="{esc(row.get("agent") or "AI")}" data-search="{esc((str(row.get("title") or "")+" "+hypothesis_text).lower())}">'
         f'<div class="meta">{esc(row.get("agent") or "AI")} · {esc(human_time(row.get("at"), now_value))} · {esc(source_kind)}</div>'
         f'<h3>{esc(ko_text(row.get("title") or "시장 연구"))}</h3>'
         f'<p>{badge(row.get("result") or row.get("news_outcome") or "HYPOTHESIS")} {badge(row.get("news_outcome")) if row.get("news_outcome") else ""}</p>'
@@ -247,7 +269,8 @@ def render_issues(model: dict[str, Any]) -> str:
     intel=model.get("intelligence") or {}
     doc=intel.get("issues") or {}
     issues=doc.get("issues") or []
-    body='<section data-kmb-section="market-issues"><p class="note">동일 사건을 기사 단위가 아니라 이슈 단위로 묶습니다. 재인용 기사 수를 독립 근거 수로 계산하지 않습니다.</p><div class="grid">'+("".join(issue_card(x,model.get("generated_at")) for x in issues[:50]) or '<p>현재 이슈 없음</p>')+'</div></section>'
+    research_links=_research_by_issue(model)
+    body='<section data-kmb-section="market-issues"><p class="note">동일 사건을 기사 단위가 아니라 이슈 단위로 묶습니다. 재인용 기사 수를 독립 근거 수로 계산하지 않습니다.</p><div class="grid">'+("".join(issue_card(x,model.get("generated_at"),research_links.get(str(x.get("issue_id")),[])) for x in issues[:50]) or '<p>현재 이슈 없음</p>')+'</div></section>'
     return page_shell("시장 이슈","등장 → 지속 → 강화 → 완화 → 해소의 흐름으로 시장 사건을 추적합니다.","issues.html",body,model)
 
 
@@ -288,7 +311,20 @@ def _filtered_stock_data(data: dict[str, Any]) -> dict[str, Any]:
 def render_stocks(model: dict[str, Any]) -> str:
     intel=model.get("intelligence") or {}
     rs=_filtered_stock_data(intel.get("relative_strength") or {})
-    body='<section data-kmb-section="stock-analysis"><article class="card"><strong>분석 대상: 한국 거래소 일반 보통주</strong><p>ETF·ETN·스팩·우선주·리츠·인버스·레버리지 등 상장상품은 개별 종목 분석에서 제외합니다. ETF/ETN은 시장 자금흐름 참고변수로만 사용할 수 있습니다.</p></article>'+_relative_strength(rs)+'</section>'
+    issues=((intel.get("issues") or {}).get("issues") or [])
+    connection_cards=[]
+    for stock in rs.get("items") or []:
+        name=str(stock.get("name") or "")
+        linked=[x for x in issues if name and name in (x.get("related_stocks") or [])][:5]
+        if not linked:
+            continue
+        connection_cards.append(
+            f'<article class="card"><h3>{esc(name)}</h3><p><b>최근 연결 이슈:</b></p><ul class="compact-list">'
+            + "".join(f'<li>{esc(x.get("headline"))} · {esc(status_label(x.get("state")))}</li>' for x in linked)
+            + '</ul></article>'
+        )
+    connections=('<h2 class="section-title">종목과 연결된 최근 이슈</h2><div class="grid">'+"".join(connection_cards)+'</div>') if connection_cards else ""
+    body='<section data-kmb-section="stock-analysis"><article class="card"><strong>분석 대상: 한국 거래소 일반 보통주</strong><p>ETF·ETN·스팩·우선주·리츠·인버스·레버리지 등 상장상품은 개별 종목 분석에서 제외합니다. ETF/ETN은 시장 자금흐름 참고변수로만 사용할 수 있습니다.</p></article>'+_relative_strength(rs)+connections+'</section>'
     return page_shell("종목 분석","보통주 기업만 대상으로 상대강도·수급·이슈 연결을 봅니다.","stocks.html",body,model)
 
 
@@ -320,7 +356,7 @@ def render_news(model: dict[str, Any]) -> str:
     body=(
         '<section data-kmb-section="news-issues"><article class="card"><strong>뉴스는 기사 수가 아니라 이슈 품질로 봅니다.</strong>'
         f'<p>{esc(stats)}</p><p>광고·홍보성 2차 콘텐츠는 기본 분석에서 제외하고, 원출처·공식자료·독립 취재와 재인용을 구분합니다.</p></article>'
-        '<h2 class="section-title">정제된 핵심 이슈</h2><div class="grid">'+("".join(issue_card(x,model.get("generated_at")) for x in issues[:30]) or '<p>현재 이슈 없음</p>')+'</div>'
+        '<h2 class="section-title">정제된 핵심 이슈</h2><div class="grid">'+("".join(issue_card(x,model.get("generated_at"),_research_by_issue(model).get(str(x.get("issue_id")),[])) for x in issues[:30]) or '<p>현재 이슈 없음</p>')+'</div>'
         '<h2 class="section-title" data-kmb-section="disclosures">공식 공시</h2><article class="card"><ul class="compact-list">'+("".join(drows) or '<li>현재 표시할 공시 없음</li>')+'</ul></article></section>'
     )
     return page_shell("뉴스 인텔리전스","중복·재인용·홍보를 걷어내고 실제 시장 사건만 압축해서 봅니다.","news.html",body,model)
