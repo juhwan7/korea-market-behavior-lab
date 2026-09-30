@@ -3,50 +3,49 @@
   "agent": "AI-A",
   "role": "Discovery / Market Intelligence / Hypothesis Generator",
   "status": "ACTIVE",
-  "current_task": "KMB-A-20260930-KOREA-US-INVESTMENT-HEADLINE-FUNDING-OVERHANG",
-  "last_progress_at": "2026-09-30T19:01:10+09:00",
+  "current_task": "KMB-A-20260930-AI-DEBT-DURATION-FEEDBACK",
+  "last_progress_at": "2026-09-30T21:57:44+09:00",
   "reads_shared_memory": true,
   "canonical_direct_write": "AVOID",
   "candidate_namespace": "data/ai/candidates/ai-a/",
-  "heartbeat_at": "2026-09-30T19:01:10+09:00",
+  "heartbeat_at": "2026-09-30T21:57:44+09:00",
   "runtime_evidence": {
     "source": "scheduled_automation_runtime_observed",
     "enabled": true,
-    "last_run_time": "2026-09-30T19:01:10+09:00",
-    "checked_at": "2026-09-30T19:01:10+09:00",
-    "note": "A/B/C/D/E scheduled automations observed enabled. News contract executed from 18:51 repository collector evidence plus fresh Korea/US/global search. Candidate create hit a local safety blocker and was not retried."
+    "last_run_time": "2026-09-30T21:57:44+09:00",
+    "checked_at": "2026-09-30T21:57:44+09:00",
+    "note": "A/B/C/D/E scheduled automations observed enabled. News contract executed from 20:41 repository collector evidence plus fresh Korea/US/global search. Candidate create hit a local safety blocker and was not retried."
   },
   "latest_work": {
-    "fingerprint": "korea-us-strategic-investment|alaska-lng|headline-vs-commercial-finality|fx-funding-overhang",
+    "fingerprint": "ai-capex|external-debt|bond-yields|refinancing|korea-ai-supply-chain",
     "result": "MAJOR_RESEARCH_COMPLETED_CANDIDATE_WRITE_BLOCKED",
     "news_outcome": "NEW_IMPORTANT_NEWS_FOUND",
     "collector_evidence": {
-      "generated_at": "2026-09-30T18:51:54+09:00",
+      "generated_at": "2026-09-30T20:41:59+09:00",
       "collection_status": "PARTIAL",
       "sources_checked": 20,
-      "raw_news_count": 209,
-      "deduplicated_count": 205,
+      "raw_news_count": 211,
+      "deduplicated_count": 206,
       "issue_created_count": null,
       "issue_updated_count": null
     },
     "confirmed": [
-      "Reuters: possible ~$54bn Alaska LNG use of Korea strategic investment fund is under discussion/reporting, not yet equivalent to final Korean commitment.",
-      "Korean-side reporting distinguishes already-selected/advanced Texas gas project from Alaska LNG/nuclear items described as later discussion.",
-      "Alaska LNG commercial/funding uncertainty remains material."
+      "BoE July 2026 FSR says AI infrastructure external financing accelerated sharply and hyperscalers accounted for >15% of YTD US IG issuance as of early May.",
+      "BoE says declining hyperscaler free cash flow raises dependence on future refinancing conditions and broadens AI debt exposure across structured/private credit.",
+      "Reuters Sep 30 reports BoE warning that AI-related debt issuance and geopolitical/energy shocks are increasing financial-stability risks."
     ],
-    "hypothesis": "Political headline notional may reprice KRW/funding expectations and sector beneficiaries before binding project cash flow exists; measure announcement-to-finality gap rather than treating headline amount as immediate outflow.",
+    "hypothesis": "Debt-funded AI infrastructure may create a duration/refinancing feedback loop: tighter bond/credit conditions raise AI project hurdle rates and can transmit into hyperscaler capex and Korean AI-supply-chain demand before headline capex guidance fully reverses.",
     "unknown": [
-      "Actual White House announcement terms",
-      "Korean official characterization",
-      "funding schedule/FX conversion/risk-sharing",
-      "causal market reaction"
+      "AI-specific contribution to Treasury term premium",
+      "lead-lag from hyperscaler spreads to Korean AI supply-chain returns",
+      "measurable project delay/cancellation response"
     ],
     "handoff": [
-      "AI-C event ladder and FX/rates/sector event study",
-      "AI-B already-priced/staged-funding/offsetting-benefit falsification"
+      "AI-C: event/regime study on hyperscaler issuance/spreads, term premium, capex revisions and Korean HBM/power-equipment relative returns",
+      "AI-B: falsify against fiscal/inflation/energy/general-duration explanations"
     ],
     "related_issue_ids": [],
-    "next_work": "After the U.S. announcement, compare White House wording with Korean official confirmation and classify amount as announced/conditional/binding before any market-causality claim.",
+    "next_work": "Separate sovereign term-premium shock from issuer credit-spread/new-issue-concession shock and test which one leads Korean AI-supply-chain breadth.",
     "pages_impact": "YES_IF_CANONICALIZED",
     "pages_verification": "NOT_APPLICABLE_YET_CANDIDATE_WRITE_BLOCKED"
   }
