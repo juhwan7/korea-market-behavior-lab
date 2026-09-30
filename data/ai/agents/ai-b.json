@@ -3,12 +3,12 @@
   "agent": "AI-B",
   "role": "Red Team & Evidence Auditor",
   "status": "ACTIVE",
-  "current_task": "AUDIT-B-NEWS-ARTICLE-ISSUE-LINEAGE-001",
-  "last_progress_at": "2026-09-30T20:07:23+09:00",
+  "current_task": "AUDIT-B-NEWS-CLOSED-SESSION-COMPARABILITY-001",
+  "last_progress_at": "2026-09-30T23:16:20+09:00",
   "reads_shared_memory": true,
   "canonical_direct_write": "EMERGENCY_ONLY",
   "candidate_namespace": "data/ai/candidates/ai-b/",
-  "heartbeat_at": "2026-09-30T20:07:23+09:00",
+  "heartbeat_at": "2026-09-30T23:16:20+09:00",
   "runtime_evidence": {
     "source": "scheduled_automation_runtime_observed",
     "enabled": true,
@@ -19,29 +19,31 @@
   "latest_audit": {
     "result": "FIX_REQUIRED",
     "priority": "P1",
-    "fingerprint": "news-cluster|same-event-fragmentation|hana-ceo-succession|20260930",
-    "persistence": "CANDIDATE_WRITE_BLOCKED",
-    "evidence_summary": "One Hana Financial six-affiliate CEO succession event is split across multiple issue IDs; three fragments independently occupy current top-issues."
+    "fingerprint": "news-market-reaction|closed-session-axis-observed|20260930",
+    "persistence": "DEDICATED_CANDIDATE_WRITE_BLOCKED_LOCAL_SAFETY_LAYER",
+    "evidence_summary": "GN-cf847618a13210e1 is OBSERVED with event 20:05 KST and before/after 18:52/20:42 KST, yet includes KOSPI/KOSDAQ/KOSPI200 axes after Korean cash-session close; per-axis source_as_of/freshness/session_state absent."
   },
   "latest_work": {
-    "fingerprint": "news-current-cluster-id-null|article-issue-lineage|20260930",
+    "fingerprint": "news-market-reaction|closed-session-axis-observed|20260930",
     "result": "FIX_REQUIRED",
-    "finding": "Latest current.json has 160/160 items with cluster_id=null, while 73 of those same article IDs are present inside persisted issue.articles where the copied rows have concrete cluster_id values. dedupe_and_cluster assigns lineage only to issue copies and returns current rows unchanged.",
+    "finding": "Runtime evidence confirms prior mixed-market-clock concern: closed-session Korean axes can be labeled OBSERVED because reaction state is based on snapshot availability, not per-axis session comparability.",
     "evidence": {
-      "news_generated_at": "2026-09-30T18:51:54+09:00",
-      "current_items": 160,
-      "current_null_cluster_id": 160,
-      "current_items_also_in_issue_articles": 73,
-      "persisted_issues": 80
+      "news_generated_at": "2026-09-30T23:15:46+09:00",
+      "related_issue_ids": [
+        "GN-cf847618a13210e1"
+      ],
+      "event_at_kst": "2026-09-30T20:05:20+09:00",
+      "before_at_kst": "2026-09-30T18:52:12+09:00",
+      "after_at_kst": "2026-09-30T20:42:22+09:00",
+      "evidence_state": "OBSERVED",
+      "interpretation_state": "CORRELATION_ONLY"
     },
-    "unknown": "Historical downstream related_issue_ids omission rate is not measured.",
+    "unknown": "Repository-wide contamination rate of OBSERVED reactions is not measured.",
     "handoff": [
-      "AI-E preserve article→issue lineage or reverse index",
-      "AI-D regression guard for known clustered articles",
-      "AI-C measure historical linkage-loss impact"
+      "AI-D add per-axis source_as_of/freshness/session_state and closed-session abstention guard",
+      "AI-C quantify stale/closed-session contamination and ranking impact",
+      "AI-E separate reaction-level state from per-axis comparability"
     ],
-    "news_audit": "AI-A Korea-US/Alaska LNG latest claim PASS_WITH_NOTES: reported/potential framing is preserved; binding Korean commitment and causal market reaction remain UNKNOWN.",
-    "persistence": "DEDICATED_CANDIDATE_WRITE_BLOCKED_LOCAL_SAFETY_LAYER",
-    "next_work": "Audit whether issue importance ranking mixes source breadth with market relevance after provenance corrections."
+    "next_work": "Audit whether market_reaction_component/ranking rewards non-comparable OBSERVED reactions."
   }
 }
