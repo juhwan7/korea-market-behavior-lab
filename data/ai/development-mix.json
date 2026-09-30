@@ -3,12 +3,27 @@
   "method": "commit_path_classification",
   "window_hours": 24,
   "target_product_min_pct": 70,
-  "product_pct": 17.6,
-  "maintenance_pct": 82.4,
-  "labeled_commit_count": 74,
-  "unclassified_commit_count": 22,
+  "product_pct": 19.7,
+  "maintenance_pct": 80.3,
+  "labeled_commit_count": 76,
+  "unclassified_commit_count": 23,
   "warning": true,
   "recent": [
+    {
+      "sha": "e99a53c6b220d59c5e6849b226ab69a9a08435c2",
+      "subject": "product: expose program data shape for parser recovery",
+      "class": "product"
+    },
+    {
+      "sha": "e0a5962ae94ce1ac610e9f5a782362a94d2b0626",
+      "subject": "ops: reconcile service health with live collectors",
+      "class": "unclassified"
+    },
+    {
+      "sha": "767fb386f26d27d8a560dc2cfca6abb231821326",
+      "subject": "product: refresh market intelligence",
+      "class": "product"
+    },
     {
       "sha": "c93100050f7784373ddadea199014dbe1f0c2a7b",
       "subject": "fix: dispatch Pages after market data persistence",
@@ -143,21 +158,6 @@
       "sha": "65e8e24eb542dfdd6d50b224be4fcfadca842dab",
       "subject": "product: build live market intelligence vertical slice",
       "class": "product"
-    },
-    {
-      "sha": "cb256660bcfa1f2fe309807b22dc998c7c5a8643",
-      "subject": "audit: falsify EXP-E-005 mechanism identifiability",
-      "class": "maintenance"
-    },
-    {
-      "sha": "c9eb75b9f331fb04611f18a5bf63b4c9c758caab",
-      "subject": "evolution: add liquidity vacuum vs demand surge challenger",
-      "class": "maintenance"
-    },
-    {
-      "sha": "4df4564696a63a38d1fc993c30dc58941bc96f88",
-      "subject": "sre: reconcile AI-D scheduler runtime evidence",
-      "class": "maintenance"
     }
   ]
 }
