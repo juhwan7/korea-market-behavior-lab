@@ -3,12 +3,37 @@
   "method": "commit_path_classification",
   "window_hours": 24,
   "target_product_min_pct": 70,
-  "product_pct": 14.7,
-  "maintenance_pct": 85.3,
-  "labeled_commit_count": 68,
-  "unclassified_commit_count": 21,
+  "product_pct": 16.7,
+  "maintenance_pct": 83.3,
+  "labeled_commit_count": 72,
+  "unclassified_commit_count": 22,
   "warning": true,
   "recent": [
+    {
+      "sha": "c603a835830b8e323012a052ed9104c65c1abeda",
+      "subject": "ci: persist live market service health",
+      "class": "maintenance"
+    },
+    {
+      "sha": "04118e33f0264f6b5a7607b710135dd583d50bf5",
+      "subject": "product: make collector health reflect real market data",
+      "class": "product"
+    },
+    {
+      "sha": "b86f7be045f05dc2be8c812cc80aa75880cbd672",
+      "subject": "fix: regenerate fast-lane snapshots on latest main",
+      "class": "maintenance"
+    },
+    {
+      "sha": "f1bc49c518f603014b780937755a116f272d4b01",
+      "subject": "product: refresh market intelligence",
+      "class": "product"
+    },
+    {
+      "sha": "5646a00f0a8ce111a18e522db8c40fa64701d4a6",
+      "subject": "test: cover domestic positional flow and current chart payloads",
+      "class": "unclassified"
+    },
     {
       "sha": "53b4dc312ce693c436aa60548a77a0a7204214a3",
       "subject": "product: repair domestic flow and stock history adapters",
@@ -133,31 +158,6 @@
       "sha": "43478712f837879bd80315d2c2effd61f2f04557",
       "subject": "test: cover AI work product dashboard contracts",
       "class": "unclassified"
-    },
-    {
-      "sha": "d8e9d10ceb9628625c0d0cb115297a7bf282cda9",
-      "subject": "pages: add AI workshop and work product views",
-      "class": "unclassified"
-    },
-    {
-      "sha": "1653f50f8b8497f8b34dab3ba7bf452a7eae4b6b",
-      "subject": "pages: collect AI executions and work products",
-      "class": "unclassified"
-    },
-    {
-      "sha": "06a81a84565712c8f418232601f699aa28379933",
-      "subject": "discovery: add duration-resilience breadth divergence hypothesis",
-      "class": "maintenance"
-    },
-    {
-      "sha": "8f1214ebe9c4d10c1b41ca82fd35a911f9bef5b7",
-      "subject": "evolution: add uncertainty budget decision firewall",
-      "class": "maintenance"
-    },
-    {
-      "sha": "640f3b75729c34a1b24a5ad92510131d134d7863",
-      "subject": "audit(ai-b): distinguish heartbeat from unverifiable research progress",
-      "class": "maintenance"
     }
   ]
 }
