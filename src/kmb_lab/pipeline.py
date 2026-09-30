@@ -1037,12 +1037,12 @@ def collect_news(root: Path) -> tuple[dict[str, Any], dict[str, Any], dict[str, 
                 "status": "OPEN",
             }, root=root)
 
-    promotion_filtered_count = sum(
-        1 for item in all_items
-        if google_news.classify_content_quality(item).get("is_promotional")
-    )
+    quality_rows = [google_news.classify_content_quality(item) for item in all_items]
+    promotion_filtered_count = sum(1 for row in quality_rows if row.get("is_promotional"))
+    low_information_filtered_count = sum(1 for row in quality_rows if row.get("is_low_information") and not row.get("is_promotional"))
+    quality_filtered_count = sum(1 for row in quality_rows if row.get("filter_from_market_feed"))
     unique, clustered = google_news.dedupe_and_cluster(all_items)
-    duplicate_or_reprint_filtered_count = max(0, len(all_items) - promotion_filtered_count - len(unique))
+    duplicate_or_reprint_filtered_count = max(0, len(all_items) - quality_filtered_count - len(unique))
     observed_at = now_text()
     previous = load_json(root / "data/news/issues.json", {})
     previous_issues = previous.get("issues", []) if isinstance(previous, dict) else []
@@ -1074,6 +1074,8 @@ def collect_news(root: Path) -> tuple[dict[str, Any], dict[str, Any], dict[str, 
         "secondary_items_count": secondary_items,
         "raw_count": len(all_items),
         "promotion_filtered_count": promotion_filtered_count,
+        "low_information_filtered_count": low_information_filtered_count,
+        "quality_filtered_count": quality_filtered_count,
         "duplicate_or_reprint_filtered_count": duplicate_or_reprint_filtered_count,
         "deduplicated_count": len(unique),
         "count": len(unique),
@@ -1100,6 +1102,8 @@ def collect_news(root: Path) -> tuple[dict[str, Any], dict[str, Any], dict[str, 
         "official_items_count": official_items,
         "raw_news_count": len(all_items),
         "promotion_filtered_count": promotion_filtered_count,
+        "low_information_filtered_count": low_information_filtered_count,
+        "quality_filtered_count": quality_filtered_count,
         "duplicate_or_reprint_filtered_count": duplicate_or_reprint_filtered_count,
         "deduplicated_count": len(unique),
         "top_issues": issues[:10],
