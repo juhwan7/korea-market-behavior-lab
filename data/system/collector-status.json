@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-30T13:22:42+09:00",
+  "generated_at": "2026-09-30T13:28:32+09:00",
   "status": "PARTIAL",
   "product_features": {
     "domestic_indices": true,
@@ -7,21 +7,24 @@
     "breadth": true,
     "kospi200_futures": "CONNECTED_SECONDARY",
     "global_futures": true,
-    "bok_official": "FAILED",
+    "bok_official": "CONNECTED_PRIMARY",
     "dart_disclosures": "USER_ACTION_REQUIRED",
     "dart_disclosure_count": 0,
-    "news": 202,
+    "news": 198,
     "news_collection": "HEALTHY",
     "news_latest_at": "2026-09-30T03:53:19Z",
     "market_strength": "ESTIMATED",
     "turnover": "ESTIMATED",
     "turnover_stock_count": 4306,
+    "sector_breadth": "UNKNOWN",
+    "sector_count": 0,
+    "size_participation": true,
     "smart_money": "SHADOW",
     "smart_money_estimated_items": 4,
     "smart_money_backtest_samples": 17,
     "relative_strength_items": 4
   },
   "errors": [
-    "bok-ecos:request failed: https://ecos.bok.or.kr/: <urlopen error timed out>"
+    "sector-breadth:request failed: https://m.stock.naver.com/front-api/stock/sectors/all?nationType=domestic&sectorType=upjong: HTTP Error 400: Bad Request"
   ]
 }

@@ -3,12 +3,27 @@
   "method": "commit_path_classification",
   "window_hours": 24,
   "target_product_min_pct": 70,
-  "product_pct": 42.2,
-  "maintenance_pct": 57.8,
-  "labeled_commit_count": 109,
+  "product_pct": 43.8,
+  "maintenance_pct": 56.2,
+  "labeled_commit_count": 112,
   "unclassified_commit_count": 31,
   "warning": true,
   "recent": [
+    {
+      "sha": "967dcb9d71adba5378434bd7fd2ad9409b82e420",
+      "subject": "product: recover BOK indicators through ECOS Open API",
+      "class": "product"
+    },
+    {
+      "sha": "d55ed71d95449206b4c8395147ad7cf49c4cc7cc",
+      "subject": "product: add sector and market-cap participation breadth",
+      "class": "product"
+    },
+    {
+      "sha": "2943bec72f50504db42b1f840b68e13775c8beb4",
+      "subject": "product: refresh market intelligence",
+      "class": "product"
+    },
     {
       "sha": "3d4b8a86c1598ed0833e8b85e0a049ed48800e7a",
       "subject": "product: connect OpenDART and Bank of Korea primary feeds",
@@ -143,21 +158,6 @@
       "sha": "a8e817df7b1a3b3fbb14364c143e50b755322bcd",
       "subject": "test: cover KOSPI200 futures fallback normalization",
       "class": "unclassified"
-    },
-    {
-      "sha": "5e11694149e1744e0b8c874ba8d7e5a57ef4e8eb",
-      "subject": "product: provide KOSPI200 futures secondary fallback and basis",
-      "class": "product"
-    },
-    {
-      "sha": "284efaea1b83b1c56aba88c716a57555d7d0ba20",
-      "subject": "product: add public KOSPI200 futures fallback feed",
-      "class": "product"
-    },
-    {
-      "sha": "2a48891704dbd06d46b75f74c895e1b69dca0826",
-      "subject": "product: refresh market intelligence",
-      "class": "product"
     }
   ]
 }

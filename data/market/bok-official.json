@@ -1,8 +1,32 @@
 {
-  "generated_at": "2026-09-30T13:22:06+09:00",
-  "status": "FAILED",
-  "indicators": {},
-  "source_id": "bok-ecos-public-page",
+  "generated_at": "2026-09-30T04:28:06.171573Z",
+  "status": "CONNECTED_PRIMARY",
+  "indicators": {
+    "USD_KRW": {
+      "value": 1358.4,
+      "as_of_text": "20260930",
+      "unit": "원",
+      "item_name": "원/미국달러(매매기준율)",
+      "observed_at": "2026-09-30T04:28:06.171573Z",
+      "source_id": "bok-ecos-open-api",
+      "source_kind": "primary",
+      "source_url": "https://ecos.bok.or.kr/api/StatisticSearch"
+    },
+    "KOREA_3Y": {
+      "value": 4.076,
+      "as_of_text": "20260929",
+      "unit": "연%",
+      "item_name": "국고채(3년)",
+      "observed_at": "2026-09-30T04:28:06.171573Z",
+      "source_id": "bok-ecos-open-api",
+      "source_kind": "primary",
+      "source_url": "https://ecos.bok.or.kr/api/StatisticSearch"
+    }
+  },
+  "errors": {},
+  "source_id": "bok-ecos-open-api",
   "source_kind": "primary",
-  "reason": "request failed: https://ecos.bok.or.kr/: <urlopen error timed out>"
+  "source_url": "https://ecos.bok.or.kr/api/StatisticSearch",
+  "credential_mode": "sample_demo",
+  "method_note": "한국은행 ECOS 공식 Open API StatisticSearch를 사용합니다. 별도 키가 없으면 sample 인증으로 최신 소수 행만 조회하며, 조회 실패 항목은 임의 값으로 채우지 않습니다."
 }

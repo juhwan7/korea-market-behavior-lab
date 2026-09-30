@@ -1,66 +1,66 @@
 {
-  "snapshot_count": 11,
+  "snapshot_count": 12,
   "markets": {
     "KOSPI": {
       "individual": {
-        "net_100m_krw": 5481.33,
-        "velocity_100m_krw_per_min": 35.9107303877367,
-        "acceleration": -13.232532023610823,
+        "net_100m_krw": 5895.98,
+        "velocity_100m_krw_per_min": 63.956298200514084,
+        "acceleration": 28.045567812777385,
         "reversal": false
       },
       "foreign": {
-        "net_100m_krw": -8589.88,
-        "velocity_100m_krw_per_min": -41.63588818755629,
-        "acceleration": -2.7692215208895945,
+        "net_100m_krw": -8898.2,
+        "velocity_100m_krw_per_min": -47.55578406169689,
+        "acceleration": -5.9198958741406,
         "reversal": false
       },
       "institution": {
-        "net_100m_krw": -8803.0,
-        "velocity_100m_krw_per_min": -39.7233543733093,
-        "acceleration": 30.025581796903403,
+        "net_100m_krw": -9144.78,
+        "velocity_100m_krw_per_min": -52.716709511568226,
+        "acceleration": -12.993355138258927,
         "reversal": false
       }
     },
     "KOSDAQ": {
       "individual": {
-        "net_100m_krw": -41.5,
-        "velocity_100m_krw_per_min": -0.8829576194770062,
-        "acceleration": 5.3766168486081,
+        "net_100m_krw": -23.35,
+        "velocity_100m_krw_per_min": 2.799485861182519,
+        "acceleration": 3.682443480659525,
         "reversal": false
       },
       "foreign": {
-        "net_100m_krw": -91.92,
-        "velocity_100m_krw_per_min": -0.4609558160504957,
-        "acceleration": -3.8198210642774453,
+        "net_100m_krw": -118.75,
+        "velocity_100m_krw_per_min": -4.138303341902313,
+        "acceleration": -3.6773475258518173,
         "reversal": false
       },
       "institution": {
-        "net_100m_krw": 226.47,
-        "velocity_100m_krw_per_min": 1.0171325518485128,
-        "acceleration": -1.6566263133997134,
+        "net_100m_krw": 234.62,
+        "velocity_100m_krw_per_min": 1.2570694087403607,
+        "acceleration": 0.23993685689184785,
         "reversal": false
       }
     }
   },
-  "as_of": "2026-09-30T13:20:54+09:00",
+  "as_of": "2026-09-30T13:27:23+09:00",
   "markets_raw": {
     "KOSPI": {
       "flows_100m_krw": {
-        "individual": 5481.33,
-        "foreign": -8589.88,
-        "institution": -8803.0
+        "individual": 5895.98,
+        "foreign": -8898.2,
+        "institution": -9144.78
       },
       "source_kind": "secondary",
-      "as_of": "2026-09-30T04:20:54.500635Z"
+      "as_of": "2026-09-30T04:27:23.275468Z"
     },
     "KOSDAQ": {
       "flows_100m_krw": {
-        "individual": -41.5,
-        "foreign": -91.92,
-        "institution": 226.47
+        "individual": -23.35,
+        "foreign": -118.75,
+        "institution": 234.62
       },
       "source_kind": "secondary",
-      "as_of": "2026-09-30T04:20:54.500635Z"
+      "as_of": "2026-09-30T04:27:23.275468Z"
     }
   },
   "source_quality": "SECONDARY_UNLESS_KRX_PRIMARY_FIELDS_PRESENT"
