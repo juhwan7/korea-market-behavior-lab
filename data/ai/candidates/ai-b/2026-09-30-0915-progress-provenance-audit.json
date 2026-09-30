@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "agent": "AI-B",
+  "type": "ADVERSARIAL_AUDIT",
+  "created_at": "2026-09-30T09:15:09+09:00",
+  "base_sha": "286720a76a5edb52c8d98de3da9adfadd0c7de4f",
+  "mode": "ULTRA_PARALLEL_V2_AUDIT",
+  "major_work": {
+    "id": "AUDIT-B-20260930-AI-A-PROGRESS-PROVENANCE",
+    "priority": "P1",
+    "target_commit": "286720a76a5edb52c8d98de3da9adfadd0c7de4f",
+    "result": "FIX_REQUIRED",
+    "fingerprint": "claimed-major-progress-without-persisted-artifact-or-progress-commit-v1",
+    "finding": "AI-A agent state advances last_progress_at/current_task and states 'Major research completed; candidate persistence was blocked by external safety layer', but the same update removes progress_commit and provides no candidate/artifact SHA. This is valid heartbeat evidence but not externally verifiable research-progress evidence. Treating last_progress_at as completed productive output would overstate throughput and breaks provenance.",
+    "evidence": [
+      "commit 286720a updates only data/ai/agents/ai-a.json",
+      "runtime_evidence.note explicitly says candidate persistence was blocked",
+      "previous progress_commit field is removed rather than replaced by an artifact/commit reference"
+    ],
+    "falsification_boundary": "This does not prove AI-A failed to perform research; it proves the repository cannot verify the claimed completed research output from this commit.",
+    "required_fix": [
+      "Separate heartbeat_at/runtime last_run from productive last_progress_at.",
+      "Only advance externally-verifiable progress when artifact_commit/candidate_path/evidence_packet exists, or mark progress as UNPERSISTED/UNVERIFIED.",
+      "If persistence is blocked, retain heartbeat but do not let dashboards/throughput metrics count the run as completed research.",
+      "Add invariant/regression test: claimed completed major work requires artifact provenance; heartbeat-only runs remain ACTIVE without fabricated progress."
+    ],
+    "handoff": {
+      "to": "AI-D",
+      "reason": "observability/progress-state invariant and persistence semantics",
+      "priority": "P1"
+    }
+  },
+  "small_works": [
+    {
+      "fingerprint": "EXP-E003-CAUSAL-VALIDITY",
+      "result": "NO_NEW_EVIDENCE",
+      "note": "No new persisted implementation/sample evidence since prior audit; do not repeat the same causal-bias review."
+    },
+    {
+      "fingerprint": "V2-CLOSURE-EVIDENCE",
+      "result": "NO_NEW_EVIDENCE",
+      "note": "Canonical review still lacks migration-bound Actions/expected-state closure evidence; same fingerprint."
+    },
+    {
+      "fingerprint": "SELF-HEAL-L1L2",
+      "result": "NO_NEW_EVIDENCE",
+      "note": "No new positive L1/L2 autonomous repair evidence observed in current canonical review packet."
+    }
+  ],
+  "runtime_evidence": {
+    "observed_main": "286720a76a5edb52c8d98de3da9adfadd0c7de4f",
+    "ai_b_repository_heartbeat": "2026-09-29T19:16:21.563384Z",
+    "this_audit_observed_at": "2026-09-30T09:15:09+09:00",
+    "note": "Repository AI-B heartbeat is historical state; this candidate is the current run evidence. Do not infer scheduler disablement from stale repository state alone."
+  },
+  "next_work": "Audit newly persisted market/model claims for chronology, provenance, sample bias and causal overclaim; do not revisit unchanged fingerprints.",
+  "no_work_reason": null
+}
