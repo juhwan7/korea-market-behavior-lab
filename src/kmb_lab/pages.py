@@ -17,7 +17,8 @@ KST = timezone(timedelta(hours=9))
 AGENTS = ("AI-A", "AI-B", "AI-C", "AI-D", "AI-E")
 AGENT_FRESHNESS_MINUTES = 75
 DEFAULT_PAGES_URL = "https://juhwan7.github.io/korea-market-behavior-lab/"
-CORE_SECTION_MARKERS = ("market-issues", "today-news", "disclosures", "ai-news-analysis", "issue-timeline", "overview", "market", "market-strength", "flows", "futures-global", "news-issues", "smart-money", "cycle", "ai-workshop", "work-products", "agent-health", "activity", "review", "recovery", "actions", "research", "experiments")
+PAGE_FILES = ("index.html", "issues.html", "ai-research.html", "stocks.html", "smart-money.html", "news.html", "global.html", "lab.html", "system.html")
+CORE_SECTION_MARKERS = ("overview", "market", "cycle", "market-issues", "ai-market-reasoning", "stock-analysis", "smart-money", "news-issues", "futures-global", "research", "agent-health", "recovery", "actions")
 
 MATERIAL_EXACT = {
     "data/ai/CURRENT_BRIEFING.md",
@@ -722,15 +723,18 @@ def market_news_payload(model: dict[str, Any]) -> dict[str, Any]:
 
 
 def render_html(model: dict[str, Any]) -> str:
-    """Render the Korean-first user UI while keeping raw canonical state internal."""
-    from .pages_korean import render_korean_html
-    return render_korean_html(model)
+    """Render the V3 Korean-first market home page."""
+    from .pages_v3 import render_pages
+    return render_pages(model)["index.html"]
 
 def generate(output_dir: Path, source_commit: str, repository: str | None, token: str | None, offline: bool) -> dict[str, Any]:
     model = build_model(ROOT, source_commit, repository, token, offline)
     output_dir.mkdir(parents=True, exist_ok=True)
-    (output_dir / "index.html").write_text(render_html(model), encoding="utf-8")
-    status = {"schema_version": 1, "generated_at": model["generated_at"], "source_commit": source_commit, "material_fingerprint": model["material_fingerprint"], "freshness": model["freshness"], "agents": model["agents"], "workflows": model["workflows"]}
+    from .pages_v3 import render_pages
+    pages = render_pages(model)
+    for filename, page in pages.items():
+        (output_dir / filename).write_text(page, encoding="utf-8")
+    status = {"schema_version": 1, "generated_at": model["generated_at"], "source_commit": source_commit, "material_fingerprint": model["material_fingerprint"], "freshness": model["freshness"], "agents": model["agents"], "workflows": model["workflows"], "page_files": list(PAGE_FILES)}
     (output_dir / "status.json").write_text(json.dumps(status, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     (output_dir / "ai-activity.json").write_text(json.dumps({"schema_version": 1, "generated_at": model["generated_at"], "source_commit": source_commit, "executions": model["executions"], "work_products": model["work_products"]}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     (output_dir / "market-news.json").write_text(json.dumps(market_news_payload(model), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -772,7 +776,11 @@ def verify_live(live_url: str, source_commit: str, attempts: int, sleep_seconds:
     for attempt in range(1, max(1, attempts) + 1):
         try:
             status = fetch_url_json(base + "status.json?ts=" + str(int(time.time())))
-            page = fetch_url_text(base + "?ts=" + str(int(time.time())))
+            page_texts = {
+                filename: fetch_url_text(base + ("" if filename == "index.html" else filename) + "?ts=" + str(int(time.time())))
+                for filename in PAGE_FILES
+            }
+            combined_pages = "\n".join(page_texts.values())
             market_news = fetch_url_json(base + "market-news.json?ts=" + str(int(time.time())))
             if status.get("source_commit") != source_commit:
                 raise RuntimeError(f"status.json source_commit={status.get('source_commit')} expected={source_commit}")
@@ -786,16 +794,15 @@ def verify_live(live_url: str, source_commit: str, attempts: int, sleep_seconds:
                 raise RuntimeError(f"market-news.json source_commit={market_news.get('source_commit')} expected={source_commit}")
             if not market_news.get("generated_at"):
                 raise RuntimeError("market-news.json generated_at missing")
-            if source_commit not in page:
-                raise RuntimeError("index.html does not expose expected source commit")
-            if expected_fingerprint not in page:
-                raise RuntimeError("index.html does not expose expected material fingerprint")
+            missing_pages = [filename for filename, text in page_texts.items() if source_commit not in text or expected_fingerprint not in text]
+            if missing_pages:
+                raise RuntimeError("Pages missing expected source/fingerprint: " + ",".join(missing_pages))
             missing_sections = [
                 marker for marker in CORE_SECTION_MARKERS
-                if f'data-kmb-section="{marker}"' not in page
+                if f'data-kmb-section="{marker}"' not in combined_pages
             ]
             if missing_sections:
-                raise RuntimeError("index.html missing core sections: " + ",".join(missing_sections))
+                raise RuntimeError("multipage output missing core sections: " + ",".join(missing_sections))
             result = {
                 "status": "LIVE",
                 "source_commit": status.get("source_commit"),
