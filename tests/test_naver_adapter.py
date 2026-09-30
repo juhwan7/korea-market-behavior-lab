@@ -11,6 +11,7 @@ from kmb_lab.adapters.naver_market import (
     fetch_stock_daily,
     normalize_stock_bars,
     normalize_turnover_participation,
+    top_turnover_candidates,
 )
 
 
@@ -98,6 +99,16 @@ class NaverTests(unittest.TestCase):
         self.assertEqual(result, payload)
         self.assertIn("/api/stockSecurity/rankings/v2/domestic/industries", request_json.call_args.args[0])
         self.assertEqual(request_json.call_args.kwargs["params"]["period"], "daily")
+    def test_top_turnover_candidates_are_sorted_and_labeled_for_validation(self):
+        rows = [
+            {"itemCode":"005930","stockName":"삼성전자","accumulatedTradingValueRaw":1000},
+            {"itemCode":"000660","stockName":"SK하이닉스","accumulatedTradingValueRaw":3000},
+            {"itemCode":"035420","stockName":"NAVER","accumulatedTradingValueRaw":2000},
+        ]
+        result = top_turnover_candidates(rows, "KOSPI", limit=2)
+        self.assertEqual([row["code"] for row in result], ["000660", "035420"])
+        self.assertEqual(result[0]["benchmark"], "KOSPI")
+        self.assertEqual(result[0]["selection_reason"], "top_intraday_trading_value_validation_sample")
     def test_turnover_participation_uses_directional_trading_value(self):
         rows = [
             {"accumulatedTradingValueRaw": "100000000000", "fluctuationsRatio": "2.0"},
