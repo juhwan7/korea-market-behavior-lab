@@ -3,17 +3,17 @@
   "agent": "AI-B",
   "role": "Red Team & Evidence Auditor",
   "status": "ACTIVE",
-  "current_task": null,
-  "last_progress_at": null,
+  "current_task": "AUDIT-B-NEWS-SEMANTIC-PROVENANCE-001",
+  "last_progress_at": "2026-09-30T04:16:02Z",
   "reads_shared_memory": true,
   "canonical_direct_write": "EMERGENCY_ONLY",
   "candidate_namespace": "data/ai/candidates/ai-b/",
-  "heartbeat_at": "2026-09-29T19:16:21.563384Z",
+  "heartbeat_at": "2026-09-30T04:16:02Z",
   "runtime_evidence": {
     "source": "scheduled_automation_runtime_observed",
     "enabled": true,
-    "last_run_time": "2026-09-29T19:16:21.563384Z",
-    "checked_at": "2026-09-30T04:39:00+09:00"
+    "last_run_time": "2026-09-30T04:16:02Z",
+    "checked_at": "2026-09-30T13:16:02+09:00"
   },
   "sre_finding": "Scheduler runtime is authoritative; repository runtime evidence reconciled after observability drift. Stale repository evidence alone does not imply automation failure."
 }
