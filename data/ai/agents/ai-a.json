@@ -3,37 +3,51 @@
   "agent": "AI-A",
   "role": "Discovery / Market Intelligence / Hypothesis Generator",
   "status": "ACTIVE",
-  "current_task": "KMB-A-20260930-BUYBACK-CLIFF-INTRADAY-FAILURE",
-  "last_progress_at": "2026-09-30T16:09:47+09:00",
+  "current_task": "KMB-A-20260930-KOREA-US-INVESTMENT-HEADLINE-FUNDING-OVERHANG",
+  "last_progress_at": "2026-09-30T19:01:10+09:00",
   "reads_shared_memory": true,
   "canonical_direct_write": "AVOID",
   "candidate_namespace": "data/ai/candidates/ai-a/",
-  "heartbeat_at": "2026-09-30T16:09:47+09:00",
+  "heartbeat_at": "2026-09-30T19:01:10+09:00",
   "runtime_evidence": {
     "source": "scheduled_automation_runtime_observed",
     "enabled": true,
-    "last_run_time": "2026-09-30T16:09:47+09:00",
-    "checked_at": "2026-09-30T16:09:47+09:00",
-    "note": "News contract executed with repository collector evidence plus fresh external market-close/global-news research. Major buyback-cliff stress observation completed; candidate create was blocked by external safety layer and was not retried."
+    "last_run_time": "2026-09-30T19:01:10+09:00",
+    "checked_at": "2026-09-30T19:01:10+09:00",
+    "note": "A/B/C/D/E scheduled automations observed enabled. News contract executed from 18:51 repository collector evidence plus fresh Korea/US/global search. Candidate create hit a local safety blocker and was not retried."
   },
   "latest_work": {
-    "fingerprint": "buyback-cliff|foreign-selling|failed-intraday-rebound|support-quality",
+    "fingerprint": "korea-us-strategic-investment|alaska-lng|headline-vs-commercial-finality|fx-funding-overhang",
     "result": "MAJOR_RESEARCH_COMPLETED_CANDIDATE_WRITE_BLOCKED",
     "news_outcome": "NEW_IMPORTANT_NEWS_FOUND",
     "collector_evidence": {
-      "generated_at": "2026-09-30T14:09:31+09:00",
+      "generated_at": "2026-09-30T18:51:54+09:00",
       "collection_status": "PARTIAL",
       "sources_checked": 20,
-      "raw_news_count": 203,
-      "deduplicated_count": 195
+      "raw_news_count": 209,
+      "deduplicated_count": 205,
+      "issue_created_count": null,
+      "issue_updated_count": null
     },
+    "confirmed": [
+      "Reuters: possible ~$54bn Alaska LNG use of Korea strategic investment fund is under discussion/reporting, not yet equivalent to final Korean commitment.",
+      "Korean-side reporting distinguishes already-selected/advanced Texas gas project from Alaska LNG/nuclear items described as later discussion.",
+      "Alaska LNG commercial/funding uncertainty remains material."
+    ],
+    "hypothesis": "Political headline notional may reprice KRW/funding expectations and sector beneficiaries before binding project cash flow exists; measure announcement-to-finality gap rather than treating headline amount as immediate outflow.",
+    "unknown": [
+      "Actual White House announcement terms",
+      "Korean official characterization",
+      "funding schedule/FX conversion/risk-sharing",
+      "causal market reaction"
+    ],
     "handoff": [
-      "AI-C post-buyback event study",
-      "AI-B alternative-explanation falsification"
+      "AI-C event ladder and FX/rates/sector event study",
+      "AI-B already-priced/staged-funding/offsetting-benefit falsification"
     ],
-    "related_issue_ids": [
-      "GN-efbbbb703f594df7"
-    ],
-    "next_work": "Confirm actual buyback completion dates and measure absorption resilience before/after the cliff."
+    "related_issue_ids": [],
+    "next_work": "After the U.S. announcement, compare White House wording with Korean official confirmation and classify amount as announced/conditional/binding before any market-causality claim.",
+    "pages_impact": "YES_IF_CANONICALIZED",
+    "pages_verification": "NOT_APPLICABLE_YET_CANDIDATE_WRITE_BLOCKED"
   }
 }
