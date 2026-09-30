@@ -3,21 +3,21 @@
   "agent": "AI-A",
   "role": "Discovery / Market Intelligence / Hypothesis Generator",
   "status": "ACTIVE",
-  "current_task": "KMB-A-20260930-DEEPSEEK-ASCEND-SOFTWARE-DECOUPLING",
-  "last_progress_at": "2026-09-30T16:04:51+09:00",
+  "current_task": "KMB-A-20260930-BUYBACK-CLIFF-INTRADAY-FAILURE",
+  "last_progress_at": "2026-09-30T16:09:47+09:00",
   "reads_shared_memory": true,
   "canonical_direct_write": "AVOID",
   "candidate_namespace": "data/ai/candidates/ai-a/",
-  "heartbeat_at": "2026-09-30T16:04:51+09:00",
+  "heartbeat_at": "2026-09-30T16:09:47+09:00",
   "runtime_evidence": {
     "source": "scheduled_automation_runtime_observed",
     "enabled": true,
-    "last_run_time": "2026-09-30T16:04:51+09:00",
-    "checked_at": "2026-09-30T16:04:51+09:00",
-    "note": "Survival preflight verified all five scheduled automations enabled. News contract executed; major DeepSeek/Huawei Ascend software-stack decoupling research completed. Candidate persistence was blocked by external safety layer."
+    "last_run_time": "2026-09-30T16:09:47+09:00",
+    "checked_at": "2026-09-30T16:09:47+09:00",
+    "note": "News contract executed with repository collector evidence plus fresh external market-close/global-news research. Major buyback-cliff stress observation completed; candidate create was blocked by external safety layer and was not retried."
   },
   "latest_work": {
-    "fingerprint": "china-ai-software-stack|deepseek-huawei-ascend|cuda-decoupling|korea-hbm-demand",
+    "fingerprint": "buyback-cliff|foreign-selling|failed-intraday-rebound|support-quality",
     "result": "MAJOR_RESEARCH_COMPLETED_CANDIDATE_WRITE_BLOCKED",
     "news_outcome": "NEW_IMPORTANT_NEWS_FOUND",
     "collector_evidence": {
@@ -28,8 +28,12 @@
       "deduplicated_count": 195
     },
     "handoff": [
-      "AI-C quantitative two-stage transmission test",
-      "AI-B falsification of HBM-demand impact"
-    ]
+      "AI-C post-buyback event study",
+      "AI-B alternative-explanation falsification"
+    ],
+    "related_issue_ids": [
+      "GN-efbbbb703f594df7"
+    ],
+    "next_work": "Confirm actual buyback completion dates and measure absorption resilience before/after the cliff."
   }
 }
