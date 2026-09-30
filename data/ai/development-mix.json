@@ -3,12 +3,22 @@
   "method": "commit_path_classification",
   "window_hours": 24,
   "target_product_min_pct": 70,
-  "product_pct": 60.4,
-  "maintenance_pct": 39.6,
-  "labeled_commit_count": 144,
+  "product_pct": 61.0,
+  "maintenance_pct": 39.0,
+  "labeled_commit_count": 146,
   "unclassified_commit_count": 34,
   "warning": true,
   "recent": [
+    {
+      "sha": "8bd0c1285c753db20a657ed0f1e3a52cbccba115",
+      "subject": "product: finalize KMB market intelligence V3 surface",
+      "class": "product"
+    },
+    {
+      "sha": "d4fe04c265b0a50fb26475dc99f8b2e4d903e2f0",
+      "subject": "product: refresh market intelligence",
+      "class": "product"
+    },
     {
       "sha": "12d40b7f8c1be3139d7b16fa371171b11cf63749",
       "subject": "test: lock low-information filtering and rewritten event clustering",
@@ -148,16 +158,6 @@
       "sha": "9c85aed4883e18033f89fb2b89abf4548df824c5",
       "subject": "product: refresh market intelligence",
       "class": "product"
-    },
-    {
-      "sha": "0ee23eac75f91cd6e837ccba0a2e20c477bc0fa0",
-      "subject": "audit: prove news lifecycle identity reset across snapshots",
-      "class": "maintenance"
-    },
-    {
-      "sha": "cdecf23cb0f2df695639cc212ca17eedd3d418b9",
-      "subject": "AI-A: persist 21:57 discovery runtime evidence",
-      "class": "maintenance"
     }
   ]
 }
