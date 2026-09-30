@@ -310,18 +310,38 @@ def collect_domestic(root: Path) -> tuple[dict[str, Any], dict[str, Any], dict[s
     return indices, breadth, {"flows": flow_analysis, "program": program, "official": official}, errors
 
 
-def collect_futures(root: Path) -> tuple[dict[str, Any], list[str]]:
+def collect_futures(root: Path, indices: dict[str, Any] | None = None) -> tuple[dict[str, Any], list[str]]:
     errors: list[str] = []
     result: dict[str, Any] = {"KOSPI200_FUTURES": {"status": "NOT_CONNECTED"}}
     key = os.environ.get("KRX_AUTH_KEY")
     if key:
         try:
-            result["KOSPI200_FUTURES"] = {"status": "CONNECTED_EOD_PRIMARY", **krx.fetch_kospi200_futures(auth_key=key)}
+            primary = krx.fetch_kospi200_futures(auth_key=key)
+            result["KOSPI200_FUTURES"] = {"status": "CONNECTED_EOD_PRIMARY", **primary}
+            return result, errors
         except Exception as exc:
             errors.append(f"krx-kospi200-futures:{exc}")
-    else:
+
+    # Keep the user-facing futures screen useful even before KRX credentials
+    # are available. This fallback is explicitly secondary and never promoted
+    # to official/CONFIRMED KRX evidence.
+    try:
+        price_rows = naver_market.fetch_kospi200_futures_price(page_size=20)
+        trend = naver_market.fetch_kospi200_futures_trend()
+        secondary = naver_market.normalize_kospi200_futures(price_rows, trend)
+        spot = ((indices or {}).get("KPI200") or {}).get("close")
+        if isinstance(secondary.get("close"), (int, float)) and isinstance(spot, (int, float)):
+            secondary["spot_kpi200"] = spot
+            secondary["basis"] = round(float(secondary["close"]) - float(spot), 2)
+            secondary["basis_pct"] = round((float(secondary["close"]) / float(spot) - 1.0) * 100.0, 3) if spot else None
+        secondary["official_status"] = "KRX_AUTH_KEY_AVAILABLE" if key else "USER_ACTION_REQUIRED"
+        secondary["official_reason"] = None if key else "KRX_AUTH_KEY required for authoritative KOSPI200 futures feed"
+        result["KOSPI200_FUTURES"] = secondary
+    except Exception as exc:
+        errors.append(f"naver-kospi200-futures:{exc}")
         result["KOSPI200_FUTURES"] = {
-            "status": "USER_ACTION_REQUIRED", "reason": "KRX_AUTH_KEY required for authoritative KOSPI200 futures feed",
+            "status": "USER_ACTION_REQUIRED" if not key else "FAILED",
+            "reason": "KRX official futures unavailable and secondary FUT fallback failed",
             "source_kind": "primary_required",
         }
     return result, errors
@@ -681,7 +701,7 @@ def run(root: Path = ROOT) -> dict[str, Any]:
     errors: list[str] = []
 
     indices, breadth, domestic, e = collect_domestic(root); errors += e
-    futures, e = collect_futures(root); errors += e
+    futures, e = collect_futures(root, indices); errors += e
     global_data, e = collect_global(); errors += e
     news_current, news_issues, news_digest, e = collect_news(root); errors += e
     smart_money, e = collect_smart_money(root); errors += e
