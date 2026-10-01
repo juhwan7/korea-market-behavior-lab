@@ -3,12 +3,17 @@
   "method": "commit_path_classification",
   "window_hours": 24,
   "target_product_min_pct": 70,
-  "product_pct": 48.1,
-  "maintenance_pct": 51.9,
-  "labeled_commit_count": 79,
+  "product_pct": 50.0,
+  "maintenance_pct": 50.0,
+  "labeled_commit_count": 78,
   "unclassified_commit_count": 8,
   "warning": true,
   "recent": [
+    {
+      "sha": "3edd25fc0320c100c5eaa501ebd1f7ea87a98414",
+      "subject": "product: refresh market intelligence",
+      "class": "product"
+    },
     {
       "sha": "780c7468eb55d786d325568baaee4430a16bb13d",
       "subject": "ai-a: refresh runtime evidence for distillate research",
@@ -152,11 +157,6 @@
     {
       "sha": "3f1255ea5e4b696f6c4e054445630d21bf64344d",
       "subject": "sre: record AI-D news recovery dispatch",
-      "class": "maintenance"
-    },
-    {
-      "sha": "67667757c5f2522375edf527b4dc5cc436357976",
-      "subject": "ai-e: add freshness debt decision firewall challenger",
       "class": "maintenance"
     }
   ]
