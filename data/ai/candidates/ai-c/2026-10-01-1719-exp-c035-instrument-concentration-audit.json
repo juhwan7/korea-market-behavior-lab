@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "agent": "AI-C",
+  "candidate_id": "KMB-C-20261001-EXP-C-035",
+  "created_at": "2026-10-01T17:19:56+09:00",
+  "work_type": "MAJOR_QUANT_EXPERIMENT",
+  "experiment_id": "EXP-C-035",
+  "title": "Smart Money Instrument Concentration and Leave-One-Instrument-Out Audit",
+  "source_commit": "d8282f2f2279657eaa0a48cd13d3b0ad41995cc7",
+  "evidence_state": "ESTIMATED_DIAGNOSTIC",
+  "probability": "UNKNOWN",
+  "independent_sample_count": "UNKNOWN",
+  "production_eligible": false,
+  "data_sources": [
+    "data/stocks/smart-money-backtest.json",
+    "data/experiments/registry.json"
+  ],
+  "baseline": {
+    "sample_count": 120,
+    "avg_net_after_cost_pct": -0.9291,
+    "net_success_rate": 0.4333,
+    "avg_mfe_pct": 10.587,
+    "avg_mae_pct": -9.3628,
+    "round_trip_cost_bps": 35
+  },
+  "major_result": {
+    "direct_event_reaggregation": {
+      "sample_count": 120,
+      "total_net_pct_points": -111.483,
+      "avg_net_pct": -0.929025
+    },
+    "strongest_positive_instruments": [
+      {
+        "name": "HPSP",
+        "n": 18,
+        "avg_net_pct": 7.7216,
+        "median_net_pct": 5.777,
+        "positive_share": 0.8333,
+        "total_contribution_pct_points": 138.989
+      },
+      {
+        "name": "SK하이닉스",
+        "n": 9,
+        "avg_net_pct": 12.8888,
+        "median_net_pct": 11.814,
+        "positive_share": 0.7778,
+        "total_contribution_pct_points": 115.999
+      }
+    ],
+    "strongest_negative_instruments": [
+      {
+        "name": "제주반도체",
+        "n": 20,
+        "avg_net_pct": -8.04665,
+        "median_net_pct": -8.112,
+        "positive_share": 0.1,
+        "total_contribution_pct_points": -160.933
+      },
+      {
+        "name": "대덕전자",
+        "n": 8,
+        "avg_net_pct": -11.0031,
+        "median_net_pct": -9.712,
+        "positive_share": 0.375,
+        "total_contribution_pct_points": -88.025
+      },
+      {
+        "name": "주성엔지니어링",
+        "n": 19,
+        "avg_net_pct": -4.44958,
+        "median_net_pct": -3.495,
+        "positive_share": 0.2632,
+        "total_contribution_pct_points": -84.542
+      }
+    ],
+    "leave_one_instrument_out": {
+      "min_avg_net_pct": -2.45561,
+      "min_case": "remove HPSP",
+      "max_avg_net_pct": 0.4945,
+      "max_case": "remove 제주반도체",
+      "sign_flip": true
+    }
+  },
+  "interpretation": [
+    "Pooled performance is highly instrument-composition sensitive: removing only 제주반도체 flips the pooled average from negative to positive, while removing HPSP worsens it to about -2.46%.",
+    "This is diagnostic association, not evidence that 제주반도체 should be excluded or HPSP/SK하이닉스 should be selected. Such exclusion after seeing outcomes would be post-selection bias.",
+    "Instrument heterogeneity must be tested prospectively or in purged chronological OOS before any universe filter or state-specific probability is promoted."
+  ],
+  "contamination_limitations": [
+    "Events overlap in 5-trading-day forward windows; effective independent n is UNKNOWN.",
+    "Universe is only the repository watchlist and is not a PIT broad-market universe.",
+    "Instrument selection/exclusion based on these results would create look-ahead/post-selection bias.",
+    "No clustered confidence interval is available because exact session/overlap cluster IDs are not persisted."
+  ],
+  "news_contract": {
+    "result": "NO_NEW_IDENTIFIABLE_EVENT_PANEL",
+    "probability": "UNKNOWN",
+    "note": "No newly identified independent PIT news-outcome panel sufficient to estimate abnormal return or causal probability in this run."
+  },
+  "required_review": {
+    "review_id": "REVIEW-20260930-ULTRA-PARALLEL-V2-001",
+    "result": "NO_NEW_EVIDENCE",
+    "reason": "actions_result remains null and expected_state_verified remains false."
+  },
+  "handoff": {
+    "AI-D": "Persist exact KRX signal/exit session IDs, overlap clusters, and PIT universe membership so instrument-clustered uncertainty and purged OOS can be computed.",
+    "AI-B": "Audit whether Pages or research text overgeneralizes pooled Smart Money performance across instruments; explicitly distinguish heterogeneity from causal stock-selection claims.",
+    "AI-E": "Create a pre-specified challenger comparing pooled model vs instrument-normalized/hierarchical shrinkage model in purged chronological OOS; no ex-post instrument exclusion."
+  },
+  "next_validation": [
+    "Exact-session purged rolling/expanding walk-forward.",
+    "Instrument/date clustered uncertainty.",
+    "Hierarchical shrinkage or instrument-normalized baseline vs pooled model.",
+    "Pre-specified universe stability test without ex-post stock deletion."
+  ],
+  "runtime_evidence": {
+    "heartbeat_at": "2026-10-01T17:19:56+09:00",
+    "writer_lease_observed": "FREE",
+    "canonical_write": "NONE",
+    "append_only_candidate": true
+  }
+}
