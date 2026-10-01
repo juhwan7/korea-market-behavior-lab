@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-10-02T03:57:32+09:00",
+  "generated_at": "2026-10-02T08:05:53+09:00",
   "KOSPI200_FUTURES": {
     "status": "CONNECTED_SECONDARY",
     "instrument": "KOSPI200 연결선물 (NAVER FUT)",
     "close": 1107.75,
-    "previous_close": 1091.5,
-    "change": 16.25,
-    "change_pct": 1.49,
+    "previous_close": 1107.75,
+    "change": 0.0,
+    "change_pct": 0.0,
     "as_of": "2026-10-01",
     "investor_flow_100m_krw": {
       "individual": 1134.0,
@@ -15,12 +15,6 @@
     },
     "flow_as_of": "20261001",
     "history": [
-      {
-        "date": "2026-09-02",
-        "close": 1029.15,
-        "change": -49.0,
-        "change_pct": -4.54
-      },
       {
         "date": "2026-09-03",
         "close": 1030.0,
@@ -134,6 +128,12 @@
         "close": 1107.75,
         "change": 16.25,
         "change_pct": 1.49
+      },
+      {
+        "date": "2026-10-01",
+        "close": 1107.75,
+        "change": 0.0,
+        "change_pct": 0.0
       }
     ],
     "open_interest": null,
@@ -152,10 +152,10 @@
     "observations": [
       {
         "factor": "futures_vs_spot",
-        "state": "FUTURES_RELATIVELY_WEAK",
-        "value": -0.6,
+        "state": "FUTURES_SPOT_ALIGNED",
+        "value": 0.0,
         "unit": "percentage_point",
-        "explanation": "KOSPI200 선물의 등락률이 현물 KOSPI200보다 낮습니다. 선물이 상대적으로 약하지만 이것만으로 현물 하락을 예측하지 않습니다."
+        "explanation": "KOSPI200 선물과 현물의 당일 등락률 차이가 크지 않습니다."
       },
       {
         "factor": "basis",
@@ -174,8 +174,8 @@
       {
         "factor": "us_tech_context",
         "state": "OBSERVED_CONTEXT",
-        "nasdaq100_futures_change_pct": 0.810534494745021,
-        "sox_change_pct": 2.955884071613934,
+        "nasdaq100_futures_change_pct": 0.8277103013945118,
+        "sox_change_pct": 2.693287353892796,
         "explanation": "Nasdaq100 선물은 현재 선행시장, SOX는 최근 미국 현물 세션의 반도체 환경을 보여주는 보조 관측치입니다. 서로 다른 시점의 지표를 같은 실시간 신호처럼 합치지 않습니다."
       }
     ],

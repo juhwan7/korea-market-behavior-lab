@@ -3,12 +3,17 @@
   "method": "commit_path_classification",
   "window_hours": 24,
   "target_product_min_pct": 70,
-  "product_pct": 35.5,
-  "maintenance_pct": 64.5,
-  "labeled_commit_count": 31,
+  "product_pct": 37.0,
+  "maintenance_pct": 63.0,
+  "labeled_commit_count": 27,
   "unclassified_commit_count": 0,
   "warning": true,
   "recent": [
+    {
+      "sha": "4aef69ed381502e91fd12e6cd528ad0eb945a2d6",
+      "subject": "product: refresh market intelligence",
+      "class": "product"
+    },
     {
       "sha": "66cda616f98ab901bea8a1e5576fc9fe39faa6e1",
       "subject": "product: refresh market intelligence",
@@ -138,26 +143,6 @@
       "sha": "ac8a8975fdd7d331993554fb95fb9182debb9215",
       "subject": "ai-b: audit Korea-US energy investment commitment status",
       "class": "maintenance"
-    },
-    {
-      "sha": "7504c7b69f5a77e23df71e43532eaf705b91c5fb",
-      "subject": "ai-a: research Korea-US investment announcement versus cash-flow impact",
-      "class": "maintenance"
-    },
-    {
-      "sha": "e1a84964971855364880c1a0952458cea893ee74",
-      "subject": "sre: close news schedule-gap recovery with native run evidence",
-      "class": "maintenance"
-    },
-    {
-      "sha": "24fef6ad79eecb142eef29736a9fb5b49f79bfdb",
-      "subject": "product: refresh market intelligence",
-      "class": "product"
-    },
-    {
-      "sha": "75a1996fb6e18600b5a9353ccc477657af7d76dc",
-      "subject": "product: refresh market intelligence",
-      "class": "product"
     }
   ]
 }
