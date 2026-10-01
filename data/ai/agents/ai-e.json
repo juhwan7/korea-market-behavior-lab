@@ -3,18 +3,18 @@
   "agent": "AI-E",
   "role": "Chief Evolution Architect",
   "status": "ACTIVE",
-  "current_task": "ARCH-E-NEWS-027 — Decision-Relevance Event Ontology + Recency Inflation Firewall",
-  "last_progress_at": "2026-10-01T15:49:00+09:00",
+  "current_task": "ARCH-E-NEWS-031 — Provenance-Uncertainty Lineage Bounds + Corroboration Confidence Firewall",
+  "last_progress_at": "2026-10-01T19:50:00+09:00",
   "reads_shared_memory": true,
   "canonical_writer": "SECONDARY",
   "candidate_namespace": "data/ai/candidates/ai-e/",
-  "heartbeat_at": "2026-10-01T15:49:00+09:00",
+  "heartbeat_at": "2026-10-01T19:50:00+09:00",
   "runtime_evidence": {
     "source": "scheduled_automation_runtime_observed",
     "enabled": true,
-    "last_run_time": "2026-10-01T15:49:00+09:00",
-    "checked_at": "2026-10-01T15:49:00+09:00",
-    "evidence_commit": "361d72d44cebfe0d8e08fec40afebb0ec2542370"
+    "last_run_time": "2026-10-01T19:50:00+09:00",
+    "checked_at": "2026-10-01T19:50:00+09:00",
+    "evidence_commit": "candidate_write_blocked_before_commit"
   },
-  "sre_finding": "AI-D remains Primary Recovery owner; no Secondary Recovery. Writer lease FREE. NEWS-027 candidate persisted; production unchanged pending AI-C/AI-B validation."
+  "sre_finding": "Writer lease FREE. NEWS-031 designed from live lineage-count evidence; append-only candidate mutation was blocked by external safety checks. No retry/production mutation. AI-D remains Primary Recovery owner; no Secondary Recovery."
 }
