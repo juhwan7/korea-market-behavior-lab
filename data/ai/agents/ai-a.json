@@ -3,52 +3,51 @@
   "agent": "AI-A",
   "role": "Discovery / Market Intelligence / Hypothesis Generator",
   "status": "ACTIVE",
-  "current_task": "KMB-A-20261001-DISINFLATION-DURATION-DECOUPLING",
-  "last_progress_at": "2026-10-01T00:03:37+09:00",
+  "current_task": "KMB-A-20261001-MIDDLE-DISTILLATE-SUPPLY-SHOCK",
+  "last_progress_at": "2026-10-01T20:56:27+09:00",
   "reads_shared_memory": true,
   "canonical_direct_write": "AVOID",
   "candidate_namespace": "data/ai/candidates/ai-a/",
-  "heartbeat_at": "2026-10-01T09:04:54+09:00",
+  "heartbeat_at": "2026-10-01T20:56:27+09:00",
   "runtime_evidence": {
     "source": "scheduled_automation_runtime_observed",
     "enabled": true,
-    "last_run_time": "2026-10-01T09:04:54+09:00",
-    "checked_at": "2026-10-01T09:04:54+09:00",
-    "note": "A/B/C/D/E scheduled automations observed enabled. Repository collector was PARTIAL at 08:41 KST due to two FSC RSS timeouts; fresh Korea/US/global news discovery was attempted. Candidate persistence was blocked by the external safety layer and was not retried."
+    "last_run_time": "2026-10-01T20:56:27+09:00",
+    "checked_at": "2026-10-01T20:56:27+09:00",
+    "note": "A/B/C/D/E scheduled automations observed enabled. Fresh Korea/US/global news discovery attempted. Middle-distillate supply-shock candidate create was blocked by external safety checks and not retried."
   },
   "latest_work": {
-    "fingerprint": "micron-fq4-2026|memory-supply-commitments|korea-memory-readthrough|cluster-contamination",
+    "fingerprint": "china-oct-fuel-export-suspension|russia-diesel-export-ban|middle-distillate-supply-shock|2026-10-01",
     "result": "MAJOR_RESEARCH_COMPLETED_CANDIDATE_WRITE_BLOCKED",
     "news_outcome": "NEW_IMPORTANT_NEWS",
     "collector_evidence": {
-      "generated_at": "2026-10-01T08:41:58+09:00",
+      "generated_at": "2026-10-01T17:35:51+09:00",
       "collection_status": "PARTIAL",
       "sources_checked": 20,
-      "raw_news_count": 218,
-      "deduplicated_count": 210,
+      "raw_news_count": 230,
+      "deduplicated_count": 222,
       "issue_created_count": null,
       "issue_updated_count": null
     },
     "confirmed": [
-      "Fresh Micron earnings evidence was found and cross-checked against Micron's prior official guidance.",
-      "KMB issue GN-e37c4438569d07a8 contains a Micron earnings story inside a broad rates/KOSPI cluster; article_count 119, independent_source_count 5, reprint_count 114.",
-      "All five KMB scheduled AI automations were observed enabled."
+      "China October fuel-export suspension reported by Reuters.",
+      "Russia diesel-export ban extended through end-October.",
+      "Brent/WTI reversed higher after the China news, but single-cause attribution is not confirmed.",
+      "All five scheduled KMB AI automations were observed enabled."
     ],
-    "hypothesis": "Micron's earnings and long-term customer commitments may be an industry memory-tightness signal, but cross-company read-through to Korean memory suppliers requires quantification and falsification.",
+    "hypothesis": "Persistent refined-product export constraints may create a middle-distillate scarcity regime distinct from crude availability.",
     "unknown": [
-      "Product-level commitment mix",
-      "Cross-company share/qualification effects",
-      "Next-session Korean flow after controlling for yields and FX"
+      "Asian diesel/jet crack causal response",
+      "China restriction duration",
+      "Incremental effect after competing oil/diplomacy/FX factors"
     ],
     "handoff": [
-      "AI-C: quantify Micron surprise -> next Korean-session memory relative return/flow with rates and FX controls.",
-      "AI-B: falsify industry-wide read-through using Micron-specific share, qualification and customer mix.",
-      "AI-D/AI-E: inspect GN-e37c4438569d07a8 clustering contamination."
+      "AI-C: event-study cracks -> yields/FX -> Korean sector relative returns.",
+      "AI-B: falsify with Gulf exports/reserve policy/Iran diplomacy/USD/positioning.",
+      "AI-D/AI-E: check clean issue promotion after latest persisted digest."
     ],
-    "related_issue_ids": [
-      "GN-e37c4438569d07a8"
-    ],
-    "next_work": "Check official September Korea export release when available; otherwise continue product-level memory commitment decomposition.",
+    "related_issue_ids": [],
+    "next_work": "Prioritize authoritative Asian diesel/jet crack evidence and collector promotion status; do not duplicate fingerprint without new evidence.",
     "pages_impact": "YES_IF_PERSISTED",
     "pages_verification": "NOT_APPLICABLE_CANDIDATE_CREATE_BLOCKED",
     "no_work_reason": null
