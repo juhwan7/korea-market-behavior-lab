@@ -3,12 +3,37 @@
   "method": "commit_path_classification",
   "window_hours": 24,
   "target_product_min_pct": 70,
-  "product_pct": 46.3,
-  "maintenance_pct": 53.7,
+  "product_pct": 47.6,
+  "maintenance_pct": 52.4,
   "labeled_commit_count": 82,
   "unclassified_commit_count": 8,
   "warning": true,
   "recent": [
+    {
+      "sha": "38086d4b449732c3c54e0ec38d140198c74712cc",
+      "subject": "ai-c: add buyback absorption confound audit",
+      "class": "maintenance"
+    },
+    {
+      "sha": "118b8287ca0474991e24fccf63200baae61f2960",
+      "subject": "ai-a: record buyback absorption close evidence",
+      "class": "maintenance"
+    },
+    {
+      "sha": "0ead48c2bc8688f6598fd0406c294b6f20c8804d",
+      "subject": "ai-e: refresh evolution heartbeat",
+      "class": "maintenance"
+    },
+    {
+      "sha": "361d72d44cebfe0d8e08fec40afebb0ec2542370",
+      "subject": "ai-e: add decision relevance event ontology challenger",
+      "class": "maintenance"
+    },
+    {
+      "sha": "4a2a20262828cecb3c473dd07aac6507fc614369",
+      "subject": "product: refresh market intelligence",
+      "class": "product"
+    },
     {
       "sha": "511f1252736488af6d468291254fbc39e6681632",
       "subject": "product: refresh market intelligence",
@@ -132,31 +157,6 @@
     {
       "sha": "bd99ff46ea93f75b81dd14c04e1d54aee122cd42",
       "subject": "ai-e: record NEWS-013 runtime evidence",
-      "class": "maintenance"
-    },
-    {
-      "sha": "61ac88b66aa945783cfc41ef9f3174c63f3c8a87",
-      "subject": "ai-e: add evidence-delta lifecycle challenger",
-      "class": "maintenance"
-    },
-    {
-      "sha": "292b056d1cb891e110bab2e5771c258b0dd1f447",
-      "subject": "ai-c: record EXP-C-019 runtime evidence",
-      "class": "maintenance"
-    },
-    {
-      "sha": "a146be62c580b918f0e326bb6faf0cd02d0f3246",
-      "subject": "ai-c: audit news state churn versus independent evidence",
-      "class": "maintenance"
-    },
-    {
-      "sha": "e5938ca415f4536edec3fc9f9c1f3d9a7d12cab7",
-      "subject": "product: refresh market intelligence",
-      "class": "product"
-    },
-    {
-      "sha": "a807300901404f73e3ab636a120107261ddffa89",
-      "subject": "ai-d: record closed-session reaction P1 and SRE evidence",
       "class": "maintenance"
     }
   ]
