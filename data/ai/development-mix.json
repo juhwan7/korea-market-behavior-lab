@@ -3,12 +3,37 @@
   "method": "commit_path_classification",
   "window_hours": 24,
   "target_product_min_pct": 70,
-  "product_pct": 62.3,
-  "maintenance_pct": 37.7,
-  "labeled_commit_count": 159,
-  "unclassified_commit_count": 30,
+  "product_pct": 60.5,
+  "maintenance_pct": 39.5,
+  "labeled_commit_count": 129,
+  "unclassified_commit_count": 13,
   "warning": true,
   "recent": [
+    {
+      "sha": "7070f1658521a48ec87985f37c4b09456b29fe81",
+      "subject": "sre: record bounded news recovery and runtime drift",
+      "class": "maintenance"
+    },
+    {
+      "sha": "227ecd1ef3e8614bb150d82facaf48e398a21b99",
+      "subject": "ai-a: add September semiconductor export concentration hypothesis",
+      "class": "maintenance"
+    },
+    {
+      "sha": "8935ef469cbc57302f39aea6258551c38911a329",
+      "subject": "evolution: add decision-value attention budget challenger",
+      "class": "maintenance"
+    },
+    {
+      "sha": "6d6538f53f77b1a10aea13f7e5aafa8946abc171",
+      "subject": "evolution: add market-clock causal firewall challenger",
+      "class": "maintenance"
+    },
+    {
+      "sha": "d5192a4f515e5b38dec10f1a1bfea77cb287eb89",
+      "subject": "product: refresh market intelligence",
+      "class": "product"
+    },
     {
       "sha": "1c398a6c3b846f1fcc12db3d0d7a0b519e5d3d19",
       "subject": "ai-b: falsify Micron Korea memory read-through",
@@ -132,31 +157,6 @@
     {
       "sha": "610346938b20b1ec195811dfec9d6c2efe286e8a",
       "subject": "ai-a: flag contaminated news cluster and review preflight",
-      "class": "maintenance"
-    },
-    {
-      "sha": "b5cd16126083c6ad8941a3d18948b3e321eec880",
-      "subject": "ai-a: record duration-decoupling discovery evidence",
-      "class": "maintenance"
-    },
-    {
-      "sha": "7cd71ab71a165562cc2abfab35e1402ea41a05a2",
-      "subject": "product: refresh market intelligence",
-      "class": "product"
-    },
-    {
-      "sha": "564b1e36b83c86a8b0847d36c7a9be6dba4fbd0c",
-      "subject": "test: cover AI research lifecycle and topic filters",
-      "class": "unclassified"
-    },
-    {
-      "sha": "5f4fb14d42067cd01ff63e93eb5122f1b4ded14a",
-      "subject": "product: add AI research status and topic filters",
-      "class": "product"
-    },
-    {
-      "sha": "d929360d89f955c04a7d2cc43bf28dbf46e583ff",
-      "subject": "evolution: add news market relevance admission challenger",
       "class": "maintenance"
     }
   ]

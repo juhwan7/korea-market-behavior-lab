@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-01T09:19:12+09:00",
-  "status": "HEALTHY",
+  "generated_at": "2026-10-01T12:41:05+09:00",
+  "status": "PARTIAL",
   "product_features": {
     "domestic_indices": true,
     "investor_flow": true,
@@ -10,19 +10,21 @@
     "bok_official": "CONNECTED_PRIMARY",
     "dart_disclosures": "USER_ACTION_REQUIRED",
     "dart_disclosure_count": 0,
-    "news": 211,
-    "news_collection": "HEALTHY",
-    "news_latest_at": "2026-10-01T00:06:31Z",
+    "news": 208,
+    "news_collection": "PARTIAL",
+    "news_latest_at": "2026-10-01T03:28:00Z",
     "market_strength": "ESTIMATED",
     "turnover": "ESTIMATED",
-    "turnover_stock_count": 2556,
+    "turnover_stock_count": 2557,
     "sector_breadth": "ESTIMATED",
     "sector_count": 79,
     "size_participation": true,
     "smart_money": "SHADOW",
     "smart_money_estimated_items": 11,
-    "smart_money_backtest_samples": 110,
+    "smart_money_backtest_samples": 108,
     "relative_strength_items": 13
   },
-  "errors": []
+  "errors": [
+    "official-news:fsc-press:request failed: https://www.fsc.go.kr/about/fsc_bbs_rss/?fid=0111: The read operation timed out"
+  ]
 }
