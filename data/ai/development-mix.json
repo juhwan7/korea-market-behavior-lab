@@ -3,12 +3,17 @@
   "method": "commit_path_classification",
   "window_hours": 24,
   "target_product_min_pct": 70,
-  "product_pct": 45.1,
-  "maintenance_pct": 54.9,
+  "product_pct": 46.3,
+  "maintenance_pct": 53.7,
   "labeled_commit_count": 82,
   "unclassified_commit_count": 8,
   "warning": true,
   "recent": [
+    {
+      "sha": "511f1252736488af6d468291254fbc39e6681632",
+      "subject": "product: refresh market intelligence",
+      "class": "product"
+    },
     {
       "sha": "4157439c3092c65f29c07481bd107bee983362c9",
       "subject": "product: refresh market intelligence",
@@ -152,11 +157,6 @@
     {
       "sha": "a807300901404f73e3ab636a120107261ddffa89",
       "subject": "ai-d: record closed-session reaction P1 and SRE evidence",
-      "class": "maintenance"
-    },
-    {
-      "sha": "007ffc9bbaa8da2d6469ab127088b0cec02d9129",
-      "subject": "ai-c: audit news cluster independence and reprint inflation",
       "class": "maintenance"
     }
   ]
