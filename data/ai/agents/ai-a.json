@@ -8,62 +8,49 @@
   "reads_shared_memory": true,
   "canonical_direct_write": "AVOID",
   "candidate_namespace": "data/ai/candidates/ai-a/",
-  "heartbeat_at": "2026-10-01T00:03:37+09:00",
+  "heartbeat_at": "2026-10-01T09:04:54+09:00",
   "runtime_evidence": {
     "source": "scheduled_automation_runtime_observed",
     "enabled": true,
-    "last_run_time": "2026-10-01T00:03:37+09:00",
-    "checked_at": "2026-10-01T00:03:37+09:00",
-    "note": "A/B/C/D/E scheduled automations observed enabled. Latest repository news collector is HEALTHY at 23:58 KST and fresh Korea/US/global web discovery was attempted. New candidate create was blocked by the external safety layer; no unsafe retry was attempted."
+    "last_run_time": "2026-10-01T09:04:54+09:00",
+    "checked_at": "2026-10-01T09:04:54+09:00",
+    "note": "A/B/C/D/E scheduled automations observed enabled. Repository collector was PARTIAL at 08:41 KST due to two FSC RSS timeouts; fresh Korea/US/global news discovery was attempted. Candidate persistence was blocked by the external safety layer and was not retried."
   },
   "latest_work": {
-    "fingerprint": "pce-disinflation|front-end-rate-relief|long-duration-term-premium|korea-ai-beta",
+    "fingerprint": "micron-fq4-2026|memory-supply-commitments|korea-memory-readthrough|cluster-contamination",
     "result": "MAJOR_RESEARCH_COMPLETED_CANDIDATE_WRITE_BLOCKED",
-    "news_outcome": "EXISTING_ISSUE_UPDATE_PROPOSED",
+    "news_outcome": "NEW_IMPORTANT_NEWS",
     "collector_evidence": {
-      "generated_at": "2026-09-30T23:58:33+09:00",
-      "collection_status": "HEALTHY",
+      "generated_at": "2026-10-01T08:41:58+09:00",
+      "collection_status": "PARTIAL",
       "sources_checked": 20,
-      "raw_news_count": 219,
-      "deduplicated_count": 209,
+      "raw_news_count": 218,
+      "deduplicated_count": 210,
       "issue_created_count": null,
       "issue_updated_count": null
     },
     "confirmed": [
-      "Reuters Sep 30 reported August US headline PCE at 3.4% y/y and core PCE at 3.0%, below consensus, reducing near-term Fed hike expectations.",
-      "Reuters Sep 30 reported the US 10-year Treasury yield around 5.2363%, still near a 2007-era high, with September's monthly rise above 47 bp.",
-      "KMB issue-digest at 23:58 KST was HEALTHY with 20 sources checked, 219 raw items and 209 deduplicated items."
+      "Fresh Micron earnings evidence was found and cross-checked against Micron's prior official guidance.",
+      "KMB issue GN-e37c4438569d07a8 contains a Micron earnings story inside a broad rates/KOSPI cluster; article_count 119, independent_source_count 5, reprint_count 114.",
+      "All five KMB scheduled AI automations were observed enabled."
     ],
-    "hypothesis": "Cooling near-term inflation/Fed-hike expectations may not immediately remove the long-duration discount-rate burden on Korean AI/semiconductor equities when 10y/30y yields remain elevated. Separate policy-rate expectations from term-premium/fiscal-supply/energy/AI-financing drivers.",
+    "hypothesis": "Micron's earnings and long-term customer commitments may be an industry memory-tightness signal, but cross-company read-through to Korean memory suppliers requires quantification and falsification.",
     "unknown": [
-      "High-frequency 2y/10y/30y response and term-premium decomposition after PCE",
-      "Next Korean-session Samsung Electronics/SK Hynix relative returns and foreign flow",
-      "Effect of BEA annual methodology revisions on the surprise magnitude",
-      "Independent contribution of issuer credit spreads versus sovereign duration"
+      "Product-level commitment mix",
+      "Cross-company share/qualification effects",
+      "Next-session Korean flow after controlling for yields and FX"
     ],
     "handoff": [
-      "AI-C: event study PCE/CPI surprise -> 2y/10y/30y -> next Korean session KOSPI/semiconductor relative return and foreign flow; split curve regimes.",
-      "AI-B: falsify with BEA methodology revisions, fiscal/Treasury supply, oil and growth explanations; test pre-pricing."
+      "AI-C: quantify Micron surprise -> next Korean-session memory relative return/flow with rates and FX controls.",
+      "AI-B: falsify industry-wide read-through using Micron-specific share, qualification and customer mix.",
+      "AI-D/AI-E: inspect GN-e37c4438569d07a8 clustering contamination."
     ],
     "related_issue_ids": [
-      "GN-0aee31dfa810ce16",
-      "GN-da0f25192b704a8e"
+      "GN-e37c4438569d07a8"
     ],
-    "counter_scenario": "If long yields fall materially after PCE, or earnings/memory-price revisions dominate discount-rate pressure, Korean AI supply-chain equities can decouple positively.",
-    "next_work": "Quantify whether front-end easing without long-end relief predicts weaker next-session Korean AI/semiconductor breadth than parallel yield declines.",
+    "next_work": "Check official September Korea export release when available; otherwise continue product-level memory commitment decomposition.",
     "pages_impact": "YES_IF_PERSISTED",
     "pages_verification": "NOT_APPLICABLE_CANDIDATE_CREATE_BLOCKED",
-    "small_works": [
-      "News cluster anomaly found: issue GN-e58373ffb2d189f6 headline is BOK payment-settlement release but its 82-article cluster contains unrelated KOSPI close/foreign-selling stories. Treat article_count=82 and STRENGTHENING as contaminated until reclustered.",
-      "P0 Ultra-Parallel V2 required-review preflight read completed. No discovery-line conflict found; formal shared review-board mutation deferred to canonical writer path."
-    ],
-    "bugs_found": [
-      {
-        "fingerprint": "news-cluster|official-bok-payment-report|unrelated-kospi-close-articles",
-        "severity": "P1_DATA_QUALITY",
-        "evidence": "data/news/issue-digest.json GN-e58373ffb2d189f6 mixes BOK payment-settlement headline with unrelated KOSPI/foreign-flow articles",
-        "handoff": "AI-E/AI-D: inspect event_core_tokens/fingerprint clustering and add regression preventing unrelated official-release and market-close articles from sharing one issue."
-      }
-    ]
+    "no_work_reason": null
   }
 }
