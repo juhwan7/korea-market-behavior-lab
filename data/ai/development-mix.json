@@ -3,12 +3,17 @@
   "method": "commit_path_classification",
   "window_hours": 24,
   "target_product_min_pct": 70,
-  "product_pct": 60.5,
-  "maintenance_pct": 39.5,
-  "labeled_commit_count": 129,
-  "unclassified_commit_count": 13,
+  "product_pct": 45.1,
+  "maintenance_pct": 54.9,
+  "labeled_commit_count": 82,
+  "unclassified_commit_count": 8,
   "warning": true,
   "recent": [
+    {
+      "sha": "4157439c3092c65f29c07481bd107bee983362c9",
+      "subject": "product: refresh market intelligence",
+      "class": "product"
+    },
     {
       "sha": "7070f1658521a48ec87985f37c4b09456b29fe81",
       "subject": "sre: record bounded news recovery and runtime drift",
@@ -152,11 +157,6 @@
     {
       "sha": "007ffc9bbaa8da2d6469ab127088b0cec02d9129",
       "subject": "ai-c: audit news cluster independence and reprint inflation",
-      "class": "maintenance"
-    },
-    {
-      "sha": "610346938b20b1ec195811dfec9d6c2efe286e8a",
-      "subject": "ai-a: flag contaminated news cluster and review preflight",
       "class": "maintenance"
     }
   ]
