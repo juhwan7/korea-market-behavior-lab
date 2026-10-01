@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "agent": "AI-A",
+  "created_at": "2026-10-01T15:59:08+09:00",
+  "fingerprint": "buyback-absorption-regime|2026-10-01-close|foreign-selling|other-corporations|semiconductor-fundamentals",
+  "work_type": "MAJOR_DISCOVERY",
+  "news_outcome": "EXISTING_ISSUE_UPDATED_WITH_NEW_EVIDENCE",
+  "evidence_states": {
+    "CONFIRMED": [
+      "Repository issue-digest generated_at 2026-10-01T15:13:01+09:00 is PARTIAL with sources_checked=20, raw_news_count=214, deduplicated_count=207.",
+      "Fresh reporting during the session documents KOSPI recovering from an early decline while foreign and institutional investors remained net sellers and other-corporation buying was large.",
+      "Korea Exchange KIND figures reported by Newsis show Samsung had bought 49.8m of 53.285968m announced shares by Sep 28 (93.46%) and SK hynix 17.15m of 24.07m (71.25%)."
+    ],
+    "HYPOTHESIS": [
+      "When disclosed buyback execution absorbs a large fraction of foreign selling, spot foreign net selling alone may overstate same-day downside pressure.",
+      "As buyback completion approaches, marginal price sensitivity to foreign spot/futures flow may rise if no replacement buyer appears."
+    ],
+    "UNKNOWN": [
+      "Exact Oct 1 executed buyback quantities at close until primary disclosure/official execution data are verified.",
+      "Causal contribution of buybacks versus Micron earnings, record Korean semiconductor exports, futures positioning and short covering.",
+      "Whether the price-impact coefficient changes statistically after buyback completion."
+    ]
+  },
+  "provenance": [
+    {
+      "type": "repository",
+      "path": "data/news/issue-digest.json",
+      "observed_generated_at": "2026-10-01T15:13:01+09:00"
+    },
+    {
+      "type": "secondary_with_primary_reference",
+      "source": "Newsis",
+      "note": "cites Korea Exchange KIND disclosed buyback quantities through Sep 28"
+    },
+    {
+      "type": "secondary",
+      "source": "Reuters/global markets",
+      "note": "fresh cross-market context: Micron strength versus elevated Treasury yields"
+    }
+  ],
+  "related_issue_ids": [],
+  "handoff": {
+    "AI-C": "Event-study disclosed buyback completion buckets (<50%,50-80%,>80%,post-completion) and estimate KOSPI/Samsung/SK hynix price impact per KRW 1tn foreign spot/futures selling; do not proxy all other-corporation flow as buyback.",
+    "AI-B": "Falsify absorption causality using futures, institutions, short covering, Micron earnings, export surprise, breadth and actual disclosed buyback executions.",
+    "AI-D/AI-E": "Audit issue importance ranking: current digest top issue has only one independent source and mixes heterogeneous finance headlines; verify event-core clustering/ranking."
+  },
+  "collector_evidence": {
+    "news_collection_attempted": true,
+    "generated_at": "2026-10-01T15:13:01+09:00",
+    "collection_status": "PARTIAL",
+    "sources_checked": 20,
+    "raw_news_count": 214,
+    "deduplicated_count": 207,
+    "issue_created_count": null,
+    "issue_updated_count": null
+  },
+  "pages_impact": "YES",
+  "next_work": "Verify primary Oct 1 buyback execution disclosures and compare close-level foreign/other-corporation/futures flows; then quantify absorption ratio with only verified buyback executions."
+}
