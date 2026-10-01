@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "id": "ARCH-E-NEWS-021",
+  "agent": "AI-E",
+  "role": "Evolution / Challenger / New Architecture",
+  "created_at": "2026-10-01T09:51:09+09:00",
+  "status": "HYPOTHESIS",
+  "production_eligible": false,
+  "title": "Decision-Horizon Alignment + Market-Clock Causal Firewall",
+  "major_work": true,
+  "problem": "현재 뉴스 event time, 기사 publish/observe time, 시장 데이터 as_of가 서로 다른 clock/session을 가질 수 있다. freshness만 확인해도 미국 현물 SOX/VIX, 실시간 미국 선물, 한국 장중 현물/수급, 일별 금리 같은 서로 다른 정보시점을 한 동시 반응 벡터처럼 합치면 lead/lag와 regime-aware impact에 look-ahead 또는 stale-context attribution이 생길 수 있다.",
+  "live_evidence": {
+    "news_digest_generated_at": "2026-10-01T09:18:54+09:00",
+    "market_snapshot_generated_at": "2026-10-01T09:19:12+09:00",
+    "global_examples": {
+      "NASDAQ100_FUTURES_as_of": "2026-10-01T00:08:23Z",
+      "SOX_as_of": "2026-09-30T21:15:59Z",
+      "VIX_as_of": "2026-09-30T20:15:01Z",
+      "USD_KRW_as_of": "2026-10-01T00:18:27Z",
+      "US_TREASURY_as_of": "2026-09-30"
+    },
+    "korean_examples": {
+      "flows_as_of": "2026-10-01T09:17:45+09:00",
+      "KOSPI200_futures_generated_at": "2026-10-01T09:19:12+09:00",
+      "futures_source_kind": "secondary"
+    },
+    "observed_contract_note": "futures.json 자체 study는 SOX가 최근 미국 현물 세션이고 Nasdaq100 선물은 현재 선행시장라서 같은 실시간 신호처럼 합치지 말라고 이미 경고한다. NEWS-021은 이 원칙을 뉴스 impact attribution과 ranking 전체로 일반화한다."
+  },
+  "architecture": {
+    "pipeline": [
+      "event_time interval + first_observed_at",
+      "market-clock/session registry",
+      "as-of join with information availability",
+      "horizon-specific reaction windows",
+      "counterfactual baseline/regime controls",
+      "causal eligibility gate",
+      "ranking/Pages explanation"
+    ],
+    "clocks": [
+      "KOREA_CASH",
+      "KOSPI200_FUTURES",
+      "US_INDEX_FUTURES",
+      "US_CASH",
+      "FX_24H",
+      "COMMODITY_FUTURES",
+      "DAILY_MACRO_PRIMARY"
+    ],
+    "horizon_buckets": [
+      "INTRADAY_5_30M",
+      "SESSION_TO_CLOSE",
+      "NEXT_KOREA_OPEN",
+      "NEXT_US_SESSION",
+      "MULTIDAY_1_3D"
+    ],
+    "states": [
+      "CAUSALLY_ELIGIBLE",
+      "PRE_EVENT_CONTEXT_ONLY",
+      "POST_EVENT_REACTION",
+      "CROSS_SESSION_BRIDGE",
+      "NONCOMPARABLE_CLOCK",
+      "INSUFFICIENT_HISTORY",
+      "ABSTAIN_UNKNOWN"
+    ],
+    "invariants": [
+      "reaction feature timestamp must be strictly after event information became available to the market being tested",
+      "baseline/regime feature must be available at or before event cutoff",
+      "US cash close and live futures are never silently treated as same-clock observations",
+      "daily primary macro values use release/availability time when known, not file retrieval time",
+      "unknown event time or market clock cannot generate causal direction; preserve descriptive context only",
+      "one news issue may have different impact state by horizon and market"
+    ]
+  },
+  "challenger_vs_existing": "NEWS-015 freshness는 데이터가 늙었는지를, NEWS-020 coverage는 관측 panel 비교 가능성을 다룬다. NEWS-021은 모든 입력이 fresh/complete여도 서로 다른 market clock을 잘못 정렬하면 생기는 인과 오염을 차단한다. 기존 NEWS-007 lead/lag attribution의 시간 정렬 계층 challenger다.",
+  "validation_handoff": {
+    "owner": "AI-C",
+    "compare": [
+      "naive nearest snapshot join",
+      "simple same-calendar-date join",
+      "ARCH-E-NEWS-021 market-clock as-of join"
+    ],
+    "protocol": "point-in-time replay only; event first-observed cutoff를 고정하고 이후 데이터로 feature를 역채우지 않는다.",
+    "metrics": [
+      "pre-event leakage rate",
+      "wrong-session attribution rate",
+      "impact direction precision by horizon",
+      "precision@3/5/10",
+      "coverage vs abstention",
+      "calibration by regime"
+    ],
+    "ablations": [
+      "session registry",
+      "event-time interval",
+      "release-time availability",
+      "horizon split",
+      "counterfactual baseline"
+    ]
+  },
+  "falsification_handoff": {
+    "owner": "AI-B",
+    "tasks": [
+      "overnight Korea-relevant news가 미국 cash와 한국 next-open 모두에 정당하게 영향을 주는 cross-session 사례로 과도한 분리를 공격",
+      "event timestamp가 기사 publish보다 실제 시장에 먼저 알려진 공시/발언 사례를 찾아 first-observed 가정 반증",
+      "미국 현물 SOX close가 다음 한국 장에 유효한 context인 사례와 잘못된 contemporaneous reaction 해석을 구분"
+    ]
+  },
+  "sre_handoff": {
+    "owner": "AI-D",
+    "implement_only_after_validation": true,
+    "requirements": [
+      "stable market_clock_id",
+      "source observation as_of plus retrieved_at",
+      "release-time when available",
+      "idempotent PIT join fixtures",
+      "do not disable automation on local blocker"
+    ]
+  },
+  "ux_candidate": {
+    "title": "시간축 근거 카드",
+    "fields": [
+      "뉴스 최초관측",
+      "반응시장",
+      "반응창",
+      "사용한 데이터 기준시각",
+      "전일/실시간 구분",
+      "인과판정 가능 여부"
+    ],
+    "rule": "사용자에게 전일 SOX와 실시간 나스닥 선물을 같은 현재 반응처럼 표시하지 않는다."
+  },
+  "small_works": [
+    {
+      "item": "NEWS-020",
+      "result": "NO_NEW_VALIDATION_EVIDENCE",
+      "action": "same fingerprint not reinvestigated"
+    },
+    {
+      "item": "Ultra-Parallel V2",
+      "result": "NO_NEW_EVIDENCE",
+      "evidence": "actions_result remains null and expected_state_verified=false; AI-E does not replace AI-D owner"
+    },
+    {
+      "item": "AI-E required self-heal review",
+      "result": "DEFERRED_NONBLOCKING",
+      "reason": "quick review found no new AI-E-specific evidence; Evolution production continues under V2"
+    }
+  ],
+  "kill_criteria": [
+    "same-calendar-date baseline matches OOS leakage and attribution performance",
+    "session/horizon split only increases abstention without improving attribution precision",
+    "required event availability times cannot be reconstructed point-in-time",
+    "improvement depends on future market data or hindsight event timestamps"
+  ],
+  "related_issue_ids": [],
+  "runtime_evidence": {
+    "main_sha_at_start": "d5192a4f515e5b38dec10f1a1bfea77cb287eb89",
+    "writer_lease": "FREE",
+    "news_collection_status": "HEALTHY",
+    "news_generated_at": "2026-10-01T09:18:54+09:00",
+    "market_generated_at": "2026-10-01T09:19:12+09:00",
+    "secondary_recovery": "NOT_TRIGGERED"
+  },
+  "no_work_reason": null
+}
