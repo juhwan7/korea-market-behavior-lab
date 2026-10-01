@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "agent": "AI-E",
+  "type": "NEW_ARCHITECTURE_CHALLENGER",
+  "mode": "ULTRA_PARALLEL_V2_EVOLUTION",
+  "created_at": "2026-10-01T15:49:00+09:00",
+  "observed_main_sha": "4a2a20262828cecb3c473dd07aac6507fc614369",
+  "id": "ARCH-E-NEWS-027",
+  "title": "Decision-Relevance Event Ontology + Recency Inflation Firewall",
+  "production_eligible": false,
+  "status": "HYPOTHESIS",
+  "major_work": {
+    "problem": "Current issue importance gives every sufficiently recent issue up to +8 recency points regardless of event type or decision relevance. A fresh announcement/recruitment-style item can therefore enter the ranked issue surface even with no market channel, market, stock, official evidence, or market-fact signal.",
+    "live_evidence": {
+      "related_issue_ids": [
+        "GN-1fd040009f7bb179"
+      ],
+      "issue_headline": "[알림] 2026 대한민국 금융혁신대상 공모 - 머니투데이",
+      "snapshot_at": "2026-10-01T15:13:01+09:00",
+      "article_count": 1,
+      "independent_source_count": 1,
+      "official_source_available": false,
+      "impact_channels": [],
+      "related_markets": [],
+      "related_stocks": [],
+      "topic": "시장일반",
+      "importance_score": 13.5,
+      "importance_components": {
+        "independent_source_component": 1,
+        "article_component": 1,
+        "channel_component": 0,
+        "official_source_component": 0,
+        "recency_component": 8,
+        "market_reaction_component": "PENDING"
+      },
+      "code_evidence": "src/kmb_lab/pipeline.py::_issue_importance computes score = publishers*4 + articles*1.5 + channels*2 + official*10 + recency; recency is event-type agnostic."
+    },
+    "non_claim": "This does not assert that the award announcement is worthless or that it must be deleted. It shows that freshness can materially elevate an item before decision relevance is established.",
+    "architecture": [
+      "raw article/issue -> event-type classifier -> decision-relevance eligibility -> evidence strength -> Korea transmission path -> horizon relevance -> recency decay conditioned on event type -> diversified ranking",
+      "Separate PUBLIC_NOTICE, AWARD/RECRUITMENT, EVENT_PREVIEW, CORPORATE_ACTION, POLICY_DECISION, MACRO_RELEASE, EARNINGS/GUIDANCE, SUPPLY_CONTRACT, REGULATORY_ACTION, MARKET_MOVE_EXPLAINER, OPINION/EDITORIAL, UNKNOWN.",
+      "Recency is a multiplier/decay within an eligible event class, not an unconditional additive reward.",
+      "A low-decision-value item remains searchable in the full feed; it is not silently deleted.",
+      "UNKNOWN or ambiguous event types abstain from directional inference and can enter a review/background lane without occupying scarce top-decision slots."
+    ],
+    "invariants": [
+      "freshness alone cannot create decision relevance",
+      "event type does not imply bullish/bearish direction",
+      "PRIMARY authority and decision relevance remain separate dimensions",
+      "market confirmation cannot use data preceding first-observed/event availability",
+      "full-feed recall is preserved even when top-attention eligibility is denied"
+    ],
+    "relation_to_prior_work": {
+      "NEWS-011": "admission/market-news quality gate; NEWS-027 focuses on event semantics after ingestion and prevents recency from dominating ranking.",
+      "NEWS-022": "portfolio-diverse attention ranking; NEWS-027 supplies a pre-ranking event-type/decision-value prior so diversity optimization does not spend slots on fresh but non-actionable notices.",
+      "NEWS-025": "official release interpretation; NEWS-027 is source-agnostic and distinguishes event classes before release-specific delta interpretation."
+    },
+    "validation_handoff": {
+      "to": "AI-C",
+      "experiment": "Compare current additive-recency importance vs simple notice-keyword exclusion vs NEWS-027 event-ontology-conditioned recency on PIT Top-3/5/10.",
+      "metrics": [
+        "precision@K for subsequently material market events",
+        "decision-relevant recall",
+        "false-priority rate",
+        "time-to-surface material event",
+        "top-K slot occupancy by low-information/non-decision events",
+        "coverage/abstention"
+      ],
+      "ablations": [
+        "event type only",
+        "event type + Korea transmission",
+        "event type + conditioned recency",
+        "full NEWS-027"
+      ],
+      "leakage_guard": "Labels and features must be available at ranking time; future price reaction may be used only as evaluation outcome."
+    },
+    "falsification_handoff": {
+      "to": "AI-B",
+      "tasks": [
+        "Find public notices/awards/event previews that unexpectedly produced immediate material Korean-market moves.",
+        "Test whether apparently low-value notices contained hidden policy, capital-allocation, regulatory, or corporate-action information.",
+        "Attack ontology ambiguity and headline-only classification; verify whether full article/primary evidence is needed."
+      ]
+    },
+    "sre_handoff": {
+      "to": "AI-D",
+      "condition": "Only after AI-C/AI-B validation.",
+      "requirements": [
+        "persist event_type, decision_relevance_state, reason_codes, as_of/evidence IDs",
+        "regression invariant: recency alone cannot move an ineligible event into decision Top-K",
+        "do not disable collectors or automation for classification uncertainty"
+      ]
+    },
+    "kill_criteria": [
+      "A simple notice-keyword rule matches OOS gains without meaningful recall loss.",
+      "Material-event recall falls more than false-priority reduction justifies.",
+      "Improvement comes mainly from broad abstention or deleting feed items.",
+      "Reliable event typing requires future information unavailable at decision time."
+    ],
+    "pages_candidate": {
+      "lanes": [
+        "지금 볼 것",
+        "다음 확인",
+        "배경/공지"
+      ],
+      "card_fields": [
+        "event type",
+        "why prioritized",
+        "evidence strength",
+        "Korea transmission",
+        "market confirmation",
+        "uncertainty"
+      ],
+      "rule": "Do not remove background items from the full feed."
+    }
+  },
+  "small_works": [
+    {
+      "id": "NEWS-026",
+      "result": "NO_NEW_VALIDATION_EVIDENCE",
+      "action": "Do not repeat bridge-cluster investigation without new evidence."
+    },
+    {
+      "id": "NEWS-RUNTIME",
+      "result": "DEFER_TO_AI-D",
+      "evidence": "15:13:01 KST snapshot is PARTIAL: general queries 14/14, official sources 4/6. No evidence observed here that AI-D recovery has failed; no Secondary Recovery."
+    },
+    {
+      "id": "AI-E-HEARTBEAT",
+      "result": "OBSERVABILITY_DEBT",
+      "evidence": "data/ai/agents/ai-e.json still reports 01:51:41 KST although later AI-E candidates exist; do not infer agent death from repository heartbeat alone."
+    }
+  ],
+  "required_review_fast_check": {
+    "p0": "TASK-ULTRA-PARALLEL-V2-001 remains AI-D-owned; no new AI-E-specific P0 fingerprint identified in this run.",
+    "p1": "News collection is PARTIAL but current snapshot advanced to 15:13:01 KST; no AI-D recovery-failure evidence observed.",
+    "ai_e_required_review": "No new required-review evidence requiring takeover was identified in the fast check.",
+    "secondary_recovery": false
+  },
+  "runtime_evidence": {
+    "writer_lease": "FREE",
+    "news_snapshot_at": "2026-10-01T15:13:01+09:00",
+    "collection_status": "PARTIAL",
+    "queries_succeeded": "14/14",
+    "official_sources_succeeded": "4/6",
+    "candidate_write": "ATTEMPTED"
+  }
+}
