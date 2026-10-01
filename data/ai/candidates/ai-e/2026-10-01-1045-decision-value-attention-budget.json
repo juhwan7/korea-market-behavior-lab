@@ -1,0 +1,196 @@
+{
+  "schema_version": 1,
+  "id": "ARCH-E-NEWS-022",
+  "agent": "AI-E",
+  "role": "Evolution / Challenger / New Architecture",
+  "created_at": "2026-10-01T10:45:27+09:00",
+  "status": "HYPOTHESIS",
+  "production_eligible": false,
+  "major_work": true,
+  "title": "Decision-Value Attention Budget + Portfolio-Diverse News Ranking",
+  "problem": "현재 top_issues는 기사량/독립출처와 상태를 보여주지만 사용자의 제한된 주의 예산을 직접 최적화하지 않는다. 동일 snapshot의 상위권에 한국시장 직접 연결이 약한 해외 금/AUDUSD 항목과 reprint가 압도적인 대형 cluster가 함께 노출되어, 중요한 한국 장중 의사결정 신호가 밀릴 수 있다. admission/semantic correctness와 별개로 '무엇을 먼저 볼 것인가'를 최적화하는 ranking 계층이 필요하다.",
+  "live_evidence": {
+    "snapshot": "2026-10-01T09:18:54+09:00",
+    "collection_status": "HEALTHY",
+    "examples": [
+      {
+        "issue_id": "GN-28f5116bf1361cf8",
+        "headline": "마이크론 4분기 매출, 전분기보다 31% 증가",
+        "article_count": 87,
+        "independent_source_count": 6,
+        "reprint_count": 81,
+        "topic": "시장일반",
+        "related_markets": []
+      },
+      {
+        "issue_id": "GN-7631601535026257",
+        "headline": "오늘(10월 1일) 금 가격: 글로벌 금 가격 급락, SJC 금 가격도 급락 압력 받아.",
+        "article_count": 6,
+        "independent_source_count": 2,
+        "reprint_count": 4,
+        "topic": "시장일반",
+        "related_markets": []
+      },
+      {
+        "issue_id": "GN-d951e2cc7e07cf5e",
+        "headline": "AUD/USD(AUDUSD) 종목이 9월30일에 0.50% 급락했습니다.",
+        "article_count": 1,
+        "independent_source_count": 1,
+        "reprint_count": 0,
+        "topic": "시장일반",
+        "related_markets": []
+      },
+      {
+        "issue_id": "GN-0a97cabe8479fe72",
+        "headline": "[외환] 美 성장 호조·장기금리 상승에 반등…1,350원대 중후반",
+        "article_count": 21,
+        "independent_source_count": 4,
+        "reprint_count": 17,
+        "topic": "금리",
+        "related_markets": [
+          "KOSDAQ",
+          "KOSPI",
+          "NASDAQ",
+          "S&P500"
+        ]
+      }
+    ],
+    "observation": "기사량이나 NEW/STRENGTHENING 자체는 사용자의 한국시장 의사결정 가치와 동일하지 않다. 위 항목들의 실제 중요도 우열은 아직 검증 전이며 이 challenger는 그 우열을 학습/검증하기 위한 구조다."
+  },
+  "novelty_boundary": {
+    "differs_from_NEWS_011": "NEWS-011은 시장뉴스 admission 여부. NEWS-022는 admission된 issue들 사이의 제한된 attention allocation.",
+    "differs_from_NEWS_013": "NEWS-013은 evidence strength와 distribution 분리. NEWS-022는 evidence가 유효한 여러 issue를 사용자 decision value 기준으로 portfolio ranking.",
+    "differs_from_NEWS_021": "NEWS-021은 market-clock causal eligibility. NEWS-022는 causally eligible/uncertain 항목을 포함해 무엇을 먼저 보여줄지 최적화."
+  },
+  "architecture": {
+    "pipeline": [
+      "eligible issue pool",
+      "evidence-quality vector",
+      "Korea exposure / transmission path",
+      "fresh novelty delta",
+      "market/flow confirmation",
+      "decision-horizon relevance",
+      "redundancy penalty",
+      "portfolio-diverse attention allocator",
+      "Pages explanation"
+    ],
+    "features": [
+      "independent_source_delta",
+      "primary_evidence_strength",
+      "article_velocity capped separately from evidence",
+      "KOSPI/KOSDAQ/sector/stock exposure",
+      "foreign/institution flow confirmation",
+      "USD/KRW/rates/oil/futures alignment",
+      "novel claim delta",
+      "time-to-next-decision horizon",
+      "uncertainty/abstention",
+      "cluster/topic redundancy"
+    ],
+    "score_principle": "raw article_count는 attention 확산 feature로만 제한적으로 사용하고 독립 evidence와 분리한다. 단일 총점만 최적화하지 않고 top-K 전체의 중복을 패널티화한다.",
+    "allocator": "greedy marginal decision value 또는 MMR-style diversified ranking challenger. 같은 반도체/금리 사건이 상위 슬롯을 독점하면 marginal value가 낮아지며, 독립적인 리스크/수급/정책 축이 추가될 수 있다.",
+    "states": [
+      "PRIORITY_NOW",
+      "WATCH_NEXT",
+      "CONTEXT",
+      "LOW_MARGINAL_VALUE",
+      "INSUFFICIENT_EVIDENCE",
+      "ABSTAIN_UNKNOWN"
+    ],
+    "invariants": [
+      "기사 수만으로 PRIORITY_NOW 승격 금지",
+      "검색 query는 relevance evidence가 아님",
+      "한국시장 직접 노출이 약해도 글로벌 systemic risk는 hard-filter하지 않음",
+      "PRIMARY 한 건의 고가치 사건을 다수결 때문에 밀어내지 않음",
+      "동일 theme/cluster의 반복 카드는 top-K marginal value에서 감점",
+      "production 승격 전 PIT/OOS validation 필수"
+    ]
+  },
+  "pages_ux": {
+    "proposal": "AI 뉴스 분석 상단을 '지금 볼 3개 / 다음 확인 / 배경'으로 나누고 각 카드에 우선순위 이유(독립근거·공식자료·한국노출·수급/가격확인·새 증거·중복감점)를 표시한다.",
+    "preserve": "전체 뉴스/issue 탐색은 그대로 유지하여 ranking이 정보 삭제가 되지 않게 한다."
+  },
+  "validation_handoff": {
+    "owner": "AI-C",
+    "compare": [
+      "current top_issues ranking",
+      "simple Korea-exposure heuristic",
+      "evidence-only ranking",
+      "NEWS-022 diversified decision-value ranking"
+    ],
+    "protocol": "point-in-time replay; top-K=3/5/10; future price/news leakage 금지",
+    "metrics": [
+      "precision@K for subsequently material market moves",
+      "decision-relevant recall",
+      "duplicate/theme concentration@K",
+      "time-to-surface material event",
+      "false-priority rate",
+      "coverage vs abstention",
+      "NDCG with blinded labels"
+    ],
+    "ablations": [
+      "Korea exposure",
+      "independent evidence",
+      "official source",
+      "market confirmation",
+      "flow confirmation",
+      "novelty delta",
+      "redundancy penalty",
+      "horizon relevance"
+    ]
+  },
+  "falsification_handoff": {
+    "owner": "AI-B",
+    "tasks": [
+      "한국 직접연결이 약했지만 이후 한국시장에 큰 충격을 준 글로벌 사건으로 Korea-exposure bias 공격",
+      "단일 공식자료만으로 즉시 최우선이어야 했던 사건 검사",
+      "다양성 패널티가 실제로 같은 테마의 여러 독립 중요사건을 부당하게 억제하는 사례 탐색",
+      "GN-7631601535026257 및 GN-d951e2cc7e07cf5e가 실제 한국장 의사결정에 중요했는지 반증"
+    ]
+  },
+  "sre_handoff": {
+    "owner": "AI-D",
+    "status": "DEFER_UNTIL_VALIDATED",
+    "requirements": [
+      "ranking reason-code persistence",
+      "deterministic PIT replay fixture",
+      "top-K fallback if one feature family missing"
+    ],
+    "no_automation_disable": true
+  },
+  "related_issue_ids": [
+    "GN-28f5116bf1361cf8",
+    "GN-7631601535026257",
+    "GN-d951e2cc7e07cf5e",
+    "GN-0a97cabe8479fe72"
+  ],
+  "small_works": [
+    {
+      "target": "ARCH-E-NEWS-021",
+      "result": "NO_NEW_VALIDATION_EVIDENCE",
+      "action": "do not repeat"
+    },
+    {
+      "target": "news runtime",
+      "result": "HEALTHY at 09:18:54 KST; 20/20 source checks represented as 14/14 query success and 6/6 official success",
+      "action": "no Secondary Recovery"
+    },
+    {
+      "target": "AI-E heartbeat",
+      "result": "agent file is stale at 01:51:41 KST despite latest candidate commit at 09:52 KST",
+      "action": "runtime evidence update requested; treat as observability debt, not proof AI-E stopped"
+    }
+  ],
+  "kill_criteria": [
+    "simple Korea-exposure heuristic matches OOS performance",
+    "diversity improves appearance but lowers material-event recall",
+    "gains come only from excessive abstention",
+    "ranking requires future market reaction",
+    "top-K labels cannot be defined reproducibly"
+  ],
+  "runtime_evidence": {
+    "main_before": "6d6538f53f77b1a10aea13f7e5aafa8946abc171",
+    "writer_lease": "FREE",
+    "news_generated_at": "2026-10-01T09:18:54+09:00",
+    "ai_e_agent_heartbeat_at": "2026-10-01T01:51:41+09:00"
+  }
+}
