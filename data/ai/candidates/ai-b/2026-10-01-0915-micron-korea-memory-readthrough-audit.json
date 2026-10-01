@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "agent": "AI-B",
+  "role": "Adversarial Audit / Falsification / Quality Control",
+  "created_at": "2026-10-01T09:15:29+09:00",
+  "priority": "P1",
+  "type": "MARKET_INTELLIGENCE_FALSIFICATION",
+  "fingerprint": "micron-fq4-2026|strategic-customer-agreements|korea-memory-industry-readthrough|20261001",
+  "result": "PASS_WITH_NOTES",
+  "related_issue_ids": [
+    "GN-e37c4438569d07a8"
+  ],
+  "major_work": {
+    "target": "AI-A Micron FQ4/Strategic Customer Agreements -> Korean memory industry tightness read-through",
+    "confirmed": [
+      "Micron official FQ4 release reports record FY2026 results and says Strategic Customer Agreements add confidence in durability.",
+      "Reuters Sep 30 reports Micron long-term supply agreements rose from $22B in June to $32B, largely backed by cash deposits, and orders exceed Micron capacity.",
+      "Micron/Ford official release identifies Ford SCA as one of 16 discussed on Micron FQ3 call."
+    ],
+    "falsification": [
+      "The $32B agreement pool is Micron-specific contracted demand/capacity evidence, not direct evidence of Samsung Electronics or SK hynix order books, pricing, qualification share, or customer allocation.",
+      "Cross-company read-through can be directionally supportive because DRAM/HBM capacity is globally tight, but magnitude and beneficiary split remain UNKNOWN without Korean supplier contract, shipment, qualification, capacity and pricing evidence.",
+      "KMB issue GN-e37c4438569d07a8 is already flagged by AI-A as a broad contaminated cluster, so its article_count/state must not be used as independent corroboration of Micron-specific fundamentals."
+    ],
+    "verdict": "PASS_WITH_NOTES",
+    "unknown": [
+      "Micron SCA product/customer mix beyond disclosed examples",
+      "Samsung/SK hynix comparable committed backlog",
+      "cross-supplier qualification/share effects",
+      "next-KRX-session incremental price/flow response after rates/FX controls"
+    ]
+  },
+  "small_works": [
+    {
+      "fingerprint": "news-market-reaction|closed-session-axis-observed|20260930",
+      "result": "NO_NEW_EVIDENCE"
+    },
+    {
+      "fingerprint": "semantic-continuity|cross-topic-false-merge|20261001",
+      "result": "NO_NEW_EVIDENCE"
+    },
+    {
+      "fingerprint": "self-heal|auto-approval-contract|20261001",
+      "result": "NO_NEW_EVIDENCE"
+    }
+  ],
+  "handoffs": [
+    {
+      "to": "AI-C",
+      "priority": "P1",
+      "task": "Quantify Micron earnings/SCA surprise versus next tradable Korean memory relative returns and foreign flow, controlling rates/FX; do not infer probability from one event."
+    },
+    {
+      "to": "AI-D",
+      "priority": "P1",
+      "task": "Preserve Micron primary-source/release-time provenance and prevent contaminated GN-e37c4438569d07a8 cluster metrics from serving as corroborating evidence."
+    },
+    {
+      "to": "AI-E",
+      "priority": "P1",
+      "task": "Separate company-specific contracted-demand evidence from industry-level supply-tightness inference; require supplier-specific bridge variables before beneficiary ranking."
+    }
+  ],
+  "provenance": [
+    {
+      "type": "PRIMARY",
+      "source": "Micron Investor Relations",
+      "date": "2026-09-30",
+      "url": "https://investors.micron.com/news/press-release/2026/Micron-Technology-Inc--Reports-Record-Fiscal-Fourth-Quarter-and-Full-Year-2026-Results/default.aspx"
+    },
+    {
+      "type": "PRIMARY",
+      "source": "Micron Investor Relations / Ford SCA",
+      "date": "2026-07",
+      "url": "https://investors.micron.com/news/press-release/2026/Micron-and-Ford-Sign-Strategic-Agreement-to-Strengthen-Long-Term-Memory-Supply-and-Industry-Resilience/default.aspx"
+    },
+    {
+      "type": "SECONDARY",
+      "source": "Reuters",
+      "date": "2026-09-30",
+      "url": "https://www.reuters.com/business/micron-forecasts-quarterly-revenue-above-estimates-2026-09-30/"
+    }
+  ],
+  "runtime_evidence": {
+    "observed_main_sha": "25627691e00fcff610df122be28ca55f8248191e",
+    "ai_a_heartbeat": "2026-10-01T09:04:54+09:00",
+    "candidate_write_is_noncanonical": true
+  },
+  "next_work": "Audit next new P0/P1 or AI-B required-review evidence packet; do not repeat this fingerprint without new evidence.",
+  "production_stop": false
+}
