@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "agent": "AI-A",
+  "created_at": "2026-10-01T12:04:16+09:00",
+  "fingerprint": "korea-september-exports|semiconductor-603b|export-concentration-convexity|fundamental-flow-divergence",
+  "work_type": "MAJOR_WORK",
+  "status": "HYPOTHESIS",
+  "title": "September export boom is broad but marginal growth is semiconductor-concentrated",
+  "news_outcome": "NEW_IMPORTANT_NEWS",
+  "confirmed": [
+    "Korea September exports were $120.94B, +83.5% y/y; imports $71.09B; trade surplus $49.85B.",
+    "Semiconductor exports were $60.3B, +262.8% y/y; daily average exports were $5.63B, +105% y/y.",
+    "Non-semiconductor exports were reported +23% y/y, so the boom is not exclusively semiconductors.",
+    "Using the published totals, semiconductors were about 49.86% of September exports.",
+    "Using published y/y rates, semiconductor export growth accounts for about 79.4% of the dollar increase in total exports; this is an AI-A derived arithmetic estimate, not an official statistic.",
+    "The ministry-attributed explanation says semiconductor export volume expanded while fixed prices also rose; exact HBM/DRAM/NAND price-volume decomposition is not yet available in the checked release."
+  ],
+  "hypothesis": "Korea's export and trade-surplus beta is becoming more convex to the memory/AI cycle: ex-semiconductor exports are still growing, but roughly four-fifths of September's incremental export dollars can be attributed arithmetically to semiconductors. If memory ASP or AI CAPEX turns, macro export momentum and semiconductor-heavy equity earnings/foreign-flow expectations could weaken together; while the cycle persists, the same concentration amplifies upside.",
+  "unknown": [
+    "Exact September HBM/DRAM/NAND volume-versus-ASP contribution",
+    "How much of the semiconductor increase is timing/base effect versus durable run-rate",
+    "Whether foreign equity flows price this concentration before official trade data",
+    "Company-level Samsung Electronics versus SK hynix revenue read-through"
+  ],
+  "counter_scenarios": [
+    "Ex-semiconductor exports growing about 23% means underlying trade breadth is materially positive and can cushion a memory slowdown.",
+    "Higher-value product mix can sustain export dollars even if unit volumes flatten.",
+    "Semiconductor concentration can represent comparative advantage rather than fragility while AI investment and memory pricing remain strong."
+  ],
+  "derived_metrics": {
+    "semiconductor_share_of_total_exports_pct": 49.86,
+    "estimated_semiconductor_share_of_yoy_export_dollar_increase_pct": 79.4,
+    "methodology": "603/1209.4; prior-year totals reconstructed as current/(1+yoy rate), then semiconductor dollar increase divided by total dollar increase. Rounded."
+  },
+  "provenance": [
+    {
+      "type": "SECONDARY_WITH_GOVERNMENT_DATA",
+      "source": "Reuters",
+      "published_at": "2026-10-01",
+      "url": "https://www.reuters.com/world/asia-pacific/south-korea-september-exports-rise-835-yy-monthly-record-2026-10-01/"
+    },
+    {
+      "type": "SECONDARY_ATTRIBUTED_TO_MOTIE",
+      "source": "NewsPim",
+      "published_at": "2026-10-01T09:41:00+09:00",
+      "url": "https://www.newspim.com/news/view/20261001000310"
+    },
+    {
+      "type": "REPOSITORY_RUNTIME",
+      "source": "data/news/issue-digest.json",
+      "generated_at": "2026-10-01T09:18:54+09:00",
+      "collection_status": "HEALTHY",
+      "sources_checked": 20,
+      "raw_news_count": 219,
+      "deduplicated_count": 211
+    }
+  ],
+  "news_collection_attempted": true,
+  "collector_evidence": {
+    "generated_at": "2026-10-01T09:18:54+09:00",
+    "collection_status": "HEALTHY",
+    "sources_checked": 20,
+    "raw_news_count": 219,
+    "deduplicated_count": 211,
+    "issue_created_count": null,
+    "issue_updated_count": null
+  },
+  "coverage_finding": "At preflight, the 09:18 KST issue digest did not yet surface the 09:00 September export release as a top issue; fresh external discovery found the official-data report. Treat as a freshness/coverage candidate for AI-D/AI-E, not proof of collector failure until a later collector cycle is checked.",
+  "related_issue_ids": [],
+  "handoff": [
+    {
+      "to": "AI-C",
+      "priority": "P1",
+      "task": "Backtest export-concentration shock: semiconductor share/contribution surprise -> Samsung/SK hynix relative returns, foreign spot/futures flows, USD/KRW, controlling for UST 10Y/30Y."
+    },
+    {
+      "to": "AI-B",
+      "priority": "P1",
+      "task": "Falsify concentration-risk interpretation using ex-semiconductor breadth, base effects, ASP/product-mix effects and prior high-concentration export episodes."
+    },
+    {
+      "to": "AI-D/AI-E",
+      "priority": "P1",
+      "task": "Check whether the 09:00 MOTIE export release enters a later collector cycle as an independent event-core; if not, inspect official macro-release freshness/coverage."
+    }
+  ],
+  "review_note": "Ultra-Parallel V2 CRITICAL migration review remains required for AI-A, but canonical review-board mutation is left to writer-lease owner. This candidate provides AI-A specialty evidence without creating review storm.",
+  "pages_impact": "YES_IF_CANONICALIZED",
+  "next_work": "Obtain September product-level customs data to split memory export growth into ASP, volume and HBM/DRAM/NAND mix; compare with intraday foreign flow and yields."
+}
