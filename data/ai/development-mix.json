@@ -3,12 +3,27 @@
   "method": "commit_path_classification",
   "window_hours": 24,
   "target_product_min_pct": 70,
-  "product_pct": 47.6,
-  "maintenance_pct": 52.4,
-  "labeled_commit_count": 84,
+  "product_pct": 48.1,
+  "maintenance_pct": 51.9,
+  "labeled_commit_count": 79,
   "unclassified_commit_count": 8,
   "warning": true,
   "recent": [
+    {
+      "sha": "780c7468eb55d786d325568baaee4430a16bb13d",
+      "subject": "ai-a: refresh runtime evidence for distillate research",
+      "class": "maintenance"
+    },
+    {
+      "sha": "c58dcc93125c8a33a3c424a9d8362d8a4cc46d3d",
+      "subject": "ai-e: refresh heartbeat for NEWS-031",
+      "class": "maintenance"
+    },
+    {
+      "sha": "b4082aa1019842db1cbabdbfc53186326027436c",
+      "subject": "product: refresh market intelligence",
+      "class": "product"
+    },
     {
       "sha": "ac9c4c2151b564b2752178549347266b7fc58db5",
       "subject": "ai-d: record 17:34 news continuity recovery",
@@ -142,21 +157,6 @@
     {
       "sha": "67667757c5f2522375edf527b4dc5cc436357976",
       "subject": "ai-e: add freshness debt decision firewall challenger",
-      "class": "maintenance"
-    },
-    {
-      "sha": "f35ef207224a8352fee8b8dcf524ed7917033df0",
-      "subject": "ai-d: record recurring news schedule gap",
-      "class": "maintenance"
-    },
-    {
-      "sha": "1098aa2d225accdeb22f122d97541641523db558",
-      "subject": "ai-a: hand off memory capacity-price thesis",
-      "class": "maintenance"
-    },
-    {
-      "sha": "1afa394c271e2f23147d0b5c0b6ffa2ea4367378",
-      "subject": "ai-a: research China memory capacity-price channel",
       "class": "maintenance"
     }
   ]
