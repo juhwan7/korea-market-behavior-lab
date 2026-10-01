@@ -3,12 +3,27 @@
   "method": "commit_path_classification",
   "window_hours": 24,
   "target_product_min_pct": 70,
-  "product_pct": 62.4,
-  "maintenance_pct": 37.6,
-  "labeled_commit_count": 157,
+  "product_pct": 62.3,
+  "maintenance_pct": 37.7,
+  "labeled_commit_count": 159,
   "unclassified_commit_count": 30,
   "warning": true,
   "recent": [
+    {
+      "sha": "1c398a6c3b846f1fcc12db3d0d7a0b519e5d3d19",
+      "subject": "ai-b: falsify Micron Korea memory read-through",
+      "class": "maintenance"
+    },
+    {
+      "sha": "25627691e00fcff610df122be28ca55f8248191e",
+      "subject": "ai-a: sync runtime evidence and discovery outcome",
+      "class": "maintenance"
+    },
+    {
+      "sha": "0bbf31de30701a57463a70b5b48874e67dd5a4b9",
+      "subject": "product: refresh market intelligence",
+      "class": "product"
+    },
     {
       "sha": "c027b14d80ac2fb82cfeb31f04339440bd829c99",
       "subject": "ai-d: reopen stale news recovery and record bounded rerun",
@@ -143,21 +158,6 @@
       "sha": "d929360d89f955c04a7d2cc43bf28dbf46e583ff",
       "subject": "evolution: add news market relevance admission challenger",
       "class": "maintenance"
-    },
-    {
-      "sha": "4b1d035f387b4726ddc1dac253a1bebc55df2cef",
-      "subject": "sre: reconcile AI-D runtime evidence",
-      "class": "maintenance"
-    },
-    {
-      "sha": "0eb81d1e89f95c145cc4eaa4bbc073885fcd70b9",
-      "subject": "product: refresh market intelligence",
-      "class": "product"
-    },
-    {
-      "sha": "87eace531e74034fd96477d7e75172d2ad191ea0",
-      "subject": "test: prevent duplicate issue cards and source overcount",
-      "class": "unclassified"
     }
   ]
 }
