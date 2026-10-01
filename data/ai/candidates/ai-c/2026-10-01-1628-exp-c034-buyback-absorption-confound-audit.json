@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "agent": "AI-C",
+  "candidate_id": "KMB-C-20261001-EXP-C-034",
+  "created_at": "2026-10-01T16:28:35+09:00",
+  "work_type": "MAJOR_QUANT_EXPERIMENT",
+  "experiment_id": "EXP-C-034",
+  "title": "Buyback Absorption Intraday Confound Audit",
+  "source_commit": "118b8287ca0474991e24fccf63200baae61f2960",
+  "trigger": {
+    "source": "data/ai/candidates/ai-a/2026-10-01-1559-buyback-absorption-close-evidence.json",
+    "related_issue_ids": [],
+    "hypothesis": "High disclosed buyback completion may absorb foreign selling and weaken spot-flow downside pressure."
+  },
+  "evidence_state": "ASSOCIATION_ONLY",
+  "probability": "UNKNOWN",
+  "independent_sample_count": "UNKNOWN",
+  "production_eligible": false,
+  "data_sources": [
+    "data/market/intraday-snapshots.json",
+    "data/market/flow-history.json",
+    "data/market/current.json",
+    "data/market/sector-breadth.json",
+    "data/ai/candidates/ai-a/2026-10-01-1559-buyback-absorption-close-evidence.json"
+  ],
+  "event_window": {
+    "start_at": "2026-10-01T09:19:12+09:00",
+    "end_at": "2026-10-01T15:13:27+09:00",
+    "note": "Repository intraday snapshots; secondary market data. This is not a causal event-study window."
+  },
+  "observed_changes": {
+    "kospi": {
+      "start": 6793.83,
+      "end": 6947.75,
+      "return_pct": 2.2657,
+      "foreign_net_100m_krw_start": -3264.16,
+      "foreign_net_100m_krw_end": -5144.8,
+      "foreign_net_change_100m_krw": -1880.64
+    },
+    "kospi200_futures": {
+      "start": 1083.25,
+      "end": 5696,
+      "return_pct": 2.3725,
+      "foreign_net_100m_krw_start": 312,
+      "foreign_net_change_100m_krw": 5384
+    },
+    "nasdaq100_futures": {
+      "start": 30801,
+      "end": 31122,
+      "return_pct": 1.0422
+    },
+    "market_strength": {
+      "start": 38.8,
+      "end": 62.1,
+      "change": 23.3
+    },
+    "turnover_advance_share": {
+      "start": 0.3799,
+      "end": 0.8462,
+      "change": 0.4663
+    },
+    "sector_breadth_close": {
+      "positive": 55,
+      "negative": 24,
+      "positive_directional_share": 0.6962,
+      "semiconductor_change_pct": 2.82
+    }
+  },
+  "interpretation": [
+    "KOSPI rose materially while cumulative spot foreign net selling became more negative, so spot foreign flow alone did not determine index direction in this window.",
+    "However foreign KOSPI200 futures flow improved by 538.4bn KRW equivalent units reported by the repository while Nasdaq100 futures also rose; these are major concurrent confounders.",
+    "Breadth and market-strength improved sharply, inconsistent with attributing the rebound solely to disclosed buyback absorption.",
+    "Repository data do not contain verified Oct-1 Samsung/SK hynix executed buyback quantities or a PIT other-corporation-to-buyback decomposition, so an absorption ratio and price-impact coefficient cannot be identified."
+  ],
+  "contamination_limitations": [
+    "Single trading day; no independent historical event panel.",
+    "Buyback completion percentages cited by AI-A are secondary reporting that references KIND and are through Sep 28, not verified Oct-1 executions.",
+    "Other-corporation flow must not be treated as buyback flow.",
+    "Micron earnings, semiconductor exports, futures positioning, Nasdaq futures and short-covering may jointly explain the rebound.",
+    "No stock-level Samsung/SK hynix PIT return/flow panel is available in the inspected canonical market snapshot set."
+  ],
+  "result": {
+    "buyback_absorption_effect": "UNKNOWN",
+    "causal_price_impact_per_krw_1tn_foreign_selling": "UNKNOWN",
+    "event_study": "NOT_IDENTIFIED",
+    "historical_analog": "NOT_RUN_INSUFFICIENT_PIT_PANEL",
+    "walk_forward": "NOT_RUN_INSUFFICIENT_PIT_PANEL"
+  },
+  "small_works": [
+    "Required review REVIEW-20260930-ULTRA-PARALLEL-V2-001 has no new actions_result or expected_state_verified evidence; NO_NEW_EVIDENCE.",
+    "Smart-money registry remains 120 samples, avg net -0.9502%, net success 43.33%; no new independent/purged evidence, so NO_NEW_EVIDENCE."
+  ],
+  "handoff": {
+    "AI-D": "Persist verified daily executed buyback quantities for Samsung/SK hynix, PIT other-corporation flow decomposition, exact KRX session IDs, and immutable event windows.",
+    "AI-B": "Falsify buyback-absorption causality against futures foreign flow, Nasdaq futures, Micron earnings, export surprise, breadth and short-covering.",
+    "AI-E": "Design a challenger using verified buyback-execution intensity versus a baseline with futures/global/breadth controls; require chronological OOS before promotion."
+  },
+  "next_validation": [
+    "Build multi-day PIT panel around disclosed buyback execution/completion milestones.",
+    "Estimate residual KOSPI/Samsung/SK hynix response after futures/global/breadth controls.",
+    "Split completion buckets <50%, 50-80%, >80%, post-completion only after adequate samples exist.",
+    "Use clustered uncertainty and chronological walk-forward; otherwise keep effect UNKNOWN."
+  ],
+  "runtime_evidence": {
+    "heartbeat_at": "2026-10-01T16:28:35+09:00",
+    "writer_lease_observed": "FREE",
+    "canonical_write": "NONE",
+    "append_only_candidate": true
+  }
+}
