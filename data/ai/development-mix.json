@@ -3,12 +3,17 @@
   "method": "commit_path_classification",
   "window_hours": 24,
   "target_product_min_pct": 70,
-  "product_pct": 45.0,
-  "maintenance_pct": 55.0,
-  "labeled_commit_count": 20,
+  "product_pct": 71.4,
+  "maintenance_pct": 28.6,
+  "labeled_commit_count": 7,
   "unclassified_commit_count": 0,
-  "warning": true,
+  "warning": false,
   "recent": [
+    {
+      "sha": "5534745e1b8de92d9939b48f6c67504029130427",
+      "subject": "product: refresh market intelligence",
+      "class": "product"
+    },
     {
       "sha": "87b7aed13ed899ae5eaca633b36df12399957f72",
       "subject": "product: refresh market intelligence",
@@ -37,76 +42,6 @@
     {
       "sha": "c58dcc93125c8a33a3c424a9d8362d8a4cc46d3d",
       "subject": "ai-e: refresh heartbeat for NEWS-031",
-      "class": "maintenance"
-    },
-    {
-      "sha": "b4082aa1019842db1cbabdbfc53186326027436c",
-      "subject": "product: refresh market intelligence",
-      "class": "product"
-    },
-    {
-      "sha": "ac9c4c2151b564b2752178549347266b7fc58db5",
-      "subject": "ai-d: record 17:34 news continuity recovery",
-      "class": "maintenance"
-    },
-    {
-      "sha": "935c55355c990f76318b732dd9f6f0495bec423b",
-      "subject": "ai-c: refresh heartbeat for EXP-C-035",
-      "class": "maintenance"
-    },
-    {
-      "sha": "b87674ff3e77df18cb4cac6c468a7405bcbaa3d4",
-      "subject": "ai-c: add EXP-C-035 instrument concentration audit",
-      "class": "maintenance"
-    },
-    {
-      "sha": "d8282f2f2279657eaa0a48cd13d3b0ad41995cc7",
-      "subject": "product: refresh market intelligence",
-      "class": "product"
-    },
-    {
-      "sha": "38086d4b449732c3c54e0ec38d140198c74712cc",
-      "subject": "ai-c: add buyback absorption confound audit",
-      "class": "maintenance"
-    },
-    {
-      "sha": "118b8287ca0474991e24fccf63200baae61f2960",
-      "subject": "ai-a: record buyback absorption close evidence",
-      "class": "maintenance"
-    },
-    {
-      "sha": "0ead48c2bc8688f6598fd0406c294b6f20c8804d",
-      "subject": "ai-e: refresh evolution heartbeat",
-      "class": "maintenance"
-    },
-    {
-      "sha": "361d72d44cebfe0d8e08fec40afebb0ec2542370",
-      "subject": "ai-e: add decision relevance event ontology challenger",
-      "class": "maintenance"
-    },
-    {
-      "sha": "4a2a20262828cecb3c473dd07aac6507fc614369",
-      "subject": "product: refresh market intelligence",
-      "class": "product"
-    },
-    {
-      "sha": "511f1252736488af6d468291254fbc39e6681632",
-      "subject": "product: refresh market intelligence",
-      "class": "product"
-    },
-    {
-      "sha": "4157439c3092c65f29c07481bd107bee983362c9",
-      "subject": "product: refresh market intelligence",
-      "class": "product"
-    },
-    {
-      "sha": "7070f1658521a48ec87985f37c4b09456b29fe81",
-      "subject": "sre: record bounded news recovery and runtime drift",
-      "class": "maintenance"
-    },
-    {
-      "sha": "227ecd1ef3e8614bb150d82facaf48e398a21b99",
-      "subject": "ai-a: add September semiconductor export concentration hypothesis",
       "class": "maintenance"
     }
   ]
