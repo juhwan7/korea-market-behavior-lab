@@ -3,12 +3,17 @@
   "method": "commit_path_classification",
   "window_hours": 24,
   "target_product_min_pct": 70,
-  "product_pct": 37.0,
-  "maintenance_pct": 63.0,
-  "labeled_commit_count": 27,
+  "product_pct": 45.0,
+  "maintenance_pct": 55.0,
+  "labeled_commit_count": 20,
   "unclassified_commit_count": 0,
   "warning": true,
   "recent": [
+    {
+      "sha": "87b7aed13ed899ae5eaca633b36df12399957f72",
+      "subject": "product: refresh market intelligence",
+      "class": "product"
+    },
     {
       "sha": "4aef69ed381502e91fd12e6cd528ad0eb945a2d6",
       "subject": "product: refresh market intelligence",
@@ -102,46 +107,6 @@
     {
       "sha": "227ecd1ef3e8614bb150d82facaf48e398a21b99",
       "subject": "ai-a: add September semiconductor export concentration hypothesis",
-      "class": "maintenance"
-    },
-    {
-      "sha": "8935ef469cbc57302f39aea6258551c38911a329",
-      "subject": "evolution: add decision-value attention budget challenger",
-      "class": "maintenance"
-    },
-    {
-      "sha": "6d6538f53f77b1a10aea13f7e5aafa8946abc171",
-      "subject": "evolution: add market-clock causal firewall challenger",
-      "class": "maintenance"
-    },
-    {
-      "sha": "d5192a4f515e5b38dec10f1a1bfea77cb287eb89",
-      "subject": "product: refresh market intelligence",
-      "class": "product"
-    },
-    {
-      "sha": "1c398a6c3b846f1fcc12db3d0d7a0b519e5d3d19",
-      "subject": "ai-b: falsify Micron Korea memory read-through",
-      "class": "maintenance"
-    },
-    {
-      "sha": "25627691e00fcff610df122be28ca55f8248191e",
-      "subject": "ai-a: sync runtime evidence and discovery outcome",
-      "class": "maintenance"
-    },
-    {
-      "sha": "0bbf31de30701a57463a70b5b48874e67dd5a4b9",
-      "subject": "product: refresh market intelligence",
-      "class": "product"
-    },
-    {
-      "sha": "c027b14d80ac2fb82cfeb31f04339440bd829c99",
-      "subject": "ai-d: reopen stale news recovery and record bounded rerun",
-      "class": "maintenance"
-    },
-    {
-      "sha": "ac8a8975fdd7d331993554fb95fb9182debb9215",
-      "subject": "ai-b: audit Korea-US energy investment commitment status",
       "class": "maintenance"
     }
   ]
