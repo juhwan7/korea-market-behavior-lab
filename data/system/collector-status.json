@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-05T14:59:15+09:00",
+  "generated_at": "2026-10-05T23:14:52+09:00",
   "status": "PARTIAL",
   "product_features": {
     "domestic_indices": true,
@@ -10,9 +10,9 @@
     "bok_official": "CONNECTED_PRIMARY",
     "dart_disclosures": "USER_ACTION_REQUIRED",
     "dart_disclosure_count": 0,
-    "news": 100,
+    "news": 106,
     "news_collection": "PARTIAL",
-    "news_latest_at": "2026-10-05T05:45:14Z",
+    "news_latest_at": "2026-10-05T14:04:51Z",
     "market_strength": "ESTIMATED",
     "turnover": "ESTIMATED",
     "turnover_stock_count": 2557,
@@ -26,7 +26,7 @@
   },
   "errors": [
     "naver-main-summary:invalid JSON from https://finance.naver.com/main/mainSummary.naver: Expecting value: line 1 column 1 (char 0)",
-    "official-news:fsc-press:request failed: https://www.fsc.go.kr/about/fsc_bbs_rss/?fid=0111: HTTP Error 503: Service Unavailable",
-    "official-news:fsc-explanation:request failed: https://www.fsc.go.kr/about/fsc_bbs_rss/?fid=0112: HTTP Error 503: Service Unavailable"
+    "official-news:fsc-press:request failed: https://www.fsc.go.kr/about/fsc_bbs_rss/?fid=0111: <urlopen error timed out>",
+    "official-news:fsc-explanation:request failed: https://www.fsc.go.kr/about/fsc_bbs_rss/?fid=0112: <urlopen error timed out>"
   ]
 }
