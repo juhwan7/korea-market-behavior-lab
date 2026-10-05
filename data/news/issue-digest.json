@@ -1,48 +1,207 @@
 {
-  "generated_at": "2026-10-05T06:50:23+09:00",
-  "latest_news_at": "2026-10-04T21:25:00Z",
-  "latest_issue_at": "2026-10-05T06:50:23+09:00",
+  "generated_at": "2026-10-05T09:19:42+09:00",
+  "latest_news_at": "2026-10-04T23:58:02Z",
+  "latest_issue_at": "2026-10-05T09:19:42+09:00",
   "collection_status": "PARTIAL",
   "sources_checked": 20,
   "queries_succeeded": 14,
   "official_sources_succeeded": 4,
   "official_items_count": 0,
-  "raw_news_count": 78,
+  "raw_news_count": 82,
   "promotion_filtered_count": 0,
   "low_information_filtered_count": 0,
   "quality_filtered_count": 0,
   "duplicate_or_reprint_filtered_count": 1,
-  "deduplicated_count": 77,
+  "deduplicated_count": 81,
   "top_issues": [
     {
-      "issue_id": "GN-652105d6e2a257dc",
-      "fingerprint": "ISSUE-FP-652105d6e2a257dc",
+      "issue_id": "GN-1e2fead40f11a963",
+      "fingerprint": "ISSUE-FP-1e2fead40f11a963",
       "event_core_tokens": [
-        "금융권",
-        "해킹"
+        "8배",
+        "깜짝",
+        "다음은",
+        "랠리",
+        "마이크론",
+        "마이크론이",
+        "메모리",
+        "반도체",
+        "삼전",
+        "실적"
       ],
-      "headline": "[주간금융이슈] 금융권 비켜가나 했더니…신한·KB국민은행 해킹, 국감 막판 변수",
-      "first_seen_at": "2026-10-03T11:36:43Z",
-      "latest_at": "2026-10-04T21:00:00Z",
-      "article_count": 28,
-      "publisher_count": 25,
-      "independent_source_count": 3,
-      "independent_publishers": 3,
-      "reprint_count": 25,
+      "headline": "마이크론 ‘깜짝 실적’ 다음은 삼전·하닉…반도체 랠리 이어질까[코주부]",
+      "first_seen_at": "2026-10-03T17:12:41Z",
+      "latest_at": "2026-10-04T04:00:00Z",
+      "article_count": 2,
+      "publisher_count": 2,
+      "independent_source_count": 1,
+      "independent_publishers": 1,
+      "reprint_count": 1,
       "quality_filtered_count": 0,
       "publishers": [
-        "ebn.co.kr",
-        "gokorea.kr",
-        "insnews.co.kr",
-        "intn.co.kr",
-        "news.sbs.co.kr",
         "sedaily.com",
-        "seoul.co.kr",
-        "v.daum.net",
-        "강원도민일보",
-        "금융소비자뉴스",
-        "남도일보",
-        "뉴스핌"
+        "시사저널e"
+      ],
+      "official_source_available": false,
+      "state": "STRENGTHENING",
+      "why_important": "반도체는 국내 지수 비중이 커서 업종 상대강도와 외국인 수급이 지수 체감과 달라지는지 확인할 필요가 있습니다.",
+      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
+      "next_variables": [
+        "KOSPI",
+        "NASDAQ",
+        "외국인 수급",
+        "기관 수급"
+      ],
+      "history": [
+        {
+          "at": "2026-10-04T17:54:58+09:00",
+          "state": "NEW",
+          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
+        },
+        {
+          "at": "2026-10-04T23:43:27+09:00",
+          "state": "PERSISTING",
+          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
+        },
+        {
+          "at": "2026-10-05T09:19:42+09:00",
+          "state": "STRENGTHENING",
+          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
+        }
+      ],
+      "market_bias": "UNDETERMINED",
+      "impact_channels": [
+        "growth_beta",
+        "semiconductor"
+      ],
+      "related_sectors": [
+        "반도체"
+      ],
+      "related_countries": [],
+      "related_markets": [
+        "KOSPI",
+        "NASDAQ"
+      ],
+      "related_stocks": [],
+      "topic": "반도체",
+      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+      "articles": [
+        {
+          "id": "NEWS-4e5c558c88196e24",
+          "headline": "마이크론 ‘깜짝 실적’ 다음은 삼전·하닉…반도체 랠리 이어질까[코주부]",
+          "title": "마이크론 ‘깜짝 실적’ 다음은 삼전·하닉…반도체 랠리 이어질까[코주부] - sedaily.com",
+          "published_at": "2026-10-04T04:00:00Z",
+          "observed_at": "2026-10-05T00:19:33.184309Z",
+          "retrieved_at": "2026-10-05T00:19:33.184309Z",
+          "source": "sedaily.com",
+          "publisher": "sedaily.com",
+          "source_type": "SECONDARY",
+          "source_id": "google-news-rss",
+          "source_kind": "secondary_aggregator",
+          "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE8ycXBqQWtTejExR0N6VzVVUHJSY2RQdElQbjVUZldCLWY3bDc1ZXUzai1lLU4tc25FMDd1eGg5T0o1aXdLcFhyWEU5WVFILV9PVFp30gFTQVVfeXFMTzJxcGpBa1N6MTFHQ3pXNVVQclJjZFB0SVBuNVRmV0ItZjdsNzVldTNqLWUtTi1zbkUwN3V4aDlPSjVpd0twWHJYRTlZUUgtX09UWnc?oc=5",
+          "query": "삼성전자 SK하이닉스 반도체 HBM AI",
+          "cluster_id": "GN-94be0052f3701bba",
+          "official_source_available": false,
+          "market_bias": "UNDETERMINED",
+          "impact_channels": [
+            "growth_beta",
+            "semiconductor"
+          ],
+          "related_sectors": [
+            "반도체"
+          ],
+          "related_countries": [],
+          "related_markets": [
+            "KOSPI",
+            "NASDAQ"
+          ],
+          "related_stocks": [],
+          "topic": "반도체",
+          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+          "promotion_score": 0,
+          "content_quality": "EDITORIAL_OR_FACTUAL",
+          "is_promotional": false,
+          "is_low_information": false,
+          "filter_from_market_feed": false,
+          "market_fact_signal": true
+        },
+        {
+          "id": "NEWS-4c576d20127767de",
+          "headline": "마이크론이 확인한 ‘메모리 호황’···삼전·하닉 합산 영업익 전년 比 8배 전망",
+          "title": "마이크론이 확인한 ‘메모리 호황’···삼전·하닉 합산 영업익 전년 比 8배 전망 - 시사저널e",
+          "published_at": "2026-10-04T02:24:58Z",
+          "observed_at": "2026-10-05T00:19:33.184309Z",
+          "retrieved_at": "2026-10-05T00:19:33.184309Z",
+          "source": "시사저널e",
+          "publisher": "시사저널e",
+          "source_type": "SECONDARY",
+          "source_id": "google-news-rss",
+          "source_kind": "secondary_aggregator",
+          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5wLUhJTVFGSDJ5blBRWXlGMFJZcWRiTDg3bjZrVHJ3ZTlqM2FETlJhR1haVF93TlBNSS1VWEZOaXBoNW95bksxM09RZmtZVnhoRXo0aUw5c2U2YmQ5Qm51b2JqUlE2Y2VFVFVmZ0FsdTFBMkVuY1HSAXZBVV95cUxOcC1ISU1RRkgyeW5QUVl5RjBSWXFkYkw4N242a1Ryd2U5ajNhRE5SYUdYWlRfd05QTUktVVhGTmlwaDVveW5LMTNPUWZrWVZ4aEV6NGlMOXNlNmJkOUJudW9ialJRNmNlRVRVZmdBbHUxQTJFbmNR?oc=5",
+          "query": "삼성전자 SK하이닉스 반도체 HBM AI",
+          "cluster_id": "GN-94be0052f3701bba",
+          "official_source_available": false,
+          "market_bias": "UNDETERMINED",
+          "impact_channels": [],
+          "related_sectors": [],
+          "related_countries": [],
+          "related_markets": [],
+          "related_stocks": [],
+          "topic": "시장일반",
+          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+          "promotion_score": 0,
+          "content_quality": "EDITORIAL_OR_FACTUAL",
+          "is_promotional": false,
+          "is_low_information": false,
+          "filter_from_market_feed": false,
+          "market_fact_signal": false
+        }
+      ],
+      "identity_match": "SEMANTIC_CONTINUITY",
+      "generated_fingerprint": "ISSUE-FP-94be0052f3701bba",
+      "ai_analysis": {},
+      "last_updated_at": "2026-10-05T09:19:42+09:00",
+      "importance_score": 13.0,
+      "importance_components": {
+        "independent_source_component": 1,
+        "article_component": 2,
+        "channel_component": 2,
+        "official_source_component": 0,
+        "recency_component": 2,
+        "market_reaction_component": "PENDING"
+      },
+      "market_reaction": {
+        "evidence_state": "PENDING",
+        "event_at": "2026-10-03T17:12:41+00:00",
+        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
+      }
+    },
+    {
+      "issue_id": "GN-ed630f324c6881f4",
+      "fingerprint": "ISSUE-FP-ed630f324c6881f4",
+      "event_core_tokens": [
+        "im뱅크",
+        "감염",
+        "고객정보는",
+        "바로저축은행",
+        "악성코드",
+        "안돼",
+        "올해",
+        "유출",
+        "피해"
+      ],
+      "headline": "iM뱅크·바로저축은행, 올해 악성코드 감염…고객정보는 유출 안돼",
+      "first_seen_at": "2026-10-03T20:51:00Z",
+      "latest_at": "2026-10-04T02:04:00Z",
+      "article_count": 2,
+      "publisher_count": 2,
+      "independent_source_count": 1,
+      "independent_publishers": 1,
+      "reprint_count": 1,
+      "quality_filtered_count": 0,
+      "publishers": [
+        "YTN",
+        "매일경제TV"
       ],
       "official_source_available": false,
       "state": "STRENGTHENING",
@@ -54,13 +213,8 @@
       ],
       "history": [
         {
-          "at": "2026-10-04T11:42:19+09:00",
+          "at": "2026-10-04T23:43:27+09:00",
           "state": "NEW",
-          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
-        },
-        {
-          "at": "2026-10-04T17:54:58+09:00",
-          "state": "STRENGTHENING",
           "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
         },
         {
@@ -69,7 +223,7 @@
           "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
         },
         {
-          "at": "2026-10-05T06:50:23+09:00",
+          "at": "2026-10-05T09:19:42+09:00",
           "state": "STRENGTHENING",
           "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
         }
@@ -84,20 +238,20 @@
       "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
       "articles": [
         {
-          "id": "NEWS-637b7b16ecb65c25",
-          "headline": "[주간금융이슈] 금융권 비켜가나 했더니…신한·KB국민은행 해킹, 국감 막판 변수",
-          "title": "[주간금융이슈] 금융권 비켜가나 했더니…신한·KB국민은행 해킹, 국감 막판 변수 - 뉴스핌",
-          "published_at": "2026-10-04T21:00:00Z",
-          "observed_at": "2026-10-04T21:50:12.622692Z",
-          "retrieved_at": "2026-10-04T21:50:12.622692Z",
-          "source": "뉴스핌",
-          "publisher": "뉴스핌",
+          "id": "NEWS-0e58f416ee179d0d",
+          "headline": "iM뱅크·바로저축은행, 올해 악성코드 감염…고객정보는 유출 안돼",
+          "title": "iM뱅크·바로저축은행, 올해 악성코드 감염…고객정보는 유출 안돼 - 매일경제TV",
+          "published_at": "2026-10-04T02:04:00Z",
+          "observed_at": "2026-10-05T00:19:33.464577Z",
+          "retrieved_at": "2026-10-05T00:19:33.464577Z",
+          "source": "매일경제TV",
+          "publisher": "매일경제TV",
           "source_type": "SECONDARY",
           "source_id": "google-news-rss",
           "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5paW5YeFBKTDRLU3lob1JOLWpXemZPUmhpNUhzR2VFdDNFX19waVhUdE0xbVZKUkh2aTJHOEwtSDYzY3RxVVcxV3J1WXhaWVhiQmtleVVXYjJjNmla?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5Ia04zd29iWm1WS3BFUEo3ZXk3aXdMSm5JaU1MQVdlN3RBZTRvdmpVYy1odHJfclpHTjZJNzFYTjhYYVVONExzX2s4LXl5bm9mSWZqcGt0MnpnajhYeHJ2N3k5VWNRMHc?oc=5",
           "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-652105d6e2a257dc",
+          "cluster_id": "GN-b2efade4420f868d",
           "official_source_available": false,
           "market_bias": "UNDETERMINED",
           "impact_channels": [],
@@ -115,20 +269,20 @@
           "market_fact_signal": false
         },
         {
-          "id": "NEWS-ab2c1f64bbd74e4d",
-          "headline": "국감 오른 교육세, 금융권 과세표준 개편론 재부상",
-          "title": "국감 오른 교육세, 금융권 과세표준 개편론 재부상 - insnews.co.kr",
-          "published_at": "2026-10-04T15:00:00Z",
-          "observed_at": "2026-10-04T21:50:12.622692Z",
-          "retrieved_at": "2026-10-04T21:50:12.622692Z",
-          "source": "insnews.co.kr",
-          "publisher": "insnews.co.kr",
+          "id": "NEWS-6387a889f540c66f",
+          "headline": "iM뱅크·바로저축은행, 올해 악성코드 감염 피해",
+          "title": "iM뱅크·바로저축은행, 올해 악성코드 감염 피해 - YTN",
+          "published_at": "2026-10-04T01:28:00Z",
+          "observed_at": "2026-10-05T00:19:33.464577Z",
+          "retrieved_at": "2026-10-05T00:19:33.464577Z",
+          "source": "YTN",
+          "publisher": "YTN",
           "source_type": "SECONDARY",
           "source_id": "google-news-rss",
           "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE4xRWRhcGpKak02eWlUNFkyNnN5RlBIZXpWV2hrQkNkOHh3bWZJNUpkN2JfYnEwVXl3cEpWRUVQRjZVWmlPY1FGdnotVGRvUWpGX0ZmcW90QmtGY21mLXhOUGowY3Y3a3NnS1Zr0gFvQVVfeXFMUEJNS2lKZWdLdXpjcFZlUnBvYThNMTFyWTBSV0dwcnljOUZ4WDl1cUxUM1Rhek10MGhQbndCU2NFNV9HOWhRMHZrWTdKUjV1Mk0xX2g3bjZ1ai1iWlJBUk9MX1haQWFDanZYZm55eVJj?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9wM2pxYmRyN0p0TldxaFpGbVZpcHRIcHFIcUQwVFdJOVpMT2lSTEIwYUVNbW9vNmp3dW52REZyeTd0ckZQcTVNUHBkZnNxcld5R3RsQXlhRVM3LVZ2MmZ3bnluZEtLN05UMm9ETXpEWQ?oc=5",
           "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-652105d6e2a257dc",
+          "cluster_id": "GN-b2efade4420f868d",
           "official_source_available": false,
           "market_bias": "UNDETERMINED",
           "impact_channels": [],
@@ -144,160 +298,96 @@
           "is_low_information": false,
           "filter_from_market_feed": false,
           "market_fact_signal": false
-        },
+        }
+      ],
+      "identity_match": "SEMANTIC_CONTINUITY",
+      "generated_fingerprint": "ISSUE-FP-b2efade4420f868d",
+      "ai_analysis": {},
+      "last_updated_at": "2026-10-05T09:19:42+09:00",
+      "importance_score": 9.0,
+      "importance_components": {
+        "independent_source_component": 1,
+        "article_component": 2,
+        "channel_component": 0,
+        "official_source_component": 0,
+        "recency_component": 2,
+        "market_reaction_component": "PENDING"
+      },
+      "market_reaction": {
+        "evidence_state": "PENDING",
+        "event_at": "2026-10-03T20:51:00+00:00",
+        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
+      }
+    },
+    {
+      "issue_id": "GN-f98870c222c45773",
+      "fingerprint": "ISSUE-FP-f98870c222c45773",
+      "event_core_tokens": [
+        "ai",
+        "해킹"
+      ],
+      "headline": "4만건 털릴 때 89명에 그쳤다…같은 해킹에도 갈린 금융사 '보안 체력'",
+      "first_seen_at": "2026-10-04T01:37:25Z",
+      "latest_at": "2026-10-04T23:29:17Z",
+      "article_count": 14,
+      "publisher_count": 14,
+      "independent_source_count": 1,
+      "independent_publishers": 1,
+      "reprint_count": 13,
+      "quality_filtered_count": 0,
+      "publishers": [
+        "ebn.co.kr",
+        "gokorea.kr",
+        "hani.co.kr",
+        "intn.co.kr",
+        "sedaily.com",
+        "thepowernews.co.kr",
+        "v.daum.net",
+        "매일경제 마켓",
+        "비즈중앙",
+        "서울신문",
+        "서울파이낸스",
+        "아시아투데이"
+      ],
+      "official_source_available": false,
+      "state": "NEW",
+      "why_important": "시장 영향 가능성이 있는 뉴스이므로 관련 지수·섹터·수급이 실제로 반응하는지 확인할 필요가 있습니다.",
+      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
+      "next_variables": [
+        "외국인 수급",
+        "기관 수급"
+      ],
+      "history": [
         {
-          "id": "NEWS-c63ef4e4ad192bac",
-          "headline": "전 금융권 덮친 해킹 공포…동일 공격자·AI 활용 정황까지",
-          "title": "전 금융권 덮친 해킹 공포…동일 공격자·AI 활용 정황까지 - 보험매일",
-          "published_at": "2026-10-04T12:08:27Z",
-          "observed_at": "2026-10-04T21:50:12.622692Z",
-          "retrieved_at": "2026-10-04T21:50:12.622692Z",
-          "source": "보험매일",
-          "publisher": "보험매일",
+          "at": "2026-10-05T09:19:42+09:00",
+          "state": "NEW",
+          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
+        }
+      ],
+      "market_bias": "UNDETERMINED",
+      "impact_channels": [],
+      "related_sectors": [],
+      "related_countries": [],
+      "related_markets": [],
+      "related_stocks": [],
+      "topic": "시장일반",
+      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+      "articles": [
+        {
+          "id": "NEWS-aadb642ea69bd982",
+          "headline": "4만건 털릴 때 89명에 그쳤다…같은 해킹에도 갈린 금융사 '보안 체력'",
+          "title": "4만건 털릴 때 89명에 그쳤다…같은 해킹에도 갈린 금융사 '보안 체력' - thepowernews.co.kr",
+          "published_at": "2026-10-04T23:29:17Z",
+          "observed_at": "2026-10-05T00:19:33.464577Z",
+          "retrieved_at": "2026-10-05T00:19:33.464577Z",
+          "source": "thepowernews.co.kr",
+          "publisher": "thepowernews.co.kr",
           "source_type": "SECONDARY",
           "source_id": "google-news-rss",
           "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5hRTBTLXRkb2JrZ0hCbGlReHZ3aXBVRFJhMVNZUlhlLVNSRDlQNzEzUy1QUGRzWWJMZnhqemFSdVB5UU02YkU3Z245ZGxsZTVNRkoxenpNd193UUpkNE9jUVV0ZHlqSGtv?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE9DcjI3Y05rd2wwd2YzR1dHNTdMRXhoMFBQLVo5dU8tV1lQdEdFd2lfek1MSXdfTHlfbmxHRXZOVGdNQnFNek1oenZwc1dlSk01OEd0LTFDNG9TaEVXYU5pbjZHRm11bUFyTlFHeE93T2FXaVBIUEpIZGVuOXc?oc=5",
           "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-652105d6e2a257dc",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [
-            "geopolitics",
-            "risk_premium"
-          ],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [
-            "KOSPI",
-            "NASDAQ",
-            "WTI"
-          ],
-          "related_stocks": [],
-          "topic": "지정학",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        },
-        {
-          "id": "NEWS-e7ad6e9188e60eb7",
-          "headline": "'AI 해킹'에 금융권 줄줄이 피해…긴급 회의 소집",
-          "title": "'AI 해킹'에 금융권 줄줄이 피해…긴급 회의 소집 - news.sbs.co.kr",
-          "published_at": "2026-10-04T11:02:34Z",
-          "observed_at": "2026-10-04T21:50:12.622692Z",
-          "retrieved_at": "2026-10-04T21:50:12.622692Z",
-          "source": "news.sbs.co.kr",
-          "publisher": "news.sbs.co.kr",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNZ3dPWEFqbWRXc3lFSVk1cDFIeVNJWXgySGxaU2cxOWhLaldLOTBfRjE3OGRSQUUzM2FCbXBpVzdTclJkT09OMkViM29XY0d4T242b0YtZTFxMU1YcmxTR294R0NhNXhMRTVpU3M2d2hPZDFwZTJheFVwMzVsaEtORFBLRFNWS0F0MkdKZlBwVWthMGFBOUE?oc=5",
-          "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-652105d6e2a257dc",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [],
-          "related_stocks": [],
-          "topic": "시장일반",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        },
-        {
-          "id": "NEWS-96fce0a3cd261147",
-          "headline": "[초점] 금융권 해킹 ‘전방위 확산’…정부, 2만8000개 기업까지 보안점검 확대",
-          "title": "[초점] 금융권 해킹 ‘전방위 확산’…정부, 2만8000개 기업까지 보안점검 확대 - 뉴시안",
-          "published_at": "2026-10-04T10:23:13Z",
-          "observed_at": "2026-10-04T21:50:12.622692Z",
-          "retrieved_at": "2026-10-04T21:50:12.622692Z",
-          "source": "뉴시안",
-          "publisher": "뉴시안",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1sc0R6ckt3ZEtDRXBDRlRGWm9vd3FaNXRlNGp5alRuWDFteC1aOFlfUVNYWklwZl9rMUN3bGVnSHotMlVxRC1Gb2luekdEVUJ4czVwd2ZGX0o2MXE1T2l6N1l1el9pWmQzX3fSAW5BVV95cUxQLW8tTXlvaUFmUHFfUHdXa3YxOXRiZDVVX1d0eW80dVlVdXRFSU5aVmwyQ0M2YjRfMXFPOGQ0a2lyWi1WSnZITkJ3RXhRQTVKbXdUd2NjVzJNMzliMU94cWZLMlFvQXZfM0NmRFhvQQ?oc=5",
-          "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-652105d6e2a257dc",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [],
-          "related_stocks": [],
-          "topic": "시장일반",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        },
-        {
-          "id": "NEWS-e8ebf75f9f42c71e",
-          "headline": "[속보] “AI로 금융사 골라 공격했나”…7개사 해킹서 동일 공격자 정황",
-          "title": "[속보] “AI로 금융사 골라 공격했나”…7개사 해킹서 동일 공격자 정황 - 강원도민일보",
-          "published_at": "2026-10-04T09:29:10Z",
-          "observed_at": "2026-10-04T21:50:12.622692Z",
-          "retrieved_at": "2026-10-04T21:50:12.622692Z",
-          "source": "강원도민일보",
-          "publisher": "강원도민일보",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1mQ1RBd1VwNGJnNGxXdmVodFIxNmd4NVhOSnVjQ2ZEVFVFQkVQOU9iRDdub19BdTdZTHFvamg4S2hNTUR5cWpfQ0hrbXVuRmNhMExTeEowUXFJMzl3cy0zUl9vcjQ2Zw?oc=5",
-          "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-652105d6e2a257dc",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [
-            "geopolitics",
-            "risk_premium"
-          ],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [
-            "KOSPI",
-            "NASDAQ",
-            "WTI"
-          ],
-          "related_stocks": [],
-          "topic": "지정학",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        },
-        {
-          "id": "NEWS-aef19da9b270a604",
-          "headline": "금융사 7곳 해킹에 AI 활용 정황…전 금융권 긴급 점검",
-          "title": "금융사 7곳 해킹에 AI 활용 정황…전 금융권 긴급 점검 - 남도일보",
-          "published_at": "2026-10-04T09:03:00Z",
-          "observed_at": "2026-10-04T21:50:12.622692Z",
-          "retrieved_at": "2026-10-04T21:50:12.622692Z",
-          "source": "남도일보",
-          "publisher": "남도일보",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBESEJrMFgxYXJjMWMyTXFlc050Q2hhSHQ1b1ZoZHJwOW1EeWxBMWJUcXZJV0FyR3dtRE1GNFlNS2puR0xCM0dVQ29qSUozRkNvbUF0dGhUYzI3dGhuamtrWEliZUxTN2FtZGlYb9IBcEFVX3lxTE9SZXh3WnZNWmtnN0YxSUtTcnhtVWpzRE1IeGREWUtTZFFLUmhTQTJBYkFUSmd4bW8xRnNpeEt2ODVOUlFTRl9VRlJCQ2FjTDc0QlBvU3cxU1VWMHlCWGdTaGtoWDN6MUZWSC1tWXZ5VDQ?oc=5",
-          "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-652105d6e2a257dc",
+          "cluster_id": "GN-f98870c222c45773",
           "official_source_available": false,
           "market_bias": "UNDETERMINED",
           "impact_channels": [],
@@ -306,158 +396,6 @@
           "related_markets": [],
           "related_stocks": [],
           "topic": "시장일반",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        },
-        {
-          "id": "NEWS-340e254afdef8ec6",
-          "headline": "금융사 해킹사고, AI활용 추정...\"동일 공격 IP 여러 곳 발견\"",
-          "title": "금융사 해킹사고, AI활용 추정...\"동일 공격 IP 여러 곳 발견\" - 한국NGO신문",
-          "published_at": "2026-10-04T08:12:26Z",
-          "observed_at": "2026-10-04T21:50:12.622692Z",
-          "retrieved_at": "2026-10-04T21:50:12.622692Z",
-          "source": "한국NGO신문",
-          "publisher": "한국NGO신문",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFA2SlNpLTBCRld3SFFUWWE1aWZfRFQ5YU4tQ0tPNGhxSE15ZWxyVUtYVkNxUk01OFpPQ2VGZEp2UW5KSjRfY0czRW9MLTQtVVphMm9ZdDJuQWttUXB1LTNibmpScmtZVjlM?oc=5",
-          "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-652105d6e2a257dc",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [
-            "geopolitics",
-            "risk_premium"
-          ],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [
-            "KOSPI",
-            "NASDAQ",
-            "WTI"
-          ],
-          "related_stocks": [],
-          "topic": "지정학",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        },
-        {
-          "id": "NEWS-ac1c3b71371ada24",
-          "headline": "\"금융사 해킹사고, 동일 공격 IP 여러 곳 발견…AI활용 추정\"(종합)",
-          "title": "\"금융사 해킹사고, 동일 공격 IP 여러 곳 발견…AI활용 추정\"(종합) - 연합뉴스",
-          "published_at": "2026-10-04T07:48:27Z",
-          "observed_at": "2026-10-04T21:50:12.622692Z",
-          "retrieved_at": "2026-10-04T21:50:12.622692Z",
-          "source": "연합뉴스",
-          "publisher": "연합뉴스",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFB0eVVnMkRQN2hxN0RjaFVVSjV5NVBQNVJrMXhIbU9GZk9ObnhhNVk5WEU5c0tVY0htRjBhUzZWSGNuWFg2MWNwOUd6SmFTRzY0TVk3VEJtMUlrS1nSAWBBVV95cUxNSnRuZldYejZMTF9sYjNDYU90TjJyUFRvdnlSUW43V1pSVHM2aTI1ZWlidU9zeThlNGNINGFlUVN3TFlQaFhSVkZLQ2EwUXpkeURWQkViNmIzWDVab3NxWDg?oc=5",
-          "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-652105d6e2a257dc",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [
-            "geopolitics",
-            "risk_premium"
-          ],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [
-            "KOSPI",
-            "NASDAQ",
-            "WTI"
-          ],
-          "related_stocks": [],
-          "topic": "지정학",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        },
-        {
-          "id": "NEWS-faaec3a392820465",
-          "headline": "신한·국민 등 7개 금융사 해킹 '동일범' 정황…AI 활용 대량공격 추정",
-          "title": "신한·국민 등 7개 금융사 해킹 '동일범' 정황…AI 활용 대량공격 추정 - v.daum.net",
-          "published_at": "2026-10-04T07:48:17Z",
-          "observed_at": "2026-10-04T21:50:12.622692Z",
-          "retrieved_at": "2026-10-04T21:50:12.622692Z",
-          "source": "v.daum.net",
-          "publisher": "v.daum.net",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE1pZ3ZwYjJkWDNxNko2YTFpcldYMmdERE91TFpUUklHRWhLT2xqLTlFWUVpN3N5czYtZXV0VVZXZDViazV1SVE?oc=5",
-          "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-652105d6e2a257dc",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [
-            "geopolitics",
-            "risk_premium"
-          ],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [
-            "KOSPI",
-            "NASDAQ",
-            "WTI"
-          ],
-          "related_stocks": [],
-          "topic": "지정학",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        },
-        {
-          "id": "NEWS-9e74033e8b9841bf",
-          "headline": "금융권 해킹 비상, 동일 공격자 IP 정황 여러 곳에서 포착",
-          "title": "금융권 해킹 비상, 동일 공격자 IP 정황 여러 곳에서 포착 - 미주중앙일보",
-          "published_at": "2026-10-04T07:47:00Z",
-          "observed_at": "2026-10-04T21:50:12.622692Z",
-          "retrieved_at": "2026-10-04T21:50:12.622692Z",
-          "source": "미주중앙일보",
-          "publisher": "미주중앙일보",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9Wdm1tS19FSWZhc2x1cTVIakZmR28yUzFDaDJnSjJtLVdkblYyNzlleHBaT3FBS2NmMkhsSTdNbW1wd3lpS1dDZ2NydU9STEkxR0s1dGpuNUFmQjVzOHloVEhR?oc=5",
-          "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-652105d6e2a257dc",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [
-            "geopolitics",
-            "risk_premium"
-          ],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [
-            "KOSPI",
-            "NASDAQ",
-            "WTI"
-          ],
-          "related_stocks": [],
-          "topic": "지정학",
           "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
           "promotion_score": 0,
           "content_quality": "EDITORIAL_OR_FACTUAL",
@@ -471,8 +409,8 @@
           "headline": "같은 IP가 여러 금융사 해킹…AI 활용해 대량 공격 정황",
           "title": "같은 IP가 여러 금융사 해킹…AI 활용해 대량 공격 정황 - sedaily.com",
           "published_at": "2026-10-04T07:33:39Z",
-          "observed_at": "2026-10-04T21:50:12.622692Z",
-          "retrieved_at": "2026-10-04T21:50:12.622692Z",
+          "observed_at": "2026-10-05T00:19:33.464577Z",
+          "retrieved_at": "2026-10-05T00:19:33.464577Z",
           "source": "sedaily.com",
           "publisher": "sedaily.com",
           "source_type": "SECONDARY",
@@ -480,7 +418,7 @@
           "source_kind": "secondary_aggregator",
           "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE9WUElQS21Kd0NkY2d5dER4RGRSQ1pxWHl2SHZBX2lSMllZNmIta1EzX01DcllheDBTTGdxNlNYNWJaUHg0Q0JQdzJFc2FheTJNbHc?oc=5",
           "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-652105d6e2a257dc",
+          "cluster_id": "GN-f98870c222c45773",
           "official_source_available": false,
           "market_bias": "UNDETERMINED",
           "impact_channels": [
@@ -505,43 +443,12 @@
           "market_fact_signal": false
         },
         {
-          "id": "NEWS-df0c1275e43bbf4d",
-          "headline": "금융권 해킹 확산에 정부 긴급 대응…이억원 “유사 사고 땐 엄정 책임”",
-          "title": "금융권 해킹 확산에 정부 긴급 대응…이억원 “유사 사고 땐 엄정 책임” - intn.co.kr",
-          "published_at": "2026-10-04T07:23:13Z",
-          "observed_at": "2026-10-04T21:50:12.622692Z",
-          "retrieved_at": "2026-10-04T21:50:12.622692Z",
-          "source": "intn.co.kr",
-          "publisher": "intn.co.kr",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1LSE9LSnBFSEV2NldMMXMxUVdkVldwRUY0dmtweXFRZnNNTDkxNWlqYzZkVUdmdkxkUS1NNWtlWWdWUUt2LW8tX25abXNNQlJEaVFYUXBkZ185eFZPRnRzMjNaa3VtWmw2Q0E?oc=5",
-          "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-652105d6e2a257dc",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [],
-          "related_stocks": [],
-          "topic": "시장일반",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        },
-        {
           "id": "NEWS-f86e987b8b69035c",
           "headline": "금융사 해킹 사고, 동일 공격자 소행이었나…AI 활용 추정",
           "title": "금융사 해킹 사고, 동일 공격자 소행이었나…AI 활용 추정 - v.daum.net",
           "published_at": "2026-10-04T07:15:58Z",
-          "observed_at": "2026-10-04T21:50:12.622692Z",
-          "retrieved_at": "2026-10-04T21:50:12.622692Z",
+          "observed_at": "2026-10-05T00:19:33.464577Z",
+          "retrieved_at": "2026-10-05T00:19:33.464577Z",
           "source": "v.daum.net",
           "publisher": "v.daum.net",
           "source_type": "SECONDARY",
@@ -549,7 +456,7 @@
           "source_kind": "secondary_aggregator",
           "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE53eHZpYkJXZzQyY1gteXBxWV9fNllZZ3Y5ZWZ5QU9Xa2xKZ0o0UjRTLVg1enVEXzlScEhGc0RjZl96ampocl9CR0lkUk00WTA?oc=5",
           "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-652105d6e2a257dc",
+          "cluster_id": "GN-f98870c222c45773",
           "official_source_available": false,
           "market_bias": "UNDETERMINED",
           "impact_channels": [
@@ -578,8 +485,8 @@
           "headline": "금융권 해킹, 동일 공격자에 AI 활용 정황…500개사 긴급 점검",
           "title": "금융권 해킹, 동일 공격자에 AI 활용 정황…500개사 긴급 점검 - ebn.co.kr",
           "published_at": "2026-10-04T07:00:00Z",
-          "observed_at": "2026-10-04T21:50:12.622692Z",
-          "retrieved_at": "2026-10-04T21:50:12.622692Z",
+          "observed_at": "2026-10-05T00:19:33.464577Z",
+          "retrieved_at": "2026-10-05T00:19:33.464577Z",
           "source": "ebn.co.kr",
           "publisher": "ebn.co.kr",
           "source_type": "SECONDARY",
@@ -587,7 +494,7 @@
           "source_kind": "secondary_aggregator",
           "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5BNHFoY3lzc0tVdEpvMFBMdmNHU080VlQtOFBYcFJIakhXZ2NDUEFQc2ZVdXhJT0NKZHZqVzVEMzBDOTFGYXdXeWpwamgyRXpvdnc3Q3N3WXlrcWJKUkhzNEdkd1N0RmlJ?oc=5",
           "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-652105d6e2a257dc",
+          "cluster_id": "GN-f98870c222c45773",
           "official_source_available": false,
           "market_bias": "UNDETERMINED",
           "impact_channels": [
@@ -603,37 +510,6 @@
           ],
           "related_stocks": [],
           "topic": "지정학",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        },
-        {
-          "id": "NEWS-3f240db76a425e72",
-          "headline": "이억원 “최고 수준 경각심…AI활용 해킹 가능성”",
-          "title": "이억원 “최고 수준 경각심…AI활용 해킹 가능성” - 블록미디어",
-          "published_at": "2026-10-04T06:54:54Z",
-          "observed_at": "2026-10-04T21:50:12.622692Z",
-          "retrieved_at": "2026-10-04T21:50:12.622692Z",
-          "source": "블록미디어",
-          "publisher": "블록미디어",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBkWWdDY25TeXpfR043d0VKWEY1cVplX251NTV6dHc0SFA4eHZVX09ia2NUNTM1TFg2YTVnWC1oby14dnJPZExSbkJXZkZ2akIzOVVqWU9Lc2Q?oc=5",
-          "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-652105d6e2a257dc",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [],
-          "related_stocks": [],
-          "topic": "시장일반",
           "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
           "promotion_score": 0,
           "content_quality": "EDITORIAL_OR_FACTUAL",
@@ -647,8 +523,8 @@
           "headline": "인공지능 해킹 공격, 국내외 금융사 위험에 빠뜨리다",
           "title": "인공지능 해킹 공격, 국내외 금융사 위험에 빠뜨리다 - gokorea.kr",
           "published_at": "2026-10-04T06:43:52Z",
-          "observed_at": "2026-10-04T21:50:12.622692Z",
-          "retrieved_at": "2026-10-04T21:50:12.622692Z",
+          "observed_at": "2026-10-05T00:19:33.464577Z",
+          "retrieved_at": "2026-10-05T00:19:33.464577Z",
           "source": "gokorea.kr",
           "publisher": "gokorea.kr",
           "source_type": "SECONDARY",
@@ -656,7 +532,7 @@
           "source_kind": "secondary_aggregator",
           "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE12eGNIaVhUN2c5Sjg3ZF8tSF9VaTZDa2JpMXZscVFTeHlIcUtCUEpaLU5DQ1BpTmY5ZGVQWE9fU05OT0VqMzBCSDI5U3hIYnVabVN1NHRTcWVXbUF4T0dLNzUzS0huc0lE?oc=5",
           "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-652105d6e2a257dc",
+          "cluster_id": "GN-f98870c222c45773",
           "official_source_available": false,
           "market_bias": "UNDETERMINED",
           "impact_channels": [
@@ -681,43 +557,12 @@
           "market_fact_signal": false
         },
         {
-          "id": "NEWS-d4784e0a5f6afed9",
-          "headline": "이억원 \"AI활용 해킹 가능성…금융권 최고수준 경각심 가져야\"",
-          "title": "이억원 \"AI활용 해킹 가능성…금융권 최고수준 경각심 가져야\" - 금융소비자뉴스",
-          "published_at": "2026-10-04T05:56:00Z",
-          "observed_at": "2026-10-04T21:50:12.622692Z",
-          "retrieved_at": "2026-10-04T21:50:12.622692Z",
-          "source": "금융소비자뉴스",
-          "publisher": "금융소비자뉴스",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5JTHc5akMxdW95bkdvSTBMeUtEVXVWb3RfMDVTWHg1UHR5ZmhUN0dIR3p6R005Y0Rvalc3VU1PeEdUVklEcmZBSnJLVzlrYVdiUDV6XzhoSERvb3p1WlBYclFVRXRDMm9qQnc?oc=5",
-          "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-652105d6e2a257dc",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [],
-          "related_stocks": [],
-          "topic": "시장일반",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        },
-        {
           "id": "NEWS-47dc687da907480e",
           "headline": "이억원 AI 해킹 가능성 배제 못해...유사 사고 땐 엄정 책임",
           "title": "이억원 AI 해킹 가능성 배제 못해...유사 사고 땐 엄정 책임 - 아주경제",
           "published_at": "2026-10-04T05:41:02Z",
-          "observed_at": "2026-10-04T21:50:12.622692Z",
-          "retrieved_at": "2026-10-04T21:50:12.622692Z",
+          "observed_at": "2026-10-05T00:19:33.464577Z",
+          "retrieved_at": "2026-10-05T00:19:33.464577Z",
           "source": "아주경제",
           "publisher": "아주경제",
           "source_type": "SECONDARY",
@@ -725,7 +570,7 @@
           "source_kind": "secondary_aggregator",
           "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBPMm9qOGRsbHAtak9Pa0k3X0pwclNnNzhhVjNGUFZnenEwNWprcGNKMzBQaDRGanlScFRJNEJGOURScElQYXNmbjRaRGxnZEhVc1lNM3hhSmY3UdIBWEFVX3lxTFAtb0MxMU1uMk9ldTZNYkRGZDluZF9pTlZnNDFCeWF0TVNQYUxKcW1rY2ZyNThGZUFSMDVBa1NlQjFoNEhQY2pGaGtWVkxndVBySi14b0FoVmg?oc=5",
           "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-652105d6e2a257dc",
+          "cluster_id": "GN-f98870c222c45773",
           "official_source_available": false,
           "market_bias": "UNDETERMINED",
           "impact_channels": [],
@@ -747,8 +592,8 @@
           "headline": "금융권 잇단 해킹에 당국 ‘외부접점’ 전수점검…“소홀하면 엄정 책임”",
           "title": "금융권 잇단 해킹에 당국 ‘외부접점’ 전수점검…“소홀하면 엄정 책임” - 아시아투데이",
           "published_at": "2026-10-04T05:36:47Z",
-          "observed_at": "2026-10-04T21:50:12.622692Z",
-          "retrieved_at": "2026-10-04T21:50:12.622692Z",
+          "observed_at": "2026-10-05T00:19:33.464577Z",
+          "retrieved_at": "2026-10-05T00:19:33.464577Z",
           "source": "아시아투데이",
           "publisher": "아시아투데이",
           "source_type": "SECONDARY",
@@ -756,7 +601,248 @@
           "source_kind": "secondary_aggregator",
           "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE5jbmEwZVFmb2xSNVdieEoxUTVfMWM4aWJPYTFFWi1sVnhhMHplaEFvMDFuMXpsQ3VIOXNUN0wxQXQ5VlBLMnY5ZTNRTVVSbjhZdVhONlp3Y1BZaDFfQktna2U0UUx4OTRaeW9xVA?oc=5",
           "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-652105d6e2a257dc",
+          "cluster_id": "GN-f98870c222c45773",
+          "official_source_available": false,
+          "market_bias": "UNDETERMINED",
+          "impact_channels": [],
+          "related_sectors": [],
+          "related_countries": [],
+          "related_markets": [],
+          "related_stocks": [],
+          "topic": "시장일반",
+          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+          "promotion_score": 0,
+          "content_quality": "EDITORIAL_OR_FACTUAL",
+          "is_promotional": false,
+          "is_low_information": false,
+          "filter_from_market_feed": false,
+          "market_fact_signal": false
+        },
+        {
+          "id": "NEWS-771cee72df09030e",
+          "headline": "제2 금융권까지 AI 해킹···금융당국, 긴급 점검회의",
+          "title": "제2 금융권까지 AI 해킹···금융당국, 긴급 점검회의 - 서울파이낸스",
+          "published_at": "2026-10-04T05:34:34Z",
+          "observed_at": "2026-10-05T00:19:33.464577Z",
+          "retrieved_at": "2026-10-05T00:19:33.464577Z",
+          "source": "서울파이낸스",
+          "publisher": "서울파이낸스",
+          "source_type": "SECONDARY",
+          "source_id": "google-news-rss",
+          "source_kind": "secondary_aggregator",
+          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE80a0RleWpQMV9HLWIwRHZ0dlhEdHEtQWRuc3duYm5fUUNOWlNVQ0ZpSFE3VGVLV0tVUV9WU2stbEo5cjVBN3M1eGZTMUtsUW5hT2I3YzZ3YUR3eXBBeUV6OUhTX1l1STJta3c?oc=5",
+          "query": "금융 은행 증권 보험 정책 한국",
+          "cluster_id": "GN-f98870c222c45773",
+          "official_source_available": false,
+          "market_bias": "UNDETERMINED",
+          "impact_channels": [],
+          "related_sectors": [],
+          "related_countries": [],
+          "related_markets": [],
+          "related_stocks": [],
+          "topic": "시장일반",
+          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+          "promotion_score": 0,
+          "content_quality": "EDITORIAL_OR_FACTUAL",
+          "is_promotional": false,
+          "is_low_information": false,
+          "filter_from_market_feed": false,
+          "market_fact_signal": false
+        },
+        {
+          "id": "NEWS-3cdc3e984fa5caf4",
+          "headline": "AI로 상호금융까지 광범위 공격…\"해킹 시도 훨씬 많을 수도\"(종합)",
+          "title": "AI로 상호금융까지 광범위 공격…\"해킹 시도 훨씬 많을 수도\"(종합) - 매일경제 마켓",
+          "published_at": "2026-10-04T05:25:06Z",
+          "observed_at": "2026-10-05T00:19:33.464577Z",
+          "retrieved_at": "2026-10-05T00:19:33.464577Z",
+          "source": "매일경제 마켓",
+          "publisher": "매일경제 마켓",
+          "source_type": "SECONDARY",
+          "source_id": "google-news-rss",
+          "source_kind": "secondary_aggregator",
+          "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5XcFpOWEVMNTdOaGVLUDNPdldxWXJIX3hsRmQ4cTRaN3czZ2kwREtWTTUtNGI5bVptdFUtdU9pWHRTWlM3RHItZzE3TXhwUk5keEE?oc=5",
+          "query": "금융 은행 증권 보험 정책 한국",
+          "cluster_id": "GN-f98870c222c45773",
+          "official_source_available": false,
+          "market_bias": "UNDETERMINED",
+          "impact_channels": [
+            "geopolitics",
+            "risk_premium"
+          ],
+          "related_sectors": [],
+          "related_countries": [],
+          "related_markets": [
+            "KOSPI",
+            "NASDAQ",
+            "WTI"
+          ],
+          "related_stocks": [],
+          "topic": "지정학",
+          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+          "promotion_score": 0,
+          "content_quality": "EDITORIAL_OR_FACTUAL",
+          "is_promotional": false,
+          "is_low_information": false,
+          "filter_from_market_feed": false,
+          "market_fact_signal": false
+        },
+        {
+          "id": "NEWS-0f39a5f6122f13b1",
+          "headline": "은행서 상호금융까지 번진 해킹…AI 활용 의심 공격에 금융권 비상",
+          "title": "은행서 상호금융까지 번진 해킹…AI 활용 의심 공격에 금융권 비상 - 비즈중앙",
+          "published_at": "2026-10-04T05:01:18Z",
+          "observed_at": "2026-10-05T00:19:33.464577Z",
+          "retrieved_at": "2026-10-05T00:19:33.464577Z",
+          "source": "비즈중앙",
+          "publisher": "비즈중앙",
+          "source_type": "SECONDARY",
+          "source_id": "google-news-rss",
+          "source_kind": "secondary_aggregator",
+          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1FY1FqTnR5ZWJLRWFkQkxPVkZ3WFU2Q0Q0YkhKUUVkYW9jYzR3d3hveUtPcVd2cDBPRUNrM3haTmJkS2tCWWJMdkhsdm13a2oyeW5jSEpPNE5jTGdsSHhYQ09VWXRuTkRYbjBXU1FIbi0?oc=5",
+          "query": "금융 은행 증권 보험 정책 한국",
+          "cluster_id": "GN-f98870c222c45773",
+          "official_source_available": false,
+          "market_bias": "UNDETERMINED",
+          "impact_channels": [
+            "geopolitics",
+            "risk_premium"
+          ],
+          "related_sectors": [],
+          "related_countries": [],
+          "related_markets": [
+            "KOSPI",
+            "NASDAQ",
+            "WTI"
+          ],
+          "related_stocks": [],
+          "topic": "지정학",
+          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+          "promotion_score": 0,
+          "content_quality": "EDITORIAL_OR_FACTUAL",
+          "is_promotional": false,
+          "is_low_information": false,
+          "filter_from_market_feed": false,
+          "market_fact_signal": false
+        },
+        {
+          "id": "NEWS-387999022650819e",
+          "headline": "AI 해킹 금융권 전방위 확산…당국, 금융사 CEO 긴급소집",
+          "title": "AI 해킹 금융권 전방위 확산…당국, 금융사 CEO 긴급소집 - 이투데이",
+          "published_at": "2026-10-04T03:15:00Z",
+          "observed_at": "2026-10-05T00:19:33.464577Z",
+          "retrieved_at": "2026-10-05T00:19:33.464577Z",
+          "source": "이투데이",
+          "publisher": "이투데이",
+          "source_type": "SECONDARY",
+          "source_id": "google-news-rss",
+          "source_kind": "secondary_aggregator",
+          "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBobW5ob2wzV3oybmZJZU01cHJhRkVqbGtUWDFjN1dlNUMzVWpSNkNTTEZ0bjJUVGpoWGFTUF9wenAwRVpKX3pIQWQ5ci14RGZZUTJUb1c3RG9zeU9nYkxBTnNyX3BOQ0pHMlRmMk94QWc2OHR1?oc=5",
+          "query": "금융 은행 증권 보험 정책 한국",
+          "cluster_id": "GN-f98870c222c45773",
+          "official_source_available": false,
+          "market_bias": "UNDETERMINED",
+          "impact_channels": [],
+          "related_sectors": [],
+          "related_countries": [],
+          "related_markets": [],
+          "related_stocks": [],
+          "topic": "시장일반",
+          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+          "promotion_score": 0,
+          "content_quality": "EDITORIAL_OR_FACTUAL",
+          "is_promotional": false,
+          "is_low_information": false,
+          "filter_from_market_feed": false,
+          "market_fact_signal": false
+        },
+        {
+          "id": "NEWS-0dd1ac948fc6310a",
+          "headline": "[단독]‘동일 해커’, 중국 AI로 최소 6개 은행 공격…“증권·카드·보험까지 시도”",
+          "title": "[단독]‘동일 해커’, 중국 AI로 최소 6개 은행 공격…“증권·카드·보험까지 시도” - 서울신문",
+          "published_at": "2026-10-04T03:13:46Z",
+          "observed_at": "2026-10-05T00:19:33.464577Z",
+          "retrieved_at": "2026-10-05T00:19:33.464577Z",
+          "source": "서울신문",
+          "publisher": "서울신문",
+          "source_type": "SECONDARY",
+          "source_id": "google-news-rss",
+          "source_kind": "secondary_aggregator",
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE4yVU8yYXloME1wVVNhcjQzYmJYRDl0WVhyTWh5SDlfT3MtbDNVYW1tdllkNEZGaUJabE01Nm1qNEZ6R3E2dUdScGdhYmx3NjJmRTVoNlZ6MlBJTkhBYXBBY2FIVXRhelp3Y2c1NzZpMA?oc=5",
+          "query": "금융 은행 증권 보험 정책 한국",
+          "cluster_id": "GN-f98870c222c45773",
+          "official_source_available": false,
+          "market_bias": "UNDETERMINED",
+          "impact_channels": [
+            "geopolitics",
+            "risk_premium"
+          ],
+          "related_sectors": [],
+          "related_countries": [
+            "CN"
+          ],
+          "related_markets": [
+            "CHINA",
+            "KOSPI",
+            "NASDAQ",
+            "WTI"
+          ],
+          "related_stocks": [],
+          "topic": "지정학",
+          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+          "promotion_score": 0,
+          "content_quality": "EDITORIAL_OR_FACTUAL",
+          "is_promotional": false,
+          "is_low_information": false,
+          "filter_from_market_feed": false,
+          "market_fact_signal": false
+        },
+        {
+          "id": "NEWS-d62a00d9898c9244",
+          "headline": "금융권 동시다발 덮친 개인정보 AI 해킹…“더 많은 침투·시도 나올 수도”",
+          "title": "금융권 동시다발 덮친 개인정보 AI 해킹…“더 많은 침투·시도 나올 수도” - hani.co.kr",
+          "published_at": "2026-10-04T02:43:00Z",
+          "observed_at": "2026-10-05T00:19:33.464577Z",
+          "retrieved_at": "2026-10-05T00:19:33.464577Z",
+          "source": "hani.co.kr",
+          "publisher": "hani.co.kr",
+          "source_type": "SECONDARY",
+          "source_id": "google-news-rss",
+          "source_kind": "secondary_aggregator",
+          "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1TZmpWbWtjNGhacjkxbjFhbUd5eG1tVzlxVW9PUGw4OEhNVlZZWTdrd0UtMGtkSFhiWk4tTjlqekdJMTFkclh2Sm5RdTdMOG1vWnBncTAzbUs3SHpWVkU3aFQ1RUZSRW8?oc=5",
+          "query": "금융 은행 증권 보험 정책 한국",
+          "cluster_id": "GN-f98870c222c45773",
+          "official_source_available": false,
+          "market_bias": "UNDETERMINED",
+          "impact_channels": [],
+          "related_sectors": [],
+          "related_countries": [],
+          "related_markets": [],
+          "related_stocks": [],
+          "topic": "시장일반",
+          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+          "promotion_score": 0,
+          "content_quality": "EDITORIAL_OR_FACTUAL",
+          "is_promotional": false,
+          "is_low_information": false,
+          "filter_from_market_feed": false,
+          "market_fact_signal": false
+        },
+        {
+          "id": "NEWS-ce8068b15ada69de",
+          "headline": "AI 해킹 비상, 은행 뚫리고 저축은행·캐피털까지…금융권 보안체계 전면 재점검",
+          "title": "AI 해킹 비상, 은행 뚫리고 저축은행·캐피털까지…금융권 보안체계 전면 재점검 - intn.co.kr",
+          "published_at": "2026-10-04T01:37:25Z",
+          "observed_at": "2026-10-05T00:19:33.464577Z",
+          "retrieved_at": "2026-10-05T00:19:33.464577Z",
+          "source": "intn.co.kr",
+          "publisher": "intn.co.kr",
+          "source_type": "SECONDARY",
+          "source_id": "google-news-rss",
+          "source_kind": "secondary_aggregator",
+          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE53SHJxd19FVVR5Qko2S1dRX3Z0cUlNNjJUb3Noa1ZxYnFaTF9MWjk5VkZNdmZiYnFtSncta05JM2ZpaEwtRDdQV2xNeUZka3VFTkkxckMtNzU1QjE5c3pwb2g0dFEtbVQxY3c?oc=5",
+          "query": "금융 은행 증권 보험 정책 한국",
+          "cluster_id": "GN-f98870c222c45773",
           "official_source_available": false,
           "market_bias": "UNDETERMINED",
           "impact_channels": [],
@@ -775,10 +861,10 @@
         }
       ],
       "ai_analysis": {},
-      "last_updated_at": "2026-10-05T06:50:23+09:00",
-      "importance_score": 32.0,
+      "last_updated_at": "2026-10-05T09:19:42+09:00",
+      "importance_score": 24.0,
       "importance_components": {
-        "independent_source_component": 3,
+        "independent_source_component": 1,
         "article_component": 8,
         "channel_component": 0,
         "official_source_component": 0,
@@ -787,240 +873,23 @@
       },
       "market_reaction": {
         "evidence_state": "PENDING",
-        "event_at": "2026-10-03T11:36:43+00:00",
+        "event_at": "2026-10-04T01:37:25+00:00",
         "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
       }
     },
     {
-      "issue_id": "GN-c1eecaec9945a3f5",
-      "fingerprint": "ISSUE-FP-c1eecaec9945a3f5",
+      "issue_id": "GN-124c6ef9077ec7d2",
+      "fingerprint": "ISSUE-FP-124c6ef9077ec7d2",
       "event_core_tokens": [
-        "10월",
-        "기대",
-        "달러",
-        "인상",
-        "환율"
+        "밟은",
+        "브레이크",
+        "액셀",
+        "연준",
+        "채권시장"
       ],
-      "headline": "美 인상 기대 꺾였지만 장기금리 5.28%…환율 어디로[주간외환전망]",
-      "first_seen_at": "2026-10-04T00:07:39Z",
-      "latest_at": "2026-10-04T21:00:03Z",
-      "article_count": 3,
-      "publisher_count": 3,
-      "independent_source_count": 1,
-      "independent_publishers": 1,
-      "reprint_count": 2,
-      "quality_filtered_count": 0,
-      "publishers": [
-        "ER 이코노믹리뷰",
-        "Vietnam.vn",
-        "edaily.co.kr"
-      ],
-      "official_source_available": false,
-      "state": "NEW",
-      "why_important": "장기금리 변화는 성장주 할인율과 글로벌 위험선호에 영향을 줄 수 있어 선물·환율·외국인 수급과 함께 확인해야 합니다.",
-      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
-      "next_variables": [
-        "KOSDAQ",
-        "KOSPI",
-        "NASDAQ",
-        "S&P500",
-        "USD/KRW",
-        "외국인 수급"
-      ],
-      "history": [
-        {
-          "at": "2026-10-05T06:50:23+09:00",
-          "state": "NEW",
-          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
-        }
-      ],
-      "market_bias": "UNDETERMINED",
-      "impact_channels": [
-        "foreign_flow",
-        "fx",
-        "rates",
-        "valuation"
-      ],
-      "related_sectors": [],
-      "related_countries": [
-        "KR",
-        "US"
-      ],
-      "related_markets": [
-        "KOSDAQ",
-        "KOSPI",
-        "NASDAQ",
-        "S&P500",
-        "USD/KRW"
-      ],
-      "related_stocks": [],
-      "topic": "금리 · 환율",
-      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-      "articles": [
-        {
-          "id": "NEWS-34432f08bba97ede",
-          "headline": "美 인상 기대 꺾였지만 장기금리 5.28%…환율 어디로[주간외환전망]",
-          "title": "美 인상 기대 꺾였지만 장기금리 5.28%…환율 어디로[주간외환전망] - edaily.co.kr",
-          "published_at": "2026-10-04T21:00:03Z",
-          "observed_at": "2026-10-04T21:50:12.686944Z",
-          "retrieved_at": "2026-10-04T21:50:12.686944Z",
-          "source": "edaily.co.kr",
-          "publisher": "edaily.co.kr",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5vSHdySGJTVjhiYTl4NFdJWWpwcEU1cF91WmRHbTdhZ3dXODNVSTYweFNSR2k5ZVpJSWtVRGpHVjJfWVZtSmUtWjhlcElDNmpjM0kwWEhCNS05Z3FtOFJPSEtpbFV1WmVYNFVB?oc=5",
-          "query": "연준 Fed 미국 국채 금리 달러 환율",
-          "cluster_id": "GN-c1eecaec9945a3f5",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [
-            "foreign_flow",
-            "fx",
-            "rates",
-            "valuation"
-          ],
-          "related_sectors": [],
-          "related_countries": [
-            "KR",
-            "US"
-          ],
-          "related_markets": [
-            "KOSDAQ",
-            "KOSPI",
-            "NASDAQ",
-            "S&P500",
-            "USD/KRW"
-          ],
-          "related_stocks": [],
-          "topic": "금리 · 환율",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        },
-        {
-          "id": "NEWS-35069a23df9e4344",
-          "headline": "연준 10월 금리 인상 기대 후퇴…달러-원 1345~1370원 전망",
-          "title": "연준 10월 금리 인상 기대 후퇴…달러-원 1345~1370원 전망 - ER 이코노믹리뷰",
-          "published_at": "2026-10-04T01:19:08Z",
-          "observed_at": "2026-10-04T21:50:12.686944Z",
-          "retrieved_at": "2026-10-04T21:50:12.686944Z",
-          "source": "ER 이코노믹리뷰",
-          "publisher": "ER 이코노믹리뷰",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE42YzBUZFJTX1U0TkJ4dEdXQ0YxQjg4TTduaUJNRF8yZy1wd3htRzl2bk4xU2lBcW5jbFlob3BUT2xWZ0VPbW4ybVV6Y2JXZE1lUWRfZF8tMjE1aUxFY01DVVU3eFNGbkFBODctRA?oc=5",
-          "query": "연준 Fed 미국 국채 금리 달러 환율",
-          "cluster_id": "GN-c1eecaec9945a3f5",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [
-            "foreign_flow",
-            "fx",
-            "rates",
-            "valuation"
-          ],
-          "related_sectors": [],
-          "related_countries": [
-            "KR",
-            "US"
-          ],
-          "related_markets": [
-            "KOSDAQ",
-            "KOSPI",
-            "NASDAQ",
-            "S&P500",
-            "USD/KRW"
-          ],
-          "related_stocks": [],
-          "topic": "금리 · 환율",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        },
-        {
-          "id": "NEWS-aa3b3efc3984c342",
-          "headline": "오늘(10월 4일) 미국 달러 환율: 미국 달러는 3주 연속 상승했습니다.",
-          "title": "오늘(10월 4일) 미국 달러 환율: 미국 달러는 3주 연속 상승했습니다. - Vietnam.vn",
-          "published_at": "2026-10-04T00:07:39Z",
-          "observed_at": "2026-10-04T21:50:12.686944Z",
-          "retrieved_at": "2026-10-04T21:50:12.686944Z",
-          "source": "Vietnam.vn",
-          "publisher": "Vietnam.vn",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPOThTQTM2MmJ2RWhlSWppVG45RE10Unc1QUtfcUQ4QXlpemdsa2VmRnQwTlo1RW16Z1JqV25fZ2NYUGNrclFJRWhDaE54eTNsT1ZZT253RDFZc0F4QUZ5c0w4dFBKZlVpbTFrdmpvLXltUFhuc1FFTDJMZ0FTTV9ZM3JRQldsLVpmblRSRVV3?oc=5",
-          "query": "연준 Fed 미국 국채 금리 달러 환율",
-          "cluster_id": "GN-c1eecaec9945a3f5",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [
-            "foreign_flow",
-            "fx"
-          ],
-          "related_sectors": [],
-          "related_countries": [
-            "KR",
-            "US"
-          ],
-          "related_markets": [
-            "KOSPI",
-            "USD/KRW"
-          ],
-          "related_stocks": [],
-          "topic": "환율",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        }
-      ],
-      "ai_analysis": {},
-      "last_updated_at": "2026-10-05T06:50:23+09:00",
-      "importance_score": 24.5,
-      "importance_components": {
-        "independent_source_component": 1,
-        "article_component": 3,
-        "channel_component": 4,
-        "official_source_component": 0,
-        "recency_component": 8,
-        "market_reaction_component": "PENDING"
-      },
-      "market_reaction": {
-        "evidence_state": "PENDING",
-        "event_at": "2026-10-04T00:07:39+00:00",
-        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
-      }
-    },
-    {
-      "issue_id": "GN-95959ab0344ebbff",
-      "fingerprint": "ISSUE-FP-95959ab0344ebbff",
-      "event_core_tokens": [
-        "3분기",
-        "국채",
-        "금리에",
-        "눌린",
-        "삼성전자",
-        "실적에",
-        "쏠린",
-        "주간증시전망"
-      ],
-      "headline": "[주간증시전망] 美 국채 금리에 눌린 증시… 삼성전자 3분기 실적에 쏠린 눈 - 조선비즈",
-      "first_seen_at": "2026-10-04T21:00:00Z",
-      "latest_at": "2026-10-04T21:00:00Z",
+      "headline": "브레이크 밟은 연준, 액셀 밟은 채권시장",
+      "first_seen_at": "2026-10-04T23:00:00Z",
+      "latest_at": "2026-10-04T23:00:00Z",
       "article_count": 1,
       "publisher_count": 1,
       "independent_source_count": 1,
@@ -1028,7 +897,7 @@
       "reprint_count": 0,
       "quality_filtered_count": 0,
       "publishers": [
-        "Chosunbiz"
+        "네이버 프리미엄콘텐츠"
       ],
       "official_source_available": false,
       "state": "NEW",
@@ -1044,22 +913,17 @@
       ],
       "history": [
         {
-          "at": "2026-10-05T06:50:23+09:00",
+          "at": "2026-10-05T09:19:42+09:00",
           "state": "NEW",
           "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
         }
       ],
       "market_bias": "UNDETERMINED",
       "impact_channels": [
-        "growth_beta",
         "rates",
-        "semiconductor",
         "valuation"
       ],
-      "related_sectors": [
-        "반도체",
-        "조선"
-      ],
+      "related_sectors": [],
       "related_countries": [
         "US"
       ],
@@ -1069,19 +933,423 @@
         "NASDAQ",
         "S&P500"
       ],
-      "related_stocks": [
-        "삼성전자"
-      ],
-      "topic": "금리 · 반도체 · 산업수주",
+      "related_stocks": [],
+      "topic": "금리",
       "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
       "articles": [
+        {
+          "id": "NEWS-918794e68aae651f",
+          "headline": "브레이크 밟은 연준, 액셀 밟은 채권시장",
+          "title": "브레이크 밟은 연준, 액셀 밟은 채권시장 - 네이버 프리미엄콘텐츠",
+          "published_at": "2026-10-04T23:00:00Z",
+          "observed_at": "2026-10-05T00:19:33.567078Z",
+          "retrieved_at": "2026-10-05T00:19:33.567078Z",
+          "source": "네이버 프리미엄콘텐츠",
+          "publisher": "네이버 프리미엄콘텐츠",
+          "source_type": "SECONDARY",
+          "source_id": "google-news-rss",
+          "source_kind": "secondary_aggregator",
+          "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNOWJoSmVIcHZ2bWJna19uZjVnN3RBSS1CR3VlM0k2ck9wc1BUZmJ5cHZQUnY4anluNVdfd3NhVXRLRTc4Wm1fMGRKN016T2MtMmJndEdCSW5tRlhwLU9na3NhVVJGTHFLN1FWRkx0VGVVLUYwMy1UN2dmTFF2bDZMSkZB?oc=5",
+          "query": "미국 증시 나스닥 S&P500 다우 엔비디아 반도체",
+          "cluster_id": "GN-124c6ef9077ec7d2",
+          "official_source_available": false,
+          "market_bias": "UNDETERMINED",
+          "impact_channels": [
+            "rates",
+            "valuation"
+          ],
+          "related_sectors": [],
+          "related_countries": [
+            "US"
+          ],
+          "related_markets": [
+            "KOSDAQ",
+            "KOSPI",
+            "NASDAQ",
+            "S&P500"
+          ],
+          "related_stocks": [],
+          "topic": "금리",
+          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+          "promotion_score": 0,
+          "content_quality": "EDITORIAL_OR_FACTUAL",
+          "is_promotional": false,
+          "is_low_information": false,
+          "filter_from_market_feed": false,
+          "market_fact_signal": false
+        }
+      ],
+      "ai_analysis": {},
+      "last_updated_at": "2026-10-05T09:19:42+09:00",
+      "importance_score": 17.5,
+      "importance_components": {
+        "independent_source_component": 1,
+        "article_component": 1,
+        "channel_component": 2,
+        "official_source_component": 0,
+        "recency_component": 8,
+        "market_reaction_component": "OBSERVED"
+      },
+      "market_reaction": {
+        "evidence_state": "OBSERVED",
+        "interpretation_state": "CORRELATION_ONLY",
+        "event_at": "2026-10-04T23:00:00+00:00",
+        "before_at": "2026-10-04T21:50:45+00:00",
+        "after_at": "2026-10-05T00:20:02+00:00",
+        "window_minutes": 149.3,
+        "axes": {
+          "KOSPI": {
+            "price_return_pct": 0.0,
+            "foreign_flow_change_100m_krw": null
+          },
+          "KOSDAQ": {
+            "price_return_pct": 0.0,
+            "foreign_flow_change_100m_krw": null
+          },
+          "KOSPI200_FUTURES": {
+            "price_return_pct": 0.0,
+            "basis_change": 0.0,
+            "foreign_flow_change_100m_krw": 0.0
+          },
+          "NASDAQ100_FUTURES": {
+            "price_return_pct": 0.33
+          },
+          "USD_KRW": {
+            "price_return_pct": 0.025
+          },
+          "WTI": {
+            "price_return_pct": -0.362
+          },
+          "VIX": {
+            "price_return_pct": 0.0
+          }
+        },
+        "note": "뉴스 시각 전후 시장 변화의 관측치이며 뉴스가 가격 변화를 일으켰다는 인과관계 증거가 아닙니다."
+      }
+    },
+    {
+      "issue_id": "GN-d7b5f6ef87dab4ee",
+      "fingerprint": "ISSUE-FP-d7b5f6ef87dab4ee",
+      "event_core_tokens": [
+        "가열",
+        "국회서",
+        "방산",
+        "수주경쟁",
+        "원전",
+        "잠자는",
+        "전략수출금융기금"
+      ],
+      "headline": "“방산·원전 수주경쟁 가열...국회서 잠자는 ‘전략수출금융기금’”",
+      "first_seen_at": "2026-10-04T23:58:02Z",
+      "latest_at": "2026-10-04T23:58:02Z",
+      "article_count": 1,
+      "publisher_count": 1,
+      "independent_source_count": 1,
+      "independent_publishers": 1,
+      "reprint_count": 0,
+      "quality_filtered_count": 0,
+      "publishers": [
+        "한스경제"
+      ],
+      "official_source_available": false,
+      "state": "NEW",
+      "why_important": "시장 영향 가능성이 있는 뉴스이므로 관련 지수·섹터·수급이 실제로 반응하는지 확인할 필요가 있습니다.",
+      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
+      "next_variables": [
+        "KOSPI",
+        "외국인 수급",
+        "기관 수급"
+      ],
+      "history": [
+        {
+          "at": "2026-10-05T09:19:42+09:00",
+          "state": "NEW",
+          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
+        }
+      ],
+      "market_bias": "UNDETERMINED",
+      "impact_channels": [],
+      "related_sectors": [
+        "방산",
+        "원전"
+      ],
+      "related_countries": [],
+      "related_markets": [
+        "KOSPI"
+      ],
+      "related_stocks": [],
+      "topic": "산업수주",
+      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+      "articles": [
+        {
+          "id": "NEWS-30d3a0f43841ddd3",
+          "headline": "“방산·원전 수주경쟁 가열...국회서 잠자는 ‘전략수출금융기금’”",
+          "title": "“방산·원전 수주경쟁 가열...국회서 잠자는 ‘전략수출금융기금’” - 한스경제",
+          "published_at": "2026-10-04T23:58:02Z",
+          "observed_at": "2026-10-05T00:19:33.365209Z",
+          "retrieved_at": "2026-10-05T00:19:33.365209Z",
+          "source": "한스경제",
+          "publisher": "한스경제",
+          "source_type": "SECONDARY",
+          "source_id": "google-news-rss",
+          "source_kind": "secondary_aggregator",
+          "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBDbVVMdXpwMGNOcjVyY3gzWHoyMmFQN2I0eU5Vc0VnQXRRRVFaSm1NRERlVzZyUmtPaUd5c1hJZTB6S0d4amdnMjVDUjE2VGdlLUx4NVdoMVVNQ3ZnUU1FY3ZHVlphSS1ZY2pmcNIBb0FVX3lxTE5tTzljcHZqQkdTOVlTekZ2WTRadFdRVi1UWGpTc0Y1NE0zb2owMC1UN1ZQOWtFQ2E2T1YzZDVzOTNnN19Lakt1MzVuODd3eUFFTkE1aEp3c2NOWk1memN4ZUFoWDQ2UEpvNXhnRDVaMA?oc=5",
+          "query": "방산 조선 원전 수주 한국 기업",
+          "cluster_id": "GN-d7b5f6ef87dab4ee",
+          "official_source_available": false,
+          "market_bias": "UNDETERMINED",
+          "impact_channels": [],
+          "related_sectors": [
+            "방산",
+            "원전"
+          ],
+          "related_countries": [],
+          "related_markets": [
+            "KOSPI"
+          ],
+          "related_stocks": [],
+          "topic": "산업수주",
+          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+          "promotion_score": 0,
+          "content_quality": "EDITORIAL_OR_FACTUAL",
+          "is_promotional": false,
+          "is_low_information": false,
+          "filter_from_market_feed": false,
+          "market_fact_signal": true
+        }
+      ],
+      "ai_analysis": {},
+      "last_updated_at": "2026-10-05T09:19:42+09:00",
+      "importance_score": 13.5,
+      "importance_components": {
+        "independent_source_component": 1,
+        "article_component": 1,
+        "channel_component": 0,
+        "official_source_component": 0,
+        "recency_component": 8,
+        "market_reaction_component": "PENDING"
+      },
+      "market_reaction": {
+        "evidence_state": "PENDING",
+        "event_at": "2026-10-04T23:58:02+00:00",
+        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
+      }
+    },
+    {
+      "issue_id": "GN-c299cb3f2411b211",
+      "fingerprint": "ISSUE-FP-c299cb3f2411b211",
+      "event_core_tokens": [
+        "kb",
+        "kb금융",
+        "vs",
+        "금융맞수",
+        "리딩금융",
+        "비은행은",
+        "승부처는",
+        "신한",
+        "신한금융",
+        "은행은"
+      ],
+      "headline": "[금융맞수] KB금융 vs 신한금융, 은행은 신한·비은행은 KB…리딩금융 승부처는",
+      "first_seen_at": "2026-10-04T23:01:00Z",
+      "latest_at": "2026-10-04T23:01:00Z",
+      "article_count": 1,
+      "publisher_count": 1,
+      "independent_source_count": 1,
+      "independent_publishers": 1,
+      "reprint_count": 0,
+      "quality_filtered_count": 0,
+      "publishers": [
+        "스트레이트뉴스"
+      ],
+      "official_source_available": false,
+      "state": "NEW",
+      "why_important": "시장 영향 가능성이 있는 뉴스이므로 관련 지수·섹터·수급이 실제로 반응하는지 확인할 필요가 있습니다.",
+      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
+      "next_variables": [
+        "외국인 수급",
+        "기관 수급"
+      ],
+      "history": [
+        {
+          "at": "2026-10-05T09:19:42+09:00",
+          "state": "NEW",
+          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
+        }
+      ],
+      "market_bias": "UNDETERMINED",
+      "impact_channels": [],
+      "related_sectors": [],
+      "related_countries": [],
+      "related_markets": [],
+      "related_stocks": [],
+      "topic": "시장일반",
+      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+      "articles": [
+        {
+          "id": "NEWS-53e12fb6c56cce88",
+          "headline": "[금융맞수] KB금융 vs 신한금융, 은행은 신한·비은행은 KB…리딩금융 승부처는",
+          "title": "[금융맞수] KB금융 vs 신한금융, 은행은 신한·비은행은 KB…리딩금융 승부처는 - 스트레이트뉴스",
+          "published_at": "2026-10-04T23:01:00Z",
+          "observed_at": "2026-10-05T00:19:33.464577Z",
+          "retrieved_at": "2026-10-05T00:19:33.464577Z",
+          "source": "스트레이트뉴스",
+          "publisher": "스트레이트뉴스",
+          "source_type": "SECONDARY",
+          "source_id": "google-news-rss",
+          "source_kind": "secondary_aggregator",
+          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5sbUdjZEhtd254RTBESXp6YW81N1NUQzFyck9VSDlXN2Jsd2g5aEpCNjVxNHFDdU5heF9NVmNoeGp4TkxYVVdzTWJWMEwzazR2ZmVPb09iWDc1ZjM4NEJ0aEZRcDZXdVYtelJuSFlMekx1Tk3SAXdBVV95cUxQYTM3WGxzbnZvOUg4a2QzQkVGWHMtTGt0SUY5SzhTbHEtM3VtVFQwU2VSaS02ZWdKMVdOTmNadnBMUlFGbW5rcVhXSlRibFJGQXp6SGlDc0NvZHNuODkzdlVMcWpLbFhzWG5YMk00ODBDTEpNem1zcw?oc=5",
+          "query": "금융 은행 증권 보험 정책 한국",
+          "cluster_id": "GN-c299cb3f2411b211",
+          "official_source_available": false,
+          "market_bias": "UNDETERMINED",
+          "impact_channels": [],
+          "related_sectors": [],
+          "related_countries": [],
+          "related_markets": [],
+          "related_stocks": [],
+          "topic": "시장일반",
+          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+          "promotion_score": 0,
+          "content_quality": "EDITORIAL_OR_FACTUAL",
+          "is_promotional": false,
+          "is_low_information": false,
+          "filter_from_market_feed": false,
+          "market_fact_signal": false
+        }
+      ],
+      "ai_analysis": {},
+      "last_updated_at": "2026-10-05T09:19:42+09:00",
+      "importance_score": 13.5,
+      "importance_components": {
+        "independent_source_component": 1,
+        "article_component": 1,
+        "channel_component": 0,
+        "official_source_component": 0,
+        "recency_component": 8,
+        "market_reaction_component": "OBSERVED"
+      },
+      "market_reaction": {
+        "evidence_state": "OBSERVED",
+        "interpretation_state": "CORRELATION_ONLY",
+        "event_at": "2026-10-04T23:01:00+00:00",
+        "before_at": "2026-10-04T21:50:45+00:00",
+        "after_at": "2026-10-05T00:20:02+00:00",
+        "window_minutes": 149.3,
+        "axes": {
+          "KOSPI": {
+            "price_return_pct": 0.0,
+            "foreign_flow_change_100m_krw": null
+          },
+          "KOSDAQ": {
+            "price_return_pct": 0.0,
+            "foreign_flow_change_100m_krw": null
+          },
+          "KOSPI200_FUTURES": {
+            "price_return_pct": 0.0,
+            "basis_change": 0.0,
+            "foreign_flow_change_100m_krw": 0.0
+          },
+          "NASDAQ100_FUTURES": {
+            "price_return_pct": 0.33
+          },
+          "USD_KRW": {
+            "price_return_pct": 0.025
+          },
+          "WTI": {
+            "price_return_pct": -0.362
+          },
+          "VIX": {
+            "price_return_pct": 0.0
+          }
+        },
+        "note": "뉴스 시각 전후 시장 변화의 관측치이며 뉴스가 가격 변화를 일으켰다는 인과관계 증거가 아닙니다."
+      }
+    },
+    {
+      "issue_id": "GN-21e74139ae571df1",
+      "fingerprint": "ISSUE-FP-21e74139ae571df1",
+      "event_core_tokens": [
+        "삼성전자",
+        "실적에",
+        "쏠린"
+      ],
+      "headline": "'메모리 슈퍼사이클' 어디까지 가나…삼성·SK 실적에 쏠린 눈",
+      "first_seen_at": "2026-10-04T00:58:46Z",
+      "latest_at": "2026-10-04T21:00:00Z",
+      "article_count": 3,
+      "publisher_count": 3,
+      "independent_source_count": 1,
+      "independent_publishers": 1,
+      "reprint_count": 2,
+      "quality_filtered_count": 0,
+      "publishers": [
+        "Chosunbiz",
+        "CoinNess",
+        "포인트데일리"
+      ],
+      "official_source_available": false,
+      "state": "NEW",
+      "why_important": "시장 영향 가능성이 있는 뉴스이므로 관련 지수·섹터·수급이 실제로 반응하는지 확인할 필요가 있습니다.",
+      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
+      "next_variables": [
+        "외국인 수급",
+        "기관 수급"
+      ],
+      "history": [
+        {
+          "at": "2026-10-05T09:19:42+09:00",
+          "state": "NEW",
+          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
+        }
+      ],
+      "market_bias": "UNDETERMINED",
+      "impact_channels": [],
+      "related_sectors": [],
+      "related_countries": [],
+      "related_markets": [],
+      "related_stocks": [],
+      "topic": "시장일반",
+      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+      "articles": [
+        {
+          "id": "NEWS-bae74dfbf268b1db",
+          "headline": "'메모리 슈퍼사이클' 어디까지 가나…삼성·SK 실적에 쏠린 눈",
+          "title": "'메모리 슈퍼사이클' 어디까지 가나…삼성·SK 실적에 쏠린 눈 - 포인트데일리",
+          "published_at": "2026-10-04T21:00:00Z",
+          "observed_at": "2026-10-05T00:19:33.184309Z",
+          "retrieved_at": "2026-10-05T00:19:33.184309Z",
+          "source": "포인트데일리",
+          "publisher": "포인트데일리",
+          "source_type": "SECONDARY",
+          "source_id": "google-news-rss",
+          "source_kind": "secondary_aggregator",
+          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1jeDhjcFl4Y051d2Q3WGZhQUtxcTROY1ZxcUN4bDRlUEc5TTVzSEZEemZaTGRya194Yk5MVFNoSUxsdFZMWDQ2RmlZWkdrYnU0UEIxS1NaaTdRTU9MQUlFcVEzSk5lMjVXZWJUVDlPR1TSAXRBVV95cUxOUjhybnY3ZC1UUG5wRzBfMldMTEYwVkRPcHA1X2J0UUExQ1NSUE16azVnTS1QV2gwNlFvZUd3eEpWam5QSzhCM0VkckJUYWc0MllXZlRyaHU5RTRFak1DbEE5Z1c1dWZhSTNLVjBrWEs5aXZRSQ?oc=5",
+          "query": "삼성전자 SK하이닉스 반도체 HBM AI",
+          "cluster_id": "GN-21e74139ae571df1",
+          "official_source_available": false,
+          "market_bias": "UNDETERMINED",
+          "impact_channels": [],
+          "related_sectors": [],
+          "related_countries": [],
+          "related_markets": [],
+          "related_stocks": [],
+          "topic": "시장일반",
+          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+          "promotion_score": 0,
+          "content_quality": "EDITORIAL_OR_FACTUAL",
+          "is_promotional": false,
+          "is_low_information": false,
+          "filter_from_market_feed": false,
+          "market_fact_signal": true
+        },
         {
           "id": "NEWS-57a4a4c1bde14a44",
           "headline": "[주간증시전망] 美 국채 금리에 눌린 증시… 삼성전자 3분기 실적에 쏠린 눈 - 조선비즈",
           "title": "[주간증시전망] 美 국채 금리에 눌린 증시… 삼성전자 3분기 실적에 쏠린 눈 - 조선비즈 - Chosunbiz",
           "published_at": "2026-10-04T21:00:00Z",
-          "observed_at": "2026-10-04T21:50:12.686944Z",
-          "retrieved_at": "2026-10-04T21:50:12.686944Z",
+          "observed_at": "2026-10-05T00:19:33.633128Z",
+          "retrieved_at": "2026-10-05T00:19:33.633128Z",
           "source": "Chosunbiz",
           "publisher": "Chosunbiz",
           "source_type": "SECONDARY",
@@ -1089,7 +1357,7 @@
           "source_kind": "secondary_aggregator",
           "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOejJtWjZ0b3lzTXIyQXY0MHdkV3hwWHBEMVhlV2hBT2hkRFUzc3I5dFpBUGxvSTBnVzV2S0F4TXplS243WkN5bzViR2JXY1FJOGU1Y1IzOVQ1T1lPOUhjVWdxUkJpTE1NaEdrR0p4YXZsaF9IUmE5YnNtMGs4SElhX19IUWoySGtT0gGcAUFVX3lxTE5xN1RKYzBYTjFiQ1NJX3VwQkxYNEg4QkJ5aGphU09qMXpfVmg1U0d6ZGg2bnE5MWF2Tml5TmZFMUVNUmU4VWRHTWZJQ0phWG80WjB4Y1VGSGJNMkIzeUVTcnY0M0xSTmFLU24zSVEzT1FoaDJnT19UU2Z5UUwwSERLd0tkLU5kTW5JQkRzNDJ1X2J4WWhaNDdTaUZNTg?oc=5",
           "query": "연준 Fed 미국 국채 금리 달러 환율",
-          "cluster_id": "GN-95959ab0344ebbff",
+          "cluster_id": "GN-21e74139ae571df1",
           "official_source_available": false,
           "market_bias": "UNDETERMINED",
           "impact_channels": [
@@ -1122,54 +1390,598 @@
           "is_low_information": false,
           "filter_from_market_feed": false,
           "market_fact_signal": true
+        },
+        {
+          "id": "NEWS-22f8c3d9a66f2321",
+          "headline": "코스피 외국인 한달 20조 매도, 삼성전자 실적 주목",
+          "title": "코스피 외국인 한달 20조 매도, 삼성전자 실적 주목 - CoinNess",
+          "published_at": "2026-10-04T00:58:46Z",
+          "observed_at": "2026-10-05T00:19:33.132709Z",
+          "retrieved_at": "2026-10-05T00:19:33.132709Z",
+          "source": "CoinNess",
+          "publisher": "CoinNess",
+          "source_type": "SECONDARY",
+          "source_id": "google-news-rss",
+          "source_kind": "secondary_aggregator",
+          "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE9lMTExb2NJeWdqLWlETVNhTkNVdC1lUnYtUktvdm9CeTY3b0N6T2UwaVJlOV9iMDN3YXRwRkhGR0RlM1VrLTdtYldKbFQ4eVNjdWtWb0hHbw?oc=5",
+          "query": "한국 증시 코스피 코스닥 외국인 기관 수급",
+          "cluster_id": "GN-21e74139ae571df1",
+          "official_source_available": false,
+          "market_bias": "UNDETERMINED",
+          "impact_channels": [
+            "growth_beta",
+            "semiconductor"
+          ],
+          "related_sectors": [
+            "반도체"
+          ],
+          "related_countries": [],
+          "related_markets": [
+            "KOSPI",
+            "NASDAQ"
+          ],
+          "related_stocks": [
+            "삼성전자"
+          ],
+          "topic": "반도체",
+          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+          "promotion_score": 0,
+          "content_quality": "EDITORIAL_OR_FACTUAL",
+          "is_promotional": false,
+          "is_low_information": false,
+          "filter_from_market_feed": false,
+          "market_fact_signal": true
         }
       ],
       "ai_analysis": {},
-      "last_updated_at": "2026-10-05T06:50:23+09:00",
-      "importance_score": 21.5,
+      "last_updated_at": "2026-10-05T09:19:42+09:00",
+      "merged_prior_issue_ids": [
+        "GN-95959ab0344ebbff",
+        "GN-762e94a4968448cc"
+      ],
+      "importance_score": 13.5,
       "importance_components": {
         "independent_source_component": 1,
-        "article_component": 1,
-        "channel_component": 4,
+        "article_component": 3,
+        "channel_component": 0,
         "official_source_component": 0,
-        "recency_component": 8,
+        "recency_component": 5,
         "market_reaction_component": "PENDING"
       },
       "market_reaction": {
         "evidence_state": "PENDING",
-        "event_at": "2026-10-04T21:00:00+00:00",
+        "event_at": "2026-10-04T00:58:46+00:00",
         "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
       }
     },
     {
-      "issue_id": "GN-025c5962d73efee0",
-      "fingerprint": "ISSUE-FP-025c5962d73efee0",
+      "issue_id": "GN-7caea8e9a515ebcd",
+      "fingerprint": "ISSUE-FP-7caea8e9a515ebcd",
+      "event_core_tokens": [
+        "기술을",
+        "길을",
+        "반도체",
+        "배터리",
+        "새로운",
+        "성능",
+        "열고",
+        "위한",
+        "있습니다",
+        "자동차"
+      ],
+      "headline": "한국은 반도체 기술을 활용하여 전기 자동차 배터리 성능 향상을 위한 새로운 길을 열고 있습니다.",
+      "first_seen_at": "2026-10-04T15:47:51Z",
+      "latest_at": "2026-10-04T15:47:51Z",
+      "article_count": 1,
+      "publisher_count": 1,
+      "independent_source_count": 1,
+      "independent_publishers": 1,
+      "reprint_count": 0,
+      "quality_filtered_count": 0,
+      "publishers": [
+        "Vietnam.vn"
+      ],
+      "official_source_available": false,
+      "state": "NEW",
+      "why_important": "반도체는 국내 지수 비중이 커서 업종 상대강도와 외국인 수급이 지수 체감과 달라지는지 확인할 필요가 있습니다.",
+      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
+      "next_variables": [
+        "KOSDAQ",
+        "KOSPI",
+        "NASDAQ",
+        "외국인 수급",
+        "기관 수급"
+      ],
+      "history": [
+        {
+          "at": "2026-10-05T09:19:42+09:00",
+          "state": "NEW",
+          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
+        }
+      ],
+      "market_bias": "UNDETERMINED",
+      "impact_channels": [
+        "growth_beta",
+        "semiconductor"
+      ],
+      "related_sectors": [
+        "2차전지",
+        "반도체",
+        "자동차"
+      ],
+      "related_countries": [],
+      "related_markets": [
+        "KOSDAQ",
+        "KOSPI",
+        "NASDAQ"
+      ],
+      "related_stocks": [],
+      "topic": "2차전지 · 반도체 · 자동차",
+      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+      "articles": [
+        {
+          "id": "NEWS-03b230158cf97eed",
+          "headline": "한국은 반도체 기술을 활용하여 전기 자동차 배터리 성능 향상을 위한 새로운 길을 열고 있습니다.",
+          "title": "한국은 반도체 기술을 활용하여 전기 자동차 배터리 성능 향상을 위한 새로운 길을 열고 있습니다. - Vietnam.vn",
+          "published_at": "2026-10-04T15:47:51Z",
+          "observed_at": "2026-10-05T00:19:33.404580Z",
+          "retrieved_at": "2026-10-05T00:19:33.404580Z",
+          "source": "Vietnam.vn",
+          "publisher": "Vietnam.vn",
+          "source_type": "SECONDARY",
+          "source_id": "google-news-rss",
+          "source_kind": "secondary_aggregator",
+          "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxObG1CQ1hXaWR1M2hxYmZPREYzMUVwOXFENTE3Sk4zWFhIYUEzVVJwWUJaQ3JVbzMyekRQWWtsaWtLeWRjUW5CQnVDNGpsTFF0ZHBGVWZoU0VueHhManBsekRQU2xPeWFpN1UyYlVDT1JIVF9BTnByYVhBT3NWY0ROR3lfaXZqaGxnZFEwUEt2d1laRkJu?oc=5",
+          "query": "2차전지 배터리 리튬 전기차 한국",
+          "cluster_id": "GN-7caea8e9a515ebcd",
+          "official_source_available": false,
+          "market_bias": "UNDETERMINED",
+          "impact_channels": [
+            "growth_beta",
+            "semiconductor"
+          ],
+          "related_sectors": [
+            "2차전지",
+            "반도체",
+            "자동차"
+          ],
+          "related_countries": [],
+          "related_markets": [
+            "KOSDAQ",
+            "KOSPI",
+            "NASDAQ"
+          ],
+          "related_stocks": [],
+          "topic": "2차전지 · 반도체 · 자동차",
+          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+          "promotion_score": 0,
+          "content_quality": "EDITORIAL_OR_FACTUAL",
+          "is_promotional": false,
+          "is_low_information": false,
+          "filter_from_market_feed": false,
+          "market_fact_signal": false
+        }
+      ],
+      "ai_analysis": {},
+      "last_updated_at": "2026-10-05T09:19:42+09:00",
+      "importance_score": 11.5,
+      "importance_components": {
+        "independent_source_component": 1,
+        "article_component": 1,
+        "channel_component": 2,
+        "official_source_component": 0,
+        "recency_component": 2,
+        "market_reaction_component": "PENDING"
+      },
+      "market_reaction": {
+        "evidence_state": "PENDING",
+        "event_at": "2026-10-04T15:47:51+00:00",
+        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
+      }
+    },
+    {
+      "issue_id": "GN-315e8aa4ed0559f9",
+      "fingerprint": "ISSUE-FP-315e8aa4ed0559f9",
+      "event_core_tokens": [
+        "ai해킹",
+        "공격",
+        "무방비",
+        "보안체계론",
+        "빈틈",
+        "시스템",
+        "직원용"
+      ],
+      "headline": "‘직원용 시스템’ 등 빈틈 공격…現 보안체계론 AI해킹 무방비",
+      "first_seen_at": "2026-10-04T10:35:38Z",
+      "latest_at": "2026-10-04T10:35:38Z",
+      "article_count": 1,
+      "publisher_count": 1,
+      "independent_source_count": 1,
+      "independent_publishers": 1,
+      "reprint_count": 0,
+      "quality_filtered_count": 0,
+      "publishers": [
+        "kookje.co.kr"
+      ],
+      "official_source_available": false,
+      "state": "NEW",
+      "why_important": "지정학 변화는 유가·환율·위험프리미엄을 통해 국내 증시에 전달될 수 있어 실제 가격 반응을 추가 확인해야 합니다.",
+      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
+      "next_variables": [
+        "KOSPI",
+        "NASDAQ",
+        "WTI",
+        "외국인 수급",
+        "기관 수급"
+      ],
+      "history": [
+        {
+          "at": "2026-10-05T09:19:42+09:00",
+          "state": "NEW",
+          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
+        }
+      ],
+      "market_bias": "UNDETERMINED",
+      "impact_channels": [
+        "geopolitics",
+        "risk_premium"
+      ],
+      "related_sectors": [],
+      "related_countries": [],
+      "related_markets": [
+        "KOSPI",
+        "NASDAQ",
+        "WTI"
+      ],
+      "related_stocks": [],
+      "topic": "지정학",
+      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+      "articles": [
+        {
+          "id": "NEWS-4b4e8000bc60c55c",
+          "headline": "‘직원용 시스템’ 등 빈틈 공격…現 보안체계론 AI해킹 무방비",
+          "title": "‘직원용 시스템’ 등 빈틈 공격…現 보안체계론 AI해킹 무방비 - kookje.co.kr",
+          "published_at": "2026-10-04T10:35:38Z",
+          "observed_at": "2026-10-05T00:19:33.464577Z",
+          "retrieved_at": "2026-10-05T00:19:33.464577Z",
+          "source": "kookje.co.kr",
+          "publisher": "kookje.co.kr",
+          "source_type": "SECONDARY",
+          "source_id": "google-news-rss",
+          "source_kind": "secondary_aggregator",
+          "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQbGktVlBBczl5MjRhSDdaOUM1SzNoYUU1Mk9BVnQ0TzVmeC1MNjdUaXI5SkJpdnZHTmc4S2otSV8yeVBndGR3dHJldzVEOTA5T05CMjZTRzdfeGlNRWg4Ry15OFJVdEd4Q0toRkQwQS1YZjNvWDRXZDBEdHlwZ0VVS2ZzUE1HRmJndUww?oc=5",
+          "query": "금융 은행 증권 보험 정책 한국",
+          "cluster_id": "GN-315e8aa4ed0559f9",
+          "official_source_available": false,
+          "market_bias": "UNDETERMINED",
+          "impact_channels": [
+            "geopolitics",
+            "risk_premium"
+          ],
+          "related_sectors": [],
+          "related_countries": [],
+          "related_markets": [
+            "KOSPI",
+            "NASDAQ",
+            "WTI"
+          ],
+          "related_stocks": [],
+          "topic": "지정학",
+          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+          "promotion_score": 0,
+          "content_quality": "EDITORIAL_OR_FACTUAL",
+          "is_promotional": false,
+          "is_low_information": false,
+          "filter_from_market_feed": false,
+          "market_fact_signal": false
+        }
+      ],
+      "ai_analysis": {},
+      "last_updated_at": "2026-10-05T09:19:42+09:00",
+      "importance_score": 11.5,
+      "importance_components": {
+        "independent_source_component": 1,
+        "article_component": 1,
+        "channel_component": 2,
+        "official_source_component": 0,
+        "recency_component": 2,
+        "market_reaction_component": "PENDING"
+      },
+      "market_reaction": {
+        "evidence_state": "PENDING",
+        "event_at": "2026-10-04T10:35:38+00:00",
+        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
+      }
+    },
+    {
+      "issue_id": "GN-b8b84af01ceb04cc",
+      "fingerprint": "ISSUE-FP-b8b84af01ceb04cc",
+      "event_core_tokens": [
+        "나쁜",
+        "소식",
+        "소식이",
+        "좋은",
+        "증시에는",
+        "한입시황"
+      ],
+      "headline": "[한입시황] 나쁜 소식이 증시에는 좋은 소식",
+      "first_seen_at": "2026-10-04T21:30:00Z",
+      "latest_at": "2026-10-04T21:30:00Z",
+      "article_count": 1,
+      "publisher_count": 1,
+      "independent_source_count": 1,
+      "independent_publishers": 1,
+      "reprint_count": 0,
+      "quality_filtered_count": 0,
+      "publishers": [
+        "머니네버슬립"
+      ],
+      "official_source_available": false,
+      "state": "NEW",
+      "why_important": "시장 영향 가능성이 있는 뉴스이므로 관련 지수·섹터·수급이 실제로 반응하는지 확인할 필요가 있습니다.",
+      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
+      "next_variables": [
+        "외국인 수급",
+        "기관 수급"
+      ],
+      "history": [
+        {
+          "at": "2026-10-05T09:19:42+09:00",
+          "state": "NEW",
+          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
+        }
+      ],
+      "market_bias": "UNDETERMINED",
+      "impact_channels": [],
+      "related_sectors": [],
+      "related_countries": [],
+      "related_markets": [],
+      "related_stocks": [],
+      "topic": "시장일반",
+      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+      "articles": [
+        {
+          "id": "NEWS-0bc7d8274c325d57",
+          "headline": "[한입시황] 나쁜 소식이 증시에는 좋은 소식",
+          "title": "[한입시황] 나쁜 소식이 증시에는 좋은 소식 - 머니네버슬립",
+          "published_at": "2026-10-04T21:30:00Z",
+          "observed_at": "2026-10-05T00:19:33.567078Z",
+          "retrieved_at": "2026-10-05T00:19:33.567078Z",
+          "source": "머니네버슬립",
+          "publisher": "머니네버슬립",
+          "source_type": "SECONDARY",
+          "source_id": "google-news-rss",
+          "source_kind": "secondary_aggregator",
+          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1OY0llVjlVaDZyR1VRNlBycUotckdDM2hlRWJiZEZjVWVXaEVSdXAxM1FoWWl6TkN2NVZlbTFxcGR3S0tZOWIxU0tONGJpUEQwVmUzTHVHSVVmNDhyRHlMMm9BRzBFVGpiYTBsS1JEUmdPT2_SAXdBVV95cUxPMTJKb2V5THhvZWZHZjd5MzhkaF9xRTN2SHY5Tk5PNEI4ZDIxRlVKRXgwLXh4UmpoNWF4S1ZCYWpXOGZ4blhjanc1Zi1TUno4VF9DYV9yQ0pOQUo5N0M4RXNpeVJheEVDS1lYby1NdGlTM2RXYl9zSQ?oc=5",
+          "query": "미국 증시 나스닥 S&P500 다우 엔비디아 반도체",
+          "cluster_id": "GN-b8b84af01ceb04cc",
+          "official_source_available": false,
+          "market_bias": "UNDETERMINED",
+          "impact_channels": [],
+          "related_sectors": [],
+          "related_countries": [],
+          "related_markets": [],
+          "related_stocks": [],
+          "topic": "시장일반",
+          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+          "promotion_score": 0,
+          "content_quality": "EDITORIAL_OR_FACTUAL",
+          "is_promotional": false,
+          "is_low_information": false,
+          "filter_from_market_feed": false,
+          "market_fact_signal": false
+        }
+      ],
+      "ai_analysis": {},
+      "last_updated_at": "2026-10-05T09:19:42+09:00",
+      "importance_score": 10.5,
+      "importance_components": {
+        "independent_source_component": 1,
+        "article_component": 1,
+        "channel_component": 0,
+        "official_source_component": 0,
+        "recency_component": 5,
+        "market_reaction_component": "PENDING"
+      },
+      "market_reaction": {
+        "evidence_state": "PENDING",
+        "event_at": "2026-10-04T21:30:00+00:00",
+        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
+      }
+    }
+  ],
+  "strengthening": [
+    {
+      "issue_id": "GN-1e2fead40f11a963",
+      "fingerprint": "ISSUE-FP-1e2fead40f11a963",
+      "event_core_tokens": [
+        "8배",
+        "깜짝",
+        "다음은",
+        "랠리",
+        "마이크론",
+        "마이크론이",
+        "메모리",
+        "반도체",
+        "삼전",
+        "실적"
+      ],
+      "headline": "마이크론 ‘깜짝 실적’ 다음은 삼전·하닉…반도체 랠리 이어질까[코주부]",
+      "first_seen_at": "2026-10-03T17:12:41Z",
+      "latest_at": "2026-10-04T04:00:00Z",
+      "article_count": 2,
+      "publisher_count": 2,
+      "independent_source_count": 1,
+      "independent_publishers": 1,
+      "reprint_count": 1,
+      "quality_filtered_count": 0,
+      "publishers": [
+        "sedaily.com",
+        "시사저널e"
+      ],
+      "official_source_available": false,
+      "state": "STRENGTHENING",
+      "why_important": "반도체는 국내 지수 비중이 커서 업종 상대강도와 외국인 수급이 지수 체감과 달라지는지 확인할 필요가 있습니다.",
+      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
+      "next_variables": [
+        "KOSPI",
+        "NASDAQ",
+        "외국인 수급",
+        "기관 수급"
+      ],
+      "history": [
+        {
+          "at": "2026-10-04T17:54:58+09:00",
+          "state": "NEW",
+          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
+        },
+        {
+          "at": "2026-10-04T23:43:27+09:00",
+          "state": "PERSISTING",
+          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
+        },
+        {
+          "at": "2026-10-05T09:19:42+09:00",
+          "state": "STRENGTHENING",
+          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
+        }
+      ],
+      "market_bias": "UNDETERMINED",
+      "impact_channels": [
+        "growth_beta",
+        "semiconductor"
+      ],
+      "related_sectors": [
+        "반도체"
+      ],
+      "related_countries": [],
+      "related_markets": [
+        "KOSPI",
+        "NASDAQ"
+      ],
+      "related_stocks": [],
+      "topic": "반도체",
+      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+      "articles": [
+        {
+          "id": "NEWS-4e5c558c88196e24",
+          "headline": "마이크론 ‘깜짝 실적’ 다음은 삼전·하닉…반도체 랠리 이어질까[코주부]",
+          "title": "마이크론 ‘깜짝 실적’ 다음은 삼전·하닉…반도체 랠리 이어질까[코주부] - sedaily.com",
+          "published_at": "2026-10-04T04:00:00Z",
+          "observed_at": "2026-10-05T00:19:33.184309Z",
+          "retrieved_at": "2026-10-05T00:19:33.184309Z",
+          "source": "sedaily.com",
+          "publisher": "sedaily.com",
+          "source_type": "SECONDARY",
+          "source_id": "google-news-rss",
+          "source_kind": "secondary_aggregator",
+          "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE8ycXBqQWtTejExR0N6VzVVUHJSY2RQdElQbjVUZldCLWY3bDc1ZXUzai1lLU4tc25FMDd1eGg5T0o1aXdLcFhyWEU5WVFILV9PVFp30gFTQVVfeXFMTzJxcGpBa1N6MTFHQ3pXNVVQclJjZFB0SVBuNVRmV0ItZjdsNzVldTNqLWUtTi1zbkUwN3V4aDlPSjVpd0twWHJYRTlZUUgtX09UWnc?oc=5",
+          "query": "삼성전자 SK하이닉스 반도체 HBM AI",
+          "cluster_id": "GN-94be0052f3701bba",
+          "official_source_available": false,
+          "market_bias": "UNDETERMINED",
+          "impact_channels": [
+            "growth_beta",
+            "semiconductor"
+          ],
+          "related_sectors": [
+            "반도체"
+          ],
+          "related_countries": [],
+          "related_markets": [
+            "KOSPI",
+            "NASDAQ"
+          ],
+          "related_stocks": [],
+          "topic": "반도체",
+          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+          "promotion_score": 0,
+          "content_quality": "EDITORIAL_OR_FACTUAL",
+          "is_promotional": false,
+          "is_low_information": false,
+          "filter_from_market_feed": false,
+          "market_fact_signal": true
+        },
+        {
+          "id": "NEWS-4c576d20127767de",
+          "headline": "마이크론이 확인한 ‘메모리 호황’···삼전·하닉 합산 영업익 전년 比 8배 전망",
+          "title": "마이크론이 확인한 ‘메모리 호황’···삼전·하닉 합산 영업익 전년 比 8배 전망 - 시사저널e",
+          "published_at": "2026-10-04T02:24:58Z",
+          "observed_at": "2026-10-05T00:19:33.184309Z",
+          "retrieved_at": "2026-10-05T00:19:33.184309Z",
+          "source": "시사저널e",
+          "publisher": "시사저널e",
+          "source_type": "SECONDARY",
+          "source_id": "google-news-rss",
+          "source_kind": "secondary_aggregator",
+          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5wLUhJTVFGSDJ5blBRWXlGMFJZcWRiTDg3bjZrVHJ3ZTlqM2FETlJhR1haVF93TlBNSS1VWEZOaXBoNW95bksxM09RZmtZVnhoRXo0aUw5c2U2YmQ5Qm51b2JqUlE2Y2VFVFVmZ0FsdTFBMkVuY1HSAXZBVV95cUxOcC1ISU1RRkgyeW5QUVl5RjBSWXFkYkw4N242a1Ryd2U5ajNhRE5SYUdYWlRfd05QTUktVVhGTmlwaDVveW5LMTNPUWZrWVZ4aEV6NGlMOXNlNmJkOUJudW9ialJRNmNlRVRVZmdBbHUxQTJFbmNR?oc=5",
+          "query": "삼성전자 SK하이닉스 반도체 HBM AI",
+          "cluster_id": "GN-94be0052f3701bba",
+          "official_source_available": false,
+          "market_bias": "UNDETERMINED",
+          "impact_channels": [],
+          "related_sectors": [],
+          "related_countries": [],
+          "related_markets": [],
+          "related_stocks": [],
+          "topic": "시장일반",
+          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+          "promotion_score": 0,
+          "content_quality": "EDITORIAL_OR_FACTUAL",
+          "is_promotional": false,
+          "is_low_information": false,
+          "filter_from_market_feed": false,
+          "market_fact_signal": false
+        }
+      ],
+      "identity_match": "SEMANTIC_CONTINUITY",
+      "generated_fingerprint": "ISSUE-FP-94be0052f3701bba",
+      "ai_analysis": {},
+      "last_updated_at": "2026-10-05T09:19:42+09:00",
+      "importance_score": 13.0,
+      "importance_components": {
+        "independent_source_component": 1,
+        "article_component": 2,
+        "channel_component": 2,
+        "official_source_component": 0,
+        "recency_component": 2,
+        "market_reaction_component": "PENDING"
+      },
+      "market_reaction": {
+        "evidence_state": "PENDING",
+        "event_at": "2026-10-03T17:12:41+00:00",
+        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
+      }
+    },
+    {
+      "issue_id": "GN-ed630f324c6881f4",
+      "fingerprint": "ISSUE-FP-ed630f324c6881f4",
       "event_core_tokens": [
         "im뱅크",
-        "금융",
-        "잰걸음",
-        "중기",
-        "지역밀착",
-        "지원",
-        "진출",
-        "캠퍼스",
-        "혁신",
-        "호남"
+        "감염",
+        "고객정보는",
+        "바로저축은행",
+        "악성코드",
+        "안돼",
+        "올해",
+        "유출",
+        "피해"
       ],
-      "headline": "[금융家] iM뱅크 ③ㅣ지역밀착 금융 ‘잰걸음’…호남 진출·중기 지원·캠퍼스 혁신",
-      "first_seen_at": "2026-10-04T21:25:00Z",
-      "latest_at": "2026-10-04T21:25:00Z",
-      "article_count": 1,
-      "publisher_count": 1,
+      "headline": "iM뱅크·바로저축은행, 올해 악성코드 감염…고객정보는 유출 안돼",
+      "first_seen_at": "2026-10-03T20:51:00Z",
+      "latest_at": "2026-10-04T02:04:00Z",
+      "article_count": 2,
+      "publisher_count": 2,
       "independent_source_count": 1,
       "independent_publishers": 1,
-      "reprint_count": 0,
+      "reprint_count": 1,
       "quality_filtered_count": 0,
       "publishers": [
-        "CBC뉴스"
+        "YTN",
+        "매일경제TV"
       ],
       "official_source_available": false,
-      "state": "NEW",
+      "state": "STRENGTHENING",
       "why_important": "시장 영향 가능성이 있는 뉴스이므로 관련 지수·섹터·수급이 실제로 반응하는지 확인할 필요가 있습니다.",
       "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
       "next_variables": [
@@ -1178,8 +1990,18 @@
       ],
       "history": [
         {
-          "at": "2026-10-05T06:50:23+09:00",
+          "at": "2026-10-04T23:43:27+09:00",
           "state": "NEW",
+          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
+        },
+        {
+          "at": "2026-10-05T03:26:50+09:00",
+          "state": "PERSISTING",
+          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
+        },
+        {
+          "at": "2026-10-05T09:19:42+09:00",
+          "state": "STRENGTHENING",
           "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
         }
       ],
@@ -1193,20 +2015,20 @@
       "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
       "articles": [
         {
-          "id": "NEWS-e59d6dda8a03034f",
-          "headline": "[금융家] iM뱅크 ③ㅣ지역밀착 금융 ‘잰걸음’…호남 진출·중기 지원·캠퍼스 혁신",
-          "title": "[금융家] iM뱅크 ③ㅣ지역밀착 금융 ‘잰걸음’…호남 진출·중기 지원·캠퍼스 혁신 - CBC뉴스",
-          "published_at": "2026-10-04T21:25:00Z",
-          "observed_at": "2026-10-04T21:50:12.622692Z",
-          "retrieved_at": "2026-10-04T21:50:12.622692Z",
-          "source": "CBC뉴스",
-          "publisher": "CBC뉴스",
+          "id": "NEWS-0e58f416ee179d0d",
+          "headline": "iM뱅크·바로저축은행, 올해 악성코드 감염…고객정보는 유출 안돼",
+          "title": "iM뱅크·바로저축은행, 올해 악성코드 감염…고객정보는 유출 안돼 - 매일경제TV",
+          "published_at": "2026-10-04T02:04:00Z",
+          "observed_at": "2026-10-05T00:19:33.464577Z",
+          "retrieved_at": "2026-10-05T00:19:33.464577Z",
+          "source": "매일경제TV",
+          "publisher": "매일경제TV",
           "source_type": "SECONDARY",
           "source_id": "google-news-rss",
           "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5lUndXYkVaVm5ubE04OGR0VWU4SWU5dHoya1YzZFhUREs5XzlqcTJJcmhua1AzYWR3X2ZIS1RtRUJ0M0JaalIyb2t2X01fX1dPTE1EdzZyVFVIaWxYNGc1X0RManplX1gt?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5Ia04zd29iWm1WS3BFUEo3ZXk3aXdMSm5JaU1MQVdlN3RBZTRvdmpVYy1odHJfclpHTjZJNzFYTjhYYVVONExzX2s4LXl5bm9mSWZqcGt0MnpnajhYeHJ2N3k5VWNRMHc?oc=5",
           "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-025c5962d73efee0",
+          "cluster_id": "GN-b2efade4420f868d",
           "official_source_available": false,
           "market_bias": "UNDETERMINED",
           "impact_channels": [],
@@ -1222,89 +2044,22 @@
           "is_low_information": false,
           "filter_from_market_feed": false,
           "market_fact_signal": false
-        }
-      ],
-      "ai_analysis": {},
-      "last_updated_at": "2026-10-05T06:50:23+09:00",
-      "importance_score": 13.5,
-      "importance_components": {
-        "independent_source_component": 1,
-        "article_component": 1,
-        "channel_component": 0,
-        "official_source_component": 0,
-        "recency_component": 8,
-        "market_reaction_component": "PENDING"
-      },
-      "market_reaction": {
-        "evidence_state": "PENDING",
-        "event_at": "2026-10-04T21:25:00+00:00",
-        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
-      }
-    },
-    {
-      "issue_id": "GN-8e822d8289fb7372",
-      "fingerprint": "ISSUE-FP-8e822d8289fb7372",
-      "event_core_tokens": [
-        "갈랐다",
-        "기본기",
-        "보안",
-        "뻗은",
-        "여부",
-        "온투업까지",
-        "피해",
-        "해킹"
-      ],
-      "headline": "온투업까지 손 뻗은 해킹…'보안 기본기'가 피해 여부 갈랐다",
-      "first_seen_at": "2026-10-04T20:45:01Z",
-      "latest_at": "2026-10-04T20:45:01Z",
-      "article_count": 1,
-      "publisher_count": 1,
-      "independent_source_count": 1,
-      "independent_publishers": 1,
-      "reprint_count": 0,
-      "quality_filtered_count": 0,
-      "publishers": [
-        "매일경제 마켓"
-      ],
-      "official_source_available": false,
-      "state": "NEW",
-      "why_important": "시장 영향 가능성이 있는 뉴스이므로 관련 지수·섹터·수급이 실제로 반응하는지 확인할 필요가 있습니다.",
-      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
-      "next_variables": [
-        "외국인 수급",
-        "기관 수급"
-      ],
-      "history": [
+        },
         {
-          "at": "2026-10-05T06:50:23+09:00",
-          "state": "NEW",
-          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
-        }
-      ],
-      "market_bias": "UNDETERMINED",
-      "impact_channels": [],
-      "related_sectors": [],
-      "related_countries": [],
-      "related_markets": [],
-      "related_stocks": [],
-      "topic": "시장일반",
-      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-      "articles": [
-        {
-          "id": "NEWS-aa2003a6e391d62f",
-          "headline": "온투업까지 손 뻗은 해킹…'보안 기본기'가 피해 여부 갈랐다",
-          "title": "온투업까지 손 뻗은 해킹…'보안 기본기'가 피해 여부 갈랐다 - 매일경제 마켓",
-          "published_at": "2026-10-04T20:45:01Z",
-          "observed_at": "2026-10-04T21:50:12.622692Z",
-          "retrieved_at": "2026-10-04T21:50:12.622692Z",
-          "source": "매일경제 마켓",
-          "publisher": "매일경제 마켓",
+          "id": "NEWS-6387a889f540c66f",
+          "headline": "iM뱅크·바로저축은행, 올해 악성코드 감염 피해",
+          "title": "iM뱅크·바로저축은행, 올해 악성코드 감염 피해 - YTN",
+          "published_at": "2026-10-04T01:28:00Z",
+          "observed_at": "2026-10-05T00:19:33.464577Z",
+          "retrieved_at": "2026-10-05T00:19:33.464577Z",
+          "source": "YTN",
+          "publisher": "YTN",
           "source_type": "SECONDARY",
           "source_id": "google-news-rss",
           "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5wdGs1VkZ1Q2ZoWTJPLWZ1YVVpZXVMYTgzcUJzVTJMTFY3akYzTEhGQ3EwV3Y5UXh2U2J2cjIyeWxPM250WjNDYko3dXpyOTJTanc?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9wM2pxYmRyN0p0TldxaFpGbVZpcHRIcHFIcUQwVFdJOVpMT2lSTEIwYUVNbW9vNmp3dW52REZyeTd0ckZQcTVNUHBkZnNxcld5R3RsQXlhRVM3LVZ2MmZ3bnluZEtLN05UMm9ETXpEWQ?oc=5",
           "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-8e822d8289fb7372",
+          "cluster_id": "GN-b2efade4420f868d",
           "official_source_available": false,
           "market_bias": "UNDETERMINED",
           "impact_channels": [],
@@ -1322,118 +2077,27 @@
           "market_fact_signal": false
         }
       ],
+      "identity_match": "SEMANTIC_CONTINUITY",
+      "generated_fingerprint": "ISSUE-FP-b2efade4420f868d",
       "ai_analysis": {},
-      "last_updated_at": "2026-10-05T06:50:23+09:00",
-      "importance_score": 13.5,
+      "last_updated_at": "2026-10-05T09:19:42+09:00",
+      "importance_score": 9.0,
       "importance_components": {
         "independent_source_component": 1,
-        "article_component": 1,
+        "article_component": 2,
         "channel_component": 0,
         "official_source_component": 0,
-        "recency_component": 8,
+        "recency_component": 2,
         "market_reaction_component": "PENDING"
       },
       "market_reaction": {
         "evidence_state": "PENDING",
-        "event_at": "2026-10-04T20:45:01+00:00",
+        "event_at": "2026-10-03T20:51:00+00:00",
         "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
       }
-    },
-    {
-      "issue_id": "GN-acc57e134a25c27a",
-      "fingerprint": "ISSUE-FP-acc57e134a25c27a",
-      "event_core_tokens": [
-        "10",
-        "월요일",
-        "이번",
-        "전망",
-        "주말"
-      ],
-      "headline": "[10.5(월) 월요일 장 전망] 주말 종합 · 이번 주 시장 관…",
-      "first_seen_at": "2026-10-04T20:01:25Z",
-      "latest_at": "2026-10-04T20:01:25Z",
-      "article_count": 1,
-      "publisher_count": 1,
-      "independent_source_count": 1,
-      "independent_publishers": 1,
-      "reprint_count": 0,
-      "quality_filtered_count": 0,
-      "publishers": [
-        "주달"
-      ],
-      "official_source_available": false,
-      "state": "NEW",
-      "why_important": "시장 영향 가능성이 있는 뉴스이므로 관련 지수·섹터·수급이 실제로 반응하는지 확인할 필요가 있습니다.",
-      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
-      "next_variables": [
-        "외국인 수급",
-        "기관 수급"
-      ],
-      "history": [
-        {
-          "at": "2026-10-05T06:50:23+09:00",
-          "state": "NEW",
-          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
-        }
-      ],
-      "market_bias": "UNDETERMINED",
-      "impact_channels": [],
-      "related_sectors": [],
-      "related_countries": [],
-      "related_markets": [],
-      "related_stocks": [],
-      "topic": "시장일반",
-      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-      "articles": [
-        {
-          "id": "NEWS-d88cf85f2a4c021c",
-          "headline": "[10.5(월) 월요일 장 전망] 주말 종합 · 이번 주 시장 관…",
-          "title": "[10.5(월) 월요일 장 전망] 주말 종합 · 이번 주 시장 관… - 주달",
-          "published_at": "2026-10-04T20:01:25Z",
-          "observed_at": "2026-10-04T21:50:12.495014Z",
-          "retrieved_at": "2026-10-04T21:50:12.495014Z",
-          "source": "주달",
-          "publisher": "주달",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5Qb2ExT0tfMDlvbVB4SURvLUVKcnBmcEtTa0gybDAxWXFSSFhDQ1pmX056cG43RDMyN09rZVNnazV3cWpZdDlCQkdVTFM3VVFfTVBuYUFTbEVRd1hJVU13Q1VlZDdMWUh5TUZqNHk5QV9sdWprUUE?oc=5",
-          "query": "한국 증시 코스피 코스닥 외국인 기관 수급",
-          "cluster_id": "GN-acc57e134a25c27a",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [],
-          "related_stocks": [],
-          "topic": "시장일반",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        }
-      ],
-      "ai_analysis": {},
-      "last_updated_at": "2026-10-05T06:50:23+09:00",
-      "importance_score": 13.5,
-      "importance_components": {
-        "independent_source_component": 1,
-        "article_component": 1,
-        "channel_component": 0,
-        "official_source_component": 0,
-        "recency_component": 8,
-        "market_reaction_component": "PENDING"
-      },
-      "market_reaction": {
-        "evidence_state": "PENDING",
-        "event_at": "2026-10-04T20:01:25+00:00",
-        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
-      }
-    },
+    }
+  ],
+  "weakening": [
     {
       "issue_id": "GN-d11329a0eb7205df",
       "fingerprint": "ISSUE-FP-d11329a0eb7205df",
@@ -1457,7 +2121,7 @@
         "Calgary Roughnecks"
       ],
       "official_source_available": false,
-      "state": "NEW",
+      "state": "WEAKENING",
       "why_important": "시장 영향 가능성이 있는 뉴스이므로 관련 지수·섹터·수급이 실제로 반응하는지 확인할 필요가 있습니다.",
       "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
       "next_variables": [
@@ -1469,6 +2133,11 @@
           "at": "2026-10-05T06:50:23+09:00",
           "state": "NEW",
           "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
+        },
+        {
+          "at": "2026-10-05T09:19:42+09:00",
+          "state": "WEAKENING",
+          "reason": "현재 수집 창에서 새 독립 근거가 추가되지 않아 상태를 낮췄습니다. 사건 자체의 소멸을 단정하는 의미는 아닙니다."
         }
       ],
       "market_bias": "UNDETERMINED",
@@ -1513,7 +2182,7 @@
         }
       ],
       "ai_analysis": {},
-      "last_updated_at": "2026-10-05T06:50:23+09:00",
+      "last_updated_at": "2026-10-05T09:19:42+09:00",
       "importance_score": 10.5,
       "importance_components": {
         "independent_source_component": 1,
@@ -1528,1076 +2197,8 @@
         "event_at": "2026-10-04T19:40:24+00:00",
         "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
       }
-    },
-    {
-      "issue_id": "GN-7898208f61c7e907",
-      "fingerprint": "ISSUE-FP-7898208f61c7e907",
-      "event_core_tokens": [
-        "게임",
-        "기호와",
-        "범례",
-        "안내의",
-        "프리스핀카지노"
-      ],
-      "headline": "프리스핀카지노 게임 안내의 기호와 범례",
-      "first_seen_at": "2026-10-04T17:31:05Z",
-      "latest_at": "2026-10-04T17:31:05Z",
-      "article_count": 1,
-      "publisher_count": 1,
-      "independent_source_count": 1,
-      "independent_publishers": 1,
-      "reprint_count": 0,
-      "quality_filtered_count": 0,
-      "publishers": [
-        "Calgary Roughnecks"
-      ],
-      "official_source_available": false,
-      "state": "NEW",
-      "why_important": "시장 영향 가능성이 있는 뉴스이므로 관련 지수·섹터·수급이 실제로 반응하는지 확인할 필요가 있습니다.",
-      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
-      "next_variables": [
-        "외국인 수급",
-        "기관 수급"
-      ],
-      "history": [
-        {
-          "at": "2026-10-05T06:50:23+09:00",
-          "state": "NEW",
-          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
-        }
-      ],
-      "market_bias": "UNDETERMINED",
-      "impact_channels": [],
-      "related_sectors": [],
-      "related_countries": [],
-      "related_markets": [],
-      "related_stocks": [],
-      "topic": "시장일반",
-      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-      "articles": [
-        {
-          "id": "NEWS-f22176cb38dd2141",
-          "headline": "프리스핀카지노 게임 안내의 기호와 범례",
-          "title": "프리스핀카지노 게임 안내의 기호와 범례 - Calgary Roughnecks",
-          "published_at": "2026-10-04T17:31:05Z",
-          "observed_at": "2026-10-04T21:50:12.686944Z",
-          "retrieved_at": "2026-10-04T21:50:12.686944Z",
-          "source": "Calgary Roughnecks",
-          "publisher": "Calgary Roughnecks",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQd0dZSUs1bUJianRFT0FoYzR1cHFWVGx3MEJ3WGUtYmJKdzdYdXN5aXNUcjZwWHBfTmw1THZnOTViRGRnb05ZTlV0ekhGN3RLT2RERnUySFl6bGxERFF6cHEtZjNjU3NGNFBLWFZobWpYa3R6NUhETFRxYXE4QlZ2UlY5SHFDb1BFNEIwRHNXV0RSbEZXSkE?oc=5",
-          "query": "연준 Fed 미국 국채 금리 달러 환율",
-          "cluster_id": "GN-7898208f61c7e907",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [],
-          "related_stocks": [],
-          "topic": "시장일반",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        }
-      ],
-      "ai_analysis": {},
-      "last_updated_at": "2026-10-05T06:50:23+09:00",
-      "importance_score": 10.5,
-      "importance_components": {
-        "independent_source_component": 1,
-        "article_component": 1,
-        "channel_component": 0,
-        "official_source_component": 0,
-        "recency_component": 5,
-        "market_reaction_component": "PENDING"
-      },
-      "market_reaction": {
-        "evidence_state": "PENDING",
-        "event_at": "2026-10-04T17:31:05+00:00",
-        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
-      }
-    },
-    {
-      "issue_id": "GN-1584f0947b42bfcf",
-      "fingerprint": "ISSUE-FP-1584f0947b42bfcf",
-      "event_core_tokens": [
-        "금융권",
-        "넓어진",
-        "보험금으로",
-        "사후",
-        "상속",
-        "자산관리"
-      ],
-      "headline": "상속·보험금으로 넓어진 금융권 ‘사후 자산관리’",
-      "first_seen_at": "2026-10-04T15:00:00Z",
-      "latest_at": "2026-10-04T15:00:00Z",
-      "article_count": 1,
-      "publisher_count": 1,
-      "independent_source_count": 1,
-      "independent_publishers": 1,
-      "reprint_count": 0,
-      "quality_filtered_count": 0,
-      "publishers": [
-        "insnews.co.kr"
-      ],
-      "official_source_available": false,
-      "state": "NEW",
-      "why_important": "시장 영향 가능성이 있는 뉴스이므로 관련 지수·섹터·수급이 실제로 반응하는지 확인할 필요가 있습니다.",
-      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
-      "next_variables": [
-        "외국인 수급",
-        "기관 수급"
-      ],
-      "history": [
-        {
-          "at": "2026-10-05T06:50:23+09:00",
-          "state": "NEW",
-          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
-        }
-      ],
-      "market_bias": "UNDETERMINED",
-      "impact_channels": [],
-      "related_sectors": [],
-      "related_countries": [],
-      "related_markets": [],
-      "related_stocks": [],
-      "topic": "시장일반",
-      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-      "articles": [
-        {
-          "id": "NEWS-ab55498c2701f5ec",
-          "headline": "상속·보험금으로 넓어진 금융권 ‘사후 자산관리’",
-          "title": "상속·보험금으로 넓어진 금융권 ‘사후 자산관리’ - insnews.co.kr",
-          "published_at": "2026-10-04T15:00:00Z",
-          "observed_at": "2026-10-04T21:50:12.622692Z",
-          "retrieved_at": "2026-10-04T21:50:12.622692Z",
-          "source": "insnews.co.kr",
-          "publisher": "insnews.co.kr",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9iYmhwQ3VkbV9POVVhSHhoa1FnNl9mOVdLS2NEbmREVUxTdUFpSndDMENneUhJb0lETDRhX1lCSER4T0FBUkhUV0pTcm0wOEFwZENsTVpFR1JUVEtwVFItc2pTX2hxT3FLczdn0gFvQVVfeXFMUFNYMlVCOXoxcy1RY3U0cE5zbTJRR2JuMnZrZllKUVhQR0hocWJJNHd6azZObVBhdzBGZEhGa0ZlRlV0OXhOcVRKYzVrbjEzZWZYcUROWFo0QVNEb0VXMS1qbUpScktHNGdWazZWQ2dr?oc=5",
-          "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-1584f0947b42bfcf",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [],
-          "related_stocks": [],
-          "topic": "시장일반",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        }
-      ],
-      "ai_analysis": {},
-      "last_updated_at": "2026-10-05T06:50:23+09:00",
-      "importance_score": 10.5,
-      "importance_components": {
-        "independent_source_component": 1,
-        "article_component": 1,
-        "channel_component": 0,
-        "official_source_component": 0,
-        "recency_component": 5,
-        "market_reaction_component": "PENDING"
-      },
-      "market_reaction": {
-        "evidence_state": "PENDING",
-        "event_at": "2026-10-04T15:00:00+00:00",
-        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
-      }
-    },
-    {
-      "issue_id": "GN-491141a6f172be1e",
-      "fingerprint": "ISSUE-FP-491141a6f172be1e",
-      "event_core_tokens": [
-        "도박",
-        "분을",
-        "예시가",
-        "용어보다",
-        "위한",
-        "편한",
-        "화면"
-      ],
-      "headline": "용어보다 화면 예시가 편한 분을 위한 말 도박",
-      "first_seen_at": "2026-10-04T11:57:17Z",
-      "latest_at": "2026-10-04T11:57:17Z",
-      "article_count": 1,
-      "publisher_count": 1,
-      "independent_source_count": 1,
-      "independent_publishers": 1,
-      "reprint_count": 0,
-      "quality_filtered_count": 0,
-      "publishers": [
-        "Calgary Roughnecks"
-      ],
-      "official_source_available": false,
-      "state": "NEW",
-      "why_important": "시장 영향 가능성이 있는 뉴스이므로 관련 지수·섹터·수급이 실제로 반응하는지 확인할 필요가 있습니다.",
-      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
-      "next_variables": [
-        "외국인 수급",
-        "기관 수급"
-      ],
-      "history": [
-        {
-          "at": "2026-10-05T06:50:23+09:00",
-          "state": "NEW",
-          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
-        }
-      ],
-      "market_bias": "UNDETERMINED",
-      "impact_channels": [],
-      "related_sectors": [],
-      "related_countries": [],
-      "related_markets": [],
-      "related_stocks": [],
-      "topic": "시장일반",
-      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-      "articles": [
-        {
-          "id": "NEWS-8f82f50d7f8d7696",
-          "headline": "용어보다 화면 예시가 편한 분을 위한 말 도박",
-          "title": "용어보다 화면 예시가 편한 분을 위한 말 도박 - Calgary Roughnecks",
-          "published_at": "2026-10-04T11:57:17Z",
-          "observed_at": "2026-10-04T21:50:12.515172Z",
-          "retrieved_at": "2026-10-04T21:50:12.515172Z",
-          "source": "Calgary Roughnecks",
-          "publisher": "Calgary Roughnecks",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9vQUk2bEtHVzNjVDhMalhqcEFUWHNCdk5ITlJOTHpuMUhKQmFvWEJfNmVhX1FwdDEzaEViWTJaVzBjMHhqNFlTSkRrcVZscUJoSmpXa2VTd2hYRU9wV2xINnc2cVZNd2piS3B6cE5Qb0dWaHkzWEhVLS0tc2pUdw?oc=5",
-          "query": "삼성전자 SK하이닉스 반도체 HBM AI",
-          "cluster_id": "GN-491141a6f172be1e",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [],
-          "related_stocks": [],
-          "topic": "시장일반",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        }
-      ],
-      "ai_analysis": {},
-      "last_updated_at": "2026-10-05T06:50:23+09:00",
-      "importance_score": 7.5,
-      "importance_components": {
-        "independent_source_component": 1,
-        "article_component": 1,
-        "channel_component": 0,
-        "official_source_component": 0,
-        "recency_component": 2,
-        "market_reaction_component": "PENDING"
-      },
-      "market_reaction": {
-        "evidence_state": "PENDING",
-        "event_at": "2026-10-04T11:57:17+00:00",
-        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
-      }
     }
   ],
-  "strengthening": [
-    {
-      "issue_id": "GN-652105d6e2a257dc",
-      "fingerprint": "ISSUE-FP-652105d6e2a257dc",
-      "event_core_tokens": [
-        "금융권",
-        "해킹"
-      ],
-      "headline": "[주간금융이슈] 금융권 비켜가나 했더니…신한·KB국민은행 해킹, 국감 막판 변수",
-      "first_seen_at": "2026-10-03T11:36:43Z",
-      "latest_at": "2026-10-04T21:00:00Z",
-      "article_count": 28,
-      "publisher_count": 25,
-      "independent_source_count": 3,
-      "independent_publishers": 3,
-      "reprint_count": 25,
-      "quality_filtered_count": 0,
-      "publishers": [
-        "ebn.co.kr",
-        "gokorea.kr",
-        "insnews.co.kr",
-        "intn.co.kr",
-        "news.sbs.co.kr",
-        "sedaily.com",
-        "seoul.co.kr",
-        "v.daum.net",
-        "강원도민일보",
-        "금융소비자뉴스",
-        "남도일보",
-        "뉴스핌"
-      ],
-      "official_source_available": false,
-      "state": "STRENGTHENING",
-      "why_important": "시장 영향 가능성이 있는 뉴스이므로 관련 지수·섹터·수급이 실제로 반응하는지 확인할 필요가 있습니다.",
-      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
-      "next_variables": [
-        "외국인 수급",
-        "기관 수급"
-      ],
-      "history": [
-        {
-          "at": "2026-10-04T11:42:19+09:00",
-          "state": "NEW",
-          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
-        },
-        {
-          "at": "2026-10-04T17:54:58+09:00",
-          "state": "STRENGTHENING",
-          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
-        },
-        {
-          "at": "2026-10-05T03:26:50+09:00",
-          "state": "PERSISTING",
-          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
-        },
-        {
-          "at": "2026-10-05T06:50:23+09:00",
-          "state": "STRENGTHENING",
-          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
-        }
-      ],
-      "market_bias": "UNDETERMINED",
-      "impact_channels": [],
-      "related_sectors": [],
-      "related_countries": [],
-      "related_markets": [],
-      "related_stocks": [],
-      "topic": "시장일반",
-      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-      "articles": [
-        {
-          "id": "NEWS-637b7b16ecb65c25",
-          "headline": "[주간금융이슈] 금융권 비켜가나 했더니…신한·KB국민은행 해킹, 국감 막판 변수",
-          "title": "[주간금융이슈] 금융권 비켜가나 했더니…신한·KB국민은행 해킹, 국감 막판 변수 - 뉴스핌",
-          "published_at": "2026-10-04T21:00:00Z",
-          "observed_at": "2026-10-04T21:50:12.622692Z",
-          "retrieved_at": "2026-10-04T21:50:12.622692Z",
-          "source": "뉴스핌",
-          "publisher": "뉴스핌",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5paW5YeFBKTDRLU3lob1JOLWpXemZPUmhpNUhzR2VFdDNFX19waVhUdE0xbVZKUkh2aTJHOEwtSDYzY3RxVVcxV3J1WXhaWVhiQmtleVVXYjJjNmla?oc=5",
-          "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-652105d6e2a257dc",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [],
-          "related_stocks": [],
-          "topic": "시장일반",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        },
-        {
-          "id": "NEWS-ab2c1f64bbd74e4d",
-          "headline": "국감 오른 교육세, 금융권 과세표준 개편론 재부상",
-          "title": "국감 오른 교육세, 금융권 과세표준 개편론 재부상 - insnews.co.kr",
-          "published_at": "2026-10-04T15:00:00Z",
-          "observed_at": "2026-10-04T21:50:12.622692Z",
-          "retrieved_at": "2026-10-04T21:50:12.622692Z",
-          "source": "insnews.co.kr",
-          "publisher": "insnews.co.kr",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE4xRWRhcGpKak02eWlUNFkyNnN5RlBIZXpWV2hrQkNkOHh3bWZJNUpkN2JfYnEwVXl3cEpWRUVQRjZVWmlPY1FGdnotVGRvUWpGX0ZmcW90QmtGY21mLXhOUGowY3Y3a3NnS1Zr0gFvQVVfeXFMUEJNS2lKZWdLdXpjcFZlUnBvYThNMTFyWTBSV0dwcnljOUZ4WDl1cUxUM1Rhek10MGhQbndCU2NFNV9HOWhRMHZrWTdKUjV1Mk0xX2g3bjZ1ai1iWlJBUk9MX1haQWFDanZYZm55eVJj?oc=5",
-          "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-652105d6e2a257dc",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [],
-          "related_stocks": [],
-          "topic": "시장일반",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        },
-        {
-          "id": "NEWS-c63ef4e4ad192bac",
-          "headline": "전 금융권 덮친 해킹 공포…동일 공격자·AI 활용 정황까지",
-          "title": "전 금융권 덮친 해킹 공포…동일 공격자·AI 활용 정황까지 - 보험매일",
-          "published_at": "2026-10-04T12:08:27Z",
-          "observed_at": "2026-10-04T21:50:12.622692Z",
-          "retrieved_at": "2026-10-04T21:50:12.622692Z",
-          "source": "보험매일",
-          "publisher": "보험매일",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5hRTBTLXRkb2JrZ0hCbGlReHZ3aXBVRFJhMVNZUlhlLVNSRDlQNzEzUy1QUGRzWWJMZnhqemFSdVB5UU02YkU3Z245ZGxsZTVNRkoxenpNd193UUpkNE9jUVV0ZHlqSGtv?oc=5",
-          "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-652105d6e2a257dc",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [
-            "geopolitics",
-            "risk_premium"
-          ],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [
-            "KOSPI",
-            "NASDAQ",
-            "WTI"
-          ],
-          "related_stocks": [],
-          "topic": "지정학",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        },
-        {
-          "id": "NEWS-e7ad6e9188e60eb7",
-          "headline": "'AI 해킹'에 금융권 줄줄이 피해…긴급 회의 소집",
-          "title": "'AI 해킹'에 금융권 줄줄이 피해…긴급 회의 소집 - news.sbs.co.kr",
-          "published_at": "2026-10-04T11:02:34Z",
-          "observed_at": "2026-10-04T21:50:12.622692Z",
-          "retrieved_at": "2026-10-04T21:50:12.622692Z",
-          "source": "news.sbs.co.kr",
-          "publisher": "news.sbs.co.kr",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNZ3dPWEFqbWRXc3lFSVk1cDFIeVNJWXgySGxaU2cxOWhLaldLOTBfRjE3OGRSQUUzM2FCbXBpVzdTclJkT09OMkViM29XY0d4T242b0YtZTFxMU1YcmxTR294R0NhNXhMRTVpU3M2d2hPZDFwZTJheFVwMzVsaEtORFBLRFNWS0F0MkdKZlBwVWthMGFBOUE?oc=5",
-          "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-652105d6e2a257dc",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [],
-          "related_stocks": [],
-          "topic": "시장일반",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        },
-        {
-          "id": "NEWS-96fce0a3cd261147",
-          "headline": "[초점] 금융권 해킹 ‘전방위 확산’…정부, 2만8000개 기업까지 보안점검 확대",
-          "title": "[초점] 금융권 해킹 ‘전방위 확산’…정부, 2만8000개 기업까지 보안점검 확대 - 뉴시안",
-          "published_at": "2026-10-04T10:23:13Z",
-          "observed_at": "2026-10-04T21:50:12.622692Z",
-          "retrieved_at": "2026-10-04T21:50:12.622692Z",
-          "source": "뉴시안",
-          "publisher": "뉴시안",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1sc0R6ckt3ZEtDRXBDRlRGWm9vd3FaNXRlNGp5alRuWDFteC1aOFlfUVNYWklwZl9rMUN3bGVnSHotMlVxRC1Gb2luekdEVUJ4czVwd2ZGX0o2MXE1T2l6N1l1el9pWmQzX3fSAW5BVV95cUxQLW8tTXlvaUFmUHFfUHdXa3YxOXRiZDVVX1d0eW80dVlVdXRFSU5aVmwyQ0M2YjRfMXFPOGQ0a2lyWi1WSnZITkJ3RXhRQTVKbXdUd2NjVzJNMzliMU94cWZLMlFvQXZfM0NmRFhvQQ?oc=5",
-          "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-652105d6e2a257dc",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [],
-          "related_stocks": [],
-          "topic": "시장일반",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        },
-        {
-          "id": "NEWS-e8ebf75f9f42c71e",
-          "headline": "[속보] “AI로 금융사 골라 공격했나”…7개사 해킹서 동일 공격자 정황",
-          "title": "[속보] “AI로 금융사 골라 공격했나”…7개사 해킹서 동일 공격자 정황 - 강원도민일보",
-          "published_at": "2026-10-04T09:29:10Z",
-          "observed_at": "2026-10-04T21:50:12.622692Z",
-          "retrieved_at": "2026-10-04T21:50:12.622692Z",
-          "source": "강원도민일보",
-          "publisher": "강원도민일보",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1mQ1RBd1VwNGJnNGxXdmVodFIxNmd4NVhOSnVjQ2ZEVFVFQkVQOU9iRDdub19BdTdZTHFvamg4S2hNTUR5cWpfQ0hrbXVuRmNhMExTeEowUXFJMzl3cy0zUl9vcjQ2Zw?oc=5",
-          "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-652105d6e2a257dc",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [
-            "geopolitics",
-            "risk_premium"
-          ],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [
-            "KOSPI",
-            "NASDAQ",
-            "WTI"
-          ],
-          "related_stocks": [],
-          "topic": "지정학",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        },
-        {
-          "id": "NEWS-aef19da9b270a604",
-          "headline": "금융사 7곳 해킹에 AI 활용 정황…전 금융권 긴급 점검",
-          "title": "금융사 7곳 해킹에 AI 활용 정황…전 금융권 긴급 점검 - 남도일보",
-          "published_at": "2026-10-04T09:03:00Z",
-          "observed_at": "2026-10-04T21:50:12.622692Z",
-          "retrieved_at": "2026-10-04T21:50:12.622692Z",
-          "source": "남도일보",
-          "publisher": "남도일보",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBESEJrMFgxYXJjMWMyTXFlc050Q2hhSHQ1b1ZoZHJwOW1EeWxBMWJUcXZJV0FyR3dtRE1GNFlNS2puR0xCM0dVQ29qSUozRkNvbUF0dGhUYzI3dGhuamtrWEliZUxTN2FtZGlYb9IBcEFVX3lxTE9SZXh3WnZNWmtnN0YxSUtTcnhtVWpzRE1IeGREWUtTZFFLUmhTQTJBYkFUSmd4bW8xRnNpeEt2ODVOUlFTRl9VRlJCQ2FjTDc0QlBvU3cxU1VWMHlCWGdTaGtoWDN6MUZWSC1tWXZ5VDQ?oc=5",
-          "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-652105d6e2a257dc",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [],
-          "related_stocks": [],
-          "topic": "시장일반",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        },
-        {
-          "id": "NEWS-340e254afdef8ec6",
-          "headline": "금융사 해킹사고, AI활용 추정...\"동일 공격 IP 여러 곳 발견\"",
-          "title": "금융사 해킹사고, AI활용 추정...\"동일 공격 IP 여러 곳 발견\" - 한국NGO신문",
-          "published_at": "2026-10-04T08:12:26Z",
-          "observed_at": "2026-10-04T21:50:12.622692Z",
-          "retrieved_at": "2026-10-04T21:50:12.622692Z",
-          "source": "한국NGO신문",
-          "publisher": "한국NGO신문",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFA2SlNpLTBCRld3SFFUWWE1aWZfRFQ5YU4tQ0tPNGhxSE15ZWxyVUtYVkNxUk01OFpPQ2VGZEp2UW5KSjRfY0czRW9MLTQtVVphMm9ZdDJuQWttUXB1LTNibmpScmtZVjlM?oc=5",
-          "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-652105d6e2a257dc",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [
-            "geopolitics",
-            "risk_premium"
-          ],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [
-            "KOSPI",
-            "NASDAQ",
-            "WTI"
-          ],
-          "related_stocks": [],
-          "topic": "지정학",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        },
-        {
-          "id": "NEWS-ac1c3b71371ada24",
-          "headline": "\"금융사 해킹사고, 동일 공격 IP 여러 곳 발견…AI활용 추정\"(종합)",
-          "title": "\"금융사 해킹사고, 동일 공격 IP 여러 곳 발견…AI활용 추정\"(종합) - 연합뉴스",
-          "published_at": "2026-10-04T07:48:27Z",
-          "observed_at": "2026-10-04T21:50:12.622692Z",
-          "retrieved_at": "2026-10-04T21:50:12.622692Z",
-          "source": "연합뉴스",
-          "publisher": "연합뉴스",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFB0eVVnMkRQN2hxN0RjaFVVSjV5NVBQNVJrMXhIbU9GZk9ObnhhNVk5WEU5c0tVY0htRjBhUzZWSGNuWFg2MWNwOUd6SmFTRzY0TVk3VEJtMUlrS1nSAWBBVV95cUxNSnRuZldYejZMTF9sYjNDYU90TjJyUFRvdnlSUW43V1pSVHM2aTI1ZWlidU9zeThlNGNINGFlUVN3TFlQaFhSVkZLQ2EwUXpkeURWQkViNmIzWDVab3NxWDg?oc=5",
-          "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-652105d6e2a257dc",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [
-            "geopolitics",
-            "risk_premium"
-          ],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [
-            "KOSPI",
-            "NASDAQ",
-            "WTI"
-          ],
-          "related_stocks": [],
-          "topic": "지정학",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        },
-        {
-          "id": "NEWS-faaec3a392820465",
-          "headline": "신한·국민 등 7개 금융사 해킹 '동일범' 정황…AI 활용 대량공격 추정",
-          "title": "신한·국민 등 7개 금융사 해킹 '동일범' 정황…AI 활용 대량공격 추정 - v.daum.net",
-          "published_at": "2026-10-04T07:48:17Z",
-          "observed_at": "2026-10-04T21:50:12.622692Z",
-          "retrieved_at": "2026-10-04T21:50:12.622692Z",
-          "source": "v.daum.net",
-          "publisher": "v.daum.net",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE1pZ3ZwYjJkWDNxNko2YTFpcldYMmdERE91TFpUUklHRWhLT2xqLTlFWUVpN3N5czYtZXV0VVZXZDViazV1SVE?oc=5",
-          "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-652105d6e2a257dc",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [
-            "geopolitics",
-            "risk_premium"
-          ],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [
-            "KOSPI",
-            "NASDAQ",
-            "WTI"
-          ],
-          "related_stocks": [],
-          "topic": "지정학",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        },
-        {
-          "id": "NEWS-9e74033e8b9841bf",
-          "headline": "금융권 해킹 비상, 동일 공격자 IP 정황 여러 곳에서 포착",
-          "title": "금융권 해킹 비상, 동일 공격자 IP 정황 여러 곳에서 포착 - 미주중앙일보",
-          "published_at": "2026-10-04T07:47:00Z",
-          "observed_at": "2026-10-04T21:50:12.622692Z",
-          "retrieved_at": "2026-10-04T21:50:12.622692Z",
-          "source": "미주중앙일보",
-          "publisher": "미주중앙일보",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9Wdm1tS19FSWZhc2x1cTVIakZmR28yUzFDaDJnSjJtLVdkblYyNzlleHBaT3FBS2NmMkhsSTdNbW1wd3lpS1dDZ2NydU9STEkxR0s1dGpuNUFmQjVzOHloVEhR?oc=5",
-          "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-652105d6e2a257dc",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [
-            "geopolitics",
-            "risk_premium"
-          ],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [
-            "KOSPI",
-            "NASDAQ",
-            "WTI"
-          ],
-          "related_stocks": [],
-          "topic": "지정학",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        },
-        {
-          "id": "NEWS-73422255994235f4",
-          "headline": "같은 IP가 여러 금융사 해킹…AI 활용해 대량 공격 정황",
-          "title": "같은 IP가 여러 금융사 해킹…AI 활용해 대량 공격 정황 - sedaily.com",
-          "published_at": "2026-10-04T07:33:39Z",
-          "observed_at": "2026-10-04T21:50:12.622692Z",
-          "retrieved_at": "2026-10-04T21:50:12.622692Z",
-          "source": "sedaily.com",
-          "publisher": "sedaily.com",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE9WUElQS21Kd0NkY2d5dER4RGRSQ1pxWHl2SHZBX2lSMllZNmIta1EzX01DcllheDBTTGdxNlNYNWJaUHg0Q0JQdzJFc2FheTJNbHc?oc=5",
-          "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-652105d6e2a257dc",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [
-            "geopolitics",
-            "risk_premium"
-          ],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [
-            "KOSPI",
-            "NASDAQ",
-            "WTI"
-          ],
-          "related_stocks": [],
-          "topic": "지정학",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        },
-        {
-          "id": "NEWS-df0c1275e43bbf4d",
-          "headline": "금융권 해킹 확산에 정부 긴급 대응…이억원 “유사 사고 땐 엄정 책임”",
-          "title": "금융권 해킹 확산에 정부 긴급 대응…이억원 “유사 사고 땐 엄정 책임” - intn.co.kr",
-          "published_at": "2026-10-04T07:23:13Z",
-          "observed_at": "2026-10-04T21:50:12.622692Z",
-          "retrieved_at": "2026-10-04T21:50:12.622692Z",
-          "source": "intn.co.kr",
-          "publisher": "intn.co.kr",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1LSE9LSnBFSEV2NldMMXMxUVdkVldwRUY0dmtweXFRZnNNTDkxNWlqYzZkVUdmdkxkUS1NNWtlWWdWUUt2LW8tX25abXNNQlJEaVFYUXBkZ185eFZPRnRzMjNaa3VtWmw2Q0E?oc=5",
-          "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-652105d6e2a257dc",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [],
-          "related_stocks": [],
-          "topic": "시장일반",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        },
-        {
-          "id": "NEWS-f86e987b8b69035c",
-          "headline": "금융사 해킹 사고, 동일 공격자 소행이었나…AI 활용 추정",
-          "title": "금융사 해킹 사고, 동일 공격자 소행이었나…AI 활용 추정 - v.daum.net",
-          "published_at": "2026-10-04T07:15:58Z",
-          "observed_at": "2026-10-04T21:50:12.622692Z",
-          "retrieved_at": "2026-10-04T21:50:12.622692Z",
-          "source": "v.daum.net",
-          "publisher": "v.daum.net",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE53eHZpYkJXZzQyY1gteXBxWV9fNllZZ3Y5ZWZ5QU9Xa2xKZ0o0UjRTLVg1enVEXzlScEhGc0RjZl96ampocl9CR0lkUk00WTA?oc=5",
-          "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-652105d6e2a257dc",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [
-            "geopolitics",
-            "risk_premium"
-          ],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [
-            "KOSPI",
-            "NASDAQ",
-            "WTI"
-          ],
-          "related_stocks": [],
-          "topic": "지정학",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        },
-        {
-          "id": "NEWS-197798199e4bb37b",
-          "headline": "금융권 해킹, 동일 공격자에 AI 활용 정황…500개사 긴급 점검",
-          "title": "금융권 해킹, 동일 공격자에 AI 활용 정황…500개사 긴급 점검 - ebn.co.kr",
-          "published_at": "2026-10-04T07:00:00Z",
-          "observed_at": "2026-10-04T21:50:12.622692Z",
-          "retrieved_at": "2026-10-04T21:50:12.622692Z",
-          "source": "ebn.co.kr",
-          "publisher": "ebn.co.kr",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5BNHFoY3lzc0tVdEpvMFBMdmNHU080VlQtOFBYcFJIakhXZ2NDUEFQc2ZVdXhJT0NKZHZqVzVEMzBDOTFGYXdXeWpwamgyRXpvdnc3Q3N3WXlrcWJKUkhzNEdkd1N0RmlJ?oc=5",
-          "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-652105d6e2a257dc",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [
-            "geopolitics",
-            "risk_premium"
-          ],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [
-            "KOSPI",
-            "NASDAQ",
-            "WTI"
-          ],
-          "related_stocks": [],
-          "topic": "지정학",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        },
-        {
-          "id": "NEWS-3f240db76a425e72",
-          "headline": "이억원 “최고 수준 경각심…AI활용 해킹 가능성”",
-          "title": "이억원 “최고 수준 경각심…AI활용 해킹 가능성” - 블록미디어",
-          "published_at": "2026-10-04T06:54:54Z",
-          "observed_at": "2026-10-04T21:50:12.622692Z",
-          "retrieved_at": "2026-10-04T21:50:12.622692Z",
-          "source": "블록미디어",
-          "publisher": "블록미디어",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBkWWdDY25TeXpfR043d0VKWEY1cVplX251NTV6dHc0SFA4eHZVX09ia2NUNTM1TFg2YTVnWC1oby14dnJPZExSbkJXZkZ2akIzOVVqWU9Lc2Q?oc=5",
-          "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-652105d6e2a257dc",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [],
-          "related_stocks": [],
-          "topic": "시장일반",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        },
-        {
-          "id": "NEWS-f55d1305476133d8",
-          "headline": "인공지능 해킹 공격, 국내외 금융사 위험에 빠뜨리다",
-          "title": "인공지능 해킹 공격, 국내외 금융사 위험에 빠뜨리다 - gokorea.kr",
-          "published_at": "2026-10-04T06:43:52Z",
-          "observed_at": "2026-10-04T21:50:12.622692Z",
-          "retrieved_at": "2026-10-04T21:50:12.622692Z",
-          "source": "gokorea.kr",
-          "publisher": "gokorea.kr",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE12eGNIaVhUN2c5Sjg3ZF8tSF9VaTZDa2JpMXZscVFTeHlIcUtCUEpaLU5DQ1BpTmY5ZGVQWE9fU05OT0VqMzBCSDI5U3hIYnVabVN1NHRTcWVXbUF4T0dLNzUzS0huc0lE?oc=5",
-          "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-652105d6e2a257dc",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [
-            "geopolitics",
-            "risk_premium"
-          ],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [
-            "KOSPI",
-            "NASDAQ",
-            "WTI"
-          ],
-          "related_stocks": [],
-          "topic": "지정학",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        },
-        {
-          "id": "NEWS-d4784e0a5f6afed9",
-          "headline": "이억원 \"AI활용 해킹 가능성…금융권 최고수준 경각심 가져야\"",
-          "title": "이억원 \"AI활용 해킹 가능성…금융권 최고수준 경각심 가져야\" - 금융소비자뉴스",
-          "published_at": "2026-10-04T05:56:00Z",
-          "observed_at": "2026-10-04T21:50:12.622692Z",
-          "retrieved_at": "2026-10-04T21:50:12.622692Z",
-          "source": "금융소비자뉴스",
-          "publisher": "금융소비자뉴스",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5JTHc5akMxdW95bkdvSTBMeUtEVXVWb3RfMDVTWHg1UHR5ZmhUN0dIR3p6R005Y0Rvalc3VU1PeEdUVklEcmZBSnJLVzlrYVdiUDV6XzhoSERvb3p1WlBYclFVRXRDMm9qQnc?oc=5",
-          "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-652105d6e2a257dc",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [],
-          "related_stocks": [],
-          "topic": "시장일반",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        },
-        {
-          "id": "NEWS-47dc687da907480e",
-          "headline": "이억원 AI 해킹 가능성 배제 못해...유사 사고 땐 엄정 책임",
-          "title": "이억원 AI 해킹 가능성 배제 못해...유사 사고 땐 엄정 책임 - 아주경제",
-          "published_at": "2026-10-04T05:41:02Z",
-          "observed_at": "2026-10-04T21:50:12.622692Z",
-          "retrieved_at": "2026-10-04T21:50:12.622692Z",
-          "source": "아주경제",
-          "publisher": "아주경제",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBPMm9qOGRsbHAtak9Pa0k3X0pwclNnNzhhVjNGUFZnenEwNWprcGNKMzBQaDRGanlScFRJNEJGOURScElQYXNmbjRaRGxnZEhVc1lNM3hhSmY3UdIBWEFVX3lxTFAtb0MxMU1uMk9ldTZNYkRGZDluZF9pTlZnNDFCeWF0TVNQYUxKcW1rY2ZyNThGZUFSMDVBa1NlQjFoNEhQY2pGaGtWVkxndVBySi14b0FoVmg?oc=5",
-          "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-652105d6e2a257dc",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [],
-          "related_stocks": [],
-          "topic": "시장일반",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        },
-        {
-          "id": "NEWS-4aa6c339383a8ac1",
-          "headline": "금융권 잇단 해킹에 당국 ‘외부접점’ 전수점검…“소홀하면 엄정 책임”",
-          "title": "금융권 잇단 해킹에 당국 ‘외부접점’ 전수점검…“소홀하면 엄정 책임” - 아시아투데이",
-          "published_at": "2026-10-04T05:36:47Z",
-          "observed_at": "2026-10-04T21:50:12.622692Z",
-          "retrieved_at": "2026-10-04T21:50:12.622692Z",
-          "source": "아시아투데이",
-          "publisher": "아시아투데이",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE5jbmEwZVFmb2xSNVdieEoxUTVfMWM4aWJPYTFFWi1sVnhhMHplaEFvMDFuMXpsQ3VIOXNUN0wxQXQ5VlBLMnY5ZTNRTVVSbjhZdVhONlp3Y1BZaDFfQktna2U0UUx4OTRaeW9xVA?oc=5",
-          "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-652105d6e2a257dc",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [],
-          "related_stocks": [],
-          "topic": "시장일반",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        }
-      ],
-      "ai_analysis": {},
-      "last_updated_at": "2026-10-05T06:50:23+09:00",
-      "importance_score": 32.0,
-      "importance_components": {
-        "independent_source_component": 3,
-        "article_component": 8,
-        "channel_component": 0,
-        "official_source_component": 0,
-        "recency_component": 8,
-        "market_reaction_component": "PENDING"
-      },
-      "market_reaction": {
-        "evidence_state": "PENDING",
-        "event_at": "2026-10-03T11:36:43+00:00",
-        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
-      }
-    }
-  ],
-  "weakening": [],
   "resolved": [
     {
       "issue_id": "GN-91461eb389946e76",
@@ -2702,7 +2303,7 @@
         }
       ],
       "ai_analysis": {},
-      "last_updated_at": "2026-10-05T06:50:23+09:00",
+      "last_updated_at": "2026-10-05T09:19:42+09:00",
       "importance_score": 11.5,
       "importance_components": {
         "independent_source_component": 1,
@@ -2719,22 +2320,18 @@
       }
     },
     {
-      "issue_id": "GN-e1a27f7b173fcfda",
-      "fingerprint": "ISSUE-FP-e1a27f7b173fcfda",
+      "issue_id": "GN-7898208f61c7e907",
+      "fingerprint": "ISSUE-FP-7898208f61c7e907",
       "event_core_tokens": [
-        "ai로",
-        "공격",
-        "광범위",
-        "많을",
-        "상호금융까지",
-        "수도",
-        "시도",
-        "해킹",
-        "훨씬"
+        "게임",
+        "기호와",
+        "범례",
+        "안내의",
+        "프리스핀카지노"
       ],
-      "headline": "AI로 상호금융까지 광범위 공격…\"해킹 시도 훨씬 많을 수도\"",
-      "first_seen_at": "2026-10-03T20:30:00Z",
-      "latest_at": "2026-10-04T00:14:34Z",
+      "headline": "프리스핀카지노 게임 안내의 기호와 범례",
+      "first_seen_at": "2026-10-04T17:31:05Z",
+      "latest_at": "2026-10-04T17:31:05Z",
       "article_count": 1,
       "publisher_count": 1,
       "independent_source_count": 1,
@@ -2742,82 +2339,60 @@
       "reprint_count": 0,
       "quality_filtered_count": 0,
       "publishers": [
-        "서울경제TV"
+        "Calgary Roughnecks"
       ],
       "official_source_available": false,
       "state": "RESOLVED",
-      "why_important": "지정학 변화는 유가·환율·위험프리미엄을 통해 국내 증시에 전달될 수 있어 실제 가격 반응을 추가 확인해야 합니다.",
+      "why_important": "시장 영향 가능성이 있는 뉴스이므로 관련 지수·섹터·수급이 실제로 반응하는지 확인할 필요가 있습니다.",
       "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
       "next_variables": [
-        "KOSPI",
-        "NASDAQ",
-        "WTI",
         "외국인 수급",
         "기관 수급"
       ],
       "history": [
         {
-          "at": "2026-10-04T08:10:28+09:00",
+          "at": "2026-10-05T06:50:23+09:00",
           "state": "NEW",
           "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
         },
         {
-          "at": "2026-10-04T11:42:19+09:00",
-          "state": "PERSISTING",
-          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
-        },
-        {
-          "at": "2026-10-04T17:54:58+09:00",
+          "at": "2026-10-05T09:19:42+09:00",
           "state": "RESOLVED",
           "reason": "현재 수집 창에서 새 독립 근거가 추가되지 않아 상태를 낮췄습니다. 사건 자체의 소멸을 단정하는 의미는 아닙니다."
         }
       ],
       "market_bias": "UNDETERMINED",
-      "impact_channels": [
-        "geopolitics",
-        "risk_premium"
-      ],
+      "impact_channels": [],
       "related_sectors": [],
       "related_countries": [],
-      "related_markets": [
-        "KOSPI",
-        "NASDAQ",
-        "WTI"
-      ],
+      "related_markets": [],
       "related_stocks": [],
-      "topic": "지정학",
+      "topic": "시장일반",
       "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
       "articles": [
         {
-          "id": "NEWS-44fa8aa0fc1844a8",
-          "headline": "AI로 상호금융까지 광범위 공격…\"해킹 시도 훨씬 많을 수도\"",
-          "title": "AI로 상호금융까지 광범위 공격…\"해킹 시도 훨씬 많을 수도\" - 서울경제TV",
-          "published_at": "2026-10-04T00:14:34Z",
-          "observed_at": "2026-10-04T02:42:11.096370Z",
-          "retrieved_at": "2026-10-04T02:42:11.096370Z",
-          "source": "서울경제TV",
-          "publisher": "서울경제TV",
+          "id": "NEWS-f22176cb38dd2141",
+          "headline": "프리스핀카지노 게임 안내의 기호와 범례",
+          "title": "프리스핀카지노 게임 안내의 기호와 범례 - Calgary Roughnecks",
+          "published_at": "2026-10-04T17:31:05Z",
+          "observed_at": "2026-10-04T21:50:12.686944Z",
+          "retrieved_at": "2026-10-04T21:50:12.686944Z",
+          "source": "Calgary Roughnecks",
+          "publisher": "Calgary Roughnecks",
           "source_type": "SECONDARY",
           "source_id": "google-news-rss",
           "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBNdkZwZDJNcTQzQV9LekZDa2dnMFhpWkZubjdwb0pvQ2E0UE95ZFFNUWxLWWdSTG90VXFhbkpJeW56MTdIMXNiXzJ0bWlyRkh2VVdmbGlQQUtZcHFkeU9QWklVdjU?oc=5",
-          "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-e1a27f7b173fcfda",
+          "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQd0dZSUs1bUJianRFT0FoYzR1cHFWVGx3MEJ3WGUtYmJKdzdYdXN5aXNUcjZwWHBfTmw1THZnOTViRGRnb05ZTlV0ekhGN3RLT2RERnUySFl6bGxERFF6cHEtZjNjU3NGNFBLWFZobWpYa3R6NUhETFRxYXE4QlZ2UlY5SHFDb1BFNEIwRHNXV0RSbEZXSkE?oc=5",
+          "query": "연준 Fed 미국 국채 금리 달러 환율",
+          "cluster_id": "GN-7898208f61c7e907",
           "official_source_available": false,
           "market_bias": "UNDETERMINED",
-          "impact_channels": [
-            "geopolitics",
-            "risk_premium"
-          ],
+          "impact_channels": [],
           "related_sectors": [],
           "related_countries": [],
-          "related_markets": [
-            "KOSPI",
-            "NASDAQ",
-            "WTI"
-          ],
+          "related_markets": [],
           "related_stocks": [],
-          "topic": "지정학",
+          "topic": "시장일반",
           "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
           "promotion_score": 0,
           "content_quality": "EDITORIAL_OR_FACTUAL",
@@ -2828,19 +2403,120 @@
         }
       ],
       "ai_analysis": {},
-      "last_updated_at": "2026-10-05T06:50:23+09:00",
-      "importance_score": 11.5,
+      "last_updated_at": "2026-10-05T09:19:42+09:00",
+      "importance_score": 10.5,
       "importance_components": {
         "independent_source_component": 1,
         "article_component": 1,
-        "channel_component": 2,
+        "channel_component": 0,
+        "official_source_component": 0,
+        "recency_component": 5,
+        "market_reaction_component": "PENDING"
+      },
+      "market_reaction": {
+        "evidence_state": "PENDING",
+        "event_at": "2026-10-04T17:31:05+00:00",
+        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
+      }
+    },
+    {
+      "issue_id": "GN-1584f0947b42bfcf",
+      "fingerprint": "ISSUE-FP-1584f0947b42bfcf",
+      "event_core_tokens": [
+        "금융권",
+        "넓어진",
+        "보험금으로",
+        "사후",
+        "상속",
+        "자산관리"
+      ],
+      "headline": "상속·보험금으로 넓어진 금융권 ‘사후 자산관리’",
+      "first_seen_at": "2026-10-04T15:00:00Z",
+      "latest_at": "2026-10-04T15:00:00Z",
+      "article_count": 1,
+      "publisher_count": 1,
+      "independent_source_count": 1,
+      "independent_publishers": 1,
+      "reprint_count": 0,
+      "quality_filtered_count": 0,
+      "publishers": [
+        "insnews.co.kr"
+      ],
+      "official_source_available": false,
+      "state": "RESOLVED",
+      "why_important": "시장 영향 가능성이 있는 뉴스이므로 관련 지수·섹터·수급이 실제로 반응하는지 확인할 필요가 있습니다.",
+      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
+      "next_variables": [
+        "외국인 수급",
+        "기관 수급"
+      ],
+      "history": [
+        {
+          "at": "2026-10-05T06:50:23+09:00",
+          "state": "NEW",
+          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
+        },
+        {
+          "at": "2026-10-05T09:19:42+09:00",
+          "state": "RESOLVED",
+          "reason": "현재 수집 창에서 새 독립 근거가 추가되지 않아 상태를 낮췄습니다. 사건 자체의 소멸을 단정하는 의미는 아닙니다."
+        }
+      ],
+      "market_bias": "UNDETERMINED",
+      "impact_channels": [],
+      "related_sectors": [],
+      "related_countries": [],
+      "related_markets": [],
+      "related_stocks": [],
+      "topic": "시장일반",
+      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+      "articles": [
+        {
+          "id": "NEWS-ab55498c2701f5ec",
+          "headline": "상속·보험금으로 넓어진 금융권 ‘사후 자산관리’",
+          "title": "상속·보험금으로 넓어진 금융권 ‘사후 자산관리’ - insnews.co.kr",
+          "published_at": "2026-10-04T15:00:00Z",
+          "observed_at": "2026-10-04T21:50:12.622692Z",
+          "retrieved_at": "2026-10-04T21:50:12.622692Z",
+          "source": "insnews.co.kr",
+          "publisher": "insnews.co.kr",
+          "source_type": "SECONDARY",
+          "source_id": "google-news-rss",
+          "source_kind": "secondary_aggregator",
+          "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9iYmhwQ3VkbV9POVVhSHhoa1FnNl9mOVdLS2NEbmREVUxTdUFpSndDMENneUhJb0lETDRhX1lCSER4T0FBUkhUV0pTcm0wOEFwZENsTVpFR1JUVEtwVFItc2pTX2hxT3FLczdn0gFvQVVfeXFMUFNYMlVCOXoxcy1RY3U0cE5zbTJRR2JuMnZrZllKUVhQR0hocWJJNHd6azZObVBhdzBGZEhGa0ZlRlV0OXhOcVRKYzVrbjEzZWZYcUROWFo0QVNEb0VXMS1qbUpScktHNGdWazZWQ2dr?oc=5",
+          "query": "금융 은행 증권 보험 정책 한국",
+          "cluster_id": "GN-1584f0947b42bfcf",
+          "official_source_available": false,
+          "market_bias": "UNDETERMINED",
+          "impact_channels": [],
+          "related_sectors": [],
+          "related_countries": [],
+          "related_markets": [],
+          "related_stocks": [],
+          "topic": "시장일반",
+          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+          "promotion_score": 0,
+          "content_quality": "EDITORIAL_OR_FACTUAL",
+          "is_promotional": false,
+          "is_low_information": false,
+          "filter_from_market_feed": false,
+          "market_fact_signal": false
+        }
+      ],
+      "ai_analysis": {},
+      "last_updated_at": "2026-10-05T09:19:42+09:00",
+      "importance_score": 7.5,
+      "importance_components": {
+        "independent_source_component": 1,
+        "article_component": 1,
+        "channel_component": 0,
         "official_source_component": 0,
         "recency_component": 2,
         "market_reaction_component": "PENDING"
       },
       "market_reaction": {
         "evidence_state": "PENDING",
-        "event_at": "2026-10-03T20:30:00+00:00",
+        "event_at": "2026-10-04T15:00:00+00:00",
         "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
       }
     },
@@ -2937,7 +2613,7 @@
         }
       ],
       "ai_analysis": {},
-      "last_updated_at": "2026-10-05T06:50:23+09:00",
+      "last_updated_at": "2026-10-05T09:19:42+09:00",
       "importance_score": 7.5,
       "importance_components": {
         "independent_source_component": 1,
@@ -2950,218 +2626,6 @@
       "market_reaction": {
         "evidence_state": "PENDING",
         "event_at": "2026-10-04T08:54:20+00:00",
-        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
-      }
-    },
-    {
-      "issue_id": "GN-e031003a2dd8a672",
-      "fingerprint": "ISSUE-FP-e031003a2dd8a672",
-      "event_core_tokens": [
-        "7배",
-        "ceo의",
-        "과감한",
-        "립부",
-        "메모리값",
-        "배경은",
-        "수도",
-        "인텔",
-        "전망"
-      ],
-      "headline": "“메모리값 7배 뛸 수도”..립부 탄 인텔 CEO의 과감한 전망 배경은?",
-      "first_seen_at": "2026-10-04T06:45:15Z",
-      "latest_at": "2026-10-04T06:45:15Z",
-      "article_count": 1,
-      "publisher_count": 1,
-      "independent_source_count": 1,
-      "independent_publishers": 1,
-      "reprint_count": 0,
-      "quality_filtered_count": 0,
-      "publishers": [
-        "dailycar.co.kr"
-      ],
-      "official_source_available": false,
-      "state": "RESOLVED",
-      "why_important": "시장 영향 가능성이 있는 뉴스이므로 관련 지수·섹터·수급이 실제로 반응하는지 확인할 필요가 있습니다.",
-      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
-      "next_variables": [
-        "외국인 수급",
-        "기관 수급"
-      ],
-      "history": [
-        {
-          "at": "2026-10-04T17:54:58+09:00",
-          "state": "NEW",
-          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
-        },
-        {
-          "at": "2026-10-04T23:43:27+09:00",
-          "state": "RESOLVED",
-          "reason": "현재 수집 창에서 새 독립 근거가 추가되지 않아 상태를 낮췄습니다. 사건 자체의 소멸을 단정하는 의미는 아닙니다."
-        }
-      ],
-      "market_bias": "UNDETERMINED",
-      "impact_channels": [],
-      "related_sectors": [],
-      "related_countries": [],
-      "related_markets": [],
-      "related_stocks": [],
-      "topic": "시장일반",
-      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-      "articles": [
-        {
-          "id": "NEWS-3f00c2b5c47105e7",
-          "headline": "“메모리값 7배 뛸 수도”..립부 탄 인텔 CEO의 과감한 전망 배경은?",
-          "title": "“메모리값 7배 뛸 수도”..립부 탄 인텔 CEO의 과감한 전망 배경은? - dailycar.co.kr",
-          "published_at": "2026-10-04T06:45:15Z",
-          "observed_at": "2026-10-04T08:54:35.076389Z",
-          "retrieved_at": "2026-10-04T08:54:35.076389Z",
-          "source": "dailycar.co.kr",
-          "publisher": "dailycar.co.kr",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE1DeVhFVFRVWTdTR1VPNG92Ymt0T2xWc2doVlVwY3VmV1g0QWFWNjN3UVJyNkV2OVZmTXZTVjZIMHZ2SWtZeFZhVnFQQTU0eUQ1WjE2eHc3R1h4SjFPZHdFNVVUQlNtbW5BN2Z5UEkxdTBnR2psUVE?oc=5",
-          "query": "삼성전자 SK하이닉스 반도체 HBM AI",
-          "cluster_id": "GN-e031003a2dd8a672",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [],
-          "related_stocks": [],
-          "topic": "시장일반",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        }
-      ],
-      "ai_analysis": {},
-      "last_updated_at": "2026-10-05T06:50:23+09:00",
-      "importance_score": 7.5,
-      "importance_components": {
-        "independent_source_component": 1,
-        "article_component": 1,
-        "channel_component": 0,
-        "official_source_component": 0,
-        "recency_component": 2,
-        "market_reaction_component": "PENDING"
-      },
-      "market_reaction": {
-        "evidence_state": "PENDING",
-        "event_at": "2026-10-04T06:45:15+00:00",
-        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
-      }
-    },
-    {
-      "issue_id": "GN-cc481137eef25a32",
-      "fingerprint": "ISSUE-FP-cc481137eef25a32",
-      "event_core_tokens": [
-        "개인정보",
-        "금융기관",
-        "대통령",
-        "엄중",
-        "유출에",
-        "인식",
-        "조사",
-        "철저"
-      ],
-      "headline": "[속보] 李대통령, 금융기관 개인정보 유출에 “엄중 인식, 철저 조사”",
-      "first_seen_at": "2026-10-04T04:35:00Z",
-      "latest_at": "2026-10-04T04:35:37Z",
-      "article_count": 1,
-      "publisher_count": 1,
-      "independent_source_count": 1,
-      "independent_publishers": 1,
-      "reprint_count": 0,
-      "quality_filtered_count": 0,
-      "publishers": [
-        "중앙일보"
-      ],
-      "official_source_available": false,
-      "state": "RESOLVED",
-      "why_important": "시장 영향 가능성이 있는 뉴스이므로 관련 지수·섹터·수급이 실제로 반응하는지 확인할 필요가 있습니다.",
-      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
-      "next_variables": [
-        "외국인 수급",
-        "기관 수급"
-      ],
-      "history": [
-        {
-          "at": "2026-10-04T17:54:58+09:00",
-          "state": "NEW",
-          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
-        },
-        {
-          "at": "2026-10-04T23:43:27+09:00",
-          "state": "PERSISTING",
-          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
-        },
-        {
-          "at": "2026-10-05T06:50:23+09:00",
-          "state": "RESOLVED",
-          "reason": "현재 수집 창에서 새 독립 근거가 추가되지 않아 상태를 낮췄습니다. 사건 자체의 소멸을 단정하는 의미는 아닙니다."
-        }
-      ],
-      "market_bias": "UNDETERMINED",
-      "impact_channels": [],
-      "related_sectors": [],
-      "related_countries": [],
-      "related_markets": [],
-      "related_stocks": [],
-      "topic": "시장일반",
-      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-      "articles": [
-        {
-          "id": "NEWS-a0ce8f0ff10f879f",
-          "headline": "[속보] 李대통령, 금융기관 개인정보 유출에 “엄중 인식, 철저 조사”",
-          "title": "[속보] 李대통령, 금융기관 개인정보 유출에 “엄중 인식, 철저 조사” - 중앙일보",
-          "published_at": "2026-10-04T04:35:37Z",
-          "observed_at": "2026-10-04T18:26:10.106280Z",
-          "retrieved_at": "2026-10-04T18:26:10.106280Z",
-          "source": "중앙일보",
-          "publisher": "중앙일보",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9IQ1dlVDVfWWtIOFFzSHpHT0phRGZwMmluUzI1MGhGWDc1ZkFpNTlKVkJSSmdTUGhYblFuZy1EWVJkWFZudGpqNFBUV2ZnaENDZ0NyWWRB?oc=5",
-          "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-cc481137eef25a32",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [],
-          "related_stocks": [],
-          "topic": "시장일반",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        }
-      ],
-      "ai_analysis": {},
-      "last_updated_at": "2026-10-05T06:50:23+09:00",
-      "importance_score": 7.5,
-      "importance_components": {
-        "independent_source_component": 1,
-        "article_component": 1,
-        "channel_component": 0,
-        "official_source_component": 0,
-        "recency_component": 2,
-        "market_reaction_component": "PENDING"
-      },
-      "market_reaction": {
-        "evidence_state": "PENDING",
-        "event_at": "2026-10-04T04:35:00+00:00",
         "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
       }
     },
@@ -3252,7 +2716,7 @@
         }
       ],
       "ai_analysis": {},
-      "last_updated_at": "2026-10-05T06:50:23+09:00",
+      "last_updated_at": "2026-10-05T09:19:42+09:00",
       "importance_score": 7.5,
       "importance_components": {
         "independent_source_component": 1,
@@ -3265,220 +2729,6 @@
       "market_reaction": {
         "evidence_state": "PENDING",
         "event_at": "2026-10-04T01:30:45+00:00",
-        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
-      }
-    },
-    {
-      "issue_id": "GN-3020b80926802f31",
-      "fingerprint": "ISSUE-FP-3020b80926802f31",
-      "event_core_tokens": [
-        "14건",
-        "3년간",
-        "im뱅크",
-        "금융권",
-        "바로저축",
-        "최근",
-        "해킹사고"
-      ],
-      "headline": "iM뱅크·바로저축銀 등 금융권 해킹사고 최근 3년간 14건",
-      "first_seen_at": "2026-10-04T00:53:00Z",
-      "latest_at": "2026-10-04T00:53:00Z",
-      "article_count": 1,
-      "publisher_count": 1,
-      "independent_source_count": 1,
-      "independent_publishers": 1,
-      "reprint_count": 0,
-      "quality_filtered_count": 0,
-      "publishers": [
-        "금융소비자뉴스"
-      ],
-      "official_source_available": false,
-      "state": "RESOLVED",
-      "why_important": "시장 영향 가능성이 있는 뉴스이므로 관련 지수·섹터·수급이 실제로 반응하는지 확인할 필요가 있습니다.",
-      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
-      "next_variables": [
-        "외국인 수급",
-        "기관 수급"
-      ],
-      "history": [
-        {
-          "at": "2026-10-04T17:54:58+09:00",
-          "state": "NEW",
-          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
-        },
-        {
-          "at": "2026-10-04T23:43:27+09:00",
-          "state": "RESOLVED",
-          "reason": "현재 수집 창에서 새 독립 근거가 추가되지 않아 상태를 낮췄습니다. 사건 자체의 소멸을 단정하는 의미는 아닙니다."
-        }
-      ],
-      "market_bias": "UNDETERMINED",
-      "impact_channels": [],
-      "related_sectors": [],
-      "related_countries": [],
-      "related_markets": [],
-      "related_stocks": [],
-      "topic": "시장일반",
-      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-      "articles": [
-        {
-          "id": "NEWS-49d088214e59b9b9",
-          "headline": "iM뱅크·바로저축銀 등 금융권 해킹사고 최근 3년간 14건",
-          "title": "iM뱅크·바로저축銀 등 금융권 해킹사고 최근 3년간 14건 - 금융소비자뉴스",
-          "published_at": "2026-10-04T00:53:00Z",
-          "observed_at": "2026-10-04T08:54:36.158296Z",
-          "retrieved_at": "2026-10-04T08:54:36.158296Z",
-          "source": "금융소비자뉴스",
-          "publisher": "금융소비자뉴스",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1CZnd4NUxER2FaUlB2X2QxYlptMmJkRlJPdDdxeWI4eGVNX2ZOLXIyX29ORlFqdnRzdC1ZMVp3X2Y1djY1R184OVlycm9sT1AtVnNvTHdrRkExSU0zampRQy1hc25XTF90alE?oc=5",
-          "query": "금융 은행 증권 보험 정책 한국",
-          "cluster_id": "GN-3020b80926802f31",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [],
-          "related_stocks": [],
-          "topic": "시장일반",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        }
-      ],
-      "ai_analysis": {},
-      "last_updated_at": "2026-10-05T06:50:23+09:00",
-      "importance_score": 7.5,
-      "importance_components": {
-        "independent_source_component": 1,
-        "article_component": 1,
-        "channel_component": 0,
-        "official_source_component": 0,
-        "recency_component": 2,
-        "market_reaction_component": "PENDING"
-      },
-      "market_reaction": {
-        "evidence_state": "PENDING",
-        "event_at": "2026-10-04T00:53:00+00:00",
-        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
-      }
-    },
-    {
-      "issue_id": "GN-036840335a2e810d",
-      "fingerprint": "ISSUE-FP-036840335a2e810d",
-      "event_core_tokens": [
-        "10월",
-        "매입",
-        "삼전",
-        "앞날은",
-        "자사주",
-        "종료",
-        "코스피",
-        "하이닉스"
-      ],
-      "headline": "삼전·하이닉스 자사주 매입 10월 종료… 코스피 앞날은?",
-      "first_seen_at": "2026-10-03T22:22:05Z",
-      "latest_at": "2026-10-03T22:22:05Z",
-      "article_count": 1,
-      "publisher_count": 1,
-      "independent_source_count": 1,
-      "independent_publishers": 1,
-      "reprint_count": 0,
-      "quality_filtered_count": 0,
-      "publishers": [
-        "세계일보"
-      ],
-      "official_source_available": false,
-      "state": "RESOLVED",
-      "why_important": "시장 영향 가능성이 있는 뉴스이므로 관련 지수·섹터·수급이 실제로 반응하는지 확인할 필요가 있습니다.",
-      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
-      "next_variables": [
-        "외국인 수급",
-        "기관 수급"
-      ],
-      "history": [
-        {
-          "at": "2026-10-04T23:43:27+09:00",
-          "state": "NEW",
-          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
-        },
-        {
-          "at": "2026-10-05T03:26:50+09:00",
-          "state": "PERSISTING",
-          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
-        },
-        {
-          "at": "2026-10-05T06:50:23+09:00",
-          "state": "RESOLVED",
-          "reason": "현재 수집 창에서 새 독립 근거가 추가되지 않아 상태를 낮췄습니다. 사건 자체의 소멸을 단정하는 의미는 아닙니다."
-        }
-      ],
-      "market_bias": "UNDETERMINED",
-      "impact_channels": [],
-      "related_sectors": [],
-      "related_countries": [],
-      "related_markets": [],
-      "related_stocks": [
-        "SK하이닉스"
-      ],
-      "topic": "시장일반",
-      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-      "articles": [
-        {
-          "id": "NEWS-996a03be19820a42",
-          "headline": "삼전·하이닉스 자사주 매입 10월 종료… 코스피 앞날은?",
-          "title": "삼전·하이닉스 자사주 매입 10월 종료… 코스피 앞날은? - 세계일보",
-          "published_at": "2026-10-03T22:22:05Z",
-          "observed_at": "2026-10-04T18:26:10.247622Z",
-          "retrieved_at": "2026-10-04T18:26:10.247622Z",
-          "source": "세계일보",
-          "publisher": "세계일보",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBlSmdoUnMxSXliSVpHYjNsa3psSk1rbFE4Q0RsU2twWXNLLXVTcXJqeHdfa25ieFZmbHRXN3FWeDVpZXdZS01DcEpsRDc4Y2ZS0gFUQVVfeXFMT3E3eXVpeG1TUGNneEpKc0NtRENPcXYyUEgzUzd2aWJWb0FYTDFUV0g5bndxZmFkY3F2b2RRSTlVbmtiY0hGMnBxN3JFTnlMNm5CNGJT?oc=5",
-          "query": "연준 Fed 미국 국채 금리 달러 환율",
-          "cluster_id": "GN-036840335a2e810d",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [],
-          "related_stocks": [
-            "SK하이닉스"
-          ],
-          "topic": "시장일반",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": true
-        }
-      ],
-      "ai_analysis": {},
-      "last_updated_at": "2026-10-05T06:50:23+09:00",
-      "importance_score": 7.5,
-      "importance_components": {
-        "independent_source_component": 1,
-        "article_component": 1,
-        "channel_component": 0,
-        "official_source_component": 0,
-        "recency_component": 2,
-        "market_reaction_component": "PENDING"
-      },
-      "market_reaction": {
-        "evidence_state": "PENDING",
-        "event_at": "2026-10-03T22:22:05+00:00",
         "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
       }
     }
