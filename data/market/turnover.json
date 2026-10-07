@@ -1,57 +1,57 @@
 {
-  "generated_at": "2026-10-06T10:55:34+09:00",
-  "collection_status": "REUSED_CLOSED_MARKET",
+  "generated_at": "2026-10-07T09:10:40+09:00",
+  "collection_status": "HEALTHY",
   "markets": {
     "KOSPI": {
       "evidence_state": "ESTIMATED",
-      "stock_count": 811,
-      "excluded_instrument_count": 1671,
+      "stock_count": 810,
+      "excluded_instrument_count": 1673,
       "universe_rule": "ordinary_equity_only_for_stock_analysis; ETF/ETN/SPAC/preferred/REIT/structured excluded",
-      "total_trading_value_krw": 7907132000000.0,
-      "advance_trading_value_krw": 3408636000000.0,
-      "decline_trading_value_krw": 3083801000000.0,
-      "flat_trading_value_krw": 1414695000000.0,
-      "advance_directional_share": 0.525,
-      "advance_decline_turnover_ratio": 1.1053,
+      "total_trading_value_krw": 1820040000000.0,
+      "advance_trading_value_krw": 369823000000.0,
+      "decline_trading_value_krw": 1443166000000.0,
+      "flat_trading_value_krw": 7051000000.0,
+      "advance_directional_share": 0.204,
+      "advance_decline_turnover_ratio": 0.2563,
       "source_id": "naver-finance-public",
       "source_kind": "secondary",
       "method_note": "상승·하락 종목의 누적 거래대금을 합산한 장중 거래대금 참여도입니다.",
       "size_participation": {
         "evidence_state": "ESTIMATED",
-        "stock_count": 811,
-        "excluded_instrument_count": 1671,
+        "stock_count": 810,
+        "excluded_instrument_count": 1673,
         "universe_rule": "ordinary_equity_only_for_stock_analysis; ETF/ETN/SPAC/preferred/REIT/structured excluded",
         "classification": "market_cap_rank_proxy_top20_mid30_bottom50",
         "segments": {
           "large_proxy": {
             "stock_count": 162,
-            "advance": 80,
-            "decline": 75,
-            "flat": 7,
-            "advance_share": 0.4938,
-            "average_change_pct": 0.425,
-            "market_cap_share": 0.9592,
-            "turnover_share": 0.9081
+            "advance": 59,
+            "decline": 94,
+            "flat": 9,
+            "advance_share": 0.3642,
+            "average_change_pct": -0.157,
+            "market_cap_share": 0.9584,
+            "turnover_share": 0.9303
           },
           "mid_proxy": {
             "stock_count": 243,
-            "advance": 127,
-            "decline": 108,
-            "flat": 8,
-            "advance_share": 0.5226,
-            "average_change_pct": 0.454,
-            "market_cap_share": 0.0331,
-            "turnover_share": 0.0801
+            "advance": 114,
+            "decline": 113,
+            "flat": 16,
+            "advance_share": 0.4691,
+            "average_change_pct": 0.141,
+            "market_cap_share": 0.0337,
+            "turnover_share": 0.0565
           },
           "small_proxy": {
-            "stock_count": 406,
-            "advance": 162,
-            "decline": 193,
-            "flat": 51,
-            "advance_share": 0.399,
-            "average_change_pct": -0.128,
-            "market_cap_share": 0.0078,
-            "turnover_share": 0.0118
+            "stock_count": 405,
+            "advance": 207,
+            "decline": 124,
+            "flat": 74,
+            "advance_share": 0.5111,
+            "average_change_pct": 0.455,
+            "market_cap_share": 0.0079,
+            "turnover_share": 0.0132
           }
         },
         "source_id": "naver-finance-public",
@@ -64,7 +64,7 @@
           "name": "SK하이닉스",
           "benchmark": "KOSPI",
           "instrument_type": "COMMON_STOCK_CANDIDATE",
-          "trading_value_krw": 1815566000000.0,
+          "trading_value_krw": 548146000000.0,
           "selection_reason": "top_intraday_trading_value_common_stock_validation_sample"
         },
         {
@@ -72,7 +72,7 @@
           "name": "삼성전자",
           "benchmark": "KOSPI",
           "instrument_type": "COMMON_STOCK_CANDIDATE",
-          "trading_value_krw": 1352259000000.0,
+          "trading_value_krw": 272958000000.0,
           "selection_reason": "top_intraday_trading_value_common_stock_validation_sample"
         },
         {
@@ -80,23 +80,15 @@
           "name": "삼성전기",
           "benchmark": "KOSPI",
           "instrument_type": "COMMON_STOCK_CANDIDATE",
-          "trading_value_krw": 667059000000.0,
+          "trading_value_krw": 101899000000.0,
           "selection_reason": "top_intraday_trading_value_common_stock_validation_sample"
         },
         {
-          "code": "402340",
-          "name": "SK스퀘어",
+          "code": "010120",
+          "name": "LS ELECTRIC",
           "benchmark": "KOSPI",
           "instrument_type": "COMMON_STOCK_CANDIDATE",
-          "trading_value_krw": 371547000000.0,
-          "selection_reason": "top_intraday_trading_value_common_stock_validation_sample"
-        },
-        {
-          "code": "006400",
-          "name": "삼성SDI",
-          "benchmark": "KOSPI",
-          "instrument_type": "COMMON_STOCK_CANDIDATE",
-          "trading_value_krw": 142787000000.0,
+          "trading_value_krw": 42006000000.0,
           "selection_reason": "top_intraday_trading_value_common_stock_validation_sample"
         },
         {
@@ -104,61 +96,69 @@
           "name": "LG전자",
           "benchmark": "KOSPI",
           "instrument_type": "COMMON_STOCK_CANDIDATE",
-          "trading_value_krw": 135221000000.0,
+          "trading_value_krw": 40623000000.0,
+          "selection_reason": "top_intraday_trading_value_common_stock_validation_sample"
+        },
+        {
+          "code": "034020",
+          "name": "두산에너빌리티",
+          "benchmark": "KOSPI",
+          "instrument_type": "COMMON_STOCK_CANDIDATE",
+          "trading_value_krw": 38782000000.0,
           "selection_reason": "top_intraday_trading_value_common_stock_validation_sample"
         }
       ]
     },
     "KOSDAQ": {
       "evidence_state": "ESTIMATED",
-      "stock_count": 1746,
+      "stock_count": 1745,
       "excluded_instrument_count": 78,
       "universe_rule": "ordinary_equity_only_for_stock_analysis; ETF/ETN/SPAC/preferred/REIT/structured excluded",
-      "total_trading_value_krw": 4851092000000.0,
-      "advance_trading_value_krw": 4247792000000.0,
-      "decline_trading_value_krw": 579666000000.0,
-      "flat_trading_value_krw": 23634000000.0,
-      "advance_directional_share": 0.8799,
-      "advance_decline_turnover_ratio": 7.328,
+      "total_trading_value_krw": 1013858000000.0,
+      "advance_trading_value_krw": 576264000000.0,
+      "decline_trading_value_krw": 412174000000.0,
+      "flat_trading_value_krw": 25420000000.0,
+      "advance_directional_share": 0.583,
+      "advance_decline_turnover_ratio": 1.3981,
       "source_id": "naver-finance-public",
       "source_kind": "secondary",
       "method_note": "상승·하락 종목의 누적 거래대금을 합산한 장중 거래대금 참여도입니다.",
       "size_participation": {
         "evidence_state": "ESTIMATED",
-        "stock_count": 1746,
+        "stock_count": 1745,
         "excluded_instrument_count": 78,
         "universe_rule": "ordinary_equity_only_for_stock_analysis; ETF/ETN/SPAC/preferred/REIT/structured excluded",
         "classification": "market_cap_rank_proxy_top20_mid30_bottom50",
         "segments": {
           "large_proxy": {
             "stock_count": 349,
-            "advance": 233,
-            "decline": 99,
-            "flat": 17,
-            "advance_share": 0.6676,
-            "average_change_pct": 1.951,
-            "market_cap_share": 0.7835,
-            "turnover_share": 0.8198
+            "advance": 160,
+            "decline": 176,
+            "flat": 13,
+            "advance_share": 0.4585,
+            "average_change_pct": -0.071,
+            "market_cap_share": 0.7834,
+            "turnover_share": 0.8051
           },
           "mid_proxy": {
-            "stock_count": 524,
-            "advance": 288,
-            "decline": 196,
-            "flat": 40,
-            "advance_share": 0.5496,
-            "average_change_pct": 0.873,
-            "market_cap_share": 0.1473,
-            "turnover_share": 0.1538
+            "stock_count": 523,
+            "advance": 252,
+            "decline": 209,
+            "flat": 62,
+            "advance_share": 0.4818,
+            "average_change_pct": 0.275,
+            "market_cap_share": 0.147,
+            "turnover_share": 0.1646
           },
           "small_proxy": {
             "stock_count": 873,
-            "advance": 428,
-            "decline": 346,
-            "flat": 99,
-            "advance_share": 0.4903,
-            "average_change_pct": 0.629,
-            "market_cap_share": 0.0692,
-            "turnover_share": 0.0264
+            "advance": 395,
+            "decline": 324,
+            "flat": 154,
+            "advance_share": 0.4525,
+            "average_change_pct": 0.375,
+            "market_cap_share": 0.0696,
+            "turnover_share": 0.0303
           }
         },
         "source_id": "naver-finance-public",
@@ -167,51 +167,51 @@
       },
       "top_trading_value_candidates": [
         {
-          "code": "036930",
-          "name": "주성엔지니어링",
-          "benchmark": "KOSDAQ",
-          "instrument_type": "COMMON_STOCK_CANDIDATE",
-          "trading_value_krw": 555035000000.0,
-          "selection_reason": "top_intraday_trading_value_common_stock_validation_sample"
-        },
-        {
-          "code": "028300",
-          "name": "HLB",
-          "benchmark": "KOSDAQ",
-          "instrument_type": "COMMON_STOCK_CANDIDATE",
-          "trading_value_krw": 213657000000.0,
-          "selection_reason": "top_intraday_trading_value_common_stock_validation_sample"
-        },
-        {
           "code": "010170",
           "name": "대한광통신",
           "benchmark": "KOSDAQ",
           "instrument_type": "COMMON_STOCK_CANDIDATE",
-          "trading_value_krw": 174367000000.0,
+          "trading_value_krw": 102961000000.0,
           "selection_reason": "top_intraday_trading_value_common_stock_validation_sample"
         },
         {
-          "code": "356680",
-          "name": "엑스게이트",
+          "code": "036930",
+          "name": "주성엔지니어링",
           "benchmark": "KOSDAQ",
           "instrument_type": "COMMON_STOCK_CANDIDATE",
-          "trading_value_krw": 118386000000.0,
+          "trading_value_krw": 96775000000.0,
           "selection_reason": "top_intraday_trading_value_common_stock_validation_sample"
         },
         {
-          "code": "403870",
-          "name": "HPSP",
+          "code": "069540",
+          "name": "빛과전자",
           "benchmark": "KOSDAQ",
           "instrument_type": "COMMON_STOCK_CANDIDATE",
-          "trading_value_krw": 114146000000.0,
+          "trading_value_krw": 53841000000.0,
           "selection_reason": "top_intraday_trading_value_common_stock_validation_sample"
         },
         {
-          "code": "080220",
-          "name": "제주반도체",
+          "code": "043260",
+          "name": "성호전자",
           "benchmark": "KOSDAQ",
           "instrument_type": "COMMON_STOCK_CANDIDATE",
-          "trading_value_krw": 111094000000.0,
+          "trading_value_krw": 52921000000.0,
+          "selection_reason": "top_intraday_trading_value_common_stock_validation_sample"
+        },
+        {
+          "code": "000250",
+          "name": "삼천당제약",
+          "benchmark": "KOSDAQ",
+          "instrument_type": "COMMON_STOCK_CANDIDATE",
+          "trading_value_krw": 35722000000.0,
+          "selection_reason": "top_intraday_trading_value_common_stock_validation_sample"
+        },
+        {
+          "code": "204270",
+          "name": "제이앤티씨",
+          "benchmark": "KOSDAQ",
+          "instrument_type": "COMMON_STOCK_CANDIDATE",
+          "trading_value_krw": 23628000000.0,
           "selection_reason": "top_intraday_trading_value_common_stock_validation_sample"
         }
       ]
@@ -219,16 +219,15 @@
   },
   "combined": {
     "evidence_state": "ESTIMATED",
-    "stock_count": 2557,
-    "total_trading_value_krw": 12758224000000.0,
-    "advance_trading_value_krw": 7656428000000.0,
-    "decline_trading_value_krw": 3663467000000.0,
-    "flat_trading_value_krw": 1438329000000.0,
-    "advance_directional_share": 0.6764,
-    "advance_decline_turnover_ratio": 2.0899
+    "stock_count": 2555,
+    "total_trading_value_krw": 2833898000000.0,
+    "advance_trading_value_krw": 946087000000.0,
+    "decline_trading_value_krw": 1855340000000.0,
+    "flat_trading_value_krw": 32471000000.0,
+    "advance_directional_share": 0.3377,
+    "advance_decline_turnover_ratio": 0.5099
   },
   "source_id": "naver-finance-public",
   "source_kind": "secondary",
-  "method_note": "상승·하락 종목별 누적 거래대금을 전 종목 공개 목록에서 합산합니다. 공식 KRX 값과 동일하게 취급하지 않습니다.",
-  "last_checked_at": "2026-10-07T05:32:18+09:00"
+  "method_note": "상승·하락 종목별 누적 거래대금을 전 종목 공개 목록에서 합산합니다. 공식 KRX 값과 동일하게 취급하지 않습니다."
 }
