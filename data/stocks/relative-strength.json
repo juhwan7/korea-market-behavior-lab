@@ -1,100 +1,6 @@
 {
-  "generated_at": "2026-10-09T07:28:01+09:00",
+  "generated_at": "2026-10-09T11:30:54+09:00",
   "items": [
-    {
-      "code": "131970",
-      "name": "두산테스나",
-      "benchmark": "KOSDAQ",
-      "source_id": "naver-finance-public",
-      "source_kind": "secondary",
-      "evidence_state": "ESTIMATED",
-      "as_of": "2026-10-08",
-      "aligned_days": 80,
-      "overall_state": "STRONGER",
-      "weighted_excess_return_pct": 25.38,
-      "windows": {
-        "1": {
-          "start_date": "2026-10-07",
-          "end_date": "2026-10-08",
-          "stock_return_pct": 12.3,
-          "benchmark_return_pct": -0.69,
-          "excess_return_pct": 12.98,
-          "state": "STRONGER"
-        },
-        "3": {
-          "start_date": "2026-10-02",
-          "end_date": "2026-10-08",
-          "stock_return_pct": 13.12,
-          "benchmark_return_pct": -0.11,
-          "excess_return_pct": 13.23,
-          "state": "STRONGER"
-        },
-        "5": {
-          "start_date": "2026-09-30",
-          "end_date": "2026-10-08",
-          "stock_return_pct": 25.94,
-          "benchmark_return_pct": 4.25,
-          "excess_return_pct": 21.7,
-          "state": "STRONGER"
-        },
-        "20": {
-          "start_date": "2026-09-07",
-          "end_date": "2026-10-08",
-          "stock_return_pct": 49.09,
-          "benchmark_return_pct": 8.52,
-          "excess_return_pct": 40.57,
-          "state": "STRONGER"
-        }
-      },
-      "method_note": "같은 거래일의 종목·벤치마크 종가 수익률을 1·3·5·20거래일로 비교한 기술적 상대강도입니다. 미래 수익률 확률을 의미하지 않습니다."
-    },
-    {
-      "code": "452190",
-      "name": "한빛레이저",
-      "benchmark": "KOSDAQ",
-      "source_id": "naver-finance-public",
-      "source_kind": "secondary",
-      "evidence_state": "ESTIMATED",
-      "as_of": "2026-10-08",
-      "aligned_days": 80,
-      "overall_state": "STRONGER",
-      "weighted_excess_return_pct": 17.16,
-      "windows": {
-        "1": {
-          "start_date": "2026-10-07",
-          "end_date": "2026-10-08",
-          "stock_return_pct": 4.83,
-          "benchmark_return_pct": -0.69,
-          "excess_return_pct": 5.52,
-          "state": "STRONGER"
-        },
-        "3": {
-          "start_date": "2026-10-02",
-          "end_date": "2026-10-08",
-          "stock_return_pct": 2.11,
-          "benchmark_return_pct": -0.11,
-          "excess_return_pct": 2.22,
-          "state": "STRONGER"
-        },
-        "5": {
-          "start_date": "2026-09-30",
-          "end_date": "2026-10-08",
-          "stock_return_pct": 2.11,
-          "benchmark_return_pct": 4.25,
-          "excess_return_pct": -2.14,
-          "state": "WEAKER"
-        },
-        "20": {
-          "start_date": "2026-09-07",
-          "end_date": "2026-10-08",
-          "stock_return_pct": 54.74,
-          "benchmark_return_pct": 8.52,
-          "excess_return_pct": 46.21,
-          "state": "STRONGER"
-        }
-      },
-      "method_note": "같은 거래일의 종목·벤치마크 종가 수익률을 1·3·5·20거래일로 비교한 기술적 상대강도입니다. 미래 수익률 확률을 의미하지 않습니다."
-    },
     {
       "code": "036930",
       "name": "주성엔지니어링",
@@ -231,6 +137,53 @@
           "stock_return_pct": 11.17,
           "benchmark_return_pct": -5.28,
           "excess_return_pct": 16.45,
+          "state": "STRONGER"
+        }
+      },
+      "method_note": "같은 거래일의 종목·벤치마크 종가 수익률을 1·3·5·20거래일로 비교한 기술적 상대강도입니다. 미래 수익률 확률을 의미하지 않습니다."
+    },
+    {
+      "code": "058470",
+      "name": "리노공업",
+      "benchmark": "KOSDAQ",
+      "source_id": "naver-finance-public",
+      "source_kind": "secondary",
+      "evidence_state": "ESTIMATED",
+      "as_of": "2026-10-08",
+      "aligned_days": 80,
+      "overall_state": "STRONGER",
+      "weighted_excess_return_pct": 12.59,
+      "windows": {
+        "1": {
+          "start_date": "2026-10-07",
+          "end_date": "2026-10-08",
+          "stock_return_pct": 3.17,
+          "benchmark_return_pct": -0.69,
+          "excess_return_pct": 3.86,
+          "state": "STRONGER"
+        },
+        "3": {
+          "start_date": "2026-10-02",
+          "end_date": "2026-10-08",
+          "stock_return_pct": 3.17,
+          "benchmark_return_pct": -0.11,
+          "excess_return_pct": 3.29,
+          "state": "STRONGER"
+        },
+        "5": {
+          "start_date": "2026-09-30",
+          "end_date": "2026-10-08",
+          "stock_return_pct": 19.13,
+          "benchmark_return_pct": 4.25,
+          "excess_return_pct": 14.88,
+          "state": "STRONGER"
+        },
+        "20": {
+          "start_date": "2026-09-07",
+          "end_date": "2026-10-08",
+          "stock_return_pct": 28.36,
+          "benchmark_return_pct": 8.52,
+          "excess_return_pct": 19.84,
           "state": "STRONGER"
         }
       },
@@ -655,6 +608,51 @@
           "benchmark_return_pct": 8.52,
           "excess_return_pct": -24.43,
           "state": "WEAKER"
+        }
+      },
+      "method_note": "같은 거래일의 종목·벤치마크 종가 수익률을 1·3·5·20거래일로 비교한 기술적 상대강도입니다. 미래 수익률 확률을 의미하지 않습니다."
+    },
+    {
+      "code": "266690",
+      "name": "덕산넵코어스",
+      "benchmark": "KOSDAQ",
+      "source_id": "naver-finance-public",
+      "source_kind": "secondary",
+      "evidence_state": "ESTIMATED",
+      "as_of": "2026-10-08",
+      "aligned_days": 6,
+      "overall_state": "WEAKER",
+      "weighted_excess_return_pct": -17.2,
+      "windows": {
+        "1": {
+          "start_date": "2026-10-07",
+          "end_date": "2026-10-08",
+          "stock_return_pct": 0.08,
+          "benchmark_return_pct": -0.69,
+          "excess_return_pct": 0.76,
+          "state": "SIMILAR"
+        },
+        "3": {
+          "start_date": "2026-10-02",
+          "end_date": "2026-10-08",
+          "stock_return_pct": -18.52,
+          "benchmark_return_pct": -0.11,
+          "excess_return_pct": -18.4,
+          "state": "WEAKER"
+        },
+        "5": {
+          "start_date": "2026-09-30",
+          "end_date": "2026-10-08",
+          "stock_return_pct": -21.03,
+          "benchmark_return_pct": 4.25,
+          "excess_return_pct": -25.28,
+          "state": "WEAKER"
+        },
+        "20": {
+          "stock_return_pct": null,
+          "benchmark_return_pct": null,
+          "excess_return_pct": null,
+          "state": "UNKNOWN"
         }
       },
       "method_note": "같은 거래일의 종목·벤치마크 종가 수익률을 1·3·5·20거래일로 비교한 기술적 상대강도입니다. 미래 수익률 확률을 의미하지 않습니다."
