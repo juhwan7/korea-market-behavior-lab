@@ -1,487 +1,50 @@
 {
-  "generated_at": "2026-10-11T22:11:50+09:00",
-  "latest_news_at": "2026-10-11T10:45:32Z",
-  "latest_issue_at": "2026-10-11T22:11:50+09:00",
+  "generated_at": "2026-10-12T03:11:13+09:00",
+  "latest_news_at": "2026-10-11T18:00:00Z",
+  "latest_issue_at": "2026-10-12T03:11:13+09:00",
   "collection_status": "PARTIAL",
   "sources_checked": 20,
   "queries_succeeded": 14,
   "official_sources_succeeded": 4,
   "official_items_count": 0,
-  "raw_news_count": 71,
+  "raw_news_count": 81,
   "promotion_filtered_count": 1,
   "low_information_filtered_count": 0,
   "quality_filtered_count": 1,
-  "duplicate_or_reprint_filtered_count": 1,
-  "deduplicated_count": 69,
+  "duplicate_or_reprint_filtered_count": 2,
+  "deduplicated_count": 78,
   "top_issues": [
     {
-      "issue_id": "GN-3316afc3b021e328",
-      "fingerprint": "ISSUE-FP-3316afc3b021e328",
+      "issue_id": "GN-c058f96b65db2680",
+      "fingerprint": "ISSUE-FP-c058f96b65db2680",
       "event_core_tokens": [
-        "55조",
-        "6600선으로",
-        "구원투수",
-        "끝물",
-        "매입",
-        "물가",
-        "밀린",
-        "반도체",
-        "삼전닉스",
-        "실적에"
+        "2030년까지",
+        "20배",
+        "20배로",
+        "d램",
+        "sk",
+        "로봇",
+        "삼성",
+        "수요"
       ],
-      "headline": "[주간증시전망] 6600선으로 밀린 코스피…美물가·반도체 실적에 주목",
-      "first_seen_at": "2026-10-11T01:26:00Z",
-      "latest_at": "2026-10-11T01:26:00Z",
-      "article_count": 2,
-      "publisher_count": 2,
-      "independent_source_count": 1,
-      "independent_publishers": 1,
-      "reprint_count": 1,
-      "quality_filtered_count": 1,
-      "publishers": [
-        "브릿지경제",
-        "이데일리"
-      ],
-      "official_source_available": false,
-      "state": "STRENGTHENING",
-      "why_important": "반도체는 국내 지수 비중이 커서 업종 상대강도와 외국인 수급이 지수 체감과 달라지는지 확인할 필요가 있습니다.",
-      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
-      "next_variables": [
-        "KOSPI",
-        "NASDAQ",
-        "외국인 수급",
-        "기관 수급"
-      ],
-      "history": [
-        {
-          "at": "2026-10-11T15:20:54+09:00",
-          "state": "NEW",
-          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
-        },
-        {
-          "at": "2026-10-11T22:11:50+09:00",
-          "state": "STRENGTHENING",
-          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
-        }
-      ],
-      "market_bias": "UNDETERMINED",
-      "impact_channels": [
-        "growth_beta",
-        "semiconductor"
-      ],
-      "related_sectors": [
-        "반도체"
-      ],
-      "related_countries": [],
-      "related_markets": [
-        "KOSPI",
-        "NASDAQ"
-      ],
-      "related_stocks": [],
-      "topic": "반도체",
-      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-      "articles": [
-        {
-          "id": "NEWS-d4ec328d5922a13c",
-          "headline": "[주간증시전망] 6600선으로 밀린 코스피…美물가·반도체 실적에 주목",
-          "title": "[주간증시전망] 6600선으로 밀린 코스피…美물가·반도체 실적에 주목 - 브릿지경제",
-          "published_at": "2026-10-11T01:26:00Z",
-          "observed_at": "2026-10-11T13:11:23.921128Z",
-          "retrieved_at": "2026-10-11T13:11:23.921128Z",
-          "source": "브릿지경제",
-          "publisher": "브릿지경제",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFB4ZmRwZ0hUYWVFSVdleGhSb2JRRWRNOWRkcjYzQWo4cUc0OHdzdjd5YkM3eHhSbW9KQTdVdTlDZ1JCSHMxV2hLeXRuWFF0ZlVvZ3l1UHdOQkVKQQ?oc=5",
-          "query": "한국 증시 코스피 코스닥 외국인 기관 수급",
-          "cluster_id": "GN-bae4ba121f7bd244",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [
-            "growth_beta",
-            "semiconductor"
-          ],
-          "related_sectors": [
-            "반도체"
-          ],
-          "related_countries": [],
-          "related_markets": [
-            "KOSPI",
-            "NASDAQ"
-          ],
-          "related_stocks": [],
-          "topic": "반도체",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": true
-        },
-        {
-          "id": "NEWS-8af89f5405473673",
-          "headline": "'삼전닉스' 55조 자사주 매입 끝물…반도체 실적이 코스피 구원투수?[주간증시전망]",
-          "title": "'삼전닉스' 55조 자사주 매입 끝물…반도체 실적이 코스피 구원투수?[주간증시전망] - 이데일리",
-          "published_at": "2026-10-11T00:23:35Z",
-          "observed_at": "2026-10-11T13:11:23.921128Z",
-          "retrieved_at": "2026-10-11T13:11:23.921128Z",
-          "source": "이데일리",
-          "publisher": "이데일리",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPdy1tYXVFOUthVjN1MjFqWDZ0aFZnNkVISlpiZjFVZjdFN21hazVDQnRPSzQ4TGZkbDZ3LUZPUGJ4WjZVSEFCN281aGFNSE9sMW5YcEZNQjB2UlRUdGIwTlo0bzJpQzFGZGJOS3Nzeml3YkRqRzBLbUp6cmFKYm1TVA?oc=5",
-          "query": "한국 증시 코스피 코스닥 외국인 기관 수급",
-          "cluster_id": "GN-bae4ba121f7bd244",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [
-            "growth_beta",
-            "semiconductor"
-          ],
-          "related_sectors": [
-            "반도체"
-          ],
-          "related_countries": [],
-          "related_markets": [
-            "KOSPI",
-            "NASDAQ"
-          ],
-          "related_stocks": [],
-          "topic": "반도체",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": true
-        }
-      ],
-      "identity_match": "SEMANTIC_CONTINUITY",
-      "generated_fingerprint": "ISSUE-FP-bae4ba121f7bd244",
-      "ai_analysis": {},
-      "last_updated_at": "2026-10-11T22:11:50+09:00",
-      "importance_score": 13.0,
-      "importance_components": {
-        "independent_source_component": 1,
-        "article_component": 2,
-        "channel_component": 2,
-        "official_source_component": 0,
-        "recency_component": 2,
-        "market_reaction_component": "PENDING"
-      },
-      "market_reaction": {
-        "evidence_state": "PENDING",
-        "event_at": "2026-10-11T01:26:00+00:00",
-        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
-      }
-    },
-    {
-      "issue_id": "GN-1ef63f35ce8f1b8c",
-      "fingerprint": "ISSUE-FP-1ef63f35ce8f1b8c",
-      "event_core_tokens": [
-        "3상",
-        "iga",
-        "경쟁력은",
-        "공략",
-        "글로벌",
-        "동시",
-        "로슈",
-        "리포트",
-        "바이오",
-        "사업화"
-      ],
-      "headline": "3상 올라선 셀비온 '포큐보타이드'···허가·글로벌 사업화 동시 공략",
-      "first_seen_at": "2026-10-11T02:14:18Z",
-      "latest_at": "2026-10-11T02:14:18Z",
-      "article_count": 2,
-      "publisher_count": 2,
-      "independent_source_count": 1,
-      "independent_publishers": 1,
-      "reprint_count": 1,
-      "quality_filtered_count": 1,
-      "publishers": [
-        "글로벌이코노믹",
-        "뉴스웨이"
-      ],
-      "official_source_available": false,
-      "state": "STRENGTHENING",
-      "why_important": "시장 영향 가능성이 있는 뉴스이므로 관련 지수·섹터·수급이 실제로 반응하는지 확인할 필요가 있습니다.",
-      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
-      "next_variables": [
-        "외국인 수급",
-        "기관 수급"
-      ],
-      "history": [
-        {
-          "at": "2026-10-11T15:20:54+09:00",
-          "state": "NEW",
-          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
-        },
-        {
-          "at": "2026-10-11T22:11:50+09:00",
-          "state": "STRENGTHENING",
-          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
-        }
-      ],
-      "market_bias": "UNDETERMINED",
-      "impact_channels": [],
-      "related_sectors": [],
-      "related_countries": [],
-      "related_markets": [],
-      "related_stocks": [],
-      "topic": "시장일반",
-      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-      "articles": [
-        {
-          "id": "NEWS-9d1f8e52567648f9",
-          "headline": "3상 올라선 셀비온 '포큐보타이드'···허가·글로벌 사업화 동시 공략",
-          "title": "3상 올라선 셀비온 '포큐보타이드'···허가·글로벌 사업화 동시 공략 - 뉴스웨이",
-          "published_at": "2026-10-11T02:14:18Z",
-          "observed_at": "2026-10-11T13:11:24.172666Z",
-          "retrieved_at": "2026-10-11T13:11:24.172666Z",
-          "source": "뉴스웨이",
-          "publisher": "뉴스웨이",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFAtNXpGMkc5U1VrNkM3cGpWNlYyZWdhMXVldjIwRzd6RElOVEl2bzFpTGpTUEtNWGVGT3NCM2JLSFRESjZtbmlLakh5UkszcEVMX0dSMlBYVUhubk93WXNZM1p5aWtTWllpRVE?oc=5",
-          "query": "바이오 제약 임상 허가 한국 증시",
-          "cluster_id": "GN-68ef2f18e423551d",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [],
-          "related_stocks": [],
-          "topic": "시장일반",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": true
-        },
-        {
-          "id": "NEWS-ca4033711c025207",
-          "headline": "[글로벌 제약·바이오 리포트] 로슈, IgA 신병증 시장 공략…임상 3상 '세팍서센' 경쟁력은",
-          "title": "[글로벌 제약·바이오 리포트] 로슈, IgA 신병증 시장 공략…임상 3상 '세팍서센' 경쟁력은 - 글로벌이코노믹",
-          "published_at": "2026-10-10T23:00:00Z",
-          "observed_at": "2026-10-11T13:11:24.172666Z",
-          "retrieved_at": "2026-10-11T13:11:24.172666Z",
-          "source": "글로벌이코노믹",
-          "publisher": "글로벌이코노믹",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPc1NUd2RZTGpTeEJyMVlIcl93aU9oeDVPMW5kam5tQl9pODRyUnJYUFNqSFF5czhqZE8tV0NKRkZPeUVtOEpkbVJEdXFwZnBWazVKWW9sUWFvUVA3Y2ZIV2t2azFYVlJXRVpGbWZGUGltbjdvNW1sb3RnU0dMSnU4eDlMS3RFQUE4?oc=5",
-          "query": "바이오 제약 임상 허가 한국 증시",
-          "cluster_id": "GN-68ef2f18e423551d",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [],
-          "related_sectors": [
-            "바이오"
-          ],
-          "related_countries": [],
-          "related_markets": [
-            "KOSDAQ",
-            "KOSPI"
-          ],
-          "related_stocks": [],
-          "topic": "바이오",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": true
-        }
-      ],
-      "identity_match": "SEMANTIC_CONTINUITY",
-      "generated_fingerprint": "ISSUE-FP-68ef2f18e423551d",
-      "ai_analysis": {},
-      "last_updated_at": "2026-10-11T22:11:50+09:00",
-      "importance_score": 9.0,
-      "importance_components": {
-        "independent_source_component": 1,
-        "article_component": 2,
-        "channel_component": 0,
-        "official_source_component": 0,
-        "recency_component": 2,
-        "market_reaction_component": "PENDING"
-      },
-      "market_reaction": {
-        "evidence_state": "PENDING",
-        "event_at": "2026-10-11T02:14:18+00:00",
-        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
-      }
-    },
-    {
-      "issue_id": "GN-33e4c10a3db16c63",
-      "fingerprint": "ISSUE-FP-33e4c10a3db16c63",
-      "event_core_tokens": [
-        "1340원대",
-        "물가지표",
-        "시도",
-        "쏠린",
-        "연준에",
-        "주간환율전망",
-        "탈출"
-      ],
-      "headline": "[주간환율전망] 美물가지표·연준에 쏠린 눈···1340원대 탈출 시도",
-      "first_seen_at": "2026-10-11T08:00:00Z",
-      "latest_at": "2026-10-11T08:00:00Z",
-      "article_count": 1,
-      "publisher_count": 1,
-      "independent_source_count": 1,
-      "independent_publishers": 1,
-      "reprint_count": 0,
-      "quality_filtered_count": 1,
-      "publishers": [
-        "서울파이낸스"
-      ],
-      "official_source_available": false,
-      "state": "NEW",
-      "why_important": "장기금리 변화는 성장주 할인율과 글로벌 위험선호에 영향을 줄 수 있어 선물·환율·외국인 수급과 함께 확인해야 합니다.",
-      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
-      "next_variables": [
-        "KOSDAQ",
-        "KOSPI",
-        "NASDAQ",
-        "S&P500",
-        "USD/KRW",
-        "외국인 수급"
-      ],
-      "history": [
-        {
-          "at": "2026-10-11T22:11:50+09:00",
-          "state": "NEW",
-          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
-        }
-      ],
-      "market_bias": "UNDETERMINED",
-      "impact_channels": [
-        "foreign_flow",
-        "fx",
-        "rates",
-        "valuation"
-      ],
-      "related_sectors": [],
-      "related_countries": [
-        "KR",
-        "US"
-      ],
-      "related_markets": [
-        "KOSDAQ",
-        "KOSPI",
-        "NASDAQ",
-        "S&P500",
-        "USD/KRW"
-      ],
-      "related_stocks": [],
-      "topic": "금리 · 환율",
-      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-      "articles": [
-        {
-          "id": "NEWS-bb96a45f095ed0ac",
-          "headline": "[주간환율전망] 美물가지표·연준에 쏠린 눈···1340원대 탈출 시도",
-          "title": "[주간환율전망] 美물가지표·연준에 쏠린 눈···1340원대 탈출 시도 - 서울파이낸스",
-          "published_at": "2026-10-11T08:00:00Z",
-          "observed_at": "2026-10-11T13:11:24.625804Z",
-          "retrieved_at": "2026-10-11T13:11:24.625804Z",
-          "source": "서울파이낸스",
-          "publisher": "서울파이낸스",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE0wQjFyYW5sRTNXSy1Kc2Zyc0wzWkVtNFJkWWsyWnJOcWpFdnR0dEZoT1BtQlFLLWZzbGtEMmNmdjF1NmRPZUZ5U3pnNVhrcnl4T2I2eXhBVmtsc1NMaHNLQXNjZlNsRGpYdmc?oc=5",
-          "query": "연준 Fed 미국 국채 금리 달러 환율",
-          "cluster_id": "GN-33e4c10a3db16c63",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [
-            "foreign_flow",
-            "fx",
-            "rates",
-            "valuation"
-          ],
-          "related_sectors": [],
-          "related_countries": [
-            "KR",
-            "US"
-          ],
-          "related_markets": [
-            "KOSDAQ",
-            "KOSPI",
-            "NASDAQ",
-            "S&P500",
-            "USD/KRW"
-          ],
-          "related_stocks": [],
-          "topic": "금리 · 환율",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        }
-      ],
-      "ai_analysis": {},
-      "last_updated_at": "2026-10-11T22:11:50+09:00",
-      "importance_score": 18.5,
-      "importance_components": {
-        "independent_source_component": 1,
-        "article_component": 1,
-        "channel_component": 4,
-        "official_source_component": 0,
-        "recency_component": 5,
-        "market_reaction_component": "PENDING"
-      },
-      "market_reaction": {
-        "evidence_state": "PENDING",
-        "event_at": "2026-10-11T08:00:00+00:00",
-        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
-      }
-    },
-    {
-      "issue_id": "GN-7f8c8b1c8037317f",
-      "fingerprint": "ISSUE-FP-7f8c8b1c8037317f",
-      "event_core_tokens": [
-        "3위",
-        "6년",
-        "6주년",
-        "ai",
-        "가속",
-        "글로벌",
-        "다음",
-        "승부는",
-        "전환",
-        "정의선"
-      ],
-      "headline": "취임 6주년 정의선 '피지컬 AI 전환' 가속",
-      "first_seen_at": "2026-10-10T23:00:00Z",
-      "latest_at": "2026-10-11T08:08:30Z",
-      "article_count": 2,
-      "publisher_count": 2,
+      "headline": "\"휴머노이드 두뇌용 D램 수요, 4년 후 20배로\"",
+      "first_seen_at": "2026-10-10T10:25:21Z",
+      "latest_at": "2026-10-11T15:34:00Z",
+      "article_count": 6,
+      "publisher_count": 5,
       "independent_source_count": 2,
       "independent_publishers": 2,
-      "reprint_count": 0,
+      "reprint_count": 4,
       "quality_filtered_count": 1,
       "publishers": [
-        "www.thecommoditiesnews.com",
-        "뉴스핌"
+        "SBS Biz",
+        "머니투데이",
+        "아주경제",
+        "연합뉴스",
+        "조선일보"
       ],
       "official_source_available": false,
-      "state": "NEW",
+      "state": "STRENGTHENING",
       "why_important": "시장 영향 가능성이 있는 뉴스이므로 관련 지수·섹터·수급이 실제로 반응하는지 확인할 필요가 있습니다.",
       "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
       "next_variables": [
@@ -490,8 +53,18 @@
       ],
       "history": [
         {
-          "at": "2026-10-11T22:11:50+09:00",
+          "at": "2026-10-11T15:20:54+09:00",
           "state": "NEW",
+          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
+        },
+        {
+          "at": "2026-10-11T22:11:50+09:00",
+          "state": "PERSISTING",
+          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
+        },
+        {
+          "at": "2026-10-12T03:11:13+09:00",
+          "state": "STRENGTHENING",
           "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
         }
       ],
@@ -505,20 +78,55 @@
       "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
       "articles": [
         {
-          "id": "NEWS-51e5305b2c9e3b8b",
-          "headline": "취임 6주년 정의선 '피지컬 AI 전환' 가속",
-          "title": "취임 6주년 정의선 '피지컬 AI 전환' 가속 - www.thecommoditiesnews.com",
-          "published_at": "2026-10-11T08:08:30Z",
-          "observed_at": "2026-10-11T13:11:24.111633Z",
-          "retrieved_at": "2026-10-11T13:11:24.111633Z",
-          "source": "www.thecommoditiesnews.com",
-          "publisher": "www.thecommoditiesnews.com",
+          "id": "NEWS-2dc3b49dba90d71f",
+          "headline": "\"휴머노이드 두뇌용 D램 수요, 4년 후 20배로\"",
+          "title": "\"휴머노이드 두뇌용 D램 수요, 4년 후 20배로\" - 조선일보",
+          "published_at": "2026-10-11T15:34:00Z",
+          "observed_at": "2026-10-11T18:11:01.259588Z",
+          "retrieved_at": "2026-10-11T18:11:01.259588Z",
+          "source": "조선일보",
+          "publisher": "조선일보",
           "source_type": "SECONDARY",
           "source_id": "google-news-rss",
           "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE45b2N3UDRBdWhRY2x1OEFCblg5MWVNOFUwdk9Mci1LZUJnUHV4UDRLa2lrSG1aUXNWVG41dEswd1RhMi1Ld29EbElBcGkzWEcxc1RHNVRxdTVUWWRjSUZNbldNTUlkZEREN2VweTh0bmw2bEtNWHNF?oc=5",
-          "query": "자동차 현대차 기아 로봇 스마트팩토리",
-          "cluster_id": "GN-7f8c8b1c8037317f",
+          "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPU1ZpTU5EU0lFT19QVER5UmhYWDRuTlhyX00zallGNDdyZFk4V2toR0tEX3YzWXUxX0J5NEpxZDlSZjNVUWV6dkJ1eW1LZWx1U2F4eFlpWTZxUUxlM0hEZTNsUnZIR2hqQlM5R0Y2V1dmVWUyS0NRS1djTC1hb3Vad2U5QQ?oc=5",
+          "query": "삼성전자 SK하이닉스 반도체 HBM AI",
+          "cluster_id": "GN-d6f698e37d2a9c90",
+          "official_source_available": false,
+          "market_bias": "UNDETERMINED",
+          "impact_channels": [],
+          "related_sectors": [
+            "조선"
+          ],
+          "related_countries": [],
+          "related_markets": [
+            "KOSPI"
+          ],
+          "related_stocks": [],
+          "topic": "산업수주",
+          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+          "promotion_score": 0,
+          "content_quality": "EDITORIAL_OR_FACTUAL",
+          "is_promotional": false,
+          "is_low_information": false,
+          "filter_from_market_feed": false,
+          "market_fact_signal": false
+        },
+        {
+          "id": "NEWS-fb0440da7d7b24d4",
+          "headline": "로봇 D램 수요 2030년까지 20배…삼성·SK 새 성장동력 뜬다 - 머니투데이",
+          "title": "로봇 D램 수요 2030년까지 20배…삼성·SK 새 성장동력 뜬다 - 머니투데이 - 머니투데이",
+          "published_at": "2026-10-11T04:50:10Z",
+          "observed_at": "2026-10-11T18:11:01.259588Z",
+          "retrieved_at": "2026-10-11T18:11:01.259588Z",
+          "source": "머니투데이",
+          "publisher": "머니투데이",
+          "source_type": "SECONDARY",
+          "source_id": "google-news-rss",
+          "source_kind": "secondary_aggregator",
+          "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9WYkkydTIzaVl0SWhWTzlrRFBncmFKVHpsUlhOVUtwdldUWWMzc1FkZWc2OVlmenRtRHF4bWF3cGlESzRIcngtZngxZlJsTFU5eXBCcHRBYTdsbTk1anBjeVNHY3RSS1VHVy00RnFUTk11QdIBckFVX3lxTE9WYkkydTIzaVl0SWhWTzlrRFBncmFKVHpsUlhOVUtwdldUWWMzc1FkZWc2OVlmenRtRHF4bWF3cGlESzRIcngtZngxZlJsTFU5eXBCcHRBYTdsbTk1anBjeVNHY3RSS1VHVy00RnFUTk11QQ?oc=5",
+          "query": "삼성전자 SK하이닉스 반도체 HBM AI",
+          "cluster_id": "GN-d6f698e37d2a9c90",
           "official_source_available": false,
           "market_bias": "UNDETERMINED",
           "impact_channels": [],
@@ -536,34 +144,32 @@
           "market_fact_signal": false
         },
         {
-          "id": "NEWS-edef6ff85ba9639b",
-          "headline": "정의선 취임 6년…'글로벌 3위' 현대차그룹, 다음 승부는 피지컬 AI",
-          "title": "정의선 취임 6년…'글로벌 3위' 현대차그룹, 다음 승부는 피지컬 AI - 뉴스핌",
-          "published_at": "2026-10-10T23:00:00Z",
-          "observed_at": "2026-10-11T13:11:24.111633Z",
-          "retrieved_at": "2026-10-11T13:11:24.111633Z",
-          "source": "뉴스핌",
-          "publisher": "뉴스핌",
+          "id": "NEWS-7d0b53ccdf26db1d",
+          "headline": "“휴머노이드 로봇 ‘두뇌’ D램 수요, 2030년 20배로… 삼전닉스 새 동력”",
+          "title": "“휴머노이드 로봇 ‘두뇌’ D램 수요, 2030년 20배로… 삼전닉스 새 동력” - 조선일보",
+          "published_at": "2026-10-11T03:24:03Z",
+          "observed_at": "2026-10-11T18:11:01.259588Z",
+          "retrieved_at": "2026-10-11T18:11:01.259588Z",
+          "source": "조선일보",
+          "publisher": "조선일보",
           "source_type": "SECONDARY",
           "source_id": "google-news-rss",
           "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE82a2tHWDBQazVkZjFJWExDZ0ljZktGZ1BxOER0LVMyZnMzMldqWnl6Qmlwdk9rMzA3cjRRd2RXeGlqYk03YTZXZndpd2psY3pULV96VW5EQXQxa2lP?oc=5",
-          "query": "자동차 현대차 기아 로봇 스마트팩토리",
-          "cluster_id": "GN-7f8c8b1c8037317f",
+          "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNUS0wb0RScEQ2a24xSmRtOUY2QWotYWFzbWZNdzdFSjdJSEszQ2drbWZsbUs0X2lNNm43V2hWTVFnY044dndqeGs5a3dKUlQzZjNCUDFvVVNoMmNXTG1RWUhFVXByZHRRNU9HdXR1LTJRSjVkSXA3S3Vucy14QlRyWno4UQ?oc=5",
+          "query": "삼성전자 SK하이닉스 반도체 HBM AI",
+          "cluster_id": "GN-d6f698e37d2a9c90",
           "official_source_available": false,
           "market_bias": "UNDETERMINED",
           "impact_channels": [],
           "related_sectors": [
-            "자동차"
+            "조선"
           ],
           "related_countries": [],
           "related_markets": [
             "KOSPI"
           ],
-          "related_stocks": [
-            "현대차"
-          ],
-          "topic": "자동차",
+          "related_stocks": [],
+          "topic": "산업수주",
           "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
           "promotion_score": 0,
           "content_quality": "EDITORIAL_OR_FACTUAL",
@@ -571,652 +177,22 @@
           "is_low_information": false,
           "filter_from_market_feed": false,
           "market_fact_signal": false
-        }
-      ],
-      "ai_analysis": {},
-      "last_updated_at": "2026-10-11T22:11:50+09:00",
-      "merged_prior_issue_ids": [
-        "GN-4bc8d7f63b7a729e"
-      ],
-      "importance_score": 16.0,
-      "importance_components": {
-        "independent_source_component": 2,
-        "article_component": 2,
-        "channel_component": 0,
-        "official_source_component": 0,
-        "recency_component": 5,
-        "market_reaction_component": "OBSERVED"
-      },
-      "market_reaction": {
-        "evidence_state": "OBSERVED",
-        "interpretation_state": "CORRELATION_ONLY",
-        "event_at": "2026-10-10T23:00:00+00:00",
-        "before_at": "2026-10-10T21:35:12+00:00",
-        "after_at": "2026-10-11T00:29:18+00:00",
-        "window_minutes": 174.1,
-        "axes": {
-          "KOSPI": {
-            "price_return_pct": 0.0,
-            "foreign_flow_change_100m_krw": null
-          },
-          "KOSDAQ": {
-            "price_return_pct": 0.0,
-            "foreign_flow_change_100m_krw": null
-          },
-          "KOSPI200_FUTURES": {
-            "price_return_pct": 0.0,
-            "basis_change": 0.0,
-            "foreign_flow_change_100m_krw": 0.0
-          },
-          "NASDAQ100_FUTURES": {
-            "price_return_pct": 0.0
-          },
-          "USD_KRW": {
-            "price_return_pct": 0.0
-          },
-          "WTI": {
-            "price_return_pct": 0.0
-          },
-          "VIX": {
-            "price_return_pct": 0.0
-          }
         },
-        "note": "뉴스 시각 전후 시장 변화의 관측치이며 뉴스가 가격 변화를 일으켰다는 인과관계 증거가 아닙니다."
-      }
-    },
-    {
-      "issue_id": "GN-e9bf04d637688257",
-      "fingerprint": "ISSUE-FP-e9bf04d637688257",
-      "event_core_tokens": [
-        "ai",
-        "openai",
-        "괴리로",
-        "구원",
-        "국채",
-        "내러티브",
-        "매출",
-        "불안",
-        "붕괴",
-        "에도"
-      ],
-      "headline": "월스트리트 조간: OpenAI 매출 괴리로 AI 내러티브 붕괴, 미 국채 입찰 '구원'에도 시장 불안 여전",
-      "first_seen_at": "2026-10-11T09:15:00Z",
-      "latest_at": "2026-10-11T09:15:00Z",
-      "article_count": 1,
-      "publisher_count": 1,
-      "independent_source_count": 1,
-      "independent_publishers": 1,
-      "reprint_count": 0,
-      "quality_filtered_count": 1,
-      "publishers": [
-        "PANews"
-      ],
-      "official_source_available": false,
-      "state": "NEW",
-      "why_important": "장기금리 변화는 성장주 할인율과 글로벌 위험선호에 영향을 줄 수 있어 선물·환율·외국인 수급과 함께 확인해야 합니다.",
-      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
-      "next_variables": [
-        "KOSDAQ",
-        "KOSPI",
-        "NASDAQ",
-        "S&P500",
-        "외국인 수급",
-        "기관 수급"
-      ],
-      "history": [
         {
-          "at": "2026-10-11T22:11:50+09:00",
-          "state": "NEW",
-          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
-        }
-      ],
-      "market_bias": "UNDETERMINED",
-      "impact_channels": [
-        "rates",
-        "valuation"
-      ],
-      "related_sectors": [],
-      "related_countries": [
-        "US"
-      ],
-      "related_markets": [
-        "KOSDAQ",
-        "KOSPI",
-        "NASDAQ",
-        "S&P500"
-      ],
-      "related_stocks": [],
-      "topic": "금리",
-      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-      "articles": [
-        {
-          "id": "NEWS-aaa8388e6acbb49a",
-          "headline": "월스트리트 조간: OpenAI 매출 괴리로 AI 내러티브 붕괴, 미 국채 입찰 '구원'에도 시장 불안 여전",
-          "title": "월스트리트 조간: OpenAI 매출 괴리로 AI 내러티브 붕괴, 미 국채 입찰 '구원'에도 시장 불안 여전 - PANews",
-          "published_at": "2026-10-11T09:15:00Z",
-          "observed_at": "2026-10-11T13:11:24.564191Z",
-          "retrieved_at": "2026-10-11T13:11:24.564191Z",
-          "source": "PANews",
-          "publisher": "PANews",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE04VkFNOU5veHkyWnJyU3loTElLUEhmbE5qbmVfUGNBbHk4OERWMDVVMUdWQi1FLW12TlhXWFZXWGllTmo5cTVCNHZQS05GSE91YzZtSE9oa01Ca2RLU1pscUxfOGw2MVUtaVZ3c0djUUdqbFFfRGlIZC1rYW4tUkE?oc=5",
-          "query": "미국 증시 나스닥 S&P500 다우 엔비디아 반도체",
-          "cluster_id": "GN-e9bf04d637688257",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [
-            "rates",
-            "valuation"
-          ],
-          "related_sectors": [],
-          "related_countries": [
-            "US"
-          ],
-          "related_markets": [
-            "KOSDAQ",
-            "KOSPI",
-            "NASDAQ",
-            "S&P500"
-          ],
-          "related_stocks": [],
-          "topic": "금리",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": true
-        }
-      ],
-      "ai_analysis": {},
-      "last_updated_at": "2026-10-11T22:11:50+09:00",
-      "importance_score": 14.5,
-      "importance_components": {
-        "independent_source_component": 1,
-        "article_component": 1,
-        "channel_component": 2,
-        "official_source_component": 0,
-        "recency_component": 5,
-        "market_reaction_component": "PENDING"
-      },
-      "market_reaction": {
-        "evidence_state": "PENDING",
-        "event_at": "2026-10-11T09:15:00+00:00",
-        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
-      }
-    },
-    {
-      "issue_id": "GN-42e7f39d430963ad",
-      "fingerprint": "ISSUE-FP-42e7f39d430963ad",
-      "event_core_tokens": [
-        "14일",
-        "개막",
-        "규모로",
-        "반도체대전",
-        "시대",
-        "실리콘",
-        "역대",
-        "연다",
-        "지능",
-        "최대"
-      ],
-      "headline": "반도체대전 역대 최대 규모로 14일 개막…“실리콘 지능 시대 연다”",
-      "first_seen_at": "2026-10-11T07:00:00Z",
-      "latest_at": "2026-10-11T07:00:00Z",
-      "article_count": 1,
-      "publisher_count": 1,
-      "independent_source_count": 1,
-      "independent_publishers": 1,
-      "reprint_count": 0,
-      "quality_filtered_count": 1,
-      "publishers": [
-        "전자신문"
-      ],
-      "official_source_available": false,
-      "state": "NEW",
-      "why_important": "반도체는 국내 지수 비중이 커서 업종 상대강도와 외국인 수급이 지수 체감과 달라지는지 확인할 필요가 있습니다.",
-      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
-      "next_variables": [
-        "KOSPI",
-        "NASDAQ",
-        "외국인 수급",
-        "기관 수급"
-      ],
-      "history": [
-        {
-          "at": "2026-10-11T22:11:50+09:00",
-          "state": "NEW",
-          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
-        }
-      ],
-      "market_bias": "UNDETERMINED",
-      "impact_channels": [
-        "growth_beta",
-        "semiconductor"
-      ],
-      "related_sectors": [
-        "반도체"
-      ],
-      "related_countries": [],
-      "related_markets": [
-        "KOSPI",
-        "NASDAQ"
-      ],
-      "related_stocks": [],
-      "topic": "반도체",
-      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-      "articles": [
-        {
-          "id": "NEWS-eb8bf6d0e135f746",
-          "headline": "반도체대전 역대 최대 규모로 14일 개막…“실리콘 지능 시대 연다”",
-          "title": "반도체대전 역대 최대 규모로 14일 개막…“실리콘 지능 시대 연다” - 전자신문",
-          "published_at": "2026-10-11T07:00:00Z",
-          "observed_at": "2026-10-11T13:11:24.025854Z",
-          "retrieved_at": "2026-10-11T13:11:24.025854Z",
-          "source": "전자신문",
-          "publisher": "전자신문",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE9QNnpOcXBCcXpfUHAzNHNJOXBnZEk4ZkNNRk0zMDJQa29VVjhBRGUtUHNqXzFjQUE3RGc3b3RiQTRIeGRVaWhxTDRpT1JKQQ?oc=5",
-          "query": "삼성전자 SK하이닉스 반도체 HBM AI",
-          "cluster_id": "GN-42e7f39d430963ad",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [
-            "growth_beta",
-            "semiconductor"
-          ],
-          "related_sectors": [
-            "반도체"
-          ],
-          "related_countries": [],
-          "related_markets": [
-            "KOSPI",
-            "NASDAQ"
-          ],
-          "related_stocks": [],
-          "topic": "반도체",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        }
-      ],
-      "ai_analysis": {},
-      "last_updated_at": "2026-10-11T22:11:50+09:00",
-      "importance_score": 14.5,
-      "importance_components": {
-        "independent_source_component": 1,
-        "article_component": 1,
-        "channel_component": 2,
-        "official_source_component": 0,
-        "recency_component": 5,
-        "market_reaction_component": "PENDING"
-      },
-      "market_reaction": {
-        "evidence_state": "PENDING",
-        "event_at": "2026-10-11T07:00:00+00:00",
-        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
-      }
-    },
-    {
-      "issue_id": "GN-0bcaf73f2a5a5247",
-      "fingerprint": "ISSUE-FP-0bcaf73f2a5a5247",
-      "event_core_tokens": [
-        "가장",
-        "반도체",
-        "일주일입니다",
-        "중요한",
-        "투자자에게"
-      ],
-      "headline": "반도체 투자자에게 가장 중요한 일주일입니다",
-      "first_seen_at": "2026-10-11T05:32:00Z",
-      "latest_at": "2026-10-11T05:32:00Z",
-      "article_count": 1,
-      "publisher_count": 1,
-      "independent_source_count": 1,
-      "independent_publishers": 1,
-      "reprint_count": 0,
-      "quality_filtered_count": 1,
-      "publishers": [
-        "네이버 프리미엄콘텐츠"
-      ],
-      "official_source_available": false,
-      "state": "NEW",
-      "why_important": "반도체는 국내 지수 비중이 커서 업종 상대강도와 외국인 수급이 지수 체감과 달라지는지 확인할 필요가 있습니다.",
-      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
-      "next_variables": [
-        "KOSPI",
-        "NASDAQ",
-        "외국인 수급",
-        "기관 수급"
-      ],
-      "history": [
-        {
-          "at": "2026-10-11T22:11:50+09:00",
-          "state": "NEW",
-          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
-        }
-      ],
-      "market_bias": "UNDETERMINED",
-      "impact_channels": [
-        "growth_beta",
-        "semiconductor"
-      ],
-      "related_sectors": [
-        "반도체"
-      ],
-      "related_countries": [],
-      "related_markets": [
-        "KOSPI",
-        "NASDAQ"
-      ],
-      "related_stocks": [],
-      "topic": "반도체",
-      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-      "articles": [
-        {
-          "id": "NEWS-4503a46657379321",
-          "headline": "반도체 투자자에게 가장 중요한 일주일입니다",
-          "title": "반도체 투자자에게 가장 중요한 일주일입니다 - 네이버 프리미엄콘텐츠",
-          "published_at": "2026-10-11T05:32:00Z",
-          "observed_at": "2026-10-11T13:11:24.564191Z",
-          "retrieved_at": "2026-10-11T13:11:24.564191Z",
-          "source": "네이버 프리미엄콘텐츠",
-          "publisher": "네이버 프리미엄콘텐츠",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPVGFPdnpfWjQtSU9PUEpwXzdNdGU4Ulp3SnhZQlJKcnRsRXZ2S2w5ZVVHMDltT0lKWmxHaE9nZjZXdmRlNFdMUkl5VVNZQnZqcnVPcDd0b3VwcmoxODUtWnRDalJfWVA5MHN4ZUY1Mm5jNy1BWS1PbEF2N0V4b2N4MVB3WnJhc1ZiZUsw?oc=5",
-          "query": "미국 증시 나스닥 S&P500 다우 엔비디아 반도체",
-          "cluster_id": "GN-0bcaf73f2a5a5247",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [
-            "growth_beta",
-            "semiconductor"
-          ],
-          "related_sectors": [
-            "반도체"
-          ],
-          "related_countries": [],
-          "related_markets": [
-            "KOSPI",
-            "NASDAQ"
-          ],
-          "related_stocks": [],
-          "topic": "반도체",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": true
-        }
-      ],
-      "ai_analysis": {},
-      "last_updated_at": "2026-10-11T22:11:50+09:00",
-      "importance_score": 14.5,
-      "importance_components": {
-        "independent_source_component": 1,
-        "article_component": 1,
-        "channel_component": 2,
-        "official_source_component": 0,
-        "recency_component": 5,
-        "market_reaction_component": "PENDING"
-      },
-      "market_reaction": {
-        "evidence_state": "PENDING",
-        "event_at": "2026-10-11T05:32:00+00:00",
-        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
-      }
-    },
-    {
-      "issue_id": "GN-95335ce1fa6deafe",
-      "fingerprint": "ISSUE-FP-95335ce1fa6deafe",
-      "event_core_tokens": [
-        "비만약",
-        "에페",
-        "출격"
-      ],
-      "headline": "K-비만약 1호 에페 출격 앞두고… 후발주자들 차세대 제형으로 틈새 공략",
-      "first_seen_at": "2026-10-10T22:13:00Z",
-      "latest_at": "2026-10-11T09:28:57Z",
-      "article_count": 3,
-      "publisher_count": 3,
-      "independent_source_count": 1,
-      "independent_publishers": 1,
-      "reprint_count": 2,
-      "quality_filtered_count": 1,
-      "publishers": [
-        "매일경제 마켓",
-        "아주경제",
-        "직썰"
-      ],
-      "official_source_available": false,
-      "state": "NEW",
-      "why_important": "시장 영향 가능성이 있는 뉴스이므로 관련 지수·섹터·수급이 실제로 반응하는지 확인할 필요가 있습니다.",
-      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
-      "next_variables": [
-        "외국인 수급",
-        "기관 수급"
-      ],
-      "history": [
-        {
-          "at": "2026-10-11T22:11:50+09:00",
-          "state": "NEW",
-          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
-        }
-      ],
-      "market_bias": "UNDETERMINED",
-      "impact_channels": [],
-      "related_sectors": [],
-      "related_countries": [],
-      "related_markets": [],
-      "related_stocks": [],
-      "topic": "시장일반",
-      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-      "articles": [
-        {
-          "id": "NEWS-fd64e96c7d0be11d",
-          "headline": "K-비만약 1호 에페 출격 앞두고… 후발주자들 차세대 제형으로 틈새 공략",
-          "title": "K-비만약 1호 에페 출격 앞두고… 후발주자들 차세대 제형으로 틈새 공략 - 아주경제",
-          "published_at": "2026-10-11T09:28:57Z",
-          "observed_at": "2026-10-11T13:11:24.172666Z",
-          "retrieved_at": "2026-10-11T13:11:24.172666Z",
+          "id": "NEWS-107df4e378b7b4a0",
+          "headline": "로봇 D램 수요, 2030년까지 20배 증가…삼성전자·SK하이닉스 수요 확대 기대",
+          "title": "로봇 D램 수요, 2030년까지 20배 증가…삼성전자·SK하이닉스 수요 확대 기대 - 아주경제",
+          "published_at": "2026-10-11T02:23:59Z",
+          "observed_at": "2026-10-11T18:11:01.259588Z",
+          "retrieved_at": "2026-10-11T18:11:01.259588Z",
           "source": "아주경제",
           "publisher": "아주경제",
           "source_type": "SECONDARY",
           "source_id": "google-news-rss",
           "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFB5b3JsaHB4NkQ0TjRJUEZadzA2eWM3MFVBdXNVNzZnWW9SLVdvcmExNF9OeE94dUhtVjJwUmJxcW1zTkRJa3JWYjdXcVlzTEIydkhoSXI0S0vSAVhBVV95cUxQeW9ybGhweDZENE40SVBGWncwNnljNzBVQXVzVTc2Z1lvUi1Xb3JhMTRfTnhPeHVIbVYycFJicXFtc05ESWtyVmI3V3FZc0xCMnZIaElyNEtL?oc=5",
-          "query": "바이오 제약 임상 허가 한국 증시",
-          "cluster_id": "GN-95335ce1fa6deafe",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [],
-          "related_stocks": [],
-          "topic": "시장일반",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        },
-        {
-          "id": "NEWS-e7911205f495fa18",
-          "headline": "한미약품 국내 신약 ‘에페’ 출격 임박…비만약 시장 판도 바뀌나",
-          "title": "한미약품 국내 신약 ‘에페’ 출격 임박…비만약 시장 판도 바뀌나 - 직썰",
-          "published_at": "2026-10-11T02:12:38Z",
-          "observed_at": "2026-10-11T13:11:24.172666Z",
-          "retrieved_at": "2026-10-11T13:11:24.172666Z",
-          "source": "직썰",
-          "publisher": "직썰",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5IaC1nUzVqbGdVbERkR2lPcmpSNkJXZGJxV0JwdTNqeFEwck5NOTdLdWdMLW1rbXdPc0tGY3Q3NEdPREhjeGV3SEs1YV9GLWk3YVNWM19GU21wSHh6aUJxWURMaGNTU3dI0gFsQVVfeXFMTk92cDZ3V2Y0cEx6QW9wT0lXMzhMdjhtQVFpMXhGeUxkS0cxb21yUmt3NV9xTHVKeEtiM2xVWUpxWGoxeXo5cnRzT0tqakdmUkVnNW9UVk9hSkk5aEJXUzJXMXBYZUtzSDY1OF9h?oc=5",
-          "query": "바이오 제약 임상 허가 한국 증시",
-          "cluster_id": "GN-95335ce1fa6deafe",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [],
-          "related_sectors": [
-            "바이오"
-          ],
-          "related_countries": [],
-          "related_markets": [
-            "KOSDAQ",
-            "KOSPI"
-          ],
-          "related_stocks": [],
-          "topic": "바이오",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        },
-        {
-          "id": "NEWS-c41e95e2ee5b4376",
-          "headline": "위고비·마운자로 양강 깨질까…국산 비만약 '에페' 출격",
-          "title": "위고비·마운자로 양강 깨질까…국산 비만약 '에페' 출격 - 매일경제 마켓",
-          "published_at": "2026-10-10T22:13:00Z",
-          "observed_at": "2026-10-11T13:11:24.172666Z",
-          "retrieved_at": "2026-10-11T13:11:24.172666Z",
-          "source": "매일경제 마켓",
-          "publisher": "매일경제 마켓",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE14M2Q4M3ZFcVJwaEV1UmZiSWQ0LVhwUldoRC14dVFqNmJaeE1jNFY2c1padXhzejVqYnJkSlFvRjNYWDY2Yjkwa2VKb1EzME1idHc?oc=5",
-          "query": "바이오 제약 임상 허가 한국 증시",
-          "cluster_id": "GN-95335ce1fa6deafe",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [],
-          "related_stocks": [],
-          "topic": "시장일반",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        }
-      ],
-      "ai_analysis": {},
-      "last_updated_at": "2026-10-11T22:11:50+09:00",
-      "merged_prior_issue_ids": [
-        "GN-ae62baa9073bdb3b"
-      ],
-      "importance_score": 13.5,
-      "importance_components": {
-        "independent_source_component": 1,
-        "article_component": 3,
-        "channel_component": 0,
-        "official_source_component": 0,
-        "recency_component": 5,
-        "market_reaction_component": "PENDING"
-      },
-      "market_reaction": {
-        "evidence_state": "PENDING",
-        "event_at": "2026-10-10T22:13:00+00:00",
-        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
-      }
-    },
-    {
-      "issue_id": "GN-e5b098282bcecf5e",
-      "fingerprint": "ISSUE-FP-e5b098282bcecf5e",
-      "event_core_tokens": [
-        "k반도체",
-        "러브콜",
-        "빅테크",
-        "빛난다",
-        "수장들",
-        "잇단",
-        "파워"
-      ],
-      "headline": "빅테크 수장들 잇단 러브콜, K반도체 '칩 파워' 빛난다",
-      "first_seen_at": "2026-10-11T01:23:37Z",
-      "latest_at": "2026-10-11T01:23:37Z",
-      "article_count": 1,
-      "publisher_count": 1,
-      "independent_source_count": 1,
-      "independent_publishers": 1,
-      "reprint_count": 0,
-      "quality_filtered_count": 1,
-      "publishers": [
-        "동행미디어 시대"
-      ],
-      "official_source_available": false,
-      "state": "NEW",
-      "why_important": "반도체는 국내 지수 비중이 커서 업종 상대강도와 외국인 수급이 지수 체감과 달라지는지 확인할 필요가 있습니다.",
-      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
-      "next_variables": [
-        "KOSPI",
-        "NASDAQ",
-        "외국인 수급",
-        "기관 수급"
-      ],
-      "history": [
-        {
-          "at": "2026-10-11T22:11:50+09:00",
-          "state": "NEW",
-          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
-        }
-      ],
-      "market_bias": "UNDETERMINED",
-      "impact_channels": [
-        "growth_beta",
-        "semiconductor"
-      ],
-      "related_sectors": [
-        "반도체"
-      ],
-      "related_countries": [],
-      "related_markets": [
-        "KOSPI",
-        "NASDAQ"
-      ],
-      "related_stocks": [],
-      "topic": "반도체",
-      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-      "articles": [
-        {
-          "id": "NEWS-007a8952798a3186",
-          "headline": "빅테크 수장들 잇단 러브콜, K반도체 '칩 파워' 빛난다",
-          "title": "빅테크 수장들 잇단 러브콜, K반도체 '칩 파워' 빛난다 - 동행미디어 시대",
-          "published_at": "2026-10-11T01:23:37Z",
-          "observed_at": "2026-10-11T13:11:24.025854Z",
-          "retrieved_at": "2026-10-11T13:11:24.025854Z",
-          "source": "동행미디어 시대",
-          "publisher": "동행미디어 시대",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE83eWNGX1Z2clRaNkNrNURCSF9Ta0k2eUhPWVdGeFkzZ2pjZUZRdThaVFdsZlFYVUVnYTZWaVVZNzJ1YU5vZlZGb255a2tRQVNnb2xDVF9iM2VEbXB3TkE?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1CNkpTTXZlcUVsWncxcXF3TGNYREFJY2doeWoxbDBNY1BJZVZaY01RNURYZElWY3V1NjhwMUdDQUdDeVZobWhZazZjZHhQNGhPTWxad01yYVfSAVhBVV95cUxNQjZKU012ZXFFbFp3MXFxd0xjWERBSWNnaHlqMWwwTWNQSWVWWmNNUTVEWGRJVmN1dTY4cDFHQ0FHQ3lWaG1oWWs2Y2R4UDRoT01sWndNcmFX?oc=5",
           "query": "삼성전자 SK하이닉스 반도체 HBM AI",
-          "cluster_id": "GN-e5b098282bcecf5e",
+          "cluster_id": "GN-d6f698e37d2a9c90",
           "official_source_available": false,
           "market_bias": "UNDETERMINED",
           "impact_channels": [
@@ -1231,8 +207,73 @@
             "KOSPI",
             "NASDAQ"
           ],
-          "related_stocks": [],
+          "related_stocks": [
+            "SK하이닉스",
+            "삼성전자"
+          ],
           "topic": "반도체",
+          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+          "promotion_score": 0,
+          "content_quality": "EDITORIAL_OR_FACTUAL",
+          "is_promotional": false,
+          "is_low_information": false,
+          "filter_from_market_feed": false,
+          "market_fact_signal": false
+        },
+        {
+          "id": "NEWS-edfdd372eacc6dc2",
+          "headline": "로봇용 D램 수요 2030년까지 20배 증가…삼성·SK 새 성장동력으로",
+          "title": "로봇용 D램 수요 2030년까지 20배 증가…삼성·SK 새 성장동력으로 - SBS Biz",
+          "published_at": "2026-10-11T02:02:00Z",
+          "observed_at": "2026-10-11T18:11:01.259588Z",
+          "retrieved_at": "2026-10-11T18:11:01.259588Z",
+          "source": "SBS Biz",
+          "publisher": "SBS Biz",
+          "source_type": "SECONDARY",
+          "source_id": "google-news-rss",
+          "source_kind": "secondary_aggregator",
+          "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBfZTRzZWNOaTB4dzNiVXVXeWp6Tm5HU1lYYXlOTDRvczE5bFhmdEJVSHE2S3R0V09FZ2xUcjA3Zm9GWWREbmFWSVZ0b0MtQUlTQ1Z1MEFFajfSAVhBVV95cUxQX2U0c2VjTmkweHczYlV1V3lqek5uR1NZWGF5Tkw0b3MxOWxYZnRCVUhxNkt0dFdPRWdsVHIwN2ZvRllkRG5hVklWdG9DLUFJU0NWdTBBRWo3?oc=5",
+          "query": "삼성전자 SK하이닉스 반도체 HBM AI",
+          "cluster_id": "GN-d6f698e37d2a9c90",
+          "official_source_available": false,
+          "market_bias": "UNDETERMINED",
+          "impact_channels": [],
+          "related_sectors": [],
+          "related_countries": [],
+          "related_markets": [],
+          "related_stocks": [],
+          "topic": "시장일반",
+          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+          "promotion_score": 0,
+          "content_quality": "EDITORIAL_OR_FACTUAL",
+          "is_promotional": false,
+          "is_low_information": false,
+          "filter_from_market_feed": false,
+          "market_fact_signal": false
+        },
+        {
+          "id": "NEWS-5f71a201c3667331",
+          "headline": "로봇용 D램 수요, 2030년 20배로…삼성·SK 새 먹거리 부상",
+          "title": "로봇용 D램 수요, 2030년 20배로…삼성·SK 새 먹거리 부상 - 연합뉴스",
+          "published_at": "2026-10-11T01:02:45Z",
+          "observed_at": "2026-10-11T18:11:01.259588Z",
+          "retrieved_at": "2026-10-11T18:11:01.259588Z",
+          "source": "연합뉴스",
+          "publisher": "연합뉴스",
+          "source_type": "SECONDARY",
+          "source_id": "google-news-rss",
+          "source_kind": "secondary_aggregator",
+          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE52Z0MyRHpxNnU3d3FTeVVLRExFZGU4LVo1S0NPa2pXdW9QcEs2ZlhPNnV2aFJkT0NHMXZMTjA1cE9BSlRkRk4tWjluUzhHOG1qVVE0aHMyR2NTRWfSAWBBVV95cUxPU0VJNEVnb2tXY3lSdWRrVG82VGRYaUtWS3J1WE1IWFhNT1M3aGlhcEJzRHdydi1xdG9fRGFiU0tzeC1vN2NQYWNSNlpMSHhaVkI4RTI1bU1ZeVR3V0Y5T08?oc=5",
+          "query": "삼성전자 SK하이닉스 반도체 HBM AI",
+          "cluster_id": "GN-d6f698e37d2a9c90",
+          "official_source_available": false,
+          "market_bias": "UNDETERMINED",
+          "impact_channels": [],
+          "related_sectors": [],
+          "related_countries": [],
+          "related_markets": [],
+          "related_stocks": [],
+          "topic": "시장일반",
           "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
           "promotion_score": 0,
           "content_quality": "EDITORIAL_OR_FACTUAL",
@@ -1242,41 +283,41 @@
           "market_fact_signal": false
         }
       ],
+      "identity_match": "SEMANTIC_CONTINUITY",
+      "generated_fingerprint": "ISSUE-FP-d6f698e37d2a9c90",
       "ai_analysis": {},
-      "last_updated_at": "2026-10-11T22:11:50+09:00",
-      "importance_score": 11.5,
+      "last_updated_at": "2026-10-12T03:11:13+09:00",
+      "importance_score": 22.0,
       "importance_components": {
-        "independent_source_component": 1,
-        "article_component": 1,
-        "channel_component": 2,
+        "independent_source_component": 2,
+        "article_component": 6,
+        "channel_component": 0,
         "official_source_component": 0,
-        "recency_component": 2,
+        "recency_component": 5,
         "market_reaction_component": "PENDING"
       },
       "market_reaction": {
         "evidence_state": "PENDING",
-        "event_at": "2026-10-11T01:23:37+00:00",
+        "event_at": "2026-10-10T10:25:21+00:00",
         "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
       }
     },
     {
-      "issue_id": "GN-e1d23b659bcdec6c",
-      "fingerprint": "ISSUE-FP-e1d23b659bcdec6c",
+      "issue_id": "GN-a9949abf79c098b3",
+      "fingerprint": "ISSUE-FP-a9949abf79c098b3",
       "event_core_tokens": [
-        "80",
-        "ai",
-        "공급자",
-        "굳어지나",
-        "내년",
-        "메모리",
-        "부품시장",
+        "100조",
+        "도망치는",
         "삼성전자",
-        "완판",
-        "우위"
+        "시대",
+        "열었지만",
+        "외국인",
+        "이러나",
+        "주가"
       ],
-      "headline": "삼성전자, 내년 메모리 80% ‘장기계약 완판’…AI 부품시장, 공급자 우위 굳어지나?",
-      "first_seen_at": "2026-10-11T00:10:11Z",
-      "latest_at": "2026-10-11T00:10:11Z",
+      "headline": "도망치는 외국인...'100조 시대' 열었지만, 삼성전자 주가 왜 이러나",
+      "first_seen_at": "2026-10-11T14:43:42Z",
+      "latest_at": "2026-10-11T14:43:42Z",
       "article_count": 1,
       "publisher_count": 1,
       "independent_source_count": 1,
@@ -1284,7 +325,7 @@
       "reprint_count": 0,
       "quality_filtered_count": 1,
       "publishers": [
-        "더퍼블릭"
+        "잡포스트"
       ],
       "official_source_available": false,
       "state": "NEW",
@@ -1298,7 +339,7 @@
       ],
       "history": [
         {
-          "at": "2026-10-11T22:11:50+09:00",
+          "at": "2026-10-12T03:11:13+09:00",
           "state": "NEW",
           "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
         }
@@ -1323,20 +364,20 @@
       "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
       "articles": [
         {
-          "id": "NEWS-dd98492d43beb9ba",
-          "headline": "삼성전자, 내년 메모리 80% ‘장기계약 완판’…AI 부품시장, 공급자 우위 굳어지나?",
-          "title": "삼성전자, 내년 메모리 80% ‘장기계약 완판’…AI 부품시장, 공급자 우위 굳어지나? - 더퍼블릭",
-          "published_at": "2026-10-11T00:10:11Z",
-          "observed_at": "2026-10-11T13:11:24.025854Z",
-          "retrieved_at": "2026-10-11T13:11:24.025854Z",
-          "source": "더퍼블릭",
-          "publisher": "더퍼블릭",
+          "id": "NEWS-66baf09701f8e176",
+          "headline": "도망치는 외국인...'100조 시대' 열었지만, 삼성전자 주가 왜 이러나",
+          "title": "도망치는 외국인...'100조 시대' 열었지만, 삼성전자 주가 왜 이러나 - 잡포스트",
+          "published_at": "2026-10-11T14:43:42Z",
+          "observed_at": "2026-10-11T18:11:01.259588Z",
+          "retrieved_at": "2026-10-11T18:11:01.259588Z",
+          "source": "잡포스트",
+          "publisher": "잡포스트",
           "source_type": "SECONDARY",
           "source_id": "google-news-rss",
           "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9Nc3daNEpkbnJ1cGFkUTJ3OGdVQjJ4WGVYT3FJSDRWWlFNQUVINWwwNUp6T2tKYlAxRExGck9vb292WEtoa0lENk0wTU5uTngzQk90Ykk0bV9rbktaTnFSOWhwazdCMndDbTZV0gFvQVVfeXFMTmhPTmUwLTFrbVNYTl9jM1BhcHFjWm5iSVdpWkhnUmNUY1JMUWRJb05LR2gxTVFHaWQ0Xy01NXVJdGVxeUQtZzBZTmFmMEpYTDBYcXhNTEZxVHR4dmFvNU81UjNmSm93bmR4djlaVXJv?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9oNGlQZ0d2SFN6TTFybTEzc1lVYmF2bXdEQnF6V09wSS1JMnVTUXV0TTlFa0J1d2pBRHNFQ2ZEbFR1T1otRzRRLW53THVscFMzOEpfMUpaUE1Ib2R6Q3AxdkxvQWQ1QWNLTkt3Wnp4VXhSZ9IBckFVX3lxTE9oNGlQZ0d2SFN6TTFybTEzc1lVYmF2bXdEQnF6V09wSS1JMnVTUXV0TTlFa0J1d2pBRHNFQ2ZEbFR1T1otRzRRLW53THVscFMzOEpfMUpaUE1Ib2R6Q3AxdkxvQWQ1QWNLTkt3Wnp4VXhSZw?oc=5",
           "query": "삼성전자 SK하이닉스 반도체 HBM AI",
-          "cluster_id": "GN-e1d23b659bcdec6c",
+          "cluster_id": "GN-a9949abf79c098b3",
           "official_source_available": false,
           "market_bias": "UNDETERMINED",
           "impact_channels": [
@@ -1361,223 +402,920 @@
           "is_promotional": false,
           "is_low_information": false,
           "filter_from_market_feed": false,
-          "market_fact_signal": true
+          "market_fact_signal": false
         }
       ],
       "ai_analysis": {},
-      "last_updated_at": "2026-10-11T22:11:50+09:00",
-      "merged_prior_issue_ids": [
-        "GN-ec6fb3347617ebd7"
-      ],
-      "importance_score": 11.5,
+      "last_updated_at": "2026-10-12T03:11:13+09:00",
+      "importance_score": 14.5,
       "importance_components": {
         "independent_source_component": 1,
         "article_component": 1,
         "channel_component": 2,
+        "official_source_component": 0,
+        "recency_component": 5,
+        "market_reaction_component": "PENDING"
+      },
+      "market_reaction": {
+        "evidence_state": "PENDING",
+        "event_at": "2026-10-11T14:43:42+00:00",
+        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
+      }
+    },
+    {
+      "issue_id": "GN-5570c41a2553dfd6",
+      "fingerprint": "ISSUE-FP-5570c41a2553dfd6",
+      "event_core_tokens": [
+        "ai로",
+        "경계를",
+        "넘다",
+        "로봇",
+        "진화",
+        "현대차"
+      ],
+      "headline": "로봇·AI로… 현대차 진화, 경계를 넘다 - 머니투데이",
+      "first_seen_at": "2026-10-11T18:00:00Z",
+      "latest_at": "2026-10-11T18:00:00Z",
+      "article_count": 1,
+      "publisher_count": 1,
+      "independent_source_count": 1,
+      "independent_publishers": 1,
+      "reprint_count": 0,
+      "quality_filtered_count": 1,
+      "publishers": [
+        "머니투데이"
+      ],
+      "official_source_available": false,
+      "state": "NEW",
+      "why_important": "시장 영향 가능성이 있는 뉴스이므로 관련 지수·섹터·수급이 실제로 반응하는지 확인할 필요가 있습니다.",
+      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
+      "next_variables": [
+        "KOSPI",
+        "외국인 수급",
+        "기관 수급"
+      ],
+      "history": [
+        {
+          "at": "2026-10-12T03:11:13+09:00",
+          "state": "NEW",
+          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
+        }
+      ],
+      "market_bias": "UNDETERMINED",
+      "impact_channels": [],
+      "related_sectors": [
+        "자동차"
+      ],
+      "related_countries": [],
+      "related_markets": [
+        "KOSPI"
+      ],
+      "related_stocks": [
+        "현대차"
+      ],
+      "topic": "자동차",
+      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+      "articles": [
+        {
+          "id": "NEWS-04b0068a735682c0",
+          "headline": "로봇·AI로… 현대차 진화, 경계를 넘다 - 머니투데이",
+          "title": "로봇·AI로… 현대차 진화, 경계를 넘다 - 머니투데이 - 머니투데이",
+          "published_at": "2026-10-11T18:00:00Z",
+          "observed_at": "2026-10-11T18:11:01.273603Z",
+          "retrieved_at": "2026-10-11T18:11:01.273603Z",
+          "source": "머니투데이",
+          "publisher": "머니투데이",
+          "source_type": "SECONDARY",
+          "source_id": "google-news-rss",
+          "source_kind": "secondary_aggregator",
+          "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE42LWoxQmNLNUxybE1EYlJGMVhEU0JPb0pQa3JCaGtPTHdHa0c5TktBVXJUSkpGVXpjOFhvWU44OGdZdnZWODhDMUYxZEhDbmpXbF9vRnlzS05Gc2s5R2JiZlpMUjdCWkE0ak14dk9jUko2QzNiY0stQzVn0gF_QVVfeXFMTmhLS1NVcV9XQnFpeHN5Z09nTTQzNjE2dFlyUGpqbFd6SmtzbXdvRzd2cW9Delk1REtNZVZzYUYwZVFXYnhkMTZERk91ZllaQTBkRVI4Wkl0WGtlU1pyV19GTFdzaVkyRjU3SFVvSHBZRkl5LWVoX2lkZFB1bmNUTQ?oc=5",
+          "query": "자동차 현대차 기아 로봇 스마트팩토리",
+          "cluster_id": "GN-5570c41a2553dfd6",
+          "official_source_available": false,
+          "market_bias": "UNDETERMINED",
+          "impact_channels": [],
+          "related_sectors": [
+            "자동차"
+          ],
+          "related_countries": [],
+          "related_markets": [
+            "KOSPI"
+          ],
+          "related_stocks": [
+            "현대차"
+          ],
+          "topic": "자동차",
+          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+          "promotion_score": 0,
+          "content_quality": "EDITORIAL_OR_FACTUAL",
+          "is_promotional": false,
+          "is_low_information": false,
+          "filter_from_market_feed": false,
+          "market_fact_signal": false
+        }
+      ],
+      "ai_analysis": {},
+      "last_updated_at": "2026-10-12T03:11:13+09:00",
+      "importance_score": 13.5,
+      "importance_components": {
+        "independent_source_component": 1,
+        "article_component": 1,
+        "channel_component": 0,
+        "official_source_component": 0,
+        "recency_component": 8,
+        "market_reaction_component": "PENDING"
+      },
+      "market_reaction": {
+        "evidence_state": "PENDING",
+        "event_at": "2026-10-11T18:00:00+00:00",
+        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
+      }
+    },
+    {
+      "issue_id": "GN-212ef24025518015",
+      "fingerprint": "ISSUE-FP-212ef24025518015",
+      "event_core_tokens": [
+        "2030년",
+        "20배",
+        "d램",
+        "sk",
+        "sk하이닉스",
+        "로봇",
+        "로봇에",
+        "먹는",
+        "배터리",
+        "삼성"
+      ],
+      "headline": "배터리 먹는 로봇에 '저전력 D램' 필수…삼성·SK 쾌재",
+      "first_seen_at": "2026-10-11T01:36:00Z",
+      "latest_at": "2026-10-11T10:45:32Z",
+      "article_count": 2,
+      "publisher_count": 2,
+      "independent_source_count": 1,
+      "independent_publishers": 1,
+      "reprint_count": 1,
+      "quality_filtered_count": 1,
+      "publishers": [
+        "Chosunbiz",
+        "파이낸셜포스트"
+      ],
+      "official_source_available": false,
+      "state": "NEW",
+      "why_important": "시장 영향 가능성이 있는 뉴스이므로 관련 지수·섹터·수급이 실제로 반응하는지 확인할 필요가 있습니다.",
+      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
+      "next_variables": [
+        "KOSDAQ",
+        "KOSPI",
+        "외국인 수급",
+        "기관 수급"
+      ],
+      "history": [
+        {
+          "at": "2026-10-12T03:11:13+09:00",
+          "state": "NEW",
+          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
+        }
+      ],
+      "market_bias": "UNDETERMINED",
+      "impact_channels": [],
+      "related_sectors": [
+        "2차전지"
+      ],
+      "related_countries": [],
+      "related_markets": [
+        "KOSDAQ",
+        "KOSPI"
+      ],
+      "related_stocks": [],
+      "topic": "2차전지",
+      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+      "articles": [
+        {
+          "id": "NEWS-b15e14a34ee5782d",
+          "headline": "배터리 먹는 로봇에 '저전력 D램' 필수…삼성·SK 쾌재",
+          "title": "배터리 먹는 로봇에 '저전력 D램' 필수…삼성·SK 쾌재 - 파이낸셜포스트",
+          "published_at": "2026-10-11T10:45:32Z",
+          "observed_at": "2026-10-11T18:11:01.259588Z",
+          "retrieved_at": "2026-10-11T18:11:01.259588Z",
+          "source": "파이낸셜포스트",
+          "publisher": "파이낸셜포스트",
+          "source_type": "SECONDARY",
+          "source_id": "google-news-rss",
+          "source_kind": "secondary_aggregator",
+          "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBlQng4d3R0U1pCUkZxWEpoZ2YxWGlDcXdaVjVabTBPQTFic3BDNGhadE5NLXVKbVc0TmdKTWNYLVc4aktTcXpBamRTT1R4SXZYUkc0d0RHRFozS1NrNzFHMWJuZWp6a0NQZEZWbGllOFpKY3JL?oc=5",
+          "query": "삼성전자 SK하이닉스 반도체 HBM AI",
+          "cluster_id": "GN-212ef24025518015",
+          "official_source_available": false,
+          "market_bias": "UNDETERMINED",
+          "impact_channels": [],
+          "related_sectors": [
+            "2차전지"
+          ],
+          "related_countries": [],
+          "related_markets": [
+            "KOSDAQ",
+            "KOSPI"
+          ],
+          "related_stocks": [],
+          "topic": "2차전지",
+          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+          "promotion_score": 0,
+          "content_quality": "EDITORIAL_OR_FACTUAL",
+          "is_promotional": false,
+          "is_low_information": false,
+          "filter_from_market_feed": false,
+          "market_fact_signal": false
+        },
+        {
+          "id": "NEWS-d70f37bedf1ef831",
+          "headline": "휴머노이드 로봇 D램 수요, 2030년 20배 증가 전망…삼성·SK하이닉스 새 성장동력 - 조선비즈",
+          "title": "휴머노이드 로봇 D램 수요, 2030년 20배 증가 전망…삼성·SK하이닉스 새 성장동력 - 조선비즈 - Chosunbiz",
+          "published_at": "2026-10-11T01:36:00Z",
+          "observed_at": "2026-10-11T18:11:01.259588Z",
+          "retrieved_at": "2026-10-11T18:11:01.259588Z",
+          "source": "Chosunbiz",
+          "publisher": "Chosunbiz",
+          "source_type": "SECONDARY",
+          "source_id": "google-news-rss",
+          "source_kind": "secondary_aggregator",
+          "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxPcUdhQTV1YndhaFBYUmFzeFJTbzA0NFc5VGRYYnM1NV9xUWp4RXFJQ0QzUlA2cWRJV0NybW1RdVQ0TXFFNy01aXo0OEFoMWZjSjZMMjRBREJJSDdQVVpPZlVxRjU1N0JFeDNlZHR6S05yVlpIOU9fMUFyeENjYmQyOE9B0gGWAUFVX3lxTFBvbVZRbkMtakpJNTV6eFpmdW1XSDFvNXZhd0VIaTBzMVpGMy13Z1VacDVQU1podDV3YVRrMW9ORE5XbE5RYkdIdk1JdTVWV2lOLU5xQy1xV2VpVi01TnRfdkRKMjlSSDBPN2xTWEpyT1RDbVZfOWg4SDV4cjU1NXRrWEh3M2FVTDJDc1puVy0wVkZwd2hNUQ?oc=5",
+          "query": "삼성전자 SK하이닉스 반도체 HBM AI",
+          "cluster_id": "GN-212ef24025518015",
+          "official_source_available": false,
+          "market_bias": "UNDETERMINED",
+          "impact_channels": [
+            "growth_beta",
+            "semiconductor"
+          ],
+          "related_sectors": [
+            "반도체",
+            "조선"
+          ],
+          "related_countries": [],
+          "related_markets": [
+            "KOSPI",
+            "NASDAQ"
+          ],
+          "related_stocks": [
+            "SK하이닉스"
+          ],
+          "topic": "반도체 · 산업수주",
+          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+          "promotion_score": 0,
+          "content_quality": "EDITORIAL_OR_FACTUAL",
+          "is_promotional": false,
+          "is_low_information": false,
+          "filter_from_market_feed": false,
+          "market_fact_signal": false
+        }
+      ],
+      "ai_analysis": {},
+      "last_updated_at": "2026-10-12T03:11:13+09:00",
+      "importance_score": 12.0,
+      "importance_components": {
+        "independent_source_component": 1,
+        "article_component": 2,
+        "channel_component": 0,
+        "official_source_component": 0,
+        "recency_component": 5,
+        "market_reaction_component": "PENDING"
+      },
+      "market_reaction": {
+        "evidence_state": "PENDING",
+        "event_at": "2026-10-11T01:36:00+00:00",
+        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
+      }
+    },
+    {
+      "issue_id": "GN-bdb081174e125d3e",
+      "fingerprint": "ISSUE-FP-bdb081174e125d3e",
+      "event_core_tokens": [
+        "ess",
+        "구원투수로",
+        "떠올라",
+        "열풍",
+        "이차전지"
+      ],
+      "headline": "ESS 열풍… 이차전지 구원투수로 떠올라 - 조선비즈",
+      "first_seen_at": "2026-10-11T15:36:00Z",
+      "latest_at": "2026-10-11T15:36:00Z",
+      "article_count": 1,
+      "publisher_count": 1,
+      "independent_source_count": 1,
+      "independent_publishers": 1,
+      "reprint_count": 0,
+      "quality_filtered_count": 1,
+      "publishers": [
+        "Chosunbiz"
+      ],
+      "official_source_available": false,
+      "state": "NEW",
+      "why_important": "시장 영향 가능성이 있는 뉴스이므로 관련 지수·섹터·수급이 실제로 반응하는지 확인할 필요가 있습니다.",
+      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
+      "next_variables": [
+        "KOSPI",
+        "외국인 수급",
+        "기관 수급"
+      ],
+      "history": [
+        {
+          "at": "2026-10-12T03:11:13+09:00",
+          "state": "NEW",
+          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
+        }
+      ],
+      "market_bias": "UNDETERMINED",
+      "impact_channels": [],
+      "related_sectors": [
+        "조선"
+      ],
+      "related_countries": [],
+      "related_markets": [
+        "KOSPI"
+      ],
+      "related_stocks": [],
+      "topic": "산업수주",
+      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+      "articles": [
+        {
+          "id": "NEWS-078888f634cb2117",
+          "headline": "ESS 열풍… 이차전지 구원투수로 떠올라 - 조선비즈",
+          "title": "ESS 열풍… 이차전지 구원투수로 떠올라 - 조선비즈 - Chosunbiz",
+          "published_at": "2026-10-11T15:36:00Z",
+          "observed_at": "2026-10-11T18:11:01.316155Z",
+          "retrieved_at": "2026-10-11T18:11:01.316155Z",
+          "source": "Chosunbiz",
+          "publisher": "Chosunbiz",
+          "source_type": "SECONDARY",
+          "source_id": "google-news-rss",
+          "source_kind": "secondary_aggregator",
+          "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNT2xIVGVRcHRCeDBwZ2t6ZE5oTmxfbUxuaVBZTEJZQWcwWWVIZFYyQVdTNng2MGRneTV1RXhXakdDNTNyNGhKclVNQXE4ank0MllaRV83RmNaUmJGWk9WWUQ1ZzRlTmpfWVpra2FCdGdxWlMyc3M0YnpwUzh6YThrV2VEMDMxRFNGRzM3a2l4ZkpybXR4ZjBvZ3ZQVk7SAZwBQVVfeXFMTU9sSFRlUXB0QngwcGdremROaE5sX21MbmlQWUxCWUFnMFllSGRWMkFXUzZ4NjBkZ3k1dUV4V2pHQzUzcjRoSnJVTUFxOGp5NDJZWkVfN0ZjWlJiRlpPVllENWc0ZU5qX1laa2thQnRncVpTMnNzNGJ6cFM4emE4a1dlRDAzMURTRkczN2tpeGZKcm10eGYwb2d2UFZO?oc=5",
+          "query": "2차전지 배터리 리튬 전기차 한국",
+          "cluster_id": "GN-bdb081174e125d3e",
+          "official_source_available": false,
+          "market_bias": "UNDETERMINED",
+          "impact_channels": [],
+          "related_sectors": [
+            "조선"
+          ],
+          "related_countries": [],
+          "related_markets": [
+            "KOSPI"
+          ],
+          "related_stocks": [],
+          "topic": "산업수주",
+          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+          "promotion_score": 0,
+          "content_quality": "EDITORIAL_OR_FACTUAL",
+          "is_promotional": false,
+          "is_low_information": false,
+          "filter_from_market_feed": false,
+          "market_fact_signal": false
+        }
+      ],
+      "ai_analysis": {},
+      "last_updated_at": "2026-10-12T03:11:13+09:00",
+      "importance_score": 10.5,
+      "importance_components": {
+        "independent_source_component": 1,
+        "article_component": 1,
+        "channel_component": 0,
+        "official_source_component": 0,
+        "recency_component": 5,
+        "market_reaction_component": "PENDING"
+      },
+      "market_reaction": {
+        "evidence_state": "PENDING",
+        "event_at": "2026-10-11T15:36:00+00:00",
+        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
+      }
+    },
+    {
+      "issue_id": "GN-b42ec19222f76f94",
+      "fingerprint": "ISSUE-FP-b42ec19222f76f94",
+      "event_core_tokens": [
+        "ceo",
+        "kb",
+        "금융권",
+        "도미노",
+        "분다",
+        "연말",
+        "인사",
+        "칼바람"
+      ],
+      "headline": "KB發 ‘인사 도미노ʼ…연말 금융권 CEO 칼바람 분다",
+      "first_seen_at": "2026-10-11T15:00:00Z",
+      "latest_at": "2026-10-11T15:00:00Z",
+      "article_count": 1,
+      "publisher_count": 1,
+      "independent_source_count": 1,
+      "independent_publishers": 1,
+      "reprint_count": 0,
+      "quality_filtered_count": 1,
+      "publishers": [
+        "한국금융신문"
+      ],
+      "official_source_available": false,
+      "state": "NEW",
+      "why_important": "시장 영향 가능성이 있는 뉴스이므로 관련 지수·섹터·수급이 실제로 반응하는지 확인할 필요가 있습니다.",
+      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
+      "next_variables": [
+        "외국인 수급",
+        "기관 수급"
+      ],
+      "history": [
+        {
+          "at": "2026-10-12T03:11:13+09:00",
+          "state": "NEW",
+          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
+        }
+      ],
+      "market_bias": "UNDETERMINED",
+      "impact_channels": [],
+      "related_sectors": [],
+      "related_countries": [],
+      "related_markets": [],
+      "related_stocks": [],
+      "topic": "시장일반",
+      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+      "articles": [
+        {
+          "id": "NEWS-1e9bea8f983a1008",
+          "headline": "KB發 ‘인사 도미노ʼ…연말 금융권 CEO 칼바람 분다",
+          "title": "KB發 ‘인사 도미노ʼ…연말 금융권 CEO 칼바람 분다 - 한국금융신문",
+          "published_at": "2026-10-11T15:00:00Z",
+          "observed_at": "2026-10-11T18:11:01.329298Z",
+          "retrieved_at": "2026-10-11T18:11:01.329298Z",
+          "source": "한국금융신문",
+          "publisher": "한국금융신문",
+          "source_type": "SECONDARY",
+          "source_id": "google-news-rss",
+          "source_kind": "secondary_aggregator",
+          "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE1JZC1nWFpabVo1dlRDdkFDQjF5UVVMN0Z3U0tNdmlQa24yS1I5em9pOU9KR2lLQ0dSWmdnbWNhQjR1R3pNSjlnaUlnSlZ6T0VVMlUwQ2duMmJweWFJaU0ybTgzbGNlNXVPbENfSEltNTZXVTBFN3l0V3pvLVc?oc=5",
+          "query": "금융 은행 증권 보험 정책 한국",
+          "cluster_id": "GN-b42ec19222f76f94",
+          "official_source_available": false,
+          "market_bias": "UNDETERMINED",
+          "impact_channels": [],
+          "related_sectors": [],
+          "related_countries": [],
+          "related_markets": [],
+          "related_stocks": [],
+          "topic": "시장일반",
+          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+          "promotion_score": 0,
+          "content_quality": "EDITORIAL_OR_FACTUAL",
+          "is_promotional": false,
+          "is_low_information": false,
+          "filter_from_market_feed": false,
+          "market_fact_signal": false
+        }
+      ],
+      "ai_analysis": {},
+      "last_updated_at": "2026-10-12T03:11:13+09:00",
+      "importance_score": 10.5,
+      "importance_components": {
+        "independent_source_component": 1,
+        "article_component": 1,
+        "channel_component": 0,
+        "official_source_component": 0,
+        "recency_component": 5,
+        "market_reaction_component": "PENDING"
+      },
+      "market_reaction": {
+        "evidence_state": "PENDING",
+        "event_at": "2026-10-11T15:00:00+00:00",
+        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
+      }
+    },
+    {
+      "issue_id": "GN-75ac2c254f51affc",
+      "fingerprint": "ISSUE-FP-75ac2c254f51affc",
+      "event_core_tokens": [
+        "가입",
+        "규칙과",
+        "나눠서",
+        "설명",
+        "연출을",
+        "유로88",
+        "읽는"
+      ],
+      "headline": "규칙과 연출을 나눠서 읽는 유로88 가입 설명",
+      "first_seen_at": "2026-10-11T09:27:53Z",
+      "latest_at": "2026-10-11T09:27:53Z",
+      "article_count": 1,
+      "publisher_count": 1,
+      "independent_source_count": 1,
+      "independent_publishers": 1,
+      "reprint_count": 0,
+      "quality_filtered_count": 1,
+      "publishers": [
+        "Calgary Roughnecks"
+      ],
+      "official_source_available": false,
+      "state": "NEW",
+      "why_important": "시장 영향 가능성이 있는 뉴스이므로 관련 지수·섹터·수급이 실제로 반응하는지 확인할 필요가 있습니다.",
+      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
+      "next_variables": [
+        "외국인 수급",
+        "기관 수급"
+      ],
+      "history": [
+        {
+          "at": "2026-10-12T03:11:13+09:00",
+          "state": "NEW",
+          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
+        }
+      ],
+      "market_bias": "UNDETERMINED",
+      "impact_channels": [],
+      "related_sectors": [],
+      "related_countries": [],
+      "related_markets": [],
+      "related_stocks": [],
+      "topic": "시장일반",
+      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+      "articles": [
+        {
+          "id": "NEWS-dfa709f2e8e56614",
+          "headline": "규칙과 연출을 나눠서 읽는 유로88 가입 설명",
+          "title": "규칙과 연출을 나눠서 읽는 유로88 가입 설명 - Calgary Roughnecks",
+          "published_at": "2026-10-11T09:27:53Z",
+          "observed_at": "2026-10-11T18:11:01.246395Z",
+          "retrieved_at": "2026-10-11T18:11:01.246395Z",
+          "source": "Calgary Roughnecks",
+          "publisher": "Calgary Roughnecks",
+          "source_type": "SECONDARY",
+          "source_id": "google-news-rss",
+          "source_kind": "secondary_aggregator",
+          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQZ1dGQ3dkSkV2RWo3d3g5d3BKR2VRTlZKUkRUbzk2M1d0MWkwSS14ZXJrR1dzV1hwM05xdkh2bzJNSTAxS0dFYTVIMF94YzBsMkl4U3p1MERvZmd6b2Vady00TDhQcU5fTnNfLWJXbmxuektfcFV6dlJIVjNFQmdlRzRhVDZieFFjM2l6eE5NTXdmNnMtdWJMdlNla1E1VnQxckNmLUgtbGtUNDJ2SzlUaW9NTTNHTkFmZUE?oc=5",
+          "query": "한국 증시 코스피 코스닥 외국인 기관 수급",
+          "cluster_id": "GN-75ac2c254f51affc",
+          "official_source_available": false,
+          "market_bias": "UNDETERMINED",
+          "impact_channels": [],
+          "related_sectors": [],
+          "related_countries": [],
+          "related_markets": [],
+          "related_stocks": [],
+          "topic": "시장일반",
+          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+          "promotion_score": 0,
+          "content_quality": "EDITORIAL_OR_FACTUAL",
+          "is_promotional": false,
+          "is_low_information": false,
+          "filter_from_market_feed": false,
+          "market_fact_signal": false
+        }
+      ],
+      "ai_analysis": {},
+      "last_updated_at": "2026-10-12T03:11:13+09:00",
+      "importance_score": 7.5,
+      "importance_components": {
+        "independent_source_component": 1,
+        "article_component": 1,
+        "channel_component": 0,
         "official_source_component": 0,
         "recency_component": 2,
         "market_reaction_component": "PENDING"
       },
       "market_reaction": {
         "evidence_state": "PENDING",
-        "event_at": "2026-10-11T00:10:11+00:00",
+        "event_at": "2026-10-11T09:27:53+00:00",
+        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
+      }
+    },
+    {
+      "issue_id": "GN-edb97f429bb87937",
+      "fingerprint": "ISSUE-FP-edb97f429bb87937",
+      "event_core_tokens": [
+        "로우",
+        "바둑이",
+        "소리",
+        "옵션",
+        "조용한",
+        "판독기",
+        "확인할",
+        "환경에서"
+      ],
+      "headline": "조용한 환경에서 확인할 로우 바둑이 판독기 소리 옵션",
+      "first_seen_at": "2026-10-11T08:44:09Z",
+      "latest_at": "2026-10-11T08:44:09Z",
+      "article_count": 1,
+      "publisher_count": 1,
+      "independent_source_count": 1,
+      "independent_publishers": 1,
+      "reprint_count": 0,
+      "quality_filtered_count": 1,
+      "publishers": [
+        "Calgary Roughnecks"
+      ],
+      "official_source_available": false,
+      "state": "NEW",
+      "why_important": "시장 영향 가능성이 있는 뉴스이므로 관련 지수·섹터·수급이 실제로 반응하는지 확인할 필요가 있습니다.",
+      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
+      "next_variables": [
+        "외국인 수급",
+        "기관 수급"
+      ],
+      "history": [
+        {
+          "at": "2026-10-12T03:11:13+09:00",
+          "state": "NEW",
+          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
+        }
+      ],
+      "market_bias": "UNDETERMINED",
+      "impact_channels": [],
+      "related_sectors": [],
+      "related_countries": [],
+      "related_markets": [],
+      "related_stocks": [],
+      "topic": "시장일반",
+      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+      "articles": [
+        {
+          "id": "NEWS-46bd396b6fcd2055",
+          "headline": "조용한 환경에서 확인할 로우 바둑이 판독기 소리 옵션",
+          "title": "조용한 환경에서 확인할 로우 바둑이 판독기 소리 옵션 - Calgary Roughnecks",
+          "published_at": "2026-10-11T08:44:09Z",
+          "observed_at": "2026-10-11T18:11:01.246395Z",
+          "retrieved_at": "2026-10-11T18:11:01.246395Z",
+          "source": "Calgary Roughnecks",
+          "publisher": "Calgary Roughnecks",
+          "source_type": "SECONDARY",
+          "source_id": "google-news-rss",
+          "source_kind": "secondary_aggregator",
+          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOQXZWSlMxUlRQVEpGaFR4RmE3RXZ5QnR1UWpPSGFIbHpFTTRzVkpUSU5ReUJrU3hqVnQ4NFNlME1tMzI3YjB0LU9jUk9lYkNYOXVxNDEyWlpvRzRJVlEzTXUxWndscWJKcXoybjVzZjQ1T2VJd0JZR29SeGxBcl85TmQzVVdPREVFbjBhZzl4cVNXWUtpemdWUGU0b2NmQU9VQVMzTFZ5dVFseGotQW5zeDYxTGM3U29zU1E?oc=5",
+          "query": "한국 증시 코스피 코스닥 외국인 기관 수급",
+          "cluster_id": "GN-edb97f429bb87937",
+          "official_source_available": false,
+          "market_bias": "UNDETERMINED",
+          "impact_channels": [],
+          "related_sectors": [],
+          "related_countries": [],
+          "related_markets": [],
+          "related_stocks": [],
+          "topic": "시장일반",
+          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+          "promotion_score": 0,
+          "content_quality": "EDITORIAL_OR_FACTUAL",
+          "is_promotional": false,
+          "is_low_information": false,
+          "filter_from_market_feed": false,
+          "market_fact_signal": false
+        }
+      ],
+      "ai_analysis": {},
+      "last_updated_at": "2026-10-12T03:11:13+09:00",
+      "importance_score": 7.5,
+      "importance_components": {
+        "independent_source_component": 1,
+        "article_component": 1,
+        "channel_component": 0,
+        "official_source_component": 0,
+        "recency_component": 2,
+        "market_reaction_component": "PENDING"
+      },
+      "market_reaction": {
+        "evidence_state": "PENDING",
+        "event_at": "2026-10-11T08:44:09+00:00",
+        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
+      }
+    },
+    {
+      "issue_id": "GN-5b974dae7b94a902",
+      "fingerprint": "ISSUE-FP-5b974dae7b94a902",
+      "event_core_tokens": [
+        "낯설지",
+        "슬롯",
+        "않게",
+        "처음",
+        "폴아웃4",
+        "화면이"
+      ],
+      "headline": "처음 본 화면이 낯설지 않게, 폴아웃4 슬롯",
+      "first_seen_at": "2026-10-11T07:34:10Z",
+      "latest_at": "2026-10-11T07:34:10Z",
+      "article_count": 1,
+      "publisher_count": 1,
+      "independent_source_count": 1,
+      "independent_publishers": 1,
+      "reprint_count": 0,
+      "quality_filtered_count": 1,
+      "publishers": [
+        "Calgary Roughnecks"
+      ],
+      "official_source_available": false,
+      "state": "NEW",
+      "why_important": "시장 영향 가능성이 있는 뉴스이므로 관련 지수·섹터·수급이 실제로 반응하는지 확인할 필요가 있습니다.",
+      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
+      "next_variables": [
+        "외국인 수급",
+        "기관 수급"
+      ],
+      "history": [
+        {
+          "at": "2026-10-12T03:11:13+09:00",
+          "state": "NEW",
+          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
+        }
+      ],
+      "market_bias": "UNDETERMINED",
+      "impact_channels": [],
+      "related_sectors": [],
+      "related_countries": [],
+      "related_markets": [],
+      "related_stocks": [],
+      "topic": "시장일반",
+      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+      "articles": [
+        {
+          "id": "NEWS-a63bee0d68aa433f",
+          "headline": "처음 본 화면이 낯설지 않게, 폴아웃4 슬롯",
+          "title": "처음 본 화면이 낯설지 않게, 폴아웃4 슬롯 - Calgary Roughnecks",
+          "published_at": "2026-10-11T07:34:10Z",
+          "observed_at": "2026-10-11T18:11:01.329298Z",
+          "retrieved_at": "2026-10-11T18:11:01.329298Z",
+          "source": "Calgary Roughnecks",
+          "publisher": "Calgary Roughnecks",
+          "source_type": "SECONDARY",
+          "source_id": "google-news-rss",
+          "source_kind": "secondary_aggregator",
+          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxOYllmcHJEUmFucGhKQU1FQkdHeF9BS1hxUDRXZEt3Ny1MQ3JvVktjRkdiRFNCWnl2bVFFTzZWY0N5M09FYmRPV2N5SkNoT3g1T2QwbmdEeUpjSEtSUnBnenpCbHRDYXdOTHZvRmhKYWpub0ZWYUVlWk1UUmtwYUdKVlRXelIzU3FILWtHaXRkOC1HTk5ySkptenZ5X2ZxZw?oc=5",
+          "query": "금융 은행 증권 보험 정책 한국",
+          "cluster_id": "GN-5b974dae7b94a902",
+          "official_source_available": false,
+          "market_bias": "UNDETERMINED",
+          "impact_channels": [],
+          "related_sectors": [],
+          "related_countries": [],
+          "related_markets": [],
+          "related_stocks": [],
+          "topic": "시장일반",
+          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+          "promotion_score": 0,
+          "content_quality": "EDITORIAL_OR_FACTUAL",
+          "is_promotional": false,
+          "is_low_information": false,
+          "filter_from_market_feed": false,
+          "market_fact_signal": false
+        }
+      ],
+      "ai_analysis": {},
+      "last_updated_at": "2026-10-12T03:11:13+09:00",
+      "importance_score": 7.5,
+      "importance_components": {
+        "independent_source_component": 1,
+        "article_component": 1,
+        "channel_component": 0,
+        "official_source_component": 0,
+        "recency_component": 2,
+        "market_reaction_component": "PENDING"
+      },
+      "market_reaction": {
+        "evidence_state": "PENDING",
+        "event_at": "2026-10-11T07:34:10+00:00",
+        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
+      }
+    },
+    {
+      "issue_id": "GN-981075a3fcf03d67",
+      "fingerprint": "ISSUE-FP-981075a3fcf03d67",
+      "event_core_tokens": [
+        "경마장",
+        "구성",
+        "달라지는",
+        "모바일로",
+        "접속했을",
+        "해피밸리",
+        "홍콩",
+        "화면"
+      ],
+      "headline": "모바일로 접속했을 때 달라지는 홍콩 해피밸리 경마장 화면 구성",
+      "first_seen_at": "2026-10-11T07:12:15Z",
+      "latest_at": "2026-10-11T07:12:15Z",
+      "article_count": 1,
+      "publisher_count": 1,
+      "independent_source_count": 1,
+      "independent_publishers": 1,
+      "reprint_count": 0,
+      "quality_filtered_count": 1,
+      "publishers": [
+        "Calgary Roughnecks"
+      ],
+      "official_source_available": false,
+      "state": "NEW",
+      "why_important": "시장 영향 가능성이 있는 뉴스이므로 관련 지수·섹터·수급이 실제로 반응하는지 확인할 필요가 있습니다.",
+      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
+      "next_variables": [
+        "CHINA",
+        "외국인 수급",
+        "기관 수급"
+      ],
+      "history": [
+        {
+          "at": "2026-10-12T03:11:13+09:00",
+          "state": "NEW",
+          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
+        }
+      ],
+      "market_bias": "UNDETERMINED",
+      "impact_channels": [],
+      "related_sectors": [],
+      "related_countries": [
+        "CN"
+      ],
+      "related_markets": [
+        "CHINA"
+      ],
+      "related_stocks": [],
+      "topic": "시장일반",
+      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+      "articles": [
+        {
+          "id": "NEWS-4123d7a2df80258d",
+          "headline": "모바일로 접속했을 때 달라지는 홍콩 해피밸리 경마장 화면 구성",
+          "title": "모바일로 접속했을 때 달라지는 홍콩 해피밸리 경마장 화면 구성 - Calgary Roughnecks",
+          "published_at": "2026-10-11T07:12:15Z",
+          "observed_at": "2026-10-11T18:11:01.259588Z",
+          "retrieved_at": "2026-10-11T18:11:01.259588Z",
+          "source": "Calgary Roughnecks",
+          "publisher": "Calgary Roughnecks",
+          "source_type": "SECONDARY",
+          "source_id": "google-news-rss",
+          "source_kind": "secondary_aggregator",
+          "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNOEhEMnloOWVBdXMwRlR1VFppYlhaX1VMd3ZPMVdBXzZST3FwQXBQcm16b1JjcG1kYVFNZDVPdEJ5aWJVaHJ4MlptSzdBNmtNQjg4YzBBeEdOYWI3N2hMOWpROGR2RG9Cb0hHRE53YWkzbzR3Y25PV1NGNUEyTmNkdFdCV1g4ZkRkT3hVdERGOTNOX2RnWnFKdUF0YUpteGNOTWM5MHU4YnN2RlZuWDE0?oc=5",
+          "query": "삼성전자 SK하이닉스 반도체 HBM AI",
+          "cluster_id": "GN-981075a3fcf03d67",
+          "official_source_available": false,
+          "market_bias": "UNDETERMINED",
+          "impact_channels": [],
+          "related_sectors": [],
+          "related_countries": [
+            "CN"
+          ],
+          "related_markets": [
+            "CHINA"
+          ],
+          "related_stocks": [],
+          "topic": "시장일반",
+          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+          "promotion_score": 0,
+          "content_quality": "EDITORIAL_OR_FACTUAL",
+          "is_promotional": false,
+          "is_low_information": false,
+          "filter_from_market_feed": false,
+          "market_fact_signal": false
+        }
+      ],
+      "ai_analysis": {},
+      "last_updated_at": "2026-10-12T03:11:13+09:00",
+      "importance_score": 7.5,
+      "importance_components": {
+        "independent_source_component": 1,
+        "article_component": 1,
+        "channel_component": 0,
+        "official_source_component": 0,
+        "recency_component": 2,
+        "market_reaction_component": "PENDING"
+      },
+      "market_reaction": {
+        "evidence_state": "PENDING",
+        "event_at": "2026-10-11T07:12:15+00:00",
         "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
       }
     }
   ],
   "strengthening": [
     {
-      "issue_id": "GN-3316afc3b021e328",
-      "fingerprint": "ISSUE-FP-3316afc3b021e328",
+      "issue_id": "GN-c058f96b65db2680",
+      "fingerprint": "ISSUE-FP-c058f96b65db2680",
       "event_core_tokens": [
-        "55조",
-        "6600선으로",
-        "구원투수",
-        "끝물",
-        "매입",
-        "물가",
-        "밀린",
-        "반도체",
-        "삼전닉스",
-        "실적에"
+        "2030년까지",
+        "20배",
+        "20배로",
+        "d램",
+        "sk",
+        "로봇",
+        "삼성",
+        "수요"
       ],
-      "headline": "[주간증시전망] 6600선으로 밀린 코스피…美물가·반도체 실적에 주목",
-      "first_seen_at": "2026-10-11T01:26:00Z",
-      "latest_at": "2026-10-11T01:26:00Z",
-      "article_count": 2,
-      "publisher_count": 2,
-      "independent_source_count": 1,
-      "independent_publishers": 1,
-      "reprint_count": 1,
+      "headline": "\"휴머노이드 두뇌용 D램 수요, 4년 후 20배로\"",
+      "first_seen_at": "2026-10-10T10:25:21Z",
+      "latest_at": "2026-10-11T15:34:00Z",
+      "article_count": 6,
+      "publisher_count": 5,
+      "independent_source_count": 2,
+      "independent_publishers": 2,
+      "reprint_count": 4,
       "quality_filtered_count": 1,
       "publishers": [
-        "브릿지경제",
-        "이데일리"
-      ],
-      "official_source_available": false,
-      "state": "STRENGTHENING",
-      "why_important": "반도체는 국내 지수 비중이 커서 업종 상대강도와 외국인 수급이 지수 체감과 달라지는지 확인할 필요가 있습니다.",
-      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
-      "next_variables": [
-        "KOSPI",
-        "NASDAQ",
-        "외국인 수급",
-        "기관 수급"
-      ],
-      "history": [
-        {
-          "at": "2026-10-11T15:20:54+09:00",
-          "state": "NEW",
-          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
-        },
-        {
-          "at": "2026-10-11T22:11:50+09:00",
-          "state": "STRENGTHENING",
-          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
-        }
-      ],
-      "market_bias": "UNDETERMINED",
-      "impact_channels": [
-        "growth_beta",
-        "semiconductor"
-      ],
-      "related_sectors": [
-        "반도체"
-      ],
-      "related_countries": [],
-      "related_markets": [
-        "KOSPI",
-        "NASDAQ"
-      ],
-      "related_stocks": [],
-      "topic": "반도체",
-      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-      "articles": [
-        {
-          "id": "NEWS-d4ec328d5922a13c",
-          "headline": "[주간증시전망] 6600선으로 밀린 코스피…美물가·반도체 실적에 주목",
-          "title": "[주간증시전망] 6600선으로 밀린 코스피…美물가·반도체 실적에 주목 - 브릿지경제",
-          "published_at": "2026-10-11T01:26:00Z",
-          "observed_at": "2026-10-11T13:11:23.921128Z",
-          "retrieved_at": "2026-10-11T13:11:23.921128Z",
-          "source": "브릿지경제",
-          "publisher": "브릿지경제",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFB4ZmRwZ0hUYWVFSVdleGhSb2JRRWRNOWRkcjYzQWo4cUc0OHdzdjd5YkM3eHhSbW9KQTdVdTlDZ1JCSHMxV2hLeXRuWFF0ZlVvZ3l1UHdOQkVKQQ?oc=5",
-          "query": "한국 증시 코스피 코스닥 외국인 기관 수급",
-          "cluster_id": "GN-bae4ba121f7bd244",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [
-            "growth_beta",
-            "semiconductor"
-          ],
-          "related_sectors": [
-            "반도체"
-          ],
-          "related_countries": [],
-          "related_markets": [
-            "KOSPI",
-            "NASDAQ"
-          ],
-          "related_stocks": [],
-          "topic": "반도체",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": true
-        },
-        {
-          "id": "NEWS-8af89f5405473673",
-          "headline": "'삼전닉스' 55조 자사주 매입 끝물…반도체 실적이 코스피 구원투수?[주간증시전망]",
-          "title": "'삼전닉스' 55조 자사주 매입 끝물…반도체 실적이 코스피 구원투수?[주간증시전망] - 이데일리",
-          "published_at": "2026-10-11T00:23:35Z",
-          "observed_at": "2026-10-11T13:11:23.921128Z",
-          "retrieved_at": "2026-10-11T13:11:23.921128Z",
-          "source": "이데일리",
-          "publisher": "이데일리",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPdy1tYXVFOUthVjN1MjFqWDZ0aFZnNkVISlpiZjFVZjdFN21hazVDQnRPSzQ4TGZkbDZ3LUZPUGJ4WjZVSEFCN281aGFNSE9sMW5YcEZNQjB2UlRUdGIwTlo0bzJpQzFGZGJOS3Nzeml3YkRqRzBLbUp6cmFKYm1TVA?oc=5",
-          "query": "한국 증시 코스피 코스닥 외국인 기관 수급",
-          "cluster_id": "GN-bae4ba121f7bd244",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [
-            "growth_beta",
-            "semiconductor"
-          ],
-          "related_sectors": [
-            "반도체"
-          ],
-          "related_countries": [],
-          "related_markets": [
-            "KOSPI",
-            "NASDAQ"
-          ],
-          "related_stocks": [],
-          "topic": "반도체",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": true
-        }
-      ],
-      "identity_match": "SEMANTIC_CONTINUITY",
-      "generated_fingerprint": "ISSUE-FP-bae4ba121f7bd244",
-      "ai_analysis": {},
-      "last_updated_at": "2026-10-11T22:11:50+09:00",
-      "importance_score": 13.0,
-      "importance_components": {
-        "independent_source_component": 1,
-        "article_component": 2,
-        "channel_component": 2,
-        "official_source_component": 0,
-        "recency_component": 2,
-        "market_reaction_component": "PENDING"
-      },
-      "market_reaction": {
-        "evidence_state": "PENDING",
-        "event_at": "2026-10-11T01:26:00+00:00",
-        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
-      }
-    },
-    {
-      "issue_id": "GN-1ef63f35ce8f1b8c",
-      "fingerprint": "ISSUE-FP-1ef63f35ce8f1b8c",
-      "event_core_tokens": [
-        "3상",
-        "iga",
-        "경쟁력은",
-        "공략",
-        "글로벌",
-        "동시",
-        "로슈",
-        "리포트",
-        "바이오",
-        "사업화"
-      ],
-      "headline": "3상 올라선 셀비온 '포큐보타이드'···허가·글로벌 사업화 동시 공략",
-      "first_seen_at": "2026-10-11T02:14:18Z",
-      "latest_at": "2026-10-11T02:14:18Z",
-      "article_count": 2,
-      "publisher_count": 2,
-      "independent_source_count": 1,
-      "independent_publishers": 1,
-      "reprint_count": 1,
-      "quality_filtered_count": 1,
-      "publishers": [
-        "글로벌이코노믹",
-        "뉴스웨이"
+        "SBS Biz",
+        "머니투데이",
+        "아주경제",
+        "연합뉴스",
+        "조선일보"
       ],
       "official_source_available": false,
       "state": "STRENGTHENING",
@@ -1595,6 +1333,11 @@
         },
         {
           "at": "2026-10-11T22:11:50+09:00",
+          "state": "PERSISTING",
+          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
+        },
+        {
+          "at": "2026-10-12T03:11:13+09:00",
           "state": "STRENGTHENING",
           "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
         }
@@ -1609,20 +1352,55 @@
       "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
       "articles": [
         {
-          "id": "NEWS-9d1f8e52567648f9",
-          "headline": "3상 올라선 셀비온 '포큐보타이드'···허가·글로벌 사업화 동시 공략",
-          "title": "3상 올라선 셀비온 '포큐보타이드'···허가·글로벌 사업화 동시 공략 - 뉴스웨이",
-          "published_at": "2026-10-11T02:14:18Z",
-          "observed_at": "2026-10-11T13:11:24.172666Z",
-          "retrieved_at": "2026-10-11T13:11:24.172666Z",
-          "source": "뉴스웨이",
-          "publisher": "뉴스웨이",
+          "id": "NEWS-2dc3b49dba90d71f",
+          "headline": "\"휴머노이드 두뇌용 D램 수요, 4년 후 20배로\"",
+          "title": "\"휴머노이드 두뇌용 D램 수요, 4년 후 20배로\" - 조선일보",
+          "published_at": "2026-10-11T15:34:00Z",
+          "observed_at": "2026-10-11T18:11:01.259588Z",
+          "retrieved_at": "2026-10-11T18:11:01.259588Z",
+          "source": "조선일보",
+          "publisher": "조선일보",
           "source_type": "SECONDARY",
           "source_id": "google-news-rss",
           "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFAtNXpGMkc5U1VrNkM3cGpWNlYyZWdhMXVldjIwRzd6RElOVEl2bzFpTGpTUEtNWGVGT3NCM2JLSFRESjZtbmlLakh5UkszcEVMX0dSMlBYVUhubk93WXNZM1p5aWtTWllpRVE?oc=5",
-          "query": "바이오 제약 임상 허가 한국 증시",
-          "cluster_id": "GN-68ef2f18e423551d",
+          "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPU1ZpTU5EU0lFT19QVER5UmhYWDRuTlhyX00zallGNDdyZFk4V2toR0tEX3YzWXUxX0J5NEpxZDlSZjNVUWV6dkJ1eW1LZWx1U2F4eFlpWTZxUUxlM0hEZTNsUnZIR2hqQlM5R0Y2V1dmVWUyS0NRS1djTC1hb3Vad2U5QQ?oc=5",
+          "query": "삼성전자 SK하이닉스 반도체 HBM AI",
+          "cluster_id": "GN-d6f698e37d2a9c90",
+          "official_source_available": false,
+          "market_bias": "UNDETERMINED",
+          "impact_channels": [],
+          "related_sectors": [
+            "조선"
+          ],
+          "related_countries": [],
+          "related_markets": [
+            "KOSPI"
+          ],
+          "related_stocks": [],
+          "topic": "산업수주",
+          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+          "promotion_score": 0,
+          "content_quality": "EDITORIAL_OR_FACTUAL",
+          "is_promotional": false,
+          "is_low_information": false,
+          "filter_from_market_feed": false,
+          "market_fact_signal": false
+        },
+        {
+          "id": "NEWS-fb0440da7d7b24d4",
+          "headline": "로봇 D램 수요 2030년까지 20배…삼성·SK 새 성장동력 뜬다 - 머니투데이",
+          "title": "로봇 D램 수요 2030년까지 20배…삼성·SK 새 성장동력 뜬다 - 머니투데이 - 머니투데이",
+          "published_at": "2026-10-11T04:50:10Z",
+          "observed_at": "2026-10-11T18:11:01.259588Z",
+          "retrieved_at": "2026-10-11T18:11:01.259588Z",
+          "source": "머니투데이",
+          "publisher": "머니투데이",
+          "source_type": "SECONDARY",
+          "source_id": "google-news-rss",
+          "source_kind": "secondary_aggregator",
+          "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9WYkkydTIzaVl0SWhWTzlrRFBncmFKVHpsUlhOVUtwdldUWWMzc1FkZWc2OVlmenRtRHF4bWF3cGlESzRIcngtZngxZlJsTFU5eXBCcHRBYTdsbTk1anBjeVNHY3RSS1VHVy00RnFUTk11QdIBckFVX3lxTE9WYkkydTIzaVl0SWhWTzlrRFBncmFKVHpsUlhOVUtwdldUWWMzc1FkZWc2OVlmenRtRHF4bWF3cGlESzRIcngtZngxZlJsTFU5eXBCcHRBYTdsbTk1anBjeVNHY3RSS1VHVy00RnFUTk11QQ?oc=5",
+          "query": "삼성전자 SK하이닉스 반도체 HBM AI",
+          "cluster_id": "GN-d6f698e37d2a9c90",
           "official_source_available": false,
           "market_bias": "UNDETERMINED",
           "impact_channels": [],
@@ -1637,61 +1415,164 @@
           "is_promotional": false,
           "is_low_information": false,
           "filter_from_market_feed": false,
-          "market_fact_signal": true
+          "market_fact_signal": false
         },
         {
-          "id": "NEWS-ca4033711c025207",
-          "headline": "[글로벌 제약·바이오 리포트] 로슈, IgA 신병증 시장 공략…임상 3상 '세팍서센' 경쟁력은",
-          "title": "[글로벌 제약·바이오 리포트] 로슈, IgA 신병증 시장 공략…임상 3상 '세팍서센' 경쟁력은 - 글로벌이코노믹",
-          "published_at": "2026-10-10T23:00:00Z",
-          "observed_at": "2026-10-11T13:11:24.172666Z",
-          "retrieved_at": "2026-10-11T13:11:24.172666Z",
-          "source": "글로벌이코노믹",
-          "publisher": "글로벌이코노믹",
+          "id": "NEWS-7d0b53ccdf26db1d",
+          "headline": "“휴머노이드 로봇 ‘두뇌’ D램 수요, 2030년 20배로… 삼전닉스 새 동력”",
+          "title": "“휴머노이드 로봇 ‘두뇌’ D램 수요, 2030년 20배로… 삼전닉스 새 동력” - 조선일보",
+          "published_at": "2026-10-11T03:24:03Z",
+          "observed_at": "2026-10-11T18:11:01.259588Z",
+          "retrieved_at": "2026-10-11T18:11:01.259588Z",
+          "source": "조선일보",
+          "publisher": "조선일보",
           "source_type": "SECONDARY",
           "source_id": "google-news-rss",
           "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPc1NUd2RZTGpTeEJyMVlIcl93aU9oeDVPMW5kam5tQl9pODRyUnJYUFNqSFF5czhqZE8tV0NKRkZPeUVtOEpkbVJEdXFwZnBWazVKWW9sUWFvUVA3Y2ZIV2t2azFYVlJXRVpGbWZGUGltbjdvNW1sb3RnU0dMSnU4eDlMS3RFQUE4?oc=5",
-          "query": "바이오 제약 임상 허가 한국 증시",
-          "cluster_id": "GN-68ef2f18e423551d",
+          "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNUS0wb0RScEQ2a24xSmRtOUY2QWotYWFzbWZNdzdFSjdJSEszQ2drbWZsbUs0X2lNNm43V2hWTVFnY044dndqeGs5a3dKUlQzZjNCUDFvVVNoMmNXTG1RWUhFVXByZHRRNU9HdXR1LTJRSjVkSXA3S3Vucy14QlRyWno4UQ?oc=5",
+          "query": "삼성전자 SK하이닉스 반도체 HBM AI",
+          "cluster_id": "GN-d6f698e37d2a9c90",
           "official_source_available": false,
           "market_bias": "UNDETERMINED",
           "impact_channels": [],
           "related_sectors": [
-            "바이오"
+            "조선"
           ],
           "related_countries": [],
           "related_markets": [
-            "KOSDAQ",
             "KOSPI"
           ],
           "related_stocks": [],
-          "topic": "바이오",
+          "topic": "산업수주",
           "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
           "promotion_score": 0,
           "content_quality": "EDITORIAL_OR_FACTUAL",
           "is_promotional": false,
           "is_low_information": false,
           "filter_from_market_feed": false,
-          "market_fact_signal": true
+          "market_fact_signal": false
+        },
+        {
+          "id": "NEWS-107df4e378b7b4a0",
+          "headline": "로봇 D램 수요, 2030년까지 20배 증가…삼성전자·SK하이닉스 수요 확대 기대",
+          "title": "로봇 D램 수요, 2030년까지 20배 증가…삼성전자·SK하이닉스 수요 확대 기대 - 아주경제",
+          "published_at": "2026-10-11T02:23:59Z",
+          "observed_at": "2026-10-11T18:11:01.259588Z",
+          "retrieved_at": "2026-10-11T18:11:01.259588Z",
+          "source": "아주경제",
+          "publisher": "아주경제",
+          "source_type": "SECONDARY",
+          "source_id": "google-news-rss",
+          "source_kind": "secondary_aggregator",
+          "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1CNkpTTXZlcUVsWncxcXF3TGNYREFJY2doeWoxbDBNY1BJZVZaY01RNURYZElWY3V1NjhwMUdDQUdDeVZobWhZazZjZHhQNGhPTWxad01yYVfSAVhBVV95cUxNQjZKU012ZXFFbFp3MXFxd0xjWERBSWNnaHlqMWwwTWNQSWVWWmNNUTVEWGRJVmN1dTY4cDFHQ0FHQ3lWaG1oWWs2Y2R4UDRoT01sWndNcmFX?oc=5",
+          "query": "삼성전자 SK하이닉스 반도체 HBM AI",
+          "cluster_id": "GN-d6f698e37d2a9c90",
+          "official_source_available": false,
+          "market_bias": "UNDETERMINED",
+          "impact_channels": [
+            "growth_beta",
+            "semiconductor"
+          ],
+          "related_sectors": [
+            "반도체"
+          ],
+          "related_countries": [],
+          "related_markets": [
+            "KOSPI",
+            "NASDAQ"
+          ],
+          "related_stocks": [
+            "SK하이닉스",
+            "삼성전자"
+          ],
+          "topic": "반도체",
+          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+          "promotion_score": 0,
+          "content_quality": "EDITORIAL_OR_FACTUAL",
+          "is_promotional": false,
+          "is_low_information": false,
+          "filter_from_market_feed": false,
+          "market_fact_signal": false
+        },
+        {
+          "id": "NEWS-edfdd372eacc6dc2",
+          "headline": "로봇용 D램 수요 2030년까지 20배 증가…삼성·SK 새 성장동력으로",
+          "title": "로봇용 D램 수요 2030년까지 20배 증가…삼성·SK 새 성장동력으로 - SBS Biz",
+          "published_at": "2026-10-11T02:02:00Z",
+          "observed_at": "2026-10-11T18:11:01.259588Z",
+          "retrieved_at": "2026-10-11T18:11:01.259588Z",
+          "source": "SBS Biz",
+          "publisher": "SBS Biz",
+          "source_type": "SECONDARY",
+          "source_id": "google-news-rss",
+          "source_kind": "secondary_aggregator",
+          "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBfZTRzZWNOaTB4dzNiVXVXeWp6Tm5HU1lYYXlOTDRvczE5bFhmdEJVSHE2S3R0V09FZ2xUcjA3Zm9GWWREbmFWSVZ0b0MtQUlTQ1Z1MEFFajfSAVhBVV95cUxQX2U0c2VjTmkweHczYlV1V3lqek5uR1NZWGF5Tkw0b3MxOWxYZnRCVUhxNkt0dFdPRWdsVHIwN2ZvRllkRG5hVklWdG9DLUFJU0NWdTBBRWo3?oc=5",
+          "query": "삼성전자 SK하이닉스 반도체 HBM AI",
+          "cluster_id": "GN-d6f698e37d2a9c90",
+          "official_source_available": false,
+          "market_bias": "UNDETERMINED",
+          "impact_channels": [],
+          "related_sectors": [],
+          "related_countries": [],
+          "related_markets": [],
+          "related_stocks": [],
+          "topic": "시장일반",
+          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+          "promotion_score": 0,
+          "content_quality": "EDITORIAL_OR_FACTUAL",
+          "is_promotional": false,
+          "is_low_information": false,
+          "filter_from_market_feed": false,
+          "market_fact_signal": false
+        },
+        {
+          "id": "NEWS-5f71a201c3667331",
+          "headline": "로봇용 D램 수요, 2030년 20배로…삼성·SK 새 먹거리 부상",
+          "title": "로봇용 D램 수요, 2030년 20배로…삼성·SK 새 먹거리 부상 - 연합뉴스",
+          "published_at": "2026-10-11T01:02:45Z",
+          "observed_at": "2026-10-11T18:11:01.259588Z",
+          "retrieved_at": "2026-10-11T18:11:01.259588Z",
+          "source": "연합뉴스",
+          "publisher": "연합뉴스",
+          "source_type": "SECONDARY",
+          "source_id": "google-news-rss",
+          "source_kind": "secondary_aggregator",
+          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE52Z0MyRHpxNnU3d3FTeVVLRExFZGU4LVo1S0NPa2pXdW9QcEs2ZlhPNnV2aFJkT0NHMXZMTjA1cE9BSlRkRk4tWjluUzhHOG1qVVE0aHMyR2NTRWfSAWBBVV95cUxPU0VJNEVnb2tXY3lSdWRrVG82VGRYaUtWS3J1WE1IWFhNT1M3aGlhcEJzRHdydi1xdG9fRGFiU0tzeC1vN2NQYWNSNlpMSHhaVkI4RTI1bU1ZeVR3V0Y5T08?oc=5",
+          "query": "삼성전자 SK하이닉스 반도체 HBM AI",
+          "cluster_id": "GN-d6f698e37d2a9c90",
+          "official_source_available": false,
+          "market_bias": "UNDETERMINED",
+          "impact_channels": [],
+          "related_sectors": [],
+          "related_countries": [],
+          "related_markets": [],
+          "related_stocks": [],
+          "topic": "시장일반",
+          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+          "promotion_score": 0,
+          "content_quality": "EDITORIAL_OR_FACTUAL",
+          "is_promotional": false,
+          "is_low_information": false,
+          "filter_from_market_feed": false,
+          "market_fact_signal": false
         }
       ],
       "identity_match": "SEMANTIC_CONTINUITY",
-      "generated_fingerprint": "ISSUE-FP-68ef2f18e423551d",
+      "generated_fingerprint": "ISSUE-FP-d6f698e37d2a9c90",
       "ai_analysis": {},
-      "last_updated_at": "2026-10-11T22:11:50+09:00",
-      "importance_score": 9.0,
+      "last_updated_at": "2026-10-12T03:11:13+09:00",
+      "importance_score": 22.0,
       "importance_components": {
-        "independent_source_component": 1,
-        "article_component": 2,
+        "independent_source_component": 2,
+        "article_component": 6,
         "channel_component": 0,
         "official_source_component": 0,
-        "recency_component": 2,
+        "recency_component": 5,
         "market_reaction_component": "PENDING"
       },
       "market_reaction": {
         "evidence_state": "PENDING",
-        "event_at": "2026-10-11T02:14:18+00:00",
+        "event_at": "2026-10-10T10:25:21+00:00",
         "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
       }
     }
@@ -1817,7 +1698,7 @@
         }
       ],
       "ai_analysis": {},
-      "last_updated_at": "2026-10-11T22:11:50+09:00",
+      "last_updated_at": "2026-10-12T03:11:13+09:00",
       "importance_score": 15.5,
       "importance_components": {
         "independent_source_component": 1,
@@ -1940,7 +1821,7 @@
         }
       ],
       "ai_analysis": {},
-      "last_updated_at": "2026-10-11T22:11:50+09:00",
+      "last_updated_at": "2026-10-12T03:11:13+09:00",
       "importance_score": 11.5,
       "importance_components": {
         "independent_source_component": 1,
@@ -1953,6 +1834,425 @@
       "market_reaction": {
         "evidence_state": "PENDING",
         "event_at": "2026-10-10T23:56:42+00:00",
+        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
+      }
+    },
+    {
+      "issue_id": "GN-a4bf8b136d61d413",
+      "fingerprint": "ISSUE-FP-a4bf8b136d61d413",
+      "event_core_tokens": [
+        "100조",
+        "고점론",
+        "공장",
+        "맞서는",
+        "메모리",
+        "벌고",
+        "분기",
+        "전성시대",
+        "짓는다"
+      ],
+      "headline": "분기 100조 벌고 공장 더 짓는다…'고점론' 맞서는 메모리 전성시대",
+      "first_seen_at": "2026-10-11T08:21:12Z",
+      "latest_at": "2026-10-11T08:21:12Z",
+      "article_count": 1,
+      "publisher_count": 1,
+      "independent_source_count": 1,
+      "independent_publishers": 1,
+      "reprint_count": 0,
+      "quality_filtered_count": 1,
+      "publishers": [
+        "이데일리"
+      ],
+      "official_source_available": false,
+      "state": "RESOLVED",
+      "why_important": "시장 영향 가능성이 있는 뉴스이므로 관련 지수·섹터·수급이 실제로 반응하는지 확인할 필요가 있습니다.",
+      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
+      "next_variables": [
+        "외국인 수급",
+        "기관 수급"
+      ],
+      "history": [
+        {
+          "at": "2026-10-11T22:11:50+09:00",
+          "state": "NEW",
+          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
+        },
+        {
+          "at": "2026-10-12T03:11:13+09:00",
+          "state": "RESOLVED",
+          "reason": "현재 수집 창에서 새 독립 근거가 추가되지 않아 상태를 낮췄습니다. 사건 자체의 소멸을 단정하는 의미는 아닙니다."
+        }
+      ],
+      "market_bias": "UNDETERMINED",
+      "impact_channels": [],
+      "related_sectors": [],
+      "related_countries": [],
+      "related_markets": [],
+      "related_stocks": [],
+      "topic": "시장일반",
+      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+      "articles": [
+        {
+          "id": "NEWS-ce23994029fc143e",
+          "headline": "분기 100조 벌고 공장 더 짓는다…'고점론' 맞서는 메모리 전성시대",
+          "title": "분기 100조 벌고 공장 더 짓는다…'고점론' 맞서는 메모리 전성시대 - 이데일리",
+          "published_at": "2026-10-11T08:21:12Z",
+          "observed_at": "2026-10-11T13:11:24.025854Z",
+          "retrieved_at": "2026-10-11T13:11:24.025854Z",
+          "source": "이데일리",
+          "publisher": "이데일리",
+          "source_type": "SECONDARY",
+          "source_id": "google-news-rss",
+          "source_kind": "secondary_aggregator",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxONms2a3lkZzN5RWZTeXhqT0ZuNTNhY0JFZGhQbGZYTks1c1VLTTA5dU9Kbm1QQ0U0a0hhbFJWanRUcTFTVFVCV0hFdFJ2dl9WemY3TUZ5djdlQXBZaFZnZk1iZVJxb0VFS3pVOTYwSHZCTGpKaHQ2T0xFX25pbzh4VQ?oc=5",
+          "query": "삼성전자 SK하이닉스 반도체 HBM AI",
+          "cluster_id": "GN-a4bf8b136d61d413",
+          "official_source_available": false,
+          "market_bias": "UNDETERMINED",
+          "impact_channels": [],
+          "related_sectors": [],
+          "related_countries": [],
+          "related_markets": [],
+          "related_stocks": [],
+          "topic": "시장일반",
+          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+          "promotion_score": 0,
+          "content_quality": "EDITORIAL_OR_FACTUAL",
+          "is_promotional": false,
+          "is_low_information": false,
+          "filter_from_market_feed": false,
+          "market_fact_signal": true
+        }
+      ],
+      "ai_analysis": {},
+      "last_updated_at": "2026-10-12T03:11:13+09:00",
+      "importance_score": 7.5,
+      "importance_components": {
+        "independent_source_component": 1,
+        "article_component": 1,
+        "channel_component": 0,
+        "official_source_component": 0,
+        "recency_component": 2,
+        "market_reaction_component": "PENDING"
+      },
+      "market_reaction": {
+        "evidence_state": "PENDING",
+        "event_at": "2026-10-11T08:21:12+00:00",
+        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
+      }
+    },
+    {
+      "issue_id": "GN-fd7fe921fc0a9876",
+      "fingerprint": "ISSUE-FP-fd7fe921fc0a9876",
+      "event_core_tokens": [
+        "게임도",
+        "낯선",
+        "요소별로",
+        "이해하는",
+        "카지노노가리"
+      ],
+      "headline": "낯선 게임도 요소별로 이해하는 카지노노가리",
+      "first_seen_at": "2026-10-11T06:22:30Z",
+      "latest_at": "2026-10-11T06:22:30Z",
+      "article_count": 1,
+      "publisher_count": 1,
+      "independent_source_count": 1,
+      "independent_publishers": 1,
+      "reprint_count": 0,
+      "quality_filtered_count": 1,
+      "publishers": [
+        "Calgary Roughnecks"
+      ],
+      "official_source_available": false,
+      "state": "RESOLVED",
+      "why_important": "시장 영향 가능성이 있는 뉴스이므로 관련 지수·섹터·수급이 실제로 반응하는지 확인할 필요가 있습니다.",
+      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
+      "next_variables": [
+        "외국인 수급",
+        "기관 수급"
+      ],
+      "history": [
+        {
+          "at": "2026-10-11T22:11:50+09:00",
+          "state": "NEW",
+          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
+        },
+        {
+          "at": "2026-10-12T03:11:13+09:00",
+          "state": "RESOLVED",
+          "reason": "현재 수집 창에서 새 독립 근거가 추가되지 않아 상태를 낮췄습니다. 사건 자체의 소멸을 단정하는 의미는 아닙니다."
+        }
+      ],
+      "market_bias": "UNDETERMINED",
+      "impact_channels": [],
+      "related_sectors": [],
+      "related_countries": [],
+      "related_markets": [],
+      "related_stocks": [],
+      "topic": "시장일반",
+      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+      "articles": [
+        {
+          "id": "NEWS-0d182a45cfbdacfd",
+          "headline": "낯선 게임도 요소별로 이해하는 카지노노가리",
+          "title": "낯선 게임도 요소별로 이해하는 카지노노가리 - Calgary Roughnecks",
+          "published_at": "2026-10-11T06:22:30Z",
+          "observed_at": "2026-10-11T13:11:24.625804Z",
+          "retrieved_at": "2026-10-11T13:11:24.625804Z",
+          "source": "Calgary Roughnecks",
+          "publisher": "Calgary Roughnecks",
+          "source_type": "SECONDARY",
+          "source_id": "google-news-rss",
+          "source_kind": "secondary_aggregator",
+          "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQbFNERmhkcVhRZ0owdzBDdGZNTHd2RXdvS0NWTHI2aUpBTndBMnkyRDZySUk4U1NnZEpTMkdYOG5ETnVfdWZWeXVRaFp1LU0tSHE4Rk00VkJqbGlTeVVCZ1QyWnh5N2hmTThEQUFoTmR4RXlGV0dVUURlb3gyWFFyN3RhYUpnV2N6THV5Q3Z5dHY0SmowVE1FRFFCcEdnQUJoeDJWZDBjV1gwVjFWVXNZX28xcnlvdkF4NjQzLVFtVUFqeWxINkkycUxtaGp3QV83?oc=5",
+          "query": "연준 Fed 미국 국채 금리 달러 환율",
+          "cluster_id": "GN-fd7fe921fc0a9876",
+          "official_source_available": false,
+          "market_bias": "UNDETERMINED",
+          "impact_channels": [],
+          "related_sectors": [],
+          "related_countries": [],
+          "related_markets": [],
+          "related_stocks": [],
+          "topic": "시장일반",
+          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+          "promotion_score": 0,
+          "content_quality": "EDITORIAL_OR_FACTUAL",
+          "is_promotional": false,
+          "is_low_information": false,
+          "filter_from_market_feed": false,
+          "market_fact_signal": false
+        }
+      ],
+      "ai_analysis": {},
+      "last_updated_at": "2026-10-12T03:11:13+09:00",
+      "importance_score": 7.5,
+      "importance_components": {
+        "independent_source_component": 1,
+        "article_component": 1,
+        "channel_component": 0,
+        "official_source_component": 0,
+        "recency_component": 2,
+        "market_reaction_component": "PENDING"
+      },
+      "market_reaction": {
+        "evidence_state": "PENDING",
+        "event_at": "2026-10-11T06:22:30+00:00",
+        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
+      }
+    },
+    {
+      "issue_id": "GN-ab9f3fde79acb2f3",
+      "fingerprint": "ISSUE-FP-ab9f3fde79acb2f3",
+      "event_core_tokens": [
+        "39",
+        "6600선",
+        "n2",
+        "급락",
+        "삼전",
+        "실적에도",
+        "역대급",
+        "코스피",
+        "턱걸이",
+        "포커스"
+      ],
+      "headline": "[N2 포커스] 코스피, 5.39% 급락…삼전 역대급 실적에도 6600선 턱걸이",
+      "first_seen_at": "2026-10-11T02:36:00Z",
+      "latest_at": "2026-10-11T02:36:00Z",
+      "article_count": 1,
+      "publisher_count": 1,
+      "independent_source_count": 1,
+      "independent_publishers": 1,
+      "reprint_count": 0,
+      "quality_filtered_count": 1,
+      "publishers": [
+        "뉴스투데이"
+      ],
+      "official_source_available": false,
+      "state": "RESOLVED",
+      "why_important": "시장 영향 가능성이 있는 뉴스이므로 관련 지수·섹터·수급이 실제로 반응하는지 확인할 필요가 있습니다.",
+      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
+      "next_variables": [
+        "외국인 수급",
+        "기관 수급"
+      ],
+      "history": [
+        {
+          "at": "2026-10-11T22:11:50+09:00",
+          "state": "NEW",
+          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
+        },
+        {
+          "at": "2026-10-12T03:11:13+09:00",
+          "state": "RESOLVED",
+          "reason": "현재 수집 창에서 새 독립 근거가 추가되지 않아 상태를 낮췄습니다. 사건 자체의 소멸을 단정하는 의미는 아닙니다."
+        }
+      ],
+      "market_bias": "UNDETERMINED",
+      "impact_channels": [],
+      "related_sectors": [],
+      "related_countries": [],
+      "related_markets": [],
+      "related_stocks": [],
+      "topic": "시장일반",
+      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+      "articles": [
+        {
+          "id": "NEWS-f575293b15729378",
+          "headline": "[N2 포커스] 코스피, 5.39% 급락…삼전 역대급 실적에도 6600선 턱걸이",
+          "title": "[N2 포커스] 코스피, 5.39% 급락…삼전 역대급 실적에도 6600선 턱걸이 - 뉴스투데이",
+          "published_at": "2026-10-11T02:36:00Z",
+          "observed_at": "2026-10-11T13:11:23.921128Z",
+          "retrieved_at": "2026-10-11T13:11:23.921128Z",
+          "source": "뉴스투데이",
+          "publisher": "뉴스투데이",
+          "source_type": "SECONDARY",
+          "source_id": "google-news-rss",
+          "source_kind": "secondary_aggregator",
+          "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9XWUJZYXFndng2SkpSUTJfWUc4UHk0U0ZuTFJJQk40ZWxaWmtxcG5LMDdsU1NsbTh2d2U1dVZkUXhfMzdZZm83Q0kyYU1BYWV0VUduaVpLc0t2REI5LXc?oc=5",
+          "query": "한국 증시 코스피 코스닥 외국인 기관 수급",
+          "cluster_id": "GN-ab9f3fde79acb2f3",
+          "official_source_available": false,
+          "market_bias": "UNDETERMINED",
+          "impact_channels": [],
+          "related_sectors": [],
+          "related_countries": [],
+          "related_markets": [],
+          "related_stocks": [],
+          "topic": "시장일반",
+          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+          "promotion_score": 0,
+          "content_quality": "EDITORIAL_OR_FACTUAL",
+          "is_promotional": false,
+          "is_low_information": false,
+          "filter_from_market_feed": false,
+          "market_fact_signal": true
+        }
+      ],
+      "ai_analysis": {},
+      "last_updated_at": "2026-10-12T03:11:13+09:00",
+      "merged_prior_issue_ids": [
+        "GN-418380988f6190e5"
+      ],
+      "importance_score": 7.5,
+      "importance_components": {
+        "independent_source_component": 1,
+        "article_component": 1,
+        "channel_component": 0,
+        "official_source_component": 0,
+        "recency_component": 2,
+        "market_reaction_component": "PENDING"
+      },
+      "market_reaction": {
+        "evidence_state": "PENDING",
+        "event_at": "2026-10-11T02:36:00+00:00",
+        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
+      }
+    },
+    {
+      "issue_id": "GN-223ea2de478ca51b",
+      "fingerprint": "ISSUE-FP-223ea2de478ca51b",
+      "event_core_tokens": [
+        "놓치기",
+        "도움말",
+        "방법",
+        "쉬운",
+        "위치",
+        "입문자가",
+        "홀덤"
+      ],
+      "headline": "입문자가 놓치기 쉬운 홀덤 펍 방법 도움말 위치",
+      "first_seen_at": "2026-10-11T01:39:58Z",
+      "latest_at": "2026-10-11T01:39:58Z",
+      "article_count": 1,
+      "publisher_count": 1,
+      "independent_source_count": 1,
+      "independent_publishers": 1,
+      "reprint_count": 0,
+      "quality_filtered_count": 1,
+      "publishers": [
+        "Calgary Roughnecks"
+      ],
+      "official_source_available": false,
+      "state": "RESOLVED",
+      "why_important": "시장 영향 가능성이 있는 뉴스이므로 관련 지수·섹터·수급이 실제로 반응하는지 확인할 필요가 있습니다.",
+      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
+      "next_variables": [
+        "외국인 수급",
+        "기관 수급"
+      ],
+      "history": [
+        {
+          "at": "2026-10-11T15:20:54+09:00",
+          "state": "NEW",
+          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
+        },
+        {
+          "at": "2026-10-11T22:11:50+09:00",
+          "state": "PERSISTING",
+          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
+        },
+        {
+          "at": "2026-10-12T03:11:13+09:00",
+          "state": "RESOLVED",
+          "reason": "현재 수집 창에서 새 독립 근거가 추가되지 않아 상태를 낮췄습니다. 사건 자체의 소멸을 단정하는 의미는 아닙니다."
+        }
+      ],
+      "market_bias": "UNDETERMINED",
+      "impact_channels": [],
+      "related_sectors": [],
+      "related_countries": [],
+      "related_markets": [],
+      "related_stocks": [],
+      "topic": "시장일반",
+      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+      "articles": [
+        {
+          "id": "NEWS-d3b22c8772574a2a",
+          "headline": "입문자가 놓치기 쉬운 홀덤 펍 방법 도움말 위치",
+          "title": "입문자가 놓치기 쉬운 홀덤 펍 방법 도움말 위치 - Calgary Roughnecks",
+          "published_at": "2026-10-11T01:39:58Z",
+          "observed_at": "2026-10-11T13:11:24.564191Z",
+          "retrieved_at": "2026-10-11T13:11:24.564191Z",
+          "source": "Calgary Roughnecks",
+          "publisher": "Calgary Roughnecks",
+          "source_type": "SECONDARY",
+          "source_id": "google-news-rss",
+          "source_kind": "secondary_aggregator",
+          "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQNDFDVGlUbjY0a3NSX2drWE9XZlU1REJjV1pJRTlJUlBZcVplNk1UQ0pOVHhxa1c5MVBEMzhzN1lmRng3bnQyNnlOc0t1ZWt2UGY0djlIdjU0dkhubjBYUzBkaEVONEg4VlpYdk5UTjRUcWdLZWlzbWFXRkUyUVRIR2F1M3JQdmtKVkhmYTZQNDRfTEplaEZpMQ?oc=5",
+          "query": "미국 증시 나스닥 S&P500 다우 엔비디아 반도체",
+          "cluster_id": "GN-223ea2de478ca51b",
+          "official_source_available": false,
+          "market_bias": "UNDETERMINED",
+          "impact_channels": [],
+          "related_sectors": [],
+          "related_countries": [],
+          "related_markets": [],
+          "related_stocks": [],
+          "topic": "시장일반",
+          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+          "promotion_score": 0,
+          "content_quality": "EDITORIAL_OR_FACTUAL",
+          "is_promotional": false,
+          "is_low_information": false,
+          "filter_from_market_feed": false,
+          "market_fact_signal": false
+        }
+      ],
+      "ai_analysis": {},
+      "last_updated_at": "2026-10-12T03:11:13+09:00",
+      "importance_score": 7.5,
+      "importance_components": {
+        "independent_source_component": 1,
+        "article_component": 1,
+        "channel_component": 0,
+        "official_source_component": 0,
+        "recency_component": 2,
+        "market_reaction_component": "PENDING"
+      },
+      "market_reaction": {
+        "evidence_state": "PENDING",
+        "event_at": "2026-10-11T01:39:58+00:00",
         "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
       }
     },
@@ -2043,7 +2343,7 @@
         }
       ],
       "ai_analysis": {},
-      "last_updated_at": "2026-10-11T22:11:50+09:00",
+      "last_updated_at": "2026-10-12T03:11:13+09:00",
       "importance_score": 7.5,
       "importance_components": {
         "independent_source_component": 1,
@@ -2056,109 +2356,6 @@
       "market_reaction": {
         "evidence_state": "PENDING",
         "event_at": "2026-10-11T01:00:36+00:00",
-        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
-      }
-    },
-    {
-      "issue_id": "GN-d36a2c737c751db8",
-      "fingerprint": "ISSUE-FP-d36a2c737c751db8",
-      "event_core_tokens": [
-        "55조",
-        "끝물",
-        "버텼는데",
-        "버팀목",
-        "외국인이",
-        "주간증시전망",
-        "코스피",
-        "팔아도"
-      ],
-      "headline": "외국인이 팔아도 버텼는데…코스피 ‘55조 버팀목’ 끝물[주간증시전망]",
-      "first_seen_at": "2026-10-11T00:23:35Z",
-      "latest_at": "2026-10-11T00:23:35Z",
-      "article_count": 1,
-      "publisher_count": 1,
-      "independent_source_count": 1,
-      "independent_publishers": 1,
-      "reprint_count": 0,
-      "quality_filtered_count": 1,
-      "publishers": [
-        "이데일리"
-      ],
-      "official_source_available": false,
-      "state": "RESOLVED",
-      "why_important": "시장 영향 가능성이 있는 뉴스이므로 관련 지수·섹터·수급이 실제로 반응하는지 확인할 필요가 있습니다.",
-      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
-      "next_variables": [
-        "외국인 수급",
-        "기관 수급"
-      ],
-      "history": [
-        {
-          "at": "2026-10-11T15:20:54+09:00",
-          "state": "NEW",
-          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
-        },
-        {
-          "at": "2026-10-11T22:11:50+09:00",
-          "state": "RESOLVED",
-          "reason": "현재 수집 창에서 새 독립 근거가 추가되지 않아 상태를 낮췄습니다. 사건 자체의 소멸을 단정하는 의미는 아닙니다."
-        }
-      ],
-      "market_bias": "UNDETERMINED",
-      "impact_channels": [],
-      "related_sectors": [],
-      "related_countries": [],
-      "related_markets": [],
-      "related_stocks": [],
-      "topic": "시장일반",
-      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-      "articles": [
-        {
-          "id": "NEWS-20338e3b2a660e5a",
-          "headline": "외국인이 팔아도 버텼는데…코스피 ‘55조 버팀목’ 끝물[주간증시전망]",
-          "title": "외국인이 팔아도 버텼는데…코스피 ‘55조 버팀목’ 끝물[주간증시전망] - 이데일리",
-          "published_at": "2026-10-11T00:23:35Z",
-          "observed_at": "2026-10-11T06:20:44.155036Z",
-          "retrieved_at": "2026-10-11T06:20:44.155036Z",
-          "source": "이데일리",
-          "publisher": "이데일리",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPdy1tYXVFOUthVjN1MjFqWDZ0aFZnNkVISlpiZjFVZjdFN21hazVDQnRPSzQ4TGZkbDZ3LUZPUGJ4WjZVSEFCN281aGFNSE9sMW5YcEZNQjB2UlRUdGIwTlo0bzJpQzFGZGJOS3Nzeml3YkRqRzBLbUp6cmFKYm1TVA?oc=5",
-          "query": "한국 증시 코스피 코스닥 외국인 기관 수급",
-          "cluster_id": "GN-d36a2c737c751db8",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [],
-          "related_stocks": [],
-          "topic": "시장일반",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        }
-      ],
-      "ai_analysis": {},
-      "last_updated_at": "2026-10-11T22:11:50+09:00",
-      "importance_score": 7.5,
-      "importance_components": {
-        "independent_source_component": 1,
-        "article_component": 1,
-        "channel_component": 0,
-        "official_source_component": 0,
-        "recency_component": 2,
-        "market_reaction_component": "PENDING"
-      },
-      "market_reaction": {
-        "evidence_state": "PENDING",
-        "event_at": "2026-10-11T00:23:35+00:00",
         "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
       }
     },
@@ -2255,7 +2452,7 @@
         }
       ],
       "ai_analysis": {},
-      "last_updated_at": "2026-10-11T22:11:50+09:00",
+      "last_updated_at": "2026-10-12T03:11:13+09:00",
       "importance_score": 7.5,
       "importance_components": {
         "independent_source_component": 1,
@@ -2268,6 +2465,111 @@
       "market_reaction": {
         "evidence_state": "PENDING",
         "event_at": "2026-10-10T22:00:00+00:00",
+        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
+      }
+    },
+    {
+      "issue_id": "GN-4640ce3c18268fc4",
+      "fingerprint": "ISSUE-FP-4640ce3c18268fc4",
+      "event_core_tokens": [
+        "개념과",
+        "경마",
+        "능력을",
+        "반성",
+        "발표",
+        "실제",
+        "외국",
+        "응용",
+        "통한",
+        "핵심"
+      ],
+      "headline": "외국 경마 발표 능력을 통한 반성: 핵심 개념과 실제 응용",
+      "first_seen_at": "2026-10-10T20:47:01Z",
+      "latest_at": "2026-10-10T20:47:01Z",
+      "article_count": 1,
+      "publisher_count": 1,
+      "independent_source_count": 1,
+      "independent_publishers": 1,
+      "reprint_count": 0,
+      "quality_filtered_count": 1,
+      "publishers": [
+        "Calgary Roughnecks"
+      ],
+      "official_source_available": false,
+      "state": "RESOLVED",
+      "why_important": "시장 영향 가능성이 있는 뉴스이므로 관련 지수·섹터·수급이 실제로 반응하는지 확인할 필요가 있습니다.",
+      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
+      "next_variables": [
+        "외국인 수급",
+        "기관 수급"
+      ],
+      "history": [
+        {
+          "at": "2026-10-11T22:11:50+09:00",
+          "state": "NEW",
+          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
+        },
+        {
+          "at": "2026-10-12T03:11:13+09:00",
+          "state": "RESOLVED",
+          "reason": "현재 수집 창에서 새 독립 근거가 추가되지 않아 상태를 낮췄습니다. 사건 자체의 소멸을 단정하는 의미는 아닙니다."
+        }
+      ],
+      "market_bias": "UNDETERMINED",
+      "impact_channels": [],
+      "related_sectors": [],
+      "related_countries": [],
+      "related_markets": [],
+      "related_stocks": [],
+      "topic": "시장일반",
+      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+      "articles": [
+        {
+          "id": "NEWS-95e9cd1decddb956",
+          "headline": "외국 경마 발표 능력을 통한 반성: 핵심 개념과 실제 응용",
+          "title": "외국 경마 발표 능력을 통한 반성: 핵심 개념과 실제 응용 - Calgary Roughnecks",
+          "published_at": "2026-10-10T20:47:01Z",
+          "observed_at": "2026-10-11T13:11:23.921128Z",
+          "retrieved_at": "2026-10-11T13:11:23.921128Z",
+          "source": "Calgary Roughnecks",
+          "publisher": "Calgary Roughnecks",
+          "source_type": "SECONDARY",
+          "source_id": "google-news-rss",
+          "source_kind": "secondary_aggregator",
+          "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQVl9haC1YeHlCMzllbEJhZlROc3hjOURPRWpBczM5WGxJUlpYaHdLVzcwQ0lhRHpUUWl2SVhFYjR1ckxEX3lEMlV6TlBvWURmZGRpTzNySDlORGlvLVc1VUN1Y1NSTTdIZXQxRHpIS3Fnalh4bFpGdU1uWmZuZlU0ckpULUxtdkRGNm5qWjFkZHVFUlVrLWdyblg5b3hIX2prbGlScXE4eWw?oc=5",
+          "query": "한국 증시 코스피 코스닥 외국인 기관 수급",
+          "cluster_id": "GN-4640ce3c18268fc4",
+          "official_source_available": false,
+          "market_bias": "UNDETERMINED",
+          "impact_channels": [],
+          "related_sectors": [],
+          "related_countries": [],
+          "related_markets": [],
+          "related_stocks": [],
+          "topic": "시장일반",
+          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
+          "promotion_score": 0,
+          "content_quality": "EDITORIAL_OR_FACTUAL",
+          "is_promotional": false,
+          "is_low_information": false,
+          "filter_from_market_feed": false,
+          "market_fact_signal": false
+        }
+      ],
+      "ai_analysis": {},
+      "last_updated_at": "2026-10-12T03:11:13+09:00",
+      "importance_score": 7.5,
+      "importance_components": {
+        "independent_source_component": 1,
+        "article_component": 1,
+        "channel_component": 0,
+        "official_source_component": 0,
+        "recency_component": 2,
+        "market_reaction_component": "PENDING"
+      },
+      "market_reaction": {
+        "evidence_state": "PENDING",
+        "event_at": "2026-10-10T20:47:01+00:00",
         "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
       }
     },
@@ -2364,7 +2666,7 @@
         }
       ],
       "ai_analysis": {},
-      "last_updated_at": "2026-10-11T22:11:50+09:00",
+      "last_updated_at": "2026-10-12T03:11:13+09:00",
       "importance_score": 7.5,
       "importance_components": {
         "independent_source_component": 1,
@@ -2377,427 +2679,6 @@
       "market_reaction": {
         "evidence_state": "PENDING",
         "event_at": "2026-10-10T18:59:07+00:00",
-        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
-      }
-    },
-    {
-      "issue_id": "GN-e2d2aefd5b860374",
-      "fingerprint": "ISSUE-FP-e2d2aefd5b860374",
-      "event_core_tokens": [
-        "꽁모니",
-        "물음표",
-        "버튼의",
-        "역할",
-        "토토",
-        "화면"
-      ],
-      "headline": "토토 꽁모니 화면 속 물음표 버튼의 역할",
-      "first_seen_at": "2026-10-10T18:28:57Z",
-      "latest_at": "2026-10-10T18:28:57Z",
-      "article_count": 1,
-      "publisher_count": 1,
-      "independent_source_count": 1,
-      "independent_publishers": 1,
-      "reprint_count": 0,
-      "quality_filtered_count": 1,
-      "publishers": [
-        "Calgary Roughnecks"
-      ],
-      "official_source_available": false,
-      "state": "RESOLVED",
-      "why_important": "시장 영향 가능성이 있는 뉴스이므로 관련 지수·섹터·수급이 실제로 반응하는지 확인할 필요가 있습니다.",
-      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
-      "next_variables": [
-        "외국인 수급",
-        "기관 수급"
-      ],
-      "history": [
-        {
-          "at": "2026-10-11T09:29:02+09:00",
-          "state": "NEW",
-          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
-        },
-        {
-          "at": "2026-10-11T15:20:54+09:00",
-          "state": "RESOLVED",
-          "reason": "현재 수집 창에서 새 독립 근거가 추가되지 않아 상태를 낮췄습니다. 사건 자체의 소멸을 단정하는 의미는 아닙니다."
-        }
-      ],
-      "market_bias": "UNDETERMINED",
-      "impact_channels": [],
-      "related_sectors": [],
-      "related_countries": [],
-      "related_markets": [],
-      "related_stocks": [],
-      "topic": "시장일반",
-      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-      "articles": [
-        {
-          "id": "NEWS-4b34d8aef8138052",
-          "headline": "토토 꽁모니 화면 속 물음표 버튼의 역할",
-          "title": "토토 꽁모니 화면 속 물음표 버튼의 역할 - Calgary Roughnecks",
-          "published_at": "2026-10-10T18:28:57Z",
-          "observed_at": "2026-10-11T00:28:53.102084Z",
-          "retrieved_at": "2026-10-11T00:28:53.102084Z",
-          "source": "Calgary Roughnecks",
-          "publisher": "Calgary Roughnecks",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOWlBlZ0h2WlFYWHFxTzU0bWZFT3NhMFpKM0Jta1FMMzlvZ0JoZGJhZE1hZXUwWTU2anQyZG9HblRmQmVZM1RQWFpmSEtzcV9LVnJIMkUwYnJKdlZJeHh6UzhId2FybUlOQjdkRmpBYWNmbC1PYmlZWDU5a2l4d0J2VU0zLVpMcFZoS2N0R1prRjJUV1gwaU0zZTVvTXNqcnJ3bjV0YzVlM2hZRU5udGxEMi1tNkdaMEVzWDZR?oc=5",
-          "query": "2차전지 배터리 리튬 전기차 한국",
-          "cluster_id": "GN-e2d2aefd5b860374",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [],
-          "related_stocks": [],
-          "topic": "시장일반",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        }
-      ],
-      "ai_analysis": {},
-      "last_updated_at": "2026-10-11T22:11:50+09:00",
-      "importance_score": 7.5,
-      "importance_components": {
-        "independent_source_component": 1,
-        "article_component": 1,
-        "channel_component": 0,
-        "official_source_component": 0,
-        "recency_component": 2,
-        "market_reaction_component": "PENDING"
-      },
-      "market_reaction": {
-        "evidence_state": "PENDING",
-        "event_at": "2026-10-10T18:28:57+00:00",
-        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
-      }
-    },
-    {
-      "issue_id": "GN-e2baa7274e92101a",
-      "fingerprint": "ISSUE-FP-e2baa7274e92101a",
-      "event_core_tokens": [
-        "모바일",
-        "브라우저에서",
-        "사이트",
-        "상태",
-        "슬롯",
-        "온라인",
-        "점검하는",
-        "표시"
-      ],
-      "headline": "모바일 브라우저에서 점검하는 온라인 슬롯 사이트 표시 상태",
-      "first_seen_at": "2026-10-10T18:13:43Z",
-      "latest_at": "2026-10-10T18:13:43Z",
-      "article_count": 1,
-      "publisher_count": 1,
-      "independent_source_count": 1,
-      "independent_publishers": 1,
-      "reprint_count": 0,
-      "quality_filtered_count": 1,
-      "publishers": [
-        "Calgary Roughnecks"
-      ],
-      "official_source_available": false,
-      "state": "RESOLVED",
-      "why_important": "시장 영향 가능성이 있는 뉴스이므로 관련 지수·섹터·수급이 실제로 반응하는지 확인할 필요가 있습니다.",
-      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
-      "next_variables": [
-        "외국인 수급",
-        "기관 수급"
-      ],
-      "history": [
-        {
-          "at": "2026-10-11T09:29:02+09:00",
-          "state": "NEW",
-          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
-        },
-        {
-          "at": "2026-10-11T15:20:54+09:00",
-          "state": "PERSISTING",
-          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
-        },
-        {
-          "at": "2026-10-11T22:11:50+09:00",
-          "state": "RESOLVED",
-          "reason": "현재 수집 창에서 새 독립 근거가 추가되지 않아 상태를 낮췄습니다. 사건 자체의 소멸을 단정하는 의미는 아닙니다."
-        }
-      ],
-      "market_bias": "UNDETERMINED",
-      "impact_channels": [],
-      "related_sectors": [],
-      "related_countries": [],
-      "related_markets": [],
-      "related_stocks": [],
-      "topic": "시장일반",
-      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-      "articles": [
-        {
-          "id": "NEWS-6576eecc237c0e10",
-          "headline": "모바일 브라우저에서 점검하는 온라인 슬롯 사이트 표시 상태",
-          "title": "모바일 브라우저에서 점검하는 온라인 슬롯 사이트 표시 상태 - Calgary Roughnecks",
-          "published_at": "2026-10-10T18:13:43Z",
-          "observed_at": "2026-10-11T06:20:44.155036Z",
-          "retrieved_at": "2026-10-11T06:20:44.155036Z",
-          "source": "Calgary Roughnecks",
-          "publisher": "Calgary Roughnecks",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQMC1tNXBmUW9MQWpheVlIbl9tSkNpcXlJdXZRYWFHalBEUDVVdVo1R2htRnZIUElURHRBQm9Lc2hGM2JCOGZsUXV5Q25PQ2ZjWXc2RXhJU3AxWjQtekVQV09FaXBvdE54cERFR2NiYUxudGxhNkdyaGlKdFpuVmcwQ2g2NlF0ZUdhcTFleWlESHJDdHhFbnVBelJieG5mWUl1ZVE0OWVua1Z2a1hpT3pjaWo1VHlyUQ?oc=5",
-          "query": "한국 증시 코스피 코스닥 외국인 기관 수급",
-          "cluster_id": "GN-e2baa7274e92101a",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [],
-          "related_stocks": [],
-          "topic": "시장일반",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        }
-      ],
-      "ai_analysis": {},
-      "last_updated_at": "2026-10-11T22:11:50+09:00",
-      "importance_score": 7.5,
-      "importance_components": {
-        "independent_source_component": 1,
-        "article_component": 1,
-        "channel_component": 0,
-        "official_source_component": 0,
-        "recency_component": 2,
-        "market_reaction_component": "PENDING"
-      },
-      "market_reaction": {
-        "evidence_state": "PENDING",
-        "event_at": "2026-10-10T18:13:43+00:00",
-        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
-      }
-    },
-    {
-      "issue_id": "GN-3e1916ad7af52371",
-      "fingerprint": "ISSUE-FP-3e1916ad7af52371",
-      "event_core_tokens": [
-        "3분기",
-        "9배",
-        "ai",
-        "가까이",
-        "거의",
-        "것으로",
-        "덕분에",
-        "삼성은",
-        "열풍",
-        "예상하고"
-      ],
-      "headline": "삼성은 AI 칩 열풍 덕분에 3분기 이익이 거의 9배 가까이 증가할 것으로 예상하고 있다.",
-      "first_seen_at": "2026-10-10T17:30:12Z",
-      "latest_at": "2026-10-10T17:30:12Z",
-      "article_count": 1,
-      "publisher_count": 1,
-      "independent_source_count": 1,
-      "independent_publishers": 1,
-      "reprint_count": 0,
-      "quality_filtered_count": 1,
-      "publishers": [
-        "Vietnam.vn"
-      ],
-      "official_source_available": false,
-      "state": "RESOLVED",
-      "why_important": "시장 영향 가능성이 있는 뉴스이므로 관련 지수·섹터·수급이 실제로 반응하는지 확인할 필요가 있습니다.",
-      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
-      "next_variables": [
-        "외국인 수급",
-        "기관 수급"
-      ],
-      "history": [
-        {
-          "at": "2026-10-11T06:34:55+09:00",
-          "state": "NEW",
-          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
-        },
-        {
-          "at": "2026-10-11T09:29:02+09:00",
-          "state": "PERSISTING",
-          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
-        },
-        {
-          "at": "2026-10-11T15:20:54+09:00",
-          "state": "RESOLVED",
-          "reason": "현재 수집 창에서 새 독립 근거가 추가되지 않아 상태를 낮췄습니다. 사건 자체의 소멸을 단정하는 의미는 아닙니다."
-        }
-      ],
-      "market_bias": "UNDETERMINED",
-      "impact_channels": [],
-      "related_sectors": [],
-      "related_countries": [],
-      "related_markets": [],
-      "related_stocks": [],
-      "topic": "시장일반",
-      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-      "articles": [
-        {
-          "id": "NEWS-3d5aa6e4259d8f96",
-          "headline": "삼성은 AI 칩 열풍 덕분에 3분기 이익이 거의 9배 가까이 증가할 것으로 예상하고 있다.",
-          "title": "삼성은 AI 칩 열풍 덕분에 3분기 이익이 거의 9배 가까이 증가할 것으로 예상하고 있다. - Vietnam.vn",
-          "published_at": "2026-10-10T17:30:12Z",
-          "observed_at": "2026-10-11T00:28:52.940722Z",
-          "retrieved_at": "2026-10-11T00:28:52.940722Z",
-          "source": "Vietnam.vn",
-          "publisher": "Vietnam.vn",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQYmZXdUIwUlZnYVQyUmxDY3lVRlVWbzBoeXI0SnlraTRNSGdsSGtZRGxYSk5BOWloREZDVnVHVHJwNWh6UDkyblJBYTJGZkhZSnptVU80bUtpRWtEQTgxY2lfRF9JVnRLaG5TN0s4T0JVY0RUMGF6S1JFZERYVjBLUGQ3TnV3SE1CUTJ2c1V2bDdPZVFUczZkSA?oc=5",
-          "query": "삼성전자 SK하이닉스 반도체 HBM AI",
-          "cluster_id": "GN-3e1916ad7af52371",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [],
-          "related_stocks": [],
-          "topic": "시장일반",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        }
-      ],
-      "ai_analysis": {},
-      "last_updated_at": "2026-10-11T22:11:50+09:00",
-      "importance_score": 7.5,
-      "importance_components": {
-        "independent_source_component": 1,
-        "article_component": 1,
-        "channel_component": 0,
-        "official_source_component": 0,
-        "recency_component": 2,
-        "market_reaction_component": "PENDING"
-      },
-      "market_reaction": {
-        "evidence_state": "PENDING",
-        "event_at": "2026-10-10T17:30:12+00:00",
-        "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
-      }
-    },
-    {
-      "issue_id": "GN-351a4324b7eac997",
-      "fingerprint": "ISSUE-FP-351a4324b7eac997",
-      "event_core_tokens": [
-        "날씨",
-        "메뉴",
-        "설정",
-        "스마트폰에서",
-        "여는",
-        "자이언캐년",
-        "처음"
-      ],
-      "headline": "스마트폰에서 처음 여는 자이언캐년 날씨 설정 메뉴",
-      "first_seen_at": "2026-10-10T17:05:29Z",
-      "latest_at": "2026-10-10T17:05:29Z",
-      "article_count": 1,
-      "publisher_count": 1,
-      "independent_source_count": 1,
-      "independent_publishers": 1,
-      "reprint_count": 0,
-      "quality_filtered_count": 1,
-      "publishers": [
-        "Calgary Roughnecks"
-      ],
-      "official_source_available": false,
-      "state": "RESOLVED",
-      "why_important": "시장 영향 가능성이 있는 뉴스이므로 관련 지수·섹터·수급이 실제로 반응하는지 확인할 필요가 있습니다.",
-      "counterpoint": "기사 수와 동시 가격 움직임만으로 인과를 확정하지 않습니다. 재인용은 독립 근거로 중복 계산하지 않습니다.",
-      "next_variables": [
-        "외국인 수급",
-        "기관 수급"
-      ],
-      "history": [
-        {
-          "at": "2026-10-11T09:29:02+09:00",
-          "state": "NEW",
-          "reason": "독립 출처/기사 수와 현재 수집 결과를 직전 관측과 비교한 상태 변화입니다."
-        },
-        {
-          "at": "2026-10-11T15:20:54+09:00",
-          "state": "RESOLVED",
-          "reason": "현재 수집 창에서 새 독립 근거가 추가되지 않아 상태를 낮췄습니다. 사건 자체의 소멸을 단정하는 의미는 아닙니다."
-        }
-      ],
-      "market_bias": "UNDETERMINED",
-      "impact_channels": [],
-      "related_sectors": [],
-      "related_countries": [],
-      "related_markets": [],
-      "related_stocks": [],
-      "topic": "시장일반",
-      "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-      "articles": [
-        {
-          "id": "NEWS-d802b3549af9228f",
-          "headline": "스마트폰에서 처음 여는 자이언캐년 날씨 설정 메뉴",
-          "title": "스마트폰에서 처음 여는 자이언캐년 날씨 설정 메뉴 - Calgary Roughnecks",
-          "published_at": "2026-10-10T17:05:29Z",
-          "observed_at": "2026-10-11T00:28:53.269726Z",
-          "retrieved_at": "2026-10-11T00:28:53.269726Z",
-          "source": "Calgary Roughnecks",
-          "publisher": "Calgary Roughnecks",
-          "source_type": "SECONDARY",
-          "source_id": "google-news-rss",
-          "source_kind": "secondary_aggregator",
-          "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBIdGtRWkt5ZnNJazlsSVNrTS1RQjE1ZzREX2NVMk9aT3Q0QjFyQ3RxeU5Fc0RjckFObTVyZVVfdmVYZzBJMVlWeGhrdHVGNFByQktDbmJSakVPVmcwUGE3YzJENjZwcEVTSUxzZGRDT2xHcUFhYUdCV3pn?oc=5",
-          "query": "연준 Fed 미국 국채 금리 달러 환율",
-          "cluster_id": "GN-351a4324b7eac997",
-          "official_source_available": false,
-          "market_bias": "UNDETERMINED",
-          "impact_channels": [],
-          "related_sectors": [],
-          "related_countries": [],
-          "related_markets": [],
-          "related_stocks": [],
-          "topic": "시장일반",
-          "reason": "방향성은 제목 키워드만으로 확정하지 않고 가격·수급 반응과 공식자료로 추가 검증합니다.",
-          "promotion_score": 0,
-          "content_quality": "EDITORIAL_OR_FACTUAL",
-          "is_promotional": false,
-          "is_low_information": false,
-          "filter_from_market_feed": false,
-          "market_fact_signal": false
-        }
-      ],
-      "ai_analysis": {},
-      "last_updated_at": "2026-10-11T22:11:50+09:00",
-      "importance_score": 7.5,
-      "importance_components": {
-        "independent_source_component": 1,
-        "article_component": 1,
-        "channel_component": 0,
-        "official_source_component": 0,
-        "recency_component": 2,
-        "market_reaction_component": "PENDING"
-      },
-      "market_reaction": {
-        "evidence_state": "PENDING",
-        "event_at": "2026-10-10T17:05:29+00:00",
         "reason": "이슈 전후 90분/2시간 범위의 10분 시장 스냅샷이 아직 충분하지 않습니다."
       }
     }
