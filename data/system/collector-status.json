@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-14T22:09:31+09:00",
+  "generated_at": "2026-10-15T02:57:34+09:00",
   "status": "PARTIAL",
   "product_features": {
     "domestic_indices": true,
@@ -10,9 +10,9 @@
     "bok_official": "CONNECTED_PRIMARY",
     "dart_disclosures": "USER_ACTION_REQUIRED",
     "dart_disclosure_count": 0,
-    "news": 3,
+    "news": 261,
     "news_collection": "PARTIAL",
-    "news_latest_at": "2026-10-14T11:00:00Z",
+    "news_latest_at": "2026-10-14T15:43:00Z",
     "market_strength": "ESTIMATED",
     "turnover": "ESTIMATED",
     "turnover_stock_count": 2555,
@@ -26,20 +26,6 @@
   },
   "errors": [
     "naver-main-summary:invalid JSON from https://finance.naver.com/main/mainSummary.naver: Expecting value: line 1 column 1 (char 0)",
-    "google-news:한국 증시 코스피 코스닥 외국인 기관 수급:request failed: https://news.google.com/rss/search?q=%ED%95%9C%EA%B5%AD+%EC%A6%9D%EC%8B%9C+%EC%BD%94%EC%8A%A4%ED%94%BC+%EC%BD%94%EC%8A%A4%EB%8B%A5+%EC%99%B8%EA%B5%AD%EC%9D%B8+%EA%B8%B0%EA%B4%80+%EC%88%98%EA%B8%89+when%3A1d&hl=ko&gl=KR&ceid=KR%3Ako: HTTP Error 503: Service Unavailable",
-    "google-news:삼성전자 SK하이닉스 반도체 HBM AI:request failed: https://news.google.com/rss/search?q=%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90+SK%ED%95%98%EC%9D%B4%EB%8B%89%EC%8A%A4+%EB%B0%98%EB%8F%84%EC%B2%B4+HBM+AI+when%3A1d&hl=ko&gl=KR&ceid=KR%3Ako: HTTP Error 503: Service Unavailable",
-    "google-news:자동차 현대차 기아 로봇 스마트팩토리:request failed: https://news.google.com/rss/search?q=%EC%9E%90%EB%8F%99%EC%B0%A8+%ED%98%84%EB%8C%80%EC%B0%A8+%EA%B8%B0%EC%95%84+%EB%A1%9C%EB%B4%87+%EC%8A%A4%EB%A7%88%ED%8A%B8%ED%8C%A9%ED%86%A0%EB%A6%AC+when%3A1d&hl=ko&gl=KR&ceid=KR%3Ako: HTTP Error 503: Service Unavailable",
-    "google-news:바이오 제약 임상 허가 한국 증시:request failed: https://news.google.com/rss/search?q=%EB%B0%94%EC%9D%B4%EC%98%A4+%EC%A0%9C%EC%95%BD+%EC%9E%84%EC%83%81+%ED%97%88%EA%B0%80+%ED%95%9C%EA%B5%AD+%EC%A6%9D%EC%8B%9C+when%3A1d&hl=ko&gl=KR&ceid=KR%3Ako: HTTP Error 503: Service Unavailable",
-    "google-news:방산 조선 원전 수주 한국 기업:request failed: https://news.google.com/rss/search?q=%EB%B0%A9%EC%82%B0+%EC%A1%B0%EC%84%A0+%EC%9B%90%EC%A0%84+%EC%88%98%EC%A3%BC+%ED%95%9C%EA%B5%AD+%EA%B8%B0%EC%97%85+when%3A1d&hl=ko&gl=KR&ceid=KR%3Ako: HTTP Error 503: Service Unavailable",
-    "google-news:2차전지 배터리 리튬 전기차 한국:request failed: https://news.google.com/rss/search?q=2%EC%B0%A8%EC%A0%84%EC%A7%80+%EB%B0%B0%ED%84%B0%EB%A6%AC+%EB%A6%AC%ED%8A%AC+%EC%A0%84%EA%B8%B0%EC%B0%A8+%ED%95%9C%EA%B5%AD+when%3A1d&hl=ko&gl=KR&ceid=KR%3Ako: HTTP Error 503: Service Unavailable",
-    "google-news:금융 은행 증권 보험 정책 한국:request failed: https://news.google.com/rss/search?q=%EA%B8%88%EC%9C%B5+%EC%9D%80%ED%96%89+%EC%A6%9D%EA%B6%8C+%EB%B3%B4%ED%97%98+%EC%A0%95%EC%B1%85+%ED%95%9C%EA%B5%AD+when%3A1d&hl=ko&gl=KR&ceid=KR%3Ako: HTTP Error 503: Service Unavailable",
-    "google-news:한국 정부 정책 공시 DART 기업 실적:request failed: https://news.google.com/rss/search?q=%ED%95%9C%EA%B5%AD+%EC%A0%95%EB%B6%80+%EC%A0%95%EC%B1%85+%EA%B3%B5%EC%8B%9C+DART+%EA%B8%B0%EC%97%85+%EC%8B%A4%EC%A0%81+when%3A1d&hl=ko&gl=KR&ceid=KR%3Ako: HTTP Error 503: Service Unavailable",
-    "google-news:미국 증시 나스닥 S&P500 다우 엔비디아 반도체:request failed: https://news.google.com/rss/search?q=%EB%AF%B8%EA%B5%AD+%EC%A6%9D%EC%8B%9C+%EB%82%98%EC%8A%A4%EB%8B%A5+S%26P500+%EB%8B%A4%EC%9A%B0+%EC%97%94%EB%B9%84%EB%94%94%EC%95%84+%EB%B0%98%EB%8F%84%EC%B2%B4+when%3A1d&hl=ko&gl=KR&ceid=KR%3Ako: HTTP Error 503: Service Unavailable",
-    "google-news:연준 Fed 미국 국채 금리 달러 환율:request failed: https://news.google.com/rss/search?q=%EC%97%B0%EC%A4%80+Fed+%EB%AF%B8%EA%B5%AD+%EA%B5%AD%EC%B1%84+%EA%B8%88%EB%A6%AC+%EB%8B%AC%EB%9F%AC+%ED%99%98%EC%9C%A8+when%3A1d&hl=ko&gl=KR&ceid=KR%3Ako: HTTP Error 503: Service Unavailable",
-    "google-news:유가 WTI 브렌트 금 VIX 원달러:request failed: https://news.google.com/rss/search?q=%EC%9C%A0%EA%B0%80+WTI+%EB%B8%8C%EB%A0%8C%ED%8A%B8+%EA%B8%88+VIX+%EC%9B%90%EB%8B%AC%EB%9F%AC+when%3A1d&hl=ko&gl=KR&ceid=KR%3Ako: HTTP Error 503: Service Unavailable",
-    "google-news:중국 일본 유럽 증시 경기 부양:request failed: https://news.google.com/rss/search?q=%EC%A4%91%EA%B5%AD+%EC%9D%BC%EB%B3%B8+%EC%9C%A0%EB%9F%BD+%EC%A6%9D%EC%8B%9C+%EA%B2%BD%EA%B8%B0+%EB%B6%80%EC%96%91+when%3A1d&hl=ko&gl=KR&ceid=KR%3Ako: HTTP Error 503: Service Unavailable",
-    "google-news:중동 지정학 호르무즈 제재 전쟁:request failed: https://news.google.com/rss/search?q=%EC%A4%91%EB%8F%99+%EC%A7%80%EC%A0%95%ED%95%99+%ED%98%B8%EB%A5%B4%EB%AC%B4%EC%A6%88+%EC%A0%9C%EC%9E%AC+%EC%A0%84%EC%9F%81+when%3A1d&hl=ko&gl=KR&ceid=KR%3Ako: HTTP Error 503: Service Unavailable",
-    "google-news:관세 무역분쟁 수출통제 공급망:request failed: https://news.google.com/rss/search?q=%EA%B4%80%EC%84%B8+%EB%AC%B4%EC%97%AD%EB%B6%84%EC%9F%81+%EC%88%98%EC%B6%9C%ED%86%B5%EC%A0%9C+%EA%B3%B5%EA%B8%89%EB%A7%9D+when%3A1d&hl=ko&gl=KR&ceid=KR%3Ako: HTTP Error 503: Service Unavailable",
     "official-news:fsc-press:request failed: https://www.fsc.go.kr/about/fsc_bbs_rss/?fid=0111: HTTP Error 503: Service Unavailable",
     "official-news:fsc-explanation:request failed: https://www.fsc.go.kr/about/fsc_bbs_rss/?fid=0112: HTTP Error 503: Service Unavailable"
   ]
