@@ -1,29 +1,11 @@
 {
-  "generated_at": "2026-10-15T00:08:33.144778Z",
-  "status": "CONNECTED_PRIMARY",
-  "indicators": {
-    "USD_KRW": {
-      "value": 1340.5,
-      "as_of_text": "20261014",
-      "unit": "원",
-      "item_name": "원/미국달러(매매기준율)",
-      "observed_at": "2026-10-15T00:08:33.144778Z",
-      "source_id": "bok-ecos-open-api",
-      "source_kind": "primary",
-      "source_url": "https://ecos.bok.or.kr/api/StatisticSearch"
-    },
-    "KOREA_3Y": {
-      "value": 3.883,
-      "as_of_text": "20261014",
-      "unit": "연%",
-      "item_name": "국고채(3년)",
-      "observed_at": "2026-10-15T00:08:33.144778Z",
-      "source_id": "bok-ecos-open-api",
-      "source_kind": "primary",
-      "source_url": "https://ecos.bok.or.kr/api/StatisticSearch"
-    }
+  "generated_at": "2026-10-15T04:37:05.259210Z",
+  "status": "FAILED",
+  "indicators": {},
+  "errors": {
+    "USD_KRW": "request failed: https://ecos.bok.or.kr/api/StatisticSearch/sample/json/kr/1/10/731Y001/D/20261003/20261015/0000001: <urlopen error timed out>",
+    "KOREA_3Y": "request failed: https://ecos.bok.or.kr/api/StatisticSearch/sample/json/kr/1/10/817Y002/D/20261003/20261015/010200000: <urlopen error timed out>"
   },
-  "errors": {},
   "source_id": "bok-ecos-open-api",
   "source_kind": "primary",
   "source_url": "https://ecos.bok.or.kr/api/StatisticSearch",
