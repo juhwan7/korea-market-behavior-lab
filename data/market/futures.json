@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-10-19T13:37:32+09:00",
+  "generated_at": "2026-10-19T19:18:18+09:00",
   "KOSPI200_FUTURES": {
     "status": "CONNECTED_SECONDARY",
     "instrument": "KOSPI200 연결선물 (NAVER FUT)",
-    "close": 884.9,
+    "close": 893.25,
     "previous_close": 881.05,
-    "change": 3.85,
-    "change_pct": 0.44,
+    "change": 12.2,
+    "change_pct": 1.38,
     "as_of": "2026-10-19",
     "investor_flow_100m_krw": {
-      "individual": -80.0,
-      "foreign": 3937.0,
-      "institution": -3490.0
+      "individual": -671.0,
+      "foreign": -927.0,
+      "institution": 1730.0
     },
     "flow_as_of": "20261019",
     "history": [
@@ -131,9 +131,9 @@
       },
       {
         "date": "2026-10-19",
-        "close": 884.9,
-        "change": 3.85,
-        "change_pct": 0.44
+        "close": 893.25,
+        "change": 12.2,
+        "change_pct": 1.38
       }
     ],
     "open_interest": null,
@@ -141,9 +141,9 @@
     "source_kind": "secondary",
     "source_url": "https://m.stock.naver.com/api/index/FUT/price",
     "note": "무료 공개 보조 데이터입니다. KRX 공식 데이터가 연결되면 공식값을 우선합니다.",
-    "spot_kpi200": 881.19,
-    "basis": 3.71,
-    "basis_pct": 0.421,
+    "spot_kpi200": 891.3,
+    "basis": 1.95,
+    "basis_pct": 0.219,
     "official_status": "USER_ACTION_REQUIRED",
     "official_reason": "KRX_AUTH_KEY required for authoritative KOSPI200 futures feed"
   },
@@ -153,21 +153,21 @@
       {
         "factor": "futures_vs_spot",
         "state": "FUTURES_SPOT_ALIGNED",
-        "value": 0.09,
+        "value": -0.12,
         "unit": "percentage_point",
         "explanation": "KOSPI200 선물과 현물의 당일 등락률 차이가 크지 않습니다."
       },
       {
         "factor": "basis",
         "state": "POSITIVE_BASIS",
-        "value": 0.421,
+        "value": 0.219,
         "unit": "percent",
         "explanation": "선물이 현물보다 높은 콘탱고형 베이시스입니다. 배당·금리·잔존만기 영향을 받으므로 강세 신호로 단독 해석하지 않습니다."
       },
       {
         "factor": "us_tech_context",
         "state": "OBSERVED_CONTEXT",
-        "nasdaq100_futures_change_pct": -1.3733009748946003,
+        "nasdaq100_futures_change_pct": -1.5298473465804143,
         "sox_change_pct": -11.414930458893354,
         "explanation": "Nasdaq100 선물은 현재 선행시장, SOX는 최근 미국 현물 세션의 반도체 환경을 보여주는 보조 관측치입니다. 서로 다른 시점의 지표를 같은 실시간 신호처럼 합치지 않습니다."
       }
