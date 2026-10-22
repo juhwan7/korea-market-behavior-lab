@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-10-22T15:37:50+09:00",
+  "generated_at": "2026-10-22T21:26:35+09:00",
   "model_status": "SHADOW",
   "validation": {
     "evidence_state": "ESTIMATED",
     "sample_count": 122,
-    "gross_success_rate": 0.4016,
+    "gross_success_rate": 0.4098,
     "net_success_rate": 0.3852,
-    "avg_gross_directional_return_pct": -0.3879,
-    "avg_net_after_cost_pct": -0.7379,
-    "avg_mfe_pct": 8.7023,
+    "avg_gross_directional_return_pct": -0.3831,
+    "avg_net_after_cost_pct": -0.7331,
+    "avg_mfe_pct": 8.7267,
     "avg_mae_pct": -8.4584,
     "cost_assumption": {
       "evidence_state": "ASSUMPTION",
@@ -389,9 +389,9 @@
           "sample_count": 14,
           "gross_success_rate": 0.6429,
           "net_success_rate": 0.5714,
-          "avg_gross_directional_return_pct": 0.718,
-          "avg_net_after_cost_pct": 0.368,
-          "avg_mfe_pct": 5.466,
+          "avg_gross_directional_return_pct": 0.754,
+          "avg_net_after_cost_pct": 0.404,
+          "avg_mfe_pct": 5.514,
           "avg_mae_pct": -5.438,
           "worst_mae_pct": -16.209
         },
@@ -420,9 +420,9 @@
             "sample_count": 1,
             "gross_success_rate": 1.0,
             "net_success_rate": 1.0,
-            "avg_gross_directional_return_pct": 1.647,
-            "avg_net_after_cost_pct": 1.297,
-            "avg_mfe_pct": 2.152,
+            "avg_gross_directional_return_pct": 2.152,
+            "avg_net_after_cost_pct": 1.802,
+            "avg_mfe_pct": 2.833,
             "avg_mae_pct": -5.657,
             "worst_mae_pct": -5.657
           }
@@ -452,9 +452,9 @@
             "sample_count": 5,
             "gross_success_rate": 0.8,
             "net_success_rate": 0.6,
-            "avg_gross_directional_return_pct": 2.294,
-            "avg_net_after_cost_pct": 1.944,
-            "avg_mfe_pct": 5.21,
+            "avg_gross_directional_return_pct": 2.395,
+            "avg_net_after_cost_pct": 2.045,
+            "avg_mfe_pct": 5.346,
             "avg_mae_pct": -3.669,
             "worst_mae_pct": -6.729
           }
@@ -635,9 +635,9 @@
             "direction": "BEARISH",
             "regime": "DOWN",
             "forward_days": 5,
-            "gross_directional_return_pct": 1.647,
-            "net_after_cost_pct": 1.297,
-            "mfe_pct": 2.152,
+            "gross_directional_return_pct": 2.152,
+            "net_after_cost_pct": 1.802,
+            "mfe_pct": 2.833,
             "mae_pct": -5.657,
             "gross_success": true,
             "net_success": true
@@ -892,10 +892,10 @@
         },
         "overall": {
           "sample_count": 11,
-          "gross_success_rate": 0.7273,
+          "gross_success_rate": 0.8182,
           "net_success_rate": 0.7273,
-          "avg_gross_directional_return_pct": 17.518,
-          "avg_net_after_cost_pct": 17.168,
+          "avg_gross_directional_return_pct": 17.542,
+          "avg_net_after_cost_pct": 17.192,
           "avg_mfe_pct": 21.494,
           "avg_mae_pct": -2.164,
           "worst_mae_pct": -8.924
@@ -903,10 +903,10 @@
         "by_state": {
           "DISTRIBUTION_RISK": {
             "sample_count": 11,
-            "gross_success_rate": 0.7273,
+            "gross_success_rate": 0.8182,
             "net_success_rate": 0.7273,
-            "avg_gross_directional_return_pct": 17.518,
-            "avg_net_after_cost_pct": 17.168,
+            "avg_gross_directional_return_pct": 17.542,
+            "avg_net_after_cost_pct": 17.192,
             "avg_mfe_pct": 21.494,
             "avg_mae_pct": -2.164,
             "worst_mae_pct": -8.924
@@ -935,10 +935,10 @@
           },
           "DOWN": {
             "sample_count": 6,
-            "gross_success_rate": 0.8333,
+            "gross_success_rate": 1.0,
             "net_success_rate": 0.8333,
-            "avg_gross_directional_return_pct": 15.788,
-            "avg_net_after_cost_pct": 15.438,
+            "avg_gross_directional_return_pct": 15.832,
+            "avg_net_after_cost_pct": 15.482,
             "avg_mfe_pct": 20.788,
             "avg_mae_pct": -0.207,
             "worst_mae_pct": -6.948
@@ -1081,11 +1081,11 @@
             "direction": "BEARISH",
             "regime": "DOWN",
             "forward_days": 5,
-            "gross_directional_return_pct": -0.133,
-            "net_after_cost_pct": -0.483,
+            "gross_directional_return_pct": 0.134,
+            "net_after_cost_pct": -0.216,
             "mfe_pct": 3.878,
             "mae_pct": -6.948,
-            "gross_success": false,
+            "gross_success": true,
             "net_success": false
           }
         ],
@@ -1382,9 +1382,9 @@
           "sample_count": 26,
           "gross_success_rate": 0.3462,
           "net_success_rate": 0.3462,
-          "avg_gross_directional_return_pct": -2.906,
-          "avg_net_after_cost_pct": -3.256,
-          "avg_mfe_pct": 9.352,
+          "avg_gross_directional_return_pct": -2.932,
+          "avg_net_after_cost_pct": -3.282,
+          "avg_mfe_pct": 9.414,
           "avg_mae_pct": -9.988,
           "worst_mae_pct": -27.5
         },
@@ -1413,9 +1413,9 @@
             "sample_count": 12,
             "gross_success_rate": 0.3333,
             "net_success_rate": 0.3333,
-            "avg_gross_directional_return_pct": -1.39,
-            "avg_net_after_cost_pct": -1.74,
-            "avg_mfe_pct": 7.847,
+            "avg_gross_directional_return_pct": -1.446,
+            "avg_net_after_cost_pct": -1.796,
+            "avg_mfe_pct": 7.982,
             "avg_mae_pct": -7.42,
             "worst_mae_pct": -17.52
           }
@@ -1445,9 +1445,9 @@
             "sample_count": 6,
             "gross_success_rate": 0.6667,
             "net_success_rate": 0.6667,
-            "avg_gross_directional_return_pct": 2.159,
-            "avg_net_after_cost_pct": 1.809,
-            "avg_mfe_pct": 11.018,
+            "avg_gross_directional_return_pct": 2.047,
+            "avg_net_after_cost_pct": 1.696,
+            "avg_mfe_pct": 11.287,
             "avg_mae_pct": -9.414,
             "worst_mae_pct": -27.5
           }
@@ -1784,9 +1784,9 @@
             "direction": "BEARISH",
             "regime": "DOWN",
             "forward_days": 5,
-            "gross_directional_return_pct": 5.57,
-            "net_after_cost_pct": 5.22,
-            "mfe_pct": 5.74,
+            "gross_directional_return_pct": 4.896,
+            "net_after_cost_pct": 4.546,
+            "mfe_pct": 7.353,
             "mae_pct": -8.961,
             "gross_success": true,
             "net_success": true
@@ -2202,9 +2202,9 @@
           "sample_count": 17,
           "gross_success_rate": 0.2353,
           "net_success_rate": 0.2353,
-          "avg_gross_directional_return_pct": -5.848,
-          "avg_net_after_cost_pct": -6.198,
-          "avg_mfe_pct": 8.456,
+          "avg_gross_directional_return_pct": -5.819,
+          "avg_net_after_cost_pct": -6.169,
+          "avg_mfe_pct": 8.497,
           "avg_mae_pct": -11.722,
           "worst_mae_pct": -29.76
         },
@@ -2233,9 +2233,9 @@
             "sample_count": 6,
             "gross_success_rate": 0.1667,
             "net_success_rate": 0.1667,
-            "avg_gross_directional_return_pct": -8.844,
-            "avg_net_after_cost_pct": -9.194,
-            "avg_mfe_pct": 8.471,
+            "avg_gross_directional_return_pct": -8.759,
+            "avg_net_after_cost_pct": -9.109,
+            "avg_mfe_pct": 8.586,
             "avg_mae_pct": -13.898,
             "worst_mae_pct": -26.257
           }
@@ -2255,9 +2255,9 @@
             "sample_count": 6,
             "gross_success_rate": 0.1667,
             "net_success_rate": 0.1667,
-            "avg_gross_directional_return_pct": -8.844,
-            "avg_net_after_cost_pct": -9.194,
-            "avg_mfe_pct": 8.471,
+            "avg_gross_directional_return_pct": -8.759,
+            "avg_net_after_cost_pct": -9.109,
+            "avg_mfe_pct": 8.586,
             "avg_mae_pct": -13.898,
             "worst_mae_pct": -26.257
           }
@@ -2477,9 +2477,9 @@
             "direction": "BEARISH",
             "regime": "DOWN",
             "forward_days": 5,
-            "gross_directional_return_pct": 0.753,
-            "net_after_cost_pct": 0.403,
-            "mfe_pct": 1.603,
+            "gross_directional_return_pct": 1.262,
+            "net_after_cost_pct": 0.912,
+            "mfe_pct": 2.294,
             "mae_pct": -9.337,
             "gross_success": true,
             "net_success": true
