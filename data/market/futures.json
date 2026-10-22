@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-10-22T08:18:35+09:00",
+  "generated_at": "2026-10-22T10:40:40+09:00",
   "KOSPI200_FUTURES": {
     "status": "CONNECTED_SECONDARY",
     "instrument": "KOSPI200 연결선물 (NAVER FUT)",
-    "close": 893.05,
+    "close": 882.55,
     "previous_close": 893.05,
-    "change": 0.0,
-    "change_pct": 0.0,
-    "as_of": "2026-10-21",
+    "change": -10.5,
+    "change_pct": -1.18,
+    "as_of": "2026-10-22",
     "investor_flow_100m_krw": {
-      "individual": 3310.0,
-      "foreign": -8165.0,
-      "institution": 3539.0
+      "individual": -1326.0,
+      "foreign": -3222.0,
+      "institution": 4417.0
     },
-    "flow_as_of": "20261021",
+    "flow_as_of": "20261022",
     "history": [
       {
         "date": "2026-09-21",
@@ -130,10 +130,10 @@
         "change_pct": 3.72
       },
       {
-        "date": "2026-10-21",
-        "close": 893.05,
-        "change": 0.0,
-        "change_pct": 0.0
+        "date": "2026-10-22",
+        "close": 882.55,
+        "change": -10.5,
+        "change_pct": -1.18
       }
     ],
     "open_interest": null,
@@ -141,9 +141,9 @@
     "source_kind": "secondary",
     "source_url": "https://m.stock.naver.com/api/index/FUT/price",
     "note": "무료 공개 보조 데이터입니다. KRX 공식 데이터가 연결되면 공식값을 우선합니다.",
-    "spot_kpi200": 891.04,
-    "basis": 2.01,
-    "basis_pct": 0.226,
+    "spot_kpi200": 873.37,
+    "basis": 9.18,
+    "basis_pct": 1.051,
     "official_status": "USER_ACTION_REQUIRED",
     "official_reason": "KRX_AUTH_KEY required for authoritative KOSPI200 futures feed"
   },
@@ -152,22 +152,22 @@
     "observations": [
       {
         "factor": "futures_vs_spot",
-        "state": "FUTURES_SPOT_ALIGNED",
-        "value": 0.0,
+        "state": "FUTURES_RELATIVELY_STRONG",
+        "value": 0.8,
         "unit": "percentage_point",
-        "explanation": "KOSPI200 선물과 현물의 당일 등락률 차이가 크지 않습니다."
+        "explanation": "KOSPI200 선물의 등락률이 현물 KOSPI200보다 높습니다. 선물이 상대적으로 강하지만 이것만으로 현물 상승을 예측하지 않습니다."
       },
       {
         "factor": "basis",
         "state": "POSITIVE_BASIS",
-        "value": 0.226,
+        "value": 1.051,
         "unit": "percent",
         "explanation": "선물이 현물보다 높은 콘탱고형 베이시스입니다. 배당·금리·잔존만기 영향을 받으므로 강세 신호로 단독 해석하지 않습니다."
       },
       {
         "factor": "us_tech_context",
         "state": "OBSERVED_CONTEXT",
-        "nasdaq100_futures_change_pct": 1.4349386727455216,
+        "nasdaq100_futures_change_pct": 1.344776551043669,
         "sox_change_pct": -1.5304534772063105,
         "explanation": "Nasdaq100 선물은 현재 선행시장, SOX는 최근 미국 현물 세션의 반도체 환경을 보여주는 보조 관측치입니다. 서로 다른 시점의 지표를 같은 실시간 신호처럼 합치지 않습니다."
       }
