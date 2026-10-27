@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-10-27T08:47:50+09:00",
+  "generated_at": "2026-10-27T11:32:43+09:00",
   "model_status": "SHADOW",
   "validation": {
     "evidence_state": "ESTIMATED",
-    "sample_count": 135,
-    "gross_success_rate": 0.5333,
-    "net_success_rate": 0.4963,
-    "avg_gross_directional_return_pct": 1.831,
-    "avg_net_after_cost_pct": 1.481,
-    "avg_mfe_pct": 9.9621,
-    "avg_mae_pct": -6.6721,
+    "sample_count": 147,
+    "gross_success_rate": 0.4898,
+    "net_success_rate": 0.4626,
+    "avg_gross_directional_return_pct": 1.3672,
+    "avg_net_after_cost_pct": 1.0172,
+    "avg_mfe_pct": 11.1824,
+    "avg_mae_pct": -8.1524,
     "cost_assumption": {
       "evidence_state": "ASSUMPTION",
       "fees_bps": 15.0,
@@ -124,7 +124,7 @@
       "benchmark": "KOSPI",
       "backtest": {
         "evidence_state": "ESTIMATED",
-        "sample_count": 2,
+        "sample_count": 3,
         "forward_days": 5,
         "cost_assumption": {
           "evidence_state": "ASSUMPTION",
@@ -133,37 +133,37 @@
           "round_trip_total_bps": 35.0
         },
         "overall": {
-          "sample_count": 2,
-          "gross_success_rate": 1.0,
-          "net_success_rate": 0.5,
-          "avg_gross_directional_return_pct": 0.621,
-          "avg_net_after_cost_pct": 0.271,
-          "avg_mfe_pct": 9.692,
-          "avg_mae_pct": -3.349,
-          "worst_mae_pct": -4.816
+          "sample_count": 3,
+          "gross_success_rate": 0.6667,
+          "net_success_rate": 0.3333,
+          "avg_gross_directional_return_pct": -3.774,
+          "avg_net_after_cost_pct": -4.124,
+          "avg_mfe_pct": 7.003,
+          "avg_mae_pct": -6.843,
+          "worst_mae_pct": -13.831
         },
         "by_state": {
           "DISTRIBUTION_RISK": {
-            "sample_count": 2,
-            "gross_success_rate": 1.0,
-            "net_success_rate": 0.5,
-            "avg_gross_directional_return_pct": 0.621,
-            "avg_net_after_cost_pct": 0.271,
-            "avg_mfe_pct": 9.692,
-            "avg_mae_pct": -3.349,
-            "worst_mae_pct": -4.816
+            "sample_count": 3,
+            "gross_success_rate": 0.6667,
+            "net_success_rate": 0.3333,
+            "avg_gross_directional_return_pct": -3.774,
+            "avg_net_after_cost_pct": -4.124,
+            "avg_mfe_pct": 7.003,
+            "avg_mae_pct": -6.843,
+            "worst_mae_pct": -13.831
           }
         },
         "by_regime": {
           "DOWN": {
-            "sample_count": 2,
-            "gross_success_rate": 1.0,
-            "net_success_rate": 0.5,
-            "avg_gross_directional_return_pct": 0.621,
-            "avg_net_after_cost_pct": 0.271,
-            "avg_mfe_pct": 9.692,
-            "avg_mae_pct": -3.349,
-            "worst_mae_pct": -4.816
+            "sample_count": 3,
+            "gross_success_rate": 0.6667,
+            "net_success_rate": 0.3333,
+            "avg_gross_directional_return_pct": -3.774,
+            "avg_net_after_cost_pct": -4.124,
+            "avg_mfe_pct": 7.003,
+            "avg_mae_pct": -6.843,
+            "worst_mae_pct": -13.831
           }
         },
         "events": [
@@ -192,6 +192,19 @@
             "mae_pct": -1.881,
             "gross_success": true,
             "net_success": true
+          },
+          {
+            "date": "2026-10-20",
+            "state": "DISTRIBUTION_RISK",
+            "direction": "BEARISH",
+            "regime": "DOWN",
+            "forward_days": 5,
+            "gross_directional_return_pct": -12.564,
+            "net_after_cost_pct": -12.914,
+            "mfe_pct": 1.623,
+            "mae_pct": -13.831,
+            "gross_success": false,
+            "net_success": false
           }
         ],
         "method_note": "각 과거 시점에서 당시까지의 데이터만 사용해 상태를 재계산한 walk-forward 검증입니다. 성공률은 과거 방향 일치율이며 미래 확률이 아닙니다."
@@ -390,7 +403,7 @@
       "benchmark": "KOSPI",
       "backtest": {
         "evidence_state": "ESTIMATED",
-        "sample_count": 16,
+        "sample_count": 17,
         "forward_days": 5,
         "cost_assumption": {
           "evidence_state": "ASSUMPTION",
@@ -399,13 +412,13 @@
           "round_trip_total_bps": 35.0
         },
         "overall": {
-          "sample_count": 16,
-          "gross_success_rate": 0.6875,
-          "net_success_rate": 0.625,
-          "avg_gross_directional_return_pct": 1.587,
-          "avg_net_after_cost_pct": 1.237,
-          "avg_mfe_pct": 5.856,
-          "avg_mae_pct": -4.961,
+          "sample_count": 17,
+          "gross_success_rate": 0.7059,
+          "net_success_rate": 0.6471,
+          "avg_gross_directional_return_pct": 1.82,
+          "avg_net_after_cost_pct": 1.47,
+          "avg_mfe_pct": 5.945,
+          "avg_mae_pct": -4.762,
           "worst_mae_pct": -16.209
         },
         "by_state": {
@@ -430,13 +443,13 @@
             "worst_mae_pct": -16.209
           },
           "DISTRIBUTION_RISK": {
-            "sample_count": 3,
+            "sample_count": 4,
             "gross_success_rate": 1.0,
             "net_success_rate": 1.0,
-            "avg_gross_directional_return_pct": 5.663,
-            "avg_net_after_cost_pct": 5.313,
-            "avg_mfe_pct": 6.442,
-            "avg_mae_pct": -2.966,
+            "avg_gross_directional_return_pct": 5.636,
+            "avg_net_after_cost_pct": 5.286,
+            "avg_mfe_pct": 6.673,
+            "avg_mae_pct": -2.617,
             "worst_mae_pct": -5.657
           }
         },
@@ -462,13 +475,13 @@
             "worst_mae_pct": -10.442
           },
           "DOWN": {
-            "sample_count": 7,
-            "gross_success_rate": 0.8571,
-            "net_success_rate": 0.7143,
-            "avg_gross_directional_return_pct": 3.83,
-            "avg_net_after_cost_pct": 3.48,
-            "avg_mfe_pct": 6.175,
-            "avg_mae_pct": -3.084,
+            "sample_count": 8,
+            "gross_success_rate": 0.875,
+            "net_success_rate": 0.75,
+            "avg_gross_directional_return_pct": 4.046,
+            "avg_net_after_cost_pct": 3.696,
+            "avg_mfe_pct": 6.323,
+            "avg_mae_pct": -2.894,
             "worst_mae_pct": -6.729
           }
         },
@@ -680,6 +693,19 @@
             "mae_pct": -1.08,
             "gross_success": true,
             "net_success": true
+          },
+          {
+            "date": "2026-10-20",
+            "state": "DISTRIBUTION_RISK",
+            "direction": "BEARISH",
+            "regime": "DOWN",
+            "forward_days": 5,
+            "gross_directional_return_pct": 5.556,
+            "net_after_cost_pct": 5.206,
+            "mfe_pct": 7.363,
+            "mae_pct": -1.57,
+            "gross_success": true,
+            "net_success": true
           }
         ],
         "method_note": "각 과거 시점에서 당시까지의 데이터만 사용해 상태를 재계산한 walk-forward 검증입니다. 성공률은 과거 방향 일치율이며 미래 확률이 아닙니다."
@@ -778,150 +804,12 @@
       }
     },
     {
-      "code": "028050",
-      "name": "삼성E&A",
-      "benchmark": "KOSPI",
-      "backtest": {
-        "evidence_state": "ESTIMATED",
-        "sample_count": 5,
-        "forward_days": 5,
-        "cost_assumption": {
-          "evidence_state": "ASSUMPTION",
-          "fees_bps": 15.0,
-          "slippage_bps": 20.0,
-          "round_trip_total_bps": 35.0
-        },
-        "overall": {
-          "sample_count": 5,
-          "gross_success_rate": 0.8,
-          "net_success_rate": 0.8,
-          "avg_gross_directional_return_pct": 0.739,
-          "avg_net_after_cost_pct": 0.389,
-          "avg_mfe_pct": 5.444,
-          "avg_mae_pct": -5.923,
-          "worst_mae_pct": -19.203
-        },
-        "by_state": {
-          "ACCUMULATION_OR_ABSORPTION_CANDIDATE": {
-            "sample_count": 5,
-            "gross_success_rate": 0.8,
-            "net_success_rate": 0.8,
-            "avg_gross_directional_return_pct": 0.739,
-            "avg_net_after_cost_pct": 0.389,
-            "avg_mfe_pct": 5.444,
-            "avg_mae_pct": -5.923,
-            "worst_mae_pct": -19.203
-          }
-        },
-        "by_regime": {
-          "UP": {
-            "sample_count": 3,
-            "gross_success_rate": 0.6667,
-            "net_success_rate": 0.6667,
-            "avg_gross_directional_return_pct": -1.419,
-            "avg_net_after_cost_pct": -1.769,
-            "avg_mfe_pct": 3.957,
-            "avg_mae_pct": -8.832,
-            "worst_mae_pct": -19.203
-          },
-          "SIDEWAYS": {
-            "sample_count": 1,
-            "gross_success_rate": 1.0,
-            "net_success_rate": 1.0,
-            "avg_gross_directional_return_pct": 3.967,
-            "avg_net_after_cost_pct": 3.617,
-            "avg_mfe_pct": 5.392,
-            "avg_mae_pct": -1.526,
-            "worst_mae_pct": -1.526
-          },
-          "DOWN": {
-            "sample_count": 1,
-            "gross_success_rate": 1.0,
-            "net_success_rate": 1.0,
-            "avg_gross_directional_return_pct": 3.984,
-            "avg_net_after_cost_pct": 3.634,
-            "avg_mfe_pct": 9.96,
-            "avg_mae_pct": -1.594,
-            "worst_mae_pct": -1.594
-          }
-        },
-        "events": [
-          {
-            "date": "2026-07-27",
-            "state": "ACCUMULATION_OR_ABSORPTION_CANDIDATE",
-            "direction": "BULLISH",
-            "regime": "UP",
-            "forward_days": 5,
-            "gross_directional_return_pct": -6.821,
-            "net_after_cost_pct": -7.171,
-            "mfe_pct": -1.049,
-            "mae_pct": -19.203,
-            "gross_success": false,
-            "net_success": false
-          },
-          {
-            "date": "2026-08-05",
-            "state": "ACCUMULATION_OR_ABSORPTION_CANDIDATE",
-            "direction": "BULLISH",
-            "regime": "UP",
-            "forward_days": 5,
-            "gross_directional_return_pct": 0.407,
-            "net_after_cost_pct": 0.057,
-            "mfe_pct": 4.684,
-            "mae_pct": -3.666,
-            "gross_success": true,
-            "net_success": true
-          },
-          {
-            "date": "2026-09-08",
-            "state": "ACCUMULATION_OR_ABSORPTION_CANDIDATE",
-            "direction": "BULLISH",
-            "regime": "SIDEWAYS",
-            "forward_days": 5,
-            "gross_directional_return_pct": 3.967,
-            "net_after_cost_pct": 3.617,
-            "mfe_pct": 5.392,
-            "mae_pct": -1.526,
-            "gross_success": true,
-            "net_success": true
-          },
-          {
-            "date": "2026-09-11",
-            "state": "ACCUMULATION_OR_ABSORPTION_CANDIDATE",
-            "direction": "BULLISH",
-            "regime": "UP",
-            "forward_days": 5,
-            "gross_directional_return_pct": 2.157,
-            "net_after_cost_pct": 1.807,
-            "mfe_pct": 8.235,
-            "mae_pct": -3.627,
-            "gross_success": true,
-            "net_success": true
-          },
-          {
-            "date": "2026-09-14",
-            "state": "ACCUMULATION_OR_ABSORPTION_CANDIDATE",
-            "direction": "BULLISH",
-            "regime": "DOWN",
-            "forward_days": 5,
-            "gross_directional_return_pct": 3.984,
-            "net_after_cost_pct": 3.634,
-            "mfe_pct": 9.96,
-            "mae_pct": -1.594,
-            "gross_success": true,
-            "net_success": true
-          }
-        ],
-        "method_note": "각 과거 시점에서 당시까지의 데이터만 사용해 상태를 재계산한 walk-forward 검증입니다. 성공률은 과거 방향 일치율이며 미래 확률이 아닙니다."
-      }
-    },
-    {
       "code": "402340",
       "name": "SK스퀘어",
       "benchmark": "KOSPI",
       "backtest": {
         "evidence_state": "ESTIMATED",
-        "sample_count": 13,
+        "sample_count": 14,
         "forward_days": 5,
         "cost_assumption": {
           "evidence_state": "ASSUMPTION",
@@ -930,25 +818,25 @@
           "round_trip_total_bps": 35.0
         },
         "overall": {
-          "sample_count": 13,
-          "gross_success_rate": 0.8462,
-          "net_success_rate": 0.7692,
-          "avg_gross_directional_return_pct": 15.282,
-          "avg_net_after_cost_pct": 14.932,
-          "avg_mfe_pct": 19.749,
-          "avg_mae_pct": -2.004,
-          "worst_mae_pct": -8.924
+          "sample_count": 14,
+          "gross_success_rate": 0.7857,
+          "net_success_rate": 0.7143,
+          "avg_gross_directional_return_pct": 13.096,
+          "avg_net_after_cost_pct": 12.746,
+          "avg_mfe_pct": 18.388,
+          "avg_mae_pct": -3.086,
+          "worst_mae_pct": -17.162
         },
         "by_state": {
           "DISTRIBUTION_RISK": {
-            "sample_count": 13,
-            "gross_success_rate": 0.8462,
-            "net_success_rate": 0.7692,
-            "avg_gross_directional_return_pct": 15.282,
-            "avg_net_after_cost_pct": 14.932,
-            "avg_mfe_pct": 19.749,
-            "avg_mae_pct": -2.004,
-            "worst_mae_pct": -8.924
+            "sample_count": 14,
+            "gross_success_rate": 0.7857,
+            "net_success_rate": 0.7143,
+            "avg_gross_directional_return_pct": 13.096,
+            "avg_net_after_cost_pct": 12.746,
+            "avg_mfe_pct": 18.388,
+            "avg_mae_pct": -3.086,
+            "worst_mae_pct": -17.162
           }
         },
         "by_regime": {
@@ -973,14 +861,14 @@
             "worst_mae_pct": -6.088
           },
           "DOWN": {
-            "sample_count": 8,
-            "gross_success_rate": 1.0,
-            "net_success_rate": 0.875,
-            "avg_gross_directional_return_pct": 12.588,
-            "avg_net_after_cost_pct": 12.238,
-            "avg_mfe_pct": 18.129,
-            "avg_mae_pct": -0.435,
-            "worst_mae_pct": -6.948
+            "sample_count": 9,
+            "gross_success_rate": 0.8889,
+            "net_success_rate": 0.7778,
+            "avg_gross_directional_return_pct": 9.486,
+            "avg_net_after_cost_pct": 9.136,
+            "avg_mfe_pct": 16.192,
+            "avg_mae_pct": -2.294,
+            "worst_mae_pct": -17.162
           }
         },
         "events": [
@@ -1150,6 +1038,157 @@
             "net_after_cost_pct": 3.001,
             "mfe_pct": 11.544,
             "mae_pct": 0.375,
+            "gross_success": true,
+            "net_success": true
+          },
+          {
+            "date": "2026-10-20",
+            "state": "DISTRIBUTION_RISK",
+            "direction": "BEARISH",
+            "regime": "DOWN",
+            "forward_days": 5,
+            "gross_directional_return_pct": -15.322,
+            "net_after_cost_pct": -15.672,
+            "mfe_pct": 0.695,
+            "mae_pct": -17.162,
+            "gross_success": false,
+            "net_success": false
+          }
+        ],
+        "method_note": "각 과거 시점에서 당시까지의 데이터만 사용해 상태를 재계산한 walk-forward 검증입니다. 성공률은 과거 방향 일치율이며 미래 확률이 아닙니다."
+      }
+    },
+    {
+      "code": "028050",
+      "name": "삼성E&A",
+      "benchmark": "KOSPI",
+      "backtest": {
+        "evidence_state": "ESTIMATED",
+        "sample_count": 5,
+        "forward_days": 5,
+        "cost_assumption": {
+          "evidence_state": "ASSUMPTION",
+          "fees_bps": 15.0,
+          "slippage_bps": 20.0,
+          "round_trip_total_bps": 35.0
+        },
+        "overall": {
+          "sample_count": 5,
+          "gross_success_rate": 0.8,
+          "net_success_rate": 0.8,
+          "avg_gross_directional_return_pct": 0.739,
+          "avg_net_after_cost_pct": 0.389,
+          "avg_mfe_pct": 5.444,
+          "avg_mae_pct": -5.923,
+          "worst_mae_pct": -19.203
+        },
+        "by_state": {
+          "ACCUMULATION_OR_ABSORPTION_CANDIDATE": {
+            "sample_count": 5,
+            "gross_success_rate": 0.8,
+            "net_success_rate": 0.8,
+            "avg_gross_directional_return_pct": 0.739,
+            "avg_net_after_cost_pct": 0.389,
+            "avg_mfe_pct": 5.444,
+            "avg_mae_pct": -5.923,
+            "worst_mae_pct": -19.203
+          }
+        },
+        "by_regime": {
+          "UP": {
+            "sample_count": 3,
+            "gross_success_rate": 0.6667,
+            "net_success_rate": 0.6667,
+            "avg_gross_directional_return_pct": -1.419,
+            "avg_net_after_cost_pct": -1.769,
+            "avg_mfe_pct": 3.957,
+            "avg_mae_pct": -8.832,
+            "worst_mae_pct": -19.203
+          },
+          "SIDEWAYS": {
+            "sample_count": 1,
+            "gross_success_rate": 1.0,
+            "net_success_rate": 1.0,
+            "avg_gross_directional_return_pct": 3.967,
+            "avg_net_after_cost_pct": 3.617,
+            "avg_mfe_pct": 5.392,
+            "avg_mae_pct": -1.526,
+            "worst_mae_pct": -1.526
+          },
+          "DOWN": {
+            "sample_count": 1,
+            "gross_success_rate": 1.0,
+            "net_success_rate": 1.0,
+            "avg_gross_directional_return_pct": 3.984,
+            "avg_net_after_cost_pct": 3.634,
+            "avg_mfe_pct": 9.96,
+            "avg_mae_pct": -1.594,
+            "worst_mae_pct": -1.594
+          }
+        },
+        "events": [
+          {
+            "date": "2026-07-27",
+            "state": "ACCUMULATION_OR_ABSORPTION_CANDIDATE",
+            "direction": "BULLISH",
+            "regime": "UP",
+            "forward_days": 5,
+            "gross_directional_return_pct": -6.821,
+            "net_after_cost_pct": -7.171,
+            "mfe_pct": -1.049,
+            "mae_pct": -19.203,
+            "gross_success": false,
+            "net_success": false
+          },
+          {
+            "date": "2026-08-05",
+            "state": "ACCUMULATION_OR_ABSORPTION_CANDIDATE",
+            "direction": "BULLISH",
+            "regime": "UP",
+            "forward_days": 5,
+            "gross_directional_return_pct": 0.407,
+            "net_after_cost_pct": 0.057,
+            "mfe_pct": 4.684,
+            "mae_pct": -3.666,
+            "gross_success": true,
+            "net_success": true
+          },
+          {
+            "date": "2026-09-08",
+            "state": "ACCUMULATION_OR_ABSORPTION_CANDIDATE",
+            "direction": "BULLISH",
+            "regime": "SIDEWAYS",
+            "forward_days": 5,
+            "gross_directional_return_pct": 3.967,
+            "net_after_cost_pct": 3.617,
+            "mfe_pct": 5.392,
+            "mae_pct": -1.526,
+            "gross_success": true,
+            "net_success": true
+          },
+          {
+            "date": "2026-09-11",
+            "state": "ACCUMULATION_OR_ABSORPTION_CANDIDATE",
+            "direction": "BULLISH",
+            "regime": "UP",
+            "forward_days": 5,
+            "gross_directional_return_pct": 2.157,
+            "net_after_cost_pct": 1.807,
+            "mfe_pct": 8.235,
+            "mae_pct": -3.627,
+            "gross_success": true,
+            "net_success": true
+          },
+          {
+            "date": "2026-09-14",
+            "state": "ACCUMULATION_OR_ABSORPTION_CANDIDATE",
+            "direction": "BULLISH",
+            "regime": "DOWN",
+            "forward_days": 5,
+            "gross_directional_return_pct": 3.984,
+            "net_after_cost_pct": 3.634,
+            "mfe_pct": 9.96,
+            "mae_pct": -1.594,
             "gross_success": true,
             "net_success": true
           }
@@ -1433,12 +1472,22 @@
       }
     },
     {
+      "code": "0158S0",
+      "name": "엘리스",
+      "benchmark": "KOSDAQ",
+      "backtest": {
+        "evidence_state": "UNKNOWN",
+        "sample_count": 0,
+        "reason": "walk-forward 평가에 필요한 과거 일봉이 부족합니다."
+      }
+    },
+    {
       "code": "036930",
       "name": "주성엔지니어링",
       "benchmark": "KOSDAQ",
       "backtest": {
         "evidence_state": "ESTIMATED",
-        "sample_count": 28,
+        "sample_count": 29,
         "forward_days": 5,
         "cost_assumption": {
           "evidence_state": "ASSUMPTION",
@@ -1447,13 +1496,13 @@
           "round_trip_total_bps": 35.0
         },
         "overall": {
-          "sample_count": 28,
-          "gross_success_rate": 0.3929,
-          "net_success_rate": 0.3929,
-          "avg_gross_directional_return_pct": -1.04,
-          "avg_net_after_cost_pct": -1.39,
-          "avg_mfe_pct": 10.693,
-          "avg_mae_pct": -9.238,
+          "sample_count": 29,
+          "gross_success_rate": 0.4138,
+          "net_success_rate": 0.4138,
+          "avg_gross_directional_return_pct": -0.735,
+          "avg_net_after_cost_pct": -1.085,
+          "avg_mfe_pct": 10.879,
+          "avg_mae_pct": -9.204,
           "worst_mae_pct": -27.5
         },
         "by_state": {
@@ -1478,13 +1527,13 @@
             "worst_mae_pct": -27.5
           },
           "DISTRIBUTION_RISK": {
-            "sample_count": 14,
-            "gross_success_rate": 0.4286,
-            "net_success_rate": 0.4286,
-            "avg_gross_directional_return_pct": 2.127,
-            "avg_net_after_cost_pct": 1.777,
-            "avg_mfe_pct": 10.744,
-            "avg_mae_pct": -6.287,
+            "sample_count": 15,
+            "gross_success_rate": 0.4667,
+            "net_success_rate": 0.4667,
+            "avg_gross_directional_return_pct": 2.505,
+            "avg_net_after_cost_pct": 2.155,
+            "avg_mfe_pct": 11.099,
+            "avg_mae_pct": -6.418,
             "worst_mae_pct": -17.52
           }
         },
@@ -1510,13 +1559,13 @@
             "worst_mae_pct": -8.501
           },
           "DOWN": {
-            "sample_count": 8,
-            "gross_success_rate": 0.75,
-            "net_success_rate": 0.75,
-            "avg_gross_directional_return_pct": 7.426,
-            "avg_net_after_cost_pct": 7.075,
-            "avg_mfe_pct": 15.295,
-            "avg_mae_pct": -6.931,
+            "sample_count": 9,
+            "gross_success_rate": 0.7778,
+            "net_success_rate": 0.7778,
+            "avg_gross_directional_return_pct": 7.467,
+            "avg_net_after_cost_pct": 7.117,
+            "avg_mfe_pct": 15.38,
+            "avg_mae_pct": -7.079,
             "worst_mae_pct": -27.5
           }
         },
@@ -1884,6 +1933,19 @@
             "mae_pct": 3.341,
             "gross_success": true,
             "net_success": true
+          },
+          {
+            "date": "2026-10-20",
+            "state": "DISTRIBUTION_RISK",
+            "direction": "BEARISH",
+            "regime": "DOWN",
+            "forward_days": 5,
+            "gross_directional_return_pct": 7.796,
+            "net_after_cost_pct": 7.446,
+            "mfe_pct": 16.063,
+            "mae_pct": -8.258,
+            "gross_success": true,
+            "net_success": true
           }
         ],
         "method_note": "각 과거 시점에서 당시까지의 데이터만 사용해 상태를 재계산한 walk-forward 검증입니다. 성공률은 과거 방향 일치율이며 미래 확률이 아닙니다."
@@ -1900,8 +1962,8 @@
       }
     },
     {
-      "code": "0015M0",
-      "name": "디티에스",
+      "code": "0035S0",
+      "name": "빅웨이브로보틱스",
       "benchmark": "KOSDAQ",
       "backtest": {
         "evidence_state": "UNKNOWN",
@@ -1910,12 +1972,12 @@
       }
     },
     {
-      "code": "108490",
-      "name": "로보티즈",
+      "code": "222800",
+      "name": "심텍",
       "benchmark": "KOSDAQ",
       "backtest": {
         "evidence_state": "ESTIMATED",
-        "sample_count": 23,
+        "sample_count": 20,
         "forward_days": 5,
         "cost_assumption": {
           "evidence_state": "ASSUMPTION",
@@ -1924,129 +1986,80 @@
           "round_trip_total_bps": 35.0
         },
         "overall": {
-          "sample_count": 23,
-          "gross_success_rate": 0.7826,
-          "net_success_rate": 0.7391,
-          "avg_gross_directional_return_pct": 5.235,
-          "avg_net_after_cost_pct": 4.885,
-          "avg_mfe_pct": 13.957,
-          "avg_mae_pct": -5.598,
-          "worst_mae_pct": -19.318
+          "sample_count": 20,
+          "gross_success_rate": 0.35,
+          "net_success_rate": 0.35,
+          "avg_gross_directional_return_pct": -3.0,
+          "avg_net_after_cost_pct": -3.35,
+          "avg_mfe_pct": 10.199,
+          "avg_mae_pct": -10.751,
+          "worst_mae_pct": -29.76
         },
         "by_state": {
           "ACCUMULATION_OR_ABSORPTION_CANDIDATE": {
             "sample_count": 7,
-            "gross_success_rate": 1.0,
-            "net_success_rate": 1.0,
-            "avg_gross_directional_return_pct": 10.185,
-            "avg_net_after_cost_pct": 9.835,
-            "avg_mfe_pct": 16.261,
-            "avg_mae_pct": -4.94,
-            "worst_mae_pct": -8.678
+            "gross_success_rate": 0.2857,
+            "net_success_rate": 0.2857,
+            "avg_gross_directional_return_pct": -0.155,
+            "avg_net_after_cost_pct": -0.505,
+            "avg_mfe_pct": 11.721,
+            "avg_mae_pct": -6.904,
+            "worst_mae_pct": -12.338
           },
           "BREAKOUT_WITH_DEMAND": {
-            "sample_count": 7,
-            "gross_success_rate": 0.4286,
-            "net_success_rate": 0.2857,
-            "avg_gross_directional_return_pct": -1.038,
-            "avg_net_after_cost_pct": -1.388,
-            "avg_mfe_pct": 14.617,
-            "avg_mae_pct": -7.028,
-            "worst_mae_pct": -14.158
+            "sample_count": 4,
+            "gross_success_rate": 0.25,
+            "net_success_rate": 0.25,
+            "avg_gross_directional_return_pct": -11.32,
+            "avg_net_after_cost_pct": -11.67,
+            "avg_mfe_pct": 2.721,
+            "avg_mae_pct": -16.892,
+            "worst_mae_pct": -29.76
           },
           "DISTRIBUTION_RISK": {
             "sample_count": 9,
-            "gross_success_rate": 0.8889,
-            "net_success_rate": 0.8889,
-            "avg_gross_directional_return_pct": 6.264,
-            "avg_net_after_cost_pct": 5.914,
-            "avg_mfe_pct": 11.652,
-            "avg_mae_pct": -4.997,
-            "worst_mae_pct": -19.318
+            "gross_success_rate": 0.4444,
+            "net_success_rate": 0.4444,
+            "avg_gross_directional_return_pct": -1.515,
+            "avg_net_after_cost_pct": -1.865,
+            "avg_mfe_pct": 12.338,
+            "avg_mae_pct": -11.014,
+            "worst_mae_pct": -26.257
           }
         },
         "by_regime": {
           "UP": {
-            "sample_count": 12,
-            "gross_success_rate": 0.75,
-            "net_success_rate": 0.6667,
-            "avg_gross_directional_return_pct": 4.877,
-            "avg_net_after_cost_pct": 4.527,
-            "avg_mfe_pct": 16.155,
-            "avg_mae_pct": -5.136,
-            "worst_mae_pct": -13.75
-          },
-          "SIDEWAYS": {
-            "sample_count": 7,
-            "gross_success_rate": 0.8571,
-            "net_success_rate": 0.8571,
-            "avg_gross_directional_return_pct": 3.29,
-            "avg_net_after_cost_pct": 2.94,
-            "avg_mfe_pct": 7.437,
-            "avg_mae_pct": -5.642,
-            "worst_mae_pct": -19.318
+            "sample_count": 11,
+            "gross_success_rate": 0.2727,
+            "net_success_rate": 0.2727,
+            "avg_gross_directional_return_pct": -4.215,
+            "avg_net_after_cost_pct": -4.565,
+            "avg_mfe_pct": 8.448,
+            "avg_mae_pct": -10.536,
+            "worst_mae_pct": -29.76
           },
           "DOWN": {
-            "sample_count": 4,
-            "gross_success_rate": 0.75,
-            "net_success_rate": 0.75,
-            "avg_gross_directional_return_pct": 9.71,
-            "avg_net_after_cost_pct": 9.36,
-            "avg_mfe_pct": 18.774,
-            "avg_mae_pct": -6.906,
-            "worst_mae_pct": -14.158
+            "sample_count": 9,
+            "gross_success_rate": 0.4444,
+            "net_success_rate": 0.4444,
+            "avg_gross_directional_return_pct": -1.515,
+            "avg_net_after_cost_pct": -1.865,
+            "avg_mfe_pct": 12.338,
+            "avg_mae_pct": -11.014,
+            "worst_mae_pct": -26.257
           }
         },
         "events": [
-          {
-            "date": "2026-07-22",
-            "state": "DISTRIBUTION_RISK",
-            "direction": "BEARISH",
-            "regime": "DOWN",
-            "forward_days": 5,
-            "gross_directional_return_pct": 26.586,
-            "net_after_cost_pct": 26.236,
-            "mfe_pct": 41.613,
-            "mae_pct": -3.728,
-            "gross_success": true,
-            "net_success": true
-          },
-          {
-            "date": "2026-08-03",
-            "state": "ACCUMULATION_OR_ABSORPTION_CANDIDATE",
-            "direction": "BULLISH",
-            "regime": "DOWN",
-            "forward_days": 5,
-            "gross_directional_return_pct": 14.617,
-            "net_after_cost_pct": 14.267,
-            "mfe_pct": 16.241,
-            "mae_pct": -1.856,
-            "gross_success": true,
-            "net_success": true
-          },
-          {
-            "date": "2026-08-04",
-            "state": "ACCUMULATION_OR_ABSORPTION_CANDIDATE",
-            "direction": "BULLISH",
-            "regime": "UP",
-            "forward_days": 5,
-            "gross_directional_return_pct": 4.731,
-            "net_after_cost_pct": 4.381,
-            "mfe_pct": 12.473,
-            "mae_pct": -4.946,
-            "gross_success": true,
-            "net_success": true
-          },
           {
             "date": "2026-08-05",
             "state": "ACCUMULATION_OR_ABSORPTION_CANDIDATE",
             "direction": "BULLISH",
             "regime": "UP",
             "forward_days": 5,
-            "gross_directional_return_pct": 2.273,
-            "net_after_cost_pct": 1.923,
-            "mfe_pct": 8.058,
-            "mae_pct": -8.678,
+            "gross_directional_return_pct": 1.553,
+            "net_after_cost_pct": 1.203,
+            "mfe_pct": 20.388,
+            "mae_pct": -1.359,
             "gross_success": true,
             "net_success": true
           },
@@ -2056,12 +2069,12 @@
             "direction": "BULLISH",
             "regime": "UP",
             "forward_days": 5,
-            "gross_directional_return_pct": 11.777,
-            "net_after_cost_pct": 11.427,
-            "mfe_pct": 14.133,
-            "mae_pct": -5.353,
-            "gross_success": true,
-            "net_success": true
+            "gross_directional_return_pct": -0.189,
+            "net_after_cost_pct": -0.539,
+            "mfe_pct": 16.981,
+            "mae_pct": -4.151,
+            "gross_success": false,
+            "net_success": false
           },
           {
             "date": "2026-08-07",
@@ -2069,25 +2082,25 @@
             "direction": "BULLISH",
             "regime": "UP",
             "forward_days": 5,
-            "gross_directional_return_pct": 22.004,
-            "net_after_cost_pct": 21.654,
-            "mfe_pct": 25.926,
-            "mae_pct": -1.961,
-            "gross_success": true,
-            "net_success": true
+            "gross_directional_return_pct": -1.182,
+            "net_after_cost_pct": -1.532,
+            "mfe_pct": 12.727,
+            "mae_pct": -7.636,
+            "gross_success": false,
+            "net_success": false
           },
           {
             "date": "2026-08-10",
-            "state": "BREAKOUT_WITH_DEMAND",
+            "state": "ACCUMULATION_OR_ABSORPTION_CANDIDATE",
             "direction": "BULLISH",
             "regime": "UP",
             "forward_days": 5,
-            "gross_directional_return_pct": 12.955,
-            "net_after_cost_pct": 12.605,
-            "mfe_pct": 23.887,
-            "mae_pct": -5.263,
-            "gross_success": true,
-            "net_success": true
+            "gross_directional_return_pct": -4.314,
+            "net_after_cost_pct": -4.664,
+            "mfe_pct": 6.989,
+            "mae_pct": -12.338,
+            "gross_success": false,
+            "net_success": false
           },
           {
             "date": "2026-08-11",
@@ -2095,386 +2108,36 @@
             "direction": "BULLISH",
             "regime": "UP",
             "forward_days": 5,
-            "gross_directional_return_pct": 9.651,
-            "net_after_cost_pct": 9.301,
-            "mfe_pct": 25.667,
-            "mae_pct": -3.901,
-            "gross_success": true,
-            "net_success": true
+            "gross_directional_return_pct": -2.809,
+            "net_after_cost_pct": -3.159,
+            "mfe_pct": 4.302,
+            "mae_pct": -10.799,
+            "gross_success": false,
+            "net_success": false
           },
           {
             "date": "2026-08-12",
-            "state": "BREAKOUT_WITH_DEMAND",
+            "state": "ACCUMULATION_OR_ABSORPTION_CANDIDATE",
             "direction": "BULLISH",
             "regime": "UP",
             "forward_days": 5,
-            "gross_directional_return_pct": 6.061,
-            "net_after_cost_pct": 5.711,
-            "mfe_pct": 23.636,
-            "mae_pct": 0.0,
+            "gross_directional_return_pct": 9.847,
+            "net_after_cost_pct": 9.497,
+            "mfe_pct": 13.576,
+            "mae_pct": -2.677,
             "gross_success": true,
             "net_success": true
-          },
-          {
-            "date": "2026-08-13",
-            "state": "BREAKOUT_WITH_DEMAND",
-            "direction": "BULLISH",
-            "regime": "UP",
-            "forward_days": 5,
-            "gross_directional_return_pct": -2.682,
-            "net_after_cost_pct": -3.032,
-            "mfe_pct": 17.241,
-            "mae_pct": -7.471,
-            "gross_success": false,
-            "net_success": false
-          },
-          {
-            "date": "2026-08-14",
-            "state": "BREAKOUT_WITH_DEMAND",
-            "direction": "BULLISH",
-            "regime": "UP",
-            "forward_days": 5,
-            "gross_directional_return_pct": -11.607,
-            "net_after_cost_pct": -11.957,
-            "mfe_pct": 9.286,
-            "mae_pct": -13.75,
-            "gross_success": false,
-            "net_success": false
           },
           {
             "date": "2026-08-18",
-            "state": "BREAKOUT_WITH_DEMAND",
-            "direction": "BULLISH",
+            "state": "DISTRIBUTION_RISK",
+            "direction": "BEARISH",
             "regime": "DOWN",
             "forward_days": 5,
-            "gross_directional_return_pct": -8.602,
-            "net_after_cost_pct": -8.952,
-            "mfe_pct": 5.914,
-            "mae_pct": -14.158,
-            "gross_success": false,
-            "net_success": false
-          },
-          {
-            "date": "2026-09-04",
-            "state": "ACCUMULATION_OR_ABSORPTION_CANDIDATE",
-            "direction": "BULLISH",
-            "regime": "DOWN",
-            "forward_days": 5,
-            "gross_directional_return_pct": 6.24,
-            "net_after_cost_pct": 5.89,
-            "mfe_pct": 11.33,
-            "mae_pct": -7.882,
-            "gross_success": true,
-            "net_success": true
-          },
-          {
-            "date": "2026-09-08",
-            "state": "DISTRIBUTION_RISK",
-            "direction": "BEARISH",
-            "regime": "SIDEWAYS",
-            "forward_days": 5,
-            "gross_directional_return_pct": -13.809,
-            "net_after_cost_pct": -14.159,
-            "mfe_pct": 1.248,
-            "mae_pct": -19.318,
-            "gross_success": false,
-            "net_success": false
-          },
-          {
-            "date": "2026-09-09",
-            "state": "BREAKOUT_WITH_DEMAND",
-            "direction": "BULLISH",
-            "regime": "UP",
-            "forward_days": 5,
-            "gross_directional_return_pct": 0.161,
-            "net_after_cost_pct": -0.189,
-            "mfe_pct": 13.548,
-            "mae_pct": -1.29,
-            "gross_success": true,
-            "net_success": false
-          },
-          {
-            "date": "2026-09-10",
-            "state": "BREAKOUT_WITH_DEMAND",
-            "direction": "BULLISH",
-            "regime": "UP",
-            "forward_days": 5,
-            "gross_directional_return_pct": -3.555,
-            "net_after_cost_pct": -3.905,
-            "mfe_pct": 8.81,
-            "mae_pct": -7.264,
-            "gross_success": false,
-            "net_success": false
-          },
-          {
-            "date": "2026-09-11",
-            "state": "DISTRIBUTION_RISK",
-            "direction": "BEARISH",
-            "regime": "SIDEWAYS",
-            "forward_days": 5,
-            "gross_directional_return_pct": 5.203,
-            "net_after_cost_pct": 4.853,
-            "mfe_pct": 7.833,
-            "mae_pct": -8.097,
-            "gross_success": true,
-            "net_success": true
-          },
-          {
-            "date": "2026-09-14",
-            "state": "DISTRIBUTION_RISK",
-            "direction": "BEARISH",
-            "regime": "SIDEWAYS",
-            "forward_days": 5,
-            "gross_directional_return_pct": 3.084,
-            "net_after_cost_pct": 2.734,
-            "mfe_pct": 5.833,
-            "mae_pct": -9.801,
-            "gross_success": true,
-            "net_success": true
-          },
-          {
-            "date": "2026-09-15",
-            "state": "DISTRIBUTION_RISK",
-            "direction": "BEARISH",
-            "regime": "SIDEWAYS",
-            "forward_days": 5,
-            "gross_directional_return_pct": 8.926,
-            "net_after_cost_pct": 8.576,
-            "mfe_pct": 10.756,
-            "mae_pct": 2.329,
-            "gross_success": true,
-            "net_success": true
-          },
-          {
-            "date": "2026-09-16",
-            "state": "DISTRIBUTION_RISK",
-            "direction": "BEARISH",
-            "regime": "SIDEWAYS",
-            "forward_days": 5,
-            "gross_directional_return_pct": 2.985,
-            "net_after_cost_pct": 2.635,
-            "mfe_pct": 4.545,
-            "mae_pct": -1.896,
-            "gross_success": true,
-            "net_success": true
-          },
-          {
-            "date": "2026-09-17",
-            "state": "DISTRIBUTION_RISK",
-            "direction": "BEARISH",
-            "regime": "SIDEWAYS",
-            "forward_days": 5,
-            "gross_directional_return_pct": 10.053,
-            "net_after_cost_pct": 9.703,
-            "mfe_pct": 10.835,
-            "mae_pct": -0.795,
-            "gross_success": true,
-            "net_success": true
-          },
-          {
-            "date": "2026-09-18",
-            "state": "DISTRIBUTION_RISK",
-            "direction": "BEARISH",
-            "regime": "SIDEWAYS",
-            "forward_days": 5,
-            "gross_directional_return_pct": 6.586,
-            "net_after_cost_pct": 6.236,
-            "mfe_pct": 11.011,
-            "mae_pct": -1.914,
-            "gross_success": true,
-            "net_success": true
-          },
-          {
-            "date": "2026-09-21",
-            "state": "DISTRIBUTION_RISK",
-            "direction": "BEARISH",
-            "regime": "UP",
-            "forward_days": 5,
-            "gross_directional_return_pct": 6.759,
-            "net_after_cost_pct": 6.409,
-            "mfe_pct": 11.191,
-            "mae_pct": -1.754,
-            "gross_success": true,
-            "net_success": true
-          }
-        ],
-        "method_note": "각 과거 시점에서 당시까지의 데이터만 사용해 상태를 재계산한 walk-forward 검증입니다. 성공률은 과거 방향 일치율이며 미래 확률이 아닙니다."
-      }
-    },
-    {
-      "code": "0158S0",
-      "name": "엘리스",
-      "benchmark": "KOSDAQ",
-      "backtest": {
-        "evidence_state": "UNKNOWN",
-        "sample_count": 0,
-        "reason": "walk-forward 평가에 필요한 과거 일봉이 부족합니다."
-      }
-    },
-    {
-      "code": "328130",
-      "name": "루닛",
-      "benchmark": "KOSDAQ",
-      "backtest": {
-        "evidence_state": "ESTIMATED",
-        "sample_count": 21,
-        "forward_days": 5,
-        "cost_assumption": {
-          "evidence_state": "ASSUMPTION",
-          "fees_bps": 15.0,
-          "slippage_bps": 20.0,
-          "round_trip_total_bps": 35.0
-        },
-        "overall": {
-          "sample_count": 21,
-          "gross_success_rate": 0.3333,
-          "net_success_rate": 0.3333,
-          "avg_gross_directional_return_pct": -1.411,
-          "avg_net_after_cost_pct": -1.761,
-          "avg_mfe_pct": 9.005,
-          "avg_mae_pct": -7.163,
-          "worst_mae_pct": -22.595
-        },
-        "by_state": {
-          "ACCUMULATION_OR_ABSORPTION_CANDIDATE": {
-            "sample_count": 9,
-            "gross_success_rate": 0.2222,
-            "net_success_rate": 0.2222,
-            "avg_gross_directional_return_pct": -4.498,
-            "avg_net_after_cost_pct": -4.848,
-            "avg_mfe_pct": 10.415,
-            "avg_mae_pct": -9.978,
-            "worst_mae_pct": -22.595
-          },
-          "BREAKOUT_WITH_DEMAND": {
-            "sample_count": 5,
-            "gross_success_rate": 0.4,
-            "net_success_rate": 0.4,
-            "avg_gross_directional_return_pct": 2.719,
-            "avg_net_after_cost_pct": 2.369,
-            "avg_mfe_pct": 10.466,
-            "avg_mae_pct": -7.039,
-            "worst_mae_pct": -17.054
-          },
-          "DISTRIBUTION_RISK": {
-            "sample_count": 7,
-            "gross_success_rate": 0.4286,
-            "net_success_rate": 0.4286,
-            "avg_gross_directional_return_pct": -0.392,
-            "avg_net_after_cost_pct": -0.742,
-            "avg_mfe_pct": 6.147,
-            "avg_mae_pct": -3.633,
-            "worst_mae_pct": -8.426
-          }
-        },
-        "by_regime": {
-          "UP": {
-            "sample_count": 13,
-            "gross_success_rate": 0.2308,
-            "net_success_rate": 0.2308,
-            "avg_gross_directional_return_pct": -3.294,
-            "avg_net_after_cost_pct": -3.644,
-            "avg_mfe_pct": 9.497,
-            "avg_mae_pct": -7.612,
-            "worst_mae_pct": -22.595
-          },
-          "SIDEWAYS": {
-            "sample_count": 1,
-            "gross_success_rate": 1.0,
-            "net_success_rate": 1.0,
-            "avg_gross_directional_return_pct": 0.99,
-            "avg_net_after_cost_pct": 0.64,
-            "avg_mfe_pct": 4.2,
-            "avg_mae_pct": -1.713,
-            "worst_mae_pct": -1.713
-          },
-          "DOWN": {
-            "sample_count": 7,
-            "gross_success_rate": 0.4286,
-            "net_success_rate": 0.4286,
-            "avg_gross_directional_return_pct": 1.743,
-            "avg_net_after_cost_pct": 1.393,
-            "avg_mfe_pct": 8.777,
-            "avg_mae_pct": -7.109,
-            "worst_mae_pct": -17.054
-          }
-        },
-        "events": [
-          {
-            "date": "2026-08-04",
-            "state": "ACCUMULATION_OR_ABSORPTION_CANDIDATE",
-            "direction": "BULLISH",
-            "regime": "UP",
-            "forward_days": 5,
-            "gross_directional_return_pct": 8.279,
-            "net_after_cost_pct": 7.929,
-            "mfe_pct": 12.558,
-            "mae_pct": -4.93,
-            "gross_success": true,
-            "net_success": true
-          },
-          {
-            "date": "2026-08-05",
-            "state": "ACCUMULATION_OR_ABSORPTION_CANDIDATE",
-            "direction": "BULLISH",
-            "regime": "UP",
-            "forward_days": 5,
-            "gross_directional_return_pct": -0.186,
-            "net_after_cost_pct": -0.536,
-            "mfe_pct": 12.454,
-            "mae_pct": -5.019,
-            "gross_success": false,
-            "net_success": false
-          },
-          {
-            "date": "2026-08-06",
-            "state": "ACCUMULATION_OR_ABSORPTION_CANDIDATE",
-            "direction": "BULLISH",
-            "regime": "UP",
-            "forward_days": 5,
-            "gross_directional_return_pct": -2.048,
-            "net_after_cost_pct": -2.398,
-            "mfe_pct": 12.663,
-            "mae_pct": -3.911,
-            "gross_success": false,
-            "net_success": false
-          },
-          {
-            "date": "2026-08-07",
-            "state": "ACCUMULATION_OR_ABSORPTION_CANDIDATE",
-            "direction": "BULLISH",
-            "regime": "UP",
-            "forward_days": 5,
-            "gross_directional_return_pct": -2.762,
-            "net_after_cost_pct": -3.112,
-            "mfe_pct": 11.418,
-            "mae_pct": -5.157,
-            "gross_success": false,
-            "net_success": false
-          },
-          {
-            "date": "2026-08-10",
-            "state": "ACCUMULATION_OR_ABSORPTION_CANDIDATE",
-            "direction": "BULLISH",
-            "regime": "UP",
-            "forward_days": 5,
-            "gross_directional_return_pct": -17.742,
-            "net_after_cost_pct": -18.092,
-            "mfe_pct": 2.716,
-            "mae_pct": -18.506,
-            "gross_success": false,
-            "net_success": false
-          },
-          {
-            "date": "2026-08-11",
-            "state": "ACCUMULATION_OR_ABSORPTION_CANDIDATE",
-            "direction": "BULLISH",
-            "regime": "UP",
-            "forward_days": 5,
-            "gross_directional_return_pct": -22.509,
-            "net_after_cost_pct": -22.859,
-            "mfe_pct": -1.976,
-            "mae_pct": -22.595,
+            "gross_directional_return_pct": -5.133,
+            "net_after_cost_pct": -5.483,
+            "mfe_pct": 13.048,
+            "mae_pct": -6.65,
             "gross_success": false,
             "net_success": false
           },
@@ -2484,10 +2147,10 @@
             "direction": "BEARISH",
             "regime": "DOWN",
             "forward_days": 5,
-            "gross_directional_return_pct": -1.636,
-            "net_after_cost_pct": -1.986,
-            "mfe_pct": 3.204,
-            "mae_pct": -8.426,
+            "gross_directional_return_pct": -1.775,
+            "net_after_cost_pct": -2.125,
+            "mfe_pct": 12.844,
+            "mae_pct": -8.056,
             "gross_success": false,
             "net_success": false
           },
@@ -2497,12 +2160,12 @@
             "direction": "BEARISH",
             "regime": "DOWN",
             "forward_days": 5,
-            "gross_directional_return_pct": 7.293,
-            "net_after_cost_pct": 6.943,
-            "mfe_pct": 11.098,
-            "mae_pct": 1.782,
-            "gross_success": true,
-            "net_success": true
+            "gross_directional_return_pct": -9.456,
+            "net_after_cost_pct": -9.806,
+            "mfe_pct": 17.125,
+            "mae_pct": -10.896,
+            "gross_success": false,
+            "net_success": false
           },
           {
             "date": "2026-08-21",
@@ -2510,10 +2173,10 @@
             "direction": "BEARISH",
             "regime": "DOWN",
             "forward_days": 5,
-            "gross_directional_return_pct": -0.217,
-            "net_after_cost_pct": -0.567,
-            "mfe_pct": 5.378,
-            "mae_pct": -2.95,
+            "gross_directional_return_pct": -18.811,
+            "net_after_cost_pct": -19.161,
+            "mfe_pct": 1.631,
+            "mae_pct": -26.257,
             "gross_success": false,
             "net_success": false
           },
@@ -2523,155 +2186,638 @@
             "direction": "BEARISH",
             "regime": "DOWN",
             "forward_days": 5,
-            "gross_directional_return_pct": 1.87,
-            "net_after_cost_pct": 1.52,
-            "mfe_pct": 5.95,
-            "mae_pct": -0.857,
+            "gross_directional_return_pct": -18.639,
+            "net_after_cost_pct": -18.989,
+            "mfe_pct": 4.573,
+            "mae_pct": -22.189,
+            "gross_success": false,
+            "net_success": false
+          },
+          {
+            "date": "2026-08-28",
+            "state": "ACCUMULATION_OR_ABSORPTION_CANDIDATE",
+            "direction": "BULLISH",
+            "regime": "UP",
+            "forward_days": 5,
+            "gross_directional_return_pct": -3.99,
+            "net_after_cost_pct": -4.34,
+            "mfe_pct": 7.085,
+            "mae_pct": -9.365,
+            "gross_success": false,
+            "net_success": false
+          },
+          {
+            "date": "2026-08-31",
+            "state": "BREAKOUT_WITH_DEMAND",
+            "direction": "BULLISH",
+            "regime": "UP",
+            "forward_days": 5,
+            "gross_directional_return_pct": -7.347,
+            "net_after_cost_pct": -7.697,
+            "mfe_pct": -0.464,
+            "mae_pct": -13.921,
+            "gross_success": false,
+            "net_success": false
+          },
+          {
+            "date": "2026-09-22",
+            "state": "BREAKOUT_WITH_DEMAND",
+            "direction": "BULLISH",
+            "regime": "UP",
+            "forward_days": 5,
+            "gross_directional_return_pct": 7.455,
+            "net_after_cost_pct": 7.105,
+            "mfe_pct": 7.455,
+            "mae_pct": -2.955,
             "gross_success": true,
             "net_success": true
           },
           {
-            "date": "2026-08-25",
+            "date": "2026-10-06",
+            "state": "BREAKOUT_WITH_DEMAND",
+            "direction": "BULLISH",
+            "regime": "UP",
+            "forward_days": 5,
+            "gross_directional_return_pct": -19.494,
+            "net_after_cost_pct": -19.844,
+            "mfe_pct": 1.725,
+            "mae_pct": -20.932,
+            "gross_success": false,
+            "net_success": false
+          },
+          {
+            "date": "2026-10-08",
+            "state": "BREAKOUT_WITH_DEMAND",
+            "direction": "BULLISH",
+            "regime": "UP",
+            "forward_days": 5,
+            "gross_directional_return_pct": -25.893,
+            "net_after_cost_pct": -26.243,
+            "mfe_pct": 2.168,
+            "mae_pct": -29.76,
+            "gross_success": false,
+            "net_success": false
+          },
+          {
+            "date": "2026-10-15",
+            "state": "DISTRIBUTION_RISK",
+            "direction": "BEARISH",
+            "regime": "DOWN",
+            "forward_days": 5,
+            "gross_directional_return_pct": 1.262,
+            "net_after_cost_pct": 0.912,
+            "mfe_pct": 2.294,
+            "mae_pct": -9.337,
+            "gross_success": true,
+            "net_success": true
+          },
+          {
+            "date": "2026-10-16",
+            "state": "DISTRIBUTION_RISK",
+            "direction": "BEARISH",
+            "regime": "DOWN",
+            "forward_days": 5,
+            "gross_directional_return_pct": 13.555,
+            "net_after_cost_pct": 13.205,
+            "mfe_pct": 20.476,
+            "mae_pct": -4.744,
+            "gross_success": true,
+            "net_success": true
+          },
+          {
+            "date": "2026-10-19",
+            "state": "DISTRIBUTION_RISK",
+            "direction": "BEARISH",
+            "regime": "DOWN",
+            "forward_days": 5,
+            "gross_directional_return_pct": 23.585,
+            "net_after_cost_pct": 23.235,
+            "mfe_pct": 24.762,
+            "mae_pct": -1.355,
+            "gross_success": true,
+            "net_success": true
+          },
+          {
+            "date": "2026-10-20",
+            "state": "DISTRIBUTION_RISK",
+            "direction": "BEARISH",
+            "regime": "DOWN",
+            "forward_days": 5,
+            "gross_directional_return_pct": 1.781,
+            "net_after_cost_pct": 1.431,
+            "mfe_pct": 14.286,
+            "mae_pct": -9.639,
+            "gross_success": true,
+            "net_success": true
+          }
+        ],
+        "method_note": "각 과거 시점에서 당시까지의 데이터만 사용해 상태를 재계산한 walk-forward 검증입니다. 성공률은 과거 방향 일치율이며 미래 확률이 아닙니다."
+      }
+    },
+    {
+      "code": "327260",
+      "name": "RF머트리얼즈",
+      "benchmark": "KOSDAQ",
+      "backtest": {
+        "evidence_state": "ESTIMATED",
+        "sample_count": 32,
+        "forward_days": 5,
+        "cost_assumption": {
+          "evidence_state": "ASSUMPTION",
+          "fees_bps": 15.0,
+          "slippage_bps": 20.0,
+          "round_trip_total_bps": 35.0
+        },
+        "overall": {
+          "sample_count": 32,
+          "gross_success_rate": 0.5,
+          "net_success_rate": 0.5,
+          "avg_gross_directional_return_pct": 3.722,
+          "avg_net_after_cost_pct": 3.372,
+          "avg_mfe_pct": 18.103,
+          "avg_mae_pct": -10.032,
+          "worst_mae_pct": -26.907
+        },
+        "by_state": {
+          "ACCUMULATION_OR_ABSORPTION_CANDIDATE": {
+            "sample_count": 10,
+            "gross_success_rate": 0.5,
+            "net_success_rate": 0.5,
+            "avg_gross_directional_return_pct": 7.441,
+            "avg_net_after_cost_pct": 7.091,
+            "avg_mfe_pct": 15.487,
+            "avg_mae_pct": -8.005,
+            "worst_mae_pct": -15.425
+          },
+          "BREAKOUT_WITH_DEMAND": {
+            "sample_count": 14,
+            "gross_success_rate": 0.5,
+            "net_success_rate": 0.5,
+            "avg_gross_directional_return_pct": 0.744,
+            "avg_net_after_cost_pct": 0.394,
+            "avg_mfe_pct": 16.958,
+            "avg_mae_pct": -9.883,
+            "worst_mae_pct": -26.316
+          },
+          "DISTRIBUTION_RISK": {
+            "sample_count": 8,
+            "gross_success_rate": 0.5,
+            "net_success_rate": 0.5,
+            "avg_gross_directional_return_pct": 4.284,
+            "avg_net_after_cost_pct": 3.934,
+            "avg_mfe_pct": 23.376,
+            "avg_mae_pct": -12.825,
+            "worst_mae_pct": -26.907
+          }
+        },
+        "by_regime": {
+          "UP": {
+            "sample_count": 16,
+            "gross_success_rate": 0.3125,
+            "net_success_rate": 0.3125,
+            "avg_gross_directional_return_pct": -1.544,
+            "avg_net_after_cost_pct": -1.893,
+            "avg_mfe_pct": 16.3,
+            "avg_mae_pct": -11.987,
+            "worst_mae_pct": -26.316
+          },
+          "SIDEWAYS": {
+            "sample_count": 9,
+            "gross_success_rate": 0.4444,
+            "net_success_rate": 0.4444,
+            "avg_gross_directional_return_pct": -2.22,
+            "avg_net_after_cost_pct": -2.57,
+            "avg_mfe_pct": 8.044,
+            "avg_mae_pct": -8.847,
+            "worst_mae_pct": -26.907
+          },
+          "DOWN": {
+            "sample_count": 7,
+            "gross_success_rate": 1.0,
+            "net_success_rate": 1.0,
+            "avg_gross_directional_return_pct": 23.396,
+            "avg_net_after_cost_pct": 23.046,
+            "avg_mfe_pct": 35.156,
+            "avg_mae_pct": -7.086,
+            "worst_mae_pct": -12.646
+          }
+        },
+        "events": [
+          {
+            "date": "2026-07-13",
+            "state": "DISTRIBUTION_RISK",
+            "direction": "BEARISH",
+            "regime": "DOWN",
+            "forward_days": 5,
+            "gross_directional_return_pct": 4.215,
+            "net_after_cost_pct": 3.865,
+            "mfe_pct": 19.735,
+            "mae_pct": -7.221,
+            "gross_success": true,
+            "net_success": true
+          },
+          {
+            "date": "2026-07-15",
+            "state": "DISTRIBUTION_RISK",
+            "direction": "BEARISH",
+            "regime": "UP",
+            "forward_days": 5,
+            "gross_directional_return_pct": -0.194,
+            "net_after_cost_pct": -0.544,
+            "mfe_pct": 26.874,
+            "mae_pct": -3.5,
+            "gross_success": false,
+            "net_success": false
+          },
+          {
+            "date": "2026-07-22",
+            "state": "DISTRIBUTION_RISK",
+            "direction": "BEARISH",
+            "regime": "DOWN",
+            "forward_days": 5,
+            "gross_directional_return_pct": 30.27,
+            "net_after_cost_pct": 29.92,
+            "mfe_pct": 43.297,
+            "mae_pct": -11.776,
+            "gross_success": true,
+            "net_success": true
+          },
+          {
+            "date": "2026-07-23",
+            "state": "DISTRIBUTION_RISK",
+            "direction": "BEARISH",
+            "regime": "DOWN",
+            "forward_days": 5,
+            "gross_directional_return_pct": 52.729,
+            "net_after_cost_pct": 52.379,
+            "mfe_pct": 59.878,
+            "mae_pct": -0.19,
+            "gross_success": true,
+            "net_success": true
+          },
+          {
+            "date": "2026-07-24",
+            "state": "DISTRIBUTION_RISK",
+            "direction": "BEARISH",
+            "regime": "DOWN",
+            "forward_days": 5,
+            "gross_directional_return_pct": 0.447,
+            "net_after_cost_pct": 0.097,
+            "mfe_pct": 36.474,
+            "mae_pct": -12.646,
+            "gross_success": true,
+            "net_success": true
+          },
+          {
+            "date": "2026-08-04",
+            "state": "BREAKOUT_WITH_DEMAND",
+            "direction": "BULLISH",
+            "regime": "UP",
+            "forward_days": 5,
+            "gross_directional_return_pct": 28.214,
+            "net_after_cost_pct": 27.864,
+            "mfe_pct": 51.252,
+            "mae_pct": 1.336,
+            "gross_success": true,
+            "net_success": true
+          },
+          {
+            "date": "2026-08-05",
+            "state": "BREAKOUT_WITH_DEMAND",
+            "direction": "BULLISH",
+            "regime": "UP",
+            "forward_days": 5,
+            "gross_directional_return_pct": 17.333,
+            "net_after_cost_pct": 16.983,
+            "mfe_pct": 34.222,
+            "mae_pct": -10.074,
+            "gross_success": true,
+            "net_success": true
+          },
+          {
+            "date": "2026-08-06",
+            "state": "BREAKOUT_WITH_DEMAND",
+            "direction": "BULLISH",
+            "regime": "UP",
+            "forward_days": 5,
+            "gross_directional_return_pct": 14.523,
+            "net_after_cost_pct": 14.173,
+            "mfe_pct": 37.065,
+            "mae_pct": -4.085,
+            "gross_success": true,
+            "net_success": true
+          },
+          {
+            "date": "2026-08-07",
+            "state": "BREAKOUT_WITH_DEMAND",
+            "direction": "BULLISH",
+            "regime": "UP",
+            "forward_days": 5,
+            "gross_directional_return_pct": -2.726,
+            "net_after_cost_pct": -3.076,
+            "mfe_pct": 29.986,
+            "mae_pct": -2.726,
+            "gross_success": false,
+            "net_success": false
+          },
+          {
+            "date": "2026-08-10",
+            "state": "BREAKOUT_WITH_DEMAND",
+            "direction": "BULLISH",
+            "regime": "UP",
+            "forward_days": 5,
+            "gross_directional_return_pct": -13.953,
+            "net_after_cost_pct": -14.303,
+            "mfe_pct": 2.815,
+            "mae_pct": -26.316,
+            "gross_success": false,
+            "net_success": false
+          },
+          {
+            "date": "2026-08-11",
+            "state": "BREAKOUT_WITH_DEMAND",
+            "direction": "BULLISH",
+            "regime": "UP",
+            "forward_days": 5,
+            "gross_directional_return_pct": -14.062,
+            "net_after_cost_pct": -14.412,
+            "mfe_pct": 9.375,
+            "mae_pct": -21.615,
+            "gross_success": false,
+            "net_success": false
+          },
+          {
+            "date": "2026-08-12",
+            "state": "BREAKOUT_WITH_DEMAND",
+            "direction": "BULLISH",
+            "regime": "UP",
+            "forward_days": 5,
+            "gross_directional_return_pct": -10.985,
+            "net_after_cost_pct": -11.335,
+            "mfe_pct": 6.061,
+            "mae_pct": -23.99,
+            "gross_success": false,
+            "net_success": false
+          },
+          {
+            "date": "2026-08-26",
+            "state": "ACCUMULATION_OR_ABSORPTION_CANDIDATE",
+            "direction": "BULLISH",
+            "regime": "SIDEWAYS",
+            "forward_days": 5,
+            "gross_directional_return_pct": -3.678,
+            "net_after_cost_pct": -4.028,
+            "mfe_pct": 9.946,
+            "mae_pct": -11.853,
+            "gross_success": false,
+            "net_success": false
+          },
+          {
+            "date": "2026-08-27",
+            "state": "ACCUMULATION_OR_ABSORPTION_CANDIDATE",
+            "direction": "BULLISH",
+            "regime": "SIDEWAYS",
+            "forward_days": 5,
+            "gross_directional_return_pct": -11.634,
+            "net_after_cost_pct": -11.984,
+            "mfe_pct": 1.307,
+            "mae_pct": -15.425,
+            "gross_success": false,
+            "net_success": false
+          },
+          {
+            "date": "2026-08-28",
+            "state": "ACCUMULATION_OR_ABSORPTION_CANDIDATE",
+            "direction": "BULLISH",
+            "regime": "UP",
+            "forward_days": 5,
+            "gross_directional_return_pct": -2.436,
+            "net_after_cost_pct": -2.786,
+            "mfe_pct": 10.602,
+            "mae_pct": -7.307,
+            "gross_success": false,
+            "net_success": false
+          },
+          {
+            "date": "2026-08-31",
+            "state": "ACCUMULATION_OR_ABSORPTION_CANDIDATE",
+            "direction": "BULLISH",
+            "regime": "UP",
+            "forward_days": 5,
+            "gross_directional_return_pct": -8.163,
+            "net_after_cost_pct": -8.513,
+            "mfe_pct": 1.088,
+            "mae_pct": -11.837,
+            "gross_success": false,
+            "net_success": false
+          },
+          {
+            "date": "2026-09-01",
+            "state": "ACCUMULATION_OR_ABSORPTION_CANDIDATE",
+            "direction": "BULLISH",
+            "regime": "SIDEWAYS",
+            "forward_days": 5,
+            "gross_directional_return_pct": -1.288,
+            "net_after_cost_pct": -1.638,
+            "mfe_pct": 5.579,
+            "mae_pct": -7.439,
+            "gross_success": false,
+            "net_success": false
+          },
+          {
+            "date": "2026-09-02",
+            "state": "ACCUMULATION_OR_ABSORPTION_CANDIDATE",
+            "direction": "BULLISH",
+            "regime": "DOWN",
+            "forward_days": 5,
+            "gross_directional_return_pct": 19.661,
+            "net_after_cost_pct": 19.311,
+            "mfe_pct": 23.479,
+            "mae_pct": -8.487,
+            "gross_success": true,
+            "net_success": true
+          },
+          {
+            "date": "2026-09-03",
+            "state": "ACCUMULATION_OR_ABSORPTION_CANDIDATE",
+            "direction": "BULLISH",
+            "regime": "DOWN",
+            "forward_days": 5,
+            "gross_directional_return_pct": 28.402,
+            "net_after_cost_pct": 28.052,
+            "mfe_pct": 31.657,
+            "mae_pct": -4.29,
+            "gross_success": true,
+            "net_success": true
+          },
+          {
+            "date": "2026-09-04",
+            "state": "ACCUMULATION_OR_ABSORPTION_CANDIDATE",
+            "direction": "BULLISH",
+            "regime": "DOWN",
+            "forward_days": 5,
+            "gross_directional_return_pct": 28.047,
+            "net_after_cost_pct": 27.697,
+            "mfe_pct": 31.571,
+            "mae_pct": -4.993,
+            "gross_success": true,
+            "net_success": true
+          },
+          {
+            "date": "2026-09-08",
             "state": "DISTRIBUTION_RISK",
             "direction": "BEARISH",
             "regime": "SIDEWAYS",
             "forward_days": 5,
-            "gross_directional_return_pct": 0.99,
-            "net_after_cost_pct": 0.64,
-            "mfe_pct": 4.2,
-            "mae_pct": -1.713,
+            "gross_directional_return_pct": -24.755,
+            "net_after_cost_pct": -25.105,
+            "mfe_pct": -5.479,
+            "mae_pct": -26.907,
+            "gross_success": false,
+            "net_success": false
+          },
+          {
+            "date": "2026-09-11",
+            "state": "ACCUMULATION_OR_ABSORPTION_CANDIDATE",
+            "direction": "BULLISH",
+            "regime": "SIDEWAYS",
+            "forward_days": 5,
+            "gross_directional_return_pct": 11.583,
+            "net_after_cost_pct": 11.233,
+            "mfe_pct": 16.514,
+            "mae_pct": -4.243,
+            "gross_success": true,
+            "net_success": true
+          },
+          {
+            "date": "2026-09-15",
+            "state": "BREAKOUT_WITH_DEMAND",
+            "direction": "BULLISH",
+            "regime": "SIDEWAYS",
+            "forward_days": 5,
+            "gross_directional_return_pct": 4.144,
+            "net_after_cost_pct": 3.794,
+            "mfe_pct": 11.887,
+            "mae_pct": -4.471,
+            "gross_success": true,
+            "net_success": true
+          },
+          {
+            "date": "2026-09-16",
+            "state": "BREAKOUT_WITH_DEMAND",
+            "direction": "BULLISH",
+            "regime": "SIDEWAYS",
+            "forward_days": 5,
+            "gross_directional_return_pct": 5.299,
+            "net_after_cost_pct": 4.949,
+            "mfe_pct": 15.671,
+            "mae_pct": 0.902,
+            "gross_success": true,
+            "net_success": true
+          },
+          {
+            "date": "2026-09-17",
+            "state": "BREAKOUT_WITH_DEMAND",
+            "direction": "BULLISH",
+            "regime": "SIDEWAYS",
+            "forward_days": 5,
+            "gross_directional_return_pct": -1.087,
+            "net_after_cost_pct": -1.437,
+            "mfe_pct": 11.522,
+            "mae_pct": -2.174,
+            "gross_success": false,
+            "net_success": false
+          },
+          {
+            "date": "2026-09-18",
+            "state": "BREAKOUT_WITH_DEMAND",
+            "direction": "BULLISH",
+            "regime": "SIDEWAYS",
+            "forward_days": 5,
+            "gross_directional_return_pct": 1.439,
+            "net_after_cost_pct": 1.089,
+            "mfe_pct": 5.447,
+            "mae_pct": -8.016,
             "gross_success": true,
             "net_success": true
           },
           {
             "date": "2026-09-21",
-            "state": "ACCUMULATION_OR_ABSORPTION_CANDIDATE",
+            "state": "BREAKOUT_WITH_DEMAND",
             "direction": "BULLISH",
             "regime": "UP",
             "forward_days": 5,
-            "gross_directional_return_pct": 5.469,
-            "net_after_cost_pct": 5.119,
-            "mfe_pct": 21.973,
-            "mae_pct": -7.422,
+            "gross_directional_return_pct": -0.303,
+            "net_after_cost_pct": -0.653,
+            "mfe_pct": 8.19,
+            "mae_pct": -9.505,
+            "gross_success": false,
+            "net_success": false
+          },
+          {
+            "date": "2026-09-22",
+            "state": "BREAKOUT_WITH_DEMAND",
+            "direction": "BULLISH",
+            "regime": "UP",
+            "forward_days": 5,
+            "gross_directional_return_pct": 3.665,
+            "net_after_cost_pct": 3.315,
+            "mfe_pct": 12.042,
+            "mae_pct": -6.283,
             "gross_success": true,
             "net_success": true
           },
           {
             "date": "2026-09-23",
-            "state": "BREAKOUT_WITH_DEMAND",
+            "state": "ACCUMULATION_OR_ABSORPTION_CANDIDATE",
             "direction": "BULLISH",
             "regime": "UP",
             "forward_days": 5,
-            "gross_directional_return_pct": 7.092,
-            "net_after_cost_pct": 6.742,
-            "mfe_pct": 26.545,
-            "mae_pct": 5.876,
+            "gross_directional_return_pct": 13.919,
+            "net_after_cost_pct": 13.569,
+            "mfe_pct": 23.126,
+            "mae_pct": -4.176,
             "gross_success": true,
             "net_success": true
           },
           {
             "date": "2026-09-28",
-            "state": "BREAKOUT_WITH_DEMAND",
-            "direction": "BULLISH",
+            "state": "DISTRIBUTION_RISK",
+            "direction": "BEARISH",
             "regime": "UP",
             "forward_days": 5,
-            "gross_directional_return_pct": -0.712,
-            "net_after_cost_pct": -1.062,
-            "mfe_pct": 6.857,
-            "mae_pct": -6.946,
+            "gross_directional_return_pct": -22.619,
+            "net_after_cost_pct": -22.969,
+            "mfe_pct": 1.676,
+            "mae_pct": -22.75,
             "gross_success": false,
             "net_success": false
           },
           {
             "date": "2026-09-29",
-            "state": "BREAKOUT_WITH_DEMAND",
-            "direction": "BULLISH",
-            "regime": "UP",
-            "forward_days": 5,
-            "gross_directional_return_pct": -5.584,
-            "net_after_cost_pct": -5.934,
-            "mfe_pct": -1.777,
-            "mae_pct": -11.591,
-            "gross_success": false,
-            "net_success": false
-          },
-          {
-            "date": "2026-09-30",
             "state": "DISTRIBUTION_RISK",
             "direction": "BEARISH",
             "regime": "UP",
             "forward_days": 5,
-            "gross_directional_return_pct": -4.425,
-            "net_after_cost_pct": -4.775,
-            "mfe_pct": 3.349,
-            "mae_pct": -6.574,
-            "gross_success": false,
-            "net_success": false
-          },
-          {
-            "date": "2026-10-01",
-            "state": "BREAKOUT_WITH_DEMAND",
-            "direction": "BULLISH",
-            "regime": "UP",
-            "forward_days": 5,
-            "gross_directional_return_pct": -1.078,
-            "net_after_cost_pct": -1.428,
-            "mfe_pct": 6.828,
-            "mae_pct": -5.481,
+            "gross_directional_return_pct": -5.821,
+            "net_after_cost_pct": -6.171,
+            "mfe_pct": 4.555,
+            "mae_pct": -17.613,
             "gross_success": false,
             "net_success": false
           },
           {
             "date": "2026-10-06",
-            "state": "DISTRIBUTION_RISK",
-            "direction": "BEARISH",
-            "regime": "UP",
-            "forward_days": 5,
-            "gross_directional_return_pct": -6.616,
-            "net_after_cost_pct": -6.966,
-            "mfe_pct": 9.852,
-            "mae_pct": -6.695,
-            "gross_success": false,
-            "net_success": false
-          },
-          {
-            "date": "2026-10-14",
-            "state": "ACCUMULATION_OR_ABSORPTION_CANDIDATE",
-            "direction": "BULLISH",
-            "regime": "DOWN",
-            "forward_days": 5,
-            "gross_directional_return_pct": -2.261,
-            "net_after_cost_pct": -2.611,
-            "mfe_pct": 11.474,
-            "mae_pct": -11.055,
-            "gross_success": false,
-            "net_success": false
-          },
-          {
-            "date": "2026-10-16",
-            "state": "ACCUMULATION_OR_ABSORPTION_CANDIDATE",
-            "direction": "BULLISH",
-            "regime": "DOWN",
-            "forward_days": 5,
-            "gross_directional_return_pct": -6.722,
-            "net_after_cost_pct": -7.072,
-            "mfe_pct": 10.456,
-            "mae_pct": -11.203,
-            "gross_success": false,
-            "net_success": false
-          },
-          {
-            "date": "2026-10-19",
             "state": "BREAKOUT_WITH_DEMAND",
             "direction": "BULLISH",
-            "regime": "DOWN",
+            "regime": "UP",
             "forward_days": 5,
-            "gross_directional_return_pct": 13.876,
-            "net_after_cost_pct": 13.526,
-            "mfe_pct": 13.876,
-            "mae_pct": -17.054,
-            "gross_success": true,
-            "net_success": true
+            "gross_directional_return_pct": -21.088,
+            "net_after_cost_pct": -21.438,
+            "mfe_pct": 1.871,
+            "mae_pct": -21.344,
+            "gross_success": false,
+            "net_success": false
           }
         ],
         "method_note": "각 과거 시점에서 당시까지의 데이터만 사용해 상태를 재계산한 walk-forward 검증입니다. 성공률은 과거 방향 일치율이며 미래 확률이 아닙니다."
