@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-11-09T04:47:58+09:00",
+  "generated_at": "2026-11-09T08:14:15+09:00",
   "KOSPI200_FUTURES": {
     "status": "CONNECTED_SECONDARY",
     "instrument": "KOSPI200 연결선물 (NAVER FUT)",
     "close": 782.95,
-    "previous_close": 837.25,
-    "change": -54.3,
-    "change_pct": -6.49,
+    "previous_close": 782.95,
+    "change": 0.0,
+    "change_pct": 0.0,
     "as_of": "2026-11-06",
     "investor_flow_100m_krw": {
       "individual": -3701.0,
@@ -15,12 +15,6 @@
     },
     "flow_as_of": "20261106",
     "history": [
-      {
-        "date": "2026-10-12",
-        "close": 1008.25,
-        "change": -40.0,
-        "change_pct": -3.82
-      },
       {
         "date": "2026-10-13",
         "close": 944.8,
@@ -134,6 +128,12 @@
         "close": 782.95,
         "change": -54.3,
         "change_pct": -6.49
+      },
+      {
+        "date": "2026-11-06",
+        "close": 782.95,
+        "change": 0.0,
+        "change_pct": 0.0
       }
     ],
     "open_interest": null,
@@ -153,7 +153,7 @@
       {
         "factor": "futures_vs_spot",
         "state": "FUTURES_SPOT_ALIGNED",
-        "value": 0.02,
+        "value": 0.0,
         "unit": "percentage_point",
         "explanation": "KOSPI200 선물과 현물의 당일 등락률 차이가 크지 않습니다."
       },
