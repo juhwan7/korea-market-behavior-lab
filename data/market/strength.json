@@ -1,84 +1,84 @@
 {
   "evidence_state": "ESTIMATED",
-  "composite": 90.5,
+  "composite": 58.1,
   "coverage": {
     "available": 3,
     "total": 6
   },
   "components": {
-    "price": 99.3,
+    "price": 56.4,
     "breadth": null,
-    "turnover": 100.0,
+    "turnover": 83.9,
     "foreign_flow": null,
     "program": null,
-    "sector_breadth": 72.2
+    "sector_breadth": 34.2
   },
   "size_participation": {
-    "large_proxy": 66.8,
-    "mid_proxy": 62.6,
-    "small_proxy": 60.2
+    "large_proxy": 37.8,
+    "mid_proxy": 35.7,
+    "small_proxy": 35.6
   },
   "index_illusion": [],
   "method_note": "가용한 가격·시장폭·수급·프로그램·거래대금·업종확산 축을 분리해 표시합니다. 규모별 값은 시총순위 프록시로 별도 표시하며 합성점수에 중복 가중하지 않습니다.",
-  "as_of": "2026-11-12T06:09:32+09:00",
+  "as_of": "2026-11-12T11:18:48+09:00",
   "breadth": {
     "KOSPI": {},
     "KOSDAQ": {}
   },
   "turnover_detail": {
-    "generated_at": "2026-11-11T14:57:20+09:00",
-    "collection_status": "REUSED_CLOSED_MARKET",
+    "generated_at": "2026-11-12T11:18:11+09:00",
+    "collection_status": "HEALTHY",
     "markets": {
       "KOSPI": {
         "evidence_state": "ESTIMATED",
-        "stock_count": 810,
-        "excluded_instrument_count": 1681,
+        "stock_count": 809,
+        "excluded_instrument_count": 1687,
         "universe_rule": "ordinary_equity_only_for_stock_analysis; ETF/ETN/SPAC/preferred/REIT/structured excluded",
-        "total_trading_value_krw": 13090748000000.0,
-        "advance_trading_value_krw": 10874388000000.0,
-        "decline_trading_value_krw": 2149733000000.0,
-        "flat_trading_value_krw": 66627000000.0,
-        "advance_directional_share": 0.8349,
-        "advance_decline_turnover_ratio": 5.0585,
+        "total_trading_value_krw": 6959702000000.0,
+        "advance_trading_value_krw": 5111483000000.0,
+        "decline_trading_value_krw": 1757837000000.0,
+        "flat_trading_value_krw": 90382000000.0,
+        "advance_directional_share": 0.7441,
+        "advance_decline_turnover_ratio": 2.9078,
         "source_id": "naver-finance-public",
         "source_kind": "secondary",
         "method_note": "상승·하락 종목의 누적 거래대금을 합산한 장중 거래대금 참여도입니다.",
         "size_participation": {
           "evidence_state": "ESTIMATED",
-          "stock_count": 810,
-          "excluded_instrument_count": 1681,
+          "stock_count": 809,
+          "excluded_instrument_count": 1687,
           "universe_rule": "ordinary_equity_only_for_stock_analysis; ETF/ETN/SPAC/preferred/REIT/structured excluded",
           "classification": "market_cap_rank_proxy_top20_mid30_bottom50",
           "segments": {
             "large_proxy": {
-              "stock_count": 162,
-              "advance": 89,
-              "decline": 69,
-              "flat": 4,
-              "advance_share": 0.5494,
-              "average_change_pct": 1.116,
-              "market_cap_share": 0.9527,
-              "turnover_share": 0.9338
+              "stock_count": 161,
+              "advance": 51,
+              "decline": 103,
+              "flat": 7,
+              "advance_share": 0.3168,
+              "average_change_pct": -0.757,
+              "market_cap_share": 0.9532,
+              "turnover_share": 0.9388
             },
             "mid_proxy": {
               "stock_count": 243,
-              "advance": 131,
-              "decline": 101,
-              "flat": 11,
-              "advance_share": 0.5391,
-              "average_change_pct": 0.962,
-              "market_cap_share": 0.0379,
-              "turnover_share": 0.0528
+              "advance": 67,
+              "decline": 168,
+              "flat": 8,
+              "advance_share": 0.2757,
+              "average_change_pct": -0.941,
+              "market_cap_share": 0.0375,
+              "turnover_share": 0.0485
             },
             "small_proxy": {
               "stock_count": 405,
-              "advance": 238,
-              "decline": 128,
-              "flat": 39,
-              "advance_share": 0.5877,
-              "average_change_pct": 0.664,
-              "market_cap_share": 0.0094,
-              "turnover_share": 0.0134
+              "advance": 122,
+              "decline": 234,
+              "flat": 49,
+              "advance_share": 0.3012,
+              "average_change_pct": -0.456,
+              "market_cap_share": 0.0093,
+              "turnover_share": 0.0126
             }
           },
           "source_id": "naver-finance-public",
@@ -91,7 +91,7 @@
             "name": "SK하이닉스",
             "benchmark": "KOSPI",
             "instrument_type": "COMMON_STOCK_CANDIDATE",
-            "trading_value_krw": 3189896000000.0,
+            "trading_value_krw": 1718370000000.0,
             "selection_reason": "top_intraday_trading_value_common_stock_validation_sample"
           },
           {
@@ -99,7 +99,7 @@
             "name": "삼성전자",
             "benchmark": "KOSPI",
             "instrument_type": "COMMON_STOCK_CANDIDATE",
-            "trading_value_krw": 2518962000000.0,
+            "trading_value_krw": 1430949000000.0,
             "selection_reason": "top_intraday_trading_value_common_stock_validation_sample"
           },
           {
@@ -107,7 +107,7 @@
             "name": "삼성전기",
             "benchmark": "KOSPI",
             "instrument_type": "COMMON_STOCK_CANDIDATE",
-            "trading_value_krw": 490606000000.0,
+            "trading_value_krw": 317272000000.0,
             "selection_reason": "top_intraday_trading_value_common_stock_validation_sample"
           },
           {
@@ -115,77 +115,77 @@
             "name": "SK스퀘어",
             "benchmark": "KOSPI",
             "instrument_type": "COMMON_STOCK_CANDIDATE",
-            "trading_value_krw": 408915000000.0,
+            "trading_value_krw": 233638000000.0,
             "selection_reason": "top_intraday_trading_value_common_stock_validation_sample"
           },
           {
-            "code": "006400",
-            "name": "삼성SDI",
+            "code": "353200",
+            "name": "대덕전자",
             "benchmark": "KOSPI",
             "instrument_type": "COMMON_STOCK_CANDIDATE",
-            "trading_value_krw": 244976000000.0,
+            "trading_value_krw": 150641000000.0,
             "selection_reason": "top_intraday_trading_value_common_stock_validation_sample"
           },
           {
-            "code": "180640",
-            "name": "한진칼",
+            "code": "035420",
+            "name": "NAVER",
             "benchmark": "KOSPI",
             "instrument_type": "COMMON_STOCK_CANDIDATE",
-            "trading_value_krw": 226405000000.0,
+            "trading_value_krw": 139515000000.0,
             "selection_reason": "top_intraday_trading_value_common_stock_validation_sample"
           }
         ]
       },
       "KOSDAQ": {
         "evidence_state": "ESTIMATED",
-        "stock_count": 1757,
+        "stock_count": 1758,
         "excluded_instrument_count": 76,
         "universe_rule": "ordinary_equity_only_for_stock_analysis; ETF/ETN/SPAC/preferred/REIT/structured excluded",
-        "total_trading_value_krw": 4877033000000.0,
-        "advance_trading_value_krw": 4212067000000.0,
-        "decline_trading_value_krw": 616671000000.0,
-        "flat_trading_value_krw": 48295000000.0,
-        "advance_directional_share": 0.8723,
-        "advance_decline_turnover_ratio": 6.8303,
+        "total_trading_value_krw": 3009760000000.0,
+        "advance_trading_value_krw": 1813229000000.0,
+        "decline_trading_value_krw": 1183105000000.0,
+        "flat_trading_value_krw": 13426000000.0,
+        "advance_directional_share": 0.6051,
+        "advance_decline_turnover_ratio": 1.5326,
         "source_id": "naver-finance-public",
         "source_kind": "secondary",
         "method_note": "상승·하락 종목의 누적 거래대금을 합산한 장중 거래대금 참여도입니다.",
         "size_participation": {
           "evidence_state": "ESTIMATED",
-          "stock_count": 1757,
+          "stock_count": 1758,
           "excluded_instrument_count": 76,
           "universe_rule": "ordinary_equity_only_for_stock_analysis; ETF/ETN/SPAC/preferred/REIT/structured excluded",
           "classification": "market_cap_rank_proxy_top20_mid30_bottom50",
           "segments": {
             "large_proxy": {
               "stock_count": 351,
-              "advance": 276,
-              "decline": 63,
-              "flat": 12,
-              "advance_share": 0.7863,
-              "average_change_pct": 5.015,
-              "market_cap_share": 0.7616,
-              "turnover_share": 0.7747
+              "advance": 154,
+              "decline": 182,
+              "flat": 15,
+              "advance_share": 0.4387,
+              "average_change_pct": 0.229,
+              "market_cap_share": 0.762,
+              "turnover_share": 0.804
             },
             "mid_proxy": {
-              "stock_count": 527,
-              "advance": 376,
-              "decline": 127,
-              "flat": 24,
-              "advance_share": 0.7135,
-              "average_change_pct": 2.123,
-              "market_cap_share": 0.1596,
-              "turnover_share": 0.1756
+              "stock_count": 528,
+              "advance": 231,
+              "decline": 262,
+              "flat": 35,
+              "advance_share": 0.4375,
+              "average_change_pct": 0.133,
+              "market_cap_share": 0.1594,
+              "turnover_share": 0.1559
             },
             "small_proxy": {
               "stock_count": 879,
-              "advance": 542,
-              "decline": 259,
-              "flat": 78,
-              "advance_share": 0.6166,
-              "average_change_pct": 1.037,
-              "market_cap_share": 0.0788,
-              "turnover_share": 0.0497
+              "advance": 362,
+              "decline": 416,
+              "flat": 101,
+              "advance_share": 0.4118,
+              "average_change_pct": 0.059,
+              "market_cap_share": 0.0786,
+              "turnover_share": 0.0401
             }
           },
           "source_id": "naver-finance-public",
@@ -198,31 +198,7 @@
             "name": "주성엔지니어링",
             "benchmark": "KOSDAQ",
             "instrument_type": "COMMON_STOCK_CANDIDATE",
-            "trading_value_krw": 336778000000.0,
-            "selection_reason": "top_intraday_trading_value_common_stock_validation_sample"
-          },
-          {
-            "code": "0153R0",
-            "name": "바로팜",
-            "benchmark": "KOSDAQ",
-            "instrument_type": "COMMON_STOCK_CANDIDATE",
-            "trading_value_krw": 231273000000.0,
-            "selection_reason": "top_intraday_trading_value_common_stock_validation_sample"
-          },
-          {
-            "code": "0162D0",
-            "name": "동원파츠",
-            "benchmark": "KOSDAQ",
-            "instrument_type": "COMMON_STOCK_CANDIDATE",
-            "trading_value_krw": 134348000000.0,
-            "selection_reason": "top_intraday_trading_value_common_stock_validation_sample"
-          },
-          {
-            "code": "222800",
-            "name": "심텍",
-            "benchmark": "KOSDAQ",
-            "instrument_type": "COMMON_STOCK_CANDIDATE",
-            "trading_value_krw": 125994000000.0,
+            "trading_value_krw": 217788000000.0,
             "selection_reason": "top_intraday_trading_value_common_stock_validation_sample"
           },
           {
@@ -230,15 +206,39 @@
             "name": "지니언스",
             "benchmark": "KOSDAQ",
             "instrument_type": "COMMON_STOCK_CANDIDATE",
-            "trading_value_krw": 115281000000.0,
+            "trading_value_krw": 145413000000.0,
             "selection_reason": "top_intraday_trading_value_common_stock_validation_sample"
           },
           {
-            "code": "030530",
-            "name": "원익홀딩스",
+            "code": "493410",
+            "name": "넥스아이",
             "benchmark": "KOSDAQ",
             "instrument_type": "COMMON_STOCK_CANDIDATE",
-            "trading_value_krw": 112591000000.0,
+            "trading_value_krw": 131079000000.0,
+            "selection_reason": "top_intraday_trading_value_common_stock_validation_sample"
+          },
+          {
+            "code": "222800",
+            "name": "심텍",
+            "benchmark": "KOSDAQ",
+            "instrument_type": "COMMON_STOCK_CANDIDATE",
+            "trading_value_krw": 98666000000.0,
+            "selection_reason": "top_intraday_trading_value_common_stock_validation_sample"
+          },
+          {
+            "code": "035900",
+            "name": "JYP Ent.",
+            "benchmark": "KOSDAQ",
+            "instrument_type": "COMMON_STOCK_CANDIDATE",
+            "trading_value_krw": 96110000000.0,
+            "selection_reason": "top_intraday_trading_value_common_stock_validation_sample"
+          },
+          {
+            "code": "356860",
+            "name": "티엘비",
+            "benchmark": "KOSDAQ",
+            "instrument_type": "COMMON_STOCK_CANDIDATE",
+            "trading_value_krw": 67177000000.0,
             "selection_reason": "top_intraday_trading_value_common_stock_validation_sample"
           }
         ]
@@ -247,506 +247,505 @@
     "combined": {
       "evidence_state": "ESTIMATED",
       "stock_count": 2567,
-      "total_trading_value_krw": 17967781000000.0,
-      "advance_trading_value_krw": 15086455000000.0,
-      "decline_trading_value_krw": 2766404000000.0,
-      "flat_trading_value_krw": 114922000000.0,
-      "advance_directional_share": 0.845,
-      "advance_decline_turnover_ratio": 5.4535
+      "total_trading_value_krw": 9969462000000.0,
+      "advance_trading_value_krw": 6924712000000.0,
+      "decline_trading_value_krw": 2940942000000.0,
+      "flat_trading_value_krw": 103808000000.0,
+      "advance_directional_share": 0.7019,
+      "advance_decline_turnover_ratio": 2.3546
     },
     "source_id": "naver-finance-public",
     "source_kind": "secondary",
-    "method_note": "상승·하락 종목별 누적 거래대금을 전 종목 공개 목록에서 합산합니다. 공식 KRX 값과 동일하게 취급하지 않습니다.",
-    "last_checked_at": "2026-11-12T06:08:58+09:00"
+    "method_note": "상승·하락 종목별 누적 거래대금을 전 종목 공개 목록에서 합산합니다. 공식 KRX 값과 동일하게 취급하지 않습니다."
   },
   "sector_breadth_detail": {
-    "generated_at": "2026-11-12T06:08:59+09:00",
+    "generated_at": "2026-11-12T11:18:13+09:00",
     "evidence_state": "ESTIMATED",
     "sector_count": 79,
-    "positive": 57,
-    "negative": 22,
+    "positive": 27,
+    "negative": 52,
     "flat": 0,
-    "positive_directional_share": 0.7215,
-    "average_change_pct": 1.273,
+    "positive_directional_share": 0.3418,
+    "average_change_pct": -0.531,
     "strongest": [
       {
-        "code": "332",
-        "name": "문구류",
-        "change_pct": 9.12
-      },
-      {
-        "code": "282",
-        "name": "전자장비와기기",
-        "change_pct": 8.46
-      },
-      {
-        "code": "294",
-        "name": "통신장비",
-        "change_pct": 6.77
-      },
-      {
-        "code": "278",
-        "name": "반도체와반도체장비",
-        "change_pct": 5.84
-      },
-      {
-        "code": "292",
-        "name": "핸드셋",
-        "change_pct": 5.27
-      },
-      {
-        "code": "269",
-        "name": "디스플레이장비및부품",
-        "change_pct": 5.2
-      },
-      {
-        "code": "272",
-        "name": "화학",
-        "change_pct": 4.54
-      },
-      {
-        "code": "287",
-        "name": "소프트웨어",
-        "change_pct": 4.53
-      }
-    ],
-    "weakest": [
-      {
-        "code": "305",
-        "name": "항공사",
-        "change_pct": -9.74
-      },
-      {
-        "code": "288",
-        "name": "건강관리기술",
-        "change_pct": -5.98
-      },
-      {
-        "code": "263",
-        "name": "게임엔터테인먼트",
-        "change_pct": -5.32
-      },
-      {
-        "code": "315",
-        "name": "손해보험",
-        "change_pct": -3.56
-      },
-      {
-        "code": "322",
-        "name": "비철금속",
-        "change_pct": -2.41
-      },
-      {
-        "code": "303",
-        "name": "가구",
-        "change_pct": -2.21
-      },
-      {
-        "code": "275",
-        "name": "담배",
-        "change_pct": -1.08
-      },
-      {
-        "code": "309",
-        "name": "음료",
-        "change_pct": -1.07
-      }
-    ],
-    "sectors": [
-      {
-        "code": "332",
-        "name": "문구류",
-        "change_pct": 9.12
-      },
-      {
-        "code": "282",
-        "name": "전자장비와기기",
-        "change_pct": 8.46
-      },
-      {
-        "code": "294",
-        "name": "통신장비",
-        "change_pct": 6.77
-      },
-      {
-        "code": "278",
-        "name": "반도체와반도체장비",
-        "change_pct": 5.84
-      },
-      {
-        "code": "292",
-        "name": "핸드셋",
-        "change_pct": 5.27
-      },
-      {
-        "code": "269",
-        "name": "디스플레이장비및부품",
-        "change_pct": 5.2
-      },
-      {
-        "code": "272",
-        "name": "화학",
-        "change_pct": 4.54
-      },
-      {
-        "code": "287",
-        "name": "소프트웨어",
-        "change_pct": 4.53
+        "code": "285",
+        "name": "방송과엔터테인먼트",
+        "change_pct": 6.74
       },
       {
         "code": "306",
         "name": "전기장비",
-        "change_pct": 4.5
+        "change_pct": 4.34
       },
       {
-        "code": "316",
-        "name": "건강관리업체및서비스",
-        "change_pct": 4.43
-      },
-      {
-        "code": "286",
-        "name": "생물공학",
-        "change_pct": 4.32
-      },
-      {
-        "code": "283",
-        "name": "전기제품",
-        "change_pct": 4.14
-      },
-      {
-        "code": "293",
-        "name": "컴퓨터와주변기기",
-        "change_pct": 3.37
-      },
-      {
-        "code": "299",
-        "name": "기계",
-        "change_pct": 3.36
-      },
-      {
-        "code": "311",
-        "name": "포장재",
-        "change_pct": 3.28
-      },
-      {
-        "code": "284",
-        "name": "우주항공과국방",
-        "change_pct": 3.22
-      },
-      {
-        "code": "295",
-        "name": "에너지장비및서비스",
-        "change_pct": 2.98
-      },
-      {
-        "code": "262",
-        "name": "생명과학도구및서비스",
-        "change_pct": 2.97
-      },
-      {
-        "code": "276",
-        "name": "복합기업",
-        "change_pct": 2.68
-      },
-      {
-        "code": "285",
-        "name": "방송과엔터테인먼트",
-        "change_pct": 2.68
-      },
-      {
-        "code": "277",
-        "name": "창업투자",
+        "code": "278",
+        "name": "반도체와반도체장비",
         "change_pct": 2.64
       },
       {
-        "code": "313",
-        "name": "석유와가스",
-        "change_pct": 2.31
+        "code": "287",
+        "name": "소프트웨어",
+        "change_pct": 2.58
       },
       {
-        "code": "330",
-        "name": "생명보험",
-        "change_pct": 2.31
-      },
-      {
-        "code": "308",
-        "name": "인터넷과카탈로그소매",
-        "change_pct": 2.2
-      },
-      {
-        "code": "334",
-        "name": "무역회사와판매업체",
-        "change_pct": 2.1
-      },
-      {
-        "code": "271",
-        "name": "레저용장비와제품",
-        "change_pct": 2.03
-      },
-      {
-        "code": "304",
-        "name": "철강",
-        "change_pct": 1.94
-      },
-      {
-        "code": "307",
-        "name": "전자제품",
-        "change_pct": 1.83
-      },
-      {
-        "code": "338",
-        "name": "사무용전자제품",
-        "change_pct": 1.81
-      },
-      {
-        "code": "317",
-        "name": "호텔,레스토랑,레저",
-        "change_pct": 1.75
-      },
-      {
-        "code": "25",
-        "name": "기타",
-        "change_pct": 1.72
-      },
-      {
-        "code": "298",
-        "name": "가정용기기와용품",
-        "change_pct": 1.72
-      },
-      {
-        "code": "314",
-        "name": "출판",
-        "change_pct": 1.54
-      },
-      {
-        "code": "268",
-        "name": "식품",
-        "change_pct": 1.53
-      },
-      {
-        "code": "279",
-        "name": "건설",
-        "change_pct": 1.48
-      },
-      {
-        "code": "297",
-        "name": "가정용품",
-        "change_pct": 1.31
-      },
-      {
-        "code": "267",
-        "name": "IT서비스",
-        "change_pct": 1.3
-      },
-      {
-        "code": "328",
-        "name": "전문소매",
-        "change_pct": 1.24
-      },
-      {
-        "code": "266",
-        "name": "화장품",
-        "change_pct": 1.19
-      },
-      {
-        "code": "281",
-        "name": "건강관리장비와용품",
-        "change_pct": 1.11
-      },
-      {
-        "code": "270",
-        "name": "자동차부품",
-        "change_pct": 1.0
-      },
-      {
-        "code": "329",
-        "name": "도로와철도운송",
-        "change_pct": 0.99
-      },
-      {
-        "code": "339",
-        "name": "다각화된소비자서비스",
-        "change_pct": 0.93
-      },
-      {
-        "code": "326",
-        "name": "항공화물운송과물류",
-        "change_pct": 0.85
-      },
-      {
-        "code": "302",
-        "name": "식품과기본식료품소매",
-        "change_pct": 0.84
-      },
-      {
-        "code": "289",
-        "name": "건축자재",
-        "change_pct": 0.83
-      },
-      {
-        "code": "333",
-        "name": "무선통신서비스",
-        "change_pct": 0.81
-      },
-      {
-        "code": "300",
-        "name": "양방향미디어와서비스",
-        "change_pct": 0.79
-      },
-      {
-        "code": "319",
-        "name": "기타금융",
-        "change_pct": 0.71
-      },
-      {
-        "code": "320",
-        "name": "건축제품",
-        "change_pct": 0.69
-      },
-      {
-        "code": "312",
-        "name": "가스유틸리티",
-        "change_pct": 0.68
-      },
-      {
-        "code": "324",
-        "name": "상업서비스와공급품",
-        "change_pct": 0.55
-      },
-      {
-        "code": "261",
-        "name": "제약",
-        "change_pct": 0.53
-      },
-      {
-        "code": "280",
-        "name": "부동산",
-        "change_pct": 0.49
-      },
-      {
-        "code": "301",
-        "name": "은행",
-        "change_pct": 0.41
-      },
-      {
-        "code": "325",
-        "name": "전기유틸리티",
-        "change_pct": 0.22
-      },
-      {
-        "code": "327",
-        "name": "디스플레이패널",
-        "change_pct": 0.03
-      },
-      {
-        "code": "337",
-        "name": "카드",
-        "change_pct": -0.12
-      },
-      {
-        "code": "265",
-        "name": "판매업체",
-        "change_pct": -0.14
-      },
-      {
-        "code": "321",
-        "name": "증권",
-        "change_pct": -0.14
-      },
-      {
-        "code": "318",
-        "name": "종이와목재",
-        "change_pct": -0.28
+        "code": "282",
+        "name": "전자장비와기기",
+        "change_pct": 2.4
       },
       {
         "code": "336",
         "name": "다각화된통신서비스",
-        "change_pct": -0.33
-      },
-      {
-        "code": "273",
-        "name": "자동차",
-        "change_pct": -0.37
-      },
-      {
-        "code": "290",
-        "name": "교육서비스",
-        "change_pct": -0.37
-      },
-      {
-        "code": "274",
-        "name": "섬유,의류,신발,호화품",
-        "change_pct": -0.39
-      },
-      {
-        "code": "291",
-        "name": "조선",
-        "change_pct": -0.43
-      },
-      {
-        "code": "331",
-        "name": "복합유틸리티",
-        "change_pct": -0.44
+        "change_pct": 1.07
       },
       {
         "code": "310",
         "name": "광고",
-        "change_pct": -0.53
+        "change_pct": 0.99
       },
       {
-        "code": "296",
-        "name": "운송인프라",
-        "change_pct": -0.54
+        "code": "331",
+        "name": "복합유틸리티",
+        "change_pct": 0.9
+      }
+    ],
+    "weakest": [
+      {
+        "code": "315",
+        "name": "손해보험",
+        "change_pct": -4.29
       },
       {
-        "code": "323",
-        "name": "해운사",
-        "change_pct": -0.97
+        "code": "308",
+        "name": "인터넷과카탈로그소매",
+        "change_pct": -3.99
       },
       {
-        "code": "264",
-        "name": "백화점과일반상점",
-        "change_pct": -1.05
+        "code": "300",
+        "name": "양방향미디어와서비스",
+        "change_pct": -3.6
+      },
+      {
+        "code": "321",
+        "name": "증권",
+        "change_pct": -3.37
+      },
+      {
+        "code": "332",
+        "name": "문구류",
+        "change_pct": -3.08
+      },
+      {
+        "code": "316",
+        "name": "건강관리업체및서비스",
+        "change_pct": -2.71
+      },
+      {
+        "code": "280",
+        "name": "부동산",
+        "change_pct": -2.5
+      },
+      {
+        "code": "295",
+        "name": "에너지장비및서비스",
+        "change_pct": -2.45
+      }
+    ],
+    "sectors": [
+      {
+        "code": "285",
+        "name": "방송과엔터테인먼트",
+        "change_pct": 6.74
+      },
+      {
+        "code": "306",
+        "name": "전기장비",
+        "change_pct": 4.34
+      },
+      {
+        "code": "278",
+        "name": "반도체와반도체장비",
+        "change_pct": 2.64
+      },
+      {
+        "code": "287",
+        "name": "소프트웨어",
+        "change_pct": 2.58
+      },
+      {
+        "code": "282",
+        "name": "전자장비와기기",
+        "change_pct": 2.4
+      },
+      {
+        "code": "336",
+        "name": "다각화된통신서비스",
+        "change_pct": 1.07
+      },
+      {
+        "code": "310",
+        "name": "광고",
+        "change_pct": 0.99
+      },
+      {
+        "code": "331",
+        "name": "복합유틸리티",
+        "change_pct": 0.9
+      },
+      {
+        "code": "291",
+        "name": "조선",
+        "change_pct": 0.89
+      },
+      {
+        "code": "276",
+        "name": "복합기업",
+        "change_pct": 0.8
+      },
+      {
+        "code": "290",
+        "name": "교육서비스",
+        "change_pct": 0.67
+      },
+      {
+        "code": "25",
+        "name": "기타",
+        "change_pct": 0.54
+      },
+      {
+        "code": "313",
+        "name": "석유와가스",
+        "change_pct": 0.47
+      },
+      {
+        "code": "339",
+        "name": "다각화된소비자서비스",
+        "change_pct": 0.46
+      },
+      {
+        "code": "311",
+        "name": "포장재",
+        "change_pct": 0.41
+      },
+      {
+        "code": "330",
+        "name": "생명보험",
+        "change_pct": 0.41
+      },
+      {
+        "code": "293",
+        "name": "컴퓨터와주변기기",
+        "change_pct": 0.38
+      },
+      {
+        "code": "326",
+        "name": "항공화물운송과물류",
+        "change_pct": 0.38
+      },
+      {
+        "code": "294",
+        "name": "통신장비",
+        "change_pct": 0.35
+      },
+      {
+        "code": "279",
+        "name": "건설",
+        "change_pct": 0.33
+      },
+      {
+        "code": "318",
+        "name": "종이와목재",
+        "change_pct": 0.32
+      },
+      {
+        "code": "297",
+        "name": "가정용품",
+        "change_pct": 0.3
+      },
+      {
+        "code": "292",
+        "name": "핸드셋",
+        "change_pct": 0.25
+      },
+      {
+        "code": "269",
+        "name": "디스플레이장비및부품",
+        "change_pct": 0.19
+      },
+      {
+        "code": "299",
+        "name": "기계",
+        "change_pct": 0.19
+      },
+      {
+        "code": "338",
+        "name": "사무용전자제품",
+        "change_pct": 0.14
+      },
+      {
+        "code": "284",
+        "name": "우주항공과국방",
+        "change_pct": 0.06
+      },
+      {
+        "code": "327",
+        "name": "디스플레이패널",
+        "change_pct": -0.03
+      },
+      {
+        "code": "325",
+        "name": "전기유틸리티",
+        "change_pct": -0.04
+      },
+      {
+        "code": "314",
+        "name": "출판",
+        "change_pct": -0.06
+      },
+      {
+        "code": "283",
+        "name": "전기제품",
+        "change_pct": -0.09
+      },
+      {
+        "code": "289",
+        "name": "건축자재",
+        "change_pct": -0.11
+      },
+      {
+        "code": "277",
+        "name": "창업투자",
+        "change_pct": -0.25
+      },
+      {
+        "code": "320",
+        "name": "건축제품",
+        "change_pct": -0.25
+      },
+      {
+        "code": "328",
+        "name": "전문소매",
+        "change_pct": -0.27
+      },
+      {
+        "code": "304",
+        "name": "철강",
+        "change_pct": -0.42
+      },
+      {
+        "code": "329",
+        "name": "도로와철도운송",
+        "change_pct": -0.42
+      },
+      {
+        "code": "262",
+        "name": "생명과학도구및서비스",
+        "change_pct": -0.48
+      },
+      {
+        "code": "324",
+        "name": "상업서비스와공급품",
+        "change_pct": -0.52
+      },
+      {
+        "code": "270",
+        "name": "자동차부품",
+        "change_pct": -0.57
       },
       {
         "code": "309",
         "name": "음료",
-        "change_pct": -1.07
+        "change_pct": -0.59
       },
       {
-        "code": "275",
-        "name": "담배",
-        "change_pct": -1.08
+        "code": "271",
+        "name": "레저용장비와제품",
+        "change_pct": -0.6
       },
       {
-        "code": "303",
-        "name": "가구",
-        "change_pct": -2.21
+        "code": "323",
+        "name": "해운사",
+        "change_pct": -0.63
       },
       {
-        "code": "322",
-        "name": "비철금속",
-        "change_pct": -2.41
+        "code": "307",
+        "name": "전자제품",
+        "change_pct": -0.67
       },
       {
-        "code": "315",
-        "name": "손해보험",
-        "change_pct": -3.56
+        "code": "337",
+        "name": "카드",
+        "change_pct": -0.73
+      },
+      {
+        "code": "302",
+        "name": "식품과기본식료품소매",
+        "change_pct": -0.79
+      },
+      {
+        "code": "296",
+        "name": "운송인프라",
+        "change_pct": -0.81
+      },
+      {
+        "code": "319",
+        "name": "기타금융",
+        "change_pct": -0.86
+      },
+      {
+        "code": "312",
+        "name": "가스유틸리티",
+        "change_pct": -0.88
+      },
+      {
+        "code": "317",
+        "name": "호텔,레스토랑,레저",
+        "change_pct": -0.88
+      },
+      {
+        "code": "265",
+        "name": "판매업체",
+        "change_pct": -0.89
       },
       {
         "code": "263",
         "name": "게임엔터테인먼트",
-        "change_pct": -5.32
+        "change_pct": -0.97
+      },
+      {
+        "code": "274",
+        "name": "섬유,의류,신발,호화품",
+        "change_pct": -1.0
+      },
+      {
+        "code": "301",
+        "name": "은행",
+        "change_pct": -1.08
+      },
+      {
+        "code": "298",
+        "name": "가정용기기와용품",
+        "change_pct": -1.1
+      },
+      {
+        "code": "273",
+        "name": "자동차",
+        "change_pct": -1.11
+      },
+      {
+        "code": "281",
+        "name": "건강관리장비와용품",
+        "change_pct": -1.13
+      },
+      {
+        "code": "275",
+        "name": "담배",
+        "change_pct": -1.21
+      },
+      {
+        "code": "261",
+        "name": "제약",
+        "change_pct": -1.36
+      },
+      {
+        "code": "272",
+        "name": "화학",
+        "change_pct": -1.47
+      },
+      {
+        "code": "268",
+        "name": "식품",
+        "change_pct": -1.54
       },
       {
         "code": "288",
         "name": "건강관리기술",
-        "change_pct": -5.98
+        "change_pct": -1.7
+      },
+      {
+        "code": "286",
+        "name": "생물공학",
+        "change_pct": -1.88
+      },
+      {
+        "code": "334",
+        "name": "무역회사와판매업체",
+        "change_pct": -1.91
+      },
+      {
+        "code": "303",
+        "name": "가구",
+        "change_pct": -1.98
+      },
+      {
+        "code": "264",
+        "name": "백화점과일반상점",
+        "change_pct": -2.21
+      },
+      {
+        "code": "267",
+        "name": "IT서비스",
+        "change_pct": -2.27
+      },
+      {
+        "code": "266",
+        "name": "화장품",
+        "change_pct": -2.31
+      },
+      {
+        "code": "322",
+        "name": "비철금속",
+        "change_pct": -2.33
+      },
+      {
+        "code": "333",
+        "name": "무선통신서비스",
+        "change_pct": -2.36
       },
       {
         "code": "305",
         "name": "항공사",
-        "change_pct": -9.74
+        "change_pct": -2.38
+      },
+      {
+        "code": "295",
+        "name": "에너지장비및서비스",
+        "change_pct": -2.45
+      },
+      {
+        "code": "280",
+        "name": "부동산",
+        "change_pct": -2.5
+      },
+      {
+        "code": "316",
+        "name": "건강관리업체및서비스",
+        "change_pct": -2.71
+      },
+      {
+        "code": "332",
+        "name": "문구류",
+        "change_pct": -3.08
+      },
+      {
+        "code": "321",
+        "name": "증권",
+        "change_pct": -3.37
+      },
+      {
+        "code": "300",
+        "name": "양방향미디어와서비스",
+        "change_pct": -3.6
+      },
+      {
+        "code": "308",
+        "name": "인터넷과카탈로그소매",
+        "change_pct": -3.99
+      },
+      {
+        "code": "315",
+        "name": "손해보험",
+        "change_pct": -4.29
       }
     ],
     "source_id": "naver-finance-public",
