@@ -1,26 +1,20 @@
 {
-  "generated_at": "2026-11-17T03:22:30+09:00",
+  "generated_at": "2026-11-17T11:01:46+09:00",
   "KOSPI200_FUTURES": {
     "status": "CONNECTED_SECONDARY",
     "instrument": "KOSPI200 연결선물 (NAVER FUT)",
-    "close": 789.35,
-    "previous_close": 822.35,
-    "change": -33.0,
-    "change_pct": -4.01,
-    "as_of": "2026-11-16",
+    "close": 783.2,
+    "previous_close": 789.35,
+    "change": -6.15,
+    "change_pct": -0.78,
+    "as_of": "2026-11-17",
     "investor_flow_100m_krw": {
-      "individual": 270.0,
-      "foreign": 3979.0,
-      "institution": -4186.0
+      "individual": 173.0,
+      "foreign": 920.0,
+      "institution": -1144.0
     },
-    "flow_as_of": "20261116",
+    "flow_as_of": "20261117",
     "history": [
-      {
-        "date": "2026-10-20",
-        "close": 861.05,
-        "change": -32.2,
-        "change_pct": -3.6
-      },
       {
         "date": "2026-10-21",
         "close": 893.05,
@@ -134,6 +128,12 @@
         "close": 789.35,
         "change": -33.0,
         "change_pct": -4.01
+      },
+      {
+        "date": "2026-11-17",
+        "close": 783.2,
+        "change": -6.15,
+        "change_pct": -0.78
       }
     ],
     "open_interest": null,
@@ -141,9 +141,9 @@
     "source_kind": "secondary",
     "source_url": "https://m.stock.naver.com/api/index/FUT/price",
     "note": "무료 공개 보조 데이터입니다. KRX 공식 데이터가 연결되면 공식값을 우선합니다.",
-    "spot_kpi200": 791.56,
-    "basis": -2.21,
-    "basis_pct": -0.279,
+    "spot_kpi200": 780.3,
+    "basis": 2.9,
+    "basis_pct": 0.372,
     "official_status": "USER_ACTION_REQUIRED",
     "official_reason": "KRX_AUTH_KEY required for authoritative KOSPI200 futures feed"
   },
@@ -152,23 +152,23 @@
     "observations": [
       {
         "factor": "futures_vs_spot",
-        "state": "FUTURES_SPOT_ALIGNED",
-        "value": 0.02,
+        "state": "FUTURES_RELATIVELY_STRONG",
+        "value": 0.64,
         "unit": "percentage_point",
-        "explanation": "KOSPI200 선물과 현물의 당일 등락률 차이가 크지 않습니다."
+        "explanation": "KOSPI200 선물의 등락률이 현물 KOSPI200보다 높습니다. 선물이 상대적으로 강하지만 이것만으로 현물 상승을 예측하지 않습니다."
       },
       {
         "factor": "basis",
-        "state": "NEGATIVE_BASIS",
-        "value": -0.279,
+        "state": "POSITIVE_BASIS",
+        "value": 0.372,
         "unit": "percent",
-        "explanation": "선물이 현물보다 낮은 백워데이션형 베이시스입니다. 헤지·수급·만기 요인을 함께 확인해야 합니다."
+        "explanation": "선물이 현물보다 높은 콘탱고형 베이시스입니다. 배당·금리·잔존만기 영향을 받으므로 강세 신호로 단독 해석하지 않습니다."
       },
       {
         "factor": "us_tech_context",
         "state": "OBSERVED_CONTEXT",
-        "nasdaq100_futures_change_pct": -3.8448368205245274,
-        "sox_change_pct": -3.645351322961201,
+        "nasdaq100_futures_change_pct": -3.8290325129727028,
+        "sox_change_pct": -4.218466742343232,
         "explanation": "Nasdaq100 선물은 현재 선행시장, SOX는 최근 미국 현물 세션의 반도체 환경을 보여주는 보조 관측치입니다. 서로 다른 시점의 지표를 같은 실시간 신호처럼 합치지 않습니다."
       }
     ],
