@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-11-19T09:34:16+09:00",
+  "generated_at": "2026-11-19T16:55:47+09:00",
   "model_status": "SHADOW",
   "validation": {
     "evidence_state": "ESTIMATED",
-    "sample_count": 37,
-    "gross_success_rate": 0.4054,
-    "net_success_rate": 0.3243,
-    "avg_gross_directional_return_pct": -2.5471,
-    "avg_net_after_cost_pct": -2.8971,
-    "avg_mfe_pct": 4.1101,
-    "avg_mae_pct": -7.4681,
+    "sample_count": 35,
+    "gross_success_rate": 0.4,
+    "net_success_rate": 0.3143,
+    "avg_gross_directional_return_pct": -2.629,
+    "avg_net_after_cost_pct": -2.979,
+    "avg_mfe_pct": 4.0789,
+    "avg_mae_pct": -7.5095,
     "cost_assumption": {
       "evidence_state": "ASSUMPTION",
       "fees_bps": 15.0,
@@ -314,7 +314,7 @@
       "benchmark": "KOSPI",
       "backtest": {
         "evidence_state": "ESTIMATED",
-        "sample_count": 8,
+        "sample_count": 7,
         "forward_days": 5,
         "cost_assumption": {
           "evidence_state": "ASSUMPTION",
@@ -323,24 +323,24 @@
           "round_trip_total_bps": 35.0
         },
         "overall": {
-          "sample_count": 8,
-          "gross_success_rate": 0.125,
+          "sample_count": 7,
+          "gross_success_rate": 0.1429,
           "net_success_rate": 0.0,
-          "avg_gross_directional_return_pct": -5.024,
-          "avg_net_after_cost_pct": -5.374,
-          "avg_mfe_pct": 1.563,
-          "avg_mae_pct": -10.171,
+          "avg_gross_directional_return_pct": -4.9,
+          "avg_net_after_cost_pct": -5.25,
+          "avg_mfe_pct": 1.692,
+          "avg_mae_pct": -10.221,
           "worst_mae_pct": -14.066
         },
         "by_state": {
           "ACCUMULATION_OR_ABSORPTION_CANDIDATE": {
-            "sample_count": 5,
-            "gross_success_rate": 0.2,
+            "sample_count": 4,
+            "gross_success_rate": 0.25,
             "net_success_rate": 0.0,
-            "avg_gross_directional_return_pct": -3.518,
-            "avg_net_after_cost_pct": -3.868,
-            "avg_mfe_pct": 2.615,
-            "avg_mae_pct": -9.719,
+            "avg_gross_directional_return_pct": -2.923,
+            "avg_net_after_cost_pct": -3.273,
+            "avg_mfe_pct": 3.105,
+            "avg_mae_pct": -9.692,
             "worst_mae_pct": -10.965
           },
           "BREAKOUT_WITH_DEMAND": {
@@ -366,13 +366,13 @@
         },
         "by_regime": {
           "UP": {
-            "sample_count": 4,
-            "gross_success_rate": 0.25,
+            "sample_count": 3,
+            "gross_success_rate": 0.3333,
             "net_success_rate": 0.0,
-            "avg_gross_directional_return_pct": -2.409,
-            "avg_net_after_cost_pct": -2.759,
-            "avg_mfe_pct": 2.036,
-            "avg_mae_pct": -9.948,
+            "avg_gross_directional_return_pct": -1.247,
+            "avg_net_after_cost_pct": -1.597,
+            "avg_mfe_pct": 2.496,
+            "avg_mae_pct": -9.989,
             "worst_mae_pct": -10.965
           },
           "SIDEWAYS": {
@@ -397,19 +397,6 @@
           }
         },
         "events": [
-          {
-            "date": "2026-08-05",
-            "state": "ACCUMULATION_OR_ABSORPTION_CANDIDATE",
-            "direction": "BULLISH",
-            "regime": "UP",
-            "forward_days": 5,
-            "gross_directional_return_pct": -5.895,
-            "net_after_cost_pct": -6.245,
-            "mfe_pct": 0.655,
-            "mae_pct": -9.825,
-            "gross_success": false,
-            "net_success": false
-          },
           {
             "date": "2026-08-06",
             "state": "ACCUMULATION_OR_ABSORPTION_CANDIDATE",
@@ -511,7 +498,7 @@
       "benchmark": "KOSPI",
       "backtest": {
         "evidence_state": "ESTIMATED",
-        "sample_count": 18,
+        "sample_count": 17,
         "forward_days": 5,
         "cost_assumption": {
           "evidence_state": "ASSUMPTION",
@@ -520,13 +507,13 @@
           "round_trip_total_bps": 35.0
         },
         "overall": {
-          "sample_count": 18,
-          "gross_success_rate": 0.6111,
-          "net_success_rate": 0.5556,
-          "avg_gross_directional_return_pct": 0.878,
-          "avg_net_after_cost_pct": 0.528,
-          "avg_mfe_pct": 4.931,
-          "avg_mae_pct": -3.803,
+          "sample_count": 17,
+          "gross_success_rate": 0.5882,
+          "net_success_rate": 0.5294,
+          "avg_gross_directional_return_pct": 0.714,
+          "avg_net_after_cost_pct": 0.364,
+          "avg_mfe_pct": 4.712,
+          "avg_mae_pct": -3.811,
           "worst_mae_pct": -16.209
         },
         "by_state": {
@@ -541,13 +528,13 @@
             "worst_mae_pct": -1.875
           },
           "BREAKOUT_WITH_DEMAND": {
-            "sample_count": 7,
-            "gross_success_rate": 0.4286,
-            "net_success_rate": 0.2857,
-            "avg_gross_directional_return_pct": -2.235,
-            "avg_net_after_cost_pct": -2.585,
-            "avg_mfe_pct": 5.047,
-            "avg_mae_pct": -6.825,
+            "sample_count": 6,
+            "gross_success_rate": 0.3333,
+            "net_success_rate": 0.1667,
+            "avg_gross_directional_return_pct": -3.219,
+            "avg_net_after_cost_pct": -3.569,
+            "avg_mfe_pct": 4.446,
+            "avg_mae_pct": -7.351,
             "worst_mae_pct": -16.209
           },
           "DISTRIBUTION_RISK": {
@@ -563,13 +550,13 @@
         },
         "by_regime": {
           "UP": {
-            "sample_count": 3,
-            "gross_success_rate": 0.6667,
-            "net_success_rate": 0.6667,
-            "avg_gross_directional_return_pct": -0.784,
-            "avg_net_after_cost_pct": -1.134,
-            "avg_mfe_pct": 6.706,
-            "avg_mae_pct": -7.061,
+            "sample_count": 2,
+            "gross_success_rate": 0.5,
+            "net_success_rate": 0.5,
+            "avg_gross_directional_return_pct": -3.012,
+            "avg_net_after_cost_pct": -3.362,
+            "avg_mfe_pct": 5.733,
+            "avg_mae_pct": -8.757,
             "worst_mae_pct": -16.209
           },
           "SIDEWAYS": {
@@ -594,19 +581,6 @@
           }
         },
         "events": [
-          {
-            "date": "2026-08-05",
-            "state": "BREAKOUT_WITH_DEMAND",
-            "direction": "BULLISH",
-            "regime": "UP",
-            "forward_days": 5,
-            "gross_directional_return_pct": 3.67,
-            "net_after_cost_pct": 3.32,
-            "mfe_pct": 8.65,
-            "mae_pct": -3.67,
-            "gross_success": true,
-            "net_success": true
-          },
           {
             "date": "2026-08-06",
             "state": "BREAKOUT_WITH_DEMAND",
