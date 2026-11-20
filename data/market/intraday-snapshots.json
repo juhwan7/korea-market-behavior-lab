@@ -1,67 +1,8 @@
 {
-  "generated_at": "2026-11-20T13:21:25+09:00",
+  "generated_at": "2026-11-20T22:18:28+09:00",
   "retention_days": 7,
   "count": 25,
   "snapshots": [
-    {
-      "at": "2026-11-13T20:34:53+09:00",
-      "indices": {
-        "KOSPI": {
-          "close": 5290.53,
-          "change_pct": -0.98,
-          "breadth": {},
-          "foreign_net_100m_krw": null
-        },
-        "KOSDAQ": {
-          "close": 699.66,
-          "change_pct": 0.45,
-          "breadth": {},
-          "foreign_net_100m_krw": null
-        },
-        "KPI200": {
-          "close": 824.78,
-          "change_pct": -1.05,
-          "breadth": {},
-          "foreign_net_100m_krw": null
-        }
-      },
-      "program_net_100m_krw": null,
-      "futures": {
-        "close": 822.35,
-        "change_pct": -0.62,
-        "basis": -2.43,
-        "foreign_net_100m_krw": 5664.0,
-        "source_kind": "secondary"
-      },
-      "global": {
-        "NASDAQ100_FUTURES": {
-          "price": 28417.5,
-          "change_pct": 1.4385407556800942
-        },
-        "SP500_FUTURES": {
-          "price": 7629.5,
-          "change_pct": 0.7294451595867578
-        },
-        "SOX": {
-          "price": 10506.674,
-          "change_pct": 16.596501663496536
-        },
-        "VIX": {
-          "price": 18.34,
-          "change_pct": -7.93172690763053
-        },
-        "USD_KRW": {
-          "price": 1335.62,
-          "change_pct": -1.9872312321127288
-        },
-        "WTI": {
-          "price": 88.22,
-          "change_pct": 1.5774323546344324
-        }
-      },
-      "market_strength": 49.8,
-      "turnover_advance_share": 0.4803
-    },
     {
       "at": "2026-11-14T03:46:07+09:00",
       "indices": {
@@ -1476,6 +1417,65 @@
         }
       },
       "market_strength": 12.8,
+      "turnover_advance_share": 0.1466
+    },
+    {
+      "at": "2026-11-20T22:18:28+09:00",
+      "indices": {
+        "KOSPI": {
+          "close": 4869.96,
+          "change_pct": -5.21,
+          "breadth": {},
+          "foreign_net_100m_krw": null
+        },
+        "KOSDAQ": {
+          "close": 645.68,
+          "change_pct": -5.71,
+          "breadth": {},
+          "foreign_net_100m_krw": null
+        },
+        "KPI200": {
+          "close": 755.34,
+          "change_pct": -5.53,
+          "breadth": {},
+          "foreign_net_100m_krw": null
+        }
+      },
+      "program_net_100m_krw": null,
+      "futures": {
+        "close": 752.75,
+        "change_pct": -5.43,
+        "basis": -2.59,
+        "foreign_net_100m_krw": -649.0,
+        "source_kind": "secondary"
+      },
+      "global": {
+        "NASDAQ100_FUTURES": {
+          "price": 26116.5,
+          "change_pct": -4.279941724621347
+        },
+        "SP500_FUTURES": {
+          "price": 7128.0,
+          "change_pct": -4.180669444817852
+        },
+        "SOX": {
+          "price": 9419.723,
+          "change_pct": -10.345304458977013
+        },
+        "VIX": {
+          "price": 30.76,
+          "change_pct": 34.26451331296378
+        },
+        "USD_KRW": {
+          "price": 1339.43,
+          "change_pct": 0.46352897056066483
+        },
+        "WTI": {
+          "price": 81.8,
+          "change_pct": -4.573028464769018
+        }
+      },
+      "market_strength": 11.0,
       "turnover_advance_share": 0.1466
     }
   ]
