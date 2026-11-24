@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-24T10:47:41+09:00",
+  "generated_at": "2026-11-24T20:41:50+09:00",
   "items": [
     {
       "code": "090710",
@@ -11,38 +11,85 @@
       "as_of": "2026-11-24",
       "aligned_days": 80,
       "overall_state": "STRONGER",
-      "weighted_excess_return_pct": 50.07,
+      "weighted_excess_return_pct": 56.59,
       "windows": {
         "1": {
           "start_date": "2026-11-23",
           "end_date": "2026-11-24",
-          "stock_return_pct": 24.65,
-          "benchmark_return_pct": 5.13,
-          "excess_return_pct": 19.52,
+          "stock_return_pct": 29.9,
+          "benchmark_return_pct": 4.79,
+          "excess_return_pct": 25.11,
           "state": "STRONGER"
         },
         "3": {
           "start_date": "2026-11-19",
           "end_date": "2026-11-24",
-          "stock_return_pct": 50.9,
-          "benchmark_return_pct": -2.45,
-          "excess_return_pct": 53.35,
+          "stock_return_pct": 57.25,
+          "benchmark_return_pct": -2.76,
+          "excess_return_pct": 60.01,
           "state": "STRONGER"
         },
         "5": {
           "start_date": "2026-11-17",
           "end_date": "2026-11-24",
-          "stock_return_pct": 65.05,
-          "benchmark_return_pct": 2.76,
-          "excess_return_pct": 62.28,
+          "stock_return_pct": 71.99,
+          "benchmark_return_pct": 2.43,
+          "excess_return_pct": 69.56,
           "state": "STRONGER"
         },
         "20": {
           "start_date": "2026-10-27",
           "end_date": "2026-11-24",
-          "stock_return_pct": 40.35,
-          "benchmark_return_pct": -10.19,
-          "excess_return_pct": 50.55,
+          "stock_return_pct": 46.26,
+          "benchmark_return_pct": -10.48,
+          "excess_return_pct": 56.74,
+          "state": "STRONGER"
+        }
+      },
+      "method_note": "같은 거래일의 종목·벤치마크 종가 수익률을 1·3·5·20거래일로 비교한 기술적 상대강도입니다. 미래 수익률 확률을 의미하지 않습니다."
+    },
+    {
+      "code": "108490",
+      "name": "로보티즈",
+      "benchmark": "KOSDAQ",
+      "source_id": "naver-finance-public",
+      "source_kind": "secondary",
+      "evidence_state": "ESTIMATED",
+      "as_of": "2026-11-24",
+      "aligned_days": 80,
+      "overall_state": "STRONGER",
+      "weighted_excess_return_pct": 21.05,
+      "windows": {
+        "1": {
+          "start_date": "2026-11-23",
+          "end_date": "2026-11-24",
+          "stock_return_pct": 12.83,
+          "benchmark_return_pct": 4.79,
+          "excess_return_pct": 8.04,
+          "state": "STRONGER"
+        },
+        "3": {
+          "start_date": "2026-11-19",
+          "end_date": "2026-11-24",
+          "stock_return_pct": 12.15,
+          "benchmark_return_pct": -2.76,
+          "excess_return_pct": 14.92,
+          "state": "STRONGER"
+        },
+        "5": {
+          "start_date": "2026-11-17",
+          "end_date": "2026-11-24",
+          "stock_return_pct": 33.73,
+          "benchmark_return_pct": 2.43,
+          "excess_return_pct": 31.3,
+          "state": "STRONGER"
+        },
+        "20": {
+          "start_date": "2026-10-27",
+          "end_date": "2026-11-24",
+          "stock_return_pct": 11.26,
+          "benchmark_return_pct": -10.48,
+          "excess_return_pct": 21.74,
           "state": "STRONGER"
         }
       },
@@ -58,86 +105,39 @@
       "as_of": "2026-11-24",
       "aligned_days": 39,
       "overall_state": "STRONGER",
-      "weighted_excess_return_pct": 25.37,
+      "weighted_excess_return_pct": 9.97,
       "windows": {
         "1": {
           "start_date": "2026-11-23",
           "end_date": "2026-11-24",
-          "stock_return_pct": 8.98,
-          "benchmark_return_pct": 5.13,
-          "excess_return_pct": 3.86,
-          "state": "STRONGER"
-        },
-        "3": {
-          "start_date": "2026-11-19",
-          "end_date": "2026-11-24",
-          "stock_return_pct": 29.79,
-          "benchmark_return_pct": -2.45,
-          "excess_return_pct": 32.24,
-          "state": "STRONGER"
-        },
-        "5": {
-          "start_date": "2026-11-17",
-          "end_date": "2026-11-24",
-          "stock_return_pct": 77.99,
-          "benchmark_return_pct": 2.76,
-          "excess_return_pct": 75.23,
-          "state": "STRONGER"
-        },
-        "20": {
-          "start_date": "2026-10-27",
-          "end_date": "2026-11-24",
-          "stock_return_pct": -20.24,
-          "benchmark_return_pct": -10.19,
-          "excess_return_pct": -10.05,
+          "stock_return_pct": -4.96,
+          "benchmark_return_pct": 4.79,
+          "excess_return_pct": -9.75,
           "state": "WEAKER"
-        }
-      },
-      "method_note": "같은 거래일의 종목·벤치마크 종가 수익률을 1·3·5·20거래일로 비교한 기술적 상대강도입니다. 미래 수익률 확률을 의미하지 않습니다."
-    },
-    {
-      "code": "108490",
-      "name": "로보티즈",
-      "benchmark": "KOSDAQ",
-      "source_id": "naver-finance-public",
-      "source_kind": "secondary",
-      "evidence_state": "ESTIMATED",
-      "as_of": "2026-11-24",
-      "aligned_days": 80,
-      "overall_state": "STRONGER",
-      "weighted_excess_return_pct": 24.73,
-      "windows": {
-        "1": {
-          "start_date": "2026-11-23",
-          "end_date": "2026-11-24",
-          "stock_return_pct": 16.63,
-          "benchmark_return_pct": 5.13,
-          "excess_return_pct": 11.51,
-          "state": "STRONGER"
         },
         "3": {
           "start_date": "2026-11-19",
           "end_date": "2026-11-24",
-          "stock_return_pct": 15.94,
-          "benchmark_return_pct": -2.45,
-          "excess_return_pct": 18.39,
+          "stock_return_pct": 13.18,
+          "benchmark_return_pct": -2.76,
+          "excess_return_pct": 15.94,
           "state": "STRONGER"
         },
         "5": {
           "start_date": "2026-11-17",
           "end_date": "2026-11-24",
-          "stock_return_pct": 38.24,
-          "benchmark_return_pct": 2.76,
-          "excess_return_pct": 35.48,
+          "stock_return_pct": 55.21,
+          "benchmark_return_pct": 2.43,
+          "excess_return_pct": 52.78,
           "state": "STRONGER"
         },
         "20": {
           "start_date": "2026-10-27",
           "end_date": "2026-11-24",
-          "stock_return_pct": 15.02,
-          "benchmark_return_pct": -10.19,
-          "excess_return_pct": 25.21,
-          "state": "STRONGER"
+          "stock_return_pct": -30.45,
+          "benchmark_return_pct": -10.48,
+          "excess_return_pct": -19.97,
+          "state": "WEAKER"
         }
       },
       "method_note": "같은 거래일의 종목·벤치마크 종가 수익률을 1·3·5·20거래일로 비교한 기술적 상대강도입니다. 미래 수익률 확률을 의미하지 않습니다."
@@ -152,38 +152,38 @@
       "as_of": "2026-11-24",
       "aligned_days": 80,
       "overall_state": "STRONGER",
-      "weighted_excess_return_pct": 19.41,
+      "weighted_excess_return_pct": 5.4,
       "windows": {
         "1": {
           "start_date": "2026-11-23",
           "end_date": "2026-11-24",
-          "stock_return_pct": 4.9,
-          "benchmark_return_pct": 5.13,
-          "excess_return_pct": -0.23,
-          "state": "SIMILAR"
+          "stock_return_pct": -7.96,
+          "benchmark_return_pct": 4.79,
+          "excess_return_pct": -12.75,
+          "state": "WEAKER"
         },
         "3": {
           "start_date": "2026-11-19",
           "end_date": "2026-11-24",
-          "stock_return_pct": -2.0,
-          "benchmark_return_pct": -2.45,
-          "excess_return_pct": 0.45,
-          "state": "SIMILAR"
+          "stock_return_pct": -14.02,
+          "benchmark_return_pct": -2.76,
+          "excess_return_pct": -11.26,
+          "state": "WEAKER"
         },
         "5": {
           "start_date": "2026-11-17",
           "end_date": "2026-11-24",
-          "stock_return_pct": 6.53,
-          "benchmark_return_pct": 2.76,
-          "excess_return_pct": 3.77,
-          "state": "STRONGER"
+          "stock_return_pct": -6.53,
+          "benchmark_return_pct": 2.43,
+          "excess_return_pct": -8.97,
+          "state": "WEAKER"
         },
         "20": {
           "start_date": "2026-10-27",
           "end_date": "2026-11-24",
-          "stock_return_pct": 40.95,
-          "benchmark_return_pct": -10.19,
-          "excess_return_pct": 51.14,
+          "stock_return_pct": 23.66,
+          "benchmark_return_pct": -10.48,
+          "excess_return_pct": 34.14,
           "state": "STRONGER"
         }
       },
@@ -199,39 +199,39 @@
       "as_of": "2026-11-24",
       "aligned_days": 80,
       "overall_state": "STRONGER",
-      "weighted_excess_return_pct": 5.42,
+      "weighted_excess_return_pct": 2.12,
       "windows": {
         "1": {
           "start_date": "2026-11-23",
           "end_date": "2026-11-24",
-          "stock_return_pct": 14.15,
-          "benchmark_return_pct": 6.95,
-          "excess_return_pct": 7.2,
+          "stock_return_pct": 9.83,
+          "benchmark_return_pct": 6.32,
+          "excess_return_pct": 3.51,
           "state": "STRONGER"
         },
         "3": {
           "start_date": "2026-11-19",
           "end_date": "2026-11-24",
-          "stock_return_pct": 4.39,
-          "benchmark_return_pct": -1.99,
-          "excess_return_pct": 6.37,
+          "stock_return_pct": 0.44,
+          "benchmark_return_pct": -2.57,
+          "excess_return_pct": 3.01,
           "state": "STRONGER"
         },
         "5": {
           "start_date": "2026-11-17",
           "end_date": "2026-11-24",
-          "stock_return_pct": 11.04,
-          "benchmark_return_pct": 1.35,
-          "excess_return_pct": 9.69,
+          "stock_return_pct": 6.84,
+          "benchmark_return_pct": 0.76,
+          "excess_return_pct": 6.09,
           "state": "STRONGER"
         },
         "20": {
           "start_date": "2026-10-27",
           "end_date": "2026-11-24",
-          "stock_return_pct": -9.96,
-          "benchmark_return_pct": -10.69,
-          "excess_return_pct": 0.73,
-          "state": "SIMILAR"
+          "stock_return_pct": -13.37,
+          "benchmark_return_pct": -11.21,
+          "excess_return_pct": -2.15,
+          "state": "WEAKER"
         }
       },
       "method_note": "같은 거래일의 종목·벤치마크 종가 수익률을 1·3·5·20거래일로 비교한 기술적 상대강도입니다. 미래 수익률 확률을 의미하지 않습니다."
@@ -245,86 +245,86 @@
       "evidence_state": "ESTIMATED",
       "as_of": "2026-11-24",
       "aligned_days": 80,
-      "overall_state": "STRONGER",
-      "weighted_excess_return_pct": 1.64,
+      "overall_state": "SIMILAR",
+      "weighted_excess_return_pct": 0.41,
       "windows": {
         "1": {
           "start_date": "2026-11-23",
           "end_date": "2026-11-24",
-          "stock_return_pct": 3.78,
-          "benchmark_return_pct": 6.95,
-          "excess_return_pct": -3.17,
+          "stock_return_pct": 1.89,
+          "benchmark_return_pct": 6.32,
+          "excess_return_pct": -4.43,
           "state": "WEAKER"
         },
         "3": {
           "start_date": "2026-11-19",
           "end_date": "2026-11-24",
-          "stock_return_pct": -5.33,
-          "benchmark_return_pct": -1.99,
-          "excess_return_pct": -3.34,
+          "stock_return_pct": -7.05,
+          "benchmark_return_pct": -2.57,
+          "excess_return_pct": -4.49,
           "state": "WEAKER"
         },
         "5": {
           "start_date": "2026-11-17",
           "end_date": "2026-11-24",
-          "stock_return_pct": -4.28,
-          "benchmark_return_pct": 1.35,
-          "excess_return_pct": -5.63,
+          "stock_return_pct": -6.02,
+          "benchmark_return_pct": 0.76,
+          "excess_return_pct": -6.78,
           "state": "WEAKER"
         },
         "20": {
           "start_date": "2026-10-27",
           "end_date": "2026-11-24",
-          "stock_return_pct": 1.68,
-          "benchmark_return_pct": -10.69,
-          "excess_return_pct": 12.37,
+          "stock_return_pct": -0.17,
+          "benchmark_return_pct": -11.21,
+          "excess_return_pct": 11.05,
           "state": "STRONGER"
         }
       },
       "method_note": "같은 거래일의 종목·벤치마크 종가 수익률을 1·3·5·20거래일로 비교한 기술적 상대강도입니다. 미래 수익률 확률을 의미하지 않습니다."
     },
     {
-      "code": "402340",
-      "name": "SK스퀘어",
+      "code": "006400",
+      "name": "삼성SDI",
       "benchmark": "KOSPI",
       "source_id": "naver-finance-public",
       "source_kind": "secondary",
       "evidence_state": "ESTIMATED",
       "as_of": "2026-11-24",
       "aligned_days": 80,
-      "overall_state": "SIMILAR",
-      "weighted_excess_return_pct": 1.3,
+      "overall_state": "WEAKER",
+      "weighted_excess_return_pct": -1.82,
       "windows": {
         "1": {
           "start_date": "2026-11-23",
           "end_date": "2026-11-24",
-          "stock_return_pct": 6.66,
-          "benchmark_return_pct": 6.95,
-          "excess_return_pct": -0.29,
+          "stock_return_pct": 7.35,
+          "benchmark_return_pct": 6.32,
+          "excess_return_pct": 1.03,
           "state": "SIMILAR"
         },
         "3": {
           "start_date": "2026-11-19",
           "end_date": "2026-11-24",
-          "stock_return_pct": -0.81,
-          "benchmark_return_pct": -1.99,
-          "excess_return_pct": 1.18,
-          "state": "SIMILAR"
+          "stock_return_pct": 0.23,
+          "benchmark_return_pct": -2.57,
+          "excess_return_pct": 2.8,
+          "state": "STRONGER"
         },
         "5": {
           "start_date": "2026-11-17",
           "end_date": "2026-11-24",
-          "stock_return_pct": 9.19,
-          "benchmark_return_pct": 1.35,
-          "excess_return_pct": 7.83,
-          "state": "STRONGER"
+          "stock_return_pct": -2.27,
+          "benchmark_return_pct": 0.76,
+          "excess_return_pct": -3.02,
+          "state": "WEAKER"
         },
         "20": {
           "start_date": "2026-10-27",
           "end_date": "2026-11-24",
-          "stock_return_pct": -13.9,
-          "benchmark_return_pct": -10.69,
-          "excess_return_pct": -3.21,
+          "stock_return_pct": -15.98,
+          "benchmark_return_pct": -11.21,
+          "excess_return_pct": -4.77,
           "state": "WEAKER"
         }
       },
@@ -339,133 +339,86 @@
       "evidence_state": "ESTIMATED",
       "as_of": "2026-11-24",
       "aligned_days": 80,
-      "overall_state": "SIMILAR",
-      "weighted_excess_return_pct": 0.41,
+      "overall_state": "WEAKER",
+      "weighted_excess_return_pct": -4.24,
       "windows": {
         "1": {
           "start_date": "2026-11-23",
           "end_date": "2026-11-24",
-          "stock_return_pct": 6.81,
-          "benchmark_return_pct": 6.95,
-          "excess_return_pct": -0.14,
-          "state": "SIMILAR"
+          "stock_return_pct": 1.09,
+          "benchmark_return_pct": 6.32,
+          "excess_return_pct": -5.23,
+          "state": "WEAKER"
         },
         "3": {
           "start_date": "2026-11-19",
           "end_date": "2026-11-24",
-          "stock_return_pct": -1.18,
-          "benchmark_return_pct": -1.99,
-          "excess_return_pct": 0.81,
-          "state": "SIMILAR"
+          "stock_return_pct": -6.47,
+          "benchmark_return_pct": -2.57,
+          "excess_return_pct": -3.9,
+          "state": "WEAKER"
         },
         "5": {
           "start_date": "2026-11-17",
           "end_date": "2026-11-24",
-          "stock_return_pct": 6.91,
-          "benchmark_return_pct": 1.35,
-          "excess_return_pct": 5.56,
-          "state": "STRONGER"
+          "stock_return_pct": 1.18,
+          "benchmark_return_pct": 0.76,
+          "excess_return_pct": 0.43,
+          "state": "SIMILAR"
         },
         "20": {
           "start_date": "2026-10-27",
           "end_date": "2026-11-24",
-          "stock_return_pct": -14.41,
-          "benchmark_return_pct": -10.69,
-          "excess_return_pct": -3.72,
+          "stock_return_pct": -19.0,
+          "benchmark_return_pct": -11.21,
+          "excess_return_pct": -7.78,
           "state": "WEAKER"
         }
       },
       "method_note": "같은 거래일의 종목·벤치마크 종가 수익률을 1·3·5·20거래일로 비교한 기술적 상대강도입니다. 미래 수익률 확률을 의미하지 않습니다."
     },
     {
-      "code": "006400",
-      "name": "삼성SDI",
+      "code": "402340",
+      "name": "SK스퀘어",
       "benchmark": "KOSPI",
       "source_id": "naver-finance-public",
       "source_kind": "secondary",
       "evidence_state": "ESTIMATED",
       "as_of": "2026-11-24",
       "aligned_days": 80,
-      "overall_state": "SIMILAR",
-      "weighted_excess_return_pct": -0.19,
+      "overall_state": "WEAKER",
+      "weighted_excess_return_pct": -4.67,
       "windows": {
         "1": {
           "start_date": "2026-11-23",
           "end_date": "2026-11-24",
-          "stock_return_pct": 9.84,
-          "benchmark_return_pct": 6.95,
-          "excess_return_pct": 2.89,
-          "state": "STRONGER"
-        },
-        "3": {
-          "start_date": "2026-11-19",
-          "end_date": "2026-11-24",
-          "stock_return_pct": 2.56,
-          "benchmark_return_pct": -1.99,
-          "excess_return_pct": 4.55,
-          "state": "STRONGER"
-        },
-        "5": {
-          "start_date": "2026-11-17",
-          "end_date": "2026-11-24",
-          "stock_return_pct": 0.0,
-          "benchmark_return_pct": 1.35,
-          "excess_return_pct": -1.35,
-          "state": "SIMILAR"
-        },
-        "20": {
-          "start_date": "2026-10-27",
-          "end_date": "2026-11-24",
-          "stock_return_pct": -14.04,
-          "benchmark_return_pct": -10.69,
-          "excess_return_pct": -3.35,
+          "stock_return_pct": -0.43,
+          "benchmark_return_pct": 6.32,
+          "excess_return_pct": -6.75,
           "state": "WEAKER"
-        }
-      },
-      "method_note": "같은 거래일의 종목·벤치마크 종가 수익률을 1·3·5·20거래일로 비교한 기술적 상대강도입니다. 미래 수익률 확률을 의미하지 않습니다."
-    },
-    {
-      "code": "009150",
-      "name": "삼성전기",
-      "benchmark": "KOSPI",
-      "source_id": "naver-finance-public",
-      "source_kind": "secondary",
-      "evidence_state": "ESTIMATED",
-      "as_of": "2026-11-24",
-      "aligned_days": 80,
-      "overall_state": "SIMILAR",
-      "weighted_excess_return_pct": -1.31,
-      "windows": {
-        "1": {
-          "start_date": "2026-11-23",
-          "end_date": "2026-11-24",
-          "stock_return_pct": 9.79,
-          "benchmark_return_pct": 6.95,
-          "excess_return_pct": 2.84,
-          "state": "STRONGER"
         },
         "3": {
           "start_date": "2026-11-19",
           "end_date": "2026-11-24",
-          "stock_return_pct": -0.91,
-          "benchmark_return_pct": -1.99,
-          "excess_return_pct": 1.08,
-          "state": "SIMILAR"
+          "stock_return_pct": -7.4,
+          "benchmark_return_pct": -2.57,
+          "excess_return_pct": -4.84,
+          "state": "WEAKER"
         },
         "5": {
           "start_date": "2026-11-17",
           "end_date": "2026-11-24",
-          "stock_return_pct": 16.98,
-          "benchmark_return_pct": 1.35,
-          "excess_return_pct": 15.62,
-          "state": "STRONGER"
+          "stock_return_pct": 1.93,
+          "benchmark_return_pct": 0.76,
+          "excess_return_pct": 1.17,
+          "state": "SIMILAR"
         },
         "20": {
           "start_date": "2026-10-27",
           "end_date": "2026-11-24",
-          "stock_return_pct": -28.63,
-          "benchmark_return_pct": -10.69,
-          "excess_return_pct": -17.94,
+          "stock_return_pct": -19.63,
+          "benchmark_return_pct": -11.21,
+          "excess_return_pct": -8.41,
           "state": "WEAKER"
         }
       },
@@ -481,85 +434,85 @@
       "as_of": "2026-11-24",
       "aligned_days": 80,
       "overall_state": "WEAKER",
-      "weighted_excess_return_pct": -1.51,
+      "weighted_excess_return_pct": -5.68,
       "windows": {
         "1": {
           "start_date": "2026-11-23",
           "end_date": "2026-11-24",
-          "stock_return_pct": 6.56,
-          "benchmark_return_pct": 6.95,
-          "excess_return_pct": -0.39,
-          "state": "SIMILAR"
+          "stock_return_pct": 1.27,
+          "benchmark_return_pct": 6.32,
+          "excess_return_pct": -5.04,
+          "state": "WEAKER"
         },
         "3": {
           "start_date": "2026-11-19",
           "end_date": "2026-11-24",
-          "stock_return_pct": -2.51,
-          "benchmark_return_pct": -1.99,
-          "excess_return_pct": -0.52,
-          "state": "SIMILAR"
+          "stock_return_pct": -7.35,
+          "benchmark_return_pct": -2.57,
+          "excess_return_pct": -4.78,
+          "state": "WEAKER"
         },
         "5": {
           "start_date": "2026-11-17",
           "end_date": "2026-11-24",
-          "stock_return_pct": 1.4,
-          "benchmark_return_pct": 1.35,
-          "excess_return_pct": 0.04,
-          "state": "SIMILAR"
+          "stock_return_pct": -3.64,
+          "benchmark_return_pct": 0.76,
+          "excess_return_pct": -4.39,
+          "state": "WEAKER"
         },
         "20": {
           "start_date": "2026-10-27",
           "end_date": "2026-11-24",
-          "stock_return_pct": -14.47,
-          "benchmark_return_pct": -10.69,
-          "excess_return_pct": -3.78,
+          "stock_return_pct": -18.71,
+          "benchmark_return_pct": -11.21,
+          "excess_return_pct": -7.5,
           "state": "WEAKER"
         }
       },
       "method_note": "같은 거래일의 종목·벤치마크 종가 수익률을 1·3·5·20거래일로 비교한 기술적 상대강도입니다. 미래 수익률 확률을 의미하지 않습니다."
     },
     {
-      "code": "036930",
-      "name": "주성엔지니어링",
-      "benchmark": "KOSDAQ",
+      "code": "009150",
+      "name": "삼성전기",
+      "benchmark": "KOSPI",
       "source_id": "naver-finance-public",
       "source_kind": "secondary",
       "evidence_state": "ESTIMATED",
       "as_of": "2026-11-24",
       "aligned_days": 80,
       "overall_state": "WEAKER",
-      "weighted_excess_return_pct": -2.3,
+      "weighted_excess_return_pct": -6.76,
       "windows": {
         "1": {
           "start_date": "2026-11-23",
           "end_date": "2026-11-24",
-          "stock_return_pct": 4.39,
-          "benchmark_return_pct": 5.13,
-          "excess_return_pct": -0.74,
-          "state": "SIMILAR"
+          "stock_return_pct": 2.89,
+          "benchmark_return_pct": 6.32,
+          "excess_return_pct": -3.43,
+          "state": "WEAKER"
         },
         "3": {
           "start_date": "2026-11-19",
           "end_date": "2026-11-24",
-          "stock_return_pct": -4.46,
-          "benchmark_return_pct": -2.45,
-          "excess_return_pct": -2.01,
+          "stock_return_pct": -7.13,
+          "benchmark_return_pct": -2.57,
+          "excess_return_pct": -4.57,
           "state": "WEAKER"
         },
         "5": {
           "start_date": "2026-11-17",
           "end_date": "2026-11-24",
-          "stock_return_pct": 2.15,
-          "benchmark_return_pct": 2.76,
-          "excess_return_pct": -0.62,
-          "state": "SIMILAR"
+          "stock_return_pct": 9.63,
+          "benchmark_return_pct": 0.76,
+          "excess_return_pct": 8.87,
+          "state": "STRONGER"
         },
         "20": {
           "start_date": "2026-10-27",
           "end_date": "2026-11-24",
-          "stock_return_pct": -14.64,
-          "benchmark_return_pct": -10.19,
-          "excess_return_pct": -4.45,
+          "stock_return_pct": -33.12,
+          "benchmark_return_pct": -11.21,
+          "excess_return_pct": -21.9,
           "state": "WEAKER"
         }
       },
@@ -575,38 +528,85 @@
       "as_of": "2026-11-24",
       "aligned_days": 80,
       "overall_state": "WEAKER",
-      "weighted_excess_return_pct": -4.66,
+      "weighted_excess_return_pct": -6.82,
       "windows": {
         "1": {
           "start_date": "2026-11-23",
           "end_date": "2026-11-24",
-          "stock_return_pct": 4.34,
-          "benchmark_return_pct": 6.95,
-          "excess_return_pct": -2.61,
+          "stock_return_pct": 1.26,
+          "benchmark_return_pct": 6.32,
+          "excess_return_pct": -5.06,
           "state": "WEAKER"
         },
         "3": {
           "start_date": "2026-11-19",
           "end_date": "2026-11-24",
-          "stock_return_pct": -7.0,
-          "benchmark_return_pct": -1.99,
-          "excess_return_pct": -5.02,
+          "stock_return_pct": -9.75,
+          "benchmark_return_pct": -2.57,
+          "excess_return_pct": -7.19,
           "state": "WEAKER"
         },
         "5": {
           "start_date": "2026-11-17",
           "end_date": "2026-11-24",
-          "stock_return_pct": -6.67,
-          "benchmark_return_pct": 1.35,
-          "excess_return_pct": -8.03,
+          "stock_return_pct": -9.43,
+          "benchmark_return_pct": 0.76,
+          "excess_return_pct": -10.19,
           "state": "WEAKER"
         },
         "20": {
           "start_date": "2026-10-27",
           "end_date": "2026-11-24",
-          "stock_return_pct": -13.26,
-          "benchmark_return_pct": -10.69,
-          "excess_return_pct": -2.57,
+          "stock_return_pct": -15.82,
+          "benchmark_return_pct": -11.21,
+          "excess_return_pct": -4.61,
+          "state": "WEAKER"
+        }
+      },
+      "method_note": "같은 거래일의 종목·벤치마크 종가 수익률을 1·3·5·20거래일로 비교한 기술적 상대강도입니다. 미래 수익률 확률을 의미하지 않습니다."
+    },
+    {
+      "code": "036930",
+      "name": "주성엔지니어링",
+      "benchmark": "KOSDAQ",
+      "source_id": "naver-finance-public",
+      "source_kind": "secondary",
+      "evidence_state": "ESTIMATED",
+      "as_of": "2026-11-24",
+      "aligned_days": 80,
+      "overall_state": "WEAKER",
+      "weighted_excess_return_pct": -6.86,
+      "windows": {
+        "1": {
+          "start_date": "2026-11-23",
+          "end_date": "2026-11-24",
+          "stock_return_pct": -0.96,
+          "benchmark_return_pct": 4.79,
+          "excess_return_pct": -5.75,
+          "state": "WEAKER"
+        },
+        "3": {
+          "start_date": "2026-11-19",
+          "end_date": "2026-11-24",
+          "stock_return_pct": -9.35,
+          "benchmark_return_pct": -2.76,
+          "excess_return_pct": -6.59,
+          "state": "WEAKER"
+        },
+        "5": {
+          "start_date": "2026-11-17",
+          "end_date": "2026-11-24",
+          "stock_return_pct": -3.09,
+          "benchmark_return_pct": 2.43,
+          "excess_return_pct": -5.52,
+          "state": "WEAKER"
+        },
+        "20": {
+          "start_date": "2026-10-27",
+          "end_date": "2026-11-24",
+          "stock_return_pct": -19.01,
+          "benchmark_return_pct": -10.48,
+          "excess_return_pct": -8.53,
           "state": "WEAKER"
         }
       },
